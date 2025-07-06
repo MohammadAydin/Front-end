@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@theme {
+  --color-softColor: #555770;
+  --color-secondaryColor: #f47621;
+  --color-softwhite: #f1f1f5;
+}
+
+.backgorund {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -10;
+  overflow: hidden;
+}
+.ballBackgorund {
+  position: absolute;
+  background: linear-gradient(
+    150deg,
+    rgba(84, 139, 187, 1) -10%,
+    rgba(25, 72, 148, 1) 50%
+  );
+}
+.large {
+  width: 55vw;
+  height: 100vh;
+  border-radius: 0px 0px 1000px 0px;
+  top: 0;
+  left: 0;
+}
+.meduim {
+  border-radius: 0px 1000px 0px 0px;
+  width: 20vw;
+  height: 20vw;
+  bottom: 0;
+  left: 0;
+}
+.small-one {
+  border-radius: 1000px;
+  width: 20vw;
+  height: 20vw;
+  top: 50%;
+  left: 30%;
+}
+.small-two {
+  border-radius: 1000px 0px 0px 0px;
+  width: 13vw;
+  height: 13vw;
+  bottom: 0;
+  right: 0;
+}
+
+/* Add LamaSans font */
+@font-face {
+  font-family: "LamaSans";
+  src: url("./assets/fonts/LamaSans-Medium.otf");
+}
+@font-face {
+  font-family: "LamaSans-Light";
+  src: url("./assets/fonts/LamaSans-Light.otf");
+}
+
+* {
+  font-family: "LamaSans";
+}
+/* side bar small */
+.small-side {
+  background-color: #194894;
+}
+/* Storing colors in variables */
+:root {
+  --secondary-color: #f47621;
+}
+/* Popup profile older house*/
+.Popup {
+  box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.2);
+  font-family: "LamaSans";
+}
+.Popup button {
+  font-family: "LamaSans";
+}
+button {
+  cursor: pointer;
+}
+.click {
+  cursor: pointer;
+}
+.non-click {
+  cursor: default;
+}
+
+/* input field components */
+.input-control {
+  width: 100%;
+  height: 50px;
+  border: 1.5px solid;
+  padding: 7px 15px;
+  border-radius: 10px;
+  border-color: rgba(145, 158, 171, 0.5);
+  font-weight: 100;
+}
+.label-email {
+  color: var(--secondary-color);
+  transition: 0.5s;
+  color: #919eab;
+}
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+  top: 0;
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+/* Change Fox's primary color and add another */
+input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+/* hide arrow from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* notification animation */
+.slide-in {
+  animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.copy {
+  cursor: text;
+}
+
+/* JopRequest */
+
+.Decline-Job {
+  transition: background-color 0.1s ease 0.05s, color 0.1s ease 0.05s; /* المدة: 0.3s، والتأخير: 0.5s */
+}
+
+.Decline-Job:hover {
+  background-color: red;
+  color: white;
+}
+
+/* succsessPopup DownloadLine */
+
+.DownloadLine {
+  height: 5px;
+  margin-top: 50px;
+  align-self: self-start;
+  background-color: #4ce452;
+  animation: DownloadLine 3s linear;
+}
+
+@keyframes DownloadLine {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.css-1nmdiq5-menu {
+  z-index: 50 !important;
+}
+.css-13cymwt-control {
+  border: 1.5px solid #919eab52 !important;
+  border-radius: 13px !important;
+}
+
+/* NotificationsList */
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-down {
+  animation: slideDownFade 0.3s ease-out forwards;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 3px; /* عرض الشريط */
+  background: transparent; /* تخفي الخلفية */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent; /* تخفي المسار */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #8888886b; /* لون المقبض فقط */
+  border-radius: 10px;
+  border: none; /* تحذف أي حواف */
+}
+
+/* ---------------TasksPage */
+
+.task-div {
+  border-bottom: 1px dashed rgb(0, 0, 0, 0.3);
+}
+
+/* task details code access */
+
+.input-control-code {
+  width: 50px;
+  border: 1.5px solid;
+  padding: 7px 15px;
+  border-radius: 10px;
+  border-color: rgba(145, 158, 171, 0.5);
+  font-weight: 100;
+}

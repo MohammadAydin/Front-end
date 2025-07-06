@@ -1,0 +1,152 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import imgjob from "../assets/images/jobRequest/jobRequest.svg";
+import useJobs from "../hooks/useJobs";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import customFetch from "../utils/axios";
+import { toast } from "react-toastify";
+import Spinner from "../components/MoreElements/Spinner";
+import { RiErrorWarningLine } from "react-icons/ri";
+import { HiOutlineBriefcase } from "react-icons/hi2";
+
+const JopRequest = () => {
+  // To store the status of View All
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Definition of routing from ReactRoute
+  const navigate = useNavigate();
+
+  // To store jobsRequst
+  const { data: jobs, error, isLoading } = useJobs("/jobs");
+
+  // Using React Query to fetch data
+  const queryClient = useQueryClient();
+
+  // To reject a jobRequest
+  const DeclineJob = useMutation({
+    mutationFn: (jobId) =>
+      customFetch
+        .post(`/matching/declineRequest/${jobId}`)
+        .then((res) => res.data),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["jobList", "/jobs"] });
+      toast.success(data.message || "Job decline successfully");
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message || "Failed to decline job");
+    },
+  });
+
+  // To approve the job jobRequest
+  const AcceptJob = useMutation({
+    mutationFn: (jobId) =>
+      customFetch
+        .post(`/matching/takeRequest/${jobId}`)
+        .then((res) => res.data),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["jobList", "/jobs"] });
+      toast.success(data.message || "Job accepted successfully");
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message || "Failed to accept job");
+    },
+  });
+
+  // Store 3 jobRequest orders by cropping status
+  const visibleJobs = isExpanded ? jobs : jobs?.slice(0, 3);
+
+  if (isLoading) return <Spinner />;
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen gap-4">
+        <RiErrorWarningLine className="text-[#194894] text-9xl " />
+
+        <p className="text-black">{error?.response?.data?.message}</p>
+        <Link
+          to="/locationInfo"
+          className="bg-[#12151b] text-white py-1 px-2 rounded-[10px]"
+        >
+          add location
+        </Link>
+      </div>
+    );
+  return (
+    <div className="p-[28px] py-[58px]">
+      <div className="w-full h-50 bg-[#194894] text-white rounded-2xl p-5 flex flex-col gap-10">
+        {/* Click to continue. Complete personal info. */}
+        <span className="text-2xl "> Complete your profile</span>
+        <button
+          onClick={() => navigate("/Personal info")}
+          className="bg-[#99B2DB] py-5 text-2xl rounded-2xl border border-white"
+        >
+          Complete &nbsp; →
+        </button>
+      </div>
+
+      <div className="JobRequestList mt-6">
+        <div className="head-List flex justify-between">
+          <h2 className="text-xl">Last job requests</h2>
+          {/* Button to view all jobRequest */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-secondaryColor"
+          >
+            {!isExpanded ? "See all" : "Show less"}
+          </button>
+        </div>
+        <div className="body-list mt-3.5 ">
+          {/* Loop through jobRequest array */}
+          {visibleJobs.length == 0 && (
+            <>
+              <div className="flex flex-col items-center justify-center mt-30">
+                <HiOutlineBriefcase className="text-6xl mb-3 text-secondaryColor " />
+
+                <p className="text-center">
+                  There are no job requests at the moment. Enjoy your time!
+                </p>
+              </div>
+            </>
+          )}
+          {visibleJobs?.map((job) => (
+            <div
+              key={job.service_request.id}
+              className=" flex justify-between items-center mb-7   "
+            >
+              <Link to={`/jobRequestDetails/${job.service_request.id}`}>
+                <div className="imgAndinfo flex gap-3 items-center">
+                  {/* View a picture of the elderly house*/}
+                  <img className=" rounded-4xl" src={imgjob} alt="" />
+                  {/* Display price with jobRequest title */}
+                  <div className="info">
+                    <p>{job.job_posting.title}</p>
+                    <p className="text-softColor text-xs">
+                      {parseFloat(job.job_posting.total_cost).toFixed(2)} €
+                    </p>
+                  </div>
+                </div>
+              </Link>
+              <div className="buttons flex gap-3.5 max-[811px]:flex-col ">
+                {/* Decline button */}
+                <button
+                  onClick={() => DeclineJob.mutate(job.service_request.id)}
+                  className="bg-softwhite  pt-2 pb-2 pr-8 pl-8 rounded-xl Decline-Job"
+                >
+                  Decline
+                </button>
+                {/* Accept button */}
+                <button
+                  onClick={() => AcceptJob.mutate(job.service_request.id)}
+                  className="bg-secondaryColor text-white pt-2 pb-2 pr-8 pl-8 rounded-xl"
+                >
+                  Accept
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default JopRequest;

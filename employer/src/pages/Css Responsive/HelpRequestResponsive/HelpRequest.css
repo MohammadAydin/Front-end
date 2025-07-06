@@ -1,0 +1,42 @@
+@media (max-width: 1280px) {
+  /* header */
+  .HelpRequestsHeader {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+@media (max-width: 980px) {
+  /* header */
+  .HelpRequestsHeaderActions {
+    width: 100%;
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .HelpRequestsHeaderActions > div > .SearchInput {
+    width: 100%;
+  }
+  .HelpRequestsHeaderBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Request Form */
+  .RequestsForm {
+    width: 90%;
+  }
+  .RequestsDone {
+    padding: 20px;
+    width: 90%;
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+  .HelpRequests {
+    padding: 10px 20px;
+  }
+  .CalendarRange {
+    width: 330px;
+  }
+  .CalendarIcon {
+    left: 85%;
+  }
+}

@@ -1,0 +1,73 @@
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .LoginItems {
+    width: 80%;
+  }
+  .large {
+    width: 55vw;
+    height: 90vh;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .LoginItems {
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 150px;
+  }
+  .logo {
+    width: 30%;
+  }
+  .large {
+    width: 100vw;
+    height: 45vh;
+    border-radius: 0px 0px 1000px 1000px;
+    top: 0;
+    left: 0;
+  }
+  .small-one {
+    top: 30%;
+    left: 70%;
+  }
+  .formTitle {
+    font-size: 3vw;
+  }
+  .pwdForgetting {
+    font-size: 1.5vw;
+  }
+}
+@media (max-width: 600px) {
+  .LoginItems {
+    width: 80%;
+    flex-direction: column;
+    height: 90vh;
+    padding: 30px 0px;
+  }
+  .logo {
+    width: 30%;
+  }
+  .large {
+    width: 100vw;
+    height: 35vh;
+    border-radius: 0px 0px 1000px 1000px;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .small-one {
+    top: 15%;
+    left: 70%;
+  }
+  .formTitle {
+    font-size: 5vw;
+  }
+  .pwdForgetting {
+    font-size: 3vw;
+  }
+  .formSubTitle {
+    font-size: 3vw;
+  }
+  .inputs {
+    margin-top: 10px;
+  }
+}

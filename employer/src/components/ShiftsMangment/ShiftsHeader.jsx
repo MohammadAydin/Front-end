@@ -1,0 +1,26 @@
+import { LuClock } from "react-icons/lu";
+import { BsPlus } from "react-icons/bs";
+
+const ShiftsHeader = ({ setIsFormOpen }) => {
+  return (
+    <div className="ShiftsHeader w-full flex justify-between items-center">
+      <div className="flex items-center gap-2">
+        <LuClock size={30} />
+        <h2 className="font-[900] text-xl">Shifts Mangment</h2>
+      </div>
+      <div>
+        <button
+          onClick={() => setIsFormOpen(true)}
+          className="HeadersButton flex gap-1 items-center font-[900] text-lg bg-[#F47621] text-white px-4 py-2 rounded-xl cursor-pointer"
+        >
+          <span>
+            <BsPlus size={30} />
+          </span>
+          Add new Shift
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ShiftsHeader;

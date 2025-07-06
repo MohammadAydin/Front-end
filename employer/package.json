@@ -1,0 +1,45 @@
+{
+  "name": "wo-wann",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "setup": "npm install react-icons zod styled-components react-hook-form @hookform/resolvers react-router-dom zustand react-day-picker axios @tanstack/react-query react-toastify react-apexcharts @tanstack/react-query-devtools@4",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.2",
+    "@hookform/resolvers": "^5.1.1",
+    "@tailwindcss/vite": "^4.1.4",
+    "@tanstack/react-query": "^5.80.6",
+    "@tanstack/react-query-devtools": "^5.80.6",
+    "axios": "^1.9.0",
+    "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
+    "react-day-picker": "^9.7.0",
+    "react-dom": "^19.0.0",
+    "react-draggable": "^4.4.6",
+    "react-hook-form": "^7.57.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.6.2",
+    "react-toastify": "^11.0.5",
+    "styled-components": "^6.1.18",
+    "tailwindcss": "^4.1.4",
+    "zod": "^3.25.56",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
+  }
+}

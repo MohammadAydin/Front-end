@@ -1,0 +1,29 @@
+import React from "react";
+import DetailsList from "../DetailsList";
+
+const HelpRequestsMain = () => {
+  const number = [1, 2, 3, 4, 5, 6];
+  return (
+    <div>
+      {number.map((i) => (
+        <DetailsList
+          previousPage="helpRequests"
+          key={i}
+          index="t"
+          avatarPhoto="t"
+          name="t"
+          email="t"
+          orderDate="t"
+          orderTime="t"
+          specialist="t"
+          address="t"
+          price="t"
+          status="In Progress"
+          navigateTo={"/helpRequests/20"}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default HelpRequestsMain;

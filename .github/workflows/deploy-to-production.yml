@@ -1,0 +1,33 @@
+name: Deploy Frontend to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout frontend repo
+        uses: actions/checkout@v3
+
+      - name: Clone production repo from GitLab
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Actions"
+          git clone https://oauth2:${{ secrets.GL_TOKEN }}@gitlab.com/anas-almbark-group/production-woundwann.git production
+
+      - name: Copy frontend files to production under Front-end
+        run: |
+          rm -rf production/Front-end/* production/Front-end/.[!.]* || true
+          mkdir -p production/Front-end
+          rsync -av --exclude='.github/' --exclude='production/' --exclude='.git/' ./ production/Front-end/
+
+      - name: Commit and push to production on GitLab
+        run: |
+          cd production
+          git add Front-end
+          git commit -m "Frontend Auto Sync" || true
+          git push origin main

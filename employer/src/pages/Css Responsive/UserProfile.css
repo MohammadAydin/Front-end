@@ -1,0 +1,28 @@
+@media (max-width: 900px) {
+  /* user reviews */
+  .Reviews {
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 20px;
+  }
+  .ReviewText {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .UserProfile {
+    padding: 10px 20px;
+  }
+
+  /*  user details */
+  .UserDetailsImg {
+    flex-direction: column;
+    align-items: start;
+  }
+  .UserDetailsName {
+    font-size: 20px;
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: start;
+  }
+}

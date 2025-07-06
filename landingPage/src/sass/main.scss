@@ -1,0 +1,44 @@
+// Import breakpoint mixin
+@use "./helper/mixins" as *;
+
+// import colors
+@use "./variables/colors" as *;
+
+// import global rules styles
+@use "./layout/global_rules";
+
+// import navbar styles
+@use "./layout/Navbar";
+
+// import navbar styles
+@use "./components/SmallNavBar";
+
+// import Footer styles
+@use "./layout/Footer";
+
+// import Hero section styles
+@use "./components/Hero";
+
+// import NachstenSchritt section styles
+@use "./components/NachstenSchritt";
+
+// import Registrieren section styles
+@use "./components/Registrieren";
+
+// import Features section styles
+@use "./components/Features";
+
+// import HowItWork section styles
+@use "./components/HowItWork";
+
+// import Contact section styles
+@use "./components/Contact";
+
+// import Responsive Design
+@use "./Responsive/Responsive";
+
+// import Impressum style
+@use "./pages/Impressum.scss";
+
+// import Datenschutzerklärung style
+@use "./pages/Datenschutzerklärung.scss";

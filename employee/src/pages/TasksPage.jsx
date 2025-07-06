@@ -1,0 +1,96 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import imgjob from "../assets/images/jobRequest/jobRequest.svg";
+import useJobs from "../hooks/useJobs";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import Spinner from "../components/MoreElements/Spinner";
+import Filter from "../components/MoreElements/Filter";
+import statusTask from "../hooks/statusTask";
+import { BsListTask } from "react-icons/bs";
+
+const TasksPage = () => {
+  const [selectedValue, setSelectedValue] = useState();
+  // To store tasks
+  const { data: tasks, error, isLoading } = useJobs("/tasks");
+
+  console.log(tasks);
+
+  const filterTasks =
+    selectedValue === "all" || !selectedValue
+      ? tasks
+      : tasks.filter((task) => task.status === selectedValue);
+
+  if (isLoading) return <Spinner />;
+  if (error)
+    return (
+      <p className="text-red-500">Error:{error?.response?.data?.message}</p>
+    );
+  return (
+    <div className="p-[28px] py-[58px]">
+      <div className="JobRequestList mt-6">
+        <div className="head-List flex justify-between">
+          <h2 className="text-xl">My tasks</h2>
+          <Filter
+            options={["all", "todo", "done", "progress", "review", "cansle"]}
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
+          />
+        </div>
+        <div className="body-list mt-5 ">
+          {/* Loop through tasks array */}
+          {filterTasks.length == 0 && (
+            <>
+              <div className="flex flex-col items-center justify-center mt-30">
+                <BsListTask className="text-6xl mb-3 text-secondaryColor " />
+
+                <p className="text-center">
+                  "All clear here & no tasks have been&nbsp;
+                  {statusTask(selectedValue).statusText == "Unknown"
+                    ? ""
+                    : statusTask(selectedValue).statusText}
+                  &nbsp;yet."
+                </p>
+              </div>
+            </>
+          )}
+          {filterTasks?.map((task) => (
+            <div
+              key={task.id}
+              className="task-div flex justify-between items-center mb-7 p-4 max-[510px]:flex-col max-[510px]:items-start max-[510px]:gap-5"
+            >
+              <div className="imgAndinfo flex gap-3 items-center">
+                {/* View a picture of the elderly house*/}
+                <img className=" rounded-4xl" src={imgjob} alt="" />
+                {/* Display price with tasks title */}
+                <div className="info">
+                  <p>title : Help us in our house</p>
+                  <p className="text-softColor text-[0.8rem]">
+                    price : approximately 50$
+                  </p>
+                </div>
+              </div>
+              <div className="min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col ">
+                <Link
+                  to={`/taskDetails/${task.id}`}
+                  className="border  py-1 px-3.5 rounded-[10px]"
+                >
+                  See details{" "}
+                </Link>
+                <div
+                  className={`${
+                    statusTask(task.status).statusColorClass
+                  } text-white py-1 w-[100px] rounded-[10px] text-center`}
+                >
+                  {task.status}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TasksPage;

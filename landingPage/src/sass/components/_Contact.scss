@@ -1,0 +1,82 @@
+.Contact {
+  text-align: center;
+  padding: 50px 100px;
+
+  h2 {
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--primary-color);
+  }
+  p {
+    font-size: 26px;
+    color: var(--font-color);
+  }
+
+  .ContactInfo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    .ContactForm {
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      input {
+        width: 100%;
+        padding: 25px;
+        border: 2px solid #1847942f;
+        border-radius: 20px 5px;
+        color: black !important;
+      }
+      input:focus {
+        outline: 1px #184794 solid;
+      }
+      .ErrorMessge {
+        font-size: 16px;
+        color: red;
+        text-align: start;
+      }
+      .successMessge {
+        font-size: 16px;
+        color: green;
+      }
+      input::placeholder {
+        font-size: 20px;
+        color: #1847946b;
+      }
+      button {
+        padding: 20px;
+        background-color: var(--secondary-color);
+        border: none;
+        border-radius: 20px 5px;
+        color: white;
+        font-weight: 900;
+        font-size: 20px;
+      }
+    }
+
+    .Info {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+
+      span {
+        color: var(--primary-color);
+      }
+
+      div {
+        margin-left: 10px;
+        text-align: start;
+        h4 {
+          margin: 0;
+          font-size: 26px;
+        }
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

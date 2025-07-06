@@ -1,0 +1,36 @@
+@media (max-width: 600px) {
+  .ShiftsMangment {
+    padding: 10px;
+  }
+  .ShiftsHeader {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .HeadersButton {
+    justify-content: center;
+    width: 90vw;
+  }
+  .ShiftsList {
+    display: grid;
+    grid-template-areas: "name btn";
+    gap: 20px;
+  }
+
+  .shiftname {
+    grid-area: name;
+  }
+  .ShiftBtn {
+    grid-area: btn;
+  }
+  .shifttime {
+    font-size: 15px;
+  }
+  .AddShiftsForm {
+    height: 530px;
+    width: 90%;
+  }
+  .ShiftTime {
+    flex-direction: column;
+    gap: 0px;
+  }
+}

@@ -1,0 +1,122 @@
+@media (max-width: 1280px) {
+  .LeadersHeader {
+    flex-wrap: wrap;
+  }
+  /* leaders list  */
+  .LeadersList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-bottom: 20px;
+  }
+  .LeaderInfo {
+    grid-column: span 5;
+  }
+  .LeaderAction {
+    justify-self: end;
+  }
+
+  /* Add New Leader Form */
+  .AddLeaderForm {
+    width: 850px;
+  }
+}
+
+@media (max-width: 900px) {
+  .LeadersHeaderAction {
+    flex-direction: column-reverse;
+    gap: 20px;
+    width: 100%;
+  }
+  .LeadersHeaderAction > div > .SearchInput {
+    width: 100%;
+  }
+  .AddNewLeaderBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .LeadersList {
+    display: grid;
+    grid-template-areas: "info info info info action";
+  }
+  .LeaderInfo {
+    grid-area: info;
+  }
+  .LeaderAction {
+    grid-area: action;
+  }
+  .LeaderPostion {
+    grid-column: span 5;
+  }
+  .LeaderNumber {
+    grid-column: span 5;
+  }
+  .LeaderPassword {
+    grid-column: span 5;
+  }
+  .LeadersAdd {
+    grid-column: span 5;
+  }
+  /* Add New Leader Form */
+  .AddLeaderForm {
+    width: 80%;
+  }
+  .Permissions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .LeadersInputs {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 640px) {
+  .Leaders {
+    padding: 10px 20px;
+  }
+  .LeadersList {
+    grid-template-areas: "info info info info info";
+  }
+  .LeaderAction {
+    grid-area: auto;
+    grid-column: span 5;
+  } /* Add New Leader Form */
+  .AddLeaderForm {
+    width: 90%;
+    max-height: 90%;
+  }
+  .AddLeaderForm > form > h4 {
+    font-size: 14px;
+  }
+  .LeadersInputs {
+    gap: 10px;
+  }
+  .LeadersInputs > div > .InputField,
+  .AddLeaderForm > form > .InputPasswordField > .InputField {
+    font-size: 13px;
+  }
+  .LeadersInputs > div > .InputField > input,
+  .AddLeaderForm > form > .InputPasswordField > .InputField > input {
+    height: 40px;
+  }
+  .InputErrors {
+    font-size: 13px;
+  }
+  .Permissions {
+    gap: 5px;
+    font-size: 13px;
+  }
+  .Permission {
+    width: 15px;
+  }
+  .avatarImage {
+    width: 60px;
+    height: 60px;
+  }
+  .imageDetails {
+    font-size: 13px;
+  }
+  .AddLeaderForm > form > div > .SubmitButtons > button {
+    font-size: 13px;
+    margin: 0;
+  }
+}

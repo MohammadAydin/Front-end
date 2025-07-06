@@ -1,0 +1,456 @@
+// Import breakpoint mixin
+@use "../helper/mixins" as *;
+
+@include breakpoint(medium) {
+  // Navbar ---------------------------
+  header {
+    padding: 30px 60px;
+    .Navbar {
+      img {
+        width: 200px;
+      }
+      div {
+        gap: 30px;
+      }
+      ul {
+        gap: 30px;
+      }
+    }
+  }
+  // Hero ---------------------------
+
+  .Hero {
+    padding: 50px 60px;
+    gap: 20px;
+    h1 {
+      font-size: 40px;
+    }
+    h2 {
+      font-size: 26px;
+      margin: 60px 0px;
+    }
+    img {
+      width: 400px;
+    }
+  }
+
+  // NachstenSchritt ---------------------------
+  .NachstenSchritt {
+    padding: 50px 60px;
+    .Schritt {
+      width: 400px;
+      img {
+        width: 350px;
+      }
+    }
+  }
+  // Registrieren ---------------------------
+  .Registrieren {
+    padding: 50px 60px;
+    div {
+      img {
+        width: 400px;
+      }
+      flex-direction: column-reverse;
+      p {
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+      }
+    }
+  }
+
+  // Features ---------------------------
+  .Features {
+    padding: 50px 60px;
+    .FeaturesList {
+      flex-direction: column;
+      gap: 50px;
+      align-items: center;
+      .Feature {
+        margin-top: 50px;
+      }
+    }
+  }
+  // HowItWork ---------------------------
+  .HowItWork {
+    padding: 50px 60px;
+    .HowItWorkList {
+      flex-direction: column;
+    }
+  }
+  // Contact ---------------------------
+  .Contact {
+    padding: 50px 60px;
+    .ContactInfo {
+      margin-top: 80px;
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+}
+
+@include breakpoint(small) {
+  // Navbar ---------------------------
+  header {
+    padding: 30px;
+    .Navbar {
+      border-radius: 20px 5px;
+      padding: 10px 30px;
+      img {
+        width: 180px;
+      }
+      .NavIcon {
+        display: block;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+      div {
+        display: none;
+      }
+    }
+  }
+  // Hero ---------------------------
+
+  .Hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 50px;
+    gap: 20px;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      h1 {
+        font-size: 46px;
+        margin: 0;
+        margin-top: 20px;
+      }
+      h2 {
+        font-size: 30px;
+        margin: 30px 0px;
+      }
+      .HeroActions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    img {
+      width: 300px;
+    }
+  }
+
+  // NachstenSchritt ---------------------------
+  .NachstenSchritt {
+    padding: 50px;
+    flex-direction: column;
+    .Schritt {
+      width: 400px;
+      img {
+        width: 350px;
+      }
+    }
+  }
+  // Registrieren ---------------------------
+  .Registrieren {
+    padding: 50px;
+    div {
+      margin-top: 20px;
+      img {
+        width: 400px;
+      }
+      flex-direction: column-reverse;
+      p {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  // Features ---------------------------
+  .Features {
+    padding: 50px;
+    .FeaturesList {
+      flex-direction: column;
+      gap: 0px;
+      align-items: center;
+      .Feature {
+        margin-top: 50px;
+      }
+    }
+  }
+  // HowItWork ---------------------------
+  .HowItWork {
+    padding: 50px 60px;
+    .HowItWorkList {
+      flex-direction: column;
+    }
+  }
+  // Contact ---------------------------
+  .Contact {
+    padding: 50px;
+    .ContactInfo {
+      margin-top: 80px;
+      flex-direction: column;
+      gap: 50px;
+
+      .ContactForm {
+        width: 90%;
+      }
+    }
+  }
+  // Footer ---------------------------
+  .Footer {
+    padding: 20px 50px;
+  }
+}
+@include breakpoint(mobile) {
+  // Navbar ---------------------------
+  header {
+    padding: 20px 15px;
+    .Navbar {
+      border-radius: 20px 5px;
+      padding: 15px;
+      .NavLogo {
+        span {
+          font-size: 10px;
+          margin-bottom: 5px;
+        }
+      }
+      img {
+        width: 160px;
+      }
+      .NavIcon {
+        display: block;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+      div {
+        display: none;
+      }
+    }
+  }
+  // Hero ---------------------------
+
+  .Hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 30px;
+    gap: 20px;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      h1 {
+        font-size: 36px;
+        margin: 0;
+        margin-top: 20px;
+      }
+      h2 {
+        font-size: 24px;
+        margin: 30px 0px;
+      }
+      .HeroActions {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(1, 1fr);
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 80vw;
+          margin: 0;
+        }
+      }
+    }
+
+    img {
+      width: 300px;
+    }
+  }
+
+  // NachstenSchritt ---------------------------
+  .NachstenSchritt {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+    .Schritt {
+      width: 90%;
+      h3 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 20px;
+      }
+      img {
+        width: 85%;
+      }
+    }
+  }
+  // Registrieren ---------------------------
+  .Registrieren {
+    padding: 20px;
+
+    h2 {
+      font-size: 24px;
+      margin: 0;
+    }
+    div {
+      margin-top: 20px;
+      gap: 20px;
+      img {
+        width: 70%;
+      }
+      flex-direction: column-reverse;
+      p {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+  }
+
+  // Features ---------------------------
+  .Features {
+    padding: 20px;
+    h2 {
+      font-size: 24px;
+    }
+    .FeaturesList {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      .Feature {
+        width: 90%;
+        margin-top: 20px;
+        p {
+          font-size: 18px;
+          font-weight: 900;
+        }
+        span {
+          font-size: 20px;
+        }
+        h4 {
+          font-size: 20px;
+        }
+        .list-item {
+          font-size: 16px;
+          span {
+            font-size: 16px;
+          }
+          p {
+            font-size: 16px;
+            font-weight: 100;
+          }
+        }
+      }
+    }
+  }
+  // HowItWork ---------------------------
+  .HowItWork {
+    padding: 20px;
+
+    h2 {
+      font-size: 24px;
+    }
+    .HowItWorkList {
+      margin-top: 30px;
+      flex-direction: column;
+      .HowItWorkListItem {
+        width: 90%;
+
+        span {
+          width: 60px;
+          height: 60px;
+          padding: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            width: 30px;
+          }
+        }
+        h4 {
+          font-size: 20px;
+        }
+        p {
+          width: 100%;
+
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  // Contact ---------------------------
+  .Contact {
+    padding: 20px;
+    h2 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .ContactInfo {
+      margin-top: 40px;
+      flex-direction: column;
+      gap: 50px;
+
+      .ContactForm {
+        width: 90%;
+
+        input {
+          height: 40px;
+          font-size: 16px;
+        }
+        input::placeholder {
+          font-size: 16px;
+        }
+        button {
+          height: 40px;
+          font-size: 16px;
+          padding: 0;
+        }
+      }
+      .Info {
+        margin: 20px 0px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        div {
+          text-align: center;
+          h4 {
+            font-size: 18px;
+          }
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  // Footer ---------------------------
+  .Footer {
+    padding: 20px 30px;
+    .FooterAction {
+      flex-direction: column-reverse;
+      ul {
+        padding-inline-start: 0;
+      }
+    }
+  }
+  .datenschutz-wrapper {
+    .datenschutz-title {
+      h2 {
+        font-size: 26px !important;
+      }
+    }
+  }
+}

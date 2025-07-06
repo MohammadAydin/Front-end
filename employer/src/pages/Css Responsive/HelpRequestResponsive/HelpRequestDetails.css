@@ -1,0 +1,55 @@
+@media (max-width: 900px) {
+  .HelpRequestDetailsHeader {
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+  .TableField {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .TableField > .requestStatus {
+    width: fit-content;
+  }
+  .helpersDetails {
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 10px;
+    border-bottom: 1px #919eab dashed;
+  }
+  /* AccessCode */
+  .AccessCode {
+    width: 500px;
+  }
+}
+@media (max-width: 600px) {
+  .HelpRequestDetails {
+    padding: 10px 20px;
+  }
+  .HelpRequestDetailsActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .HelpRequestDetailsActions > button {
+    width: 100%;
+    justify-content: center;
+  }
+  .RequestsTable > tbody > tr {
+    display: flex;
+    flex-direction: column;
+  }
+  /* AccessCode */
+  .AccessCode {
+    width: 90%;
+    height: fit-content;
+    text-align: center;
+  }
+  .CodeNumber {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .CodeInfo {
+    font-size: 16px;
+  }
+}

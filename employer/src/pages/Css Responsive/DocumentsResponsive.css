@@ -1,0 +1,32 @@
+@media (max-width: 900px) {
+  .Documents {
+    padding: 10px 20px;
+  }
+  .DocumentsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .DocumentInfo {
+    grid-column: span 2;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+  .documentDescription {
+    width: 100%;
+  }
+  .documentsBtn {
+    width: 100%;
+    grid-column: span 2;
+  }
+  .UploadBtn {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .DocumentsForm {
+    width: 90%;
+    height: 75%;
+  }
+}

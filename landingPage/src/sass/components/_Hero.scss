@@ -1,0 +1,48 @@
+.Hero {
+  display: flex;
+  align-items: center;
+  padding: 50px 100px;
+  gap: 50px;
+
+  h1 {
+    font-size: 52px;
+    color: var(--primary-color);
+    span {
+      color: var(--secondary-color);
+    }
+  }
+
+  h2 {
+    color: var(--font-color);
+    font-weight: 100;
+    margin: 100px 0px;
+    width: 90%;
+  }
+
+  .HeroActions {
+    display: flex;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      color: white;
+      padding: 10px 30px;
+      border-radius: 20px 0px;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+
+    .DownloadBtn {
+      background-color: var(--secondary-color);
+    }
+    .LearnMoreBtn {
+      background-color: var(--primary-color);
+    }
+  }
+  img {
+    width: 600px;
+  }
+}
