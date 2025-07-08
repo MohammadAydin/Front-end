@@ -20,6 +20,7 @@ const Personal_info = () => {
               <Icon size={25} />
               <span>{label}</span>
             </div>
+
             {data?.[status_name]?.status === "missing" ? (
               <button
                 onClick={() => navigate(`${path}`)}

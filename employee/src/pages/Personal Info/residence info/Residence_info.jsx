@@ -36,8 +36,18 @@ const Residence_info = () => {
     },
 
     onError: (error) => {
-      const message = error?.response?.data?.message || "Something went wrong!";
-      setServerError(message);
+      const errors = error?.response?.data?.errors;
+      const fallbackMessage =
+        error?.response?.data?.message || "Something went wrong!";
+
+      if (errors && typeof errors === "object") {
+        const firstField = Object.keys(errors)[0];
+        const firstMessage = errors[firstField]?.[0];
+
+        setServerError(firstMessage || fallbackMessage);
+      } else {
+        setServerError(fallbackMessage);
+      }
     },
   });
 
@@ -100,6 +110,7 @@ const Residence_info = () => {
               register={register}
               setValue={setValue}
               name={"has_work_permit"}
+              label={"do you have a work permit?"}
               errors={errors}
               Options={["Yes", "No"]}
             />

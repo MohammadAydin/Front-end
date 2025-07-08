@@ -5,7 +5,9 @@ const schema_social_Insurance = z.object({
     .string()
     .min(1, "Please enter your tax identification number"),
 
-  tax_bracket: z.string().min(1, "Please enter your tax bracket"),
+  tax_bracket: z.enum(["1", "2", "3", "4", "5", "6"], {
+    message: "Please enter your tax bracket",
+  }),
 
   social_insurance_number: z
     .string()
@@ -19,12 +21,9 @@ const schema_social_Insurance = z.object({
     .string()
     .min(1, "Please enter your health insurance number"),
 
-  health_insurance_type: z.enum(
-    ["public", "private", "family", "international"],
-    {
-      message: "Please select your health insurance type",
-    }
-  ),
+  health_insurance_type: z.enum(["public", "private"], {
+    message: "Please select your health insurance type",
+  }),
 
   number_of_children: z.coerce.number({
     required_error: "Please enter number of children",

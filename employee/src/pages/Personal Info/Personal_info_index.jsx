@@ -1,6 +1,11 @@
 import { MdOutlineHealthAndSafety } from "react-icons/md";
-import { LuUserRound, LuBriefcaseBusiness, LuBanknote } from "react-icons/lu";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import {
+  LuUserRound,
+  LuBriefcaseBusiness,
+  LuBanknote,
+  LuPhone,
+} from "react-icons/lu";
+import { IoDocumentTextOutline, IoLocationOutline } from "react-icons/io5";
 import { FaSignature } from "react-icons/fa";
 import { RiProfileLine } from "react-icons/ri";
 
@@ -46,6 +51,18 @@ const PersonalSections = [
     label: "Your signature",
     path: "/Signature",
     status_name: "signature",
+  },
+  {
+    icon: IoLocationOutline,
+    label: "Your Locations",
+    path: "/locationInfo",
+    status_name: "location",
+  },
+  {
+    icon: LuPhone,
+    label: "Your Phone number",
+    path: "/phone number",
+    status_name: "phone_number",
   },
 ];
 

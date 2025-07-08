@@ -14,9 +14,13 @@ import {
   Documents,
   LocationInfo,
   UserProfile,
+  Phone_number,
   ReportTask,
   TasksDetails,
   TasksPage,
+  AddLoaction,
+  EditLocation,
+  EditWorkaBilities,
 } from "./pages";
 import LoginForm from "./components/FormAuth/LoginForm";
 import RegisterForm from "./components/FormAuth/RegisterForm";
@@ -41,7 +45,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <JopRequest />,
       },
-        {
+      {
         path: "/tasksPage",
         element: <TasksPage />,
       },
@@ -86,7 +90,28 @@ const router = createBrowserRouter([
         path: "Signature",
         element: <Signature />,
       },
+      {
+        path: "phone number",
+        element: <Phone_number />,
+      },
       { path: "locationInfo", element: <LocationInfo /> },
+      {
+        path: "addLoaction",
+        element: <AddLoaction />,
+      },
+      {
+        path: "addLoaction/:length",
+        element: <AddLoaction />,
+      },
+      {
+        path: "editLocation/:id/:title/:street1/:street2/:postal_code/:city/:country",
+        element: <EditLocation />,
+      },
+
+      {
+        path: "editWorkaBilities/:workable_distance",
+        element: <EditWorkaBilities />,
+      },
       {
         path: "jobRequestDetails/:id",
         element: <JobRequestDetails />,
@@ -135,11 +160,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <ToastContainer
-        position="top-center"
-        autoClose={1500}
-        pauseOnHover={false}
-      />
+      <ToastContainer position="top-center" autoClose={3000} />
     </>
   );
 }

@@ -56,20 +56,32 @@ const JopRequest = () => {
   const visibleJobs = isExpanded ? jobs : jobs?.slice(0, 3);
 
   if (isLoading) return <Spinner />;
-  if (error)
-    return (
+  if (error) {
+    if (
+      error?.response?.data?.message ==
+      "No valid active locations found for employee."
+    ) {
+      return (
+        <div className="flex flex-col justify-center items-center h-screen gap-4">
+          <RiErrorWarningLine className="text-[#194894] text-9xl " />
+
+          <p className="text-black">{error?.response?.data?.message}</p>
+          <Link
+            to="/locationInfo"
+            className="bg-[#12151b] text-white py-1 px-2 rounded-[10px]"
+          >
+            add location
+          </Link>
+        </div>
+      );
+    } else {
       <div className="flex flex-col justify-center items-center h-screen gap-4">
         <RiErrorWarningLine className="text-[#194894] text-9xl " />
 
         <p className="text-black">{error?.response?.data?.message}</p>
-        <Link
-          to="/locationInfo"
-          className="bg-[#12151b] text-white py-1 px-2 rounded-[10px]"
-        >
-          add location
-        </Link>
-      </div>
-    );
+      </div>;
+    }
+  }
   return (
     <div className="p-[28px] py-[58px]">
       <div className="w-full h-50 bg-[#194894] text-white rounded-2xl p-5 flex flex-col gap-10">
@@ -96,7 +108,7 @@ const JopRequest = () => {
         </div>
         <div className="body-list mt-3.5 ">
           {/* Loop through jobRequest array */}
-          {visibleJobs.length == 0 && (
+          {visibleJobs?.length == 0 && (
             <>
               <div className="flex flex-col items-center justify-center mt-30">
                 <HiOutlineBriefcase className="text-6xl mb-3 text-secondaryColor " />

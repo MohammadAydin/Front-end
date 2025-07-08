@@ -42,8 +42,18 @@ const Documents = () => {
     },
 
     onError: (error) => {
-      const message = error?.response?.data?.message || "Something went wrong!";
-      setServerError(message);
+      const errors = error?.response?.data?.errors;
+      const fallbackMessage =
+        error?.response?.data?.message || "Something went wrong!";
+
+      if (errors && typeof errors === "object") {
+        const firstField = Object.keys(errors)[0];
+        const firstMessage = errors[firstField]?.[0];
+
+        setServerError(firstMessage || fallbackMessage);
+      } else {
+        setServerError(fallbackMessage);
+      }
     },
   });
 
@@ -51,7 +61,7 @@ const Documents = () => {
     const formData = new FormData();
 
     for (const [docId, file] of Object.entries(documents)) {
-      formData.append(Number(docId), file);
+      formData.append(`documents[${docId}]`, file);
     }
 
     uploadDocumentsMutation.mutate(formData);

@@ -61,6 +61,12 @@ const residenceSchema = z
         message: "Please select if you have a work permit",
         code: z.ZodIssueCode.custom,
       });
+    } else if (hasPermit === "No") {
+      ctx.addIssue({
+        path: ["has_work_permit"],
+        message: "You must have a work permit.",
+        code: z.ZodIssueCode.custom,
+      });
     }
   });
 

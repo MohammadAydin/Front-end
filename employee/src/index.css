@@ -224,3 +224,13 @@ input[type="number"]::-webkit-outer-spin-button {
   border-color: rgba(145, 158, 171, 0.5);
   font-weight: 100;
 }
+
+/* ----------------LocationInfo------------- */
+
+.shadow{
+   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.573);
+  
+}
+.shadow-locationsList{
+ box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.2);
+}

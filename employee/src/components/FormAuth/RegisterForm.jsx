@@ -8,6 +8,8 @@ import customFetch from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   // Store Password Status Show and Hide
   const [showPassword, setShowPassword] = useState(false);
@@ -29,13 +31,13 @@ const RegisterForm = () => {
     .object({
       firstname: z
         .string()
-        .min(1, { message: "Bitte geben Sie Ihre names ein!" })
+        .min(3, { message: "Bitte geben Sie Ihre names ein!" })
         .max(255, {
           message: "Der Name darf höchstens 255 Zeichen lang sein.",
         }),
       lastname: z
         .string()
-        .min(1, { message: "Bitte geben Sie Ihre names ein!" })
+        .min(3, { message: "Bitte geben Sie Ihre names ein!" })
         .max(255, {
           message: "Der Name darf höchstens 255 Zeichen lang sein.",
         }),
@@ -68,6 +70,8 @@ const RegisterForm = () => {
 
   // Transmission function
   const submit = async (data) => {
+    setIsLoading(true);
+
     try {
       // Sign Up post
       const response = await customFetch.post("/employee/register", {
@@ -96,10 +100,9 @@ const RegisterForm = () => {
     } catch (error) {
       // If the verification is incomplete, it goes to the verification
 
-      toast.error(
-        error.response?.data?.message
-        // Axios error message or server error message appears
-      );
+      toast.error(error.response?.data?.message);
+      setIsLoading(false);
+
       try {
         //reset code
         const response = await customFetch.post("/email/request", {
@@ -113,6 +116,7 @@ const RegisterForm = () => {
         // If the verification request is unsuccessful
       } catch (error) {
         toast.error(error.response?.data?.message);
+        setIsLoading(false);
       }
 
       // If the error is not related to email
@@ -260,11 +264,13 @@ const RegisterForm = () => {
         <button
           className={`p-2 mt-5 mb-3 ${
             isChecked ? "bg-amber-600 click" : "bg-gray-400 non-click"
+          } ${
+            isLoading ? "bg-gray-400" : "bg-amber-600 "
           } text-white rounded-[10px]`}
           type="submit"
-          disabled={!isChecked}
+          disabled={!isChecked || isLoading}
         >
-          Sign Up
+          {isLoading ? "Waiting .. " : "Sign up"}
         </button>
       </form>
       <div className="flex  text-[0.8rem]">

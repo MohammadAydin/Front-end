@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-const SelectField = ({ name, errors, setValue, register, value, Options }) => {
+const SelectField = ({
+  name,
+  errors,
+  setValue,
+  register,
+  value,
+  Options,
+  label,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectOption, setSelectOption] = useState("");
 
@@ -28,7 +36,7 @@ const SelectField = ({ name, errors, setValue, register, value, Options }) => {
           selectOption ? "text-black" : "text-[#919EAB]"
         }`}
       >
-        {selectOption || name}
+        {selectOption || label}
         <span>
           <MdOutlineKeyboardArrowDown size={25} />
         </span>

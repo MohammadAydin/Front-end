@@ -16,6 +16,7 @@ import {
 } from "../../utils/localStorage";
 
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   // Getting the user and setUser from the store
   const setUser = useAuthStore((state) => state.setUser);
 
@@ -47,6 +48,7 @@ const LoginForm = () => {
 
   // Transmission function
   const submit = async (data) => {
+    setIsLoading(true);
     try {
       // Login post
       const response = await customFetch.post("/login", {
@@ -86,7 +88,8 @@ const LoginForm = () => {
       // If he is not an employee
     } catch (error) {
       console.log("Login error full:", error);
-      toast.error(error.response?.data?.message);
+      toast.error(error?.response?.data?.message);
+      setIsLoading(false);
     }
   };
   return (
@@ -179,10 +182,13 @@ const LoginForm = () => {
           </div>
           {/* Login button */}
           <button
-            className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px]"
+            className={`p-2 button-login mb-3 ${
+              isLoading ? "bg-gray-400" : "bg-amber-600"
+            } text-white rounded-[10px]`}
             type="submit"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Waiting .. " : "Login"}
           </button>
         </form>
         {/* end form */}

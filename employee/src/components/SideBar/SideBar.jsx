@@ -6,11 +6,8 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import "./SideBarResponsive.css";
 import { Link } from "react-router-dom";
 import useData from "../../hooks/useData";
-import { useState } from "react";
 
 const SideBar = ({ setNotificationIsOpen }) => {
-  let [isOpen, setIsOpen] = useState(false);
-
   const { data } = useData("/notifications/unread");
   return (
     <>
@@ -33,7 +30,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
               </div>
             </Link>
             <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
-              <PagesList setIsOpen={setIsOpen} />
+              <PagesList setIsOpen={() => {}} />
               <button
                 onClick={() => setNotificationIsOpen(true)}
                 className="nav-item flex items-center gap-2 mx-[8px] relative group text-white mt-[25px]"

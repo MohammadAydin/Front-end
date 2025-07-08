@@ -32,8 +32,18 @@ const Complate_personal_info = () => {
     },
 
     onError: (error) => {
-      const message = error?.response?.data?.message || "Something went wrong!";
-      setServerError(message);
+      const errors = error?.response?.data?.errors;
+      const fallbackMessage =
+        error?.response?.data?.message || "Something went wrong!";
+
+      if (errors && typeof errors === "object") {
+        const firstField = Object.keys(errors)[0];
+        const firstMessage = errors[firstField]?.[0];
+
+        setServerError(firstMessage || fallbackMessage);
+      } else {
+        setServerError(fallbackMessage);
+      }
     },
   });
   const navigate = useNavigate();

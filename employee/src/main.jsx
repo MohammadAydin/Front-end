@@ -6,9 +6,12 @@ import App from "./App";
 import "./responsive.css";
 import { LoadScript } from "@react-google-maps/api";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { toast } from "react-toastify";
 
 // create a new instance of QueryClient
 const queryClient = new QueryClient();
+
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

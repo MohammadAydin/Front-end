@@ -4,7 +4,6 @@ const social_Insurance_inputs = [
     label: "Tax identification number",
     type: "text",
   },
-  { name: "tax_bracket", label: "Tax bracket", type: "number" },
   {
     name: "social_insurance_number",
     label: "Social insurance number",
@@ -30,11 +29,18 @@ const social_Insurance_inputs = [
 const social_Insurance_select = [
   {
     name: "marital_status",
+    label: "Marital status",
     optians: ["single", "married", "divorced", "widowed"],
   },
   {
     name: "health_insurance_type",
-    optians: ["public", "private", "family", "international"],
+    label: "Health insurance type",
+    optians: ["public", "private"],
+  },
+  {
+    name: "tax_bracket",
+    label: "Tax bracket",
+    optians: ["1", "2", "3", "4", "5", "6"],
   },
 ];
 export { social_Insurance_inputs, social_Insurance_select };

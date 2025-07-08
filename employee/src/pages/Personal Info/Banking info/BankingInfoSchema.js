@@ -11,9 +11,8 @@ const bankingInfoSchema = z.object({
     .min(2, "Bank name is too short")
     .max(100, "Bank name is too long"),
 
-  BIC: z
-    .string()
-    .regex(/^[A-Z0-9]{8}([A-Z0-9]{3})?$/, "Invalid BIC (e.g. DEUTDEFFXXX)"),
+  BIC: z.string().min(2, "Please enter your BIC"),
+  // .regex(/^[A-Z0-9]{8}([A-Z0-9]{3})?$/, "Invalid BIC (e.g. DEUTDEFFXXX)"),
 
   IBAN: z.string().regex(
     /^DE\d{20}$/,
