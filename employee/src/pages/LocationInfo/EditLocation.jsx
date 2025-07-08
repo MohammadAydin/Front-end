@@ -172,7 +172,7 @@ const editLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={"Street 1"}
+                  label={"Street"}
                   name={"street1"}
                   type={"text"}
                   defaultvalue={street1}
@@ -180,7 +180,7 @@ const editLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={"Street 2"}
+                  label={"house"}
                   name={"street2"}
                   type={"text"}
                   defaultvalue={street2}

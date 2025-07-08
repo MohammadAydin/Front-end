@@ -121,7 +121,7 @@ const LocationInfo = () => {
                             className="text-center  bg-secondaryColor
                              text-white py-1 w-[100px] rounded-[5px] non-click"
                           >
-                            is Primary
+                            Primary
                           </div>
                         ) : (
                           <div className="flex gap-2 items-center justify-center w-[100px]">
@@ -149,7 +149,7 @@ const LocationInfo = () => {
             <div className="w-full">
               <div className="flex justify-between w-full">
                 <p className="text-gray-500 text-sm">
-                  The distance that can be worked with is{" "}
+                  Your Acceptable Commuting Range:
                 </p>
                 <Link to={`/EditWorkaBilities/${workable?.workable_distance}`}>
                   <RiPencilLine className="click text-[1.5rem] text-gray-400" />

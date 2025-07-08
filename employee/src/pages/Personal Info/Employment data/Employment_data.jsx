@@ -50,8 +50,6 @@ const Employment_data = () => {
   } = useForm({ resolver: zodResolver(Employment_schema) });
 
   const Submit = (data) => {
-    console.log(data);
-
     // fun to make true and false  boolean not string
     const clean = (value) => value === "true";
     addEmploymentDataMutatuin.mutate({

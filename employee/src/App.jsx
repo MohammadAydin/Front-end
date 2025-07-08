@@ -21,6 +21,7 @@ import {
   AddLoaction,
   EditLocation,
   EditWorkaBilities,
+  WorkingHours,
 } from "./pages";
 import LoginForm from "./components/FormAuth/LoginForm";
 import RegisterForm from "./components/FormAuth/RegisterForm";
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <UserProfile />,
+      },
+      {
+        path: "working hours",
+        element: <WorkingHours />,
       },
       // -------------------------------------------------------------
     ],

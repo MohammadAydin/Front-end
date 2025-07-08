@@ -67,7 +67,6 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
             {...register("code")}
             type="text"
             inputMode="numeric"
-            maxLength="1"
             className="OTPVerificationInput w-[400px] h-[50px] text-center text-xl border border-[#919eab80] rounded-lg focus:outline-none"
           />
 
