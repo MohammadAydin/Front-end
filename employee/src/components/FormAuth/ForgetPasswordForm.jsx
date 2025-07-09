@@ -55,58 +55,55 @@ const ForgetPasswordForm = () => {
   };
   return (
     <>
-
-        {/* start form */}
-        <form
-          className="inputs flex flex-col mt-[30px] login"
-          onSubmit={handleSubmit(submit)}
-        >
-          {/* Form title */}
-          <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-            forget Password
-          </h2>
-          {/* Forme description */}
-          <p className="text-[13px] mb-4 text-[#555770]">
-            You will receive an email to your email address to reset your
-            password
-          </p>
-          <div className="relative input-group ">
-            {/* Email field */}
-            <input
-              {...register("email")}
-              className="input-control"
-              type="text"
-              id="email"
-              placeholder="email address"
-            />
-            {errors && (
-              <p className="text-red-500 text-[0.7rem] mt-2">
-                {errors?.email?.message}
-              </p>
-            )}
-          </div>
-
-          {/* Login button */}
-          <button
-            disabled={isSend}
-            className={`p-2 mt-2.5 ${
-              isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
-            }  text-white rounded-[10px]`}
-            type="submit"
-          >
-            Send Email
-          </button>
-        </form>
-        {/* end form */}
-        <div className="flex mt-4 text-[0.8rem]">
-          {" "}
-          {/* Go to the account creation page */}
-          <p>back to Login?</p>
-          <Link to="/AuthContainer/login" className="text-[#F47621] click">
-            Login
-          </Link>
+      {/* start form */}
+      <form
+        className="inputs flex flex-col mt-[30px] login"
+        onSubmit={handleSubmit(submit)}
+      >
+        {/* Form title */}
+        <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
+          forget Password
+        </h2>
+        {/* Forme description */}
+        <p className="text-[13px] mb-4 text-[#555770]">
+          You will receive an email to your email address to reset your password
+        </p>
+        <div className="relative input-group ">
+          {/* Email field */}
+          <input
+            {...register("email")}
+            className="input-control"
+            type="text"
+            id="email"
+            placeholder="email address"
+          />
+          {errors && (
+            <p className="text-red-500 text-[0.7rem] mt-2">
+              {errors?.email?.message}
+            </p>
+          )}
         </div>
-     
+
+        {/* Login button */}
+        <button
+          disabled={isSend}
+          className={`p-2 mt-2.5 ${
+            isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
+          }  text-white rounded-[10px]`}
+          type="submit"
+        >
+          Send Email
+        </button>
+      </form>
+      {/* end form */}
+      <div className="flex mt-4 text-[0.8rem]">
+        {" "}
+        {/* Go to the account creation page */}
+        <p>back to Login?</p>
+        <Link to="/login" className="text-[#F47621] click">
+          Login
+        </Link>
+      </div>
     </>
   );
 };

@@ -129,30 +129,14 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/AuthContainer",
+    path: "/",
     element: <AuthContainer />,
     children: [
-      {
-        index: true, // default route under /AuthContainer
-        path: "login",
-        element: <LoginForm />,
-      },
-      {
-        path: "register",
-        element: <RegisterForm />,
-      },
-      {
-        path: "verifyEmail/:email",
-        element: <VerifyEmailForm />,
-      },
-      {
-        path: "personalinfo",
-        element: <PersonalinfoForm />,
-      },
-      {
-        path: "forgetPassword",
-        element: <ForgetPasswordForm />,
-      },
+      { path: "login", element: <LoginForm /> },
+      { path: "register", element: <RegisterForm /> },
+      { path: "verifyEmail/:email", element: <VerifyEmailForm /> },
+      { path: "personalinfo", element: <PersonalinfoForm /> },
+      { path: "forgetPassword", element: <ForgetPasswordForm /> },
     ],
   },
   {

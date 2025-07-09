@@ -93,7 +93,7 @@ const RegisterForm = () => {
 
       // to Verify
       setTimeout(() => {
-        navigate(`/AuthContainer/verifyEmail/${data.email}`);
+        navigate(`/verifyEmail/${data.email}`);
       }, 1500);
 
       // In case it doesn't work
@@ -275,7 +275,7 @@ const RegisterForm = () => {
       </form>
       <div className="flex  text-[0.8rem]">
         <p>Already have an account?</p>
-        <Link to="/AuthContainer/login" className="text-[#F47621] click">
+        <Link to="/login" className="text-[#F47621] click">
           Log in
         </Link>
       </div>

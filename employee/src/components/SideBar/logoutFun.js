@@ -24,7 +24,7 @@ const useLogout = () => {
       // Delete user and token from LocalStorage
       // Go to the login page after a second and a half
       setTimeout(() => {
-        navigate("/AuthContainer/login");
+        navigate("/login");
       }, 1500);
       // If unsuccessful
     } catch (error) {

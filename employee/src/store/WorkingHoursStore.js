@@ -20,6 +20,14 @@ export const useWorkingHoursStore = create((set, get) => ({
     const first = data[0];
     const last = data[data.length - 1];
 
-    return ` ${first.month} - ${first.year} to ${last.month} - ${last.year}`;
+    const getMonthName = (monthNumber) => {
+      const date = new Date(0, monthNumber - 1);
+      return date.toLocaleString("en-US", { month: "long" });
+    };
+
+    const firstMonth = getMonthName(first.month);
+    const lastMonth = getMonthName(last.month);
+
+    return `${firstMonth} ${first.year} to ${lastMonth} ${last.year}`;
   },
 }));

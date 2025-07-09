@@ -53,7 +53,7 @@ const ResetPasswordForm = () => {
       // If the email send is successful
       setIsSend(true);
       setTimeout(() => {
-        navigate("/AuthContainer/login");
+        navigate("/login");
       }, 1500);
       setTimeout(() => {
         setIsSend(false);

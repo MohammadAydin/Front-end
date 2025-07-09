@@ -67,7 +67,7 @@ const FilteringHours = () => {
                   e.preventDefault();
                   setSelectOption(option.value);
                   setValue("FilteringHours", option.value);
-                  if (option.label === "Lifetime") {
+                  if (option.label === "Last 7 days") {
                     setRawData([]);
                     setIsOpen(false);
                   } else {

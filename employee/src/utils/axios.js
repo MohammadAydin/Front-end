@@ -50,7 +50,7 @@ customFetch.interceptors.response.use(
         return customFetch(originalRequest);
       } catch (refreshError) {
         logout();
-        window.location.href = "/AuthContainer/login";
+        window.location.href = "/login";
         // Optional: Redirect to login or logout user
         return Promise.reject(refreshError);
       }
