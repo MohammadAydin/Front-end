@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 
 // Pass confirmation props and change the state of the popup
-const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
+const PopupCheckEnd = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
   // Storing field values and setting numeric constraints
   const schema = z.object({
     code1: z.number().min(0).max(9, { message: "Enter a 1-digit number" }),
@@ -36,7 +36,7 @@ const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
     // Send Verification Request
     try {
       const response = await customFetch.post(
-        `/employee/qr/start/${idTask}/${code}`
+        `/employee/qr/end/${idTask}/${code}`
       );
       // If successful
 
@@ -188,4 +188,4 @@ const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
   );
 };
 
-export default PopupCheck;
+export default PopupCheckEnd;

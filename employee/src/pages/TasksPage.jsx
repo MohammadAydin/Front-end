@@ -8,6 +8,7 @@ import Spinner from "../components/MoreElements/Spinner";
 import Filter from "../components/MoreElements/Filter";
 import statusTask from "../hooks/statusTask";
 import { BsListTask } from "react-icons/bs";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const TasksPage = () => {
   const [selectedValue, setSelectedValue] = useState();
@@ -22,10 +23,34 @@ const TasksPage = () => {
       : tasks.filter((task) => task.status === selectedValue);
 
   if (isLoading) return <Spinner />;
-  if (error)
-    return (
-      <p className="text-red-500">Error:{error?.response?.data?.message}</p>
-    );
+  if (error) {
+    if (
+      error?.response?.data?.message ==
+      "No valid active locations found for employee."
+    ) {
+      return (
+        <div className="flex flex-col justify-center items-center h-screen gap-4">
+          <RiErrorWarningLine className="text-[#194894] text-9xl " />
+
+          <p className="text-black">{error?.response?.data?.message}</p>
+          <Link
+            to="/locationInfo"
+            className="bg-[#12151b] text-white py-1 px-2 rounded-[10px]"
+          >
+            add location
+          </Link>
+        </div>
+      );
+    } else {
+      return (
+        <div className="flex flex-col justify-center items-center h-screen gap-4">
+          <RiErrorWarningLine className="text-[#194894] text-9xl " />
+
+          <p className="text-black">{error?.response?.data?.message}</p>
+        </div>
+      );
+    }
+  }
   return (
     <div className="p-[28px] py-[58px]">
       <div className="JobRequestList mt-6">

@@ -21,6 +21,7 @@ const JopRequest = () => {
   // To store jobsRequst
   const { data: jobs, error, isLoading } = useJobs("/jobs");
 
+  console.log(error?.response?.data?.message);
   // Using React Query to fetch data
   const queryClient = useQueryClient();
 
@@ -77,11 +78,13 @@ const JopRequest = () => {
         </div>
       );
     } else {
-      <div className="flex flex-col justify-center items-center h-screen gap-4">
-        <RiErrorWarningLine className="text-[#194894] text-9xl " />
+      return (
+        <div className="flex flex-col justify-center items-center h-screen gap-4">
+          <RiErrorWarningLine className="text-[#194894] text-9xl " />
 
-        <p className="text-black">{error?.response?.data?.message}</p>
-      </div>;
+          <p className="text-black">{error?.response?.data?.message}</p>
+        </div>
+      );
     }
   }
 

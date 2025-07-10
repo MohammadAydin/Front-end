@@ -15,6 +15,7 @@ import { LuBanknote } from "react-icons/lu";
 import iconoclock from "../assets/icons/icoonoclock.svg";
 import PopupCheck from "../components/TaskComponents/PopupCheck";
 import { CiFileOn } from "react-icons/ci";
+import PopupCheckEnd from "../components/TaskComponents/PopupCheckEnd";
 
 // Task details
 const TasksDetails = () => {
@@ -39,8 +40,10 @@ const TasksDetails = () => {
   const [isOnMyWay, setIsOnMyWay] = useState(false);
   const [isArrived, setisArrived] = useState(false);
   const [isCheckArrived, setisCheckArrived] = useState(false);
-
   const [isShowPopup, setIsShowPopup] = useState(false);
+  const [isShowPopupEnd, setIsShowPopupEnd] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
+  const [isCheckEnd, setisCheckEnd] = useState(false);
 
   // State where the default value is the timer start time.
   const [startTime, setStartTime] = useState(() => {
@@ -51,6 +54,10 @@ const TasksDetails = () => {
   // Reverse pop-up status
   const togglePopup = () => {
     setIsShowPopup(!isShowPopup);
+  };
+  // Reverse pop-up status
+  const togglePopupEnd = () => {
+    setIsShowPopupEnd(!isShowPopupEnd);
   };
   // State to store the remaining time to start the task
   const [timeInfo, setTimeInfo] = useState(null);
@@ -359,8 +366,32 @@ const TasksDetails = () => {
                 Show pin cod
               </button>
             )}
+
+            {isEnd && (
+              <button
+                onClick={() => setIsShowPopupEnd(true)}
+                className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
+              >
+                end task
+              </button>
+            )}
           </div>
-          {isShowPopup && <PopupCheck togglePopup={togglePopup} />}
+          {isShowPopup && (
+            <PopupCheck
+              togglePopup={togglePopup}
+              idTask={id}
+              setisCheckArrived={setisCheckArrived}
+              setIsEnd={setIsEnd}
+            />
+          )}
+          {isShowPopupEnd && (
+            <PopupCheckEnd
+              togglePopup={togglePopupEnd}
+              idTask={id}
+              setisCheckEnd={setisCheckEnd}
+              setIsEnd={isCheckEnd}
+            />
+          )}
         </div>
       </div>
     </div>
