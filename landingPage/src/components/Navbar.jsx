@@ -1,6 +1,6 @@
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
-import logo from "../assets/images/Logo.png";
+import logo from "../assets/images/Logo.svg";
 import { HiOutlineViewList } from "react-icons/hi";
 
 const Navbar = ({ isOpen, setIsOpen }) => {
