@@ -10,7 +10,7 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
             <ul>
               <li>
                 <RouterLink onClick={() => setIsOpen(false)} to={"/"}>
-                  HOME
+                  Startseite
                 </RouterLink>
               </li>
               <li>
@@ -20,7 +20,7 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                 >
-                  ÜBERUNS
+                  Über uns
                 </ScrollLink>
               </li>
               <li>
@@ -30,12 +30,12 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                 >
-                  CONTACT
+                  Kontakt
                 </ScrollLink>
               </li>
             </ul>
             <a className="SignInBtn" href="https://user.woundwann.de/">
-              SIGNIN
+              Anmelden
             </a>
           </div>
         </div>
