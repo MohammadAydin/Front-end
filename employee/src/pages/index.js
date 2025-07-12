@@ -24,3 +24,5 @@ export { default as TasksDetails } from "./TasksDetails.jsx";
 export { default as ReportTask } from "./ReportTask.jsx";
 export { default as AddLoaction } from "./LocationInfo/AddLoaction.jsx";
 export { default as EditWorkaBilities } from "./LocationInfo/EditWorkaBilities.jsx";
+
+export { default as WorkingHours } from "./working hours/WorkingHours.jsx";

@@ -1,6 +1,6 @@
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
-import logo from "../assets/images/Logo.png";
+import logo from "../assets/images/Logo.svg";
 import { HiOutlineViewList } from "react-icons/hi";
 
 const Navbar = ({ isOpen, setIsOpen }) => {
@@ -13,21 +13,21 @@ const Navbar = ({ isOpen, setIsOpen }) => {
         <div>
           <ul>
             <li>
-              <RouterLink to={"/"}>START</RouterLink>
+              <RouterLink to={"/"}>Startseite</RouterLink>
             </li>
             <li>
               <ScrollLink to="Registrieren" smooth={true} duration={500}>
-                ÜBER UNS
+                Über uns
               </ScrollLink>
             </li>
             <li>
               <ScrollLink to="Contact" smooth={true} duration={500}>
-                KONTAKT
+                Kontakt
               </ScrollLink>
             </li>
           </ul>
           <a className="SignInBtn" href="https://user.woundwann.de/">
-            SIGNIN
+            Anmelden
           </a>
         </div>
         <div onClick={() => setIsOpen(!isOpen)} className="NavIcon">

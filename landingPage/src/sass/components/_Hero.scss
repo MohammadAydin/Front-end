@@ -36,7 +36,22 @@
     }
 
     .DownloadBtn {
+      position: relative;
       background-color: var(--secondary-color);
+      p {
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 180px;
+        border-radius: 50px;
+        position: absolute;
+        background-color: rgb(255, 43, 43);
+        top: -18px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        right: -10px;
+        padding: 1px 0px;
+      }
     }
     .LearnMoreBtn {
       background-color: var(--primary-color);

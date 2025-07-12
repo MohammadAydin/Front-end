@@ -3,7 +3,7 @@ import ImageChange from "../../FormElements/ImageChange";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ShemaPhoto from "./SchemaPhoto";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import { useEffect, useState } from "react";
 import useData from "../../../hooks/useData";
@@ -11,6 +11,7 @@ const ProfilePhoto = () => {
   const [serverError, setServerError] = useState("");
   const [serverSuccess, setServerSuccess] = useState("");
   const { data } = useData("/photo");
+  const queryClient = useQueryClient();
 
   const addAvatar = useMutation({
     mutationFn: (formData) =>
@@ -22,6 +23,7 @@ const ProfilePhoto = () => {
 
     onSuccess: () => {
       setServerSuccess("your profile photo has been changed successfuly.");
+      queryClient.invalidateQueries({ queryKey: ["/photo"] });
     },
     onError: (error) => {
       const message = error?.response?.data?.message || "Something went wrong!";

@@ -64,16 +64,11 @@ const LoginForm = () => {
         // User storage in Zostand store
         setUser(getUserFromLocalStorage("user"));
 
-        //  User print
-        console.log(getUserFromLocalStorage("user"));
-
         {
           isChecked && addUserToLocalStorage("account", data);
         }
         // Show login success message
         toast.success("Login successful");
-        // Show a successful login message with the account
-        console.log("Login successful:", response.data);
 
         // Go to the home page
         setTimeout(() => {
@@ -173,7 +168,7 @@ const LoginForm = () => {
             </div>
             {/* Go to the password reset page */}
             <Link
-              to="/AuthContainer/forgetPassword"
+              to="/forgetPassword"
               className="text-[#F47621] vergessen underline"
               href="#"
             >
@@ -196,7 +191,7 @@ const LoginForm = () => {
           {" "}
           {/* Go to the account creation page */}
           <p>New user?</p>
-          <Link to="/AuthContainer/register" className="text-[#F47621] click">
+          <Link to="/register" className="text-[#F47621] click">
             Create an account
           </Link>
         </div>

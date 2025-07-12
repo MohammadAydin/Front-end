@@ -9,6 +9,8 @@ import useData from "../../hooks/useData";
 
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data } = useData("/notifications/unread");
+  const { data: avatar } = useData("/photo");
+  const { data: ProfileData } = useData("/profile");
   return (
     <>
       <Wrapper>
@@ -20,12 +22,12 @@ const SideBar = ({ setNotificationIsOpen }) => {
             >
               <img
                 className="avatar w-[60px] rounded-full"
-                src={profileAvatar}
+                src={avatar}
                 alt=""
               />
 
               <div className="information text-center">
-                <p className="mt-[8px] text-white">Abdalrhman Alhowri</p>
+                <p className="mt-[8px] text-white">{ProfileData?.name}</p>
                 <p className="admin text-white font-thin">Admin</p>
               </div>
             </Link>

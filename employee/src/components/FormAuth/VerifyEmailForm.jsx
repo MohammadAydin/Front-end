@@ -64,7 +64,7 @@ const VerifyEmailForm = () => {
       reset();
 
       // Going to the Form is the personal info
-      navigate("/AuthContainer/personalinfo");
+      navigate("/personalinfo");
 
       // In case it doesn't work
     } catch (error) {

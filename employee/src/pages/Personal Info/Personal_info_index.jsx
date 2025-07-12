@@ -17,6 +17,12 @@ const PersonalSections = [
     status_name: "personal_info",
   },
   {
+    icon: LuPhone,
+    label: "Your Phone number",
+    path: "/phone number",
+    status_name: "phone_number",
+  },
+  {
     icon: RiProfileLine,
     label: "residence info",
     path: "/residence info",
@@ -34,35 +40,32 @@ const PersonalSections = [
     path: "/Social Insurance",
     status_name: "social_security",
   },
-  {
-    icon: LuBriefcaseBusiness,
-    label: "Employment data",
-    path: "/Employment data",
-    status_name: "employment_data",
-  },
+
   {
     icon: IoDocumentTextOutline,
     label: "Required documents",
     path: "/documents",
     status_name: "required_documents",
   },
-  {
-    icon: FaSignature,
-    label: "Your signature",
-    path: "/Signature",
-    status_name: "signature",
-  },
+
   {
     icon: IoLocationOutline,
     label: "Your Locations",
     path: "/locationInfo",
     status_name: "location",
   },
+
   {
-    icon: LuPhone,
-    label: "Your Phone number",
-    path: "/phone number",
-    status_name: "phone_number",
+    icon: LuBriefcaseBusiness,
+    label: "Employment Eligibility & Health Info",
+    path: "/Employment data",
+    status_name: "employment_data",
+  },
+  {
+    icon: FaSignature,
+    label: "Your signature",
+    path: "/Signature",
+    status_name: "signature",
   },
 ];
 

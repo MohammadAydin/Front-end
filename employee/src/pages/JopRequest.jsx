@@ -8,8 +8,10 @@ import { toast } from "react-toastify";
 import Spinner from "../components/MoreElements/Spinner";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { HiOutlineBriefcase } from "react-icons/hi2";
-
+import useData from "../hooks/useData";
 const JopRequest = () => {
+  const { data } = useData("/profile/status/progress");
+
   // To store the status of View All
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -86,11 +88,22 @@ const JopRequest = () => {
       );
     }
   }
+
   return (
     <div className="p-[28px] py-[58px]">
-      <div className="w-full h-50 bg-[#194894] text-white rounded-2xl p-5 flex flex-col gap-10">
+      <div className="w-full h-65 bg-[#194894] text-white rounded-2xl p-5 flex flex-col gap-10">
         {/* Click to continue. Complete personal info. */}
-        <span className="text-2xl "> Complete your profile</span>
+        <span className="text-2xl"> Complete your profile</span>
+
+        <div className="flex items-center gap-3 text-sm">
+          <div className="h-1 w-full bg-[#4687ee] rounded-2xl outline-[1px]">
+            <div
+              style={{ width: data?.percentage }}
+              className={`h-1   bg-white rounded-2xl`}
+            ></div>
+          </div>
+          {data?.percentage}
+        </div>
         <button
           onClick={() => navigate("/Personal info")}
           className="bg-[#99B2DB] py-5 text-2xl rounded-2xl border border-white"

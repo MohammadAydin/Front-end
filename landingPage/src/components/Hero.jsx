@@ -15,6 +15,7 @@ const Hero = () => {
         </h2>
         <div className="HeroActions">
           <button className="DownloadBtn">
+            <p className="Warning">Unsere App kommt bald</p>
             <HiDownload /> Herunterladen
           </button>
           <button className="LearnMoreBtn">

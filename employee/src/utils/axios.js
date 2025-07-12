@@ -30,6 +30,7 @@ customFetch.interceptors.response.use(
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+<<<<<<< HEAD
 
       const existingUser = getUserFromLocalStorage("user");
 
@@ -49,14 +50,40 @@ customFetch.interceptors.response.use(
         setUser(data.data);
 
         originalRequest.headers["Authorization"] = `Bearer ${data.data.token}`;
+=======
+      try {
+        // Attempt to refresh token
+        const { data } = await axios.post(
+          "https://woundwann.de/v1/refresh",
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+
+        addUserToLocalStorage("user", data.data);
+        setUser(getUserFromLocalStorage("user"));
+
+        // Update the Authorization header in the original request with the new token
+        originalRequest.headers["Authorization"] = `Bearer ${data.data.token}`;
+
+        // Retry the original request with the new token
+>>>>>>> b43800ef61dad9baf709bac8c88b739b34139cd3
         return customFetch(originalRequest);
       } catch (refreshError) {
         logout();
         window.location.href = "/login";
+<<<<<<< HEAD
         return Promise.reject(refreshError);
       }
     }
 
+=======
+        // Optional: Redirect to login or logout user
+        return Promise.reject(refreshError);
+      }
+    }
+>>>>>>> b43800ef61dad9baf709bac8c88b739b34139cd3
     return Promise.reject(error);
   }
 );

@@ -59,7 +59,7 @@ const LocationInfo = () => {
   return (
     <>
       <div className="py-5 px-5">
-        <div>LocationInfo</div>
+        <div className="text-2xl font-bold">Location Info</div>
         <div className="mt-5 flex flex-col">
           <div className="list-location">
             {/* Container with the bottom section for adding addresses */}
@@ -91,7 +91,7 @@ const LocationInfo = () => {
                 {locations?.map((location, index) => (
                   <div
                     key={location.id}
-                    className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5"
+                    className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5 border-b border-[#919eab63] border-dashed pb-4"
                   >
                     <h2 className=""> Address {index + 1} </h2>
                     <div
@@ -121,7 +121,7 @@ const LocationInfo = () => {
                             className="text-center  bg-secondaryColor
                              text-white py-1 w-[100px] rounded-[5px] non-click"
                           >
-                            is Primary
+                            Primary
                           </div>
                         ) : (
                           <div className="flex gap-2 items-center justify-center w-[100px]">
@@ -149,7 +149,7 @@ const LocationInfo = () => {
             <div className="w-full">
               <div className="flex justify-between w-full">
                 <p className="text-gray-500 text-sm">
-                  The distance that can be worked with is{" "}
+                  Your Acceptable Commuting Range:
                 </p>
                 <Link to={`/EditWorkaBilities/${workable?.workable_distance}`}>
                   <RiPencilLine className="click text-[1.5rem] text-gray-400" />

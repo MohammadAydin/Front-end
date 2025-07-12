@@ -1,0 +1,10 @@
+@media (max-width: 600px) {
+  .WorkingHours {
+    padding: 10px 20px 20px 20px;
+  }
+  .FilteringHours {
+    width: 150px;
+    font-size: 13px;
+    padding: 0px !important;
+  }
+}

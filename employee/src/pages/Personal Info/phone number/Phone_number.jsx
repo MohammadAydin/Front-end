@@ -31,6 +31,8 @@ const Phone_number = () => {
     },
 
     onError: (error) => {
+      console.log(error);
+
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
         error?.response?.data?.message || "Something went wrong!";

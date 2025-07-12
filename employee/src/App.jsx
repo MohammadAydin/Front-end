@@ -21,6 +21,7 @@ import {
   AddLoaction,
   EditLocation,
   EditWorkaBilities,
+  WorkingHours,
 } from "./pages";
 import LoginForm from "./components/FormAuth/LoginForm";
 import RegisterForm from "./components/FormAuth/RegisterForm";
@@ -120,34 +121,22 @@ const router = createBrowserRouter([
         path: "profile",
         element: <UserProfile />,
       },
+      {
+        path: "working hours",
+        element: <WorkingHours />,
+      },
       // -------------------------------------------------------------
     ],
   },
   {
-    path: "/AuthContainer",
+    path: "/",
     element: <AuthContainer />,
     children: [
-      {
-        index: true, // default route under /AuthContainer
-        path: "login",
-        element: <LoginForm />,
-      },
-      {
-        path: "register",
-        element: <RegisterForm />,
-      },
-      {
-        path: "verifyEmail/:email",
-        element: <VerifyEmailForm />,
-      },
-      {
-        path: "personalinfo",
-        element: <PersonalinfoForm />,
-      },
-      {
-        path: "forgetPassword",
-        element: <ForgetPasswordForm />,
-      },
+      { path: "login", element: <LoginForm /> },
+      { path: "register", element: <RegisterForm /> },
+      { path: "verifyEmail/:email", element: <VerifyEmailForm /> },
+      { path: "personalinfo", element: <PersonalinfoForm /> },
+      { path: "forgetPassword", element: <ForgetPasswordForm /> },
     ],
   },
   {
