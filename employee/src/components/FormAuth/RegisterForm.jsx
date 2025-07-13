@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { createRegisterSchema } from "../../utils/validationSchema";
 
 const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  // Translation hook
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   // Store Password Status Show and Hide
@@ -18,47 +22,8 @@ const RegisterForm = () => {
   // Store status check box remember password show and hide
   const [isChecked, setIsChecked] = useState(false);
 
-  const strongPassword = z
-    .string()
-    .min(8)
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/, {
-      message:
-        "Password must contain uppercase, lowercase, number, and special character.",
-    });
-
-  // Constraints chart from the Zod Library
-  const schema = z
-    .object({
-      firstname: z
-        .string()
-        .min(3, { message: "Bitte geben Sie Ihre names ein!" })
-        .max(255, {
-          message: "Der Name darf höchstens 255 Zeichen lang sein.",
-        }),
-      lastname: z
-        .string()
-        .min(3, { message: "Bitte geben Sie Ihre names ein!" })
-        .max(255, {
-          message: "Der Name darf höchstens 255 Zeichen lang sein.",
-        }),
-      email: z
-        .string()
-        .min(1, { message: "Bitte geben Sie Ihre E-Mail-Adresse ein!" })
-        .email({ message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." }),
-      password: strongPassword,
-      confirmPassword: z.string(),
-    })
-
-    // To compare password and password confirmation
-    .superRefine((val, ctx) => {
-      if (val.password !== val.confirmPassword) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Password is not the same as confirm password",
-          path: ["confirmPassword"],
-        });
-      }
-    });
+  // Create validation schema with translations
+  const schema = createRegisterSchema(t);
 
   // Connecting the Zod with the Hookform
   const {
@@ -112,7 +77,7 @@ const RegisterForm = () => {
         // Print the stored email
         console.log("Email stored in store:", data.email);
         // Heading to verification in one and a half seconds
-        setTimeout(() => {}, 1500);
+        setTimeout(() => { }, 1500);
         // If the verification request is unsuccessful
       } catch (error) {
         toast.error(error.response?.data?.message);
@@ -137,7 +102,7 @@ const RegisterForm = () => {
       >
         {/* Form title */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-          Sign up to Wo & Wann
+          {t('register.title')}
         </h2>
         <div className="relative input-group mb-2.5">
           {/* firstname field */}
@@ -146,7 +111,7 @@ const RegisterForm = () => {
             className="input-control"
             type="text"
             id="firstname"
-            placeholder="First Name"
+            placeholder={t('register.firstName.placeholder')}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -161,7 +126,7 @@ const RegisterForm = () => {
             className="input-control"
             type="text"
             id="lastname"
-            placeholder="Last Name"
+            placeholder={t('register.lastName.placeholder')}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -176,7 +141,7 @@ const RegisterForm = () => {
             className="input-control"
             type="text"
             id="email"
-            placeholder="Email Address"
+            placeholder={t('register.email.placeholder')}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -193,7 +158,7 @@ const RegisterForm = () => {
               className="input-control"
               type={`${showPassword ? "text" : "password"}`}
               id="password"
-              placeholder="Password"
+              placeholder={t('register.password.placeholder')}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -221,7 +186,7 @@ const RegisterForm = () => {
               className="input-control"
               type={`${showConfirm ? "text" : "password"}`}
               id="confirmPassword"
-              placeholder="Confirm New Password"
+              placeholder={t('register.confirmPassword.placeholder')}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -257,26 +222,24 @@ const RegisterForm = () => {
               className="text-[#194894] ml-1 text-[0.7rem]"
               htmlFor="remember"
             >
-              Agree to Terms & Conditions of wo & wann
+              {t('register.termsConditions')}
             </label>
           </div>
         </div>
         <button
-          className={`p-2 mt-5 mb-3 ${
-            isChecked ? "bg-amber-600 click" : "bg-gray-400 non-click"
-          } ${
-            isLoading ? "bg-gray-400" : "bg-amber-600 "
-          } text-white rounded-[10px]`}
+          className={`p-2 mt-5 mb-3 ${isChecked ? "bg-amber-600 click" : "bg-gray-400 non-click"
+            } ${isLoading ? "bg-gray-400" : "bg-amber-600 "
+            } text-white rounded-[10px]`}
           type="submit"
           disabled={!isChecked || isLoading}
         >
-          {isLoading ? "Waiting .. " : "Sign up"}
+          {isLoading ? t('register.loading') : t('register.signupButton')}
         </button>
       </form>
       <div className="flex  text-[0.8rem]">
-        <p>Already have an account?</p>
+        <p>{t('register.alreadyHaveAccount')}</p>
         <Link to="/login" className="text-[#F47621] click">
-          Log in
+          {t('register.loginLink')}
         </Link>
       </div>
     </>

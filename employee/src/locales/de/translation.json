@@ -25,6 +25,53 @@
         "error": "Anmeldefehler",
         "accountError": "Dieses Konto ist kein Mitarbeiterkonto"
     },
+    "register": {
+        "title": "Bei Wo & Wann registrieren",
+        "firstName": {
+            "placeholder": "Vorname",
+            "validation": {
+                "required": "Bitte geben Sie Ihren Vornamen ein!",
+                "minLength": "Vorname muss mindestens 3 Zeichen lang sein!",
+                "maxLength": "Vorname darf höchstens 255 Zeichen lang sein."
+            }
+        },
+        "lastName": {
+            "placeholder": "Nachname",
+            "validation": {
+                "required": "Bitte geben Sie Ihren Nachnamen ein!",
+                "minLength": "Nachname muss mindestens 3 Zeichen lang sein!",
+                "maxLength": "Nachname darf höchstens 255 Zeichen lang sein."
+            }
+        },
+        "email": {
+            "placeholder": "E-Mail-Adresse",
+            "validation": {
+                "required": "Bitte geben Sie Ihre E-Mail-Adresse ein!",
+                "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+            }
+        },
+        "password": {
+            "placeholder": "Passwort",
+            "validation": {
+                "required": "Passwort ist erforderlich",
+                "weak": "Passwort muss Groß-, Kleinbuchstaben, Zahl und Sonderzeichen enthalten."
+            }
+        },
+        "confirmPassword": {
+            "placeholder": "Neues Passwort bestätigen",
+            "validation": {
+                "required": "Bitte bestätigen Sie Ihr Passwort",
+                "mismatch": "Passwort stimmt nicht mit der Bestätigung überein"
+            }
+        },
+        "termsConditions": "Allgemeine Geschäftsbedingungen von wo & wann zustimmen",
+        "signupButton": "Registrieren",
+        "loading": "Warten .. ",
+        "alreadyHaveAccount": "Bereits ein Konto?",
+        "loginLink": "Anmelden",
+        "success": "Registrierung erfolgreich",
+        "error": "Registrierungsfehler"
+    },
     "common": {
         "loading": "Laden...",
         "error": "Ein Fehler ist aufgetreten",

@@ -13,9 +13,39 @@ export const createLoginSchema = (t) => {
     });
 };
 
-// You can add more validation schemas here as needed
+// Create register validation schema with translations
 export const createRegisterSchema = (t) => {
-    return z.object({
-        // Define register schema here when needed
-    });
+    const strongPassword = z
+        .string()
+        .min(8)
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/, {
+            message: t('register.password.validation.weak'),
+        });
+
+    return z
+        .object({
+            firstname: z
+                .string()
+                .min(3, { message: t('register.firstName.validation.minLength') })
+                .max(255, { message: t('register.firstName.validation.maxLength') }),
+            lastname: z
+                .string()
+                .min(3, { message: t('register.lastName.validation.minLength') })
+                .max(255, { message: t('register.lastName.validation.maxLength') }),
+            email: z
+                .string()
+                .min(1, { message: t('register.email.validation.required') })
+                .email({ message: t('register.email.validation.invalid') }),
+            password: strongPassword,
+            confirmPassword: z.string(),
+        })
+        .superRefine((val, ctx) => {
+            if (val.password !== val.confirmPassword) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: t('register.confirmPassword.validation.mismatch'),
+                    path: ["confirmPassword"],
+                });
+            }
+        });
 };

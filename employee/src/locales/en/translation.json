@@ -25,6 +25,53 @@
         "error": "Login error",
         "accountError": "This account does not account employee"
     },
+    "register": {
+        "title": "Sign up to Wo & Wann",
+        "firstName": {
+            "placeholder": "First Name",
+            "validation": {
+                "required": "Please enter your first name!",
+                "minLength": "First name must be at least 3 characters long!",
+                "maxLength": "First name must be no more than 255 characters long."
+            }
+        },
+        "lastName": {
+            "placeholder": "Last Name",
+            "validation": {
+                "required": "Please enter your last name!",
+                "minLength": "Last name must be at least 3 characters long!",
+                "maxLength": "Last name must be no more than 255 characters long."
+            }
+        },
+        "email": {
+            "placeholder": "Email Address",
+            "validation": {
+                "required": "Please enter your email address!",
+                "invalid": "Please enter a valid email address."
+            }
+        },
+        "password": {
+            "placeholder": "Password",
+            "validation": {
+                "required": "Password is required",
+                "weak": "Password must contain uppercase, lowercase, number, and special character."
+            }
+        },
+        "confirmPassword": {
+            "placeholder": "Confirm New Password",
+            "validation": {
+                "required": "Please confirm your password",
+                "mismatch": "Password is not the same as confirm password"
+            }
+        },
+        "termsConditions": "Agree to Terms & Conditions of wo & wann",
+        "signupButton": "Sign up",
+        "loading": "Waiting .. ",
+        "alreadyHaveAccount": "Already have an account?",
+        "loginLink": "Log in",
+        "success": "Registration successful",
+        "error": "Registration error"
+    },
     "common": {
         "loading": "Loading...",
         "error": "An error occurred",
