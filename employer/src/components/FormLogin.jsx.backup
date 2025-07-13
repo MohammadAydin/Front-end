@@ -34,7 +34,7 @@ const FormLogin = () => {
   // Create validation schema with translations
   const schema = createLoginSchema(t);
 
-  // Connecting the validation schema to the React Hook Form
+  // Connecting the Zod Library to the Hookform
   const {
     register,
     handleSubmit,
@@ -42,7 +42,7 @@ const FormLogin = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
-  // Submit function
+  // Transmission function
   const submit = async (data) => {
     try {
       // Login post
@@ -50,42 +50,40 @@ const FormLogin = () => {
         email: data.email,
         password: data.password,
       });
-
       // If the login is successful
-      // If the Remember button saves the account in LocalStorage
-      if (isChecked) {
-        localStorage.setItem(
-          "account",
-          JSON.stringify({
-            email: data.email,
-            password: data.password,
-          })
-        );
+      //If the Remember button saves the account in LocalStorage
+      {
+        isChecked &&
+          localStorage.setItem(
+            "account",
+            JSON.stringify({
+              email: data.email,
+              password: data.password,
+            })
+          );
       }
-
       // Show login success message
-      toast.success(t('login.success'));
-
+      toast.success(t("login.success"));
       // Show a successful login message with the account
       console.log("Login successful:", response.data);
+      // Emptying form fields
 
       // Add user to local storage
       addUserToLocalStorage(response.data);
-
       // Go to the home page
       setTimeout(() => {
         navigate("/");
         reset();
       }, 1500);
 
+      // In case it doesn't work
     } catch (error) {
-      toast.error(t('login.error') + ": " + error.response?.data?.error);
+      toast.error(t("login.error") + ": " + error.response?.data?.error);
 
       // Print the error message in console
       console.log("Login error:", error.response?.data?.error);
     }
   };
-
   return (
     <>
       <Wrapper>
@@ -96,9 +94,8 @@ const FormLogin = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-            {t('login.title')}
+            {t("login.title")}
           </h2>
-
           <div className="relative input-group mb-2.5">
             {/* Email field */}
             <input
@@ -106,7 +103,7 @@ const FormLogin = () => {
               className="input-control"
               type="text"
               id="email"
-              placeholder={t('login.email.placeholder')}
+              placeholder={t("login.email.placeholder")}
               defaultValue={account.email || ""}
             />
             {errors && (
@@ -125,7 +122,7 @@ const FormLogin = () => {
                 className="input-control"
                 type={showPassword ? "text" : "password"}
                 id="password"
-                placeholder={t('login.password.placeholder')}
+                placeholder={t("login.password.placeholder")}
                 defaultValue={account.password || ""}
               />
               {errors && (
@@ -147,7 +144,6 @@ const FormLogin = () => {
               </button>
             </div>
           </div>
-
           {/* Container with confirmation and password forgetting */}
           <div className="flex justify-between mt-[16px] text-[1vw] pwdForgetting">
             {/* A container containing the confirmation and text field */}
@@ -160,33 +156,33 @@ const FormLogin = () => {
               />
               {/* Remember the account */}
               <label className="text-[#194894] ml-1" htmlFor="remember">
-                {t('login.rememberPassword')}
+                {t("login.rememberPassword")}
               </label>
             </div>
             {/* Go to the password reset page */}
             <Link
               to="/forgetPassword"
               className="text-[#F47621] vergessen underline"
+              href="#"
             >
-              {t('login.forgotPassword')}
+              {t("login.forgotPassword")}
             </Link>
           </div>
-
           {/* Login button */}
           <button
             className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px]"
             type="submit"
           >
-            {t('login.loginButton')}
+            {t("login.loginButton")}
           </button>
         </form>
         {/* end form */}
-
         <div className="flex mt-4 text-[0.8rem]">
+          {" "}
           {/* Go to the account creation page */}
-          <p>{t('login.newUser')}</p>
-          <p onClick={() => setLevel(2)} className="text-[#F47621] click ml-1">
-            {t('login.createAccount')}
+          <p>{t("login.newUser")}</p>
+          <p onClick={() => setLevel(2)} className="text-[#F47621] click">
+            {t("login.createAccount")}
           </p>
         </div>
       </Wrapper>

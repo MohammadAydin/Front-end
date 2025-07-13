@@ -1,0 +1,44 @@
+{
+    "login": {
+        "title": "Log in to Wo & Wann",
+        "email": {
+            "label": "Email Address",
+            "placeholder": "email address",
+            "validation": {
+                "required": "Email address is required.",
+                "invalid": "Please enter a valid email address.",
+                "maxLength": "The field must be no longer than 255 characters"
+            }
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "password",
+            "validation": {
+                "required": "Password cannot be left empty"
+            }
+        },
+        "rememberPassword": "Remember Password",
+        "forgotPassword": "Forgot Password?",
+        "loginButton": "Login",
+        "newUser": "New user?",
+        "createAccount": "Create an account",
+        "success": "Login successful",
+        "error": "Login error"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "close": "Close",
+        "confirm": "Confirm",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "language": {
+        "switch": "Switch Language",
+        "english": "English",
+        "german": "German"
+    }
+}

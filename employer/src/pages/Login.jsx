@@ -1,10 +1,16 @@
 
 import Logo from "../assets/image/Logo Positions.svg";
 import Form from "../components/Form";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const Login = () => {
   return (
-    <div className="LoginPage">
+    <div className="LoginPage relative">
+      {/* Language Switcher - Fixed to top right corner */}
+      <div className="absolute top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
+
       <div className="backgorund h-fit">
         <div className="ballBackgorund large"></div>
         <div className="ballBackgorund meduim"></div>

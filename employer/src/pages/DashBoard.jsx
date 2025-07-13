@@ -6,7 +6,7 @@ import { GoBell } from "react-icons/go";
 import { RiFolderOpenLine } from "react-icons/ri";
 import AreaChart from "../components/OlderHouse/AreaChart";
 import { IoArrowUpCircleOutline } from "react-icons/io5";
-import Invoices from "../components/invoices";
+import Invoices from "../components/Invoices";
 import Card from "../components/Card";
 
 const DashBoard = () => {

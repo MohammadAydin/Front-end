@@ -18,6 +18,9 @@ import { ToastContainer } from "react-toastify";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 
+// Initialize i18n
+import "./i18n";
+
 const router = createBrowserRouter([
   {
     path: "/",

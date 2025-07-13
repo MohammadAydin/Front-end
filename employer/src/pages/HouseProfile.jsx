@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Wrapper from "../assets/wrapper/OlderHouse/OlderProfile";
-import previewImg from "../assets/image/preview.svg";
+import previewImg from "../assets/image/Preview.svg";
 import { RiPencilLine } from "react-icons/ri";
 import { FaPlus, FaRegTrashCan } from "react-icons/fa6";
-import Popup from "../components/popup";
+import Popup from "../components/Popup";
 import PopupAbout from "../components/PopupAbout";
 
 const HouseProfile = () => {
