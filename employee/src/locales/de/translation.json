@@ -1,0 +1,37 @@
+{
+    "login": {
+        "title": "Bei Wo & Wann anmelden",
+        "email": {
+            "placeholder": "E-Mail-Adresse",
+            "validation": {
+                "required": "E-Mail-Adresse ist erforderlich.",
+                "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+                "maxLength": "Das Feld darf nicht länger als 255 Zeichen sein"
+            }
+        },
+        "password": {
+            "placeholder": "Passwort",
+            "validation": {
+                "required": "kann nicht leer bleiben"
+            }
+        },
+        "rememberPassword": "Passwort merken",
+        "forgotPassword": "Passwort vergessen?",
+        "loginButton": "Anmelden",
+        "loading": "Warten .. ",
+        "newUser": "Neuer Benutzer?",
+        "createAccount": "Konto erstellen",
+        "success": "Anmeldung erfolgreich",
+        "error": "Anmeldefehler",
+        "accountError": "Dieses Konto ist kein Mitarbeiterkonto"
+    },
+    "common": {
+        "loading": "Laden...",
+        "error": "Ein Fehler ist aufgetreten",
+        "success": "Erfolgreich"
+    },
+    "language": {
+        "english": "Englisch",
+        "german": "Deutsch"
+    }
+}

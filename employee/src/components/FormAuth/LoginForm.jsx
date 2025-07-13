@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import Wrapper from "../../assets/wrapper/FormStyle/LoginForm";
-// import useFormLevel from "../store/Formlevel";
 import customFetch from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
-// import { addUserToLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../../store/useAuthStore";
 import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
 } from "../../utils/localStorage";
+import { useTranslation } from 'react-i18next';
+import { createLoginSchema } from "../../utils/validationSchema";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  // Translation hook
+  const { t } = useTranslation();
+
   // Getting the user and setUser from the store
   const setUser = useAuthStore((state) => state.setUser);
 
@@ -29,14 +32,8 @@ const LoginForm = () => {
   // Definition of navigate
   const navigate = useNavigate();
 
-  // Constraints chart from the Zod Library
-  const schema = z.object({
-    email: z
-      .string({ message: "Email address is required." })
-      .max(255, { message: "The field must be no longer than 255 characters" })
-      .email({ message: "Please enter a valid email address." }),
-    password: z.string().min(1, { message: "cannot be left empty" }),
-  });
+  // Create validation schema with translations
+  const schema = createLoginSchema(t);
 
   // Connecting the Zod Library to the Hookform
   const {
@@ -68,7 +65,7 @@ const LoginForm = () => {
           isChecked && addUserToLocalStorage("account", data);
         }
         // Show login success message
-        toast.success("Login successful");
+        toast.success(t('login.success'));
 
         // Go to the home page
         setTimeout(() => {
@@ -76,7 +73,7 @@ const LoginForm = () => {
           reset();
         }, 1500);
       } else {
-        toast.error("This account does not account employee");
+        toast.error(t('login.accountError'));
       }
 
       // In case it doesn't work
@@ -97,7 +94,7 @@ const LoginForm = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-            Log in to Wo & Wann
+            {t('login.title')}
           </h2>
           <div className="relative input-group mb-2.5">
             {/* Email field */}
@@ -107,8 +104,8 @@ const LoginForm = () => {
               type="text"
               id="email"
               defaultValue={getUserFromLocalStorage("account")?.email || ""}
-              placeholder="email address"
-              //   defaultValue={account.email || ""}
+              placeholder={t('login.email.placeholder')}
+            //   defaultValue={account.email || ""}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -129,8 +126,8 @@ const LoginForm = () => {
                 defaultValue={
                   getUserFromLocalStorage("account")?.password || ""
                 }
-                placeholder="password"
-                // defaultValue={account.password || ""}
+                placeholder={t('login.password.placeholder')}
+              // defaultValue={account.password || ""}
               />
               {errors && (
                 <p className="text-red-500 text-[0.7rem] mt-2 ">
@@ -163,7 +160,7 @@ const LoginForm = () => {
               />
               {/* Remember the account */}
               <label className="text-[#194894] ml-1" htmlFor="remember">
-                Remember Password
+                {t('login.rememberPassword')}
               </label>
             </div>
             {/* Go to the password reset page */}
@@ -172,27 +169,26 @@ const LoginForm = () => {
               className="text-[#F47621] vergessen underline"
               href="#"
             >
-              Forgot Password?
+              {t('login.forgotPassword')}
             </Link>
           </div>
           {/* Login button */}
           <button
-            className={`p-2 button-login mb-3 ${
-              isLoading ? "bg-gray-400" : "bg-amber-600"
-            } text-white rounded-[10px]`}
+            className={`p-2 button-login mb-3 ${isLoading ? "bg-gray-400" : "bg-amber-600"
+              } text-white rounded-[10px]`}
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? "Waiting .. " : "Login"}
+            {isLoading ? t('login.loading') : t('login.loginButton')}
           </button>
         </form>
         {/* end form */}
         <div className="flex mt-4 text-[0.8rem]">
           {" "}
           {/* Go to the account creation page */}
-          <p>New user?</p>
+          <p>{t('login.newUser')}</p>
           <Link to="/register" className="text-[#F47621] click">
-            Create an account
+            {t('login.createAccount')}
           </Link>
         </div>
       </Wrapper>

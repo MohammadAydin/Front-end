@@ -7,6 +7,7 @@ import "./responsive.css";
 import { LoadScript } from "@react-google-maps/api";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { toast } from "react-toastify";
+import './i18n';
 
 // create a new instance of QueryClient
 const queryClient = new QueryClient();
