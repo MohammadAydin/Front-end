@@ -488,13 +488,19 @@
         "error": "Failed to save employment data"
     },
     "signature": {
-        "title": "Your Signature",
-        "description": "Please provide your digital signature",
+        "title": "Complete Signature",
+        "description": "Please , Complete yuor Signature",
+        "yourSignature": "Your Signature",
         "uploadSignature": "Upload Signature",
         "drawSignature": "Draw Signature",
         "clearSignature": "Clear",
+        "deleteSignature": "Delete",
+        "signHere": "Sign here",
+        "orUpload": "or Upload Your Signature",
         "validation": {
-            "signatureRequired": "Signature is required"
+            "signatureRequired": "Please provide a signature",
+            "invalidFormat": "Signature must be a PNG, JPG, or JPEG image",
+            "fileTooLarge": "Signature must be less than 2MB"
         },
         "back": "Back",
         "submit": "Submit",

@@ -1,8 +1,10 @@
 import { useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const SignaturePad = ({ setValue, error }) => {
+  const { t } = useTranslation();
   const sigCanvas = useRef();
 
   const handleClear = () => {
@@ -23,13 +25,13 @@ const SignaturePad = ({ setValue, error }) => {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-2">
-        <label className="font-bold">Your Signature</label>
+        <label className="font-bold">{t('signature.yourSignature')}</label>
         <button
           type="button"
           onClick={handleClear}
           className="text-red-500 flex items-center gap-1"
         >
-          <FaRegTrashAlt size={16} /> Delete
+          <FaRegTrashAlt size={16} /> {t('signature.deleteSignature')}
         </button>
       </div>
 
@@ -44,7 +46,7 @@ const SignaturePad = ({ setValue, error }) => {
         />
 
         <p className="absolute top-5 left-5 inset-0 text-gray-400 pointer-events-none z-1">
-          Sign here
+          {t('signature.signHere')}
         </p>
       </div>
       {error && <p className="text-red-500 text-sm mt-2">{error.message}</p>}

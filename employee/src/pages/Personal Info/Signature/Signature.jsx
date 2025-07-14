@@ -10,8 +10,10 @@ import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
+import { useTranslation } from "react-i18next";
 
 const Signature = () => {
+  const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
 
@@ -31,7 +33,7 @@ const Signature = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('signature.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -50,7 +52,7 @@ const Signature = () => {
     register,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(signatureSchema),
+    resolver: zodResolver(signatureSchema(t)),
   });
 
   const onSubmit = (data) => {
@@ -61,21 +63,21 @@ const Signature = () => {
   };
   return (
     <div className="Signature p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">Complete Signature</h2>
+      <h2 className="text-2xl font-bold mb-2">{t('signature.title')}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Please , Complete yuor Signature
+        {t('signature.description')}
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <SignaturePad setValue={setValue} error={errors.signature} />
 
-        <span className="font-bold">or Upload Your Signature</span>
+        <span className="font-bold">{t('signature.orUpload')}</span>
         <FileUploader
           register={register}
           setValue={setValue}
           error={errors}
           name={"signature"}
-          label={"Upload Signature"}
+          label={t('signature.uploadSignature')}
         />
         {serverError && (
           <p className="text-red-600 font-medium text-start mb-4">
@@ -83,7 +85,7 @@ const Signature = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel="Back"
+          prevLabel={t('signature.back')}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

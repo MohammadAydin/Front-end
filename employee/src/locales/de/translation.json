@@ -488,13 +488,19 @@
         "error": "Beschäftigungsdaten konnten nicht gespeichert werden"
     },
     "signature": {
-        "title": "Ihre Unterschrift",
-        "description": "Bitte geben Sie Ihre digitale Unterschrift an",
+        "title": "Unterschrift vervollständigen",
+        "description": "Bitte vervollständigen Sie Ihre Unterschrift",
+        "yourSignature": "Ihre Unterschrift",
         "uploadSignature": "Unterschrift hochladen",
         "drawSignature": "Unterschrift zeichnen",
         "clearSignature": "Löschen",
+        "deleteSignature": "Löschen",
+        "signHere": "Hier unterschreiben",
+        "orUpload": "oder laden Sie Ihre Unterschrift hoch",
         "validation": {
-            "signatureRequired": "Unterschrift ist erforderlich"
+            "signatureRequired": "Bitte geben Sie eine Unterschrift an",
+            "invalidFormat": "Unterschrift muss eine PNG-, JPG- oder JPEG-Datei sein",
+            "fileTooLarge": "Unterschrift muss kleiner als 2MB sein"
         },
         "back": "Zurück",
         "submit": "Absenden",
