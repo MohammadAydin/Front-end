@@ -12,6 +12,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import Spinner from "../../components/MoreElements/Spinner";
 
 const LocationInfo = () => {
   const queryClient = useQueryClient();
@@ -58,6 +59,8 @@ const LocationInfo = () => {
       toast.error(error?.response?.data?.message || t("locationInfo.locationActivateError"));
     },
   });
+
+  if (isLoadinglocations || isLoading) return <Spinner />;
 
   return (
     <>

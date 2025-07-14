@@ -32,6 +32,8 @@ import ForgetPasswordForm from "./components/FormAuth/ForgetPasswordForm";
 import ResetPasswordForm from "./components/FormAuth/ResetPasswordForm";
 import ResetPassowrdPage from "./pages/ResetPassowrdPage";
 import JobRequestDetails from "./pages/JobRequestDetails";
+import ErrorBoundary from "./components/MoreElements/ErrorBoundary";
+import SkipLink from "./components/MoreElements/SkipLink";
 
 const router = createBrowserRouter([
   {
@@ -147,10 +149,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
+    <ErrorBoundary>
+      <SkipLink />
       <RouterProvider router={router} />
       <ToastContainer position="top-center" autoClose={3000} />
-    </>
+    </ErrorBoundary>
   );
 }
 

@@ -148,7 +148,10 @@
     "common": {
         "loading": "Loading...",
         "error": "An error occurred",
-        "success": "Success"
+        "success": "Success",
+        "applicationLayout": "Main application layout",
+        "mainContent": "Main content area",
+        "close": "Close"
     },
     "language": {
         "english": "English",
@@ -165,6 +168,9 @@
         "settings": "Settings",
         "logout": "Logout",
         "admin": "Admin"
+    },
+    "nav": {
+        "mainNavigation": "Main navigation menu"
     },
     "jobRequest": {
         "completeProfile": "Complete your profile",
@@ -203,7 +209,9 @@
         "downloadContract": "Download My contract"
     },
     "notifications": {
-        "title": "Notifications"
+        "title": "Notifications",
+        "notificationsList": "List of notifications",
+        "noNotifications": "No notifications available"
     },
     "jobRequestDetails": {
         "myRequests": "My requests",
@@ -254,7 +262,9 @@
         "locationDeleteSuccess": "Location deleted successfully",
         "locationDeleteError": "Failed to delete location",
         "locationActivateSuccess": "Location activated successfully",
-        "locationActivateError": "Failed to activate location"
+        "locationActivateError": "Failed to activate location",
+        "mapView": "Map view for {{address}}",
+        "locationMarker": "Location marker for {{address}}"
     },
     "addLocation": {
         "title": "Add new Location",
@@ -593,5 +603,50 @@
                 "maxFileSize": "Max file size is 3.1 MB"
             }
         }
+    },
+    "accessibility": {
+        "loading": "Loading...",
+        "loadingContent": "Loading content, please wait",
+        "skipToContent": "Skip to main content",
+        "closeDialog": "Close dialog",
+        "menu": "Menu",
+        "navigation": "Navigation",
+        "searchResults": "Search results",
+        "noResults": "No results found",
+        "error": "Error",
+        "success": "Success",
+        "warning": "Warning",
+        "info": "Information",
+        "profileImage": "Profile image",
+        "uploadImage": "Upload image",
+        "removeImage": "Remove image",
+        "selectOption": "Select an option",
+        "openDropdown": "Open dropdown",
+        "closeDropdown": "Close dropdown",
+        "previousPage": "Previous page",
+        "nextPage": "Next page",
+        "currentPage": "Current page",
+        "toggleNotifications": "Toggle notifications",
+        "languageSelector": "Language selector",
+        "openLanguageMenu": "Open language menu",
+        "closeLanguageMenu": "Close language menu"
+    },
+    "errorBoundary": {
+        "title": "Something went wrong",
+        "description": "We're sorry, but something unexpected happened. Please try refreshing the page or contact support if the problem persists.",
+        "refresh": "Refresh Page",
+        "goHome": "Go to Home",
+        "reportError": "Report Error",
+        "errorDetails": "Error Details",
+        "showDetails": "Show Details",
+        "hideDetails": "Hide Details"
+    },
+    "performance": {
+        "optimizing": "Optimizing...",
+        "retrying": "Retrying...",
+        "connectionError": "Connection error",
+        "tryAgain": "Try again",
+        "offline": "You are offline",
+        "online": "You are back online"
     }
 }

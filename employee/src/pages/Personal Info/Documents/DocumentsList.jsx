@@ -3,9 +3,11 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa";
 import { useState } from "react";
 import UploadDocs from "./UploadDocs";
+import { useTranslation } from "react-i18next";
 const DocumentsList = ({ docs, setDocuments }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUploading, setIsUploading] = useState("");
+  const { t } = useTranslation();
 
   if (isOpen) {
     document.body.classList.add("overflow-hidden");
@@ -35,11 +37,12 @@ const DocumentsList = ({ docs, setDocuments }) => {
         <button
           onClick={() => setIsOpen(true)}
           className="UploadBtn w-[250px] flex gap-1 justify-center items-center font-[900] text-lg bg-[#F47621] text-white px-4 py-2 rounded-xl "
+          aria-label={t("documents.uploadDocument")}
         >
           <span>
             <MdOutlineFileDownload size={25} />
           </span>
-          Upload document
+          {t("documents.uploadDocument")}
         </button>
         <p className="text-[#637381] text-sm flex items-center gap-1 mt-2">
           <FaRegClock size={20} />

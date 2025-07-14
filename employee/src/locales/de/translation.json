@@ -148,7 +148,10 @@
     "common": {
         "loading": "Laden...",
         "error": "Ein Fehler ist aufgetreten",
-        "success": "Erfolgreich"
+        "success": "Erfolgreich",
+        "applicationLayout": "Hauptanwendungslayout",
+        "mainContent": "Hauptinhaltsbereich",
+        "close": "Schließen"
     },
     "language": {
         "english": "Englisch",
@@ -165,6 +168,9 @@
         "settings": "Einstellungen",
         "logout": "Abmelden",
         "admin": "Administrator"
+    },
+    "nav": {
+        "mainNavigation": "Hauptnavigationsmenü"
     },
     "jobRequest": {
         "completeProfile": "Vervollständigen Sie Ihr Profil",
@@ -203,7 +209,9 @@
         "downloadContract": "Meinen Vertrag herunterladen"
     },
     "notifications": {
-        "title": "Benachrichtigungen"
+        "title": "Benachrichtigungen",
+        "notificationsList": "Liste der Benachrichtigungen",
+        "noNotifications": "Keine Benachrichtigungen verfügbar"
     },
     "jobRequestDetails": {
         "myRequests": "Meine Anfragen",
@@ -254,7 +262,9 @@
         "locationDeleteSuccess": "Standort erfolgreich gelöscht",
         "locationDeleteError": "Fehler beim Löschen des Standorts",
         "locationActivateSuccess": "Standort erfolgreich aktiviert",
-        "locationActivateError": "Fehler beim Aktivieren des Standorts"
+        "locationActivateError": "Fehler beim Aktivieren des Standorts",
+        "mapView": "Kartenansicht für {{address}}",
+        "locationMarker": "Standortmarkierung für {{address}}"
     },
     "addLocation": {
         "title": "Neuen Standort hinzufügen",
@@ -593,5 +603,50 @@
                 "maxFileSize": "Maximale Dateigröße ist 3,1 MB"
             }
         }
+    },
+    "accessibility": {
+        "loading": "Lädt...",
+        "loadingContent": "Inhalt wird geladen, bitte warten",
+        "skipToContent": "Zum Hauptinhalt springen",
+        "closeDialog": "Dialog schließen",
+        "menu": "Menü",
+        "navigation": "Navigation",
+        "searchResults": "Suchergebnisse",
+        "noResults": "Keine Ergebnisse gefunden",
+        "error": "Fehler",
+        "success": "Erfolg",
+        "warning": "Warnung",
+        "info": "Information",
+        "profileImage": "Profilbild",
+        "uploadImage": "Bild hochladen",
+        "removeImage": "Bild entfernen",
+        "selectOption": "Option auswählen",
+        "openDropdown": "Dropdown öffnen",
+        "closeDropdown": "Dropdown schließen",
+        "previousPage": "Vorherige Seite",
+        "nextPage": "Nächste Seite",
+        "currentPage": "Aktuelle Seite",
+        "toggleNotifications": "Benachrichtigungen umschalten",
+        "languageSelector": "Sprachauswahl",
+        "openLanguageMenu": "Sprachmenü öffnen",
+        "closeLanguageMenu": "Sprachmenü schließen"
+    },
+    "errorBoundary": {
+        "title": "Etwas ist schief gelaufen",
+        "description": "Es tut uns leid, aber etwas Unerwartetes ist passiert. Bitte aktualisieren Sie die Seite oder wenden Sie sich an den Support, wenn das Problem weiterhin besteht.",
+        "refresh": "Seite aktualisieren",
+        "goHome": "Zur Startseite",
+        "reportError": "Fehler melden",
+        "errorDetails": "Fehlerdetails",
+        "showDetails": "Details anzeigen",
+        "hideDetails": "Details ausblenden"
+    },
+    "performance": {
+        "optimizing": "Optimiert...",
+        "retrying": "Wird wiederholt...",
+        "connectionError": "Verbindungsfehler",
+        "tryAgain": "Erneut versuchen",
+        "offline": "Sie sind offline",
+        "online": "Sie sind wieder online"
     }
 }

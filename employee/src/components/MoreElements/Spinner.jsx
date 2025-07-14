@@ -1,12 +1,20 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
-const Spinner = () => {
+const Spinner = ({ message, size = "w-12 h-12" }) => {
+  const { t } = useTranslation();
+  
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-60">
-      <div role="status">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-60"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loading-label"
+    >
+      <div role="status" className="flex flex-col items-center gap-4">
         <svg
           aria-hidden="true"
-          className="w-12 h-12 text-gray-200 animate-spin fill-blue-600"
+          className={`${size} text-gray-200 animate-spin fill-blue-600`}
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -20,6 +28,13 @@ const Spinner = () => {
             fill="currentFill"
           />
         </svg>
+        <p 
+          id="loading-label"
+          className="text-gray-600 font-medium"
+          aria-live="polite"
+        >
+          {message || t('accessibility.loadingContent')}
+        </p>
       </div>
     </div>
   );

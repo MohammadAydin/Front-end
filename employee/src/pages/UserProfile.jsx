@@ -3,10 +3,13 @@ import useData from "../hooks/useData";
 import ProfilePhoto from "../components/UserProfile/ProfilePhoto/ProfilePhoto";
 import "./Responsive css/UserProfile.css";
 import { useTranslation } from "react-i18next";
+import Spinner from "../components/MoreElements/Spinner";
 
 const UserProfile = () => {
-  const { data } = useData("/profile");
+  const { data, isLoading } = useData("/profile");
   const { t } = useTranslation();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="UserProfile p-[28px] py-[58px]">
