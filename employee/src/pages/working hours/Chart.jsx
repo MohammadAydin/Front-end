@@ -7,25 +7,30 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 
 const HoursChart = ({ rawData }) => {
+  const { t } = useTranslation();
+
   // if there is no data return null
   if (!rawData || rawData.length === 0) return null;
 
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+  const getLocalizedMonthAbbreviations = () => [
+    t('workingHours.monthAbbreviations.jan'),
+    t('workingHours.monthAbbreviations.feb'),
+    t('workingHours.monthAbbreviations.mar'),
+    t('workingHours.monthAbbreviations.apr'),
+    t('workingHours.monthAbbreviations.may'),
+    t('workingHours.monthAbbreviations.jun'),
+    t('workingHours.monthAbbreviations.jul'),
+    t('workingHours.monthAbbreviations.aug'),
+    t('workingHours.monthAbbreviations.sep'),
+    t('workingHours.monthAbbreviations.oct'),
+    t('workingHours.monthAbbreviations.nov'),
+    t('workingHours.monthAbbreviations.dec'),
   ];
+
+  const monthNames = getLocalizedMonthAbbreviations();
 
   // Data processing
 
@@ -51,13 +56,12 @@ const HoursChart = ({ rawData }) => {
     <div className="w-full h-[400px] bg-white mt-10">
       {/* Title and attribution */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Working Hours</h2>
+        <h2 className="text-xl font-bold">{t('workingHours.workingHoursChart')}</h2>
         <div
-          className={`px-3 py-1 rounded-lg text-sm font-semibold ${
-            isPositive
+          className={`px-3 py-1 rounded-lg text-sm font-semibold ${isPositive
               ? "bg-green-100 text-green-700"
               : "bg-red-100 text-red-700"
-          }`}
+            }`}
         >
           {isPositive ? "▲" : "▼"} {increasePercent}%
         </div>

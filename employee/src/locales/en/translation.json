@@ -388,14 +388,16 @@
         "error": "Failed to save residence information"
     },
     "bankingInfo": {
-        "title": "Banking Info",
-        "description": "Please provide your banking information for payments",
+        "title": "Complete Banking Info",
+        "description": "Please , Complete your banking info",
         "fields": {
             "bankName": "Bank Name",
             "iban": "IBAN",
-            "bic": "BIC/SWIFT Code",
-            "accountHolder": "Account Holder Name"
+            "bic": "BIC",
+            "accountHolder": "Account holder"
         },
+        "bankCard": "Bank card",
+        "uploadBankCard": "Upload front card",
         "validation": {
             "bankNameRequired": "Bank name is required",
             "ibanRequired": "IBAN is required",
@@ -409,12 +411,27 @@
         "error": "Failed to save banking information"
     },
     "socialSecurity": {
-        "title": "Social Security and Health Insurance",
-        "description": "Please provide your social security and health insurance information",
+        "title": "Complete Social Security and Health Insurance",
+        "description": "Please , Complete yuor Social security and Health Insurance detIails",
         "fields": {
-            "socialSecurityNumber": "Social Security Number",
-            "healthInsurance": "Health Insurance Provider",
-            "insuranceNumber": "Insurance Number"
+            "socialSecurityNumber": "Social insurance number",
+            "healthInsurance": "health insurance company name",
+            "insuranceNumber": "Health insurance number",
+            "taxIdentificationNumber": "Tax identification number",
+            "taxBracket": "Tax bracket",
+            "maritalStatus": "Marital status",
+            "healthInsuranceType": "Health insurance type",
+            "numberOfChildren": "Number of children"
+        },
+        "maritalStatusOptions": {
+            "single": "Single",
+            "married": "Married",
+            "divorced": "Divorced",
+            "widowed": "Widowed"
+        },
+        "insuranceTypeOptions": {
+            "public": "Public",
+            "private": "Private"
         },
         "validation": {
             "socialSecurityRequired": "Social security number is required",
@@ -433,6 +450,7 @@
         "removeDocument": "Remove",
         "supportedFormats": "Supported formats: PDF, JPG, PNG",
         "maxFileSize": "Maximum file size: 10MB",
+        "uploadAllRequired": "Please upload all required documents before Press Add.",
         "documentTypes": {
             "id": "ID Document",
             "passport": "Passport",
@@ -447,7 +465,7 @@
             "fileTooLarge": "File size too large"
         },
         "back": "Back",
-        "submit": "Submit",
+        "submit": "Add",
         "success": "Documents uploaded successfully",
         "error": "Failed to upload documents"
     },
@@ -482,5 +500,48 @@
         "submit": "Submit",
         "success": "Signature saved successfully",
         "error": "Failed to save signature"
+    },
+    "workingHours": {
+        "title": "Total Hours",
+        "noDataMessage": "No working hours logged yet.",
+        "workingHoursChart": "Working Hours",
+        "dateLabel": "Date:",
+        "filter": {
+            "filterBy": "Filter by",
+            "last7Days": "Last 7 days",
+            "last14Days": "Last 14 days",
+            "last28Days": "Last 28 days",
+            "last90Days": "Last 90 days",
+            "last365Days": "Last 365 days",
+            "lifetime": "Lifetime"
+        },
+        "monthNames": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December"
+        },
+        "monthAbbreviations": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mar",
+            "apr": "Apr",
+            "may": "May",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Oct",
+            "nov": "Nov",
+            "dec": "Dec"
+        }
     }
 }

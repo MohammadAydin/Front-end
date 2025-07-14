@@ -6,8 +6,10 @@ import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import "../../Responsive css/Personal_info.css";
+import { useTranslation } from "react-i18next";
 
 const Documents = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
@@ -44,7 +46,7 @@ const Documents = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('documents.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -69,6 +71,10 @@ const Documents = () => {
 
   return (
     <div className="Documents p-[28px] py-[58px]">
+      <h2 className="text-2xl font-bold mb-2">{t('documents.title')}</h2>
+      <p className="text-[#555770] mb-10 text-lg ">
+        {t('documents.description')}
+      </p>
       <div className="my-5">
         {requiredDocs?.map((docs) => (
           <DocumentsList
@@ -80,7 +86,7 @@ const Documents = () => {
       </div>
       {!isReady && (
         <p className="w-full bg-[#f4752117] py-5 text-center rounded-lg text-[#F47621] mt-2">
-          Please upload all required documents before Press Add.
+          {t('documents.uploadAllRequired')}
         </p>
       )}
       <div className="mt-10 flex flex-col items-end">
@@ -89,16 +95,15 @@ const Documents = () => {
             onClick={() => navigate("/Personal info")}
             className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3] mr-3"
           >
-            Back
+            {t('documents.back')}
           </button>
           <button
             disabled={!isReady}
             onClick={submit}
-            className={`px-6 py-3 rounded-xl font-bold ${
-              isReady ? "bg-[#F47621] text-white" : "bg-gray-300 text-gray-600"
-            }`}
+            className={`px-6 py-3 rounded-xl font-bold ${isReady ? "bg-[#F47621] text-white" : "bg-gray-300 text-gray-600"
+              }`}
           >
-            Add
+            {t('documents.submit')}
           </button>
         </div>
         {serverError && (

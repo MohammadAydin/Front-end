@@ -10,17 +10,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import bankingInfoSchema from "./BankingInfoSchema";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
-
-const inputs = [
-  { name: "AcountHolder", label: "Acount holder", type: "text" },
-  { name: "BankName", label: "Bank Name", type: "text" },
-  { name: "BIC", label: "BIC", type: "text" },
-  { name: "IBAN", label: "IBAN", type: "text" },
-];
+import { useTranslation } from "react-i18next";
 
 const Banking_info = () => {
+  const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
+
+  const inputs = [
+    { name: "AcountHolder", label: t('bankingInfo.fields.accountHolder'), type: "text" },
+    { name: "BankName", label: t('bankingInfo.fields.bankName'), type: "text" },
+    { name: "BIC", label: t('bankingInfo.fields.bic'), type: "text" },
+    { name: "IBAN", label: t('bankingInfo.fields.iban'), type: "text" },
+  ];
 
   const addBankingMutatuin = useMutation({
     mutationFn: (formData) =>
@@ -39,7 +41,7 @@ const Banking_info = () => {
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('bankingInfo.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -51,6 +53,7 @@ const Banking_info = () => {
       }
     },
   });
+
   const navigate = useNavigate();
   const {
     register,
@@ -74,11 +77,12 @@ const Banking_info = () => {
 
     addBankingMutatuin.mutate(formData);
   };
+
   return (
     <div className="Banking_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">Complete Banking Info</h2>
+      <h2 className="text-2xl font-bold mb-2">{t('bankingInfo.title')}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Please , Complete your banking info
+        {t('bankingInfo.description')}
       </p>
       <form encType="multipart/form-data" onSubmit={handleSubmit(submit)}>
         <div className="Banking_info_grid w-full grid grid-cols-2 gap-5 mb-8">
@@ -94,10 +98,10 @@ const Banking_info = () => {
           ))}
         </div>
         <div>
-          <h3 className="text-lg font-bold">Bank card</h3>
+          <h3 className="text-lg font-bold">{t('bankingInfo.bankCard')}</h3>
           <FileUploader
             name={"bankCard"}
-            label={"Upload front card"}
+            label={t('bankingInfo.uploadBankCard')}
             register={register}
             error={errors}
             setValue={setValue}
@@ -109,7 +113,7 @@ const Banking_info = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel="Back"
+          prevLabel={t('bankingInfo.back')}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

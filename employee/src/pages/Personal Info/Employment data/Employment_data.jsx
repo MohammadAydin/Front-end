@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Employment_schema from "./schema_Employment_data";
-import { employmentQuestions } from "./Employment_data_inputs";
 import RadioGroupField from "./RadioGroupField";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
@@ -10,10 +9,80 @@ import { useMutation } from "@tanstack/react-query";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import customFetch from "../../../utils/axios";
+import { useTranslation } from "react-i18next";
 
 const Employment_data = () => {
+  const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
+
+  const employmentQuestions = [
+    {
+      type: "radio",
+      name: "school_qualification",
+      label: t('employmentData.fields.highestDegree'),
+      options: [
+        { value: "Technical/Abitur", label: t('employmentData.qualificationOptions.technical') },
+        {
+          value: "Intermediate school leaving certificate",
+          label: t('employmentData.qualificationOptions.intermediate'),
+        },
+        {
+          value: "Secondary/elementary school leaving certificate",
+          label: t('employmentData.qualificationOptions.secondary'),
+        },
+        {
+          value: "without school leaving certificate",
+          label: t('employmentData.qualificationOptions.none'),
+        },
+      ],
+    },
+    {
+      type: "radio",
+      name: "vocational_training",
+      label: t('employmentData.fields.vocationalTraining'),
+      options: [
+        { value: "true", label: t('employmentData.yesNoOptions.yes') },
+        { value: "false", label: t('employmentData.yesNoOptions.no') },
+      ],
+    },
+    {
+      type: "radio",
+      name: "pregnant",
+      label: t('employmentData.fields.pregnancy'),
+      options: [
+        { value: "true", label: t('employmentData.yesNoOptions.yes') },
+        { value: "false", label: t('employmentData.yesNoOptions.no') },
+      ],
+    },
+    {
+      type: "radio",
+      name: "corona",
+      label: t('employmentData.fields.coronaVaccine'),
+      options: [
+        { value: "true", label: t('employmentData.yesNoOptions.yes') },
+        { value: "false", label: t('employmentData.yesNoOptions.no') },
+      ],
+    },
+    {
+      type: "radio",
+      name: "hepatitis",
+      label: t('employmentData.fields.hepatitisVaccine'),
+      options: [
+        { value: "true", label: t('employmentData.yesNoOptions.yes') },
+        { value: "false", label: t('employmentData.yesNoOptions.no') },
+      ],
+    },
+    {
+      type: "radio",
+      name: "over18",
+      label: t('employmentData.fields.ageConfirmation'),
+      options: [
+        { value: "true", label: t('employmentData.yesNoOptions.yes') },
+        { value: "false", label: t('employmentData.yesNoOptions.no') },
+      ],
+    },
+  ];
 
   const addEmploymentDataMutatuin = useMutation({
     mutationFn: (EmploymentData) =>
@@ -29,7 +98,7 @@ const Employment_data = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('employmentData.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -41,6 +110,7 @@ const Employment_data = () => {
       }
     },
   });
+
   const navigate = useNavigate();
 
   const {
@@ -65,9 +135,9 @@ const Employment_data = () => {
 
   return (
     <div className="Employment_data p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">Complete Employment data</h2>
+      <h2 className="text-2xl font-bold mb-2">{t('employmentData.title')}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Please, complete your Employment data
+        {t('employmentData.description')}
       </p>
 
       <form onSubmit={handleSubmit(Submit)} className="Questions space-y-6 p-6">
@@ -88,9 +158,9 @@ const Employment_data = () => {
             className="mt-1"
           />
           <label htmlFor="terms">
-            I accept the{" "}
+            {t('employmentData.termsAcceptance')}{" "}
             <a href="#" className="text-[#F47621] underline">
-              Terms and Conditions
+              {t('employmentData.termsAndConditions')}
             </a>
           </label>
         </div>
@@ -103,7 +173,7 @@ const Employment_data = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel="Back"
+          prevLabel={t('employmentData.back')}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

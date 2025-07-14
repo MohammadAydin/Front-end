@@ -388,14 +388,16 @@
         "error": "Aufenthaltsinformationen konnten nicht gespeichert werden"
     },
     "bankingInfo": {
-        "title": "Bankinformationen",
-        "description": "Bitte geben Sie Ihre Bankinformationen für Zahlungen an",
+        "title": "Bankinformationen vervollständigen",
+        "description": "Bitte vervollständigen Sie Ihre Bankinformationen",
         "fields": {
             "bankName": "Bankname",
             "iban": "IBAN",
-            "bic": "BIC/SWIFT-Code",
+            "bic": "BIC",
             "accountHolder": "Kontoinhaber"
         },
+        "bankCard": "Bankkarte",
+        "uploadBankCard": "Vorderseite der Karte hochladen",
         "validation": {
             "bankNameRequired": "Bankname ist erforderlich",
             "ibanRequired": "IBAN ist erforderlich",
@@ -409,12 +411,27 @@
         "error": "Bankinformationen konnten nicht gespeichert werden"
     },
     "socialSecurity": {
-        "title": "Sozialversicherung und Krankenversicherung",
-        "description": "Bitte geben Sie Ihre Sozialversicherungs- und Krankenversicherungsinformationen an",
+        "title": "Sozialversicherung und Krankenversicherung vervollständigen",
+        "description": "Bitte vervollständigen Sie Ihre Sozialversicherungs- und Krankenversicherungsangaben",
         "fields": {
             "socialSecurityNumber": "Sozialversicherungsnummer",
-            "healthInsurance": "Krankenversicherungsanbieter",
-            "insuranceNumber": "Versicherungsnummer"
+            "healthInsurance": "Name der Krankenkasse",
+            "insuranceNumber": "Krankenversicherungsnummer",
+            "taxIdentificationNumber": "Steueridentifikationsnummer",
+            "taxBracket": "Steuerklasse",
+            "maritalStatus": "Familienstand",
+            "healthInsuranceType": "Krankenversicherungsart",
+            "numberOfChildren": "Anzahl der Kinder"
+        },
+        "maritalStatusOptions": {
+            "single": "Ledig",
+            "married": "Verheiratet",
+            "divorced": "Geschieden",
+            "widowed": "Verwitwet"
+        },
+        "insuranceTypeOptions": {
+            "public": "Gesetzlich",
+            "private": "Privat"
         },
         "validation": {
             "socialSecurityRequired": "Sozialversicherungsnummer ist erforderlich",
@@ -433,6 +450,7 @@
         "removeDocument": "Entfernen",
         "supportedFormats": "Unterstützte Formate: PDF, JPG, PNG",
         "maxFileSize": "Maximale Dateigröße: 10MB",
+        "uploadAllRequired": "Bitte laden Sie alle erforderlichen Dokumente hoch, bevor Sie auf Hinzufügen klicken.",
         "documentTypes": {
             "id": "Ausweis",
             "passport": "Reisepass",
@@ -447,7 +465,7 @@
             "fileTooLarge": "Datei zu groß"
         },
         "back": "Zurück",
-        "submit": "Absenden",
+        "submit": "Hinzufügen",
         "success": "Dokumente erfolgreich hochgeladen",
         "error": "Dokumente konnten nicht hochgeladen werden"
     },
@@ -482,5 +500,48 @@
         "submit": "Absenden",
         "success": "Unterschrift erfolgreich gespeichert",
         "error": "Unterschrift konnte nicht gespeichert werden"
+    },
+    "workingHours": {
+        "title": "Gesamtstunden",
+        "noDataMessage": "Noch keine Arbeitszeit protokolliert.",
+        "workingHoursChart": "Arbeitszeiten",
+        "dateLabel": "Datum:",
+        "filter": {
+            "filterBy": "Filtern nach",
+            "last7Days": "Letzte 7 Tage",
+            "last14Days": "Letzte 14 Tage",
+            "last28Days": "Letzte 28 Tage",
+            "last90Days": "Letzte 90 Tage",
+            "last365Days": "Letzte 365 Tage",
+            "lifetime": "Gesamt"
+        },
+        "monthNames": {
+            "january": "Januar",
+            "february": "Februar",
+            "march": "März",
+            "april": "April",
+            "may": "Mai",
+            "june": "Juni",
+            "july": "Juli",
+            "august": "August",
+            "september": "September",
+            "october": "Oktober",
+            "november": "November",
+            "december": "Dezember"
+        },
+        "monthAbbreviations": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mär",
+            "apr": "Apr",
+            "may": "Mai",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Okt",
+            "nov": "Nov",
+            "dec": "Dez"
+        }
     }
 }

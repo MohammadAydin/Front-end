@@ -6,8 +6,10 @@ import { FiFilter } from "react-icons/fi";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
 import { useWorkingHoursStore } from "../../store/WorkingHoursStore";
+import { useTranslation } from "react-i18next";
 
 const FilteringHours = () => {
+  const { t } = useTranslation();
   const { setRawData } = useWorkingHoursStore();
   const { register, setValue, handleSubmit } = useForm();
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +31,16 @@ const FilteringHours = () => {
     addFilteringHours.mutate({ date: data.FilteringHours });
   };
 
+  // Get localized filtering options
+  const getLocalizedOptions = () => {
+    return FilteringHoursOptions.map(option => ({
+      ...option,
+      label: t(`workingHours.filter.${option.key}`)
+    }));
+  };
+
+  const localizedOptions = getLocalizedOptions();
+
   return (
     <form className="FilteringHours relative w-full max-w-[200px]">
       {/* Hidden input to hold selected value */}
@@ -43,14 +55,13 @@ const FilteringHours = () => {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`FilteringHoursBtn w-full p-3 border-[1.5px] border-[#919eab52] rounded-xl flex justify-between items-center ${
-          selectOption ? "text-black" : "text-[#919EAB]"
-        }`}
+        className={`FilteringHoursBtn w-full p-3 border-[1.5px] border-[#919eab52] rounded-xl flex justify-between items-center ${selectOption ? "text-black" : "text-[#919EAB]"
+          }`}
       >
         <div className="flex items-center gap-2">
           <FiFilter />
-          {FilteringHoursOptions.find((opt) => opt.value === selectOption)
-            ?.label || "Filter by"}
+          {localizedOptions.find((opt) => opt.value === selectOption)
+            ?.label || t('workingHours.filter.filterBy')}
         </div>
         <MdOutlineKeyboardArrowDown size={25} />
       </button>
@@ -59,15 +70,15 @@ const FilteringHours = () => {
       {isOpen && (
         <div className="FilteringHoursOption absolute z-50 w-full bg-white rounded-2xl shadow-2xl mt-2">
           <div className="py-5 font-extrabold flex flex-col">
-            {FilteringHoursOptions.map((option) => (
+            {localizedOptions.map((option) => (
               <button
                 type="submit"
-                key={option.label}
+                key={option.key}
                 onClick={(e) => {
                   e.preventDefault();
                   setSelectOption(option.value);
                   setValue("FilteringHours", option.value);
-                  if (option.label === "Last 7 days") {
+                  if (option.key === "last7Days") {
                     setRawData([]);
                     setIsOpen(false);
                   } else {

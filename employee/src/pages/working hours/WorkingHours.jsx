@@ -5,7 +5,10 @@ import Chart from "./Chart";
 import { useWorkingHoursStore } from "../../store/WorkingHoursStore";
 import "../Responsive css/WorkingHours.css";
 import vectorNoData from "../../assets/images/vectors/Time management-rafiki.svg";
+import { useTranslation } from "react-i18next";
+
 const WorkingHours = () => {
+  const { t, i18n } = useTranslation();
   const { rowData, getTotalHours, getDateRange } = useWorkingHoursStore();
 
   const { data } = useData("/worked/hours");
@@ -16,8 +19,11 @@ const WorkingHours = () => {
   const dateRange = getDateRange();
 
   const formatMonthName = (monthNumber) => {
-    const date = new Date(0, monthNumber - 1);
-    return date.toLocaleString("en-US", { month: "long" });
+    const monthKey = [
+      'january', 'february', 'march', 'april', 'may', 'june',
+      'july', 'august', 'september', 'october', 'november', 'december'
+    ][monthNumber - 1];
+    return t(`workingHours.monthNames.${monthKey}`);
   };
 
   function formatDecimalHours(decimal) {
@@ -30,13 +36,13 @@ const WorkingHours = () => {
     <div className="WorkingHours p-[28px] py-[58px]">
       <div className="font-bold ">
         <div className="flex justify-between mb-8 items-center">
-          <h3 className="text-2xl font-bold">Total Hours</h3>
+          <h3 className="text-2xl font-bold">{t('workingHours.title')}</h3>
           <FilteringHours />
         </div>
         {displayData?.length == 0 && (
           <div className="flex flex-col justify-center items-center ">
             <img className="w-[400px]" src={vectorNoData} alt="" />
-            <p className="text-xl">No working hours logged yet.</p>
+            <p className="text-xl">{t('workingHours.noDataMessage')}</p>
           </div>
         )}
         {displayData && displayData.length > 0 && (
@@ -50,7 +56,7 @@ const WorkingHours = () => {
               )}
             </div>
             <div className="text-[#919EAB] font-thin mt-4 text-lg">
-              Date: &nbsp;
+              {t('workingHours.dateLabel')} &nbsp;
               {dateRange ? (
                 dateRange
               ) : (
