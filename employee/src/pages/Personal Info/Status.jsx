@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const Status = ({ status }) => {
   const { t } = useTranslation();
-  
+
   return (
     <>
       {status === "pending" ? (

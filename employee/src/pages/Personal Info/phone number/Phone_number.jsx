@@ -74,7 +74,7 @@ const Phone_number = () => {
 
     sendCodeMutation.mutate({ phone: fullPhone });
   };
-  
+
   return (
     <div className="Social_Insurance p-[28px] py-[58px]">
       <h2 className="text-2xl font-bold mb-2">{t('phoneNumber.title')}</h2>

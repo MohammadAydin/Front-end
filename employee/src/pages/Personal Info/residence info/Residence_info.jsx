@@ -93,7 +93,7 @@ const Residence_info = () => {
 
     add_Residence_info_Mutatuin.mutate(formData);
   };
-  
+
   return (
     <div className="Residence_info p-[28px] py-[58px]">
       <h2 className="text-2xl font-bold mb-2">{t('residenceInfo.title')}</h2>

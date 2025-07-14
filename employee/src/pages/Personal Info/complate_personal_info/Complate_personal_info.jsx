@@ -49,7 +49,7 @@ const Complate_personal_info = () => {
       }
     },
   });
-  
+
   const navigate = useNavigate();
   const {
     register,

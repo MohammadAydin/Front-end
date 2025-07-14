@@ -82,11 +82,10 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
               if (resendTimer === 0) resendCode();
             }}
             disabled={resendTimer > 0}
-            className={`mt-5 font-bold text-lg cursor-pointer ${
-              resendTimer > 0
+            className={`mt-5 font-bold text-lg cursor-pointer ${resendTimer > 0
                 ? "text-gray-400 cursor-not-allowed"
                 : "text-blue-900 hover:text-[#EE6000]"
-            }`}
+              }`}
           >
             {resendTimer > 0 ? `${t('phoneNumber.resendOtp')} in ${resendTimer}s` : t('phoneNumber.resendOtp')}
           </button>
