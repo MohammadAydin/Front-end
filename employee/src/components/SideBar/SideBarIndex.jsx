@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import Germany from "../../assets/images/icon-sidebar/germany.svg";
 import useLogout from "./logoutFun";
 import { useTranslation } from "react-i18next";
+import { useState, useEffect, useRef } from "react";
 
 const pages = [
   {
@@ -47,9 +48,9 @@ const pages = [
 ];
 
 const Settings = [
-  { id: 1, name: "navigation.language", icon: <IoLanguage size={24} /> },
-  { id: 2, name: "navigation.settings", icon: <IoSettingsOutline size={24} /> },
-  { id: 3, name: "navigation.logout", icon: <IoLogOutOutline size={24} /> },
+  { id: 1, name: "navigation.language", icon: <IoLanguage size={24} />, type: "language" },
+  { id: 2, name: "navigation.settings", icon: <IoSettingsOutline size={24} />, type: "normal" },
+  { id: 3, name: "navigation.logout", icon: <IoLogOutOutline size={24} />, type: "logout" },
 ];
 
 const PagesList = ({ setIsOpen }) => {
@@ -76,25 +77,90 @@ const PagesList = ({ setIsOpen }) => {
 
 const SettingList = () => {
   const logout = useLogout();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const languages = [
+    { code: 'en', name: t('language.english'), flag: '🇺🇸' },
+    { code: 'de', name: t('language.german'), flag: '🇩🇪' }
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+
+  const handleLanguageChange = (languageCode) => {
+    i18n.changeLanguage(languageCode);
+    setIsLanguageDropdownOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleItemClick = (item) => {
+    if (item.type === "logout") {
+      logout();
+    } else if (item.type === "language") {
+      setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+    }
+    // For normal settings, you can add navigation logic here later
+  };
+
   return (
-    <ul className="sidebarList">
-      {Settings.map((item) => (
-        <li
-          className={`flex items-center justify-between w-full cursor-pointer hover:font-bold`}
-          key={item.id}
-          onClick={item.name == "navigation.logout" ? logout : null}
+    <div className="relative">
+      <ul className="sidebarList">
+        {Settings.map((item) => (
+          <li
+            className={`flex items-center justify-between w-full cursor-pointer hover:font-bold mb-3`}
+            key={item.id}
+            onClick={() => handleItemClick(item)}
+          >
+            <div className="flex items-center gap-2 ">
+              {item.icon}
+              <span className="pageName">{t(item.name)}</span>
+            </div>
+            {item.type === "language" && (
+              <span className="text-lg">{currentLanguage.flag}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      {/* Language Dropdown */}
+      {isLanguageDropdownOpen && (
+        <div
+          ref={dropdownRef}
+          className="absolute bottom-full left-0 mb-2 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
         >
-          <div className="flex items-center gap-2 ">
-            {item.icon}
-            <span className="pageName">{t(item.name)}</span>
-          </div>
-          {item.name === "navigation.language" && (
-            <img className="mt-1 flag" src={Germany} alt="Language" />
-          )}
-        </li>
-      ))}
-    </ul>
+          {languages.map((language) => (
+            <button
+              key={language.code}
+              onClick={() => handleLanguageChange(language.code)}
+              className={`${i18n.language === language.code
+                ? 'bg-blue-50 text-blue-600'
+                : 'text-gray-700 hover:bg-gray-100'
+                } group flex items-center px-4 py-2 text-sm w-full text-left transition-colors duration-200`}
+            >
+              <span className="mr-4 text-lg">{language.flag}</span>
+              <span className="flex-1">{language.name}</span>
+              {i18n.language === language.code && (
+                <span className="text-blue-500 ml-3">✓</span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 export { PagesList, SettingList };
