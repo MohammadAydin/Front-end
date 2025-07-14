@@ -240,5 +240,70 @@
         "officialComplaint": "Official Complaint",
         "subjectPlaceholder": "Subject of the Complaint : ",
         "sendComplaint": "Send the Complaint"
+    },
+    "locationInfo": {
+        "title": "Location Info",
+        "addresses": "Addresses",
+        "addNewAddress": "Add new Address",
+        "noAddressMessage": "There is no address currently, Please add an address.",
+        "addressNumber": "Address {{number}}",
+        "active": "Active",
+        "activate": "Activate",
+        "primary": "Primary",
+        "commutingRange": "Your Acceptable Commuting Range:",
+        "locationDeleteSuccess": "Location deleted successfully",
+        "locationDeleteError": "Failed to delete location",
+        "locationActivateSuccess": "Location activated successfully",
+        "locationActivateError": "Failed to activate location"
+    },
+    "addLocation": {
+        "title": "Add new Location",
+        "primaryLocation": "This will be the primary location",
+        "alternateLocation": "This will be the Alternate location",
+        "fields": {
+            "title": "title",
+            "street": "street",
+            "house": "house",
+            "postalCode": "Postal code",
+            "city": "City",
+            "country": "Country"
+        },
+        "validation": {
+            "titleRequired": "Title is required",
+            "streetRequired": "Street1 name is required",
+            "street2Required": "Street2 is required",
+            "postalCodeRequired": "Postal code must be at least 4 characters",
+            "postalCodeNumber": "Postal code must be a number",
+            "cityRequired": "City is required",
+            "countryRequired": "Country is required"
+        },
+        "back": "Back",
+        "next": "Next",
+        "sendLocationError": "send location error"
+    },
+    "editLocation": {
+        "title": "edit location",
+        "description": "Edit your site data and the new site will be saved.",
+        "fields": {
+            "title": "title",
+            "street": "Street",
+            "house": "house",
+            "postalCode": "Postal code",
+            "city": "City",
+            "country": "Country"
+        },
+        "back": "Back",
+        "edit": "Edit"
+    },
+    "workAbilities": {
+        "title": "Work abilities",
+        "description": "Complete your edit Work abilities",
+        "distanceDescription": "Work Abilities: Please specify the maximum distance (in kilometers) you're willing to travel to reach your work location.",
+        "determineDistance": "Determine the distance",
+        "kmLabel": "km",
+        "distanceRequired": "Distance is required",
+        "distanceNumber": "Distance must be a number",
+        "back": "Back",
+        "next": "Next"
     }
 }

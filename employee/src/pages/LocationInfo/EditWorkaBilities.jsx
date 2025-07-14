@@ -14,19 +14,17 @@ import MapComponent from "../../components/MapComponent.jsx";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useData from "../../hooks/useData.js";
+import { useTranslation } from "react-i18next";
+import { createWorkAbilitiesSchema } from "../../utils/validationSchema.js";
 
 const EditWorkaBilities = () => {
+  const { t } = useTranslation();
   // Navigate definition for routing
   const navigate = useNavigate();
 
   const { workable_distance } = useParams();
 
-  const distanceSchema = z.object({
-    distance: z
-      .string()
-      .min(1, "Distance is required")
-      .regex(/^\d+$/, "Distance must be a number"),
-  });
+  const distanceSchema = createWorkAbilitiesSchema(t);
   // Connecting the Zod Library to the Hookform
   const {
     register,
@@ -61,15 +59,14 @@ const EditWorkaBilities = () => {
     // container wrapper
     <Wrapper className="w-full">
       <div className="w-full">
-        <h1>Work abilities</h1>
+        <h1>{t('workAbilities.title')}</h1>
         <p className=" text-softColor mt-4">
-          Complete your edit Work abilities
+          {t('workAbilities.description')}
         </p>
         <p className=" text-softColor mt-4 ">
-          Work Abilities: Please specify the maximum distance (in kilometers)
-          you're willing to travel to reach your work location.
+          {t('workAbilities.distanceDescription')}
         </p>
-        <h2 className="mt-6">Determine the distance</h2>
+        <h2 className="mt-6">{t('workAbilities.determineDistance')}</h2>
 
         <div className="mt-3 w-full">
           <div className="form-Loacations mt-5 w-full">
@@ -78,7 +75,7 @@ const EditWorkaBilities = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={"km"}
+                label={t('workAbilities.kmLabel')}
                 name={"distance"}
                 type={"text"}
                 defaultvalue={workable_distance}
@@ -87,14 +84,14 @@ const EditWorkaBilities = () => {
                 <Link to="/LocationInfo" className="w-full">
                   <Button
                     className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                    text="Back"
+                    text={t('workAbilities.back')}
                   />
                 </Link>
                 <button
                   type={"submit"}
                   className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full"
                 >
-                  Next
+                  {t('workAbilities.next')}
                 </button>
               </div>
             </form>

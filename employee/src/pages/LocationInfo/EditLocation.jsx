@@ -15,8 +15,11 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useData from "../../hooks/useData.js";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
+import { useTranslation } from "react-i18next";
+import { createLocationSchema } from "../../utils/validationSchema.js";
 
 const editLocation = () => {
+  const { t } = useTranslation();
   const { id, title, street1, street2, postal_code, city, country } =
     useParams();
   const { OpenSuccsess } = OpenSuccsessPopup();
@@ -44,17 +47,7 @@ const editLocation = () => {
   }
 
   // Constraints chart from the Zod Library
-  const baseSchema = z.object({
-    street1: z.string().min(1, "Street1 name is required"),
-    postalcode: z
-      .string()
-      .min(4, "Postal code must be at least 4 characters")
-      .regex(/^\d+$/, "Postal code must be a number"),
-    country: z.string().min(1, "Country is required"),
-    city: z.string().min(1, "City is required"),
-    street2: z.string().min(1, "Street2 is required"),
-    title: z.string().min(1, "Title is required"),
-  });
+  const baseSchema = createLocationSchema(t);
 
   // Connecting the Zod Library to the Hookform
   const {
@@ -90,8 +83,8 @@ const editLocation = () => {
       console.log("send location error full:", error);
       // Show error message in toast
       toast.error(
-        "send location error: " +
-          (error?.response?.data?.message || error.message || "Unknown error")
+        t('addLocation.sendLocationError') + ": " +
+        (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };
@@ -150,9 +143,9 @@ const editLocation = () => {
       <div className="w-full">
         {/* If Workabilities is false Displays text the location add */}
 
-        <h1>edit location </h1>
+        <h1>{t('editLocation.title')}</h1>
         <p className=" text-softColor mt-4">
-          Edit your site data and the new site will be saved.{" "}
+          {t('editLocation.description')}
         </p>
 
         <div className="mt-3 w-full">
@@ -163,7 +156,7 @@ const editLocation = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={"title"}
+                label={t('editLocation.fields.title')}
                 name={"title"}
                 type={"text"}
                 defaultvalue={title}
@@ -172,7 +165,7 @@ const editLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={"Street"}
+                  label={t('editLocation.fields.street')}
                   name={"street1"}
                   type={"text"}
                   defaultvalue={street1}
@@ -180,7 +173,7 @@ const editLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={"house"}
+                  label={t('editLocation.fields.house')}
                   name={"street2"}
                   type={"text"}
                   defaultvalue={street2}
@@ -188,7 +181,7 @@ const editLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={"Postal code"}
+                  label={t('editLocation.fields.postalCode')}
                   name={"postalcode"}
                   type={"text"}
                   defaultvalue={postal_code}
@@ -197,7 +190,7 @@ const editLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={"City"}
+                  label={t('editLocation.fields.city')}
                   name={"city"}
                   type={"text"}
                   defaultvalue={city}
@@ -206,7 +199,7 @@ const editLocation = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={"Country"}
+                label={t('editLocation.fields.country')}
                 name={"country"}
                 type={"text"}
                 defaultvalue={country}
@@ -231,7 +224,7 @@ const editLocation = () => {
               <Link className="w-full" to="/locationInfo">
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text="Back"
+                  text={t('editLocation.back')}
                 />
               </Link>
 
@@ -240,7 +233,7 @@ const editLocation = () => {
                 onClick={togglePopup}
                 type="button"
                 className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text="Edit"
+                text={t('editLocation.edit')}
               />
             </div>
           </div>

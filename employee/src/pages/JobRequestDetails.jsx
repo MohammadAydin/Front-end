@@ -86,9 +86,9 @@ const JobRequestDetails = () => {
   // Fetch map data
   const center = jobs?.coordinates
     ? {
-        lat: jobs.coordinates.latitude,
-        lng: jobs.coordinates.longitude,
-      }
+      lat: jobs.coordinates.latitude,
+      lng: jobs.coordinates.longitude,
+    }
     : { lat: 0, lng: 0 };
 
   // Definition of React Query
@@ -154,10 +154,10 @@ const JobRequestDetails = () => {
                 <p className="text-[0.8rem]">
                   {timeInfo
                     ? t("jobRequestDetails.daysHoursMinutes", {
-                        days: timeInfo.diffDays,
-                        hours: timeInfo.diffHours,
-                        minutes: timeInfo.diffMinutes
-                      })
+                      days: timeInfo.diffDays,
+                      hours: timeInfo.diffHours,
+                      minutes: timeInfo.diffMinutes
+                    })
                     : t("jobRequestDetails.calculating")}
                 </p>
               </div>

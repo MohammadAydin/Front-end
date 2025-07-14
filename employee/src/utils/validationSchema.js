@@ -104,3 +104,28 @@ export const createPersonalInfoSchema = (t) => {
         Occupation: z.string().nonempty(t('personalInfo.occupation.validation.required')),
     });
 };
+
+// Create location validation schema with translations
+export const createLocationSchema = (t) => {
+    return z.object({
+        street1: z.string().min(1, t('addLocation.validation.streetRequired')),
+        postalcode: z
+            .string()
+            .min(4, t('addLocation.validation.postalCodeRequired'))
+            .regex(/^\d+$/, t('addLocation.validation.postalCodeNumber')),
+        country: z.string().min(1, t('addLocation.validation.countryRequired')),
+        city: z.string().min(1, t('addLocation.validation.cityRequired')),
+        street2: z.string().min(1, t('addLocation.validation.street2Required')),
+        title: z.string().min(1, t('addLocation.validation.titleRequired')),
+    });
+};
+
+// Create work abilities distance validation schema with translations
+export const createWorkAbilitiesSchema = (t) => {
+    return z.object({
+        distance: z
+            .string()
+            .min(1, t('workAbilities.distanceRequired'))
+            .regex(/^\d+$/, t('workAbilities.distanceNumber')),
+    });
+};

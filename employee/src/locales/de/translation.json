@@ -240,5 +240,70 @@
         "officialComplaint": "Offizielle Beschwerde",
         "subjectPlaceholder": "Betreff der Beschwerde : ",
         "sendComplaint": "Beschwerde senden"
+    },
+    "locationInfo": {
+        "title": "Standortinformationen",
+        "addresses": "Adressen",
+        "addNewAddress": "Neue Adresse hinzufügen",
+        "noAddressMessage": "Es gibt derzeit keine Adresse. Bitte fügen Sie eine Adresse hinzu.",
+        "addressNumber": "Adresse {{number}}",
+        "active": "Aktiv",
+        "activate": "Aktivieren",
+        "primary": "Primär",
+        "commutingRange": "Ihr akzeptabler Arbeitsweg:",
+        "locationDeleteSuccess": "Standort erfolgreich gelöscht",
+        "locationDeleteError": "Fehler beim Löschen des Standorts",
+        "locationActivateSuccess": "Standort erfolgreich aktiviert",
+        "locationActivateError": "Fehler beim Aktivieren des Standorts"
+    },
+    "addLocation": {
+        "title": "Neuen Standort hinzufügen",
+        "primaryLocation": "Dies wird der Hauptstandort sein",
+        "alternateLocation": "Dies wird der alternative Standort sein",
+        "fields": {
+            "title": "Titel",
+            "street": "Straße",
+            "house": "Haus",
+            "postalCode": "Postleitzahl",
+            "city": "Stadt",
+            "country": "Land"
+        },
+        "validation": {
+            "titleRequired": "Titel ist erforderlich",
+            "streetRequired": "Straßenname ist erforderlich",
+            "street2Required": "Straße2 ist erforderlich",
+            "postalCodeRequired": "Postleitzahl muss mindestens 4 Zeichen haben",
+            "postalCodeNumber": "Postleitzahl muss eine Zahl sein",
+            "cityRequired": "Stadt ist erforderlich",
+            "countryRequired": "Land ist erforderlich"
+        },
+        "back": "Zurück",
+        "next": "Weiter",
+        "sendLocationError": "Fehler beim Senden des Standorts"
+    },
+    "editLocation": {
+        "title": "Standort bearbeiten",
+        "description": "Bearbeiten Sie Ihre Standortdaten und der neue Standort wird gespeichert.",
+        "fields": {
+            "title": "Titel",
+            "street": "Straße",
+            "house": "Haus",
+            "postalCode": "Postleitzahl",
+            "city": "Stadt",
+            "country": "Land"
+        },
+        "back": "Zurück",
+        "edit": "Bearbeiten"
+    },
+    "workAbilities": {
+        "title": "Arbeitsfähigkeiten",
+        "description": "Vervollständigen Sie Ihre Bearbeitung der Arbeitsfähigkeiten",
+        "distanceDescription": "Arbeitsfähigkeiten: Bitte geben Sie die maximale Entfernung (in Kilometern) an, die Sie bereit sind zu reisen, um Ihren Arbeitsplatz zu erreichen.",
+        "determineDistance": "Entfernung bestimmen",
+        "kmLabel": "km",
+        "distanceRequired": "Entfernung ist erforderlich",
+        "distanceNumber": "Entfernung muss eine Zahl sein",
+        "back": "Zurück",
+        "next": "Weiter"
     }
 }

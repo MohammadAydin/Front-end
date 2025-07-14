@@ -10,9 +10,12 @@ import customFetch from "../../utils/axios";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { RiErrorWarningLine } from "react-icons/ri";
 import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const LocationInfo = () => {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const {
     data: locations,
@@ -35,10 +38,10 @@ const LocationInfo = () => {
       queryClient.invalidateQueries({
         queryKey: ["/locations", "locationsList"],
       });
-      toast.success(data.message || "Job decline successfully");
+      toast.success(data.message || t("locationInfo.locationDeleteSuccess"));
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "Failed to decline job");
+      toast.error(error?.response?.data?.message || t("locationInfo.locationDeleteError"));
     },
   });
   // To reject a jobRequest
@@ -49,31 +52,31 @@ const LocationInfo = () => {
       queryClient.invalidateQueries({
         queryKey: ["/locations", "locationsList"],
       });
-      toast.success(data.message || "Job decline successfully");
+      toast.success(data.message || t("locationInfo.locationActivateSuccess"));
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "Failed to decline job");
+      toast.error(error?.response?.data?.message || t("locationInfo.locationActivateError"));
     },
   });
 
   return (
     <>
       <div className="py-5 px-5">
-        <div className="text-2xl font-bold">Location Info</div>
+        <div className="text-2xl font-bold">{t("locationInfo.title")}</div>
         <div className="mt-5 flex flex-col">
           <div className="list-location">
             {/* Container with the bottom section for adding addresses */}
             <div className="mt-8 shadow-locationsList p-3.5 mb-5">
               {/* A container that contains the container title and the add button{" "} */}
               <div className="flex justify-between max-[600px]:flex-col max-[600px]:gap-2.5">
-                <p>Addresses</p>
+                <p>{t("locationInfo.addresses")}</p>
                 {/* When the add button is pressed, a popup opens to add the address */}
                 <Link
                   to={`/addLoaction/${locations?.length}`}
                   className="flex items-center gap-1.5  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] "
                 >
                   <FaPlus />
-                  Add new Address
+                  {t("locationInfo.addNewAddress")}
                 </Link>
               </div>
               {locations?.length == 0 && (
@@ -81,7 +84,7 @@ const LocationInfo = () => {
                   <RiErrorWarningLine className="text-2xl text-secondaryColor" />
 
                   <p className=" ">
-                    There is no address currently, Please add an address.
+                    {t("locationInfo.noAddressMessage")}
                   </p>
                 </div>
               )}
@@ -107,11 +110,10 @@ const LocationInfo = () => {
                       <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
                         <button
                           onClick={() => Activate.mutate(location.id)}
-                          className={` ${
-                            location.is_active == 1
+                          className={` ${location.is_active == 1
                               ? "bg-green-500 non-click"
                               : " bg-gray-500"
-                          } text-white py-1 w-[100px] rounded-[5px]`}
+                            } text-white py-1 w-[100px] rounded-[5px]`}
                           disabled={location.is_active}
                         >
                           {location.is_active ? "Active" : "Activate"}

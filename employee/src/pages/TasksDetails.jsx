@@ -219,9 +219,9 @@ const TasksDetails = () => {
   // Map coordinates setting
   const center = task?.coordinates
     ? {
-        lat: task.coordinates.latitude,
-        lng: task.coordinates.longitude,
-      }
+      lat: task.coordinates.latitude,
+      lng: task.coordinates.longitude,
+    }
     : { lat: 0, lng: 0 };
 
   // Show download or error status
@@ -274,10 +274,10 @@ const TasksDetails = () => {
                 <p className="text-[0.8rem]">
                   {timeInfo
                     ? t("taskDetails.daysHoursMinutes", {
-                        days: timeInfo.diffDays,
-                        hours: timeInfo.diffHours,
-                        minutes: timeInfo.diffMinutes
-                      })
+                      days: timeInfo.diffDays,
+                      hours: timeInfo.diffHours,
+                      minutes: timeInfo.diffMinutes
+                    })
                     : t("taskDetails.calculating")}
                 </p>
               </div>
