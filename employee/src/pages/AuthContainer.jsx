@@ -15,7 +15,7 @@ const AuthContainer = () => {
       </div>
 
       {/* Language Switcher */}
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-4 right-4 md:top-6 md:right-6 z-50">
         <LanguageSwitcher />
       </div>
 
