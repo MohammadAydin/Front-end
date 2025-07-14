@@ -59,3 +59,48 @@ export const createForgotPasswordSchema = (t) => {
             .email({ message: t('forgotPassword.email.validation.invalid') }),
     });
 };
+
+// Create reset password validation schema with translations
+export const createResetPasswordSchema = (t) => {
+    const strongPassword = z
+        .string()
+        .min(8)
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/, {
+            message: t('resetPassword.password.validation.weak'),
+        });
+
+    return z
+        .object({
+            password: strongPassword,
+            confirmPassword: z.string(),
+        })
+        .superRefine((val, ctx) => {
+            if (val.password !== val.confirmPassword) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: t('resetPassword.confirmPassword.validation.mismatch'),
+                    path: ["confirmPassword"],
+                });
+            }
+        });
+};
+
+// Create verify email validation schema with translations
+export const createVerifyEmailSchema = (t) => {
+    return z.object({
+        code1: z.number().min(0).max(9, { message: t('verifyEmail.codeField.validation.required') }),
+        code2: z.number().min(0).max(9),
+        code3: z.number().min(0).max(9),
+        code4: z.number().min(0).max(9),
+        code5: z.number().min(0).max(9),
+        code6: z.number().min(0).max(9),
+    });
+};
+
+// Create personal info validation schema with translations
+export const createPersonalInfoSchema = (t) => {
+    return z.object({
+        services: z.string().nonempty(t('personalInfo.services.validation.required')),
+        Occupation: z.string().nonempty(t('personalInfo.occupation.validation.required')),
+    });
+};

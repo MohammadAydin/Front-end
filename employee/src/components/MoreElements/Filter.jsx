@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import statusTask from "../../hooks/statusTask";
+import { useTranslation } from "react-i18next";
 
 const Filter = ({ options = [], selectedValue, setSelectedValue }) => {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const getFilterOptionText = (option) => {
+    if (option === "all") return t("tasks.filter.all");
+
+    const filterTranslations = {
+      "todo": t("tasks.filter.todo"),
+      "done": t("tasks.filter.done"),
+      "progress": t("tasks.filter.progress"),
+      "review": t("tasks.filter.review"),
+      "cancelled": t("tasks.filter.cancelled"),
+      "Canselled": t("tasks.filter.cancelled") // handle typo in original code
+    };
+
+    return filterTranslations[option] || statusTask(option).statusText;
+  };
 
   return (
     <div className="relative inline-block text-left">
@@ -24,13 +41,12 @@ const Filter = ({ options = [], selectedValue, setSelectedValue }) => {
                 setSelectedValue(option);
                 setOpen(false);
               }}
-              className={`px-4 py-2 cursor-pointer text-sm ${
-                selectedValue === option
+              className={`px-4 py-2 cursor-pointer text-sm ${selectedValue === option
                   ? "bg-secondaryColor  text-white"
                   : "hover:bg-gray-100 "
-              }`}
+                }`}
             >
-              {option !== "all" ? statusTask(option).statusText : "All Tasks"}
+              {getFilterOptionText(option)}
             </li>
           ))}
         </ul>

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IoIosArrowBack } from "react-icons/io";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 import { addUserToLocalStorage } from "../../utils/localStorage";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { createVerifyEmailSchema } from "../../utils/validationSchema";
 
 const VerifyEmailForm = () => {
   const navigate = useNavigate();
@@ -221,9 +222,8 @@ const VerifyEmailForm = () => {
           <button
             disabled={isVerify}
             onClick={ResendCode}
-            className={`${
-              isVerify ? "text-gray-700" : "text-[#F47621] click"
-            } click`}
+            className={`${isVerify ? "text-gray-700" : "text-[#F47621] click"
+              } click`}
           >
             Resend code
           </button>

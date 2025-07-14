@@ -6,11 +6,13 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import "./SideBarResponsive.css";
 import { Link } from "react-router-dom";
 import useData from "../../hooks/useData";
+import { useTranslation } from "react-i18next";
 
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data } = useData("/notifications/unread");
   const { data: avatar } = useData("/photo");
   const { data: ProfileData } = useData("/profile");
+  const { t } = useTranslation();
   return (
     <>
       <Wrapper>
@@ -28,11 +30,11 @@ const SideBar = ({ setNotificationIsOpen }) => {
 
               <div className="information text-center">
                 <p className="mt-[8px] text-white">{ProfileData?.name}</p>
-                <p className="admin text-white font-thin">Admin</p>
+                <p className="admin text-white font-thin">{t("navigation.admin")}</p>
               </div>
             </Link>
             <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
-              <PagesList setIsOpen={() => {}} />
+              <PagesList setIsOpen={() => { }} />
               <button
                 onClick={() => setNotificationIsOpen(true)}
                 className="nav-item flex items-center gap-2 mx-[8px] relative group text-white mt-[25px]"
@@ -41,8 +43,8 @@ const SideBar = ({ setNotificationIsOpen }) => {
                   <div className="w-2 h-2 bg-red-500 rounded-full absolute top-1 left-3.5"></div>
                 )}
                 <IoNotificationsOutline size={24} />
-                <p className="pageName ">Notifications</p>
-                <span className="SmallpageName hidden">Notifications</span>
+                <p className="pageName ">{t("navigation.notifications")}</p>
+                <span className="SmallpageName hidden">{t("navigation.notifications")}</span>
               </button>
             </div>
           </div>

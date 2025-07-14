@@ -2,14 +2,16 @@ import { HiOutlineDownload } from "react-icons/hi";
 import useData from "../hooks/useData";
 import ProfilePhoto from "../components/UserProfile/ProfilePhoto/ProfilePhoto";
 import "./Responsive css/UserProfile.css";
+import { useTranslation } from "react-i18next";
 
 const UserProfile = () => {
   const { data } = useData("/profile");
+  const { t } = useTranslation();
 
   return (
     <div className="UserProfile p-[28px] py-[58px]">
       <div className="w-full p-10 shadow-xl rounded-2xl mb-10">
-        <p className="text-xl font-bold mb-5">Profile Photo</p>
+        <p className="text-xl font-bold mb-5">{t("userProfile.profilePhoto")}</p>
         <ProfilePhoto />
       </div>
       <div className="w-full p-10 shadow-xl rounded-2xl ">
@@ -20,19 +22,18 @@ const UserProfile = () => {
               return (
                 <div
                   key={key}
-                  className={`relative  h-[55px] border-2 border-[#919eab54] rounded-xl flex items-center px-3 mb-4  ${
-                    key === "bio" ? "col-span-2" : ""
-                  }`}
+                  className={`relative  h-[55px] border-2 border-[#919eab54] rounded-xl flex items-center px-3 mb-4  ${key === "bio" ? "col-span-2" : ""
+                    }`}
                 >
                   <p className="absolute top-[-10px] left-5 text-[#6373817c] bg-white px-2 capitalize">
                     {key}
                   </p>
-                  <p>{value || "Not Provided"}</p>
+                  <p>{value || t("userProfile.notProvided")}</p>
                 </div>
               );
             })}
           <button className="contractDownloadBtn w-[360px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center">
-            Download My contract{" "}
+            {t("userProfile.downloadContract")}
             <span>
               <HiOutlineDownload size={24} />
             </span>

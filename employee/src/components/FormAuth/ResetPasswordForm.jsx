@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { createResetPasswordSchema } from "../../utils/validationSchema";
 
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
+
+  // Translation hook
+  const { t } = useTranslation();
 
   // Get token and email from the Url
   const [searchParams] = useSearchParams();
@@ -19,18 +23,12 @@ const ResetPasswordForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   // Store password confirmation status, show and hide
   const [showConfirm, setShowConfirm] = useState(false);
-  // Store status check box remember password show and hide
 
   // Store the state of the send code button
   const [isSend, setIsSend] = useState(false);
 
-  // Constraints chart from the Zod Library
-  const schema = z.object({
-    password: z
-      .string()
-      .min(1, { message: "Bitte geben Sie Ihr Passwort ein!" }),
-    confirmPassword: z.string(),
-  });
+  // Create validation schema with translations
+  const schema = createResetPasswordSchema(t);
 
   // Connecting the Zod Library to the Hookform
   const {
@@ -59,7 +57,7 @@ const ResetPasswordForm = () => {
         setIsSend(false);
       }, 15 * 60 * 1000);
       // Show login success message
-      toast.success(response?.data?.message);
+      toast.success(response?.data?.message || t('resetPassword.success'));
       // Show a successful login message with the account
       console.log("send email successful:", response.data);
       // Emptying form fields
@@ -67,7 +65,7 @@ const ResetPasswordForm = () => {
 
       // In case it doesn't work
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || t('resetPassword.error'));
 
       // Print the error message in console
       console.log(error.response?.data?.message);
@@ -82,11 +80,11 @@ const ResetPasswordForm = () => {
       >
         {/* Form title */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-          Reset password{" "}
+          {t('resetPassword.title')}
         </h2>
         {/* Forme description */}
         <p className="text-[13px] mb-4 text-[#555770]">
-          plase enter something you will remember
+          {t('resetPassword.description')}
         </p>
         <div className="  relative">
           <div className="relative input-group mb-3.5">
@@ -96,7 +94,7 @@ const ResetPasswordForm = () => {
               className="input-control"
               type={`${showPassword ? "text" : "password"}`}
               id="password"
-              placeholder="Password"
+              placeholder={t('resetPassword.password.placeholder')}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -124,7 +122,7 @@ const ResetPasswordForm = () => {
               className="input-control"
               type={`${showConfirm ? "text" : "password"}`}
               id="confirmPassword"
-              placeholder="Confirm New Password"
+              placeholder={t('resetPassword.confirmPassword.placeholder')}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -148,12 +146,11 @@ const ResetPasswordForm = () => {
         {/* Login button */}
         <button
           disabled={isSend}
-          className={`p-2 mt-2.5 ${
-            isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
-          }  text-white rounded-[10px]`}
+          className={`p-2 mt-2.5 ${isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
+            }  text-white rounded-[10px]`}
           type="submit"
         >
-          Resert password
+          {t('resetPassword.resetButton')}
         </button>
       </form>
       {/* end form */}

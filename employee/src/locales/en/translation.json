@@ -89,6 +89,62 @@
         "success": "Reset email sent successfully",
         "error": "Failed to send reset email"
     },
+    "resetPassword": {
+        "title": "Reset password",
+        "description": "Please enter something you will remember",
+        "password": {
+            "placeholder": "Password",
+            "validation": {
+                "required": "Please enter your password!",
+                "weak": "Password must contain uppercase, lowercase, number, and special character."
+            }
+        },
+        "confirmPassword": {
+            "placeholder": "Confirm New Password",
+            "validation": {
+                "required": "Please confirm your password",
+                "mismatch": "Password is not the same as confirm password"
+            }
+        },
+        "resetButton": "Reset password",
+        "success": "Password reset successfully",
+        "error": "Failed to reset password"
+    },
+    "verifyEmail": {
+        "title": "Verify your email !",
+        "description": "We've emailed a 6-digit confirmation code to {email}, please enter the code in below box to verify your email.",
+        "codeField": {
+            "validation": {
+                "required": "Enter a 1-digit number"
+            }
+        },
+        "verifyButton": "Verify",
+        "resendText": "Don't have a code?",
+        "resendButton": "Resend code",
+        "resendWait": "Wait 15 minutes to request the code again",
+        "returnToSignIn": "Return to Sign in",
+        "success": "Email verified successfully",
+        "error": "Failed to verify email"
+    },
+    "personalInfo": {
+        "title": "Personal information",
+        "services": {
+            "placeholder": "Select a service",
+            "validation": {
+                "required": "Please select a service"
+            }
+        },
+        "occupation": {
+            "placeholder": "Select an occupation",
+            "validation": {
+                "required": "Please select an occupation"
+            }
+        },
+        "skipButton": "Skip",
+        "submitButton": "Submit",
+        "success": "Personal information saved successfully",
+        "error": "Failed to save personal information"
+    },
     "common": {
         "loading": "Loading...",
         "error": "An error occurred",
@@ -97,5 +153,56 @@
     "language": {
         "english": "English",
         "german": "German"
+    },
+    "navigation": {
+        "jobRequest": "Job Request",
+        "myTasks": "My Tasks",
+        "personalInfo": "Personal Info",
+        "locationInfo": "Location Info",
+        "workingHours": "Working Hours",
+        "notifications": "Notifications",
+        "language": "Language",
+        "settings": "Settings",
+        "logout": "Logout",
+        "admin": "Admin"
+    },
+    "jobRequest": {
+        "completeProfile": "Complete your profile",
+        "completeButton": "Complete →",
+        "lastJobRequests": "Last job requests",
+        "seeAll": "See all",
+        "showLess": "Show less",
+        "noJobRequests": "There are no job requests at the moment. Enjoy your time!",
+        "addLocation": "add location",
+        "decline": "Decline",
+        "accept": "Accept",
+        "noActiveLocations": "No valid active locations found for employee.",
+        "jobDeclineSuccess": "Job decline successfully",
+        "jobDeclineError": "Failed to decline job",
+        "jobAcceptSuccess": "Job accepted successfully",
+        "jobAcceptError": "Failed to accept job"
+    },
+    "tasks": {
+        "myTasks": "My tasks",
+        "noTasksMessage": "All clear here & no tasks have been {status} yet.",
+        "seeDetails": "See details",
+        "addLocation": "add location",
+        "noActiveLocations": "No valid active locations found for employee.",
+        "filter": {
+            "all": "All",
+            "todo": "To Do",
+            "done": "Done",
+            "progress": "In Progress",
+            "review": "Review",
+            "cancelled": "Cancelled"
+        }
+    },
+    "userProfile": {
+        "profilePhoto": "Profile Photo",
+        "notProvided": "Not Provided",
+        "downloadContract": "Download My contract"
+    },
+    "notifications": {
+        "title": "Notifications"
     }
 }

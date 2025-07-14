@@ -9,8 +9,11 @@ import Spinner from "../components/MoreElements/Spinner";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { HiOutlineBriefcase } from "react-icons/hi2";
 import useData from "../hooks/useData";
+import { useTranslation } from "react-i18next";
+
 const JopRequest = () => {
   const { data } = useData("/profile/status/progress");
+  const { t } = useTranslation();
 
   // To store the status of View All
   const [isExpanded, setIsExpanded] = useState(false);
@@ -33,10 +36,10 @@ const JopRequest = () => {
         .then((res) => res.data),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["jobList", "/jobs"] });
-      toast.success(data.message || "Job decline successfully");
+      toast.success(data.message || t("jobRequest.jobDeclineSuccess"));
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "Failed to decline job");
+      toast.error(error?.response?.data?.message || t("jobRequest.jobDeclineError"));
     },
   });
 
@@ -48,17 +51,17 @@ const JopRequest = () => {
         .then((res) => res.data),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["jobList", "/jobs"] });
-      toast.success(data.message || "Job accepted successfully");
+      toast.success(data.message || t("jobRequest.jobAcceptSuccess"));
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "Failed to accept job");
+      toast.error(error?.response?.data?.message || t("jobRequest.jobAcceptError"));
     },
   });
 
   // Store 3 jobRequest orders by cropping status
   const visibleJobs = isExpanded ? jobs : jobs?.slice(0, 3);
 
-                       
+
   if (isLoading) return <Spinner />;
   if (error) {
     if (
@@ -69,12 +72,12 @@ const JopRequest = () => {
         <div className="flex flex-col justify-center items-center h-screen gap-4">
           <RiErrorWarningLine className="text-[#194894] text-9xl " />
 
-          <p className="text-black">{error?.response?.data?.message}</p>
+          <p className="text-black">{t("jobRequest.noActiveLocations")}</p>
           <Link
             to="/locationInfo"
             className="bg-[#12151b] text-white py-1 px-2 rounded-[10px]"
           >
-            add location
+            {t("jobRequest.addLocation")}
           </Link>
         </div>
       );
@@ -93,7 +96,7 @@ const JopRequest = () => {
     <div className="p-[28px] py-[58px]">
       <div className="w-full h-65 bg-[#194894] text-white rounded-2xl p-5 flex flex-col gap-10">
         {/* Click to continue. Complete personal info. */}
-        <span className="text-2xl"> Complete your profile</span>
+        <span className="text-2xl">{t("jobRequest.completeProfile")}</span>
 
         <div className="flex items-center gap-3 text-sm">
           <div className="h-1 w-full bg-[#4687ee] rounded-2xl outline-[1px]">
@@ -108,19 +111,19 @@ const JopRequest = () => {
           onClick={() => navigate("/Personal info")}
           className="bg-[#99B2DB] py-5 text-2xl rounded-2xl border border-white"
         >
-          Complete &nbsp; →
+          {t("jobRequest.completeButton")}
         </button>
       </div>
 
       <div className="JobRequestList mt-6">
         <div className="head-List flex justify-between">
-          <h2 className="text-xl">Last job requests</h2>
+          <h2 className="text-xl">{t("jobRequest.lastJobRequests")}</h2>
           {/* Button to view all jobRequest */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="text-secondaryColor"
           >
-            {!isExpanded ? "See all" : "Show less"}
+            {!isExpanded ? t("jobRequest.seeAll") : t("jobRequest.showLess")}
           </button>
         </div>
         <div className="body-list mt-3.5 ">
@@ -131,7 +134,7 @@ const JopRequest = () => {
                 <HiOutlineBriefcase className="text-6xl mb-3 text-secondaryColor " />
 
                 <p className="text-center">
-                  There are no job requests at the moment. Enjoy your time!
+                  {t("jobRequest.noJobRequests")}
                 </p>
               </div>
             </>
@@ -160,19 +163,19 @@ const JopRequest = () => {
                   onClick={() => DeclineJob.mutate(job.service_request.id)}
                   className="bg-softwhite  pt-2 pb-2 pr-8 pl-8 rounded-xl Decline-Job"
                 >
-                  Decline
+                  {t("jobRequest.decline")}
                 </button>
                 {/* Accept button */}
                 <button
                   onClick={() => AcceptJob.mutate(job.service_request.id)}
                   className="bg-secondaryColor text-white pt-2 pb-2 pr-8 pl-8 rounded-xl"
                 >
-                  Accept
+                  {t("jobRequest.accept")}
                 </button>
               </div>
             </div>
           ))}
-         
+
         </div>
       </div>
     </div>

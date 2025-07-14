@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,10 +7,15 @@ import customFetch from "../../utils/axios";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 import { useAuthStore } from "../../store/useAuthStore";
 import { toast } from "react-toastify";
+import { useTranslation } from 'react-i18next';
+import { createPersonalInfoSchema } from "../../utils/validationSchema";
 
 const PersonalinfoForm = () => {
   // Definition of routing from ReactRoute
   const navigate = useNavigate();
+
+  // Translation hook
+  const { t } = useTranslation();
 
   // Storage services
   const [services, setServices] = useState([]);
@@ -28,11 +32,8 @@ const PersonalinfoForm = () => {
   // Storing service values
   const [servicesValue, setServicesValue] = useState("");
 
-  // Schema definition of field constraints
-  const schema = z.object({
-    services: z.string().nonempty("Please select a service"),
-    Occupation: z.string().nonempty("Please select an occupation"),
-  });
+  // Create validation schema with translations
+  const schema = createPersonalInfoSchema(t);
 
   // Hook form definition
   const {
@@ -79,13 +80,13 @@ const PersonalinfoForm = () => {
         }
       );
       // Show success message
-      toast.success(respone?.data?.message);
+      toast.success(respone?.data?.message || t('personalInfo.success'));
 
       setTimeout(() => {
         navigate("/");
       }, 1500);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || t('personalInfo.error'));
     }
   };
 
@@ -116,7 +117,7 @@ const PersonalinfoForm = () => {
       >
         {/* Main page text */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-          Personal information
+          {t('personalInfo.title')}
         </h2>
 
         <div className="flex flex-col">
@@ -124,9 +125,8 @@ const PersonalinfoForm = () => {
             {/* Select Services */}
             <select
               {...register("services")}
-              className={`input-control appearance-none focus:outline-none ${
-                servicesValue === "" ? "text-gray-500" : "text-black"
-              }`}
+              className={`input-control appearance-none focus:outline-none ${servicesValue === "" ? "text-gray-500" : "text-black"
+                }`}
               id="services"
               defaultValue=""
               onChange={(e) => {
@@ -139,7 +139,7 @@ const PersonalinfoForm = () => {
             >
               {/* valueDefault the services */}
               <option value="" disabled>
-                Select a service
+                {t('personalInfo.services.placeholder')}
               </option>
               {/* Work on services */}
               {services.map((service, index) => (
@@ -162,9 +162,8 @@ const PersonalinfoForm = () => {
             {/* Select to display Occupation */}
             <select
               {...register("Occupation")}
-              className={`input-control appearance-none focus:outline-none ${
-                occupationValue === "" ? "text-gray-500" : "text-black"
-              }`}
+              className={`input-control appearance-none focus:outline-none ${occupationValue === "" ? "text-gray-500" : "text-black"
+                }`}
               id="Occupation"
               defaultValue=""
               // Store the selected value

@@ -89,6 +89,62 @@
         "success": "Reset-E-Mail erfolgreich gesendet",
         "error": "Fehler beim Senden der Reset-E-Mail"
     },
+    "resetPassword": {
+        "title": "Passwort zurücksetzen",
+        "description": "Bitte geben Sie etwas ein, woran Sie sich erinnern werden",
+        "password": {
+            "placeholder": "Passwort",
+            "validation": {
+                "required": "Bitte geben Sie Ihr Passwort ein!",
+                "weak": "Passwort muss Groß-, Kleinbuchstaben, Zahl und Sonderzeichen enthalten."
+            }
+        },
+        "confirmPassword": {
+            "placeholder": "Neues Passwort bestätigen",
+            "validation": {
+                "required": "Bitte bestätigen Sie Ihr Passwort",
+                "mismatch": "Passwort stimmt nicht mit der Bestätigung überein"
+            }
+        },
+        "resetButton": "Passwort zurücksetzen",
+        "success": "Passwort erfolgreich zurückgesetzt",
+        "error": "Fehler beim Zurücksetzen des Passworts"
+    },
+    "verifyEmail": {
+        "title": "E-Mail verifizieren !",
+        "description": "Wir haben einen 6-stelligen Bestätigungscode an {email} gesendet. Bitte geben Sie den Code in das untenstehende Feld ein, um Ihre E-Mail zu verifizieren.",
+        "codeField": {
+            "validation": {
+                "required": "Geben Sie eine 1-stellige Zahl ein"
+            }
+        },
+        "verifyButton": "Verifizieren",
+        "resendText": "Haben Sie keinen Code?",
+        "resendButton": "Code erneut senden",
+        "resendWait": "Warten Sie 15 Minuten, um den Code erneut anzufordern",
+        "returnToSignIn": "Zurück zur Anmeldung",
+        "success": "E-Mail erfolgreich verifiziert",
+        "error": "Fehler beim Verifizieren der E-Mail"
+    },
+    "personalInfo": {
+        "title": "Persönliche Informationen",
+        "services": {
+            "placeholder": "Wählen Sie einen Service",
+            "validation": {
+                "required": "Bitte wählen Sie einen Service"
+            }
+        },
+        "occupation": {
+            "placeholder": "Wählen Sie einen Beruf",
+            "validation": {
+                "required": "Bitte wählen Sie einen Beruf"
+            }
+        },
+        "skipButton": "Überspringen",
+        "submitButton": "Senden",
+        "success": "Persönliche Informationen erfolgreich gespeichert",
+        "error": "Fehler beim Speichern der persönlichen Informationen"
+    },
     "common": {
         "loading": "Laden...",
         "error": "Ein Fehler ist aufgetreten",
@@ -97,5 +153,56 @@
     "language": {
         "english": "Englisch",
         "german": "Deutsch"
+    },
+    "navigation": {
+        "jobRequest": "Stellenanfrage",
+        "myTasks": "Meine Aufgaben",
+        "personalInfo": "Persönliche Informationen",
+        "locationInfo": "Standortinformationen",
+        "workingHours": "Arbeitszeiten",
+        "notifications": "Benachrichtigungen",
+        "language": "Sprache",
+        "settings": "Einstellungen",
+        "logout": "Abmelden",
+        "admin": "Administrator"
+    },
+    "jobRequest": {
+        "completeProfile": "Vervollständigen Sie Ihr Profil",
+        "completeButton": "Vervollständigen →",
+        "lastJobRequests": "Letzte Stellenausschreibungen",
+        "seeAll": "Alle anzeigen",
+        "showLess": "Weniger anzeigen",
+        "noJobRequests": "Es gibt momentan keine Stellenausschreibungen. Genießen Sie Ihre Zeit!",
+        "addLocation": "Standort hinzufügen",
+        "decline": "Ablehnen",
+        "accept": "Akzeptieren",
+        "noActiveLocations": "Keine gültigen aktiven Standorte für Mitarbeiter gefunden.",
+        "jobDeclineSuccess": "Stellenausschreibung erfolgreich abgelehnt",
+        "jobDeclineError": "Fehler beim Ablehnen der Stellenausschreibung",
+        "jobAcceptSuccess": "Stellenausschreibung erfolgreich angenommen",
+        "jobAcceptError": "Fehler beim Annehmen der Stellenausschreibung"
+    },
+    "tasks": {
+        "myTasks": "Meine Aufgaben",
+        "noTasksMessage": "Alles klar hier & keine Aufgaben wurden {status} noch.",
+        "seeDetails": "Details anzeigen",
+        "addLocation": "Standort hinzufügen",
+        "noActiveLocations": "Keine gültigen aktiven Standorte für Mitarbeiter gefunden.",
+        "filter": {
+            "all": "Alle",
+            "todo": "Zu erledigen",
+            "done": "Fertig",
+            "progress": "In Bearbeitung",
+            "review": "Überprüfung",
+            "cancelled": "Abgebrochen"
+        }
+    },
+    "userProfile": {
+        "profilePhoto": "Profilfoto",
+        "notProvided": "Nicht angegeben",
+        "downloadContract": "Meinen Vertrag herunterladen"
+    },
+    "notifications": {
+        "title": "Benachrichtigungen"
     }
 }

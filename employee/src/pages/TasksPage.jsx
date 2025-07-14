@@ -9,9 +9,11 @@ import Filter from "../components/MoreElements/Filter";
 import statusTask from "../hooks/statusTask";
 import { BsListTask } from "react-icons/bs";
 import { RiErrorWarningLine } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 
 const TasksPage = () => {
   const [selectedValue, setSelectedValue] = useState();
+  const { t } = useTranslation();
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
 
@@ -32,12 +34,12 @@ const TasksPage = () => {
         <div className="flex flex-col justify-center items-center h-screen gap-4">
           <RiErrorWarningLine className="text-[#194894] text-9xl " />
 
-          <p className="text-black">{error?.response?.data?.message}</p>
+          <p className="text-black">{t("tasks.noActiveLocations")}</p>
           <Link
             to="/locationInfo"
             className="bg-[#12151b] text-white py-1 px-2 rounded-[10px]"
           >
-            add location
+            {t("tasks.addLocation")}
           </Link>
         </div>
       );
@@ -55,7 +57,7 @@ const TasksPage = () => {
     <div className="p-[28px] py-[58px]">
       <div className="JobRequestList mt-6">
         <div className="head-List flex justify-between">
-          <h2 className="text-xl">My tasks</h2>
+          <h2 className="text-xl">{t("tasks.myTasks")}</h2>
           <Filter
             options={["all", "todo", "done", "progress", "review", "Canselled"]}
             selectedValue={selectedValue}
@@ -70,11 +72,11 @@ const TasksPage = () => {
                 <BsListTask className="text-6xl mb-3 text-secondaryColor " />
 
                 <p className="text-center">
-                  "All clear here & no tasks have been&nbsp;
-                  {statusTask(selectedValue).statusText == "Unknown"
-                    ? ""
-                    : statusTask(selectedValue).statusText}
-                  &nbsp;yet."
+                  {t("tasks.noTasksMessage", {
+                    status: statusTask(selectedValue).statusText === "Unknown"
+                      ? ""
+                      : statusTask(selectedValue).statusText
+                  })}
                 </p>
               </div>
             </>
@@ -100,12 +102,11 @@ const TasksPage = () => {
                   to={`/taskDetails/${task.id}`}
                   className="border  py-1 px-3.5 rounded-[10px]"
                 >
-                  See details{" "}
+                  {t("tasks.seeDetails")}
                 </Link>
                 <div
-                  className={`${
-                    statusTask(task.status).statusColorClass
-                  } text-white py-1 w-[100px] rounded-[10px] text-center`}
+                  className={`${statusTask(task.status).statusColorClass
+                    } text-white py-1 w-[100px] rounded-[10px] text-center`}
                 >
                   {task.status}
                 </div>
