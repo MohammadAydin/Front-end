@@ -1,4 +1,8 @@
-const InputField = ({ label, type, register, errors, name,defaultvalue }) => {
+import { useTranslation } from "react-i18next";
+
+const InputField = ({ label, type, register, errors, name, defaultvalue }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <div>

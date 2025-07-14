@@ -549,5 +549,38 @@
             "nov": "Nov",
             "dec": "Dez"
         }
+    },
+    "formElements": {
+        "buttons": {
+            "add": "Hinzufügen",
+            "cancel": "Abbrechen",
+            "back": "Zurück",
+            "next": "Weiter",
+            "submit": "Absenden",
+            "save": "Speichern",
+            "edit": "Bearbeiten",
+            "delete": "Löschen",
+            "confirm": "Bestätigen",
+            "close": "Schließen"
+        },
+        "fileUploader": {
+            "dropFiles": "Dateien hier ablegen oder klicken zum",
+            "browse": "Durchsuchen",
+            "throughDevice": "Ihres Geräts"
+        },
+        "imageUploader": {
+            "allowedFormats": "Erlaubt: *.jpeg, *.jpg, *.png, *.gif",
+            "maxSize": "Max. Größe 3,1 MB",
+            "altText": "Avatar-Vorschau"
+        },
+        "successPopup": {
+            "title": "Ihre Anfrage wurde erfolgreich gesendet",
+            "description": "Ihre Daten werden vom Administrator überprüft und Sie erhalten eine Antwort"
+        },
+        "validation": {
+            "required": "Dieses Feld ist erforderlich",
+            "invalidFormat": "Ungültiges Format",
+            "fileTooLarge": "Dateigröße ist zu groß"
+        }
     }
 }

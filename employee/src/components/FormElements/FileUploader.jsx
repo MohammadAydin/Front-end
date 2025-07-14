@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const FileUploader = ({ name, label, register, setValue, error }) => {
+  const { t } = useTranslation();
   const [fileName, setFileName] = useState("");
 
   const handleDrop = (e) => {
@@ -36,9 +38,9 @@ const FileUploader = ({ name, label, register, setValue, error }) => {
           <div>
             <span className="text-xl font-bold mb-2">{label}</span>
             <p>
-              Drop files here or click
-              <span className="text-[#EE6000]"> browse </span> through your
-              device
+              {t('formElements.fileUploader.dropFiles')}
+              <span className="text-[#EE6000]"> {t('formElements.fileUploader.browse')} </span>
+              {t('formElements.fileUploader.throughDevice')}
             </p>
           </div>
         )}

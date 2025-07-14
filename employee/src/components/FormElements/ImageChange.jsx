@@ -1,6 +1,7 @@
 import { useState } from "react";
 import previewImg from "../../assets/images/Img_Avatar.25.svg";
 import { IoMdCamera } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const ImageChange = ({
   register,
@@ -9,6 +10,7 @@ const ImageChange = ({
   errors,
   avatar = previewImg,
 }) => {
+  const { t } = useTranslation();
   const [preview, setPreview] = useState(null);
 
   const handleImageChange = (e) => {
@@ -26,7 +28,7 @@ const ImageChange = ({
         <img
           className="avatarImage rounded-full w-[100px] h-[100px] object-cover"
           src={preview ? preview : avatar}
-          alt="avatar preview"
+          alt={t('formElements.imageUploader.altText')}
         />
         {!preview && (
           <div className="bg-[#161c247a] w-full h-full absolute z-2 top-0 left-0 rounded-full flex items-center justify-center text-white">
@@ -45,8 +47,8 @@ const ImageChange = ({
       />
 
       <div className="imageDetails text-[#919EAB]">
-        <p className="mt-2.5">Allowed *.jpeg, *.jpg, *.png, *.gif</p>
-        <p>Max size of 3.1 MB</p>
+        <p className="mt-2.5">{t('formElements.imageUploader.allowedFormats')}</p>
+        <p>{t('formElements.imageUploader.maxSize')}</p>
       </div>
       {errors[name] && (
         <p className="text-red-500 ml-2">{errors[name].message}</p>

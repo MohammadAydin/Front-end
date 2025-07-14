@@ -549,5 +549,38 @@
             "nov": "Nov",
             "dec": "Dec"
         }
+    },
+    "formElements": {
+        "buttons": {
+            "add": "Add",
+            "cancel": "Cancel",
+            "back": "Back",
+            "next": "Next",
+            "submit": "Submit",
+            "save": "Save",
+            "edit": "Edit",
+            "delete": "Delete",
+            "confirm": "Confirm",
+            "close": "Close"
+        },
+        "fileUploader": {
+            "dropFiles": "Drop files here or click",
+            "browse": "browse",
+            "throughDevice": "through your device"
+        },
+        "imageUploader": {
+            "allowedFormats": "Allowed *.jpeg, *.jpg, *.png, *.gif",
+            "maxSize": "Max size of 3.1 MB",
+            "altText": "avatar preview"
+        },
+        "successPopup": {
+            "title": "Your Requests has been sent successfully",
+            "description": "Your data will be reviewed by the administrator and a response will be sent to you"
+        },
+        "validation": {
+            "required": "This field is required",
+            "invalidFormat": "Invalid format",
+            "fileTooLarge": "File size is too large"
+        }
     }
 }
