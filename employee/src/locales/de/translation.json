@@ -582,5 +582,16 @@
             "invalidFormat": "Ungültiges Format",
             "fileTooLarge": "Dateigröße ist zu groß"
         }
+    },
+    "userProfileComponents": {
+        "profilePhoto": {
+            "saveButton": "Speichern",
+            "successMessage": "Ihr Profilbild wurde erfolgreich geändert.",
+            "errorMessage": "Etwas ist schief gelaufen!",
+            "validation": {
+                "acceptedTypes": "Nur .jpeg, .jpg, .png, .gif Dateien sind erlaubt",
+                "maxFileSize": "Maximale Dateigröße ist 3,1 MB"
+            }
+        }
     }
 }

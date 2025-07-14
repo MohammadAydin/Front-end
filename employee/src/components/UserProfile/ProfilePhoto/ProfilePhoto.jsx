@@ -7,7 +7,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import { useEffect, useState } from "react";
 import useData from "../../../hooks/useData";
+import { useTranslation } from "react-i18next";
+
 const ProfilePhoto = () => {
+  const { t } = useTranslation();
   const [serverError, setServerError] = useState("");
   const [serverSuccess, setServerSuccess] = useState("");
   const { data } = useData("/photo");
@@ -22,11 +25,11 @@ const ProfilePhoto = () => {
         .then((res) => res.data),
 
     onSuccess: () => {
-      setServerSuccess("your profile photo has been changed successfuly.");
+      setServerSuccess(t('userProfileComponents.profilePhoto.successMessage'));
       queryClient.invalidateQueries({ queryKey: ["/photo"] });
     },
     onError: (error) => {
-      const message = error?.response?.data?.message || "Something went wrong!";
+      const message = error?.response?.data?.message || t('userProfileComponents.profilePhoto.errorMessage');
       setServerError(message);
     },
   });
@@ -77,7 +80,7 @@ const ProfilePhoto = () => {
           type="submit"
           className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
         >
-          save
+          {t('userProfileComponents.profilePhoto.saveButton')}
         </button>
         {serverError && (
           <p className=" text-red-600 font-medium text-center mt-2">
