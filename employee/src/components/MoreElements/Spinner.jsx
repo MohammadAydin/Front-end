@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 
 const Spinner = ({ message, size = "w-12 h-12" }) => {
   const { t } = useTranslation();
-  
+
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-60"
       role="dialog"
       aria-modal="true"
@@ -28,7 +28,7 @@ const Spinner = ({ message, size = "w-12 h-12" }) => {
             fill="currentFill"
           />
         </svg>
-        <p 
+        <p
           id="loading-label"
           className="text-gray-600 font-medium"
           aria-live="polite"

@@ -100,9 +100,8 @@ const SelectField = ({
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
-        className={`w-full p-3 border-[1.5px] border-[#919eab52] rounded-xl flex justify-between items-center transition-colors duration-200 ${
-          selectOption ? "text-black" : "text-[#919EAB]"
-        } ${isOpen ? "ring-2 ring-blue-500 border-blue-500" : ""}`}
+        className={`w-full p-3 border-[1.5px] border-[#919eab52] rounded-xl flex justify-between items-center transition-colors duration-200 ${selectOption ? "text-black" : "text-[#919EAB]"
+          } ${isOpen ? "ring-2 ring-blue-500 border-blue-500" : ""}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-labelledby={`${name}-label`}
@@ -110,15 +109,15 @@ const SelectField = ({
         aria-controls={isOpen ? dropdownId : undefined}
       >
         <span>{selectOption || label || t('accessibility.selectOption')}</span>
-        <MdOutlineKeyboardArrowDown 
-          size={25} 
+        <MdOutlineKeyboardArrowDown
+          size={25}
           className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           aria-hidden="true"
         />
       </button>
 
       {isOpen && (
-        <div 
+        <div
           id={dropdownId}
           className="absolute z-50 w-full bg-white rounded-2xl shadow-2xl mt-1 border border-gray-200"
           role="listbox"
@@ -130,13 +129,12 @@ const SelectField = ({
                 key={option}
                 role="option"
                 aria-selected={selectOption === option}
-                className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${
-                  focusedIndex === index 
-                    ? 'bg-blue-50 text-blue-700' 
+                className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${focusedIndex === index
+                    ? 'bg-blue-50 text-blue-700'
                     : selectOption === option
-                    ? 'bg-blue-100 text-blue-800'
-                    : 'hover:bg-[#919eab34]'
-                }`}
+                      ? 'bg-blue-100 text-blue-800'
+                      : 'hover:bg-[#919eab34]'
+                  }`}
                 onClick={() => handleSelect(option, index)}
                 onMouseEnter={() => setFocusedIndex(index)}
               >
@@ -148,7 +146,7 @@ const SelectField = ({
       )}
 
       {errors[name] && (
-        <p 
+        <p
           id={`${name}-error`}
           className="text-red-500 mt-2"
           role="alert"

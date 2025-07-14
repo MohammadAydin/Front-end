@@ -114,8 +114,8 @@ const LocationInfo = () => {
                         <button
                           onClick={() => Activate.mutate(location.id)}
                           className={` ${location.is_active == 1
-                              ? "bg-green-500 non-click"
-                              : " bg-gray-500"
+                            ? "bg-green-500 non-click"
+                            : " bg-gray-500"
                             } text-white py-1 w-[100px] rounded-[5px]`}
                           disabled={location.is_active}
                         >

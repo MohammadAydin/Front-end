@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 const Layout = () => {
   const [notificationIsOpen, setNotificationIsOpen] = useState(false);
   const { t } = useTranslation();
-  
+
   return (
     <div className="app-layout">
       <div className="flex" role="application" aria-label={t('common.applicationLayout')}>

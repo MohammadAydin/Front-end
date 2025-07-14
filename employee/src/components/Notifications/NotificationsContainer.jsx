@@ -44,14 +44,14 @@ const NotificationsContainer = ({
   return (
     <>
       {notificationIsOpen && (
-        <div 
+        <div
           className="w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black"
           onClick={handleBackdropClick}
           role="dialog"
           aria-modal="true"
           aria-labelledby="notifications-title"
         >
-          <div 
+          <div
             ref={containerRef}
             className="NotificationsContainer slide-in bg-white h-screen w-[500px] absolute top-0 left-0 p-10"
             role="document"

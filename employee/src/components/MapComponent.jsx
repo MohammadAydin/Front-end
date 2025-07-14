@@ -16,7 +16,7 @@ const MapComponent = ({ address }) => {
       )}&key=AIzaSyDH-rfDKqld3jf64z84P9e34iNBkdSwZlw`
     );
     // Update coordinates and location
-    const data =  res.data;
+    const data = res.data;
     if (data.results[0]) {
       const { lat, lng } = data.results[0].geometry.location;
       setLocation({ lat, lng });
@@ -41,12 +41,12 @@ const MapComponent = ({ address }) => {
         center={location}
         zoom={15}
         options={{
-          mapTypeControl: false, 
+          mapTypeControl: false,
           streetViewControl: false,
           accessibilityProvider: true,
         }}
       >
-        <Marker 
+        <Marker
           position={location}
           title={address}
           aria-label={t("locationInfo.locationMarker", { address })}
