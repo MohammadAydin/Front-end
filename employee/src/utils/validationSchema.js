@@ -49,3 +49,13 @@ export const createRegisterSchema = (t) => {
             }
         });
 };
+
+// Create forgot password validation schema with translations
+export const createForgotPasswordSchema = (t) => {
+    return z.object({
+        email: z
+            .string({ message: t('forgotPassword.email.validation.required') })
+            .max(255, { message: t('forgotPassword.email.validation.maxLength') })
+            .email({ message: t('forgotPassword.email.validation.invalid') }),
+    });
+};

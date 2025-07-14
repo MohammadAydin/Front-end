@@ -72,6 +72,23 @@
         "success": "Registrierung erfolgreich",
         "error": "Registrierungsfehler"
     },
+    "forgotPassword": {
+        "title": "Passwort vergessen",
+        "description": "Sie erhalten eine E-Mail an Ihre E-Mail-Adresse, um Ihr Passwort zurückzusetzen",
+        "email": {
+            "placeholder": "E-Mail-Adresse",
+            "validation": {
+                "required": "E-Mail-Adresse ist erforderlich.",
+                "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+                "maxLength": "Das Feld darf nicht länger als 255 Zeichen sein"
+            }
+        },
+        "sendButton": "E-Mail senden",
+        "backToLogin": "zurück zur Anmeldung?",
+        "loginLink": "Anmelden",
+        "success": "Reset-E-Mail erfolgreich gesendet",
+        "error": "Fehler beim Senden der Reset-E-Mail"
+    },
     "common": {
         "loading": "Laden...",
         "error": "Ein Fehler ist aufgetreten",

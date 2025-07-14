@@ -72,6 +72,23 @@
         "success": "Registration successful",
         "error": "Registration error"
     },
+    "forgotPassword": {
+        "title": "Forget Password",
+        "description": "You will receive an email to your email address to reset your password",
+        "email": {
+            "placeholder": "email address",
+            "validation": {
+                "required": "Email address is required.",
+                "invalid": "Please enter a valid email address.",
+                "maxLength": "The field must be no longer than 255 characters"
+            }
+        },
+        "sendButton": "Send Email",
+        "backToLogin": "back to Login?",
+        "loginLink": "Login",
+        "success": "Reset email sent successfully",
+        "error": "Failed to send reset email"
+    },
     "common": {
         "loading": "Loading...",
         "error": "An error occurred",

@@ -1,22 +1,21 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import customFetch from "../../utils/axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useTranslation } from 'react-i18next';
+import { createForgotPasswordSchema } from "../../utils/validationSchema";
 
 const ForgetPasswordForm = () => {
   // Store the state of the send code button
   const [isSend, setIsSend] = useState(false);
 
-  // Constraints chart from the Zod Library
-  const schema = z.object({
-    email: z
-      .string({ message: "Email address is required." })
-      .max(255, { message: "The field must be no longer than 255 characters" })
-      .email({ message: "Please enter a valid email address." }),
-  });
+  // Translation hook
+  const { t } = useTranslation();
+
+  // Create validation schema with translations
+  const schema = createForgotPasswordSchema(t);
 
   // Connecting the Zod Library to the Hookform
   const {
@@ -39,7 +38,7 @@ const ForgetPasswordForm = () => {
         setIsSend(false);
       }, 15 * 60 * 1000);
       // Show login success message
-      toast.success(response.data.message);
+      toast.success(response.data.message || t('forgotPassword.success'));
       // Show a successful login message with the account
       console.log("send email successful:", response.data);
       // Emptying form fields
@@ -47,7 +46,7 @@ const ForgetPasswordForm = () => {
 
       // In case it doesn't work
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || t('forgotPassword.error'));
 
       // Print the error message in console
       console.log(error.response?.data?.message);
@@ -62,11 +61,11 @@ const ForgetPasswordForm = () => {
       >
         {/* Form title */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-          forget Password
+          {t('forgotPassword.title')}
         </h2>
         {/* Forme description */}
         <p className="text-[13px] mb-4 text-[#555770]">
-          You will receive an email to your email address to reset your password
+          {t('forgotPassword.description')}
         </p>
         <div className="relative input-group ">
           {/* Email field */}
@@ -75,7 +74,7 @@ const ForgetPasswordForm = () => {
             className="input-control"
             type="text"
             id="email"
-            placeholder="email address"
+            placeholder={t('forgotPassword.email.placeholder')}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -87,21 +86,20 @@ const ForgetPasswordForm = () => {
         {/* Login button */}
         <button
           disabled={isSend}
-          className={`p-2 mt-2.5 ${
-            isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
-          }  text-white rounded-[10px]`}
+          className={`p-2 mt-2.5 ${isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
+            }  text-white rounded-[10px]`}
           type="submit"
         >
-          Send Email
+          {t('forgotPassword.sendButton')}
         </button>
       </form>
       {/* end form */}
       <div className="flex mt-4 text-[0.8rem]">
         {" "}
         {/* Go to the account creation page */}
-        <p>back to Login?</p>
+        <p>{t('forgotPassword.backToLogin')}</p>
         <Link to="/login" className="text-[#F47621] click">
-          Login
+          {t('forgotPassword.loginLink')}
         </Link>
       </div>
     </>
