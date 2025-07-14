@@ -3,22 +3,25 @@ import InputField from "../../../components/FormElements/InputField";
 import GenderSelector from "./GenderSelector";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
-import personalInfoSchema from "./shcema_personal_info";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
-const inputs = [
-  { name: "Username", label: "Username", type: "text" },
-  { name: "Bio", label: "Bio", type: "text" },
-  { name: "Birthday", label: "Birthday DD.MM.YYYY", type: "text" },
-];
+import { useTranslation } from "react-i18next";
+import { createCompletePersonalInfoSchema } from "../../../utils/validationSchema.js";
 
 const Complate_personal_info = () => {
+  const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
+
+  const inputs = [
+    { name: "Username", label: t('completePersonalInfo.fields.username'), type: "text" },
+    { name: "Bio", label: t('completePersonalInfo.fields.bio'), type: "text" },
+    { name: "Birthday", label: t('completePersonalInfo.fields.birthday'), type: "text" },
+  ];
 
   const add_personal_info_Mutatuin = useMutation({
     mutationFn: (info) =>
@@ -34,7 +37,7 @@ const Complate_personal_info = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('completePersonalInfo.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -46,6 +49,7 @@ const Complate_personal_info = () => {
       }
     },
   });
+  
   const navigate = useNavigate();
   const {
     register,
@@ -53,7 +57,7 @@ const Complate_personal_info = () => {
     control,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(personalInfoSchema),
+    resolver: zodResolver(createCompletePersonalInfoSchema(t)),
     defaultValues: {
       gender: "",
     },
@@ -79,9 +83,9 @@ const Complate_personal_info = () => {
 
   return (
     <div className="Complate_personal_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">Complete Personal Info</h2>
+      <h2 className="text-2xl font-bold mb-2">{t('completePersonalInfo.title')}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Please , Complete your info contiue the process
+        {t('completePersonalInfo.description')}
       </p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="personal_info_grid grid grid-cols-2 gap-5">
@@ -108,7 +112,7 @@ const Complate_personal_info = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel="Back"
+          prevLabel={t('completePersonalInfo.back')}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

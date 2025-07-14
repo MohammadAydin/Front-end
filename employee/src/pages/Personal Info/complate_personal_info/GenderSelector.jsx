@@ -1,14 +1,17 @@
 import { Controller } from "react-hook-form";
 import { FaMars, FaVenus } from "react-icons/fa6";
 import { FaTransgenderAlt } from "react-icons/fa";
-
-const genderOptions = [
-  { value: "male", label: "Male", icon: <FaMars /> },
-  { value: "female", label: "Female", icon: <FaVenus /> },
-  { value: "diverse", label: "Diverse", icon: <FaTransgenderAlt /> },
-];
+import { useTranslation } from "react-i18next";
 
 const GenderSelector = ({ control, name }) => {
+  const { t } = useTranslation();
+
+  const genderOptions = [
+    { value: "male", label: t("completePersonalInfo.genderOptions.male"), icon: <FaMars /> },
+    { value: "female", label: t("completePersonalInfo.genderOptions.female"), icon: <FaVenus /> },
+    { value: "diverse", label: t("completePersonalInfo.genderOptions.other"), icon: <FaTransgenderAlt /> },
+  ];
+
   return (
     <Controller
       name={name}

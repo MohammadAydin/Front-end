@@ -14,8 +14,10 @@ import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import NationalitySelect from "./NationalitySelect";
 import handleNationality from "../../../store/HandleNationality";
+import { useTranslation } from "react-i18next";
 
 const Residence_info = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { selectedNationality } = handleNationality();
 
@@ -38,7 +40,7 @@ const Residence_info = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('residenceInfo.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -91,11 +93,12 @@ const Residence_info = () => {
 
     add_Residence_info_Mutatuin.mutate(formData);
   };
+  
   return (
     <div className="Residence_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">Complete residence info</h2>
+      <h2 className="text-2xl font-bold mb-2">{t('residenceInfo.title')}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Please , Complete your info contiue the process
+        {t('residenceInfo.description')}
       </p>
       <form onSubmit={handleSubmit(submit)}>
         <NationalitySelect
@@ -110,7 +113,7 @@ const Residence_info = () => {
               register={register}
               setValue={setValue}
               name={"has_work_permit"}
-              label={"do you have a work permit?"}
+              label={t('residenceInfo.fields.workPermit')}
               errors={errors}
               Options={["Yes", "No"]}
             />
@@ -118,7 +121,7 @@ const Residence_info = () => {
           <InputField
             register={register}
             errors={errors}
-            label={"Place of birth"}
+            label={t('residenceInfo.fields.placeOfBirth')}
             name={"place_of_birth"}
             type={"text"}
           />
@@ -129,12 +132,12 @@ const Residence_info = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={"permit valid until DD.MM.YYYY"}
+                label={t('residenceInfo.fields.permitValidUntil')}
                 name={"permit_valid_until"}
                 type={"text"}
               />
             </div>
-            <p className="text-lg font-bold">Work permit document</p>
+            <p className="text-lg font-bold">{t('residenceInfo.fields.workPermitDocument')}</p>
             <div>
               <FileUploader
                 name={"permit_document"}
@@ -146,7 +149,7 @@ const Residence_info = () => {
             </div>
           </>
         )}
-        <p className="text-lg font-bold">Copy of ID card / passport</p>
+        <p className="text-lg font-bold">{t('residenceInfo.fields.idCopyTitle')}</p>
         <div className="ID_Upload flex gap-5">
           {ID_card.map((input) => (
             <FileUploader
@@ -165,7 +168,7 @@ const Residence_info = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel="Back"
+          prevLabel={t('residenceInfo.back')}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

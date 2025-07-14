@@ -129,3 +129,23 @@ export const createWorkAbilitiesSchema = (t) => {
             .regex(/^\d+$/, t('workAbilities.distanceNumber')),
     });
 };
+
+// Create complete personal info validation schema with translations
+export const createCompletePersonalInfoSchema = (t) => {
+    return z.object({
+        Username: z
+            .string()
+            .min(1, t('completePersonalInfo.validation.usernameRequired'))
+            .min(3, t('completePersonalInfo.validation.usernameMinLength')),
+        Bio: z
+            .string()
+            .min(1, t('completePersonalInfo.validation.bioRequired')),
+        Birthday: z
+            .string()
+            .min(1, t('completePersonalInfo.validation.birthdayRequired'))
+            .regex(/^\d{2}\.\d{2}\.\d{4}$/, t('completePersonalInfo.validation.birthdayFormat')),
+        gender: z
+            .string()
+            .min(1, t('completePersonalInfo.validation.genderRequired')),
+    });
+};

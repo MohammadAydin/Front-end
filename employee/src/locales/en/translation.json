@@ -305,5 +305,182 @@
         "distanceNumber": "Distance must be a number",
         "back": "Back",
         "next": "Next"
+    },
+    "personalInfoSections": {
+        "personalInfo": "Personal Info",
+        "phoneNumber": "Your Phone number",
+        "residenceInfo": "residence info",
+        "bankingInfo": "Banking Info",
+        "socialSecurity": "Social Security and Health Insurance",
+        "requiredDocuments": "Required documents",
+        "yourLocations": "Your Locations",
+        "employmentData": "Employment Eligibility & Health Info",
+        "signature": "Your signature",
+        "complete": "Complete",
+        "pending": "Pending",
+        "completed": "Completed",
+        "rejected": "Rejected"
+    },
+    "completePersonalInfo": {
+        "title": "Complete Personal Info",
+        "description": "Please , Complete your info contiue the process",
+        "fields": {
+            "username": "Username",
+            "bio": "Bio",
+            "birthday": "Birthday DD.MM.YYYY",
+            "gender": "Gender"
+        },
+        "genderOptions": {
+            "male": "Male",
+            "female": "Female",
+            "other": "Other"
+        },
+        "validation": {
+            "usernameRequired": "Username is required",
+            "usernameMinLength": "Username must be at least 3 characters",
+            "bioRequired": "Bio is required",
+            "birthdayRequired": "Birthday is required",
+            "birthdayFormat": "Please enter date in DD.MM.YYYY format",
+            "genderRequired": "Please select a gender"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Personal information saved successfully",
+        "error": "Something went wrong!"
+    },
+    "phoneNumber": {
+        "title": "Your Phone Number",
+        "description": "Please enter your phone number for verification",
+        "fields": {
+            "phoneNumber": "Phone Number"
+        },
+        "validation": {
+            "phoneRequired": "Phone number is required",
+            "phoneFormat": "Please enter a valid phone number"
+        },
+        "sendOtp": "Send OTP",
+        "verifyOtp": "Verify OTP",
+        "resendOtp": "Resend OTP",
+        "back": "Back",
+        "success": "Phone number verified successfully",
+        "error": "Failed to verify phone number"
+    },
+    "residenceInfo": {
+        "title": "Complete residence info",
+        "description": "Please , Complete your info contiue the process",
+        "fields": {
+            "nationality": "Nationality",
+            "residencePermit": "Residence Permit",
+            "workPermit": "do you have a work permit?",
+            "placeOfBirth": "Place of birth",
+            "permitValidUntil": "permit valid until DD.MM.YYYY",
+            "workPermitDocument": "Work permit document",
+            "idCopyTitle": "Copy of ID card / passport"
+        },
+        "validation": {
+            "nationalityRequired": "Nationality is required",
+            "residencePermitRequired": "Residence permit information is required",
+            "workPermitRequired": "Work permit information is required"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Residence information saved successfully",
+        "error": "Failed to save residence information"
+    },
+    "bankingInfo": {
+        "title": "Banking Info",
+        "description": "Please provide your banking information for payments",
+        "fields": {
+            "bankName": "Bank Name",
+            "iban": "IBAN",
+            "bic": "BIC/SWIFT Code",
+            "accountHolder": "Account Holder Name"
+        },
+        "validation": {
+            "bankNameRequired": "Bank name is required",
+            "ibanRequired": "IBAN is required",
+            "ibanFormat": "Please enter a valid IBAN",
+            "bicRequired": "BIC/SWIFT code is required",
+            "accountHolderRequired": "Account holder name is required"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Banking information saved successfully",
+        "error": "Failed to save banking information"
+    },
+    "socialSecurity": {
+        "title": "Social Security and Health Insurance",
+        "description": "Please provide your social security and health insurance information",
+        "fields": {
+            "socialSecurityNumber": "Social Security Number",
+            "healthInsurance": "Health Insurance Provider",
+            "insuranceNumber": "Insurance Number"
+        },
+        "validation": {
+            "socialSecurityRequired": "Social security number is required",
+            "healthInsuranceRequired": "Health insurance provider is required",
+            "insuranceNumberRequired": "Insurance number is required"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Social security information saved successfully",
+        "error": "Failed to save social security information"
+    },
+    "documents": {
+        "title": "Required Documents",
+        "description": "Please upload the required documents",
+        "uploadDocument": "Upload Document",
+        "removeDocument": "Remove",
+        "supportedFormats": "Supported formats: PDF, JPG, PNG",
+        "maxFileSize": "Maximum file size: 10MB",
+        "documentTypes": {
+            "id": "ID Document",
+            "passport": "Passport",
+            "residencePermit": "Residence Permit",
+            "workPermit": "Work Permit",
+            "cv": "CV/Resume",
+            "certificates": "Certificates"
+        },
+        "validation": {
+            "documentRequired": "This document is required",
+            "invalidFormat": "Invalid file format",
+            "fileTooLarge": "File size too large"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Documents uploaded successfully",
+        "error": "Failed to upload documents"
+    },
+    "employmentData": {
+        "title": "Employment Eligibility & Health Info",
+        "description": "Please provide your employment eligibility and health information",
+        "fields": {
+            "workEligibility": "Work Eligibility Status",
+            "healthConditions": "Any Health Conditions",
+            "allergies": "Allergies",
+            "medications": "Current Medications"
+        },
+        "validation": {
+            "workEligibilityRequired": "Work eligibility status is required",
+            "healthConditionsRequired": "Health conditions information is required"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Employment data saved successfully",
+        "error": "Failed to save employment data"
+    },
+    "signature": {
+        "title": "Your Signature",
+        "description": "Please provide your digital signature",
+        "uploadSignature": "Upload Signature",
+        "drawSignature": "Draw Signature",
+        "clearSignature": "Clear",
+        "validation": {
+            "signatureRequired": "Signature is required"
+        },
+        "back": "Back",
+        "submit": "Submit",
+        "success": "Signature saved successfully",
+        "error": "Failed to save signature"
     }
 }

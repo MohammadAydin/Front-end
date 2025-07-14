@@ -305,5 +305,182 @@
         "distanceNumber": "Entfernung muss eine Zahl sein",
         "back": "Zurück",
         "next": "Weiter"
+    },
+    "personalInfoSections": {
+        "personalInfo": "Persönliche Informationen",
+        "phoneNumber": "Ihre Telefonnummer",
+        "residenceInfo": "Aufenthaltsinformationen",
+        "bankingInfo": "Bankinformationen",
+        "socialSecurity": "Sozialversicherung und Krankenversicherung",
+        "requiredDocuments": "Erforderliche Dokumente",
+        "yourLocations": "Ihre Standorte",
+        "employmentData": "Arbeitsberechtigung & Gesundheitsinformationen",
+        "signature": "Ihre Unterschrift",
+        "complete": "Vervollständigen",
+        "pending": "Ausstehend",
+        "completed": "Abgeschlossen",
+        "rejected": "Abgelehnt"
+    },
+    "completePersonalInfo": {
+        "title": "Persönliche Informationen vervollständigen",
+        "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
+        "fields": {
+            "username": "Benutzername",
+            "bio": "Biografie",
+            "birthday": "Geburtstag TT.MM.JJJJ",
+            "gender": "Geschlecht"
+        },
+        "genderOptions": {
+            "male": "Männlich",
+            "female": "Weiblich",
+            "other": "Andere"
+        },
+        "validation": {
+            "usernameRequired": "Benutzername ist erforderlich",
+            "usernameMinLength": "Benutzername muss mindestens 3 Zeichen haben",
+            "bioRequired": "Biografie ist erforderlich",
+            "birthdayRequired": "Geburtstag ist erforderlich",
+            "birthdayFormat": "Bitte geben Sie das Datum im Format TT.MM.JJJJ ein",
+            "genderRequired": "Bitte wählen Sie ein Geschlecht aus"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Persönliche Informationen erfolgreich gespeichert",
+        "error": "Etwas ist schief gelaufen!"
+    },
+    "phoneNumber": {
+        "title": "Ihre Telefonnummer",
+        "description": "Bitte geben Sie Ihre Telefonnummer zur Verifizierung ein",
+        "fields": {
+            "phoneNumber": "Telefonnummer"
+        },
+        "validation": {
+            "phoneRequired": "Telefonnummer ist erforderlich",
+            "phoneFormat": "Bitte geben Sie eine gültige Telefonnummer ein"
+        },
+        "sendOtp": "OTP senden",
+        "verifyOtp": "OTP verifizieren",
+        "resendOtp": "OTP erneut senden",
+        "back": "Zurück",
+        "success": "Telefonnummer erfolgreich verifiziert",
+        "error": "Telefonnummer konnte nicht verifiziert werden"
+    },
+    "residenceInfo": {
+        "title": "Aufenthaltsinformationen vervollständigen",
+        "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
+        "fields": {
+            "nationality": "Staatsangehörigkeit",
+            "residencePermit": "Aufenthaltsgenehmigung",
+            "workPermit": "Haben Sie eine Arbeitsgenehmigung?",
+            "placeOfBirth": "Geburtsort",
+            "permitValidUntil": "Genehmigung gültig bis TT.MM.JJJJ",
+            "workPermitDocument": "Arbeitserlaubnisdokument",
+            "idCopyTitle": "Kopie des Ausweises / Reisepasses"
+        },
+        "validation": {
+            "nationalityRequired": "Staatsangehörigkeit ist erforderlich",
+            "residencePermitRequired": "Informationen zur Aufenthaltsgenehmigung sind erforderlich",
+            "workPermitRequired": "Informationen zur Arbeitsgenehmigung sind erforderlich"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Aufenthaltsinformationen erfolgreich gespeichert",
+        "error": "Aufenthaltsinformationen konnten nicht gespeichert werden"
+    },
+    "bankingInfo": {
+        "title": "Bankinformationen",
+        "description": "Bitte geben Sie Ihre Bankinformationen für Zahlungen an",
+        "fields": {
+            "bankName": "Bankname",
+            "iban": "IBAN",
+            "bic": "BIC/SWIFT-Code",
+            "accountHolder": "Kontoinhaber"
+        },
+        "validation": {
+            "bankNameRequired": "Bankname ist erforderlich",
+            "ibanRequired": "IBAN ist erforderlich",
+            "ibanFormat": "Bitte geben Sie eine gültige IBAN ein",
+            "bicRequired": "BIC/SWIFT-Code ist erforderlich",
+            "accountHolderRequired": "Kontoinhaber ist erforderlich"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Bankinformationen erfolgreich gespeichert",
+        "error": "Bankinformationen konnten nicht gespeichert werden"
+    },
+    "socialSecurity": {
+        "title": "Sozialversicherung und Krankenversicherung",
+        "description": "Bitte geben Sie Ihre Sozialversicherungs- und Krankenversicherungsinformationen an",
+        "fields": {
+            "socialSecurityNumber": "Sozialversicherungsnummer",
+            "healthInsurance": "Krankenversicherungsanbieter",
+            "insuranceNumber": "Versicherungsnummer"
+        },
+        "validation": {
+            "socialSecurityRequired": "Sozialversicherungsnummer ist erforderlich",
+            "healthInsuranceRequired": "Krankenversicherungsanbieter ist erforderlich",
+            "insuranceNumberRequired": "Versicherungsnummer ist erforderlich"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Sozialversicherungsinformationen erfolgreich gespeichert",
+        "error": "Sozialversicherungsinformationen konnten nicht gespeichert werden"
+    },
+    "documents": {
+        "title": "Erforderliche Dokumente",
+        "description": "Bitte laden Sie die erforderlichen Dokumente hoch",
+        "uploadDocument": "Dokument hochladen",
+        "removeDocument": "Entfernen",
+        "supportedFormats": "Unterstützte Formate: PDF, JPG, PNG",
+        "maxFileSize": "Maximale Dateigröße: 10MB",
+        "documentTypes": {
+            "id": "Ausweis",
+            "passport": "Reisepass",
+            "residencePermit": "Aufenthaltsgenehmigung",
+            "workPermit": "Arbeitsgenehmigung",
+            "cv": "Lebenslauf",
+            "certificates": "Zertifikate"
+        },
+        "validation": {
+            "documentRequired": "Dieses Dokument ist erforderlich",
+            "invalidFormat": "Ungültiges Dateiformat",
+            "fileTooLarge": "Datei zu groß"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Dokumente erfolgreich hochgeladen",
+        "error": "Dokumente konnten nicht hochgeladen werden"
+    },
+    "employmentData": {
+        "title": "Arbeitsberechtigung & Gesundheitsinformationen",
+        "description": "Bitte geben Sie Ihre Arbeitsberechtigung und Gesundheitsinformationen an",
+        "fields": {
+            "workEligibility": "Arbeitsberechtigungsstatus",
+            "healthConditions": "Gesundheitliche Beschwerden",
+            "allergies": "Allergien",
+            "medications": "Aktuelle Medikamente"
+        },
+        "validation": {
+            "workEligibilityRequired": "Arbeitsberechtigungsstatus ist erforderlich",
+            "healthConditionsRequired": "Informationen zu Gesundheitszuständen sind erforderlich"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Beschäftigungsdaten erfolgreich gespeichert",
+        "error": "Beschäftigungsdaten konnten nicht gespeichert werden"
+    },
+    "signature": {
+        "title": "Ihre Unterschrift",
+        "description": "Bitte geben Sie Ihre digitale Unterschrift an",
+        "uploadSignature": "Unterschrift hochladen",
+        "drawSignature": "Unterschrift zeichnen",
+        "clearSignature": "Löschen",
+        "validation": {
+            "signatureRequired": "Unterschrift ist erforderlich"
+        },
+        "back": "Zurück",
+        "submit": "Absenden",
+        "success": "Unterschrift erfolgreich gespeichert",
+        "error": "Unterschrift konnte nicht gespeichert werden"
     }
 }

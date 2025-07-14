@@ -8,8 +8,10 @@ import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
 import SuccsessPopup from "../../../components/FormElements/SuccsessPopup";
 import { otpSchema } from "./phoneSchema";
+import { useTranslation } from "react-i18next";
 
 const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
+  const { t } = useTranslation();
   const { OpenSuccsess } = SuccsessPopup();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState("");
@@ -38,7 +40,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('phoneNumber.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -60,7 +62,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
 
   return (
     <>
-      <p className="mb-5 text-lg font-bold">Verification code</p>
+      <p className="mb-5 text-lg font-bold">{t('phoneNumber.verifyOtp')}</p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="flex flex-col items-start">
           <input
@@ -86,10 +88,10 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
                 : "text-blue-900 hover:text-[#EE6000]"
             }`}
           >
-            {resendTimer > 0 ? `Resend code in ${resendTimer}s` : "Resend code"}
+            {resendTimer > 0 ? `${t('phoneNumber.resendOtp')} in ${resendTimer}s` : t('phoneNumber.resendOtp')}
           </button>
         </div>
-        <SubmitButtons prevLabel="Back" onCancel={() => setIsOtpCode(false)} />
+        <SubmitButtons prevLabel={t('phoneNumber.back')} onCancel={() => setIsOtpCode(false)} />
       </form>
     </>
   );

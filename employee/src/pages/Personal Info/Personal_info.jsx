@@ -4,13 +4,17 @@ import "../Responsive css/Personal_info.css";
 import useData from "../../hooks/useData";
 import Status from "./Status";
 import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
-const Personal_info = () => {
-  const { data } = useData("/profile/status");
+import { useTranslation } from "react-i18next";
 
+const Personal_info = () => {
+  const { t } = useTranslation();
+  const { data } = useData("/profile/status");
   const navigate = useNavigate();
+  const personalSections = PersonalSections();
+
   return (
     <div className="Personal_info_page p-[28px] py-[58px] text-lg ">
-      {PersonalSections.map(
+      {personalSections.map(
         ({ icon: Icon, label, path, status_name }, index) => (
           <div
             key={index}
@@ -26,7 +30,7 @@ const Personal_info = () => {
                 onClick={() => navigate(`${path}`)}
                 className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold"
               >
-                Complete &nbsp; →
+                {t('personalInfoSections.complete')} &nbsp; →
               </button>
             ) : data?.[status_name]?.status === "declined" ? (
               <div className="declinedStatus flex flex-row-reverse items-center ">
@@ -34,7 +38,7 @@ const Personal_info = () => {
                   onClick={() => navigate(`${path}`)}
                   className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold"
                 >
-                  Complete &nbsp; →
+                  {t('personalInfoSections.complete')} &nbsp; →
                 </button>
                 <Status status={data?.[status_name]?.status} />
               </div>

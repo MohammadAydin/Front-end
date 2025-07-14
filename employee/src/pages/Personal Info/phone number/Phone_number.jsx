@@ -8,8 +8,10 @@ import customFetch from "../../../utils/axios";
 import { phoneSchema } from "./phoneSchema";
 import OTPVerification from "./OTPVerification";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Phone_number = () => {
+  const { t } = useTranslation();
   const [isOtpCode, setIsOtpCode] = useState(false);
   const [phone, setPhone] = useState("");
   const [serverError, setServerError] = useState("");
@@ -35,7 +37,7 @@ const Phone_number = () => {
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || "Something went wrong!";
+        error?.response?.data?.message || t('phoneNumber.error');
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -72,11 +74,12 @@ const Phone_number = () => {
 
     sendCodeMutation.mutate({ phone: fullPhone });
   };
+  
   return (
     <div className="Social_Insurance p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">Complete phone number</h2>
+      <h2 className="text-2xl font-bold mb-2">{t('phoneNumber.title')}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Please , Complete your phone number
+        {t('phoneNumber.description')}
       </p>
 
       {!isOtpCode ? (
@@ -98,7 +101,7 @@ const Phone_number = () => {
                   register={register}
                   errors={errors}
                   name={"phone_number"}
-                  label={"Phone number"}
+                  label={t('phoneNumber.fields.phoneNumber')}
                   type={"tel"}
                 />
                 {serverError && (
@@ -112,7 +115,7 @@ const Phone_number = () => {
               type="submit"
               className="mt-5 font-bold text-lg hover:text-[#EE6000] cursor-pointer text-blue-900"
             >
-              send code
+              {t('phoneNumber.sendOtp')}
             </button>
           </form>
           <div className="flex justify-end">
@@ -120,7 +123,7 @@ const Phone_number = () => {
               onClick={() => navigate("/Personal info")}
               className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3]"
             >
-              Back
+              {t('phoneNumber.back')}
             </button>
           </div>
         </>
