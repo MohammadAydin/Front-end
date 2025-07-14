@@ -206,7 +206,31 @@
     "userProfile": {
         "profilePhoto": "Profilfoto",
         "notProvided": "Nicht angegeben",
-        "downloadContract": "Meinen Vertrag herunterladen"
+        "downloadContract": "Meinen Vertrag herunterladen",
+        "fields": {
+            "username": "Benutzername",
+            "bio": "Biografie",
+            "email": "E-Mail-Adresse",
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "phone": "Telefonnummer",
+            "phoneNumber": "Telefonnummer",
+            "phone_number": "Telefonnummer",
+            "gender": "Geschlecht",
+            "birthday": "Geburtstag",
+            "birthDate": "Geburtsdatum",
+            "nationality": "Nationalität",
+            "address": "Adresse",
+            "city": "Stadt",
+            "occupation": "Beruf",
+            "department": "Abteilung",
+            "created_at": "Konto erstellt",
+            "updated_at": "Zuletzt aktualisiert",
+            "id": "Benutzer-ID",
+            "name": "Vollständiger Name",
+            "placeOfBirth": "Geburtsort",
+            "place_of_birth": "Geburtsort"
+        }
     },
     "notifications": {
         "title": "Benachrichtigungen",

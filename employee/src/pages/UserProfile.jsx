@@ -11,6 +11,14 @@ const UserProfile = () => {
 
   if (isLoading) return <Spinner />;
 
+  // Function to get localized field name
+  const getFieldLabel = (key) => {
+    const translationKey = `userProfile.fields.${key}`;
+    const translated = t(translationKey);
+    // If translation doesn't exist, fallback to capitalized key
+    return translated === translationKey ? key.charAt(0).toUpperCase() + key.slice(1) : translated;
+  };
+
   return (
     <div className="UserProfile p-[28px] py-[58px]">
       <div className="w-full p-10 shadow-xl rounded-2xl mb-10">
@@ -28,8 +36,8 @@ const UserProfile = () => {
                   className={`relative  h-[55px] border-2 border-[#919eab54] rounded-xl flex items-center px-3 mb-4  ${key === "bio" ? "col-span-2" : ""
                     }`}
                 >
-                  <p className="absolute top-[-10px] left-5 text-[#6373817c] bg-white px-2 capitalize">
-                    {key}
+                  <p className="absolute top-[-10px] left-5 text-[#6373817c] bg-white px-2">
+                    {getFieldLabel(key)}
                   </p>
                   <p>{value || t("userProfile.notProvided")}</p>
                 </div>

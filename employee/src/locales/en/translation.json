@@ -206,7 +206,31 @@
     "userProfile": {
         "profilePhoto": "Profile Photo",
         "notProvided": "Not Provided",
-        "downloadContract": "Download My contract"
+        "downloadContract": "Download My contract",
+        "fields": {
+            "username": "Username",
+            "bio": "Biography",
+            "email": "Email Address",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "phone": "Phone Number",
+            "phoneNumber": "Phone Number",
+            "phone_number": "Phone Number",
+            "gender": "Gender",
+            "birthday": "Birthday",
+            "birthDate": "Birth Date",
+            "nationality": "Nationality",
+            "address": "Address",
+            "city": "City",
+            "occupation": "Occupation",
+            "department": "Department",
+            "created_at": "Account Created",
+            "updated_at": "Last Updated",
+            "id": "User ID",
+            "name": "Full Name",
+            "placeOfBirth": "Place of Birth",
+            "place_of_birth": "Place of Birth"
+        }
     },
     "notifications": {
         "title": "Notifications",
