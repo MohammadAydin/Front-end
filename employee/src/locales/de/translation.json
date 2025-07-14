@@ -204,5 +204,41 @@
     },
     "notifications": {
         "title": "Benachrichtigungen"
+    },
+    "jobRequestDetails": {
+        "myRequests": "Meine Anfragen",
+        "closeToYou": "in Ihrer Nähe",
+        "calculating": "Berechnung...",
+        "daysHoursMinutes": "{{days}} T , {{hours}} Std, {{minutes}} Min",
+        "positionDetails": "Stellendetails",
+        "medConnectLocation": "MedConnect Standort",
+        "back": "Zurück",
+        "accept": "Akzeptieren",
+        "jobAcceptSuccess": "Stellenausschreibung erfolgreich angenommen",
+        "jobAcceptError": "Fehler beim Annehmen der Stellenausschreibung",
+        "error": "Fehler"
+    },
+    "taskDetails": {
+        "calculating": "Berechnung...",
+        "daysHoursMinutes": "{{days}} T , {{hours}} Std, {{minutes}} Min",
+        "closeToYou": "in Ihrer Nähe",
+        "positionDetails": "Stellendetails",
+        "workDurationToday": "Arbeitsdauer heute",
+        "medConnectLocation": "MedConnect Standort",
+        "onMyWay": "Ich bin unterwegs",
+        "arrived": "Ich bin angekommen",
+        "startWork": "Arbeit beginnen",
+        "endWork": "Arbeit beenden",
+        "reportTask": "Aufgabe melden",
+        "back": "Zurück",
+        "onYourWay": "Sie sind unterwegs",
+        "taskTimeout": "Die Aufgabe ist abgelaufen",
+        "workStarted": "Arbeit erfolgreich begonnen",
+        "workEnded": "Arbeit erfolgreich beendet"
+    },
+    "reportTask": {
+        "officialComplaint": "Offizielle Beschwerde",
+        "subjectPlaceholder": "Betreff der Beschwerde : ",
+        "sendComplaint": "Beschwerde senden"
     }
 }

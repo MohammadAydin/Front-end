@@ -14,10 +14,12 @@ import {
   PiUser,
 } from "react-icons/pi";
 import { LuBanknote } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
 const JobRequestDetails = () => {
   // Navigate definition for routing
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // Get id from useParams
   const { id } = useParams();
@@ -100,18 +102,18 @@ const JobRequestDetails = () => {
         .then((res) => res.data),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["jobList", "/jobs"] }),
-        toast.success(data.message || "Job accepted successfully");
+        toast.success(data.message || t("jobRequestDetails.jobAcceptSuccess"));
       navigate("/");
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "Failed to accept job");
+      toast.error(error?.response?.data?.message || t("jobRequestDetails.jobAcceptError"));
     },
   });
 
   if (isLoading) return <Spinner />;
   if (error)
     return (
-      <p className="text-red-500">Error:{error.response?.data?.message}</p>
+      <p className="text-red-500">{t("jobRequestDetails.error")}: {error.response?.data?.message}</p>
     );
   return (
     <div className="container-main p-7 pl-3">
@@ -121,7 +123,7 @@ const JobRequestDetails = () => {
           <IoIosArrowBack />
         </Link>
 
-        <h2 className="text-xl">My requests</h2>
+        <h2 className="text-xl">{t("jobRequestDetails.myRequests")}</h2>
       </div>
       <div className="grid grid-cols-2  pl-3 max-[1109px]:grid-cols-1">
         <div className="grid-cols-1">
@@ -135,7 +137,7 @@ const JobRequestDetails = () => {
               </h2>
               <div className="text-[#34C759] flex items-center gap-1">
                 <PiShootingStarDuotone />
-                <p className="text-[0.8rem]">close to you</p>
+                <p className="text-[0.8rem]">{t("jobRequestDetails.closeToYou")}</p>
               </div>
             </div>
             <div className="flex gap-3.5">
@@ -150,10 +152,13 @@ const JobRequestDetails = () => {
               <div className="bg-[#FFF0E5] flex gap-1.5 items-center w-fit p-1 rounded-[6px] mt-2.5 text-[#F47621]">
                 <PiHourglassLowFill />
                 <p className="text-[0.8rem]">
-                  {" "}
                   {timeInfo
-                    ? `${timeInfo.diffDays} d , ${timeInfo.diffHours} h, ${timeInfo.diffMinutes} m`
-                    : "Calculating..."}
+                    ? t("jobRequestDetails.daysHoursMinutes", {
+                        days: timeInfo.diffDays,
+                        hours: timeInfo.diffHours,
+                        minutes: timeInfo.diffMinutes
+                      })
+                    : t("jobRequestDetails.calculating")}
                 </p>
               </div>
               {/* Amount */}
@@ -168,7 +173,7 @@ const JobRequestDetails = () => {
             </div>
           </div>
           <div className="mt-8">
-            <h2 className="mb-3 text-xl">Position Details</h2>
+            <h2 className="mb-3 text-xl">{t("jobRequestDetails.positionDetails")}</h2>
             <p className="text-softColor">
               {jobs?.service_request.job_posting?.description}
             </p>
@@ -177,7 +182,7 @@ const JobRequestDetails = () => {
         <div className="grid-cols-1 max-[1109px]:mt-3.5">
           {/* Address details */}
           <div>
-            <h2 className="text-xl">MedConnect location</h2>
+            <h2 className="text-xl">{t("jobRequestDetails.medConnectLocation")}</h2>
             <p className="mt-2 text-softColor">
               {jobs?.service_request.job_posting?.location.street1} -
               {jobs?.service_request.job_posting?.location.street2} -
@@ -206,14 +211,14 @@ const JobRequestDetails = () => {
               to="/"
               className="text-secondaryColor border border-secondaryColor text-xl p-2 w-[8em] rounded-[10px] text-center"
             >
-              Back
+              {t("jobRequestDetails.back")}
             </Link>
             {/* Accept button */}
             <button
               onClick={() => AcceptJob.mutate(id)}
               className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
             >
-              Accept
+              {t("jobRequestDetails.accept")}
             </button>
           </div>
         </div>

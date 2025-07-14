@@ -204,5 +204,41 @@
     },
     "notifications": {
         "title": "Notifications"
+    },
+    "jobRequestDetails": {
+        "myRequests": "My requests",
+        "closeToYou": "close to you",
+        "calculating": "Calculating...",
+        "daysHoursMinutes": "{{days}} d , {{hours}} h, {{minutes}} m",
+        "positionDetails": "Position Details",
+        "medConnectLocation": "MedConnect location",
+        "back": "Back",
+        "accept": "Accept",
+        "jobAcceptSuccess": "Job accepted successfully",
+        "jobAcceptError": "Failed to accept job",
+        "error": "Error"
+    },
+    "taskDetails": {
+        "calculating": "Calculating...",
+        "daysHoursMinutes": "{{days}} d , {{hours}} h, {{minutes}} m",
+        "closeToYou": "close to you",
+        "positionDetails": "Position Details",
+        "workDurationToday": "Work duration today",
+        "medConnectLocation": "MedConnect location",
+        "onMyWay": "I'm on my way",
+        "arrived": "I arrived",
+        "startWork": "Start Work",
+        "endWork": "End Work",
+        "reportTask": "Report Task",
+        "back": "Back",
+        "onYourWay": "You are on your way",
+        "taskTimeout": "The task is timed out",
+        "workStarted": "Work has started successfully",
+        "workEnded": "Work has ended successfully"
+    },
+    "reportTask": {
+        "officialComplaint": "Official Complaint",
+        "subjectPlaceholder": "Subject of the Complaint : ",
+        "sendComplaint": "Send the Complaint"
     }
 }

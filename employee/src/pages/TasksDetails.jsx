@@ -16,9 +16,11 @@ import iconoclock from "../assets/icons/icoonoclock.svg";
 import PopupCheck from "../components/TaskComponents/PopupCheck";
 import { CiFileOn } from "react-icons/ci";
 import PopupCheckEnd from "../components/TaskComponents/PopupCheckEnd";
+import { useTranslation } from "react-i18next";
 
 // Task details
 const TasksDetails = () => {
+  const { t } = useTranslation();
   // Get id from route
   const { id } = useParams();
 
@@ -150,7 +152,7 @@ const TasksDetails = () => {
         localStorage.removeItem(`task_${id}_timerActive`);
         localStorage.removeItem(`task_${id}_duration`);
         localStorage.removeItem(`task_${id}_startTime`);
-        toast.info("The task is timed out");
+        toast.info(t("taskDetails.taskTimeout"));
         return;
       }
 
@@ -177,7 +179,7 @@ const TasksDetails = () => {
   const handleOnMyWay = () => {
     setIsOnMyWay(true);
     setisArrived(true);
-    toast.success(" You are on your way ");
+    toast.success(t("taskDetails.onYourWay"));
   };
 
   // The function has arrived
@@ -201,7 +203,7 @@ const TasksDetails = () => {
     // Set the timer from zero
     setDuration(0);
 
-    toast.success("It has arrived");
+    toast.success(t("taskDetails.workStarted"));
   };
 
   // Function to format duration to hours, minutes, and seconds
@@ -226,7 +228,7 @@ const TasksDetails = () => {
   if (isLoading) return <Spinner />;
   if (error)
     return (
-      <p className="text-red-500">error: {error?.response?.data?.message}</p>
+      <p className="text-red-500">{t("taskDetails.error")}: {error?.response?.data?.message}</p>
     );
 
   // start return
@@ -237,7 +239,7 @@ const TasksDetails = () => {
         <Link to="/tasksPage">
           <IoIosArrowBack />
         </Link>
-        <h2 className="text-xl">My Task</h2>
+        <h2 className="text-xl">{t("tasks.myTasks")}</h2>
       </div>
 
       {/* Page layout using grid */}
@@ -257,7 +259,7 @@ const TasksDetails = () => {
               <h2 className="text-xl">{task?.job_posting?.title}</h2>
               <div className="text-[#34C759] flex items-center gap-1">
                 <PiShootingStarDuotone />
-                <p className="text-[0.8rem]">Close to you </p>
+                <p className="text-[0.8rem]">{t("taskDetails.closeToYou")}</p>
               </div>
             </div>
 
@@ -271,8 +273,12 @@ const TasksDetails = () => {
                 <PiHourglassLowFill />
                 <p className="text-[0.8rem]">
                   {timeInfo
-                    ? `${timeInfo.diffDays} d، ${timeInfo.diffHours} h، ${timeInfo.diffMinutes} m`
-                    : "waiting ..."}
+                    ? t("taskDetails.daysHoursMinutes", {
+                        days: timeInfo.diffDays,
+                        hours: timeInfo.diffHours,
+                        minutes: timeInfo.diffMinutes
+                      })
+                    : t("taskDetails.calculating")}
                 </p>
               </div>
               <div className="bg-[#E0FFE8] flex gap-1.5 items-center w-fit p-2 rounded-[6px] mt-2.5 text-[#34C759]">
@@ -287,20 +293,20 @@ const TasksDetails = () => {
                 className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
               >
                 <CiFileOn className="text-xl" />
-                <p className="text-xs mt-1">Report</p>
+                <p className="text-xs mt-1">{t("taskDetails.reportTask")}</p>
               </Link>
             </div>
           </div>
 
           {/* Task description */}
           <div className="mt-8">
-            <h2 className="mb-3 text-xl">Position Details </h2>
+            <h2 className="mb-3 text-xl">{t("taskDetails.positionDetails")}</h2>
             <p className="text-softColor">{task?.job_posting?.description}</p>
           </div>
 
           {/* Work duration today*/}
           <div className="mt-8">
-            <h2 className="mb-3 text-xl">Work duration today</h2>
+            <h2 className="mb-3 text-xl">{t("taskDetails.workDurationToday")}</h2>
             {timerActive && (
               <div className="bg-[#FFF0E5] flex gap-1.5 items-center w-fit p-1 rounded-[6px] text-[#F47621]">
                 <img src={iconoclock} alt="iconoclock " />
@@ -315,7 +321,7 @@ const TasksDetails = () => {
         <div className="grid-cols-1 max-[1109px]:mt-3.5">
           {/* address */}
           <div>
-            <h2 className="text-xl">MedConnect location</h2>
+            <h2 className="text-xl">{t("taskDetails.medConnectLocation")}</h2>
             <p className="mt-2 text-softColor">
               {task?.job_posting?.location.street1} -
               {task?.job_posting?.location.street2} -
@@ -347,7 +353,7 @@ const TasksDetails = () => {
                 onClick={handleOnMyWay}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                on may way{" "}
+                {t("taskDetails.onMyWay")}
               </button>
             )}
             {isArrived && (
@@ -355,7 +361,7 @@ const TasksDetails = () => {
                 onClick={handleArrived}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                arrived
+                {t("taskDetails.arrived")}
               </button>
             )}
             {isCheckArrived && (
@@ -363,7 +369,7 @@ const TasksDetails = () => {
                 onClick={() => setIsShowPopup(true)}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                Show pin cod
+                {t("taskDetails.startWork")}
               </button>
             )}
 
@@ -372,7 +378,7 @@ const TasksDetails = () => {
                 onClick={() => setIsShowPopupEnd(true)}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                end task
+                {t("taskDetails.endWork")}
               </button>
             )}
           </div>
