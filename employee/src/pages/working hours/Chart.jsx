@@ -32,7 +32,7 @@ const HoursChart = ({ rawData }) => {
 
   const monthNames = getLocalizedMonthAbbreviations();
 
-  // Data processing
+  
 
   const chartData = rawData.map((item) => ({
     name: monthNames[item.month - 1],
