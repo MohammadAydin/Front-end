@@ -79,7 +79,7 @@ const Personal_info = () => {
 
   return (
     <div className="Personal_info_page p-[28px] py-[58px] text-lg">
-      {PersonalSections.map(
+      {personalSections.map(
         ({ icon: Icon, label, path, status_name }, index) => (
           <div
             key={index}

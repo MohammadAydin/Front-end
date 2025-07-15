@@ -21,6 +21,7 @@ import useData from "../../hooks/useData.js";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
+import { t } from "i18next";
 
 const EditLocation = () => {
   const [searchParams] = useSearchParams();
