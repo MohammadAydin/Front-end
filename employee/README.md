@@ -1,14 +1,4 @@
-## start project
 
-## Usage
-
-```bash
-npm run dev
-
-
-## Installation
-
-```bash
 npm install
 npm install tailwindcss @tailwindcss/vite
 npm i react-router-dom

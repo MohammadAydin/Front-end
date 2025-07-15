@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import signatureSchema from "./signatureSchema";
@@ -13,7 +13,6 @@ import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
 import useData from "../../../hooks/useData";
 
-
 const Signature = () => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
@@ -22,7 +21,7 @@ const Signature = () => {
   const isUploaded = searchParams.get("uploaded") === "true";
   const { data: UplodedSignature } = useData("/signature");
   const [showSignature, setShowSignature] = useState(false);
-
+  const navigate = useNavigate();
 
   const addSignatureMutatuin = useMutation({
     mutationFn: (Signature) =>
@@ -34,13 +33,13 @@ const Signature = () => {
 
     onSuccess: () => {
       OpenSuccsess();
-      navigate("/Personal info");
+      navigate("/Personal info?uploaded=true");
     },
 
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('signature.error');
+        error?.response?.data?.message || t("signature.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -52,7 +51,6 @@ const Signature = () => {
       }
     },
   });
-  const navigate = useNavigate();
   const {
     handleSubmit,
     setValue,
@@ -60,7 +58,14 @@ const Signature = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(signatureSchema(t)),
+    defaultValues: {
+      signature: null,
+    },
   });
+
+  useEffect(() => {
+    register("signature");
+  }, [register]);
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -77,7 +82,6 @@ const Signature = () => {
         {isUploaded && UplodedSignature
           ? "You have already uploaded a signature"
           : "Please , Complete your Signature"}
-
       </p>
       {isUploaded && UplodedSignature && (
         <>
@@ -92,7 +96,11 @@ const Signature = () => {
               <div className="showSignature w-[550px] h-[450px] bg-white rounded-2xl p-5 flex flex-col justify-between">
                 <p className="text-xl font-bold">Your Signature</p>
                 <div className="h-[250px] border border-[#555770] rounded-2xl flex justify-center items-center">
-                  <img src={UplodedSignature?.url} alt="" />
+                  <img
+                    src={`${UplodedSignature?.url}?t=${new Date().getTime()}`}
+                    alt="Uploaded Signature"
+                    className="max-h-full max-w-full object-contain"
+                  />
                 </div>
                 <button
                   className="w-full bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
@@ -106,17 +114,16 @@ const Signature = () => {
         </>
       )}
 
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <SignaturePad setValue={setValue} error={errors.signature} />
 
-        <span className="font-bold">{t('signature.orUpload')}</span>
+        <span className="font-bold">{t("signature.orUpload")}</span>
         <FileUploader
           register={register}
           setValue={setValue}
           error={errors}
           name={"signature"}
-          label={t('signature.uploadSignature')}
+          label={t("signature.uploadSignature")}
         />
         {serverError && (
           <p className="text-red-600 font-medium text-start mb-4">
@@ -125,8 +132,7 @@ const Signature = () => {
         )}
         <SubmitButtons
           submitLabel={isUploaded ? "Submit" : "Add"}
-
-          prevLabel={t('signature.back')}
+          prevLabel={t("signature.back")}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

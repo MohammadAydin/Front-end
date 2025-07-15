@@ -25,15 +25,16 @@ const SideBar = ({ setNotificationIsOpen }) => {
             >
               <img
                 className="avatar w-[60px] h-[60px] object-cover rounded-full"
-                src={avatar?.length == 0 ? profileAvatar : avatar}
-
-                alt=""
+                src={avatar?.photo || profileAvatar}
+                alt="Profile Avatar"
               />
 
               <div className="information text-center">
                 <p className="mt-[8px] text-white">{ProfileData?.name}</p>
 
-                <p className="admin text-white font-thin">{t("navigation.employee")}</p>
+                <p className="admin text-white font-thin">
+                  {t("navigation.employee")}
+                </p>
               </div>
             </Link>
             <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
@@ -47,7 +48,9 @@ const SideBar = ({ setNotificationIsOpen }) => {
                 )}
                 <IoNotificationsOutline size={24} />
                 <p className="pageName ">{t("navigation.notifications")}</p>
-                <span className="SmallpageName hidden">{t("navigation.notifications")}</span>
+                <span className="SmallpageName hidden">
+                  {t("navigation.notifications")}
+                </span>
               </button>
             </div>
           </div>

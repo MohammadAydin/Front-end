@@ -25,11 +25,13 @@ const ProfilePhoto = () => {
         .then((res) => res.data),
 
     onSuccess: () => {
-      setServerSuccess(t('userProfileComponents.profilePhoto.successMessage'));
+      setServerSuccess(t("userProfileComponents.profilePhoto.successMessage"));
       queryClient.invalidateQueries({ queryKey: ["/photo"] });
     },
     onError: (error) => {
-      const message = error?.response?.data?.message || t('userProfileComponents.profilePhoto.errorMessage');
+      const message =
+        error?.response?.data?.message ||
+        t("userProfileComponents.profilePhoto.errorMessage");
       setServerError(message);
     },
   });
@@ -67,7 +69,7 @@ const ProfilePhoto = () => {
           register={register}
           setValue={setValue}
           errors={errors}
-          avatar={data ? data[0] : null}
+          avatar={data?.photo}
         />
         {serverSuccess && (
           <p className=" text-green-600 font-medium text-start mt-2">
@@ -80,7 +82,7 @@ const ProfilePhoto = () => {
           type="submit"
           className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
         >
-          {t('userProfileComponents.profilePhoto.saveButton')}
+          {t("userProfileComponents.profilePhoto.saveButton")}
         </button>
         {serverError && (
           <p className=" text-red-600 font-medium text-center mt-2">
