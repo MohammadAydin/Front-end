@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "setup": "npm install react-icons zod styled-components react-hook-form @hookform/resolvers react-router-dom zustand react-day-picker axios @tanstack/react-query react-toastify react-apexcharts @tanstack/react-query-devtools@4",
+    "setup": "npm install react-icons zod styled-components react-hook-form @hookform/resolvers react-router-dom zustand react-day-picker axios @tanstack/react-query react-toastify react-apexcharts @tanstack/react-query-devtools@4 i18next",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
