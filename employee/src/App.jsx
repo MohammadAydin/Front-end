@@ -29,7 +29,6 @@ import { ToastContainer } from "react-toastify";
 import VerifyEmailForm from "./components/FormAuth/VerifyEmailForm";
 import PersonalinfoForm from "./components/FormAuth/PersonalinfoForm";
 import ForgetPasswordForm from "./components/FormAuth/ForgetPasswordForm";
-import ResetPasswordForm from "./components/FormAuth/ResetPasswordForm";
 import ResetPassowrdPage from "./pages/ResetPassowrdPage";
 import JobRequestDetails from "./pages/JobRequestDetails";
 import ErrorBoundary from "./components/MoreElements/ErrorBoundary";
