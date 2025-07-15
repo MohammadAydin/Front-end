@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputField from "../../../components/FormElements/InputField";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import FileUploader from "../../../components/FormElements/FileUploader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,11 +11,17 @@ import bankingInfoSchema from "./BankingInfoSchema";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
+import useData from "../../../hooks/useData";
+
 
 const Banking_info = () => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
+  const [searchParams] = useSearchParams();
+  const isUploaded = searchParams.get("uploaded") === "true";
+  const { data: BankingInfo } = useData("/profile/banking-info");
+
 
   const inputs = [
     { name: "AcountHolder", label: t('bankingInfo.fields.accountHolder'), type: "text" },
@@ -67,6 +73,16 @@ const Banking_info = () => {
     },
   });
 
+  useEffect(() => {
+    if (isUploaded && BankingInfo) {
+      setValue("BankName", BankingInfo.bank_name || "");
+      setValue("IBAN", BankingInfo.iban || "");
+      setValue("BIC", BankingInfo.bic || "");
+      setValue("AcountHolder", BankingInfo.account_holder || "");
+    }
+  }, [BankingInfo, setValue]);
+
+
   const submit = (data) => {
     const formData = new FormData();
     formData.append("bank_name", data.BankName);
@@ -80,9 +96,13 @@ const Banking_info = () => {
 
   return (
     <div className="Banking_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t('bankingInfo.title')}</h2>
+      <h2 className="text-2xl font-bold mb-2">
+        {isUploaded && BankingInfo ? "Banking Info " : "Complete Banking Info "}
+      </h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        {t('bankingInfo.description')}
+        {isUploaded && BankingInfo
+          ? "You have already uploaded your banking info"
+          : "Please , Complete your banking info"}
       </p>
       <form encType="multipart/form-data" onSubmit={handleSubmit(submit)}>
         <div className="Banking_info_grid w-full grid grid-cols-2 gap-5 mb-8">
@@ -113,6 +133,8 @@ const Banking_info = () => {
           </p>
         )}
         <SubmitButtons
+          submitLabel={isUploaded ? "Submit" : "Add"}
+
           prevLabel={t('bankingInfo.back')}
           onCancel={() => navigate("/Personal info")}
         />

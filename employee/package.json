@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "setup": "npm install react-router-dom tailwindcss @tailwindcss/vite react-icons zustand react-toastify axios react-hook-form zod @hookform/resolvers styled-components react-day-picker @tanstack/react-query react-select-country-list react-signature-canvas recharts dayjs",
+    "setup": "npm install react-router-dom tailwindcss @tailwindcss/vite react-icons zustand react-toastify axios react-hook-form zod @hookform/resolvers styled-components react-day-picker @tanstack/react-query react-select-country-list react-signature-canvas recharts dayjs react-spinners",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -30,6 +30,7 @@
     "react-select": "^5.10.1",
     "react-select-country-list": "^2.2.3",
     "react-signature-canvas": "^1.1.0-alpha.2",
+    "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
     "recharts": "^3.0.2",
     "styled-components": "^6.1.19",

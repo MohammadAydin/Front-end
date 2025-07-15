@@ -5,17 +5,24 @@ import signatureSchema from "./signatureSchema";
 import SignaturePad from "./SignaturePad";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import FileUploader from "../../../components/FormElements/FileUploader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
+import useData from "../../../hooks/useData";
+
 
 const Signature = () => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
+  const [searchParams] = useSearchParams();
+  const isUploaded = searchParams.get("uploaded") === "true";
+  const { data: UplodedSignature } = useData("/signature");
+  const [showSignature, setShowSignature] = useState(false);
+
 
   const addSignatureMutatuin = useMutation({
     mutationFn: (Signature) =>
@@ -63,10 +70,42 @@ const Signature = () => {
   };
   return (
     <div className="Signature p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t('signature.title')}</h2>
-      <p className="text-[#555770] mb-10 text-lg ">
-        {t('signature.description')}
+      <h2 className="text-2xl font-bold mb-2">
+        {isUploaded && UplodedSignature ? "Signature" : "Complete Signature "}
+      </h2>
+      <p className="text-[#555770] mb-5 text-lg ">
+        {isUploaded && UplodedSignature
+          ? "You have already uploaded a signature"
+          : "Please , Complete your Signature"}
+
       </p>
+      {isUploaded && UplodedSignature && (
+        <>
+          <button
+            onClick={() => setShowSignature(true)}
+            className="w-full mb-10 text-[#F47621] bg-[#FFDFC6] font-bold rounded-xl py-3"
+          >
+            Show Signature
+          </button>
+          {showSignature && (
+            <div className="w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
+              <div className="showSignature w-[550px] h-[450px] bg-white rounded-2xl p-5 flex flex-col justify-between">
+                <p className="text-xl font-bold">Your Signature</p>
+                <div className="h-[250px] border border-[#555770] rounded-2xl flex justify-center items-center">
+                  <img src={UplodedSignature?.url} alt="" />
+                </div>
+                <button
+                  className="w-full bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
+                  onClick={() => setShowSignature(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <SignaturePad setValue={setValue} error={errors.signature} />
@@ -85,6 +124,8 @@ const Signature = () => {
           </p>
         )}
         <SubmitButtons
+          submitLabel={isUploaded ? "Submit" : "Add"}
+
           prevLabel={t('signature.back')}
           onCancel={() => navigate("/Personal info")}
         />

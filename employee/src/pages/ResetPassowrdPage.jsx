@@ -13,7 +13,7 @@ const ResetPassowrdPage = () => {
         <div className="ballBackgorund small-two"></div>
       </div>
       <div className="LoginItems w-[75%] h-[100vh]  flex justify-between items-center m-auto">
-        <img className="mb-[20%] w-[25%] logo" src={Logo} alt="" />
+        <img className="mb-[20%] w-[30%] logo" src={Logo} alt="" />
        <Wrapper>
        <ResetPasswordForm/>
         </Wrapper>

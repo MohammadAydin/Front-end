@@ -7,6 +7,9 @@ import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import "../../Responsive css/Personal_info.css";
 import { useTranslation } from "react-i18next";
+import { BarLoader } from "react-spinners";
+import { FaHourglassHalf } from "react-icons/fa6";
+
 
 const Documents = () => {
   const { t } = useTranslation();
@@ -16,6 +19,7 @@ const Documents = () => {
   const [documents, setDocuments] = useState({}); // { document_id: File }
   const [isReady, setIsReady] = useState(false);
   const { data: requiredDocs } = useData("/user/documents");
+  console.log(documents);
 
   // make sure all documents is uploading
   useEffect(() => {
@@ -59,6 +63,10 @@ const Documents = () => {
     },
   });
 
+  const isUploading = uploadDocumentsMutation.isPending;
+  console.log(isUploading);
+
+
   const submit = () => {
     const formData = new FormData();
 
@@ -85,7 +93,7 @@ const Documents = () => {
         ))}
       </div>
       {!isReady && (
-        <p className="w-full bg-[#f4752117] py-5 text-center rounded-lg text-[#F47621] mt-2">
+        <p className="w-full bg-[#f4212127] py-5 text-center rounded-lg text-[#f42121] mt-2">
           {t('documents.uploadAllRequired')}
         </p>
       )}
@@ -98,20 +106,33 @@ const Documents = () => {
             {t('documents.back')}
           </button>
           <button
-            disabled={!isReady}
+            disabled={!isReady || isUploading}
             onClick={submit}
-            className={`px-6 py-3 rounded-xl font-bold ${isReady ? "bg-[#F47621] text-white" : "bg-gray-300 text-gray-600"
+            className={`px-6 py-3 rounded-xl font-bold 
+              ${!isReady ? "bg-gray-300 text-gray-600" : "bg-[#F47621] text-white"
+
               }`}
           >
             {t('documents.submit')}
           </button>
         </div>
         {serverError && (
-          <p className="text-red-600 font-medium text-start mb-4">
+          <p className="w-full text-red-600 font-medium text-start mb-4">
             {serverError}
           </p>
         )}
       </div>
+      {isUploading && (
+        <div className=" w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
+          <div className="DocumentsUploading bg-white w-[500px] h-[200px] rounded-2xl p-5 py-10 flex flex-col items-center gap-5">
+            <FaHourglassHalf color="#F47621" size={50} />
+
+            <BarLoader width={300} />
+            <p>Uploading your documents, please wait...</p>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

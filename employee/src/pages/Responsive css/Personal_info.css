@@ -1,8 +1,10 @@
 @media (max-width: 1280px) {
+
   /* complate personal info */
   .Complate_personal_info {
     padding: 20px;
   }
+
   .personal_info_grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -11,30 +13,38 @@
   .Residence_info {
     padding: 20px;
   }
+
   .Residence_info_grid {
     grid-template-columns: repeat(1, 1fr);
   }
+
   .ID_Upload {
     flex-direction: column;
   }
+
   /* Banking info */
   .Banking_info {
     padding: 20px;
   }
+
   .Banking_info_grid {
     grid-template-columns: repeat(1, 1fr);
   }
+
   /* Social Security and Health Insurance */
   .Social_Insurance {
     padding: 20px;
   }
+
   .Social_Insurance_grid {
     grid-template-columns: repeat(1, 1fr);
   }
+
   /* Employment data */
   .Employment_data {
     padding: 20px;
   }
+
   .Questions {
     padding: 0;
   }
@@ -48,49 +58,60 @@
   .Documents {
     padding: 10px 20px;
   }
+
   .DocumentsList {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+
   .DocumentInfo {
     grid-column: span 2;
     flex-direction: column;
     align-items: start;
     width: 100%;
   }
+
   .documentDescription {
     width: 100%;
   }
+
   .documentsBtn {
     width: 100%;
     grid-column: span 2;
   }
+
   .UploadBtn {
     width: 100%;
   }
 }
+
 @media (max-width: 600px) {
   /* Personal info page */
 
   .Personal_info_page {
     padding: 0px 20px 20px 20px;
   }
+
   .Personal_info_Item {
     flex-direction: column;
     gap: 20px;
   }
-  .Personal_info_Item > button {
+
+  .Personal_info_Item>button {
     font-size: 16px;
   }
+
   .declinedStatus {
     flex-direction: column-reverse;
     align-items: start;
     gap: 14px;
   }
-  .declinedStatus > button {
+
+  .declinedStatus>button {
     width: 100%;
   }
+
   .SuccsessPopup {
     width: 90%;
     text-align: center;
@@ -101,17 +122,35 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
   /* Documents */
 
   .Documents {
     padding: 0px 20px 20px 20px;
     position: relative;
   }
+
   .DocumentsForm {
     width: 90%;
     height: 60%;
   }
+
   .FileName {
     grid-column: span 2;
   }
+
+  .DocumentsUploading {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  .DocumentsUploading>span {
+    width: 250px !important;
+  }
+
+  /* Signature */
+  .showSignature {
+    width: 90%;
+  }
+
 }

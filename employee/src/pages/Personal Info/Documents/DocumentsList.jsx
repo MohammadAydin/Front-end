@@ -16,8 +16,14 @@ const DocumentsList = ({ docs, setDocuments }) => {
   }
 
   return (
-    <div className="DocumentsList flex items-center justify-between py-3 border-b border-[#919eab63] border-dashed">
+    <div className="DocumentsList flex items-center justify-between py-5 border-b border-[#919eab63] border-dashed">
       <div className="DocumentInfo flex items-center gap-5 w-[60%]">
+        {docs?.is_required === 1 ? (
+          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+        ) : (
+          <div className="w-2 h-2"></div>
+        )}
+
         <img src={folderSvg} alt="" />
         <div>
           <h3 className="font-bold">{docs.title}</h3>
@@ -44,10 +50,13 @@ const DocumentsList = ({ docs, setDocuments }) => {
           </span>
           {t("documents.uploadDocument")}
         </button>
-        <p className="text-[#637381] text-sm flex items-center gap-1 mt-2">
-          <FaRegClock size={20} />
-          <span> {docs.duo_to}</span>
-        </p>
+        {docs.duo_to && (
+          <p className="text-[#637381] text-sm flex items-center gap-1 mt-2">
+            <FaRegClock size={20} />
+            <span> {docs.duo_to}</span>
+          </p>
+        )}
+
       </div>
 
       <UploadDocs

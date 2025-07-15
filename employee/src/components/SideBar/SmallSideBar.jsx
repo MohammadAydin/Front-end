@@ -10,6 +10,8 @@ const SmallSideBar = ({ setNotificationIsOpen }) => {
   let [isOpen, setIsOpen] = useState(false);
   const { data } = useData("/notifications/unread");
 
+  const { data: avatar } = useData("/photo");
+
   return (
     <div className="smallSideBar hidden">
       <div className="w-full mb-5 h-[60px] p-3  flex justify-between items-center">
@@ -28,7 +30,11 @@ const SmallSideBar = ({ setNotificationIsOpen }) => {
             <IoNotificationsOutline size={30} />
           </button>
           <Link to={"/profile"}>
-            <img src={profileAvatar} alt="" className="rounded-full h-10" />
+            <img
+              src={avatar?.length == 0 ? profileAvatar : avatar}
+              alt=""
+              className="rounded-full h-10"
+            />
           </Link>
         </div>
       </div>

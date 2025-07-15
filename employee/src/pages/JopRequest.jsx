@@ -94,26 +94,33 @@ const JopRequest = () => {
 
   return (
     <div className="p-[28px] py-[58px]">
-      <div className="w-full h-65 bg-[#194894] text-white rounded-2xl p-5 flex flex-col gap-10">
-        {/* Click to continue. Complete personal info. */}
-        <span className="text-2xl">{t("jobRequest.completeProfile")}</span>
+      {data?.show_progress_bar && (
+        <div className="w-full  bg-[#194894] text-white rounded-2xl p-7 flex flex-col justify-between gap-5">
+          {/* Click to continue. Complete personal info. */}
 
-        <div className="flex items-center gap-3 text-sm">
-          <div className="h-1 w-full bg-[#4687ee] rounded-2xl outline-[1px]">
-            <div
-              style={{ width: data?.percentage }}
-              className={`h-1   bg-white rounded-2xl`}
-            ></div>
+          <span className="text-2xl"> Complete your profile</span>
+
+          <div>
+            <p className=" text-[#ffffff] text-sm mt-2">{data?.message}</p>
+            <div className="flex items-center gap-3 text-sm">
+              <div className="h-1 w-full bg-[#4687ee] rounded-2xl outline-[1px]">
+                <div
+                  style={{ width: data?.percentage }}
+                  className={`h-1   bg-white rounded-2xl`}
+                ></div>
+              </div>
+              {data?.percentage}
+            </div>
+
           </div>
-          {data?.percentage}
+          <button
+            onClick={() => navigate("/Personal info")}
+            className="bg-[#99B2DB] py-3 text-xl rounded-2xl border border-white"
+          >
+            Complete &nbsp; →
+          </button>
         </div>
-        <button
-          onClick={() => navigate("/Personal info")}
-          className="bg-[#99B2DB] py-5 text-2xl rounded-2xl border border-white"
-        >
-          {t("jobRequest.completeButton")}
-        </button>
-      </div>
+      )}
 
       <div className="JobRequestList mt-6">
         <div className="head-List flex justify-between">
@@ -178,7 +185,7 @@ const JopRequest = () => {
 
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

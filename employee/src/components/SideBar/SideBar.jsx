@@ -24,8 +24,9 @@ const SideBar = ({ setNotificationIsOpen }) => {
               className="profile-user mt-[30px] flex flex-col items-center"
             >
               <img
-                className="avatar w-[60px] rounded-full"
-                src={avatar}
+                className="avatar w-[60px] h-[60px] object-cover rounded-full"
+                src={avatar?.length == 0 ? profileAvatar : avatar}
+
                 alt=""
               />
 

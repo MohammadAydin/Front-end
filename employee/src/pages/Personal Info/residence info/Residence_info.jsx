@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ID_card } from "./Residence_inputs";
 import { useForm } from "react-hook-form";
 import InputField from "../../../components/FormElements/InputField";
 import SelectField from "../../../components/FormElements/SelectField";
 import FileUploader from "../../../components/FormElements/FileUploader";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,14 +15,19 @@ import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import NationalitySelect from "./NationalitySelect";
 import handleNationality from "../../../store/HandleNationality";
 import { useTranslation } from "react-i18next";
+import useData from "../../../hooks/useData";
+
 
 const Residence_info = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { selectedNationality } = handleNationality();
+  const { selectedNationality, setSelectedNationality } = handleNationality();
 
   const { OpenSuccsess } = OpenSuccsessPopup();
   const [serverError, setServerError] = useState("");
+  const [searchParams] = useSearchParams();
+  const isUploaded = searchParams.get("uploaded") === "true";
+  const { data: ResidenceInfo } = useData("/profile/residence-work-permits");
 
   const add_Residence_info_Mutatuin = useMutation({
     mutationFn: (info) =>
@@ -61,6 +66,32 @@ const Residence_info = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(residenceSchema) });
 
+  useEffect(() => {
+    if (isUploaded && ResidenceInfo) {
+      setValue("nationality", ResidenceInfo.nationality);
+      setValue("place_of_birth", ResidenceInfo.place_of_birth);
+      setSelectedNationality({
+        label: ResidenceInfo.nationality,
+        value: ResidenceInfo.nationality,
+      });
+
+      if (ResidenceInfo.nationality !== "Germany") {
+        setValue(
+          "has_work_permit",
+          ResidenceInfo.has_work_permit ? "Yes" : "No"
+        );
+
+        if (ResidenceInfo.permit_valid_until) {
+          const [year, month, day] =
+            ResidenceInfo.permit_valid_until.split("-");
+          const formattedDate = `${day}.${month}.${year}`;
+          setValue("permit_valid_until", formattedDate);
+        }
+      }
+    }
+  }, [ResidenceInfo, setValue]);
+
+
   const work_permit = watch("has_work_permit");
 
   // change the date from DD.MM.YYYY to YYYY-MM-DD
@@ -79,7 +110,6 @@ const Residence_info = () => {
     // if not Germany we ask for work permit
     if (selectedNationality?.label !== "Germany") {
       const formattedDate = formatDateToISO(data.permit_valid_until);
-      console.log(formattedDate);
       formData.append("permit_valid_until", formattedDate);
       formData.append(
         "has_work_permit",
@@ -87,18 +117,22 @@ const Residence_info = () => {
       );
       formData.append("work_permit_document", data.permit_document);
     }
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
+
 
     add_Residence_info_Mutatuin.mutate(formData);
   };
 
   return (
     <div className="Residence_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t('residenceInfo.title')}</h2>
+      <h2 className="text-2xl font-bold mb-2">
+        {isUploaded && ResidenceInfo
+          ? "Residence info"
+          : "Complete residence info"}
+      </h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        {t('residenceInfo.description')}
+        {isUploaded && ResidenceInfo
+          ? "You have already uploaded your info contiue the process"
+          : "Please , Complete your info contiue the process"}
       </p>
       <form onSubmit={handleSubmit(submit)}>
         <NationalitySelect

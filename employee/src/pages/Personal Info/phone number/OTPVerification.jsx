@@ -1,18 +1,18 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
-import SuccsessPopup from "../../../components/FormElements/SuccsessPopup";
 import { otpSchema } from "./phoneSchema";
 import { useTranslation } from "react-i18next";
+import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
+
 
 const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
   const { t } = useTranslation();
-  const { OpenSuccsess } = SuccsessPopup();
+  const { OpenSuccsess } = OpenSuccsessPopup();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState("");
 
@@ -83,8 +83,8 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
             }}
             disabled={resendTimer > 0}
             className={`mt-5 font-bold text-lg cursor-pointer ${resendTimer > 0
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-blue-900 hover:text-[#EE6000]"
+              ? "text-gray-400 cursor-not-allowed"
+              : "text-blue-900 hover:text-[#EE6000]"
               }`}
           >
             {resendTimer > 0 ? `${t('phoneNumber.resendOtp')} in ${resendTimer}s` : t('phoneNumber.resendOtp')}
