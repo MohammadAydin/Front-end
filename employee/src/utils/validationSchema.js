@@ -116,7 +116,6 @@ export const createLocationSchema = (t) => {
         country: z.string().min(1, t('addLocation.validation.countryRequired')),
         city: z.string().min(1, t('addLocation.validation.cityRequired')),
         street2: z.string().min(1, t('addLocation.validation.street2Required')),
-        title: z.string().min(1, t('addLocation.validation.titleRequired')),
     });
 };
 

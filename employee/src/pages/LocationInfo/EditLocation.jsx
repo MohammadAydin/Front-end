@@ -20,7 +20,7 @@ import { createLocationSchema } from "../../utils/validationSchema.js";
 
 const editLocation = () => {
   const { t } = useTranslation();
-  const { id, title, street1, street2, postal_code, city, country } =
+  const { id, street1, street2, postal_code, city, country } =
     useParams();
   const { OpenSuccsess } = OpenSuccsessPopup();
   // Navigate definition for routing
@@ -70,7 +70,7 @@ const editLocation = () => {
         city: data.city,
         country: data.country,
         postal_code: data.postalcode || " ",
-        title: data.title || "",
+        title: "nullTest",
       });
       // if success
 
@@ -153,14 +153,7 @@ const editLocation = () => {
             <form onSubmit={(e) => e.preventDefault()} className="w-full">
               {" "}
               {/* If Workabilities is false Displays field the location add */}
-              <InputField
-                register={register}
-                errors={errors}
-                label={t('editLocation.fields.title')}
-                name={"title"}
-                type={"text"}
-                defaultvalue={title}
-              />
+
               <div className="grid grid-cols-2  gap-6 w-full max-[536px]:grid-cols-1 mt-5 mb-5">
                 <InputField
                   register={register}

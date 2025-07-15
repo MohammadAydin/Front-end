@@ -12,6 +12,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
   const { data } = useData("/notifications/unread");
   const { data: avatar } = useData("/photo");
   const { data: ProfileData } = useData("/profile");
+
   const { t } = useTranslation();
   return (
     <>
@@ -30,7 +31,8 @@ const SideBar = ({ setNotificationIsOpen }) => {
 
               <div className="information text-center">
                 <p className="mt-[8px] text-white">{ProfileData?.name}</p>
-                <p className="admin text-white font-thin">{t("navigation.admin")}</p>
+
+                <p className="admin text-white font-thin">{t("navigation.employee")}</p>
               </div>
             </Link>
             <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">

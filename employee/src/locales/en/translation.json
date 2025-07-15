@@ -167,7 +167,7 @@
         "language": "Language",
         "settings": "Settings",
         "logout": "Logout",
-        "admin": "Admin"
+        "employee": "Employee"
     },
     "nav": {
         "mainNavigation": "Main navigation menu"

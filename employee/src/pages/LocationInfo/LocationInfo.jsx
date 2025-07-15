@@ -99,7 +99,14 @@ const LocationInfo = () => {
                     key={location.id}
                     className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5 border-b border-[#919eab63] border-dashed pb-4"
                   >
-                    <h2 className=""> Address {index + 1} </h2>
+                    <h2
+                      className={`text-[1.1rem] w-[10vw] ${location.is_primary == 1 && "text-secondaryColor"
+                        }`}
+                    >
+                      {location.is_primary == 1
+                        ? "Primary Location"
+                        : ` Address ${index + 2}`}
+                    </h2>
                     <div
                       className="flex justify-between flex-1 gap-3.5 max-[820px]:w-full
 "

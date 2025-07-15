@@ -69,7 +69,7 @@ const AddLoaction = () => {
         city: data.city,
         country: data.country,
         postal_code: data.postalcode || " ",
-        title: data.title || "",
+        title: "nullTest",
       });
       // if success
 
@@ -155,13 +155,7 @@ const AddLoaction = () => {
             <form onSubmit={(e) => e.preventDefault()} className="w-full">
               {" "}
               {/* If Workabilities is false Displays field the location add */}
-              <InputField
-                register={register}
-                errors={errors}
-                label={t('addLocation.fields.title')}
-                name={"title"}
-                type={"text"}
-              />
+              
               <div className="grid grid-cols-2  gap-6 w-full max-[536px]:grid-cols-1 mt-5 mb-5">
                 <InputField
                   register={register}
