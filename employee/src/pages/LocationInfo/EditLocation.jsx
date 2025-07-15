@@ -4,47 +4,54 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import InputField from "../../components/FormElements/InputField";
 import Button from "../../components/MoreElements/Button";
-// To test before passing the map use useeffect
 import { useEffect, useState } from "react";
 import Popup from "../../components/MoreElements/Popup/Popup.jsx";
 import customFetch from "../../utils/axios.js";
 import { toast } from "react-toastify";
 import MapComponent from "../../components/MapComponent.jsx";
 // To test before passing the map use axios
-import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+
 import useData from "../../hooks/useData.js";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
 
-const editLocation = () => {
-  const { t } = useTranslation();
-  const { id, street1, street2, postal_code, city, country } =
-    useParams();
+const EditLocation = () => {
+  const [searchParams] = useSearchParams();
+  const uploaded = searchParams.get("uploaded");
+
+  const [searchParamstow] = useSearchParams();
+  const id = searchParamstow.get("id");
+  const street1 = searchParamstow.get("street1");
+  const street2 = searchParamstow.get("street2");
+  const postalcode = searchParamstow.get("postal_code");
+  const city = searchParamstow.get("city");
+  const country = searchParamstow.get("country");
+  console.log(id);
+
+  const {
+    data: locations,
+    error: errorlocations,
+    isLoading: isLoadinglocations,
+  } = useData("/locations", "locationsList");
+
+  const [formDefaults, setFormDefaults] = useState({
+    id: id || "",
+    street1: street1 || "",
+    street2: street2 || "",
+    postalcode: postalcode || "",
+    city: city || "",
+    country: country || "",
+  });
+
   const { OpenSuccsess } = OpenSuccsessPopup();
-  // Navigate definition for routing
   const navigate = useNavigate();
-
-  // storage case lat
-  // const [lat, setLat] = useState(0);
-  // storage case lng
-  // const [lng, setLng] = useState(0);
-
-  // Store pop-up status
-  const [showPopup, setshowPopup] = useState(false);
-
-  // Reverse pop-up status
-  const togglePopup = () => {
-    setshowPopup(!showPopup);
-  };
-
-  // If it appears, add the active-modal class.
-  if (showPopup) {
-    document.body.classList.add("active-modal");
-  } else {
-    document.body.classList.remove("active-modal");
-  }
 
   // Constraints chart from the Zod Library
   const baseSchema = createLocationSchema(t);
@@ -60,16 +67,40 @@ const editLocation = () => {
     resolver: zodResolver(baseSchema),
   });
 
+  useEffect(() => {
+    if (uploaded === "true" && locations) {
+      const location = locations.find((location) => location.is_primary == 1);
+
+      setFormDefaults({
+        id: location.id || "",
+        street1: location.street1 || "",
+        street2: location.street2 || "",
+        postalcode: location.postal_code || "",
+        city: location.city || "",
+        country: location.country || "",
+      });
+
+      // Set default values in form
+      reset({
+        street1: location.street1 || "",
+        street2: location.street2 || "",
+        postalcode: location.postal_code || "",
+        city: location.city || "",
+        country: location.country || "",
+      });
+    }
+  }, [uploaded, locations, reset]);
+
   //Send data
   const submit = async (data) => {
     // Send to api
     try {
-      const response = await customFetch.put(`/locations/${id}`, {
+      const response = await customFetch.put(`/locations/${formDefaults.id}`, {
         street1: data.street1,
         street2: data.street2 || "",
         city: data.city,
         country: data.country,
-        postal_code: data.postalcode || " ",
+        postal_code: data.postalcode || "",
         title: "nullTest",
       });
       // if success
@@ -83,69 +114,31 @@ const editLocation = () => {
       console.log("send location error full:", error);
       // Show error message in toast
       toast.error(
-        t('addLocation.sendLocationError') + ": " +
-        (error?.response?.data?.message || error.message || "Unknown error")
+        t("addLocation.sendLocationError") +
+          ": " +
+          (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };
 
-  // To test before passing the map
+  const [showPopup, setshowPopup] = useState(false);
+  const togglePopup = () => setshowPopup(!showPopup);
 
-  // useEffect(() => {
-  //   const fetchLocation = async () => {
-  //     const address = `${watch("address") || "Königsallee, Düsseldorf, Germany"}
-  //     }`.trim();
-  //     if (!address || address === ", ,") return; // تجنب الطلب إذا كان العنوان فارغًا
-  //     try {
-  //       const response = await axios.get(
-  //         `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-  //           address
-  //         )}&key=AIzaSyDH-rfDKqld3jf64z84P9e34iNBkdSwZlw`
-  //       );
-  //       if (response.data.status === "OK") {
-  //         console.log(
-  //           "data location",
-  //           response.data
-  //         );
-  //         console.log(
-  //           "lng : ",
-  //           response.data.results[0].geometry.location.lng
-  //         );
-  //         console.log(
-  //           "lat : ",
-  //           response.data.results[0].geometry.location.lat
-  //         );
-  //         setLat(response.data.results[0].geometry.location.lat)
-  //         setLng(response.data.results[0].geometry.location.lng)
-  //         console.log(lng)
-  //         console.log(lat)
-  //         setaddress(address)
-  //       } else {
-  //         console.error(
-  //           "error in the respon",
-  //           response.data.status,
-  //           response.data.error_message
-  //         );
-  //       }
-  //     } catch (error) {
-  //       console.error(
-  //         "error : ",
-  //         error.response?.data?.error_message || error.message
-  //       );
-  //     }
-  //   };
-  //   fetchLocation();
-  // }, [watch("address")]);
+  useEffect(() => {
+    if (showPopup) {
+      document.body.classList.add("active-modal");
+    } else {
+      document.body.classList.remove("active-modal");
+    }
+  }, [showPopup]);
 
   return (
     // container wrapper
     <Wrapper className="w-full">
       <div className="w-full">
-        {/* If Workabilities is false Displays text the location add */}
-
-        <h1>{t('editLocation.title')}</h1>
-        <p className=" text-softColor mt-4">
-          {t('editLocation.description')}
+        <h1>Edit Location</h1>
+        <p className="text-softColor mt-4">
+          Edit your site data and the new site will be saved.
         </p>
 
         <div className="mt-3 w-full">
@@ -153,49 +146,48 @@ const editLocation = () => {
             <form onSubmit={(e) => e.preventDefault()} className="w-full">
               {" "}
               {/* If Workabilities is false Displays field the location add */}
-
               <div className="grid grid-cols-2  gap-6 w-full max-[536px]:grid-cols-1 mt-5 mb-5">
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('editLocation.fields.street')}
+                  label={t("editLocation.fields.street")}
                   name={"street1"}
                   type={"text"}
-                  defaultvalue={street1}
+                  defaultvalue={formDefaults.street1}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('editLocation.fields.house')}
+                  label={t("editLocation.fields.house")}
                   name={"street2"}
                   type={"text"}
-                  defaultvalue={street2}
+                  defaultvalue={formDefaults.street2}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('editLocation.fields.postalCode')}
+                  label={t("editLocation.fields.postalCode")}
                   name={"postalcode"}
                   type={"text"}
-                  defaultvalue={postal_code}
+                  defaultvalue={formDefaults.postalcode}
                 />
 
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('editLocation.fields.city')}
+                  label={t("editLocation.fields.city")}
                   name={"city"}
                   type={"text"}
-                  defaultvalue={city}
+                  defaultvalue={formDefaults.city}
                 />
               </div>
               <InputField
                 register={register}
                 errors={errors}
-                label={t('editLocation.fields.country')}
+                label={t("editLocation.fields.country")}
                 name={"country"}
                 type={"text"}
-                defaultvalue={country}
+                defaultvalue={formDefaults.country}
               />
               <div className="w-full h-[300px] overflow-hidden rounded-md mt-6">
                 <MapComponent
@@ -217,7 +209,7 @@ const editLocation = () => {
               <Link className="w-full" to="/locationInfo">
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text={t('editLocation.back')}
+                  text={t("editLocation.back")}
                 />
               </Link>
 
@@ -226,7 +218,7 @@ const editLocation = () => {
                 onClick={togglePopup}
                 type="button"
                 className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text={t('editLocation.edit')}
+                text={t("editLocation.edit")}
               />
             </div>
           </div>
@@ -243,4 +235,4 @@ const editLocation = () => {
   );
 };
 
-export default editLocation;
+export default EditLocation;

@@ -53,7 +53,7 @@ const PersonalSections = () => {
     {
       icon: IoLocationOutline,
       label: t("personalInfoSections.yourLocations"),
-      path: "/locationInfo",
+      path: "/addLoaction",
       status_name: "location",
     },
     {

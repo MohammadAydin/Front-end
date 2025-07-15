@@ -42,7 +42,9 @@ const LocationInfo = () => {
       toast.success(data.message || t("locationInfo.locationDeleteSuccess"));
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || t("locationInfo.locationDeleteError"));
+      toast.error(
+        error?.response?.data?.message || t("locationInfo.locationDeleteError")
+      );
     },
   });
   // To reject a jobRequest
@@ -56,7 +58,10 @@ const LocationInfo = () => {
       toast.success(data.message || t("locationInfo.locationActivateSuccess"));
     },
     onError: (error) => {
-      toast.error(error?.response?.data?.message || t("locationInfo.locationActivateError"));
+      toast.error(
+        error?.response?.data?.message ||
+          t("locationInfo.locationActivateError")
+      );
     },
   });
 
@@ -86,9 +91,7 @@ const LocationInfo = () => {
                 <div className="flex justify-center items-center gap-1 mt-6">
                   <RiErrorWarningLine className="text-2xl text-secondaryColor" />
 
-                  <p className=" ">
-                    {t("locationInfo.noAddressMessage")}
-                  </p>
+                  <p className=" ">{t("locationInfo.noAddressMessage")}</p>
                 </div>
               )}
               {/* A container containing the added addresses  */}
@@ -100,8 +103,9 @@ const LocationInfo = () => {
                     className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5 border-b border-[#919eab63] border-dashed pb-4"
                   >
                     <h2
-                      className={`text-[1.1rem] w-[10vw] ${location.is_primary == 1 && "text-secondaryColor"
-                        }`}
+                      className={`text-[1.1rem] w-[10vw] ${
+                        location.is_primary == 1 && "text-secondaryColor"
+                      }`}
                     >
                       {location.is_primary == 1
                         ? "Primary Location"
@@ -120,10 +124,11 @@ const LocationInfo = () => {
                       <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
                         <button
                           onClick={() => Activate.mutate(location.id)}
-                          className={` ${location.is_active == 1
-                            ? "bg-green-500 non-click"
-                            : " bg-gray-500"
-                            } text-white py-1 w-[100px] rounded-[5px]`}
+                          className={` ${
+                            location.is_active == 1
+                              ? "bg-green-500 non-click"
+                              : " bg-gray-500"
+                          } text-white py-1 w-[100px] rounded-[5px]`}
                           disabled={location.is_active}
                         >
                           {location.is_active ? "Active" : "Activate"}
@@ -138,7 +143,7 @@ const LocationInfo = () => {
                         ) : (
                           <div className="flex gap-2 items-center justify-center w-[100px]">
                             <Link
-                              to={`/editLocation/${location.id}/${location.title}/${location.street1}/${location.street2}/${location.postal_code}/${location.city}/${location.country}`}
+                              to={`/editLocation?id=${location.id}&title=${location.title}&street1=${location.street1}&street2=${location.street2}&postal_code=${location.postal_code}&city=${location.city}&country=${location.country}`}
                             >
                               <RiPencilLine className="click text-[1.5rem] text-gray-400" />
                             </Link>

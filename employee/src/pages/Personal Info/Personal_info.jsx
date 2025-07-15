@@ -60,7 +60,11 @@ const Personal_info = () => {
       return (
         <div className="declinedStatus flex flex-row-reverse items-center">
           <button
-            onClick={() => navigate(`${path}?uploaded=true`)}
+            onClick={() => {
+              status_name == "location"
+                ? navigate("/editLocation?uploaded=true")
+                : navigate(`${path}?uploaded=true`);
+            }}
             className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold w-[165px]"
           >
             Edit &nbsp; →

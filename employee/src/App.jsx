@@ -106,7 +106,7 @@ const router = createBrowserRouter([
         element: <AddLoaction />,
       },
       {
-        path: "editLocation/:id/:title/:street1/:street2/:postal_code/:city/:country",
+        path: "editLocation",
         element: <EditLocation />,
       },
 

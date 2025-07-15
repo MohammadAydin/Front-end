@@ -12,13 +12,23 @@ import { toast } from "react-toastify";
 import MapComponent from "../../components/MapComponent.jsx";
 // To test before passing the map use axios
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import useData from "../../hooks/useData.js";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
 
 const AddLoaction = () => {
+  const [searchParams] = useSearchParams();
+  const uploaded = searchParams.get("uploaded");
+
+  console.log(uploaded);
+
   const { t } = useTranslation();
   const { lengthLocations } = useParams();
   const { OpenSuccsess } = OpenSuccsessPopup();
@@ -83,8 +93,9 @@ const AddLoaction = () => {
       console.log("send location error full:", error);
       // Show error message in toast
       toast.error(
-        t('addLocation.sendLocationError') + ": " +
-        (error?.response?.data?.message || error.message || "Unknown error")
+        t("addLocation.sendLocationError") +
+          ": " +
+          (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };
@@ -143,11 +154,11 @@ const AddLoaction = () => {
       <div className="w-full">
         {/* If Workabilities is false Displays text the location add */}
 
-        <h1>{t('addLocation.title')}</h1>
+        <h1>{t("addLocation.title")}</h1>
         <p className=" text-softColor mt-4">
           {lengthLocations == 0
-            ? t('addLocation.primaryLocation')
-            : t('addLocation.alternateLocation')}
+            ? t("addLocation.primaryLocation")
+            : t("addLocation.alternateLocation")}
         </p>
 
         <div className="mt-3 w-full">
@@ -155,26 +166,25 @@ const AddLoaction = () => {
             <form onSubmit={(e) => e.preventDefault()} className="w-full">
               {" "}
               {/* If Workabilities is false Displays field the location add */}
-              
               <div className="grid grid-cols-2  gap-6 w-full max-[536px]:grid-cols-1 mt-5 mb-5">
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('addLocation.fields.street')}
+                  label={t("addLocation.fields.street")}
                   name={"street1"}
                   type={"text"}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('addLocation.fields.house')}
+                  label={t("addLocation.fields.house")}
                   name={"street2"}
                   type={"text"}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('addLocation.fields.postalCode')}
+                  label={t("addLocation.fields.postalCode")}
                   name={"postalcode"}
                   type={"text"}
                 />
@@ -182,7 +192,7 @@ const AddLoaction = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t('addLocation.fields.city')}
+                  label={t("addLocation.fields.city")}
                   name={"city"}
                   type={"text"}
                 />
@@ -190,7 +200,7 @@ const AddLoaction = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={t('addLocation.fields.country')}
+                label={t("addLocation.fields.country")}
                 name={"country"}
                 type={"text"}
               />
@@ -214,7 +224,7 @@ const AddLoaction = () => {
               <Link className="w-full" to="/locationInfo">
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text={t('addLocation.back')}
+                  text={t("addLocation.back")}
                 />
               </Link>
 
@@ -223,7 +233,7 @@ const AddLoaction = () => {
                 onClick={togglePopup}
                 type="button"
                 className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text={t('addLocation.next')}
+                text={t("addLocation.next")}
               />
             </div>
           </div>
