@@ -59,7 +59,7 @@ const TasksPage = () => {
         <div className="head-List flex justify-between">
           <h2 className="text-xl">{t("tasks.myTasks")}</h2>
           <Filter
-            options={["all", "todo", "done", "progress", "review", "cancelled"]}
+            options={["all", "todo", "done", "progress", "review", "Canselled"]}
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
           />

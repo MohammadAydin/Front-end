@@ -98,7 +98,7 @@ const JopRequest = () => {
         <div className="w-full  bg-[#194894] text-white rounded-2xl p-7 flex flex-col justify-between gap-5">
           {/* Click to continue. Complete personal info. */}
 
-          <span className="text-2xl">{t("jobRequest.completeProfile")}</span>
+          <span className="text-2xl"> Complete your profile</span>
 
           <div>
             <p className=" text-[#ffffff] text-sm mt-2">{data?.message}</p>
@@ -117,7 +117,7 @@ const JopRequest = () => {
             onClick={() => navigate("/Personal info")}
             className="bg-[#99B2DB] py-3 text-xl rounded-2xl border border-white"
           >
-            {t("jobRequest.completeButton")}
+            Complete &nbsp; →
           </button>
         </div>
       )}

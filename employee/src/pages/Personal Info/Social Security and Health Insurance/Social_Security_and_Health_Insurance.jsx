@@ -49,7 +49,7 @@ const Social_Security_and_Health_Insurance = () => {
     {
       name: "marital_status",
       label: t('socialSecurity.fields.maritalStatus'),
-      optians: [
+      options: [
         { value: "single", label: t('socialSecurity.maritalStatusOptions.single') },
         { value: "married", label: t('socialSecurity.maritalStatusOptions.married') },
         { value: "divorced", label: t('socialSecurity.maritalStatusOptions.divorced') },
@@ -59,7 +59,7 @@ const Social_Security_and_Health_Insurance = () => {
     {
       name: "health_insurance_type",
       label: t('socialSecurity.fields.healthInsuranceType'),
-      optians: [
+      options: [
         { value: "public", label: t('socialSecurity.insuranceTypeOptions.public') },
         { value: "private", label: t('socialSecurity.insuranceTypeOptions.private') }
       ],
@@ -67,7 +67,14 @@ const Social_Security_and_Health_Insurance = () => {
     {
       name: "tax_bracket",
       label: t('socialSecurity.fields.taxBracket'),
-      optians: ["1", "2", "3", "4", "5", "6"],
+      options: [
+        { value: "1", label: "1" },
+        { value: "2", label: "2" },
+        { value: "3", label: "3" },
+        { value: "4", label: "4" },
+        { value: "5", label: "5" },
+        { value: "6", label: "6" }
+      ],
     },
   ];
 
@@ -161,7 +168,7 @@ const Social_Security_and_Health_Insurance = () => {
               errors={errors}
               setValue={setValue}
               value={watch(select.name)}
-              Options={select.optians}
+              Options={select.options}
             />
           ))}
         </div>

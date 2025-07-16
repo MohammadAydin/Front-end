@@ -117,8 +117,8 @@ const EditLocation = () => {
       // Show error message in toast
       toast.error(
         t("addLocation.sendLocationError") +
-        ": " +
-        (error?.response?.data?.message || error.message || "Unknown error")
+          ": " +
+          (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };

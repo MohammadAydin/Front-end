@@ -16,8 +16,8 @@ const statusTask = (text) => {
   } else if (text === "review") {
     status.statusText = "Review";
     status.statusColorClass = "bg-yellow-400";
-  } else if (text === "cancelled" || text === "Canselled") {
-    status.statusText = "Cancelled";
+  }  else if (text === "Canselled") {
+    status.statusText = "Canselled";
     status.statusColorClass = "bg-red-400";
   } else {
     status.statusText = "Unknown";

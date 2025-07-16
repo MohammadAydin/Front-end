@@ -142,11 +142,6 @@
         },
         "skipButton": "Skip",
         "submitButton": "Submit",
-        "complete": "Complete",
-        "edit": "Edit",
-        "uploadAllWarning": "Please upload all personal info before pressing Send.",
-        "sendAll": "Send all",
-        "sending": "Sending...",
         "success": "Personal information saved successfully",
         "error": "Failed to save personal information"
     },

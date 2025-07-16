@@ -142,11 +142,6 @@
         },
         "skipButton": "Überspringen",
         "submitButton": "Senden",
-        "complete": "Vervollständigen",
-        "edit": "Bearbeiten",
-        "uploadAllWarning": "Bitte laden Sie alle persönlichen Informationen hoch, bevor Sie auf Senden klicken.",
-        "sendAll": "Alle senden",
-        "sending": "Wird gesendet...",
         "success": "Persönliche Informationen erfolgreich gespeichert",
         "error": "Fehler beim Speichern der persönlichen Informationen"
     },
