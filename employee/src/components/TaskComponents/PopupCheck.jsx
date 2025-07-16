@@ -6,9 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
+import { useTranslation } from 'react-i18next';
 
 // Pass confirmation props and change the state of the popup
 const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
+  const { t } = useTranslation();
   // Storing field values and setting numeric constraints
   const schema = z.object({
     code1: z.number().min(0).max(9, { message: "Enter a 1-digit number" }),
@@ -95,7 +97,7 @@ const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
     <div className="modal">
       <div onClick={togglePopup} className="overlay"></div>
       <div className="modal-content  flex flex-col items-center rounded-[10px]">
-        <p className="mt-8">Manual scanner number entry</p>
+        <p className="mt-8">{t("taskComponents.manualScannerEntry")}</p>
         {/* start form */}
         <form
           className="inputs flex flex-col mt-[30px] w-full"

@@ -49,7 +49,7 @@ const Personal_info = () => {
             onClick={() => navigate(`${path}`)}
             className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold w-[165px]"
           >
-            Complete &nbsp; →
+            {t("personalInfo.complete")} &nbsp; →
           </button>
           <Status status={status} />
         </div>
@@ -67,7 +67,7 @@ const Personal_info = () => {
             }}
             className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold w-[165px]"
           >
-            Edit &nbsp; →
+            {t("personalInfo.edit")} &nbsp; →
           </button>
           <Status status={status} />
         </div>
@@ -96,19 +96,18 @@ const Personal_info = () => {
       {!statusData?.isUploadedAllProfile && (
         <p className="w-full bg-[#f4752121] my-5 px-4 py-5 rounded-lg text-[#F47621] flex gap-2 items-center">
           <AiOutlineExclamationCircle size={25} />
-          Please upload all personal info before pressing Send.
+          {t("personalInfo.uploadAllWarning")}
         </p>
       )}
       <button
         disabled={!statusData?.isUploadedAllProfile || sendAllInfo.isPending}
         onClick={handleSendAll}
-        className={`w-full text-lg font-extrabold px-10 py-2 rounded-lg mt-4 ${
-          statusData?.isUploadedAllProfile
+        className={`w-full text-lg font-extrabold px-10 py-2 rounded-lg mt-4 ${statusData?.isUploadedAllProfile
             ? "bg-[#F47621] text-white hover:bg-[#EE6000]"
             : "bg-gray-300 text-gray-600"
-        }`}
+          }`}
       >
-        {sendAllInfo.isPending ? "Sending..." : "Send all"}
+        {sendAllInfo.isPending ? t("personalInfo.sending") : t("personalInfo.sendAll")}
       </button>
 
       <SuccsessPopup />

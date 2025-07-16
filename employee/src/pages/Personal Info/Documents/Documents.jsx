@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
 import "../../Responsive css/Personal_info.css";
 import { useTranslation } from "react-i18next";
-import { BarLoader } from "react-spinners";
+import Spinner from "../../../components/MoreElements/Spinner";
 import { FaHourglassHalf } from "react-icons/fa6";
 
 
@@ -127,8 +127,10 @@ const Documents = () => {
           <div className="DocumentsUploading bg-white w-[500px] h-[200px] rounded-2xl p-5 py-10 flex flex-col items-center gap-5">
             <FaHourglassHalf color="#F47621" size={50} />
 
-            <BarLoader width={300} />
-            <p>Uploading your documents, please wait...</p>
+            <div className="w-[300px] h-1 bg-gray-200 rounded-full overflow-hidden">
+              <div className="h-full bg-[#F47621] animate-pulse"></div>
+            </div>
+            <p>{t('documents.uploading')}</p>
           </div>
         </div>
       )}

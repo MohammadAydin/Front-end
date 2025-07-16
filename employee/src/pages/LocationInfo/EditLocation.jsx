@@ -24,6 +24,7 @@ import { createLocationSchema } from "../../utils/validationSchema.js";
 import { t } from "i18next";
 
 const EditLocation = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
 
@@ -116,8 +117,8 @@ const EditLocation = () => {
       // Show error message in toast
       toast.error(
         t("addLocation.sendLocationError") +
-          ": " +
-          (error?.response?.data?.message || error.message || "Unknown error")
+        ": " +
+        (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };
@@ -137,9 +138,9 @@ const EditLocation = () => {
     // container wrapper
     <Wrapper className="w-full">
       <div className="w-full">
-        <h1>Edit Location</h1>
+        <h1>{t("locationEdit.title")}</h1>
         <p className="text-softColor mt-4">
-          Edit your site data and the new site will be saved.
+          {t("locationEdit.description")}
         </p>
 
         <div className="mt-3 w-full">
