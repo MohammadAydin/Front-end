@@ -15,6 +15,7 @@ export { default as Phone_number } from "./Personal Info/phone number/Phone_numb
 export { default as ProtectedRoute } from "./ProtectedRoute.jsx";
 export { default as AuthContainer } from "./AuthContainer.jsx";
 export { default as UserProfile } from "./UserProfile.jsx";
+export { default as Contract } from "./Contract.jsx";
 
 export { default as LocationInfo } from "./LocationInfo/LocationInfo.jsx";
 export { default as EditLocation } from "./LocationInfo/EditLocation.jsx";

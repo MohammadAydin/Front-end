@@ -13,7 +13,6 @@ const SideBar = ({ setNotificationIsOpen }) => {
   const { data } = useData("/notifications/unread");
   const { data: avatar } = useData("/photo");
   const { data: ProfileData } = useData("/profile");
-  console.log(ProfileData);
 
   const { t } = useTranslation();
   return (

@@ -22,6 +22,7 @@ import {
   EditLocation,
   EditWorkaBilities,
   WorkingHours,
+  Contract,
 } from "./pages";
 import LoginForm from "./components/FormAuth/LoginForm";
 import RegisterForm from "./components/FormAuth/RegisterForm";
@@ -122,6 +123,12 @@ const router = createBrowserRouter([
         path: "profile",
         element: <UserProfile />,
       },
+
+      {
+        path: "contract",
+        element: <Contract />,
+      },
+
       {
         path: "working hours",
         element: <WorkingHours />,

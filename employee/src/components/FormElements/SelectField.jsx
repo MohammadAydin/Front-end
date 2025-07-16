@@ -32,8 +32,8 @@ const SelectField = ({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSelect = (value, index) => {
@@ -46,7 +46,11 @@ const SelectField = ({
 
   const handleKeyDown = (event) => {
     if (!isOpen) {
-      if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown') {
+      if (
+        event.key === "Enter" ||
+        event.key === " " ||
+        event.key === "ArrowDown"
+      ) {
         event.preventDefault();
         setIsOpen(true);
         setFocusedIndex(0);
@@ -55,32 +59,32 @@ const SelectField = ({
     }
 
     switch (event.key) {
-      case 'Escape':
+      case "Escape":
         event.preventDefault();
         setIsOpen(false);
         setFocusedIndex(-1);
         buttonRef.current?.focus();
         break;
-      case 'ArrowDown':
+      case "ArrowDown":
         event.preventDefault();
-        setFocusedIndex(prev => (prev + 1) % Options.length);
+        setFocusedIndex((prev) => (prev + 1) % Options.length);
         break;
-      case 'ArrowUp':
+      case "ArrowUp":
         event.preventDefault();
-        setFocusedIndex(prev => prev <= 0 ? Options.length - 1 : prev - 1);
+        setFocusedIndex((prev) => (prev <= 0 ? Options.length - 1 : prev - 1));
         break;
-      case 'Enter':
-      case ' ':
+      case "Enter":
+      case " ":
         event.preventDefault();
         if (focusedIndex >= 0) {
           handleSelect(Options[focusedIndex], focusedIndex);
         }
         break;
-      case 'Home':
+      case "Home":
         event.preventDefault();
         setFocusedIndex(0);
         break;
-      case 'End':
+      case "End":
         event.preventDefault();
         setFocusedIndex(Options.length - 1);
         break;
@@ -100,18 +104,21 @@ const SelectField = ({
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
-        className={`w-full p-3 border-[1.5px] border-[#919eab52] rounded-xl flex justify-between items-center transition-colors duration-200 ${selectOption ? "text-black" : "text-[#919EAB]"
-          } ${isOpen ? "ring-2 ring-blue-500 border-blue-500" : ""}`}
+        className={`w-full p-3 border-[1.5px] border-[#919eab52] rounded-xl flex justify-between items-center transition-colors duration-200 ${
+          selectOption ? "text-black" : "text-[#919EAB]"
+        } ${isOpen ? "ring-2 ring-blue-500 border-blue-500" : ""}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-labelledby={`${name}-label`}
         aria-describedby={errors[name] ? `${name}-error` : undefined}
         aria-controls={isOpen ? dropdownId : undefined}
       >
-        <span>{selectOption || label || t('accessibility.selectOption')}</span>
+        <span>{selectOption || label || t("accessibility.selectOption")}</span>
         <MdOutlineKeyboardArrowDown
           size={25}
-          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
           aria-hidden="true"
         />
       </button>
@@ -126,19 +133,20 @@ const SelectField = ({
           <ul className="py-2 font-extrabold max-h-60 overflow-y-auto">
             {Options.map((option, index) => (
               <li
-                key={option}
+                key={index}
                 role="option"
-                aria-selected={selectOption === option}
-                className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${focusedIndex === index
-                    ? 'bg-blue-50 text-blue-700'
+                aria-selected={selectOption === option?.value}
+                className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${
+                  focusedIndex === index
+                    ? "bg-blue-50 text-blue-700"
                     : selectOption === option
-                      ? 'bg-blue-100 text-blue-800'
-                      : 'hover:bg-[#919eab34]'
-                  }`}
-                onClick={() => handleSelect(option, index)}
+                    ? "bg-blue-100 text-blue-800"
+                    : "hover:bg-[#919eab34]"
+                }`}
+                onClick={() => handleSelect(option.value, index)}
                 onMouseEnter={() => setFocusedIndex(index)}
               >
-                {option}
+                {option.label}
               </li>
             ))}
           </ul>
