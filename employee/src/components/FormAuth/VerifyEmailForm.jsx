@@ -9,7 +9,6 @@ import { addUserToLocalStorage } from "../../utils/localStorage";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { createVerifyEmailSchema } from "../../utils/validationSchema";
-import z from "zod";
 
 const VerifyEmailForm = () => {
   const { t } = useTranslation();

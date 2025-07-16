@@ -13,7 +13,6 @@ import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Spinner from "../../components/MoreElements/Spinner";
-import { ClimbingBoxLoader } from "react-spinners";
 
 const LocationInfo = () => {
   const queryClient = useQueryClient();
