@@ -13,6 +13,7 @@ import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Spinner from "../../components/MoreElements/Spinner";
+import { ClimbingBoxLoader } from "react-spinners";
 
 const LocationInfo = () => {
   const queryClient = useQueryClient();
@@ -66,7 +67,10 @@ const LocationInfo = () => {
   });
 
   if (isLoadinglocations || isLoading) return <Spinner />;
-
+  const primaryLocation = locations?.find(
+    (location) => location.is_primary == 1
+  );
+  console.log(primaryLocation);
   return (
     <>
       <div className="py-5 px-5">
@@ -81,7 +85,9 @@ const LocationInfo = () => {
                 {/* When the add button is pressed, a popup opens to add the address */}
                 <Link
                   to={`/addLoaction/${locations?.length}`}
-                  className="flex items-center gap-1.5  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] "
+                  className={`flex items-center gap-1.5 ${
+                    primaryLocation.status != "approved" && "hidden"
+                  }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
                 >
                   <FaPlus />
                   {t("locationInfo.addNewAddress")}
@@ -121,39 +127,50 @@ const LocationInfo = () => {
                         <p>{location.postal_code}</p>
                       </div>
                       {/* Container with delete and edit buttons */}
-                      <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
-                        <button
-                          onClick={() => Activate.mutate(location.id)}
-                          className={` ${
-                            location.is_active == 1
-                              ? "bg-green-500 non-click"
-                              : " bg-gray-500"
-                          } text-white py-1 w-[100px] rounded-[5px]`}
-                          disabled={location.is_active}
-                        >
-                          {location.is_active ? "Active" : "Activate"}
-                        </button>
-                        {location.is_primary == 1 ? (
-                          <div
-                            className="text-center  bg-secondaryColor
+                      {primaryLocation.status != "approved" ? (
+                        <div
+                          className="text-center  bg-green-500
                              text-white py-1 w-[100px] rounded-[5px] non-click"
+                        >
+                          {primaryLocation.status}
+                        </div>
+                      ) : (
+                        <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
+                          <button
+                            onClick={() => Activate.mutate(location.id)}
+                            className={` ${
+                              location.is_active == 1
+                                ? "bg-green-500 non-click"
+                                : " bg-gray-500"
+                            } text-white py-1 w-[100px] rounded-[5px]`}
+                            disabled={location.is_active}
                           >
-                            Primary
-                          </div>
-                        ) : (
-                          <div className="flex gap-2 items-center justify-center w-[100px]">
-                            <Link
-                              to={`/editLocation?id=${location.id}&title=${location.title}&street1=${location.street1}&street2=${location.street2}&postal_code=${location.postal_code}&city=${location.city}&country=${location.country}`}
+                            {location.is_active ? "Active" : "Activate"}
+                          </button>
+                          {location.is_primary == 1 ? (
+                            <div
+                              className="text-center  bg-secondaryColor
+                             text-white py-1 w-[100px] rounded-[5px] non-click"
                             >
-                              <RiPencilLine className="click text-[1.5rem] text-gray-400" />
-                            </Link>
-                            <FaRegTrashCan
-                              onClick={() => deleteLocation.mutate(location.id)}
-                              className="click text-[1.2rem] text-red-500"
-                            />
-                          </div>
-                        )}
-                      </div>
+                              Primary
+                            </div>
+                          ) : (
+                            <div className="flex gap-2 items-center justify-center w-[100px]">
+                              <Link
+                                to={`/editLocation?id=${location.id}&title=${location.title}&street1=${location.street1}&street2=${location.street2}&postal_code=${location.postal_code}&city=${location.city}&country=${location.country}`}
+                              >
+                                <RiPencilLine className="click text-[1.5rem] text-gray-400" />
+                              </Link>
+                              <FaRegTrashCan
+                                onClick={() =>
+                                  deleteLocation.mutate(location.id)
+                                }
+                                className="click text-[1.2rem] text-red-500"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
