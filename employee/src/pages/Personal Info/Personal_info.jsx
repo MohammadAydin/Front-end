@@ -12,6 +12,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import "../Responsive css/Personal_info.css";
 
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const Personal_info = () => {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ const Personal_info = () => {
     mutationFn: () => customFetch.post("profile/submit/review"),
     onSuccess: () => {
       console.log("Successfully sent all personal info");
+      toast.success("Successfully sent all personal info");
       // Show a success message or trigger refetch if needed
     },
     onError: (error) => {
