@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { createVerifyEmailSchema } from "../../utils/validationSchema";
 
 const VerifyEmailForm = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // Get mail from route
   const { email } = useParams();
@@ -24,7 +25,7 @@ const VerifyEmailForm = () => {
 
   // Storing field values and setting numeric constraints
   const schema = z.object({
-    code1: z.number().min(0).max(9, { message: "Enter a 1-digit number" }),
+    code1: z.number().min(0).max(9, { message: t("verifyEmail.codeField.validation.required") }),
     code2: z.number().min(0).max(9),
     code3: z.number().min(0).max(9),
     code4: z.number().min(0).max(9),
@@ -91,7 +92,7 @@ const VerifyEmailForm = () => {
       // Verification button status mode true
       setIsVerify(true);
       // Show a reminder of the retransmission time
-      toast.success("Wait 15 minutes to request the code again");
+      toast.success(t("verifyEmail.resendWait"));
       // False retransmission status after 15 minutes
       setTimeout(() => {
         setIsVerify(false);
@@ -139,12 +140,11 @@ const VerifyEmailForm = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-2.5">
-            Verify your email !
+            {t("verifyEmail.title")}
           </h2>
           {/* Forme description */}
           <p className="text-[13px] mb-8 text-[#555770]">
-            We've emailed a 6-digit confirmation code to {email}, please enter
-            the code in below box to verify your email.
+            {t("verifyEmail.description", { email })}
           </p>
           {/* Fields container */}
           <div className="flex justify-between">
@@ -212,20 +212,20 @@ const VerifyEmailForm = () => {
             className="p-2 button-login mb-3 bg-[#F47621] text-white rounded-[10px]"
             type="submit"
           >
-            Verify
+            {t("verifyEmail.verifyButton")}
           </button>
         </form>
 
         <div className="flex mt-4 text-[0.8rem] justify-center">
           {/* Resend Code button */}
-          <p>Don’t have a code? </p>
+          <p>{t("verifyEmail.resendText")} </p>
           <button
             disabled={isVerify}
             onClick={ResendCode}
             className={`${isVerify ? "text-gray-700" : "text-[#F47621] click"
               } click`}
           >
-            Resend code
+            {t("verifyEmail.resendButton")}
           </button>
         </div>
         {/* The button to go to the login page */}
@@ -234,7 +234,7 @@ const VerifyEmailForm = () => {
           className="text-[0.8rem] mt-3.5 flex justify-center items-center"
         >
           <IoIosArrowBack />
-          Return to Sign in
+          {t("verifyEmail.returnToSignIn")}
         </Link>
       </>
     </>

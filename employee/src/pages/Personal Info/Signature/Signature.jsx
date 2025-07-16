@@ -89,12 +89,12 @@ const Signature = () => {
             onClick={() => setShowSignature(true)}
             className="w-full mb-10 text-[#F47621] bg-[#FFDFC6] font-bold rounded-xl py-3"
           >
-            Show Signature
+            {t("signature.showSignature")}
           </button>
           {showSignature && (
             <div className="w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
               <div className="showSignature w-[550px] h-[450px] bg-white rounded-2xl p-5 flex flex-col justify-between">
-                <p className="text-xl font-bold">Your Signature</p>
+                <p className="text-xl font-bold">{t("signature.yourSignature")}</p>
                 <div className="h-[250px] border border-[#555770] rounded-2xl flex justify-center items-center">
                   <img
                     src={`${UplodedSignature?.url}?t=${new Date().getTime()}`}
@@ -106,7 +106,7 @@ const Signature = () => {
                   className="w-full bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
                   onClick={() => setShowSignature(false)}
                 >
-                  Close
+                  {t("signature.close")}
                 </button>
               </div>
             </div>

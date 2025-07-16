@@ -84,7 +84,7 @@ const Phone_number = () => {
 
       {!isOtpCode ? (
         <>
-          <p className="mb-5 text-lg font-bold">Add a number</p>
+          <p className="mb-5 text-lg font-bold">{t("phoneNumberAdd.addNumber")}</p>
           <form onSubmit={handleSubmit(Submit)} className="">
             <div className="flex gap-5 items-start">
               <div className="Phone_number_falg border border-[#919eab80] px-5 flex items-center justify-center  rounded-lg w-25">

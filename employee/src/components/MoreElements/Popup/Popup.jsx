@@ -3,9 +3,11 @@ import "./Popup.css";
 import { RiErrorWarningLine } from "react-icons/ri";
 import Button from "../Button";
 import { IoMdClose } from "react-icons/io";
+import { useTranslation } from 'react-i18next';
 
 // Pass confirmation props and change the state of the popup
 const Popup = ({ togglePopup, onConfirm }) => {
+  const { t } = useTranslation();
   return (
     <div className="modal  ">
       <div onClick={togglePopup} className="overlay "></div>
@@ -13,7 +15,7 @@ const Popup = ({ togglePopup, onConfirm }) => {
         {/* Alert icon */}
         <RiErrorWarningLine className="text-secondaryColor text-9xl " />
 
-        <p className="mt-8">Is the entered information correct?</p>
+        <p className="mt-8">{t("taskComponents.confirmationPopup")}</p>
         {/* Close icon */}
         <button className="close-modal" onClick={togglePopup}>
           <IoMdClose />
@@ -23,7 +25,7 @@ const Popup = ({ togglePopup, onConfirm }) => {
           <Button
             onClick={togglePopup}
             className="bg-softwhite border   p-2 rounded-[10px] w-full"
-            text="No, I want to edit"
+            text={t("taskComponents.noEdit")}
           />
           {/* Submit confirmation button */}
           <Button
@@ -33,7 +35,7 @@ const Popup = ({ togglePopup, onConfirm }) => {
             }}
             type="button"
             className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-            text="Yes, proceed"
+            text={t("taskComponents.yesConfirm")}
           />
         </div>
       </div>

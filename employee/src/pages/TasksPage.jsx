@@ -59,7 +59,7 @@ const TasksPage = () => {
         <div className="head-List flex justify-between">
           <h2 className="text-xl">{t("tasks.myTasks")}</h2>
           <Filter
-            options={["all", "todo", "done", "progress", "review", "Canselled"]}
+            options={["all", "todo", "done", "progress", "review", "cancelled"]}
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
           />
@@ -91,9 +91,9 @@ const TasksPage = () => {
                 <img className=" rounded-4xl" src={imgjob} alt="" />
                 {/* Display price with tasks title */}
                 <div className="info">
-                  <p>title : Help us in our house</p>
+                  <p>{t("taskExample.title")}</p>
                   <p className="text-softColor text-[0.8rem]">
-                    price : approximately 50$
+                    {t("taskExample.price")}
                   </p>
                 </div>
               </div>

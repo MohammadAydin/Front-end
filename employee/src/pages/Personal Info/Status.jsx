@@ -28,7 +28,7 @@ const Status = ({ status }) => {
       ) : status === "uploaded" ? (
         <div className="flex items-center pr-8 gap-3 text-lg font-bold text-blue-500">
           <GrUploadOption size={30} />
-          <span>Uploaded</span>
+          <span>{t("status.uploaded")}</span>
         </div>
 
       ) : (

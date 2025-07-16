@@ -159,7 +159,7 @@ const ErrorBoundaryUI = ({
                         <div className="text-gray-700 font-mono text-xs space-y-2">
                             {error && (
                                 <div>
-                                    <strong>Error:</strong>
+                                    <strong>{t('errorBoundary.errorLabel')}</strong>
                                     <pre className="mt-1 whitespace-pre-wrap break-words">
                                         {error.toString()}
                                     </pre>
@@ -167,7 +167,7 @@ const ErrorBoundaryUI = ({
                             )}
                             {errorInfo && errorInfo.componentStack && (
                                 <div>
-                                    <strong>Component Stack:</strong>
+                                    <strong>{t('errorBoundary.componentStackLabel')}</strong>
                                     <pre className="mt-1 whitespace-pre-wrap break-words">
                                         {errorInfo.componentStack}
                                     </pre>

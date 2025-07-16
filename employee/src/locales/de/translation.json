@@ -142,6 +142,11 @@
         },
         "skipButton": "Überspringen",
         "submitButton": "Senden",
+        "complete": "Vervollständigen",
+        "edit": "Bearbeiten",
+        "uploadAllWarning": "Bitte laden Sie alle persönlichen Informationen hoch, bevor Sie auf Senden klicken.",
+        "sendAll": "Alle senden",
+        "sending": "Wird gesendet...",
         "success": "Persönliche Informationen erfolgreich gespeichert",
         "error": "Fehler beim Speichern der persönlichen Informationen"
     },
@@ -539,6 +544,8 @@
         },
         "back": "Zurück",
         "submit": "Absenden",
+        "showSignature": "Unterschrift anzeigen",
+        "close": "Schließen",
         "success": "Unterschrift erfolgreich gespeichert",
         "error": "Unterschrift konnte nicht gespeichert werden"
     },
@@ -664,7 +671,9 @@
         "reportError": "Fehler melden",
         "errorDetails": "Fehlerdetails",
         "showDetails": "Details anzeigen",
-        "hideDetails": "Details ausblenden"
+        "hideDetails": "Details ausblenden",
+        "errorLabel": "Fehler:",
+        "componentStackLabel": "Komponenten-Stack:"
     },
     "performance": {
         "optimizing": "Optimiert...",
@@ -673,5 +682,25 @@
         "tryAgain": "Erneut versuchen",
         "offline": "Sie sind offline",
         "online": "Sie sind wieder online"
+    },
+    "taskComponents": {
+        "manualScannerEntry": "Manuelle Scanner-Nummer eingeben",
+        "confirmationPopup": "Sind die eingegebenen Informationen korrekt?",
+        "noEdit": "Nein, ich möchte bearbeiten",
+        "yesConfirm": "Ja, bestätigen"
+    },
+    "locationEdit": {
+        "title": "Standort bearbeiten",
+        "description": "Bearbeiten Sie Ihre Standortdaten und der neue Standort wird gespeichert."
+    },
+    "phoneNumberAdd": {
+        "addNumber": "Nummer hinzufügen"
+    },
+    "status": {
+        "uploaded": "Hochgeladen"
+    },
+    "taskExample": {
+        "title": "Titel: Hilf uns in unserem Haus",
+        "price": "Preis: ca. 50€"
     }
 }
