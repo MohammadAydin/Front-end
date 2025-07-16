@@ -7,11 +7,13 @@ import "./SideBarResponsive.css";
 import { Link } from "react-router-dom";
 import useData from "../../hooks/useData";
 import { useTranslation } from "react-i18next";
+import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data } = useData("/notifications/unread");
   const { data: avatar } = useData("/photo");
   const { data: ProfileData } = useData("/profile");
+  console.log(ProfileData);
 
   const { t } = useTranslation();
   return (
@@ -33,12 +35,12 @@ const SideBar = ({ setNotificationIsOpen }) => {
                 <p className="mt-[8px] text-white">{ProfileData?.name}</p>
 
                 <p className="admin text-white font-thin">
-                  {t("navigation.employee")}
+                  {ProfileData?.occupation}
                 </p>
               </div>
             </Link>
             <div className="group-item m-[25px]   flex flex-col items-start ">
-              <PagesList setIsOpen={() => { }} />
+              <PagesList setIsOpen={() => {}} />
               <button
                 onClick={() => setNotificationIsOpen(true)}
                 className="nav-item flex items-center gap-2 mx-[8px] relative group text-white mt-[25px]"

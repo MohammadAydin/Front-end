@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useData from "../../hooks/useData";
 import { Link } from "react-router-dom";
 
@@ -18,13 +18,36 @@ import { ClimbingBoxLoader } from "react-spinners";
 const LocationInfo = () => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
+  const [primarystatus, setPrimaryStatus] = useState();
+
+  const getStatus = useMutation({
+    mutationFn: (location) =>
+      customFetch
+        .post(`profile/status/type`, { status: location })
+        .then((res) => res.data),
+    onSuccess: (data) => {
+      setPrimaryStatus(data.data.status);
+      queryClient.invalidateQueries({
+        queryKey: ["/locations", "locationsList"],
+      });
+      toast.success(data.message || t("locationInfo.locationDeleteSuccess"));
+    },
+    onError: (error) => {
+      toast.error(
+        error?.response?.data?.message || t("locationInfo.locationDeleteError")
+      );
+    },
+  });
+
+  useEffect(() => {
+    getStatus.mutate("location");
+  }, []);
 
   const {
     data: locations,
     errorlocations,
     isLoadinglocations,
   } = useData("/locations", "locationsList");
-  console.log(locations);
 
   const {
     data: workable,
@@ -70,7 +93,6 @@ const LocationInfo = () => {
   const primaryLocation = locations?.find(
     (location) => location.is_primary == 1
   );
-  console.log(primaryLocation);
   return (
     <>
       <div className="py-5 px-5">
@@ -86,7 +108,7 @@ const LocationInfo = () => {
                 <Link
                   to={`/addLoaction/${locations?.length}`}
                   className={`flex items-center gap-1.5 ${
-                    primaryLocation.status != "approved" && "hidden"
+                    primaryLocation?.status != "approved" && "hidden"
                   }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
                 >
                   <FaPlus />
@@ -127,12 +149,12 @@ const LocationInfo = () => {
                         <p>{location.postal_code}</p>
                       </div>
                       {/* Container with delete and edit buttons */}
-                      {primaryLocation.status != "approved" ? (
+                      {primarystatus != "approved" ? (
                         <div
-                          className="text-center  bg-green-500
+                          className="text-center  bg-yellow-500
                              text-white py-1 w-[100px] rounded-[5px] non-click"
                         >
-                          {primaryLocation.status}
+                          {primarystatus} ...
                         </div>
                       ) : (
                         <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
