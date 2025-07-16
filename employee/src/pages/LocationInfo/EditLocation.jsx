@@ -208,7 +208,12 @@ const EditLocation = () => {
             <div className="flex w-[25vw] gap-3.5 ml-auto mt-16">
               {/* If Workabilities is false Displays button back the location add */}
 
-              <Link className="w-full" to="/locationInfo">
+              <Link
+                className="w-full"
+                to={`${
+                  uploaded === "true" ? "/Personal info" : "/locationInfo"
+                }`}
+              >
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
                   text={t("editLocation.back")}

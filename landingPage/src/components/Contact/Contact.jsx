@@ -36,7 +36,7 @@ const Contact = () => {
         message: data.message,
       });
       // تحقق من حالة الاستجابة
-      if (response.status === 200 || response.status === 201) {
+      if (response?.status === 200 || response?.status === 201) {
         setSuccess("Message sent successfully!");
         setServerError("");
         reset();

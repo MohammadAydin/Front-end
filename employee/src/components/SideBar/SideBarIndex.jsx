@@ -121,7 +121,7 @@ const SettingList = () => {
       <ul className="sidebarList">
         {Settings.map((item) => (
           <li
-            className={`flex items-center justify-between w-full cursor-pointer hover:font-bold mb-3`}
+            className={`flex items-center justify-between w-full cursor-pointer hover:font-bold mb-1`}
             key={item.id}
             onClick={() => handleItemClick(item)}
           >
