@@ -37,7 +37,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
                 </p>
               </div>
             </Link>
-            <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
+            <div className="group-item m-[25px]   flex flex-col items-start ">
               <PagesList setIsOpen={() => { }} />
               <button
                 onClick={() => setNotificationIsOpen(true)}
@@ -54,7 +54,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
               </button>
             </div>
           </div>
-          <div className="group-item p-[30px] w-full flex flex-col items-start ">
+          <div className="group-item p-[30px] mb-20 w-full flex flex-col items-start ">
             <SettingList />
           </div>
         </div>
