@@ -485,6 +485,7 @@
         "supportedFormats": "Unterstützte Formate: PDF, JPG, PNG",
         "maxFileSize": "Maximale Dateigröße: 10MB",
         "uploadAllRequired": "Bitte laden Sie alle erforderlichen Dokumente hoch, bevor Sie auf Hinzufügen klicken.",
+        "uploading": "Ihre Dokumente werden hochgeladen, bitte warten...",
         "documentTypes": {
             "id": "Ausweis",
             "passport": "Reisepass",

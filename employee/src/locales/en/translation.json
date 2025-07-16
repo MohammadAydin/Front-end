@@ -485,6 +485,7 @@
         "supportedFormats": "Supported formats: PDF, JPG, PNG",
         "maxFileSize": "Maximum file size: 10MB",
         "uploadAllRequired": "Please upload all required documents before Press Add.",
+        "uploading": "Uploading your documents, please wait...",
         "documentTypes": {
             "id": "ID Document",
             "passport": "Passport",
