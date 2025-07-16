@@ -30,12 +30,9 @@ const LocationInfo = () => {
       queryClient.invalidateQueries({
         queryKey: ["/locations", "locationsList"],
       });
-      toast.success(data.message || t("locationInfo.locationDeleteSuccess"));
     },
     onError: (error) => {
-      toast.error(
-        error?.response?.data?.message || t("locationInfo.locationDeleteError")
-      );
+      console.log(error?.respone?.data?.meassge);
     },
   });
 
@@ -108,7 +105,7 @@ const LocationInfo = () => {
                 <Link
                   to={`/addLoaction/${locations?.length}`}
                   className={`flex items-center gap-1.5 ${
-                    primaryLocation?.status != "approved" && "hidden"
+                    primarystatus != "approved" && "hidden"
                   }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
                 >
                   <FaPlus />
