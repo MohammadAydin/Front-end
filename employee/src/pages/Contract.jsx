@@ -2,6 +2,8 @@ import React from "react";
 import useData from "../hooks/useData";
 import customFetch from "../utils/axios";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Contract = () => {
   const fetchData = () =>
@@ -13,6 +15,18 @@ const Contract = () => {
   });
   console.log(data);
 
-  return <div>Contract</div>;
+  return (
+    <>
+      <div className="ml-3.5">
+        <Link to="/profile" className="px-4 flex items-center gap-2.5">
+          <FaArrowLeft />
+          <p className="text-[20px]">Back</p>
+        </Link>
+
+        <div dangerouslySetInnerHTML={{ __html: data }} />
+      </div>
+    </>
+  );
 };
+
 export default Contract;
