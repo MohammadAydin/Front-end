@@ -511,8 +511,26 @@
             "workEligibility": "Work Eligibility Status",
             "healthConditions": "Any Health Conditions",
             "allergies": "Allergies",
-            "medications": "Current Medications"
+            "medications": "Current Medications",
+            "highestDegree": "What is your highest educational qualification?",
+            "vocationalTraining": "Do you have vocational training?",
+            "pregnancy": "Are you pregnant?",
+            "coronaVaccine": "Are you vaccinated against Corona?",
+            "hepatitisVaccine": "Are you vaccinated against Hepatitis?",
+            "ageConfirmation": "Are you over 18 years old?"
         },
+        "qualificationOptions": {
+            "technical": "Technical/Abitur",
+            "intermediate": "Intermediate school leaving certificate",
+            "secondary": "Secondary/elementary school leaving certificate",
+            "none": "Without school leaving certificate"
+        },
+        "yesNoOptions": {
+            "yes": "Yes",
+            "no": "No"
+        },
+        "termsAcceptance": "I accept the",
+        "termsAndConditions": "terms and conditions",
         "validation": {
             "workEligibilityRequired": "Work eligibility status is required",
             "healthConditionsRequired": "Health conditions information is required"

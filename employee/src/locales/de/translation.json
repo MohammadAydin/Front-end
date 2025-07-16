@@ -511,8 +511,26 @@
             "workEligibility": "Arbeitsberechtigungsstatus",
             "healthConditions": "Gesundheitliche Beschwerden",
             "allergies": "Allergien",
-            "medications": "Aktuelle Medikamente"
+            "medications": "Aktuelle Medikamente",
+            "highestDegree": "Was ist Ihr höchster Bildungsabschluss?",
+            "vocationalTraining": "Haben Sie eine Berufsausbildung?",
+            "pregnancy": "Sind Sie schwanger?",
+            "coronaVaccine": "Sind Sie gegen Corona geimpft?",
+            "hepatitisVaccine": "Sind Sie gegen Hepatitis geimpft?",
+            "ageConfirmation": "Sind Sie über 18 Jahre alt?"
         },
+        "qualificationOptions": {
+            "technical": "Technisch/Abitur",
+            "intermediate": "Mittlerer Schulabschluss",
+            "secondary": "Haupt-/Grundschulabschluss",
+            "none": "Ohne Schulabschluss"
+        },
+        "yesNoOptions": {
+            "yes": "Ja",
+            "no": "Nein"
+        },
+        "termsAcceptance": "Ich akzeptiere die",
+        "termsAndConditions": "Allgemeinen Geschäftsbedingungen",
         "validation": {
             "workEligibilityRequired": "Arbeitsberechtigungsstatus ist erforderlich",
             "healthConditionsRequired": "Informationen zu Gesundheitszuständen sind erforderlich"
