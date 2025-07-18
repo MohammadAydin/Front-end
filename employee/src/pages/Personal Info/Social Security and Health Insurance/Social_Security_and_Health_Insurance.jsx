@@ -20,27 +20,27 @@ const Social_Security_and_Health_Insurance = () => {
   const social_Insurance_inputs = [
     {
       name: "tax_identification_number",
-      label: t('socialSecurity.fields.taxIdentificationNumber'),
+      label: t("socialSecurity.fields.taxIdentificationNumber"),
       type: "text",
     },
     {
       name: "social_insurance_number",
-      label: t('socialSecurity.fields.socialSecurityNumber'),
+      label: t("socialSecurity.fields.socialSecurityNumber"),
       type: "text",
     },
     {
       name: "health_insurance_company_name",
-      label: t('socialSecurity.fields.healthInsurance'),
+      label: t("socialSecurity.fields.healthInsurance"),
       type: "text",
     },
     {
       name: "health_insurance_number",
-      label: t('socialSecurity.fields.insuranceNumber'),
+      label: t("socialSecurity.fields.insuranceNumber"),
       type: "text",
     },
     {
       name: "number_of_children",
-      label: t('socialSecurity.fields.numberOfChildren'),
+      label: t("socialSecurity.fields.numberOfChildren"),
       type: "number",
     },
   ];
@@ -48,32 +48,50 @@ const Social_Security_and_Health_Insurance = () => {
   const social_Insurance_select = [
     {
       name: "marital_status",
-      label: t('socialSecurity.fields.maritalStatus'),
-      options: [
-        { value: "single", label: t('socialSecurity.maritalStatusOptions.single') },
-        { value: "married", label: t('socialSecurity.maritalStatusOptions.married') },
-        { value: "divorced", label: t('socialSecurity.maritalStatusOptions.divorced') },
-        { value: "widowed", label: t('socialSecurity.maritalStatusOptions.widowed') }
+      label: t("socialSecurity.fields.maritalStatus"),
+      optians: [
+        {
+          value: "single",
+          label: t("socialSecurity.maritalStatusOptions.single"),
+        },
+        {
+          value: "married",
+          label: t("socialSecurity.maritalStatusOptions.married"),
+        },
+        {
+          value: "divorced",
+          label: t("socialSecurity.maritalStatusOptions.divorced"),
+        },
+        {
+          value: "widowed",
+          label: t("socialSecurity.maritalStatusOptions.widowed"),
+        },
       ],
     },
     {
       name: "health_insurance_type",
-      label: t('socialSecurity.fields.healthInsuranceType'),
-      options: [
-        { value: "public", label: t('socialSecurity.insuranceTypeOptions.public') },
-        { value: "private", label: t('socialSecurity.insuranceTypeOptions.private') }
+      label: t("socialSecurity.fields.healthInsuranceType"),
+      optians: [
+        {
+          value: "public",
+          label: t("socialSecurity.insuranceTypeOptions.public"),
+        },
+        {
+          value: "private",
+          label: t("socialSecurity.insuranceTypeOptions.private"),
+        },
       ],
     },
     {
       name: "tax_bracket",
-      label: t('socialSecurity.fields.taxBracket'),
-      options: [
+      label: t("socialSecurity.fields.taxBracket"),
+      optians: [
         { value: "1", label: "1" },
         { value: "2", label: "2" },
         { value: "3", label: "3" },
         { value: "4", label: "4" },
         { value: "5", label: "5" },
-        { value: "6", label: "6" }
+        { value: "6", label: "6" },
       ],
     },
   ];
@@ -97,7 +115,7 @@ const Social_Security_and_Health_Insurance = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('socialSecurity.error');
+        error?.response?.data?.message || t("socialSecurity.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -123,7 +141,6 @@ const Social_Security_and_Health_Insurance = () => {
       ["number_of_children"]: 0,
     },
   });
-
   // send data to backend
   const submit = (data) => {
     add_Social_Insurance_Mutatuin.mutate({
@@ -140,11 +157,9 @@ const Social_Security_and_Health_Insurance = () => {
 
   return (
     <div className="Social_Insurance p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">
-        {t('socialSecurity.title')}
-      </h2>
+      <h2 className="text-2xl font-bold mb-2">{t("socialSecurity.title")}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        {t('socialSecurity.description')}
+        {t("socialSecurity.description")}
       </p>
       <form onSubmit={handleSubmit(submit)}>
         <div className="Social_Insurance_grid w-full grid grid-cols-2 gap-5 mb-8">
@@ -168,7 +183,7 @@ const Social_Security_and_Health_Insurance = () => {
               errors={errors}
               setValue={setValue}
               value={watch(select.name)}
-              Options={select.options}
+              Options={select.optians}
             />
           ))}
         </div>
@@ -178,7 +193,7 @@ const Social_Security_and_Health_Insurance = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel={t('socialSecurity.back')}
+          prevLabel={t("socialSecurity.back")}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

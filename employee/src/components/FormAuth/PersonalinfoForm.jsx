@@ -7,7 +7,7 @@ import customFetch from "../../utils/axios";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 import { useAuthStore } from "../../store/useAuthStore";
 import { toast } from "react-toastify";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { createPersonalInfoSchema } from "../../utils/validationSchema";
 
 const PersonalinfoForm = () => {
@@ -60,9 +60,8 @@ const PersonalinfoForm = () => {
 
     // Get the Occupation ID
     const occupationId = selectedOccupation
-      ? selectedOccupation.service_category_id
+      ? selectedOccupation.id
       : null;
-
     // Send service ID and Occupation
     // Token Header Definition and Consent
     try {
@@ -80,13 +79,13 @@ const PersonalinfoForm = () => {
         }
       );
       // Show success message
-      toast.success(respone?.data?.message || t('personalInfo.success'));
+      toast.success(respone?.data?.message || t("personalInfo.success"));
 
       setTimeout(() => {
         navigate("/");
       }, 1500);
     } catch (error) {
-      toast.error(error?.response?.data?.message || t('personalInfo.error'));
+      toast.error(error?.response?.data?.message || t("personalInfo.error"));
     }
   };
 
@@ -117,7 +116,7 @@ const PersonalinfoForm = () => {
       >
         {/* Main page text */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-          {t('personalInfo.title')}
+          {t("personalInfo.title")}
         </h2>
 
         <div className="flex flex-col">
@@ -125,8 +124,9 @@ const PersonalinfoForm = () => {
             {/* Select Services */}
             <select
               {...register("services")}
-              className={`input-control appearance-none focus:outline-none ${servicesValue === "" ? "text-gray-500" : "text-black"
-                }`}
+              className={`input-control appearance-none focus:outline-none ${
+                servicesValue === "" ? "text-gray-500" : "text-black"
+              }`}
               id="services"
               defaultValue=""
               onChange={(e) => {
@@ -139,7 +139,7 @@ const PersonalinfoForm = () => {
             >
               {/* valueDefault the services */}
               <option value="" disabled>
-                {t('personalInfo.services.placeholder')}
+                {t("personalInfo.services.placeholder")}
               </option>
               {/* Work on services */}
               {services.map((service, index) => (
@@ -162,8 +162,9 @@ const PersonalinfoForm = () => {
             {/* Select to display Occupation */}
             <select
               {...register("Occupation")}
-              className={`input-control appearance-none focus:outline-none ${occupationValue === "" ? "text-gray-500" : "text-black"
-                }`}
+              className={`input-control appearance-none focus:outline-none ${
+                occupationValue === "" ? "text-gray-500" : "text-black"
+              }`}
               id="Occupation"
               defaultValue=""
               // Store the selected value

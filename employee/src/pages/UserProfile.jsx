@@ -6,11 +6,56 @@ import { useTranslation } from "react-i18next";
 import Spinner from "../components/MoreElements/Spinner";
 import { PiEyeLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import customFetch from "../utils/axios";
 
 const UserProfile = () => {
   const { data, isLoading } = useData("/profile");
   const { t } = useTranslation();
 
+  const fetchContract = () =>
+    customFetch.get("/employee/contract/pdf", { responseType: "blob" });
+
+  const {
+    data: dataPdf,
+    isLoading: isLoadingPdf,
+    error: errorPdf,
+  } = useQuery({
+    queryKey: ["/employee/contract/pdf"],
+    queryFn: fetchContract,
+  });
+
+  const handleDownload = () => {
+    console.log("hello");
+
+    if (isLoadingPdf) {
+      console.log("file already download");
+      return;
+    }
+
+    if (errorPdf) {
+      console.log("error by download", errorPdf);
+      return;
+    }
+
+    if (!dataPdf) {
+      console.log("file empty");
+      return;
+    }
+
+    console.log("helloworld");
+
+    const blob = dataPdf.data;
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "contract.pdf");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  };
   if (isLoading) return <Spinner />;
 
   // Function to get localized field name
@@ -51,7 +96,10 @@ const UserProfile = () => {
               );
             })}
           <div className=" relative">
-            <button className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center">
+            <button
+              onClick={handleDownload}
+              className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
+            >
               {t("userProfile.downloadContract")}
               <span>
                 <HiOutlineDownload size={24} />
