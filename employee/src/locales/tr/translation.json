@@ -1,0 +1,720 @@
+{
+    "login": {
+        "title": "Wo & Wann'a Giriş Yap",
+        "email": {
+            "placeholder": "e-posta adresi",
+            "validation": {
+                "required": "E-posta adresi gereklidir.",
+                "invalid": "Lütfen geçerli bir e-posta adresi girin.",
+                "maxLength": "Alan 255 karakterden uzun olamaz"
+            }
+        },
+        "password": {
+            "placeholder": "şifre",
+            "validation": {
+                "required": "boş bırakılamaz"
+            }
+        },
+        "rememberPassword": "Şifreyi Hatırla",
+        "forgotPassword": "Şifremi Unuttum?",
+        "loginButton": "Giriş Yap",
+        "loading": "Bekliyor..",
+        "newUser": "Yeni kullanıcı?",
+        "createAccount": "Hesap oluştur",
+        "success": "Giriş başarılı",
+        "error": "Giriş hatası",
+        "accountError": "Bu hesap çalışan hesabı değil"
+    },
+    "register": {
+        "title": "Wo & Wann'a Kaydol",
+        "firstName": {
+            "placeholder": "Ad",
+            "validation": {
+                "required": "Lütfen adınızı girin!",
+                "minLength": "Ad en az 3 karakter olmalıdır!",
+                "maxLength": "Ad en fazla 255 karakter olmalıdır."
+            }
+        },
+        "lastName": {
+            "placeholder": "Soyad",
+            "validation": {
+                "required": "Lütfen soyadınızı girin!",
+                "minLength": "Soyad en az 3 karakter olmalıdır!",
+                "maxLength": "Soyad en fazla 255 karakter olmalıdır."
+            }
+        },
+        "email": {
+            "placeholder": "E-posta Adresi",
+            "validation": {
+                "required": "Lütfen e-posta adresinizi girin!",
+                "invalid": "Lütfen geçerli bir e-posta adresi girin."
+            }
+        },
+        "password": {
+            "placeholder": "Şifre",
+            "validation": {
+                "required": "Şifre gereklidir",
+                "weak": "Şifre büyük harf, küçük harf, sayı ve özel karakter içermelidir."
+            }
+        },
+        "confirmPassword": {
+            "placeholder": "Yeni Şifreyi Onayla",
+            "validation": {
+                "required": "Lütfen şifrenizi onaylayın",
+                "mismatch": "Şifre, onay şifresi ile aynı değil"
+            }
+        },
+        "termsConditions": "Wo & Wann'ın Şartlar ve Koşullarını Kabul Ediyorum",
+        "signupButton": "Kaydol",
+        "loading": "Bekliyor..",
+        "alreadyHaveAccount": "Zaten hesabınız var mı?",
+        "loginLink": "Giriş yap",
+        "success": "Kayıt başarılı",
+        "error": "Kayıt hatası"
+    },
+    "forgotPassword": {
+        "title": "Şifremi Unuttum",
+        "description": "Şifrenizi sıfırlamak için e-posta adresinize bir e-posta alacaksınız",
+        "email": {
+            "placeholder": "e-posta adresi",
+            "validation": {
+                "required": "E-posta adresi gereklidir.",
+                "invalid": "Lütfen geçerli bir e-posta adresi girin.",
+                "maxLength": "Alan 255 karakterden uzun olamaz"
+            }
+        },
+        "sendButton": "E-posta Gönder",
+        "backToLogin": "Giriş sayfasına dön?",
+        "loginLink": "Giriş Yap",
+        "success": "Sıfırlama e-postası başarıyla gönderildi",
+        "error": "Sıfırlama e-postası gönderilemedi"
+    },
+    "resetPassword": {
+        "title": "Şifre sıfırla",
+        "description": "Lütfen hatırlayabileceğiniz bir şifre girin",
+        "password": {
+            "placeholder": "Şifre",
+            "validation": {
+                "required": "Lütfen şifrenizi girin!",
+                "weak": "Şifre büyük harf, küçük harf, sayı ve özel karakter içermelidir."
+            }
+        },
+        "confirmPassword": {
+            "placeholder": "Yeni Şifreyi Onayla",
+            "validation": {
+                "required": "Lütfen şifrenizi onaylayın",
+                "mismatch": "Şifre, onay şifresi ile aynı değil"
+            }
+        },
+        "resetButton": "Şifreyi sıfırla",
+        "success": "Şifre başarıyla sıfırlandı",
+        "error": "Şifre sıfırlanamadı"
+    },
+    "verifyEmail": {
+        "title": "E-postanızı doğrulayın!",
+        "description": "{email} adresine 6 haneli bir onay kodu e-postaladık, e-postanızı doğrulamak için lütfen kodu aşağıdaki kutuya girin.",
+        "codeField": {
+            "validation": {
+                "required": "1 haneli bir sayı girin"
+            }
+        },
+        "verifyButton": "Doğrula",
+        "resendText": "Kodunuz yok mu?",
+        "resendButton": "Kodu yeniden gönder",
+        "resendWait": "Kodu tekrar istemek için 15 dakika bekleyin",
+        "returnToSignIn": "Giriş sayfasına dön",
+        "success": "E-posta başarıyla doğrulandı",
+        "error": "E-posta doğrulanamadı"
+    },
+    "personalInfo": {
+        "title": "Kişisel bilgiler",
+        "services": {
+            "placeholder": "Bir hizmet seçin",
+            "validation": {
+                "required": "Lütfen bir hizmet seçin"
+            }
+        },
+        "occupation": {
+            "placeholder": "Bir meslek seçin",
+            "validation": {
+                "required": "Lütfen bir meslek seçin"
+            }
+        },
+        "skipButton": "Atla",
+        "submitButton": "Gönder",
+        "success": "Kişisel bilgiler başarıyla kaydedildi",
+        "error": "Kişisel bilgiler kaydedilemedi"
+    },
+    "common": {
+        "loading": "Yükleniyor...",
+        "error": "Bir hata oluştu",
+        "success": "Başarılı",
+        "applicationLayout": "Ana uygulama düzeni",
+        "mainContent": "Ana içerik alanı",
+        "close": "Kapat"
+    },
+    "language": {
+        "english": "İngilizce",
+        "german": "Almanca",
+        "turkish": "Türkçe"
+    },
+    "navigation": {
+        "jobRequest": "İş Talebi",
+        "myTasks": "Görevlerim",
+        "personalInfo": "Kişisel Bilgiler",
+        "locationInfo": "Konum Bilgileri",
+        "workingHours": "Çalışma Saatleri",
+        "notifications": "Bildirimler",
+        "language": "Dil",
+        "settings": "Ayarlar",
+        "logout": "Çıkış Yap",
+        "employee": "Çalışan"
+    },
+    "nav": {
+        "mainNavigation": "Ana gezinme menüsü"
+    },
+    "jobRequest": {
+        "completeProfile": "Profilinizi tamamlayın",
+        "completeButton": "Tamamla →",
+        "lastJobRequests": "Son iş talepleri",
+        "seeAll": "Hepsini gör",
+        "showLess": "Daha az göster",
+        "noJobRequests": "Şu anda iş talebi bulunmamaktadır. Zamanınızın tadını çıkarın!",
+        "addLocation": "konum ekle",
+        "decline": "Reddet",
+        "accept": "Kabul Et",
+        "noActiveLocations": "Çalışan için geçerli aktif konum bulunamadı.",
+        "jobDeclineSuccess": "İş başarıyla reddedildi",
+        "jobDeclineError": "İş reddedilemedi",
+        "jobAcceptSuccess": "İş başarıyla kabul edildi",
+        "jobAcceptError": "İş kabul edilemedi"
+    },
+    "tasks": {
+        "myTasks": "Görevlerim",
+        "noTasksMessage": "Burada temiz ve henüz {status} edilmiş görev yok.",
+        "seeDetails": "Detayları gör",
+        "addLocation": "konum ekle",
+        "noActiveLocations": "Çalışan için geçerli aktif konum bulunamadı.",
+        "filter": {
+            "all": "Tümü",
+            "todo": "Yapılacak",
+            "done": "Tamamlandı",
+            "progress": "Devam Ediyor",
+            "review": "İnceleme",
+            "cancelled": "İptal Edildi"
+        }
+    },
+    "userProfile": {
+        "profilePhoto": "Profil Fotoğrafı",
+        "notProvided": "Sağlanmadı",
+        "downloadContract": "Sözleşmemi İndir",
+        "fields": {
+            "username": "Kullanıcı Adı",
+            "bio": "Biyografi",
+            "email": "E-posta Adresi",
+            "firstName": "Ad",
+            "lastName": "Soyad",
+            "phone": "Telefon Numarası",
+            "phoneNumber": "Telefon Numarası",
+            "phone_number": "Telefon Numarası",
+            "gender": "Cinsiyet",
+            "birthday": "Doğum Günü",
+            "birthDate": "Doğum Tarihi",
+            "nationality": "Uyruk",
+            "address": "Adres",
+            "city": "Şehir",
+            "occupation": "Meslek",
+            "department": "Departman",
+            "created_at": "Hesap Oluşturulma",
+            "updated_at": "Son Güncelleme",
+            "id": "Kullanıcı ID",
+            "name": "Tam Ad",
+            "placeOfBirth": "Doğum Yeri",
+            "place_of_birth": "Doğum Yeri"
+        }
+    },
+    "notifications": {
+        "title": "Bildirimler",
+        "notificationsList": "Bildirimler listesi",
+        "noNotifications": "Bildirim bulunmamaktadır"
+    },
+    "jobRequestDetails": {
+        "myRequests": "Taleplerim",
+        "closeToYou": "size yakın",
+        "calculating": "Hesaplanıyor...",
+        "daysHoursMinutes": "{{days}} g , {{hours}} s, {{minutes}} dk",
+        "positionDetails": "Pozisyon Detayları",
+        "medConnectLocation": "MedConnect konumu",
+        "back": "Geri",
+        "accept": "Kabul Et",
+        "jobAcceptSuccess": "İş başarıyla kabul edildi",
+        "jobAcceptError": "İş kabul edilemedi",
+        "error": "Hata"
+    },
+    "taskDetails": {
+        "calculating": "Hesaplanıyor...",
+        "daysHoursMinutes": "{{days}} g , {{hours}} s, {{minutes}} dk",
+        "closeToYou": "size yakın",
+        "positionDetails": "Pozisyon Detayları",
+        "workDurationToday": "Bugün çalışma süresi",
+        "medConnectLocation": "MedConnect konumu",
+        "onMyWay": "Yoldayım",
+        "arrived": "Vardım",
+        "startWork": "İşe Başla",
+        "endWork": "İşi Bitir",
+        "reportTask": "Görev Bildir",
+        "back": "Geri",
+        "onYourWay": "Yoldasınız",
+        "taskTimeout": "Görev zaman aşımına uğradı",
+        "workStarted": "İş başarıyla başladı",
+        "workEnded": "İş başarıyla sona erdi"
+    },
+    "reportTask": {
+        "officialComplaint": "Resmi Şikayet",
+        "subjectPlaceholder": "Şikayet Konusu: ",
+        "sendComplaint": "Şikayeti Gönder"
+    },
+    "locationInfo": {
+        "title": "Konum Bilgileri",
+        "addresses": "Adresler",
+        "addNewAddress": "Yeni Adres Ekle",
+        "noAddressMessage": "Şu anda adres bulunmamaktadır, lütfen bir adres ekleyin.",
+        "addressNumber": "Adres {{number}}",
+        "active": "Aktif",
+        "activate": "Aktifleştir",
+        "primary": "Birincil",
+        "commutingRange": "Kabul Edilebilir Yolculuk Mesafeniz:",
+        "locationDeleteSuccess": "Konum başarıyla silindi",
+        "locationDeleteError": "Konum silinemedi",
+        "locationActivateSuccess": "Konum başarıyla aktifleştirildi",
+        "locationActivateError": "Konum aktifleştirilemedi",
+        "mapView": "{{address}} için harita görünümü",
+        "locationMarker": "{{address}} için konum işaretçisi"
+    },
+    "addLocation": {
+        "title": "Yeni Konum Ekle",
+        "primaryLocation": "Bu birincil konum olacak",
+        "alternateLocation": "Bu alternatif konum olacak",
+        "fields": {
+            "title": "başlık",
+            "street": "sokak",
+            "house": "ev",
+            "postalCode": "Posta kodu",
+            "city": "Şehir",
+            "country": "Ülke"
+        },
+        "validation": {
+            "titleRequired": "Başlık gereklidir",
+            "streetRequired": "Sokak1 adı gereklidir",
+            "street2Required": "Sokak2 gereklidir",
+            "postalCodeRequired": "Posta kodu en az 4 karakter olmalıdır",
+            "postalCodeNumber": "Posta kodu bir sayı olmalıdır",
+            "cityRequired": "Şehir gereklidir",
+            "countryRequired": "Ülke gereklidir"
+        },
+        "back": "Geri",
+        "next": "İleri",
+        "sendLocationError": "konum gönderme hatası"
+    },
+    "editLocation": {
+        "title": "konumu düzenle",
+        "description": "Site verilerinizi düzenleyin ve yeni site kaydedilecek.",
+        "fields": {
+            "title": "başlık",
+            "street": "Sokak",
+            "house": "ev",
+            "postalCode": "Posta kodu",
+            "city": "Şehir",
+            "country": "Ülke"
+        },
+        "back": "Geri",
+        "edit": "Düzenle"
+    },
+    "workAbilities": {
+        "title": "İş yetenekleri",
+        "description": "İş yeteneklerinizi düzenlemeyi tamamlayın",
+        "distanceDescription": "İş Yetenekleri: Lütfen iş yerinize ulaşmak için seyahat etmeye istekli olduğunuz maksimum mesafeyi (kilometre cinsinden) belirtin.",
+        "determineDistance": "Mesafeyi belirle",
+        "kmLabel": "km",
+        "distanceRequired": "Mesafe gereklidir",
+        "distanceNumber": "Mesafe bir sayı olmalıdır",
+        "back": "Geri",
+        "next": "İleri"
+    },
+    "personalInfoSections": {
+        "personalInfo": "Kişisel Bilgiler",
+        "phoneNumber": "Telefon numaranız",
+        "residenceInfo": "ikamet bilgileri",
+        "bankingInfo": "Bankacılık Bilgileri",
+        "socialSecurity": "Sosyal Güvenlik ve Sağlık Sigortası",
+        "requiredDocuments": "Gerekli belgeler",
+        "yourLocations": "Konumlarınız",
+        "employmentData": "İstihdam Uygunluğu ve Sağlık Bilgileri",
+        "signature": "İmzanız",
+        "complete": "Tamamla",
+        "pending": "Bekliyor",
+        "completed": "Tamamlandı",
+        "rejected": "Reddedildi"
+    },
+    "completePersonalInfo": {
+        "title": "Kişisel Bilgileri Tamamla",
+        "description": "Lütfen bilgilerinizi tamamlayın ve süreci devam ettirin",
+        "fields": {
+            "username": "Kullanıcı Adı",
+            "bio": "Biyografi",
+            "birthday": "Doğum Günü GG.AA.YYYY",
+            "gender": "Cinsiyet"
+        },
+        "genderOptions": {
+            "male": "Erkek",
+            "female": "Kadın",
+            "other": "Diğer"
+        },
+        "validation": {
+            "usernameRequired": "Kullanıcı adı gereklidir",
+            "usernameMinLength": "Kullanıcı adı en az 3 karakter olmalıdır",
+            "bioRequired": "Biyografi gereklidir",
+            "birthdayRequired": "Doğum günü gereklidir",
+            "birthdayFormat": "Lütfen tarihi GG.AA.YYYY formatında girin",
+            "genderRequired": "Lütfen bir cinsiyet seçin"
+        },
+        "back": "Geri",
+        "submit": "Gönder",
+        "success": "Kişisel bilgiler başarıyla kaydedildi",
+        "error": "Bir şeyler ters gitti!"
+    },
+    "phoneNumber": {
+        "title": "Telefon Numaranız",
+        "description": "Lütfen doğrulama için telefon numaranızı girin",
+        "fields": {
+            "phoneNumber": "Telefon Numarası"
+        },
+        "validation": {
+            "phoneRequired": "Telefon numarası gereklidir",
+            "phoneFormat": "Lütfen geçerli bir telefon numarası girin"
+        },
+        "sendOtp": "OTP Gönder",
+        "verifyOtp": "OTP Doğrula",
+        "resendOtp": "OTP Yeniden Gönder",
+        "back": "Geri",
+        "success": "Telefon numarası başarıyla doğrulandı",
+        "error": "Telefon numarası doğrulanamadı"
+    },
+    "residenceInfo": {
+        "title": "İkamet bilgilerini tamamla",
+        "description": "Lütfen bilgilerinizi tamamlayın ve süreci devam ettirin",
+        "fields": {
+            "nationality": "Uyruk",
+            "residencePermit": "İkamet İzni",
+            "workPermit": "çalışma izniniz var mı?",
+            "placeOfBirth": "Doğum yeri",
+            "permitValidUntil": "izin şu tarihe kadar geçerli GG.AA.YYYY",
+            "workPermitDocument": "Çalışma izni belgesi",
+            "idCopyTitle": "Kimlik kartı / pasaport kopyası"
+        },
+        "validation": {
+            "nationalityRequired": "Uyruk gereklidir",
+            "residencePermitRequired": "İkamet izni bilgisi gereklidir",
+            "workPermitRequired": "Çalışma izni bilgisi gereklidir"
+        },
+        "back": "Geri",
+        "submit": "Gönder",
+        "success": "İkamet bilgileri başarıyla kaydedildi",
+        "error": "İkamet bilgileri kaydedilemedi"
+    },
+    "bankingInfo": {
+        "title": "Bankacılık Bilgilerini Tamamla",
+        "description": "Lütfen bankacılık bilgilerinizi tamamlayın",
+        "fields": {
+            "bankName": "Banka Adı",
+            "iban": "IBAN",
+            "bic": "BIC",
+            "accountHolder": "Hesap sahibi"
+        },
+        "bankCard": "Banka kartı",
+        "uploadBankCard": "Kartın ön yüzünü yükle",
+        "validation": {
+            "bankNameRequired": "Banka adı gereklidir",
+            "ibanRequired": "IBAN gereklidir",
+            "ibanFormat": "Lütfen geçerli bir IBAN girin",
+            "bicRequired": "BIC/SWIFT kodu gereklidir",
+            "accountHolderRequired": "Hesap sahibi adı gereklidir"
+        },
+        "back": "Geri",
+        "submit": "Gönder",
+        "success": "Bankacılık bilgileri başarıyla kaydedildi",
+        "error": "Bankacılık bilgileri kaydedilemedi"
+    },
+    "socialSecurity": {
+        "title": "Sosyal Güvenlik ve Sağlık Sigortasını Tamamla",
+        "description": "Lütfen Sosyal güvenlik ve Sağlık Sigortası detaylarınızı tamamlayın",
+        "fields": {
+            "socialSecurityNumber": "Sosyal sigorta numarası",
+            "healthInsurance": "sağlık sigortası şirketi adı",
+            "insuranceNumber": "Sağlık sigortası numarası",
+            "taxIdentificationNumber": "Vergi kimlik numarası",
+            "taxBracket": "Vergi dilimi",
+            "maritalStatus": "Medeni durum",
+            "healthInsuranceType": "Sağlık sigortası türü",
+            "numberOfChildren": "Çocuk sayısı"
+        },
+        "maritalStatusOptions": {
+            "single": "Bekar",
+            "married": "Evli",
+            "divorced": "Boşanmış",
+            "widowed": "Dul"
+        },
+        "insuranceTypeOptions": {
+            "public": "Devlet",
+            "private": "Özel"
+        },
+        "validation": {
+            "socialSecurityRequired": "Sosyal güvenlik numarası gereklidir",
+            "healthInsuranceRequired": "Sağlık sigortası sağlayıcısı gereklidir",
+            "insuranceNumberRequired": "Sigorta numarası gereklidir"
+        },
+        "back": "Geri",
+        "submit": "Gönder",
+        "success": "Sosyal güvenlik bilgileri başarıyla kaydedildi",
+        "error": "Sosyal güvenlik bilgileri kaydedilemedi"
+    },
+    "documents": {
+        "title": "Gerekli Belgeler",
+        "description": "Lütfen gerekli belgeleri yükleyin",
+        "uploadDocument": "Belge Yükle",
+        "removeDocument": "Kaldır",
+        "supportedFormats": "Desteklenen formatlar: PDF, JPG, PNG",
+        "maxFileSize": "Maksimum dosya boyutu: 10MB",
+        "uploadAllRequired": "Ekle'ye basmadan önce lütfen tüm gerekli belgeleri yükleyin.",
+        "uploading": "Belgeleriniz yükleniyor, lütfen bekleyin...",
+        "documentTypes": {
+            "id": "Kimlik Belgesi",
+            "passport": "Pasaport",
+            "residencePermit": "İkamet İzni",
+            "workPermit": "Çalışma İzni",
+            "cv": "CV/Özgeçmiş",
+            "certificates": "Sertifikalar"
+        },
+        "validation": {
+            "documentRequired": "Bu belge gereklidir",
+            "invalidFormat": "Geçersiz dosya formatı",
+            "fileTooLarge": "Dosya boyutu çok büyük"
+        },
+        "back": "Geri",
+        "submit": "Ekle",
+        "success": "Belgeler başarıyla yüklendi",
+        "error": "Belgeler yüklenemedi"
+    },
+    "employmentData": {
+        "title": "İstihdam Uygunluğu ve Sağlık Bilgileri",
+        "description": "Lütfen istihdam uygunluğu ve sağlık bilgilerinizi sağlayın",
+        "fields": {
+            "workEligibility": "İş Uygunluğu Durumu",
+            "healthConditions": "Herhangi Bir Sağlık Durumu",
+            "allergies": "Alerjiler",
+            "medications": "Mevcut İlaçlar",
+            "highestDegree": "En yüksek eğitim yeterliliğiniz nedir?",
+            "vocationalTraining": "Meslek eğitiminiz var mı?",
+            "pregnancy": "Hamile misiniz?",
+            "coronaVaccine": "Corona'ya karşı aşılı mısınız?",
+            "hepatitisVaccine": "Hepatit'e karşı aşılı mısınız?",
+            "ageConfirmation": "18 yaşından büyük müsünüz?"
+        },
+        "qualificationOptions": {
+            "technical": "Teknik/Abitur",
+            "intermediate": "Orta okul mezuniyet sertifikası",
+            "secondary": "Lise/ilkokul mezuniyet sertifikası",
+            "none": "Okul mezuniyet sertifikası olmadan"
+        },
+        "yesNoOptions": {
+            "yes": "Evet",
+            "no": "Hayır"
+        },
+        "termsAcceptance": "Kabul ediyorum",
+        "termsAndConditions": "şartlar ve koşullar",
+        "validation": {
+            "workEligibilityRequired": "İş uygunluğu durumu gereklidir",
+            "healthConditionsRequired": "Sağlık durumu bilgisi gereklidir"
+        },
+        "back": "Geri",
+        "submit": "Gönder",
+        "success": "İstihdam verileri başarıyla kaydedildi",
+        "error": "İstihdam verileri kaydedilemedi"
+    },
+    "signature": {
+        "title": "İmzayı Tamamla",
+        "description": "Lütfen İmzanızı Tamamlayın",
+        "yourSignature": "İmzanız",
+        "uploadSignature": "İmza Yükle",
+        "drawSignature": "İmza Çiz",
+        "clearSignature": "Temizle",
+        "deleteSignature": "Sil",
+        "signHere": "Buraya imzala",
+        "orUpload": "veya İmzanızı Yükleyin",
+        "validation": {
+            "signatureRequired": "Lütfen bir imza sağlayın",
+            "invalidFormat": "İmza PNG, JPG veya JPEG görüntüsü olmalıdır",
+            "fileTooLarge": "İmza 2MB'den küçük olmalıdır"
+        },
+        "back": "Geri",
+        "submit": "Gönder",
+        "showSignature": "İmzayı Göster",
+        "close": "Kapat",
+        "success": "İmza başarıyla kaydedildi",
+        "error": "İmza kaydedilemedi"
+    },
+    "workingHours": {
+        "title": "Toplam Saatler",
+        "noDataMessage": "Henüz çalışma saati kaydedilmemiş.",
+        "workingHoursChart": "Çalışma Saatleri",
+        "dateLabel": "Tarih:",
+        "filter": {
+            "filterBy": "Filtrele",
+            "last7Days": "Son 7 gün",
+            "last14Days": "Son 14 gün",
+            "last28Days": "Son 28 gün",
+            "last90Days": "Son 90 gün",
+            "last365Days": "Son 365 gün",
+            "lifetime": "Tüm zamanlar"
+        },
+        "monthNames": {
+            "january": "Ocak",
+            "february": "Şubat",
+            "march": "Mart",
+            "april": "Nisan",
+            "may": "Mayıs",
+            "june": "Haziran",
+            "july": "Temmuz",
+            "august": "Ağustos",
+            "september": "Eylül",
+            "october": "Ekim",
+            "november": "Kasım",
+            "december": "Aralık"
+        },
+        "monthAbbreviations": {
+            "jan": "Oca",
+            "feb": "Şub",
+            "mar": "Mar",
+            "apr": "Nis",
+            "may": "May",
+            "jun": "Haz",
+            "jul": "Tem",
+            "aug": "Ağu",
+            "sep": "Eyl",
+            "oct": "Eki",
+            "nov": "Kas",
+            "dec": "Ara"
+        }
+    },
+    "formElements": {
+        "buttons": {
+            "add": "Ekle",
+            "cancel": "İptal",
+            "back": "Geri",
+            "next": "İleri",
+            "submit": "Gönder",
+            "save": "Kaydet",
+            "edit": "Düzenle",
+            "delete": "Sil",
+            "confirm": "Onayla",
+            "close": "Kapat"
+        },
+        "fileUploader": {
+            "dropFiles": "Dosyaları buraya bırakın veya tıklayın",
+            "browse": "gözat",
+            "throughDevice": "cihazınızdan"
+        },
+        "imageUploader": {
+            "allowedFormats": "İzin verilen *.jpeg, *.jpg, *.png, *.gif",
+            "maxSize": "Maksimum boyut 3.1 MB",
+            "altText": "avatar önizleme"
+        },
+        "successPopup": {
+            "title": "Talebiniz başarıyla gönderildi",
+            "description": "Verileriniz yönetici tarafından incelenecek ve size yanıt gönderilecektir"
+        },
+        "validation": {
+            "required": "Bu alan gereklidir",
+            "invalidFormat": "Geçersiz format",
+            "fileTooLarge": "Dosya boyutu çok büyük"
+        }
+    },
+    "userProfileComponents": {
+        "profilePhoto": {
+            "saveButton": "kaydet",
+            "successMessage": "profil fotoğrafınız başarıyla değiştirildi.",
+            "errorMessage": "Bir şeyler ters gitti!",
+            "validation": {
+                "acceptedTypes": "Sadece .jpeg, .jpg, .png, .gif dosyaları kabul edilir",
+                "maxFileSize": "Maksimum dosya boyutu 3.1 MB"
+            }
+        }
+    },
+    "accessibility": {
+        "loading": "Yükleniyor...",
+        "loadingContent": "İçerik yükleniyor, lütfen bekleyin",
+        "skipToContent": "Ana içeriğe geç",
+        "closeDialog": "Pencereyi kapat",
+        "menu": "Menü",
+        "navigation": "Navigasyon",
+        "searchResults": "Arama sonuçları",
+        "noResults": "Sonuç bulunamadı",
+        "error": "Hata",
+        "success": "Başarılı",
+        "warning": "Uyarı",
+        "info": "Bilgi",
+        "profileImage": "Profil resmi",
+        "uploadImage": "Resim yükle",
+        "removeImage": "Resmi kaldır",
+        "selectOption": "Bir seçenek seçin",
+        "openDropdown": "Açılır menüyü aç",
+        "closeDropdown": "Açılır menüyü kapat",
+        "previousPage": "Önceki sayfa",
+        "nextPage": "Sonraki sayfa",
+        "currentPage": "Mevcut sayfa",
+        "toggleNotifications": "Bildirimleri aç/kapat",
+        "languageSelector": "Dil seçici",
+        "openLanguageMenu": "Dil menüsünü aç",
+        "closeLanguageMenu": "Dil menüsünü kapat"
+    },
+    "errorBoundary": {
+        "title": "Bir şeyler ters gitti",
+        "description": "Üzgünüz, beklenmeyen bir şey oldu. Lütfen sayfayı yenileyin veya sorun devam ederse destek ile iletişime geçin.",
+        "refresh": "Sayfayı Yenile",
+        "goHome": "Ana Sayfaya Git",
+        "reportError": "Hata Bildir",
+        "errorDetails": "Hata Detayları",
+        "showDetails": "Detayları Göster",
+        "hideDetails": "Detayları Gizle",
+        "errorLabel": "Hata:",
+        "componentStackLabel": "Bileşen Yığını:"
+    },
+    "performance": {
+        "optimizing": "Optimize ediliyor...",
+        "retrying": "Yeniden deneniyor...",
+        "connectionError": "Bağlantı hatası",
+        "tryAgain": "Tekrar dene",
+        "offline": "Çevrimdışısınız",
+        "online": "Tekrar çevrimiçisiniz"
+    },
+    "taskComponents": {
+        "manualScannerEntry": "Manuel tarayıcı numarası girişi",
+        "confirmationPopup": "Girilen bilgiler doğru mu?",
+        "noEdit": "Hayır, düzenlemek istiyorum",
+        "yesConfirm": "Evet, onayla"
+    },
+    "locationEdit": {
+        "title": "Konumu Düzenle",
+        "description": "Site verilerinizi düzenleyin ve yeni site kaydedilecek."
+    },
+    "phoneNumberAdd": {
+        "addNumber": "Numara ekle"
+    },
+    "status": {
+        "uploaded": "Yüklendi"
+    },
+    "taskExample": {
+        "title": "başlık: Evimizde bize yardım edin",
+        "price": "fiyat: yaklaşık 50$"
+    }
+}

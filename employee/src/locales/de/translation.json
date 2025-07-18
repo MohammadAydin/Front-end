@@ -155,7 +155,8 @@
     },
     "language": {
         "english": "Englisch",
-        "german": "Deutsch"
+        "german": "Deutsch",
+        "turkish": "Türkçe"
     },
     "navigation": {
         "jobRequest": "Stellenanfrage",
