@@ -15,9 +15,9 @@ const Hero = () => {
         </h2>
         <div className="HeroActions">
           <a href="https://play.google.com/store/apps/details?id=com.w.wowann">
-            <button className="DownloadBtn">
-              <HiDownload /> Download App
-            </button>
+          <button className="DownloadBtn">
+            <HiDownload /> Herunterladen
+          </button>
           </a>
           <button className="LearnMoreBtn">
             <HiOutlineSearch /> Mehr Erfahrung
