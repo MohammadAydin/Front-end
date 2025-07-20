@@ -6,7 +6,7 @@ import Datenschutzerklärung from "./pages/Datenschutzerklärung";
 
 const router = createBrowserRouter([
   {
-    path: "/landing",
+    path: "/",
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
