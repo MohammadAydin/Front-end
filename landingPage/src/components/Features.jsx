@@ -1,20 +1,35 @@
-import FeatureList from "./Feature";
+import { useTranslation } from 'react-i18next';
 
 const Features = () => {
+  const { t } = useTranslation();
+
+  const featureList = [
+    {
+      title: t('features.userBenefits.title'),
+      des: t('features.userBenefits.description'),
+      itemsList: t('features.userBenefits.items', { returnObjects: true })
+    },
+    {
+      title: t('features.elderlyHomeBenefits.title'),
+      des: t('features.elderlyHomeBenefits.description'),
+      itemsList: t('features.elderlyHomeBenefits.items', { returnObjects: true })
+    }
+  ];
+
   return (
     <div className="Features">
-      <h2>Funktionsbereich oder Vorteile bereich</h2>
+      <h2>{t('features.title')}</h2>
       <div className="FeaturesList">
-        {FeatureList?.map((feature, index) => (
+        {featureList?.map((feature, index) => (
           <div key={index} className="Feature">
             <div>
               <span>0{index + 1}</span>
               <h4>{feature.title}</h4>
             </div>
             <p>{feature.des}</p>
-            {feature.itemsList.map((item, index) => (
-              <div key={index} className="list-item">
-                <span className="index">0{index + 1}.</span>
+            {feature.itemsList.map((item, itemIndex) => (
+              <div key={itemIndex} className="list-item">
+                <span className="index">0{itemIndex + 1}.</span>
                 <p>{item}</p>
               </div>
             ))}

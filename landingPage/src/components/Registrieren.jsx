@@ -1,16 +1,16 @@
 import image from "../assets/images/registrierenImage.png";
+import { useTranslation } from 'react-i18next';
 
 const Registrieren = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="Registrieren">
-      <h2>Jetzt registrieren</h2>
+      <h2>{t('register.title')}</h2>
       <div>
         <img src={image} alt="" />
         <p>
-          Ein Dienstleistungsprojekt, das Pflegekräfte und Pflegefachkräfte mit
-          Altenheimen verbindet zusammenbringt. Über dieses Projekt können
-          Altenheime bei bedarf eine Pflegekraft oder einen Assistenten
-          anfordern, und diese können die Anfrageannehmen und darauf reagieren
+          {t('register.description')}
         </p>
       </div>
     </div>

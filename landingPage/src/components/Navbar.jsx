@@ -2,8 +2,12 @@ import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import logo from "../assets/images/Logo.svg";
 import { HiOutlineViewList } from "react-icons/hi";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = ({ isOpen, setIsOpen }) => {
+  const { t } = useTranslation();
+
   return (
     <header>
       <div className="Navbar">
@@ -13,21 +17,22 @@ const Navbar = ({ isOpen, setIsOpen }) => {
         <div>
           <ul>
             <li>
-              <RouterLink to={"/"}>Startseite</RouterLink>
+              <RouterLink to={"/"}>{t('nav.home')}</RouterLink>
             </li>
             <li>
               <ScrollLink to="Registrieren" smooth={true} duration={500}>
-                Über uns
+                {t('nav.about')}
               </ScrollLink>
             </li>
             <li>
               <ScrollLink to="Contact" smooth={true} duration={500}>
-                Kontakt
+                {t('nav.contact')}
               </ScrollLink>
             </li>
           </ul>
+          <LanguageSwitcher />
           <a className="SignInBtn" href="https://user.woundwann.de/">
-            Anmelden
+            {t('nav.signIn')}
           </a>
         </div>
         <div onClick={() => setIsOpen(!isOpen)} className="NavIcon">

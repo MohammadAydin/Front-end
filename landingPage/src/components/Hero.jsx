@@ -1,25 +1,27 @@
 import image from "../assets/images/HeroImage.png";
 import { HiDownload, HiOutlineSearch } from "react-icons/hi";
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="Hero">
       <div>
         <h1>
-          Pflegekräfte und Altenheime unkompliziert vernetzen – mit
-          <span> Wo & Wann</span>
+          {t('hero.title')}
+          <span> {t('common.brandName')}</span>
         </h1>
         <h2>
-          Pflegekraft oder Einrichtung? Werden Sie mit nur wenigen Klicks Teil
-          eines starken Netzwerks – einfach registrieren und loslegen!
+          {t('hero.subtitle')}
         </h2>
         <div className="HeroActions">
           <button className="DownloadBtn">
-            <p className="Warning">Unsere App kommt bald</p>
-            <HiDownload /> Herunterladen
+           
+            <HiDownload /> {t('hero.download')}
           </button>
           <button className="LearnMoreBtn">
-            <HiOutlineSearch /> Mehr Erfahrung
+            <HiOutlineSearch /> {t('hero.learnMore')}
           </button>
         </div>
       </div>

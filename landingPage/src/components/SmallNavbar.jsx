@@ -1,7 +1,11 @@
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const SmallNavbar = ({ isOpen, setIsOpen }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {isOpen && (
@@ -10,7 +14,7 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
             <ul>
               <li>
                 <RouterLink onClick={() => setIsOpen(false)} to={"/"}>
-                  Startseite
+                  {t('nav.home')}
                 </RouterLink>
               </li>
               <li>
@@ -20,7 +24,7 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                 >
-                  Über uns
+                  {t('nav.about')}
                 </ScrollLink>
               </li>
               <li>
@@ -30,12 +34,13 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                 >
-                  Kontakt
+                  {t('nav.contact')}
                 </ScrollLink>
               </li>
             </ul>
+            <LanguageSwitcher />
             <a className="SignInBtn" href="https://user.woundwann.de/">
-              Anmelden
+              {t('nav.signIn')}
             </a>
           </div>
         </div>

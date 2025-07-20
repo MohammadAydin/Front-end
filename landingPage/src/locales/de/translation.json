@@ -1,0 +1,94 @@
+{
+    "nav": {
+        "home": "Startseite",
+        "about": "Über uns",
+        "contact": "Kontakt",
+        "signIn": "Anmelden"
+    },
+    "hero": {
+        "title": "Pflegekräfte und Altenheime unkompliziert vernetzen – mit",
+        "subtitle": "Pflegekraft oder Einrichtung? Werden Sie mit nur wenigen Klicks Teil eines starken Netzwerks – einfach registrieren und loslegen!",
+        "appComingSoon": "Unsere App kommt bald",
+        "download": "Unsere App herunterladen",
+        "learnMore": "Mehr Erfahrung"
+    },
+    "nextStep": {
+        "caregiverTitle": "bereit für den nächsten schritt?",
+        "caregiverDescription": "Find deinen passenden Minijob noch heute mit",
+        "employerTitle": "Bereit für qualifiziertes Personal?",
+        "employerDescription": "Finden Sie zuverlässige Pflegekräfte – noch heute mit"
+    },
+    "register": {
+        "title": "Jetzt registrieren",
+        "description": "Ein Dienstleistungsprojekt, das Pflegekräfte und Pflegefachkräfte mit Altenheimen verbindet zusammenbringt. Über dieses Projekt können Altenheime bei bedarf eine Pflegekraft oder einen Assistenten anfordern, und diese können die Anfrageannehmen und darauf reagieren"
+    },
+    "features": {
+        "title": "Funktionsbereich oder Vorteile bereich",
+        "userBenefits": {
+            "title": "Vorteile für Benutzer",
+            "description": "Mit unserer App kannst du dich ganz einfach und unkompliziert auf einen Job haben.",
+            "items": [
+                "Einfache Verbindungen",
+                "Flexibler Arbeitsplan",
+                "Flexibler Arbeitsort",
+                "Erhalten Sie Ihren Job ohne Vorstellungsgespräch",
+                "Ausserdem benötigen Sie keinen lebenslauf",
+                "Es gibt viel Flexibilität bei der Arbeit"
+            ]
+        },
+        "elderlyHomeBenefits": {
+            "title": "Vorteile für Altenheime",
+            "description": "Mit unserem Service können Sie jederzeit  Personal anfordern. Ohne Zeitverlust, ohne Stress und zu festen Preisen. Die smarte Lösung für Unternehmen, die flexibel und kosteneffizient planen möchten.",
+            "items": [
+                "Verfügbare Mitarbeiteren 24/7",
+                "Einfache Suche Nach Mitarbeitern",
+                "Alles Auf Einer Plattform",
+                "Feste Preise – keine Verhandlungen nötig, keine Zeitverschwendung.",
+                "Sie Können Sogar Nach Den Nächsten Mitarbeitern Suchen!",
+                "Sparen Sie Zeit",
+                "Erhalten Sie zugang zu all Ihren Analysen jederzeit"
+            ]
+        }
+    },
+    "howItWorks": {
+        "title": "Wie funktioniert Wo & Wann",
+        "steps": [
+            {
+                "title": "Anmelden",
+                "description": "Erstellen Sie ein Konto als Pflegekraft oder Altenheim"
+            },
+            {
+                "title": "Jobanfrage stellen oder annehmen",
+                "description": "Altenheime können Anfragen stellen, die Pflegekräfte direkt annehmen können."
+            },
+            {
+                "title": "Vollständiger Online-Service",
+                "description": "Ohne Komplikationen, Aufwand oder Anrufe"
+            }
+        ]
+    },
+    "contact": {
+        "title": "Kontakt",
+        "description": "Haben Sie Fragen? Kontaktieren Sie uns direkt bei E-Mail oder über das Kontaktformular auf dieser Seite.",
+        "name": "Vollständig Namen",
+        "email": "Email Addresse",
+        "phone": "Kontakt Nummer",
+        "subject": "Betreff",
+        "message": "Nachricht",
+        "send": "Senden",
+        "successMessage": "Nachricht erfolgreich gesendet!",
+        "errorMessage": "Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.",
+        "office": "Büro",
+        "emailTitle": "E-Mail",
+        "phoneTitle": "Kontakt Nummer"
+    },
+    "footer": {
+        "copyright": "Copyrights © 2025 All Rights Reserved by",
+        "company": "WoundWann",
+        "impressum": "Impressum",
+        "privacy": "Datenschutzerklärung"
+    },
+    "common": {
+        "brandName": "Wo & Wann"
+    }
+}
