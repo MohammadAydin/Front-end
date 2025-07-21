@@ -7,8 +7,12 @@ const Navbar = ({ isOpen, setIsOpen }) => {
   return (
     <header>
       <div className="Navbar">
-        <RouterLink to={"/"}>
-          <img src={logo} alt="logo" />
+        <RouterLink to={"https://woundwann.s3.eu-central-1.amazonaws.com/company/logos/logo_de_h_.png"}>
+          <img
+            className=""
+            src="https://woundwann.s3.eu-central-1.amazonaws.com/company/logos/logo_de_h_.png"
+            alt="logo"
+          />
         </RouterLink>
         <div>
           <ul>
