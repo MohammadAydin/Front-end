@@ -1,20 +1,23 @@
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="Footer">
       <div className="FooterAction">
         <div className="Links">
           <Link onClick={() => window.scrollTo(0, 0)} to={"/Impressum"}>
-            Impressum
+            {t('footer.impressum')}
           </Link>
           <Link
             onClick={() => window.scrollTo(0, 0)}
             to={"/Datenschutzerklärung"}
           >
-            Datenschutzerklärung
+            {t('footer.privacy')}
           </Link>
         </div>
 
@@ -40,7 +43,7 @@ const Footer = () => {
         <hr />
       </div>
       <p>
-        Copyrights © 2025 All Rights Reserved by <span>WoundWann</span>
+        {t('footer.copyright')} <span>{t('footer.company')}</span>
       </p>
     </div>
   );

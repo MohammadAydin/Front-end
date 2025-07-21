@@ -24,14 +24,14 @@ const NotificationsContainer = ({
   // Handle Escape key
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape' && notificationIsOpen) {
+      if (event.key === "Escape" && notificationIsOpen) {
         setNotificationIsOpen(false);
       }
     };
 
     if (notificationIsOpen) {
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
     }
   }, [notificationIsOpen, setNotificationIsOpen]);
 
@@ -57,7 +57,9 @@ const NotificationsContainer = ({
             role="document"
           >
             <div className="flex justify-between items-center mb-5">
-              <h3 id="notifications-title" className="text-xl font-extrabold">{t("notifications.title")}</h3>
+              <h3 id="notifications-title" className="text-xl font-extrabold">
+                {t("notifications.title")}
+              </h3>
               <button
                 ref={closeButtonRef}
                 onClick={() => setNotificationIsOpen(false)}
@@ -81,6 +83,7 @@ const NotificationsContainer = ({
                     title={notification.title}
                     message={notification.message}
                     type={notification.type}
+                    type_details={notification.type_details}
                     created_at={notification.created_at}
                     read_at={notification.read_at}
                   />

@@ -1,0 +1,94 @@
+{
+    "nav": {
+        "home": "Ana Sayfa",
+        "about": "Hakkımızda",
+        "contact": "İletişim",
+        "signIn": "Giriş Yap"
+    },
+    "hero": {
+        "title": "Bakıcıları ve huzurevlerini zahmetsizce bağlayın –",
+        "subtitle": "Bakıcı mısınız yoksa tesis mi? Sadece birkaç tıklamayla güçlü bir ağın parçası olun – basitçe kayıt olun ve başlayın!",
+        "appComingSoon": "Uygulamamız yakında geliyor",
+        "download": "Uygulamayı İndirin",
+        "learnMore": "Daha Fazla Öğren"
+    },
+    "nextStep": {
+        "caregiverTitle": "Bir sonraki adım için hazır mısınız?",
+        "caregiverDescription": "Bugün mükemmel yarı zamanlı işinizi bulun",
+        "employerTitle": "Nitelikli personel için hazır mısınız?",
+        "employerDescription": "Güvenilir bakıcıları bugün bulun"
+    },
+    "register": {
+        "title": "Şimdi kayıt olun",
+        "description": "Bakıcıları ve hemşirelik uzmanlarını huzurevleriyle bağlayan bir hizmet projesi. Bu proje sayesinde huzurevleri gerektiğinde bakıcı veya asistan talep edebilir ve onlar talepleri kabul edip yanıtlayabilir"
+    },
+    "features": {
+        "title": "Özellikler veya Avantajlar Alanı",
+        "userBenefits": {
+            "title": "Kullanıcılar İçin Avantajlar",
+            "description": "Uygulamamızla kolayca ve zahmetsizce işe başvurabilirsiniz.",
+            "items": [
+                "Kolay bağlantılar",
+                "Esnek çalışma programı",
+                "Esnek çalışma yeri",
+                "Mülakat olmadan işinizi alın",
+                "Özgeçmişe de ihtiyacınız yok",
+                "İşte çok fazla esneklik var"
+            ]
+        },
+        "elderlyHomeBenefits": {
+            "title": "Huzurevleri İçin Avantajlar",
+            "description": "Hizmetimizle istediğiniz zaman personel talep edebilirsiniz. Zaman kaybı olmadan, stres olmadan ve sabit fiyatlarla. Esnek ve maliyet etkin planlama yapmak isteyen şirketler için akıllı çözüm.",
+            "items": [
+                "7/24 mevcut personel",
+                "Çalışan aramada kolaylık",
+                "Her şey tek platformda",
+                "Sabit fiyatlar – müzakere gerekmez, zaman kaybı olmaz.",
+                "En yakın çalışanları bile arayabilirsiniz!",
+                "Zaman tasarrufu",
+                "Tüm analizlerinize istediğiniz zaman erişim"
+            ]
+        }
+    },
+    "howItWorks": {
+        "title": "Wo & Wann nasıl çalışır",
+        "steps": [
+            {
+                "title": "Kaydol",
+                "description": "Bakıcı veya huzurevi olarak hesap oluşturun"
+            },
+            {
+                "title": "İş talebi gönderin veya kabul edin",
+                "description": "Huzurevleri, bakıcıların doğrudan kabul edebileceği talepler gönderebilir."
+            },
+            {
+                "title": "Tam çevrimiçi hizmet",
+                "description": "Komplikasyon, çaba veya telefon görüşmesi olmadan"
+            }
+        ]
+    },
+    "contact": {
+        "title": "İletişim",
+        "description": "Sorularınız mı var? Bize doğrudan e-posta ile veya bu sayfadaki iletişim formu üzerinden ulaşın.",
+        "name": "Tam Ad",
+        "email": "E-posta Adresi",
+        "phone": "İletişim Numarası",
+        "subject": "Konu",
+        "message": "Mesaj",
+        "send": "Gönder",
+        "successMessage": "Mesaj başarıyla gönderildi!",
+        "errorMessage": "Mesaj gönderilirken hata oluştu. Lütfen tekrar deneyin.",
+        "office": "Ofis",
+        "emailTitle": "E-posta",
+        "phoneTitle": "İletişim Numarası"
+    },
+    "footer": {
+        "copyright": "Telif Hakları © 2025 Tüm Hakları Saklıdır",
+        "company": "WoundWann",
+        "impressum": "Yasal Uyarı",
+        "privacy": "Gizlilik Politikası"
+    },
+    "common": {
+        "brandName": "Wo & Wann"
+    }
+}

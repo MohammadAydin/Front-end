@@ -1,28 +1,33 @@
 import { IoPersonAddSharp } from "react-icons/io5";
 import { IoIosCheckmarkCircle, IoMdTrophy } from "react-icons/io";
-
-const List = [
-  {
-    icon: <IoPersonAddSharp size={40} />,
-    title: "Anmelden",
-    des: "Erstellen Sie ein Konto als Pflegekraft oder Altenheim",
-  },
-  {
-    icon: <IoIosCheckmarkCircle size={40} />,
-    title: "Jobanfrage stellen oder annehmen",
-    des: "Altenheime können Anfragen stellen, die Pflegekräfte direkt annehmen können.",
-  },
-  {
-    icon: <IoMdTrophy size={40} />,
-    title: "Vollständiger Online-Service",
-    des: "Ohne Komplikationen, Aufwand oder Anrufe",
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const HowItWork = () => {
+  const { t } = useTranslation();
+
+  const stepsList = t('howItWorks.steps', { returnObjects: true });
+
+  const List = [
+    {
+      icon: <IoPersonAddSharp size={40} />,
+      title: stepsList[0].title,
+      des: stepsList[0].description,
+    },
+    {
+      icon: <IoIosCheckmarkCircle size={40} />,
+      title: stepsList[1].title,
+      des: stepsList[1].description,
+    },
+    {
+      icon: <IoMdTrophy size={40} />,
+      title: stepsList[2].title,
+      des: stepsList[2].description,
+    },
+  ];
+
   return (
     <div className="HowItWork">
-      <h2>Wie funktioniert Wo & Wann</h2>
+      <h2>{t('howItWorks.title')}</h2>
       <div className="HowItWorkList">
         {List.map((item, index) => (
           <div key={index} className="HowItWorkListItem">
