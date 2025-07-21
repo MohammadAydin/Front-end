@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App.jsx";
 // import styles from sass
 import "./sass/main.scss";
+// Import i18n configuration
+import './i18n';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

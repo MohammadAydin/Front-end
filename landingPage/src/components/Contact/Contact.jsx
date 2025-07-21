@@ -1,13 +1,18 @@
-import { ContactInputs, info } from "./Contact_index";
+import { getContactInputs, getContactInfo } from "./Contact_index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import contactSchema from "./validationSchema";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [success, setSuccess] = useState("");
   const [serverError, setServerError] = useState("");
+
+  const ContactInputs = getContactInputs(t);
+  const info = getContactInfo(t);
 
   useEffect(() => {
     if (success) {
@@ -37,24 +42,23 @@ const Contact = () => {
       });
       // تحقق من حالة الاستجابة
       if (response?.status === 200 || response?.status === 201) {
-        setSuccess("Message sent successfully!");
+        setSuccess(t('contact.successMessage'));
         setServerError("");
         reset();
       } else {
-        setServerError("Something went wrong. Please try again.");
+        setServerError(t('contact.errorMessage'));
       }
     } catch (error) {
-      setServerError("Something went wrong. Please try again.");
+      setServerError(t('contact.errorMessage'));
       setSuccess("");
     }
   };
 
   return (
     <div className="Contact">
-      <h2>Kontaktbereich</h2>
+      <h2>{t('contact.title')}</h2>
       <p>
-        Haben Sie Fragen? Kontaktieren Sie uns direkt bei E-Mail oder über das
-        Kontaktformular auf dieser Seite.
+        {t('contact.description')}
       </p>
       <div className="ContactInfo">
         <form onSubmit={handleSubmit(onSubmit)} className="ContactForm">
@@ -75,7 +79,7 @@ const Contact = () => {
           {success && <p className="successMessge">{success}</p>}
           {serverError && <p className="ErrorMessge">{serverError}</p>}
 
-          <button type="submit">Senden</button>
+          <button type="submit">{t('contact.send')}</button>
         </form>
         <div>
           {info.map((i) => (
