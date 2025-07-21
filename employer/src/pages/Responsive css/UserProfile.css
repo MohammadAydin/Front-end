@@ -1,0 +1,44 @@
+@media (max-width: 1024px) {
+  .UserProfileInfo {
+    width: 100%;
+  }
+  .contractDownloadBtn {
+    width: 100%;
+  }
+  /* ProfilePhoto component */
+  .ProfilePhoto {
+    flex-direction: column;
+  }
+  .ProfilePhoto > div {
+    width: 100%;
+  }
+  .ProfilePhoto > div > button {
+    width: 100%;
+  }
+  /* imageChange component*/
+  .ImageChange {
+    flex-direction: column;
+  }
+  .imageDetails {
+    text-align: center;
+  }
+}
+@media (max-width: 760px) {
+  .UserProfile {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+  .UserProfileInfo {
+    grid-template-columns: repeat(1, 1fr);
+    font-size: 14px;
+  }
+  .UserProfileInfo > div {
+    width: 100% !important;
+  }
+  .UserProfileInfo > div {
+    grid-column: span 1;
+  }
+  .contractDownloadBtn {
+    font-size: 14px;
+  }
+}

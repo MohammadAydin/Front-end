@@ -24,6 +24,7 @@ const UserProfile = () => {
     queryKey: ["/employee/contract/pdf"],
     queryFn: fetchContract,
   });
+  console.log(dataPdf);
 
   const handleDownload = () => {
     console.log("hello");

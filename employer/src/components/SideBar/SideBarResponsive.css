@@ -58,7 +58,7 @@
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 641px) {
   .sideBarMenu {
     animation: fadeSlideIn 0.5s forwards;
   }

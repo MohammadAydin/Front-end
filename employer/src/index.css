@@ -121,3 +121,7 @@ input:focus {
     transform: translateX(0%);
   }
 }
+
+.click{
+  cursor:pointer;
+}

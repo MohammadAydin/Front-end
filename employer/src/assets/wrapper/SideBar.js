@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   }
   .SideBar {
     background-color: #194894;
-    max-height: 100vh;
+    min-height: 100vh;
     border: 20px white solid;
     border-radius: 36px;
   }

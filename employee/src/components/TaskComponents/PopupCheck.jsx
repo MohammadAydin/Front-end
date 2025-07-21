@@ -6,10 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 // Pass confirmation props and change the state of the popup
-const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
+const PopupCheck = ({ togglePopup, idTask, handleSetLevel }) => {
   const { t } = useTranslation();
   // Storing field values and setting numeric constraints
   const schema = z.object({
@@ -49,8 +49,7 @@ const PopupCheck = ({ togglePopup, idTask, setIsEnd, setisCheckArrived }) => {
       // Print user data in the console
       console.log("Access has been verified:", response.data);
       togglePopup();
-      setIsEnd(true);
-      setisCheckArrived(false);
+      handleSetLevel(4);
       // Emptying form fields
       reset();
 

@@ -11,6 +11,7 @@ import {
   ShiftsMangment,
   UserProfile,
   Login,
+  PersonalInfo,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
       {
         path: "houseProfile",
         element: <HouseProfile />,
+        // errorElement: <SinglePageError />,
+      },
+      {
+        path: "personalInfo",
+        element: <PersonalInfo />,
         // errorElement: <SinglePageError />,
       },
       {

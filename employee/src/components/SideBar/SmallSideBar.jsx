@@ -31,9 +31,9 @@ const SmallSideBar = ({ setNotificationIsOpen }) => {
           </button>
           <Link to={"/profile"}>
             <img
-              src={avatar?.length == 0 ? profileAvatar : avatar}
+              src={avatar?.photo || profileAvatar}
               alt=""
-              className="rounded-full h-10"
+              className="w-[40px] h-[40px] object-cover rounded-full"
             />
           </Link>
         </div>

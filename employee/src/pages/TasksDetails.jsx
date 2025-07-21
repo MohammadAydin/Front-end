@@ -17,6 +17,8 @@ import PopupCheck from "../components/TaskComponents/PopupCheck";
 import { CiFileOn } from "react-icons/ci";
 import PopupCheckEnd from "../components/TaskComponents/PopupCheckEnd";
 import { useTranslation } from "react-i18next";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import PopupReview from "../components/TaskComponents/PopupReview";
 
 // Task details
 const TasksDetails = () => {
@@ -26,209 +28,104 @@ const TasksDetails = () => {
 
   // Fetch task data
   const { data: task, error, isLoading } = useJobs(`/tasks/${id}`);
-
-  // The default value is in seconds from the localStorage .
-  const [duration, setDuration] = useState(() => {
-    const savedDuration = localStorage.getItem(`task_${id}_duration`);
-    return savedDuration ? parseInt(savedDuration, 10) : 0;
-  });
-
-  // The default value is the temporary state of LocalStorage.
-  const [timerActive, setTimerActive] = useState(() => {
-    return localStorage.getItem(`task_${id}_timerActive`) === "true";
-  });
-
-  // Define the user's status as being on the road
-  const [isOnMyWay, setIsOnMyWay] = useState(false);
-  const [isArrived, setisArrived] = useState(false);
-  const [isCheckArrived, setisCheckArrived] = useState(false);
-  const [isShowPopup, setIsShowPopup] = useState(false);
-  const [isShowPopupEnd, setIsShowPopupEnd] = useState(false);
-  const [isEnd, setIsEnd] = useState(false);
-  const [isCheckEnd, setisCheckEnd] = useState(false);
-
-  // State where the default value is the timer start time.
-  const [startTime, setStartTime] = useState(() => {
-    const savedStartTime = localStorage.getItem(`task_${id}_startTime`);
-    return savedStartTime ? parseInt(savedStartTime, 10) : null;
-  });
-
-  // Reverse pop-up status
-  const togglePopup = () => {
-    setIsShowPopup(!isShowPopup);
-  };
-  // Reverse pop-up status
-  const togglePopupEnd = () => {
-    setIsShowPopupEnd(!isShowPopupEnd);
-  };
-  // State to store the remaining time to start the task
-  const [timeInfo, setTimeInfo] = useState(null);
-
-  useEffect(() => {
-    // If the data is not ready or loaded, nothing will be executed.
-    if (!task || isLoading) return;
-
-    // Function to calculate the time remaining for a task to start
-    const updateTime = () => {
-      const dateFrom = task?.job_posting?.date_from; // Task start date
-      const startTime = task?.job_posting?.shift?.start_time; // Task start date by hour according to shift
-
-      // If the timing or shift hours are not available, a warning will be printed.
-      if (!dateFrom || !startTime) {
-        console.warn("Task date or time is not available");
-        return;
-      }
-
-      // Create an object for current timing
-      const combinedDateTime = new Date(`${dateFrom}T${startTime}:00`);
-
-      // Make sure the current time is valid
-      if (isNaN(combinedDateTime.getTime())) {
-        console.warn(
-          "The current date is invalid :",
-          `${dateFrom}T${startTime}:00`
-        );
-        return;
-      }
-
-      // Calculate the difference between the current date and the task start date.
-      const now = new Date();
-      const diffInMs = combinedDateTime - now;
-      const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
-      const diffDays = Math.floor(diffInMinutes / (60 * 24));
-      const diffHours = Math.floor((diffInMinutes % (60 * 24)) / 60);
-      const diffMins = diffInMinutes % 60;
-
-      // Update status and time information
-      setTimeInfo({
-        dateString: dateFrom,
-        timeString: startTime,
-        diffDays,
-        diffHours,
-        diffMinutes: diffMins,
-      });
-    };
-
-    // Call function
-    updateTime();
-
-    // Call the function every minute to update the time.
-    const intervalId = setInterval(updateTime, 60000);
-
-    // Clean the timer
-    return () => clearInterval(intervalId);
-
-    // Update use effect based on tasks or load
-  }, [task, isLoading]);
-
-  // use effect to calculate start time
-  useEffect(() => {
-    // If the counter is not stored or the task start dates are not present
-    if (
-      !timerActive ||
-      !task?.job_posting?.date_from ||
-      !task?.job_posting?.shift?.end_time
-    ) {
-      // Don't implement anything
-      return;
-    }
-
-    // Create a task end time
-    const endTimeString = `${task.job_posting.date_from}T${task.job_posting.shift.end_time}:00`;
-    // Convert task end time to a valid date
-    const endTime = new Date(endTimeString).getTime();
-
-    // Temporary action that occurs every second
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-
-      // If the current time is greater than the task's end time
-      if (now >= endTime) {
-        // Cleans the interval
-        clearInterval(interval);
-        // Stop the timer
-        setTimerActive(false);
-        // Emptying Local Storage of Temporary Files
-        localStorage.removeItem(`task_${id}_timerActive`);
-        localStorage.removeItem(`task_${id}_duration`);
-        localStorage.removeItem(`task_${id}_startTime`);
-        toast.info(t("taskDetails.taskTimeout"));
-        return;
-      }
-
-      // If the timer has started
-      if (startTime) {
-        const newDuration = Math.floor((now - startTime) / 1000);
-        setDuration(newDuration);
-        localStorage.setItem(`task_${id}_duration`, newDuration);
-      } else {
-        // If the starting time is not present, it increases gradually.
-        setDuration((prev) => {
-          const newDuration = prev + 1;
-          localStorage.setItem(`task_${id}_duration`, newDuration);
-          return newDuration;
-        });
-      }
-    }, 1000);
-
-    // Clean the timer when finished
-    return () => clearInterval(interval);
-  }, [timerActive, task, startTime, id]);
-
-  // function on my way
-  const handleOnMyWay = () => {
-    setIsOnMyWay(true);
-    setisArrived(true);
-    toast.success(t("taskDetails.onYourWay"));
-  };
-
-  // The function has arrived
-  const handleArrived = () => {
-    setisArrived(false);
-    setisCheckArrived(true);
-
-    // He does the timer
-    setTimerActive(true);
-    // Brings the current time[]
-    const now = new Date().getTime();
-    // Saves the current time and start time.
-    setStartTime(now);
-    // Saves start time in local storage
-    localStorage.setItem(`task_${id}_startTime`, now);
-    // Save the temporary state in local storage
-    localStorage.setItem(`task_${id}_timerActive`, "true");
-
-    // Set the counter from zero
-    localStorage.setItem(`task_${id}_duration`, "0");
-    // Set the timer from zero
-    setDuration(0);
-
-    toast.success(t("taskDetails.workStarted"));
-  };
-
-  // Function to format duration to hours, minutes, and seconds
-  const formatDuration = (seconds) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hrs.toString().padStart(2, "0")}:${mins
-      .toString()
-      .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
-
-  // Map coordinates setting
   const center = task?.coordinates
-    ? {
-      lat: task.coordinates.latitude,
-      lng: task.coordinates.longitude,
-    }
+    ? { lat: task.coordinates.latitude, lng: task.coordinates.longitude }
     : { lat: 0, lng: 0 };
+
+  const queryClient = useQueryClient();
+
+  const [level, setLevel] = useState(() => {
+    const savedLevel = localStorage.getItem("level");
+    return savedLevel ? JSON.parse(savedLevel) : 1;
+  });
+
+  const [Popuparrived, setPopuparrived] = useState(false);
+  const [Popupend, setPopupend] = useState(false);
+  const [popupReview, setPopupReview] = useState(false);
+
+  const togglePopup = () => {
+    setPopuparrived(false);
+  };
+  const togglePopupend = () => {
+    setPopupend(false);
+  };
+
+  const handleSetLevel = (newLevel) => {
+    setLevel(newLevel);
+    if (newLevel === null) {
+      localStorage.removeItem("level");
+    } else {
+      localStorage.setItem("level", JSON.stringify(newLevel));
+    }
+  };
+
+  useEffect(() => {
+    if (task?.task?.status === "done") {
+      handleSetLevel(null);
+    }
+  }, [task?.task?.status]);
+  const OnMyWay = useMutation({
+    mutationFn: () =>
+      // customFetch
+      //   .post(`/matching/declineRequest/${jobId}`)
+      //   .then((res) => res.data),
+      handleSetLevel(2),
+    onSuccess: () => {
+      toast.success("ok your in way");
+    },
+    onError: (error) => {
+      toast.error("no your in way");
+    },
+  });
+
+  const arrived = useMutation({
+    mutationFn: () =>
+      // customFetch
+      //   .post(`/matching/declineRequest/${jobId}`)
+      //   .then((res) => res.data),
+
+      handleSetLevel(3),
+    onSuccess: () => {
+      toast.success("ok your arrived");
+    },
+    onError: (error) => {
+      toast.error("no your arrived");
+    },
+  });
+  const startWork = useMutation({
+    mutationFn: () =>
+      // customFetch
+      //   .post(`/matching/declineRequest/${jobId}`)
+      //   .then((res) => res.data),
+
+      setPopuparrived(true),
+    onSuccess: () => {},
+    onError: (error) => {
+      toast.error("no your arrived");
+    },
+  });
+  const endWork = useMutation({
+    mutationFn: () =>
+      // customFetch
+      //   .post(`/matching/declineRequest/${jobId}`)
+      //   .then((res) => res.data),
+
+      handleSetLevel(5),
+    onSuccess: () => {
+      toast.success("ok your end work");
+    },
+    onError: (error) => {
+      toast.error("no your arrived");
+    },
+  });
 
   // Show download or error status
   if (isLoading) return <Spinner />;
   if (error)
     return (
-      <p className="text-red-500">{t("taskDetails.error")}: {error?.response?.data?.message}</p>
+      <p className="text-red-500">
+        {t("taskDetails.error")}: {error?.response?.data?.message}
+      </p>
     );
 
   // start return
@@ -271,15 +168,7 @@ const TasksDetails = () => {
               </div>
               <div className="bg-[#FFF0E5] flex gap-1.5 items-center w-fit p-1 rounded-[6px] mt-2.5 text-[#F47621]">
                 <PiHourglassLowFill />
-                <p className="text-[0.8rem]">
-                  {timeInfo
-                    ? t("taskDetails.daysHoursMinutes", {
-                      days: timeInfo.diffDays,
-                      hours: timeInfo.diffHours,
-                      minutes: timeInfo.diffMinutes
-                    })
-                    : t("taskDetails.calculating")}
-                </p>
+                <p className="text-[0.8rem]"></p>
               </div>
               <div className="bg-[#E0FFE8] flex gap-1.5 items-center w-fit p-2 rounded-[6px] mt-2.5 text-[#34C759]">
                 <LuBanknote />
@@ -306,14 +195,9 @@ const TasksDetails = () => {
 
           {/* Work duration today*/}
           <div className="mt-8">
-            <h2 className="mb-3 text-xl">{t("taskDetails.workDurationToday")}</h2>
-            {timerActive && (
-              <div className="bg-[#FFF0E5] flex gap-1.5 items-center w-fit p-1 rounded-[6px] text-[#F47621]">
-                <img src={iconoclock} alt="iconoclock " />
-                {/* Timer format */}
-                <p className="text-[0.9rem]">{formatDuration(duration)}</p>
-              </div>
-            )}
+            <h2 className="mb-3 text-xl">
+              {t("taskDetails.workDurationToday")}
+            </h2>
           </div>
         </div>
 
@@ -348,58 +232,72 @@ const TasksDetails = () => {
 
           {/* buttons */}
           <div className="flex gap-5 mt-[30vh] justify-end max-[1109px]:mt-[6vh]">
-            {!isOnMyWay && (
+            {level == 1 && (
               <button
-                onClick={handleOnMyWay}
+                onClick={() => OnMyWay.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
                 {t("taskDetails.onMyWay")}
               </button>
             )}
-            {isArrived && (
+            {localStorage.getItem("level") == 2 && (
               <button
-                onClick={handleArrived}
+                onClick={() => arrived.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
                 {t("taskDetails.arrived")}
               </button>
             )}
-            {isCheckArrived && (
+            {localStorage.getItem("level") == 3 && (
               <button
-                onClick={() => setIsShowPopup(true)}
+                onClick={() => startWork.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
                 {t("taskDetails.startWork")}
               </button>
             )}
-
-            {isEnd && (
+            {localStorage.getItem("level") == 4 && (
               <button
-                onClick={() => setIsShowPopupEnd(true)}
+                onClick={() => endWork.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                {t("taskDetails.endWork")}
+                I am end work
+              </button>
+            )}
+            {localStorage.getItem("level") == 5 && (
+              <button
+                onClick={() => setPopupend(true)}
+                className="text-white bg-secondaryColor text-xl p-2 w-[10em] rounded-[10px]"
+              >
+                Show code end
               </button>
             )}
           </div>
-          {isShowPopup && (
-            <PopupCheck
-              togglePopup={togglePopup}
-              idTask={id}
-              setisCheckArrived={setisCheckArrived}
-              setIsEnd={setIsEnd}
-            />
-          )}
-          {isShowPopupEnd && (
-            <PopupCheckEnd
-              togglePopup={togglePopupEnd}
-              idTask={id}
-              setisCheckEnd={setisCheckEnd}
-              setIsEnd={isCheckEnd}
-            />
-          )}
         </div>
       </div>
+      {Popuparrived && (
+        <PopupCheck
+          togglePopup={togglePopup}
+          idTask={id}
+          handleSetLevel={handleSetLevel}
+        />
+      )}
+      {Popupend && (
+        <PopupCheckEnd
+          togglePopup={togglePopupend}
+          idTask={id}
+          handleSetLevel={handleSetLevel}
+          setPopupReview={setPopupReview}
+        />
+      )}
+      {popupReview && (
+        <PopupReview
+          togglePopup={togglePopupend}
+          idTask={id}
+          handleSetLevel={handleSetLevel}
+          setPopupReview={setPopupReview}
+        />
+      )}
     </div>
   );
 };

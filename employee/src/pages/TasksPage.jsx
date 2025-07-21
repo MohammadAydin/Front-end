@@ -73,9 +73,10 @@ const TasksPage = () => {
 
                 <p className="text-center">
                   {t("tasks.noTasksMessage", {
-                    status: statusTask(selectedValue).statusText === "Unknown"
-                      ? ""
-                      : statusTask(selectedValue).statusText
+                    status:
+                      statusTask(selectedValue).statusText === "Unknown"
+                        ? ""
+                        : statusTask(selectedValue).statusText,
                   })}
                 </p>
               </div>
@@ -91,10 +92,8 @@ const TasksPage = () => {
                 <img className=" rounded-4xl" src={imgjob} alt="" />
                 {/* Display price with tasks title */}
                 <div className="info">
-                  <p>{t("taskExample.title")}</p>
-                  <p className="text-softColor text-[0.8rem]">
-                    {t("taskExample.price")}
-                  </p>
+                  <p>{task.job_posting.title}</p>
+                  <p className="text-softColor text-[0.8rem]">{task.job_posting.price}</p>
                 </div>
               </div>
               <div className="min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col ">
@@ -105,8 +104,9 @@ const TasksPage = () => {
                   {t("tasks.seeDetails")}
                 </Link>
                 <div
-                  className={`${statusTask(task.status).statusColorClass
-                    } text-white py-1 w-[100px] rounded-[10px] text-center`}
+                  className={`${
+                    statusTask(task.status).statusColorClass
+                  } text-white py-1 w-[100px] rounded-[10px] text-center`}
                 >
                   {task.status}
                 </div>

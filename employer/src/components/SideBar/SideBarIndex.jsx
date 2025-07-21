@@ -1,7 +1,7 @@
 import { CiGrid41 } from "react-icons/ci";
 import { RiHome6Line, RiUserSettingsLine } from "react-icons/ri";
 import { PiBellSimpleRingingBold } from "react-icons/pi";
-import { LuBanknote, LuClock } from "react-icons/lu";
+import { LuBanknote, LuClock, LuUserRound } from "react-icons/lu";
 import {
   IoLanguage,
   IoLogOutOutline,
@@ -28,30 +28,36 @@ const pages = [
   },
   {
     id: 3,
+    name: "Personal Info",
+    icon: <LuUserRound size={24} />,
+    path: "personalInfo",
+  },
+  {
+    id: 4,
     name: "Help Requests",
     icon: <PiBellSimpleRingingBold size={24} />,
     path: "/helpRequests",
   },
   {
-    id: 4,
+    id: 5,
     name: "Invoices",
     icon: <LuBanknote size={24} />,
     path: "/invoices",
   },
   {
-    id: 5,
+    id: 6,
     name: "Leaders",
     icon: <RiUserSettingsLine size={24} />,
     path: "/Leaders",
   },
   {
-    id: 6,
+    id: 7,
     name: "Documents",
     icon: <IoDocumentTextOutline size={24} />,
     path: "/Documents",
   },
   {
-    id: 7,
+    id: 8,
     name: "Shifts Mangment",
     icon: <LuClock size={24} />,
     path: "/Shifts",
