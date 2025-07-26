@@ -1,6 +1,4 @@
-import { useState } from "react";
-import customFetch from "../../utils/axios";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import {
   AiOutlineInfoCircle,
@@ -19,27 +17,27 @@ const NotificationsList = ({
   type_details,
   read_at,
   created_at,
+  onMarkAsRead,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [locallyRead, setLocallyRead] = useState(!!read_at);
-  const queryClient = useQueryClient();
+  const [hasBeenOpened, setHasBeenOpened] = useState(false);
+  const [isRemoving, setIsRemoving] = useState(false);
 
-  const markAsReadMutation = useMutation({
-    mutationFn: () => customFetch.post(`/notifications/update/${id}`),
+  const handleToggle = () => {
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
 
-    onSuccess: () => {
-      queryClient.invalidateQueries(["notifications", "unread"]);
-    },
-  });
-
-  const handleAvatarClick = () => {
-    if (!read_at) {
+    if (newIsOpen) {
+      setHasBeenOpened(true);
+    } else if (hasBeenOpened && !read_at && !locallyRead) {
+      setIsRemoving(true);
       setLocallyRead(true);
-      markAsReadMutation.mutate();
+      onMarkAsRead(id);
+      setTimeout(() => {}, 1800);
     }
   };
 
-  // Function to get the appropriate icon based on the icon name
   const getIcon = (iconName) => {
     switch (iconName) {
       case "info-circle":
@@ -59,7 +57,6 @@ const NotificationsList = ({
     }
   };
 
-  // Function to get color classes based on the color name
   const getColorClasses = (color) => {
     switch (color) {
       case "blue":
@@ -77,7 +74,6 @@ const NotificationsList = ({
     }
   };
 
-  // Function to get background color for the unread indicator
   const getBgColorClasses = (color) => {
     switch (color) {
       case "blue":
@@ -95,29 +91,54 @@ const NotificationsList = ({
     }
   };
 
+  const formatDate = (dateString) => {
+    return dateString || "No date";
+  };
+
+  const isUnread = !read_at && !locallyRead;
+
+  if (read_at || locallyRead) {
+    return null;
+  }
+
   return (
     <div
-      className={`border-b border-[#919eab63] border-dashed py-1 overflow-hidden transition-[padding] duration-1000 ease-out w-[95%] ${
+      className={`border-b border-[#919eab63] border-dashed py-1 overflow-hidden w-[95%] ${
         isOpen ? "pb-5" : "pb-1"
+      } ${
+        isRemoving
+          ? "transition-all duration-1500 ease-out opacity-0 transform scale-75 -translate-y-8 max-h-0 py-0 border-0"
+          : "transition-all duration-300 ease-out opacity-100 transform scale-100 translate-y-0"
       }`}
+      style={{
+        transformOrigin: "center top",
+      }}
     >
       <div
-        onClick={() => {
-          setIsOpen(!isOpen), handleAvatarClick();
-        }}
-        className=" flex items-center justify-between my-4 cursor-pointer"
+        onClick={handleToggle}
+        className="flex items-center justify-between my-4 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
       >
         <div className="Notification flex items-center justify-between gap-4">
           {/* Add icon display */}
           {type_details?.icon && (
-            <div className={`text-xl ${getColorClasses(type_details.color)}`}>
+            <div
+              className={`text-xl ${getColorClasses(
+                type_details.color
+              )} flex-shrink-0`}
+            >
               {getIcon(type_details.icon)}
             </div>
           )}
-          <div>
-            <p className="NotificationTitle font-bold">{title}</p>
+          <div className="flex-1 min-w-0">
+            <p
+              className={`NotificationTitle font-bold truncate ${
+                isUnread ? "text-gray-900" : "text-gray-700"
+              }`}
+            >
+              {title}
+            </p>
             <div className="NotificationInfo flex gap-5 text-sm text-[#919EAB]">
-              <span>{created_at}</span>
+              <span>{formatDate(created_at)}</span>{" "}
               <span
                 className={
                   type_details?.color
@@ -131,30 +152,32 @@ const NotificationsList = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-5">
-          {" "}
-          {!locallyRead && (
-            <div
-              className={`w-2 h-2 rounded-full ${
-                type_details?.color
-                  ? getBgColorClasses(type_details.color)
-                  : "bg-blue-500"
-              }`}
-            ></div>
-          )}
-          <div>
-            <IoIosArrowDown
-              size={20}
-              className={`${
-                isOpen && "rotate-180"
-              } transition-all duration-300 ease-out `}
-            />
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
+            <div>
+              <IoIosArrowDown
+                size={20}
+                className={`${
+                  isOpen && "rotate-180"
+                } transition-all duration-300 ease-out text-gray-400`}
+              />
+            </div>
           </div>
         </div>
       </div>
+
       {isOpen && (
-        <div className="NotificationMessage slide-down">
-          <p>{message}</p>
+        <div className="NotificationMessage slide-down bg-gray-50 p-3 rounded-lg mx-2 mb-2">
+          <p className="text-gray-700 leading-relaxed">{message}</p>
+
+          {/* Additional information from type_details */}
+          {type_details?.description && (
+            <div className="mt-2 pt-2 border-t border-gray-200">
+              <p className="text-sm text-gray-600">
+                {type_details.description}
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>
