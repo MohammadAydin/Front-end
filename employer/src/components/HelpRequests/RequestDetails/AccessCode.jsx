@@ -2,10 +2,14 @@ import React from "react";
 import useRequestsStore from "../../../store/HelpRequestsStore";
 import { BsQrCode } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
+import useData from "../../../hooks/useData";
 
-const AccessCode = () => {
+const AccessCode = ({ id }) => {
   const { QrCode, PinCode, CodeClose } = useRequestsStore();
-  const num = [5, 2, 7, 1, 7, 5];
+  const { data: code, error, isLoading } = useData(`/employer/task/${id}/pin`);
+  const pincode = code?.data?.pin_code;
+  const num = pincode ? pincode.split("").map(Number) : [];
+  // const { data: QrCodePhoto, errorQr, isLoadingQr } = useData(`/employer/task/${id}/pin`);
 
   return (
     <div className="w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">

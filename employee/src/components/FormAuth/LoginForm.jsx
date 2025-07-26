@@ -74,6 +74,7 @@ const LoginForm = () => {
         }, 1500);
       } else {
         toast.error(t('login.accountError'));
+        setIsLoading(false)
       }
 
       // In case it doesn't work

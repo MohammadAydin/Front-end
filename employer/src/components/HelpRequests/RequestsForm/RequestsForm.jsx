@@ -7,15 +7,37 @@ import useRequestsStore from "../../../store/HelpRequestsStore";
 import { HiOutlineCheckCircle } from "react-icons/hi";
 import RequestSchema from "./Schema";
 import SubmitButtons from "../../FormElements/SubmitButtons";
+import useData from "../../../hooks/useData";
+import customFetch from "../../../utils/axios";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const inputs = [
   { name: "Title", label: "Title", type: "text" },
   { name: "Description", label: "Description", type: "text" },
 ];
-const selectOptions = ["Position", "Shifts", "Address"];
+
+const dataPosation = [
+  { name: "Pflegefachkraft", id: 1 },
+  { name: "Pflegefachassistent", id: 2 },
+  { name: "Pflegehelfer", id: 3 },
+];
+
 const RequestsForm = () => {
+  const queryClient = useQueryClient();
   const { RequestIsOpen, RequestClose, RequestDone, Done, notDone } =
     useRequestsStore();
+  const { data: dataShift, error, isLoading } = useData("/employer/shifts");
+  const {
+    data: dataLocationt,
+    errorLocation,
+    isLoadingLocation,
+  } = useData("/locations");
+  const resultLocation = dataLocationt?.data?.map((item) => ({
+    name: item.title,
+    id: item.id,
+  }));
+  const selectOptions = ["Position", "Shifts", "Address"];
 
   const {
     register,
@@ -27,15 +49,40 @@ const RequestsForm = () => {
   } = useForm({
     resolver: zodResolver(RequestSchema),
     defaultValues: {
-      ["Employee count"]: 1,
+      ["EmployeeCount"]: 1,
     },
   });
 
-  const submit = (data) => {
-    // here we will send data to backend when they finish !
-    console.log(data);
-    reset();
-    Done();
+  const submit = async (data) => {
+    try {
+      const response = await customFetch.post("/employerJobPosting", {
+        title: data.Title,
+        description: data.Description,
+        employees_required: data.EmployeeCount,
+        date_from: data.date.from.toISOString().split("T")[0],
+        date_to: data.date.to.toISOString().split("T")[0],
+        location_id: data.Address,
+        employee_positions_id: data.Position,
+        shift_id: data.Shifts,
+      });
+      queryClient.invalidateQueries(["employerJobPosting"]);
+      toast.success(response?.data?.message);
+      console.log(response?.data);
+
+      RequestClose(), reset();
+    } catch (error) {
+      console.error("Error during submission:", error?.response?.data?.message);
+      console.log({
+        title: data.Title,
+        description: data.Description,
+        employees_required: data.EmployeeCount,
+        date_from: data.date.from.toISOString().split("T")[0],
+        date_to: data.date.to.toISOString().split("T")[0],
+        location_id: Number(data.Address),
+        employee_positions_id: Number(data.Position),
+        shift_id: Number(data.Shifts),
+      });
+    }
   };
 
   return (
@@ -80,11 +127,18 @@ const RequestsForm = () => {
                       className={`${name === "Address" ? "col-span-2" : ""}`}
                     >
                       <SelectField
+                        data={
+                          name === "Shifts"
+                            ? dataShift?.data
+                            : name === "Address"
+                            ? resultLocation
+                            : dataPosation
+                        }
                         name={name}
                         errors={errors}
                         setValue={setValue}
                         register={register}
-                        value={watch("Position")}
+                        value={watch(name)}
                       />
                     </div>
                   ))}
@@ -95,7 +149,7 @@ const RequestsForm = () => {
                       register={register}
                       label={"Employee count"}
                       type={"number"}
-                      name={"Employee count"}
+                      name={"EmployeeCount"}
                       errors={errors}
                     />
                   </div>

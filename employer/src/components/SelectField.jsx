@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-const SelectField = ({ name, errors, setValue, register, value }) => {
+const SelectField = ({ data, name, errors, setValue, register, value }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectOption, setSelectOption] = useState("");
+  const [selectname, setSelectname] = useState();
 
   useEffect(() => {
     if (value == undefined) {
@@ -12,8 +13,9 @@ const SelectField = ({ name, errors, setValue, register, value }) => {
   }, [value]);
 
   const handleSelect = (value) => {
-    setSelectOption(value);
-    setValue(name, value, { shouldValidate: true });
+    setSelectOption(value.id);
+    setSelectname(value.name)
+    setValue(name, value.id, { shouldValidate: true });
     setIsOpen(false);
   };
 
@@ -30,22 +32,21 @@ const SelectField = ({ name, errors, setValue, register, value }) => {
           selectOption ? "text-black" : "text-[#919EAB]"
         }`}
       >
-        {selectOption || name}
+        {selectname || name}
         <span>
           <MdOutlineKeyboardArrowDown size={25} />
         </span>
       </button>
-
       {isOpen && (
         <div className="absolute z-50 w-full bg-white rounded-2xl shadow-2xl">
           <ul className="py-5 font-extrabold">
-            {["Option 1", "Option 2", "Option 3"].map((option) => (
+            {data?.map((option) => (
               <li
-                key={option}
+                key={option?.id}
                 onClick={() => handleSelect(option)}
                 className="my-2 p-3 pl-5 cursor-pointer hover:bg-[#919eab34]"
               >
-                {option}
+                {option?.name}
               </li>
             ))}
           </ul>

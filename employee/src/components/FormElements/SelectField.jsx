@@ -145,10 +145,10 @@ const SelectField = ({
                     ? "bg-blue-100 text-blue-800"
                     : "hover:bg-[#919eab34]"
                 }`}
-                onClick={() => handleSelect(option.value, index)}
+                onClick={() => handleSelect(option, index)}
                 onMouseEnter={() => setFocusedIndex(index)}
               >
-                {option.label}
+                {option}
               </li>
             ))}
           </ul>

@@ -13,7 +13,7 @@ const HelpRequestsHeader = () => {
       </div>
       <div className="HelpRequestsHeaderActions flex items-center justify-between w-full ">
         <div className="w-full">
-          <SearchInput />
+          {/* <SearchInput /> */}
         </div>
         <button
           className="HelpRequestsHeaderBtn flex gap-1 items-center font-[900] text-lg bg-[#F47621] text-white px-4 py-2 rounded-xl cursor-pointer min-w-fit"

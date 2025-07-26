@@ -6,6 +6,7 @@ export { default as HouseProfile } from "./HouseProfile.jsx";
 // Help Requests
 export { default as HelpRequests } from "./HelpRequests/HelpRequests.jsx";
 export { default as HelpRequestDetails } from "./HelpRequests/HelpRequestDetails.jsx";
+export { default as ServiceRequestsDetails } from "./HelpRequests/ServiceRequestsDetails.jsx";
 export { default as UserProfile } from "./UserProfile.jsx";
 
 export { default as Invoices } from "./Invoices.jsx";

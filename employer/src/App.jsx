@@ -12,6 +12,7 @@ import {
   UserProfile,
   Login,
   PersonalInfo,
+  ServiceRequestsDetails,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       {
         path: "/helpRequests/:id",
         element: <HelpRequestDetails />,
+      },
+      {
+        path: "/serviceRequestsDetails",
+        // path: "/serviceRequestsDetails/:idJop/:idServices/:task",
+        element: <ServiceRequestsDetails />,
       },
       {
         path: "/UserProfile/:id",
