@@ -7,7 +7,7 @@ const RequestsInput = ({ label, type, register, errors, name }) => {
         {label}
       </label>
       <input
-        {...register(name)}
+        {...register(name, { valueAsNumber: type === "number" })}
         className="w-full p-4 my-2 border border-[#919EAB] rounded-2xl  focus:outline-[#919EAB] "
         type={type}
         id={name}
