@@ -5,7 +5,7 @@ export const pusherConfig = {
 
   authEndpoint:
     import.meta.env.VITE_PUSHER_AUTH_ENDPOINT ||
-    `${import.meta.env.VITE_API_BASE_URL}/v1/broadcasting/auth`,
+    `${import.meta.env.VITE_API_BASE_URL}/broadcasting/auth`,
 
   connection: {
     enabledTransports: ["ws", "wss"],
