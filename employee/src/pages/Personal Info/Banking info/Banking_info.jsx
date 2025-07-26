@@ -13,7 +13,6 @@ import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
 import useData from "../../../hooks/useData";
 
-
 const Banking_info = () => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
@@ -22,12 +21,15 @@ const Banking_info = () => {
   const isUploaded = searchParams.get("uploaded") === "true";
   const { data: BankingInfo } = useData("/profile/banking-info");
 
-
   const inputs = [
-    { name: "AcountHolder", label: t('bankingInfo.fields.accountHolder'), type: "text" },
-    { name: "BankName", label: t('bankingInfo.fields.bankName'), type: "text" },
-    { name: "BIC", label: t('bankingInfo.fields.bic'), type: "text" },
-    { name: "IBAN", label: t('bankingInfo.fields.iban'), type: "text" },
+    {
+      name: "AcountHolder",
+      label: t("bankingInfo.fields.accountHolder"),
+      type: "text",
+    },
+    { name: "BankName", label: t("bankingInfo.fields.bankName"), type: "text" },
+    { name: "BIC", label: t("bankingInfo.fields.bic"), type: "text" },
+    { name: "IBAN", label: t("bankingInfo.fields.iban"), type: "text" },
   ];
 
   const addBankingMutatuin = useMutation({
@@ -47,7 +49,7 @@ const Banking_info = () => {
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('bankingInfo.error');
+        error?.response?.data?.message || t("bankingInfo.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -67,7 +69,7 @@ const Banking_info = () => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(bankingInfoSchema),
+    resolver: zodResolver(bankingInfoSchema(isUploaded)),
     defaultValues: {
       ["bankCard"]: null,
     },
@@ -82,15 +84,15 @@ const Banking_info = () => {
     }
   }, [BankingInfo, setValue]);
 
-
   const submit = (data) => {
     const formData = new FormData();
     formData.append("bank_name", data.BankName);
     formData.append("iban", data.IBAN);
     formData.append("bic", data.BIC);
     formData.append("account_holder", data.AcountHolder);
-    formData.append("bank_card_document", data.bankCard);
-
+    if (data.bankCard instanceof File) {
+      formData.append("bank_card_document", data.bankCard);
+    }
     addBankingMutatuin.mutate(formData);
   };
 
@@ -118,10 +120,10 @@ const Banking_info = () => {
           ))}
         </div>
         <div>
-          <h3 className="text-lg font-bold">{t('bankingInfo.bankCard')}</h3>
+          <h3 className="text-lg font-bold">{t("bankingInfo.bankCard")}</h3>
           <FileUploader
             name={"bankCard"}
-            label={t('bankingInfo.uploadBankCard')}
+            label={t("bankingInfo.uploadBankCard")}
             register={register}
             error={errors}
             setValue={setValue}
@@ -134,8 +136,7 @@ const Banking_info = () => {
         )}
         <SubmitButtons
           submitLabel={isUploaded ? "Submit" : "Add"}
-
-          prevLabel={t('bankingInfo.back')}
+          prevLabel={t("bankingInfo.back")}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

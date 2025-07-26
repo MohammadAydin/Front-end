@@ -17,7 +17,6 @@ import handleNationality from "../../../store/HandleNationality";
 import { useTranslation } from "react-i18next";
 import useData from "../../../hooks/useData";
 
-
 const Residence_info = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ const Residence_info = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('residenceInfo.error');
+        error?.response?.data?.message || t("residenceInfo.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -64,7 +63,7 @@ const Residence_info = () => {
     setValue,
     watch,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(residenceSchema) });
+  } = useForm({ resolver: zodResolver(residenceSchema(isUploaded)) });
 
   useEffect(() => {
     if (isUploaded && ResidenceInfo) {
@@ -91,7 +90,6 @@ const Residence_info = () => {
     }
   }, [ResidenceInfo, setValue]);
 
-
   const work_permit = watch("has_work_permit");
 
   // change the date from DD.MM.YYYY to YYYY-MM-DD
@@ -115,9 +113,10 @@ const Residence_info = () => {
         "has_work_permit",
         data.has_work_permit === "Yes" ? 1 : 0
       );
-      formData.append("work_permit_document", data.permit_document);
+      if (data.permit_document instanceof File) {
+        formData.append("work_permit_document", data.permit_document);
+      }
     }
-
 
     add_Residence_info_Mutatuin.mutate(formData);
   };
@@ -147,7 +146,7 @@ const Residence_info = () => {
               register={register}
               setValue={setValue}
               name={"has_work_permit"}
-              label={t('residenceInfo.fields.workPermit')}
+              label={t("residenceInfo.fields.workPermit")}
               errors={errors}
               Options={["Yes", "No"]}
             />
@@ -155,7 +154,7 @@ const Residence_info = () => {
           <InputField
             register={register}
             errors={errors}
-            label={t('residenceInfo.fields.placeOfBirth')}
+            label={t("residenceInfo.fields.placeOfBirth")}
             name={"place_of_birth"}
             type={"text"}
           />
@@ -166,12 +165,14 @@ const Residence_info = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={t('residenceInfo.fields.permitValidUntil')}
+                label={t("residenceInfo.fields.permitValidUntil")}
                 name={"permit_valid_until"}
                 type={"text"}
               />
             </div>
-            <p className="text-lg font-bold">{t('residenceInfo.fields.workPermitDocument')}</p>
+            <p className="text-lg font-bold">
+              {t("residenceInfo.fields.workPermitDocument")}
+            </p>
             <div>
               <FileUploader
                 name={"permit_document"}
@@ -183,7 +184,9 @@ const Residence_info = () => {
             </div>
           </>
         )}
-        <p className="text-lg font-bold">{t('residenceInfo.fields.idCopyTitle')}</p>
+        <p className="text-lg font-bold">
+          {t("residenceInfo.fields.idCopyTitle")}
+        </p>
         <div className="ID_Upload flex gap-5">
           {ID_card.map((input) => (
             <FileUploader
@@ -202,7 +205,7 @@ const Residence_info = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel={t('residenceInfo.back')}
+          prevLabel={t("residenceInfo.back")}
           onCancel={() => navigate("/Personal info")}
         />
       </form>
