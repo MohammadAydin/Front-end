@@ -20,6 +20,8 @@ const PersonalinfoForm = () => {
   // Storage services
   const [services, setServices] = useState([]);
 
+  console.log(services);
+
   // Index Storage Services
   const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);
 
@@ -59,9 +61,7 @@ const PersonalinfoForm = () => {
     );
 
     // Get the Occupation ID
-    const occupationId = selectedOccupation
-      ? selectedOccupation.id
-      : null;
+    const occupationId = selectedOccupation ? selectedOccupation.id : null;
     // Send service ID and Occupation
     // Token Header Definition and Consent
     try {
@@ -103,7 +103,7 @@ const PersonalinfoForm = () => {
           Accept: "application/json",
         },
       })
-      .then((res) => setServices(res.data.data))
+      .then((res) => setServices(res.data.data.departments))
       .catch((error) => setError(error.response?.data?.message));
   }, []);
 
@@ -142,7 +142,7 @@ const PersonalinfoForm = () => {
                 {t("personalInfo.services.placeholder")}
               </option>
               {/* Work on services */}
-              {services.map((service, index) => (
+              {services?.map((service, index) => (
                 <option key={index} value={index}>
                   {service.name}
                 </option>
