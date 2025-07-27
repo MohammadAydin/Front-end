@@ -4,7 +4,7 @@ const phoneSchema = z.object({
   phone_number: z
     .string()
     .min(6, "Phone number is too short")
-    .max(17, "Phone number is too long"),
+    .max(11, "Phone number is too long"),
 });
 
 const otpSchema = z.object({

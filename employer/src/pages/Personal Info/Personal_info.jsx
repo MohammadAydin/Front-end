@@ -22,10 +22,14 @@ const Personal_info = () => {
 
   const { data: statusData } = useData("/profile/status");
   console.log(statusData);
+  console.log(statusData?.isUploadedAllProfile);
 
   const sendAllInfo = useMutation({
+    
     mutationFn: () => customFetch.post("profile/submit/review"),
+    
     onSuccess: () => {
+      navigate("/")
       console.log("Successfully sent all personal info");
       toast.success("Successfully sent all personal info");
       // Show a success message or trigger refetch if needed
@@ -34,9 +38,11 @@ const Personal_info = () => {
       console.error("Failed to send info:", error);
       // Optional: show error to user
     },
+    
   });
 
   const handleSendAll = () => {
+    console.log("okk")
     sendAllInfo.mutate();
   };
 
@@ -96,17 +102,17 @@ const Personal_info = () => {
           </div>
         )
       )}
-      {!statusData?.isUploadedAllProfile && (
+      {!statusData?.data?.isUploadedAllProfile && (
         <p className="w-full bg-[#f4752121] my-5 px-4 py-5 rounded-lg text-[#F47621] flex gap-2 items-center">
           <AiOutlineExclamationCircle size={25} />
           Please upload all personal info before pressing Send.
         </p>
       )}
       <button
-        disabled={!statusData?.isUploadedAllProfile || sendAllInfo.isPending}
+        disabled={!statusData?.data?.isUploadedAllProfile || sendAllInfo.isPending}
         onClick={handleSendAll}
         className={`w-full text-lg font-extrabold px-10 py-2 rounded-lg mt-4 ${
-          statusData?.isUploadedAllProfile
+          statusData?.data?.isUploadedAllProfile
             ? "bg-[#F47621] text-white hover:bg-[#EE6000]"
             : "bg-gray-300 text-gray-600"
         }`}

@@ -45,11 +45,11 @@ const LocationInfo = () => {
     isLoadinglocations,
   } = useData("/locations", "locationsList");
 
-  const {
-    data: workable,
-    error,
-    isLoading,
-  } = useData("/profile/workable-distance");
+  // const {
+  //   data: workable,
+  //   error,
+  //   isLoading,
+  // } = useData("/profile/workable-distance");
 
   // To delete a locatiomn
   const deleteLocation = useMutation({
@@ -196,7 +196,7 @@ const LocationInfo = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-4 bg-white shadow-md rounded-lg max-w-md">
+          {/* <div className="flex items-center gap-3 p-4 bg-white shadow-md rounded-lg max-w-md">
             <GiPathDistance className="text-4xl text-secondaryColor" />
             <div className="w-full">
               <div className="flex justify-between w-full">
@@ -213,7 +213,7 @@ const LocationInfo = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <SuccsessPopup />

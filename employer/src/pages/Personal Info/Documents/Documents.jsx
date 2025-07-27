@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 import Spinner from "../../../components/MoreElements/Spinner";
 import { FaHourglassHalf } from "react-icons/fa6";
 
-
 const Documents = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -19,13 +18,15 @@ const Documents = () => {
   const [documents, setDocuments] = useState({}); // { document_id: File }
   const [isReady, setIsReady] = useState(false);
   const { data: requiredDocs } = useData("/user/documents");
-  console.log(documents);
+  console.log(requiredDocs);
 
   // make sure all documents is uploading
   useEffect(() => {
     if (!requiredDocs) return;
 
-    const requiredOnly = requiredDocs.filter((doc) => doc.is_required === 1);
+    const requiredOnly = requiredDocs?.data?.filter(
+      (doc) => doc.is_required === 1
+    );
 
     const allRequiredUploaded = requiredOnly.every(
       (doc) => documents[doc.id] instanceof File
@@ -50,7 +51,7 @@ const Documents = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('documents.error');
+        error?.response?.data?.message || t("documents.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -66,7 +67,6 @@ const Documents = () => {
   const isUploading = uploadDocumentsMutation.isPending;
   console.log(isUploading);
 
-
   const submit = () => {
     const formData = new FormData();
 
@@ -79,22 +79,24 @@ const Documents = () => {
 
   return (
     <div className="Documents p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t('documents.title')}</h2>
+      <h2 className="text-2xl font-bold mb-2">{t("documents.title")}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        {t('documents.description')}
+        {t("documents.description")}
       </p>
-      <div className="my-5">
-        {requiredDocs?.map((docs) => (
-          <DocumentsList
-            key={docs.id}
-            docs={docs}
-            setDocuments={setDocuments}
-          />
-        ))}
-      </div>
+      {requiredDocs && (
+        <div className="my-5">
+          {requiredDocs?.data?.map((docs) => (
+            <DocumentsList
+              key={docs.id}
+              docs={docs}
+              setDocuments={setDocuments}
+            />
+          ))}
+        </div>
+      )}
       {!isReady && (
         <p className="w-full bg-[#f4212127] py-5 text-center rounded-lg text-[#f42121] mt-2">
-          {t('documents.uploadAllRequired')}
+          {t("documents.uploadAllRequired")}
         </p>
       )}
       <div className="mt-10 flex flex-col items-end">
@@ -103,17 +105,19 @@ const Documents = () => {
             onClick={() => navigate("/Personal info")}
             className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3] mr-3"
           >
-            {t('documents.back')}
+            {t("documents.back")}
           </button>
           <button
             disabled={!isReady || isUploading}
             onClick={submit}
             className={`px-6 py-3 rounded-xl font-bold 
-              ${!isReady ? "bg-gray-300 text-gray-600" : "bg-[#F47621] text-white"
-
+              ${
+                !isReady
+                  ? "bg-gray-300 text-gray-600"
+                  : "bg-[#F47621] text-white"
               }`}
           >
-            {t('documents.submit')}
+            {t("documents.submit")}
           </button>
         </div>
         {serverError && (
@@ -130,11 +134,10 @@ const Documents = () => {
             <div className="w-[300px] h-1 bg-gray-200 rounded-full overflow-hidden">
               <div className="h-full bg-[#F47621] animate-pulse"></div>
             </div>
-            <p>{t('documents.uploading')}</p>
+            <p>{t("documents.uploading")}</p>
           </div>
         </div>
       )}
-
     </div>
   );
 };
