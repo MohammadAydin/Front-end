@@ -30,7 +30,7 @@ const pages = [
     id: 3,
     name: "Personal Info",
     icon: <LuUserRound size={24} />,
-    path: "personalInfo",
+    path: "/Personal info",
   },
   {
     id: 4,

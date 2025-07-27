@@ -16,40 +16,33 @@ const PersonalSections = () => {
   return [
     {
       icon: LuUserRound,
-      label: "personalInfo",
+      label: t("personalInfoSections.personalInfo"),
       path: "/Personal info/complate",
       status_name: "personal_info",
     },
     {
       icon: LuPhone,
-      label: "phoneNumber",
+      label: t("personalInfoSections.phoneNumber"),
       path: "/phone number",
       status_name: "phone_number",
     },
+
     {
-      icon: RiProfileLine,
-      label: "residenceInfo",
-      path: "/residence info",
-      status_name: "residence_work_permit",
+      icon: IoDocumentTextOutline,
+      label: t("personalInfoSections.requiredDocuments"),
+      path: "/documents",
+      status_name: "required_documents",
     },
-    {
-      icon: LuBanknote,
-      label: "bankingInfo",
-      path: "/Banking info",
-      status_name: "banking_info",
-    },
-   
-    
     {
       icon: IoLocationOutline,
-      label: "yourLocations",
+      label: t("personalInfoSections.yourLocations"),
       path: "/addLoaction",
       status_name: "location",
     },
-    
+
     {
       icon: FaSignature,
-      label: "signature",
+      label: t("personalInfoSections.signature"),
       path: "/Signature",
       status_name: "signature",
     },

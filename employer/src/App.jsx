@@ -11,8 +11,15 @@ import {
   ShiftsMangment,
   UserProfile,
   Login,
-  PersonalInfo,
+  // PersonalInfo,
   ServiceRequestsDetails,
+  Personal_info,
+  Complate_personal_info,
+  Signature,
+  Phone_number,
+  LocationInfo,
+  AddLoaction,
+  EditLocation,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -48,11 +55,45 @@ const router = createBrowserRouter([
         element: <HouseProfile />,
         // errorElement: <SinglePageError />,
       },
+      // {
+      //   path: "personalInfo",
+      //   element: <PersonalInfo />,
+      //   // errorElement: <SinglePageError />,
+      // },
       {
-        path: "personalInfo",
-        element: <PersonalInfo />,
-        // errorElement: <SinglePageError />,
+        path: "/Personal info",
+        element: <Personal_info />,
       },
+      {
+        path: "Personal info/complate",
+        element: <Complate_personal_info />,
+      },
+      {
+        path: "documents",
+        element: <Documents />,
+      },
+      {
+        path: "Signature",
+        element: <Signature />,
+      },
+      {
+        path: "phone number",
+        element: <Phone_number />,
+      },
+      { path: "locationInfo", element: <LocationInfo /> },
+      {
+        path: "addLoaction",
+        element: <AddLoaction />,
+      },
+      {
+        path: "addLoaction/:length",
+        element: <AddLoaction />,
+      },
+      {
+        path: "editLocation",
+        element: <EditLocation />,
+      },
+
       {
         path: "/helpRequests",
         element: <HelpRequests />,

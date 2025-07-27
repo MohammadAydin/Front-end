@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@theme {
+  --color-softColor: #555770;
+  --color-secondaryColor: #f47621;
+  --color-softwhite: #f1f1f5;
+}
 
 .backgorund {
   width: 100%;
@@ -122,10 +127,9 @@ input:focus {
   }
 }
 
-.click{
-  cursor:pointer;
+.click {
+  cursor: pointer;
 }
 
-.box-shadow{
-
+.box-shadow {
 }

@@ -11,9 +11,12 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 import "../Responsive css/Personal_info.css";
 
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
-const PersonalInfo = () => {
+const Personal_info = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const personalSections = PersonalSections();
 
@@ -38,7 +41,7 @@ const PersonalInfo = () => {
   };
 
   const renderActionButton = ({ status_name, path }) => {
-    const status = statusData?.[status_name];
+    const status = statusData?.data?.[status_name];
 
     if (status_name === "isUploadedAllProfile") return null;
 
@@ -116,4 +119,4 @@ const PersonalInfo = () => {
   );
 };
 
-export default PersonalInfo;
+export default Personal_info;
