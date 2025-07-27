@@ -1,6 +1,6 @@
 import { IoClose } from "react-icons/io5";
 import NotificationsList from "./NotificationsList";
-import useData from "../../hooks/useData";
+import useNotificationsPusher from "../../hooks/useNotificationsPusher";
 import "./ResponsiveNotifications.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
@@ -9,19 +9,45 @@ const NotificationsContainer = ({
   notificationIsOpen,
   setNotificationIsOpen,
 }) => {
-  const { data } = useData("/notifications");
+  const getUserId = () => {
+    try {
+      const userString = localStorage.getItem("user");
+      if (userString) {
+        const user = JSON.parse(userString);
+        if (user.token) {
+          const tokenPayload = JSON.parse(atob(user.token.split(".")[1]));
+          return tokenPayload.sub || tokenPayload.id || tokenPayload.user_id;
+        }
+        return user.id || user.user_id || user.userId;
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  };
+
+  const userId = getUserId();
+
+  const {
+    notifications,
+    unreadCount,
+    isLoading,
+    error,
+    markAsRead,
+    markAllAsRead,
+    refetch,
+  } = useNotificationsPusher(userId);
+
   const { t } = useTranslation();
   const containerRef = useRef(null);
   const closeButtonRef = useRef(null);
 
-  // Focus management for modal
   useEffect(() => {
     if (notificationIsOpen && closeButtonRef.current) {
       closeButtonRef.current.focus();
     }
   }, [notificationIsOpen]);
 
-  // Handle Escape key
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape" && notificationIsOpen) {
@@ -53,46 +79,91 @@ const NotificationsContainer = ({
         >
           <div
             ref={containerRef}
-            className="NotificationsContainer slide-in bg-white h-screen w-[500px] absolute top-0 left-0 p-10"
+            className="NotificationsContainer slide-in bg-white h-screen w-[500px] absolute top-0 left-0 p-6 flex flex-col"
             role="document"
           >
-            <div className="flex justify-between items-center mb-5">
-              <h3 id="notifications-title" className="text-xl font-extrabold">
-                {t("notifications.title")}
-              </h3>
-              <button
-                ref={closeButtonRef}
-                onClick={() => setNotificationIsOpen(false)}
-                className="cursor-pointer"
-                aria-label={t("common.close")}
-              >
-                <IoClose size={25} />
-              </button>
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center gap-3">
+                <h3 id="notifications-title" className="text-xl font-extrabold">
+                  {t("notifications.title")}
+                </h3>
+                {unreadCount > 0 && (
+                  <span className="bg-red-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                    {unreadCount}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                {unreadCount > 0 && (
+                  <button
+                    onClick={markAllAsRead}
+                    className="text-sm text-blue-600 hover:text-blue-800 px-2 py-1 rounded transition-colors"
+                  >
+                    Mark All Read
+                  </button>
+                )}
+                <button
+                  ref={closeButtonRef}
+                  onClick={() => setNotificationIsOpen(false)}
+                  className="cursor-pointer hover:bg-gray-100 p-1 rounded transition-colors"
+                  aria-label={t("common.close")}
+                >
+                  <IoClose size={25} />
+                </button>
+              </div>
             </div>
+
             <div
-              style={{ maxHeight: "calc(100vh - 80px)" }}
-              className="NotificationsList overflow-y-auto scrollbar-custom"
+              className="NotificationsList overflow-y-auto scrollbar-custom flex-1"
               role="list"
-              aria-label={t("notifications.notificationsList")}
             >
-              {data?.length > 0 ? (
-                data.map((notification) => (
-                  <NotificationsList
-                    key={notification.id}
-                    id={notification.id}
-                    title={notification.title}
-                    message={notification.message}
-                    type={notification.type}
-                    type_details={notification.type_details}
-                    created_at={notification.created_at}
-                    read_at={notification.read_at}
-                  />
-                ))
+              {isLoading ? (
+                <div className="flex justify-center items-center py-10">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                  <span className="ml-2 text-gray-500">Loading...</span>
+                </div>
+              ) : error ? (
+                <div className="text-center text-red-500 mt-10">
+                  <p>Error loading notifications</p>
+                  <button
+                    onClick={refetch}
+                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                  >
+                    Retry
+                  </button>
+                </div>
+              ) : notifications && notifications.length > 0 ? (
+                notifications
+                  .filter((notification) => !notification.read_at)
+                  .map((notification) => (
+                    <NotificationsList
+                      key={notification.id}
+                      id={notification.id}
+                      title={notification.title}
+                      message={notification.message}
+                      type={notification.type}
+                      type_details={notification.type_details}
+                      created_at={notification.created_at}
+                      read_at={notification.read_at}
+                      onMarkAsRead={markAsRead}
+                    />
+                  ))
               ) : (
-                <p className="text-center text-gray-500 mt-10">
-                  {t("notifications.noNotifications")}
-                </p>
+                <div className="flex flex-col items-center justify-center h-full text-center">
+                  <div className="w-16 h-16 rounded-full border-2 border-gray-300 flex items-center justify-center mb-4">
+                    <div className="text-2xl text-gray-400">✓</div>
+                  </div>
+                  <p className="text-lg font-medium text-gray-500">
+                    All notifications read!
+                  </p>
+                </div>
               )}
+            </div>
+
+            <div className="mt-3 flex-shrink-0">
+              <button className="w-full py-2.5 text-center text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors text-sm font-medium">
+                See All Notifications
+              </button>
             </div>
           </div>
         </div>

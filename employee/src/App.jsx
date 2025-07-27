@@ -27,6 +27,7 @@ import {
 import LoginForm from "./components/FormAuth/LoginForm";
 import RegisterForm from "./components/FormAuth/RegisterForm";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import VerifyEmailForm from "./components/FormAuth/VerifyEmailForm";
 import PersonalinfoForm from "./components/FormAuth/PersonalinfoForm";
 import ForgetPasswordForm from "./components/FormAuth/ForgetPasswordForm";
