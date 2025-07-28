@@ -1,4 +1,5 @@
-const ShiftTime = ({ name, register, errors, timeField, PeriodField }) => {
+const ShiftTime = ({ name, register, errors, timeField, PeriodField,defaultvalue }) => {
+  console.log(defaultvalue)
   return (
     <div className="flex flex-col">
       <div className="my-5">
@@ -8,6 +9,7 @@ const ShiftTime = ({ name, register, errors, timeField, PeriodField }) => {
           className="w-20 border-2 border-[#e2e2e7] rounded-lg p-2 ml-5"
           type="text"
           placeholder="HH:MM"
+          defaultValue={defaultvalue}
         />
 
         <select

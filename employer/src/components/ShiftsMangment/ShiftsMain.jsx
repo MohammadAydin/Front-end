@@ -10,6 +10,7 @@ const ShiftsMain = () => {
       {data?.data?.map((i) => (
         <ShiftsList
           key={i.id}
+          id={i.id}
           name={i.name}
           startTime={i.start_time}
           endTime={i.end_time}

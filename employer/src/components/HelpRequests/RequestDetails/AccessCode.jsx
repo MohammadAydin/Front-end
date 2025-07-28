@@ -4,12 +4,17 @@ import { BsQrCode } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import useData from "../../../hooks/useData";
 
-const AccessCode = ({ id }) => {
+const AccessCode = ({ id, taskstatus }) => {
   const { QrCode, PinCode, CodeClose } = useRequestsStore();
   const { data: code, error, isLoading } = useData(`/employer/task/${id}/pin`);
   const pincode = code?.data?.pin_code;
   const num = pincode ? pincode.split("").map(Number) : [];
-  // const { data: QrCodePhoto, errorQr, isLoadingQr } = useData(`/employer/task/${id}/pin`);
+  const PointQr =
+    taskstatus === "todo"
+      ? `/employer/task/${id}/qr`
+      : `/employer/task/${id}/qr/end`;
+
+  const { data: QrCodePhoto, errorQr, isLoadingQr } = useData(PointQr);
 
   return (
     <div className="w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
@@ -27,7 +32,7 @@ const AccessCode = ({ id }) => {
         <div className="h-[90%] mt-5 flex flex-col items-center justify-center gap-8">
           {QrCode ? (
             <>
-              <BsQrCode size={250} />
+              <img src={QrCodePhoto?.data?.qr_png} alt="" />
               <span className="CodeInfo text-2xl font-bold">
                 Make the applier scan the Qr-code
               </span>

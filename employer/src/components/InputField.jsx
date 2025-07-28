@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputField = ({ label, type, register, errors, name }) => {
+const InputField = ({ label, type, register, errors, name,defaultvalue }) => {
   return (
     <>
       <div className="InputField relative input-group">
@@ -11,6 +11,7 @@ const InputField = ({ label, type, register, errors, name }) => {
           id={name}
           name={name}
           placeholder=""
+          defaultValue={defaultvalue}
         />
         <label
           className="label-email absolute z-1 left-3 top-[50%] translate-y-[-50%] px-2 bg-white"

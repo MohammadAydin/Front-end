@@ -12,6 +12,7 @@ const ServiceRequests = ({ data, title }) => {
           id={item.id}
           date={item.date}
           status={item.status}
+          employeeNum={item?.employees_assigned}
           previousPage="helpRequests"
           navigateTo={`/serviceRequestsDetails?data=${encodeURIComponent(
             JSON.stringify(item)

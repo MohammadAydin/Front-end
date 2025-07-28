@@ -34,7 +34,7 @@ const RequestsForm = () => {
     isLoadingLocation,
   } = useData("/locations");
   const resultLocation = dataLocationt?.data?.map((item) => ({
-    name: item.title,
+    name: item?.street1,
     id: item.id,
   }));
   const selectOptions = ["Position", "Shifts", "Address"];
@@ -129,7 +129,10 @@ const RequestsForm = () => {
                       <SelectField
                         data={
                           name === "Shifts"
-                            ? dataShift?.data
+                            ? [
+                                ...(dataShift?.data || []),
+                                { id: "custom", name: "Custom Shift" },
+                              ]
                             : name === "Address"
                             ? resultLocation
                             : dataPosation

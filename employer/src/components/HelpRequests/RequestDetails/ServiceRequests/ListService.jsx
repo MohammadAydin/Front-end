@@ -2,8 +2,7 @@ import { useState } from "react";
 import { IoEyeOutline, IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-
-const ListService = ({ id, date, status, navigateTo }) => {
+const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -15,10 +14,10 @@ const ListService = ({ id, date, status, navigateTo }) => {
 
           {/* navigate to userprofile */}
           <div
-            className="ListInfo flex items-center gap-3 cursor-pointer w-72"
+            className="ListInfo flex items-center gap-8 cursor-pointer w-72"
             onClick={() => navigate(navigateTo)}
           >
-            <div>
+            <div className="flex flex-col gap-1">
               <p className="Name ml-1">
                 {new Date(date).toISOString().split("T")[0]}
               </p>
@@ -35,6 +34,7 @@ const ListService = ({ id, date, status, navigateTo }) => {
               >
                 Status : <span className={``}>{status}</span>
               </p>
+              <p className="">employeesa ssigned : {employeeNum}</p>
             </div>
           </div>
         </div>

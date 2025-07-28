@@ -2,11 +2,23 @@ import { useEffect, useState } from "react";
 import { IoEyeOutline, IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import getLocationName from "../../../../../utils/locationMap";
+import useRequestsStore from "../../../../../store/HelpRequestsStore";
+import { BiQrScan } from "react-icons/bi";
+import AccessCode from "../../AccessCode";
 
-const ListTasks = ({ id, status, start_at, rate, location, navigateTo }) => {
+const ListTasks = ({ id, status, start_at,end_at, rate, location, navigateTo,created_at }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [lcoationfun, setLocationFun] = useState();
+
+  const { showCode, QrCodeOpen, PinCodeOpen } = useRequestsStore();
+
+  if (showCode) {
+    document.body.classList.add("overflow-hidden");
+  } else {
+    document.body.classList.remove("overflow-hidden");
+  }
+
 
   useEffect(() => {
     getLocationName(location?.latitude, location?.longitude)
@@ -16,7 +28,22 @@ const ListTasks = ({ id, status, start_at, rate, location, navigateTo }) => {
 
   return (
     <>
-      <div className="flex justify-between border-b border-[#919eab63] border-dashed box-shadow">
+      <div className="flex flex-col justify-between border-b border-[#919eab63] border-dashed box-shadow">
+        <div className="HelpRequestDetailsActions flex items-center gap-2 justify-end">
+          <button
+            onClick={QrCodeOpen}
+            className="flex gap-1 items-center font-[900]  bg-[#F47621] text-white px-4 py-2 rounded-xl cursor-pointer"
+          >
+            <span className="mr-2">
+              <BiQrScan size={20} />
+            </span>
+            Show QR code to clock in
+          </button>
+          <span className="text-sm text-[#8E90A6]">or</span>
+          <button onClick={PinCodeOpen} className="font-extrabold">
+            Show pin code
+          </button>
+        </div>
         <div className="DetailsList w-[50vw] flex items-center  p-3 font-[500] gap-10 pb-5">
           {id && <div className="ListIndex Index">#60{id}</div>}
 
@@ -28,11 +55,16 @@ const ListTasks = ({ id, status, start_at, rate, location, navigateTo }) => {
             <div className="flex flex-col gap-2.5">
               <p className="Name ml-1">
                 {start_at ? (
-                  <>
-                    Start at: {new Date(start_at).toISOString().split("T")[0]}
-                  </>
+                  <>Start at: {start_at}</>
                 ) : (
-                  <>Start at: N/A</>
+                  <>Start at: It hasn't started yet.</>
+                )}{" "}
+              </p>
+              <p className="Name ml-1">
+                {end_at? (
+                  <>end_at : {end_at}</>
+                ) : (
+                  <>end_at: It hasn't end yet.</>
                 )}{" "}
               </p>
               <p
@@ -57,9 +89,11 @@ const ListTasks = ({ id, status, start_at, rate, location, navigateTo }) => {
               >
                 Status : <span className={``}>{status} </span>
               </p>
-              <p>Rate : {rate}</p>
               <div className="">
                 <p>Locatoion : {lcoationfun}</p>
+              </div>
+              <div className="">
+                <p>created at : {new Date(created_at).toISOString().split("T")[0]}</p>
               </div>
             </div>
           </div>
@@ -72,6 +106,7 @@ const ListTasks = ({ id, status, start_at, rate, location, navigateTo }) => {
           {isHovered ? <IoEyeSharp size={20} /> : <IoEyeOutline size={20} />}
         </button> */}
       </div>
+      {showCode && <AccessCode id={id} taskstatus={status} />}
     </>
   );
 };

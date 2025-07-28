@@ -1,25 +1,32 @@
 import { useEffect } from "react";
 import ListTasks from "./ListTasks";
+import { MdErrorOutline } from "react-icons/md";
 
 const TasksRequest = ({ data }) => {
-  data = data[0];
-
+  console.log(data);
   return (
     <div className="mt-8">
       <h2 className="font-[900] text-xl mb-3">Task Request</h2>
-      {data ? (
+      {data?.map((item) => (
         <ListTasks
-          id={data?.id}
-          status={data?.status}
-          start_at={data?.start_at}
-          rate={data?.job_posting?.rate}
-          location={data?.job_posting?.location}
+          key={item?.id}
+          id={item?.id}
+          status={item?.status}
+          start_at={item?.start_at}
+          end_at={item?.end_at}
+          rate={item?.job_posting?.rate}
+          location={item?.job_posting?.location}
+          created_at={item?.created_at}
           previousPage="serviceRequestsDetails"
           navigateTo={`/`}
           // navigateTo={`/serviceRequestsDetails/${idJop}/${item.id}/${item.tasks}`}
         />
-      ) : (
-        <p className="p-2.5">No Task yet</p>
+      ))}
+
+      {data?.length === 0 && (
+        <p className="p-2.5 flex items-center gap-2 text-red-500">
+          No Task yet <MdErrorOutline />
+        </p>
       )}
     </div>
   );

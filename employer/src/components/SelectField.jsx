@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const SelectField = ({ data, name, errors, setValue, register, value }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectOption, setSelectOption] = useState("");
   const [selectname, setSelectname] = useState();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (value == undefined) {
       setSelectOption("");
@@ -14,7 +15,7 @@ const SelectField = ({ data, name, errors, setValue, register, value }) => {
 
   const handleSelect = (value) => {
     setSelectOption(value.id);
-    setSelectname(value.name)
+    setSelectname(value.name);
     setValue(name, value.id, { shouldValidate: true });
     setIsOpen(false);
   };
@@ -43,7 +44,13 @@ const SelectField = ({ data, name, errors, setValue, register, value }) => {
             {data?.map((option) => (
               <li
                 key={option?.id}
-                onClick={() => handleSelect(option)}
+                onClick={() => {
+                  if (option?.name === "Custom Shift") {
+                    navigate("/Shifts");
+                  } else {
+                    handleSelect(option);
+                  }
+                }}
                 className="my-2 p-3 pl-5 cursor-pointer hover:bg-[#919eab34]"
               >
                 {option?.name}

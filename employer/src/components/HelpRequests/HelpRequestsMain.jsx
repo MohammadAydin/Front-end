@@ -17,6 +17,9 @@ const HelpRequestsMain = () => {
           country={item?.location?.country}
           city={item?.location?.city}
           previousPage="helpRequests"
+          shiftid={item?.shift_id}
+          date_from={item?.date_from}
+          date_to={item?.date_to}
           index="t"
           avatarPhoto="t"
           name="t"
