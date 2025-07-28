@@ -9,7 +9,6 @@ import { otpSchema } from "./phoneSchema";
 import { useTranslation } from "react-i18next";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 
-
 const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
@@ -40,7 +39,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('phoneNumber.error');
+        error?.response?.data?.message || t("phoneNumber.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -62,7 +61,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
 
   return (
     <>
-      <p className="mb-5 text-lg font-bold">{t('phoneNumber.verifyOtp')}</p>
+      <p className="mb-5 text-lg font-bold">{t("phoneNumber.verifyOtp")}</p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="flex flex-col items-start">
           <input
@@ -82,15 +81,19 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
               if (resendTimer === 0) resendCode();
             }}
             disabled={resendTimer > 0}
-            className={`mt-5 font-bold text-lg cursor-pointer ${resendTimer > 0
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-blue-900 hover:text-[#EE6000]"
-              }`}
+            className={`mt-5 font-bold text-lg cursor-pointer ${
+              resendTimer > 0
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-blue-900 hover:text-[#EE6000]"
+            }`}
           >
-            {resendTimer > 0 ? `${t('phoneNumber.resendOtp')} in ${resendTimer}s` : t('phoneNumber.resendOtp')}
+            {resendTimer > 0 ? `resendOtp in ${resendTimer}s` : "esendOtp"}
           </button>
         </div>
-        <SubmitButtons prevLabel={t('phoneNumber.back')} onCancel={() => setIsOtpCode(false)} />
+        <SubmitButtons
+          prevLabel="back"
+          onCancel={() => setIsOtpCode(false)}
+        />
       </form>
     </>
   );

@@ -25,13 +25,13 @@ const SignaturePad = ({ setValue, error }) => {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-2">
-        <label className="font-bold">{t('signature.yourSignature')}</label>
+        <label className="font-bold">yourSignature</label>
         <button
           type="button"
           onClick={handleClear}
           className="text-red-500 flex items-center gap-1"
         >
-          <FaRegTrashAlt size={16} /> {t('signature.deleteSignature')}
+          <FaRegTrashAlt size={16} /> deleteSignature
         </button>
       </div>
 

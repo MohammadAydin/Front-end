@@ -48,7 +48,7 @@ const DocumentsList = ({ docs, setDocuments }) => {
           <span>
             <MdOutlineFileDownload size={25} />
           </span>
-          {t("documents.uploadDocument")}
+        uploadDocument
         </button>
         {docs.duo_to && (
           <p className="text-[#637381] text-sm flex items-center gap-1 mt-2">

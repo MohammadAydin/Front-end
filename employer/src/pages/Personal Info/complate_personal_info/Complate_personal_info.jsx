@@ -18,9 +18,9 @@ const Complate_personal_info = () => {
   const [serverError, setServerError] = useState("");
 
   const inputs = [
-    { name: "Username", label: t('completePersonalInfo.fields.username'), type: "text" },
-    { name: "Bio", label: t('completePersonalInfo.fields.bio'), type: "text" },
-    { name: "Birthday", label: t('completePersonalInfo.fields.birthday'), type: "text" },
+    { name: "Username", label: "username", type: "text" },
+    { name: "Bio", label: "bio", type: "text" },
+    { name: "Birthday", label: "birthday", type: "text" },
   ];
 
   const add_personal_info_Mutatuin = useMutation({
@@ -83,9 +83,10 @@ const Complate_personal_info = () => {
 
   return (
     <div className="Complate_personal_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t('completePersonalInfo.title')}</h2>
+      <h2 className="text-2xl font-bold mb-2"> personal details </h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        {t('completePersonalInfo.description')}
+       Complete your personal details to proceed with the task.
+ 
       </p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="personal_info_grid grid grid-cols-2 gap-5">
@@ -112,7 +113,7 @@ const Complate_personal_info = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel={t('completePersonalInfo.back')}
+          prevLabel="back"
           onCancel={() => navigate("/Personal info")}
         />
       </form>

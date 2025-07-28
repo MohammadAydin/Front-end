@@ -154,11 +154,9 @@ const AddLoaction = () => {
       <div className="w-full">
         {/* If Workabilities is false Displays text the location add */}
 
-        <h1>{t("addLocation.title")}</h1>
+        <h1>Please enter your location</h1>
         <p className=" text-softColor mt-4">
-          {lengthLocations == 0
-            ? t("addLocation.primaryLocation")
-            : t("addLocation.alternateLocation")}
+          {lengthLocations == 0 ? "primaryLocation" : "alternateLocation"}
         </p>
 
         <div className="mt-3 w-full">
@@ -170,21 +168,21 @@ const AddLoaction = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("addLocation.fields.street")}
+                  label="street"
                   name={"street1"}
                   type={"text"}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("addLocation.fields.house")}
+                  label="house"
                   name={"street2"}
                   type={"text"}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("addLocation.fields.postalCode")}
+                  label="postalCode"
                   name={"postalcode"}
                   type={"text"}
                 />
@@ -192,7 +190,7 @@ const AddLoaction = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("addLocation.fields.city")}
+                  label="city"
                   name={"city"}
                   type={"text"}
                 />
@@ -200,7 +198,7 @@ const AddLoaction = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={t("addLocation.fields.country")}
+                label="country"
                 name={"country"}
                 type={"text"}
               />
@@ -224,7 +222,7 @@ const AddLoaction = () => {
               <Link className="w-full" to="/locationInfo">
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text={t("addLocation.back")}
+                  text="back"
                 />
               </Link>
 
@@ -233,7 +231,7 @@ const AddLoaction = () => {
                 onClick={togglePopup}
                 type="button"
                 className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text={t("addLocation.next")}
+                text="next"
               />
             </div>
           </div>

@@ -7,9 +7,9 @@ const GenderSelector = ({ control, name }) => {
   const { t } = useTranslation();
 
   const genderOptions = [
-    { value: "male", label: t("completePersonalInfo.genderOptions.male"), icon: <FaMars /> },
-    { value: "female", label: t("completePersonalInfo.genderOptions.female"), icon: <FaVenus /> },
-    { value: "diverse", label: t("completePersonalInfo.genderOptions.other"), icon: <FaTransgenderAlt /> },
+    { value: "male", label: "male", icon: <FaMars /> },
+    { value: "female", label: "female", icon: <FaVenus /> },
+    { value: "diverse", label: "other", icon: <FaTransgenderAlt /> },
   ];
 
   return (
@@ -26,9 +26,10 @@ const GenderSelector = ({ control, name }) => {
                 type="button"
                 onClick={() => field.onChange(option.value)}
                 className={`w-full flex items-center gap-2 border rounded-lg px-5 py-3 font-semibold 
-                  ${isSelected
-                    ? "border-orange-500 text-orange-500"
-                    : "border-gray-200 text-gray-500"
+                  ${
+                    isSelected
+                      ? "border-orange-500 text-orange-500"
+                      : "border-gray-200 text-gray-500"
                   }`}
               >
                 {option.icon} {option.label}

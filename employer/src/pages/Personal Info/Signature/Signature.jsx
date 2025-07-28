@@ -20,6 +20,7 @@ const Signature = () => {
   const [searchParams] = useSearchParams();
   const isUploaded = searchParams.get("uploaded") === "true";
   const { data: UplodedSignature } = useData("/signature");
+  console.log(UplodedSignature);
   const [showSignature, setShowSignature] = useState(false);
   const navigate = useNavigate();
 
@@ -57,7 +58,7 @@ const Signature = () => {
     register,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(signatureSchema(t)),
+    resolver: zodResolver(signatureSchema()),
     defaultValues: {
       signature: null,
     },
@@ -89,15 +90,19 @@ const Signature = () => {
             onClick={() => setShowSignature(true)}
             className="w-full mb-10 text-[#F47621] bg-[#FFDFC6] font-bold rounded-xl py-3"
           >
-            {t("signature.showSignature")}
+          showSignature
           </button>
           {showSignature && (
             <div className="w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
               <div className="showSignature w-[550px] h-[450px] bg-white rounded-2xl p-5 flex flex-col justify-between">
-                <p className="text-xl font-bold">{t("signature.yourSignature")}</p>
+                <p className="text-xl font-bold">
+                  {t("signature.yourSignature")}
+                </p>
                 <div className="h-[250px] border border-[#555770] rounded-2xl flex justify-center items-center">
                   <img
-                    src={`${UplodedSignature?.url}?t=${new Date().getTime()}`}
+                    src={`${
+                      UplodedSignature.data?.url
+                    }?t=${new Date().getTime()}`}
                     alt="Uploaded Signature"
                     className="max-h-full max-w-full object-contain"
                   />
@@ -106,24 +111,23 @@ const Signature = () => {
                   className="w-full bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
                   onClick={() => setShowSignature(false)}
                 >
-                  {t("signature.close")}
+                 close
                 </button>
               </div>
             </div>
           )}
         </>
       )}
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <SignaturePad setValue={setValue} error={errors.signature} />
 
-        <span className="font-bold">{t("signature.orUpload")}</span>
+        <span className="font-bold">orUpload</span>
         <FileUploader
           register={register}
           setValue={setValue}
           error={errors}
           name={"signature"}
-          label={t("signature.uploadSignature")}
+          label="uploadSignature"
         />
         {serverError && (
           <p className="text-red-600 font-medium text-start mb-4">
@@ -132,7 +136,7 @@ const Signature = () => {
         )}
         <SubmitButtons
           submitLabel={isUploaded ? "Submit" : "Add"}
-          prevLabel={t("signature.back")}
+          prevLabel="back"
           onCancel={() => navigate("/Personal info")}
         />
       </form>

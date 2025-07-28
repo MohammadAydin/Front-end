@@ -79,9 +79,9 @@ const Documents = () => {
 
   return (
     <div className="Documents p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t("documents.title")}</h2>
+      <h2 className="text-2xl font-bold mb-2">documents</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        {t("documents.description")}
+        Complete uploading the required files.
       </p>
       {requiredDocs && (
         <div className="my-5">
@@ -96,7 +96,7 @@ const Documents = () => {
       )}
       {!isReady && (
         <p className="w-full bg-[#f4212127] py-5 text-center rounded-lg text-[#f42121] mt-2">
-          {t("documents.uploadAllRequired")}
+       uploadAllRequired
         </p>
       )}
       <div className="mt-10 flex flex-col items-end">
@@ -105,7 +105,7 @@ const Documents = () => {
             onClick={() => navigate("/Personal info")}
             className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3] mr-3"
           >
-            {t("documents.back")}
+           back
           </button>
           <button
             disabled={!isReady || isUploading}
@@ -117,7 +117,7 @@ const Documents = () => {
                   : "bg-[#F47621] text-white"
               }`}
           >
-            {t("documents.submit")}
+           submit
           </button>
         </div>
         {serverError && (
@@ -134,7 +134,7 @@ const Documents = () => {
             <div className="w-[300px] h-1 bg-gray-200 rounded-full overflow-hidden">
               <div className="h-full bg-[#F47621] animate-pulse"></div>
             </div>
-            <p>{t("documents.uploading")}</p>
+            <p>uploading</p>
           </div>
         </div>
       )}
