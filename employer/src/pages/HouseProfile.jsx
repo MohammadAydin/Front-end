@@ -5,8 +5,14 @@ import { RiPencilLine } from "react-icons/ri";
 import { FaPlus, FaRegTrashCan } from "react-icons/fa6";
 import Popup from "../components/Popup";
 import PopupAbout from "../components/PopupAbout";
+import useData from "../hooks/useData";
+import ProfilePhoto from "../components/UserProfile/ProfilePhoto/ProfilePhoto";
+import LocationInfo from "./LocationInfo/LocationInfo";
 
 const HouseProfile = () => {
+  const { data: profile, isLoading } = useData("/profile");
+  console.log(profile);
+
   // Open and closed state storage
   const [isOpen, setIsOpen] = useState(false);
   // Store the opening and closing status of the PopUp About
@@ -44,30 +50,9 @@ const HouseProfile = () => {
         {/* Container containing the data partition */}
         <div className="imgAndInput flex gap-5 mt-3.5 max-[730px]:flex-col">
           {/* Container containing the image section */}
-          <div className="img-profile  flex justify-center items-center  p-3.5 ">
-            {/* Inner container for the image partition */}
-            <div className="text-center flex flex-col justify-center items-center w-[180px]">
-              {/* label to click on the image and activate input */}
-              <label className="click" htmlFor="file">
-                {" "}
-                <img className="rounded-[50%]" src={preview} alt="" />
-              </label>
-              {/* Image upload field */}
-              <input
-                onChange={handleImageChange}
-                className="hidden"
-                id="file"
-                type="file"
-                accept="image/*"
-              />
-              {/* Text below the image */}
-              <p className="mt-2.5">Elderly house Name</p>
-              {/* Description of the image type */}
-              <span className="mt-2.5">
-                Allowed *.jpeg, *.jpg, *.png, *.gif Max size of 3.1 MB
-              </span>
-            </div>
-          </div>
+
+          <ProfilePhoto />
+
           {/* Information Container */}
           <div className="info flex flex-grow items-center max-[730px]:justify-center  p-3.5">
             {/* A container to specify the width of the fields  */}
@@ -87,13 +72,13 @@ const HouseProfile = () => {
                     <p className=" p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                       Email{" "}
                     </p>
-                    adelkharzoum@gmail.com
+                    {profile?.data?.email}
                   </div>
                   <div className="relative info-square">
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                       Address{" "}
                     </p>
-                    Berlin, Alexanderplatz
+                    {profile?.data?.address || "empty"}{" "}
                   </div>
                 </div>
                 {/* A container containing the right and right sides */}
@@ -102,13 +87,13 @@ const HouseProfile = () => {
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                       Manger name{" "}
                     </p>
-                    elderlyhouse
+                    {profile?.data?.name || "empty"}
                   </div>
                   <div className="relative info-square">
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                       Phone Number{" "}
                     </p>
-                    +447441 433 516
+                    {profile?.data?.phone || "empty"}
                   </div>
                   <div className="relative info-square">
                     <p className="p-[1px] text-[12px] absolute top-[-10px] text-[#637381] bg-white">
@@ -146,54 +131,7 @@ const HouseProfile = () => {
           </div>
         </div>
         {/* Container with the bottom section for adding addresses */}
-        <div className="mt-8 address p-3.5 mb-5">
-          {/* A container that contains the container title and the add button{" "} */}
-          <div className="flex justify-between max-[600px]:flex-col max-[600px]:gap-2.5">
-            <p>Addresses</p>
-            {/* When the add button is pressed, a popup opens to add the address */}
-            <button
-              onClick={() => setIsOpen(true)}
-              className="flex items-center gap-1.5  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] "
-            >
-              <FaPlus />
-              Add new Address
-            </button>
-          </div>
-          {/* A container containing the added addresses  */}
-          <div className="mt-3.5 ">
-            {/* Displaying address array data */}
-            {address.map((item) => (
-              <div
-                key={item.id}
-                className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5"
-              >
-                <h2 className=""> {item.Address} </h2>
-                <div
-                  className="flex justify-between flex-1 gap-3.5 max-[545px]:w-full
-"
-                >
-                  <div className="address-info gap-10 flex items-center max-[545px]:flex-col max-[545px]:items-start max-[545px]:gap-2.5 ">
-                    <p>
-                      {item.City}, {item.Street}
-                    </p>
-                    <p>{item.City}</p>
-                    <p>{item.Code}</p>
-                  </div>
-                  {/* Container with delete and edit buttons */}
-                  <div className="chose flex items-center gap-2.5">
-                    <RiPencilLine className="click text-[1.5rem] text-gray-400" />
-                    <FaRegTrashCan
-                      onClick={() =>
-                        setAddress(address.filter((e) => e.id !== item.id))
-                      }
-                      className="click text-[1.2rem] text-red-500"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <LocationInfo />
         {/* Pop Up Add Address */}
         {isOpen && (
           <Popup

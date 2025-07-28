@@ -11,7 +11,7 @@ import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
 } from "../../utils/localStorage";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { createLoginSchema } from "../../utils/validationSchema";
 
 const LoginForm = () => {
@@ -54,6 +54,7 @@ const LoginForm = () => {
       });
       // If the login is successful
       // If the registrar is an employee
+      
       if (response.data.data.role == "employee") {
         // User storage in local storage
         addUserToLocalStorage("user", response.data.data);
@@ -65,7 +66,8 @@ const LoginForm = () => {
           isChecked && addUserToLocalStorage("account", data);
         }
         // Show login success message
-        toast.success(t('login.success'));
+        toast.success(t("login.success"));
+        setIsLoading(false);
 
         // Go to the home page
         setTimeout(() => {
@@ -73,8 +75,8 @@ const LoginForm = () => {
           reset();
         }, 1500);
       } else {
-        toast.error(t('login.accountError'));
-        setIsLoading(false)
+        toast.error(t("login.accountError"));
+        setIsLoading(false);
       }
 
       // In case it doesn't work
@@ -95,7 +97,7 @@ const LoginForm = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-            {t('login.title')}
+            {t("login.title")}
           </h2>
           <div className="relative input-group mb-2.5">
             {/* Email field */}
@@ -105,8 +107,8 @@ const LoginForm = () => {
               type="text"
               id="email"
               defaultValue={getUserFromLocalStorage("account")?.email || ""}
-              placeholder={t('login.email.placeholder')}
-            //   defaultValue={account.email || ""}
+              placeholder={t("login.email.placeholder")}
+              //   defaultValue={account.email || ""}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -127,8 +129,8 @@ const LoginForm = () => {
                 defaultValue={
                   getUserFromLocalStorage("account")?.password || ""
                 }
-                placeholder={t('login.password.placeholder')}
-              // defaultValue={account.password || ""}
+                placeholder={t("login.password.placeholder")}
+                // defaultValue={account.password || ""}
               />
               {errors && (
                 <p className="text-red-500 text-[0.7rem] mt-2 ">
@@ -161,7 +163,7 @@ const LoginForm = () => {
               />
               {/* Remember the account */}
               <label className="text-[#194894] ml-1" htmlFor="remember">
-                {t('login.rememberPassword')}
+                {t("login.rememberPassword")}
               </label>
             </div>
             {/* Go to the password reset page */}
@@ -170,26 +172,27 @@ const LoginForm = () => {
               className="text-[#F47621] vergessen underline"
               href="#"
             >
-              {t('login.forgotPassword')}
+              {t("login.forgotPassword")}
             </Link>
           </div>
           {/* Login button */}
           <button
-            className={`p-2 button-login mb-3 ${isLoading ? "bg-gray-400" : "bg-amber-600"
-              } text-white rounded-[10px]`}
+            className={`p-2 button-login mb-3 ${
+              isLoading ? "bg-gray-400" : "bg-amber-600"
+            } text-white rounded-[10px]`}
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? t('login.loading') : t('login.loginButton')}
+            {isLoading ? t("login.loading") : t("login.loginButton")}
           </button>
         </form>
         {/* end form */}
         <div className="flex mt-4 text-[0.8rem]">
           {" "}
           {/* Go to the account creation page */}
-          <p>{t('login.newUser')}</p>
+          <p>{t("login.newUser")}</p>
           <Link to="/register" className="text-[#F47621] click">
-            {t('login.createAccount')}
+            {t("login.createAccount")}
           </Link>
         </div>
       </Wrapper>

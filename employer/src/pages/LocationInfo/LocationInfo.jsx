@@ -92,14 +92,14 @@ const LocationInfo = () => {
   return (
     <>
       <div className="py-5 px-5">
-        <div className="text-2xl font-bold">{t("locationInfo.title")}</div>
-        <div className="mt-5 flex flex-col">
+        <div className="text-2xl font-bold mt-2">locationInfo</div>
+        <div className="flex flex-col">
           <div className="list-location">
             {/* Container with the bottom section for adding addresses */}
-            <div className="mt-8 shadow-locationsList p-3.5 mb-5">
+            <div className="mt-3.5 shadow-locationsList p-3.5 mb-5">
               {/* A container that contains the container title and the add button{" "} */}
               <div className="flex justify-between max-[600px]:flex-col max-[600px]:gap-2.5">
-                <p>{t("locationInfo.addresses")}</p>
+                <p>addresses</p>
                 {/* When the add button is pressed, a popup opens to add the address */}
                 <Link
                   to={`/addLoaction/${locations?.length}`}

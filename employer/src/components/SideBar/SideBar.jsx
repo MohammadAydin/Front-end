@@ -4,8 +4,11 @@ import { PagesList, SettingList } from "./SideBarIndex";
 import { IoNotificationsOutline } from "react-icons/io5";
 //import style
 import "./SideBarResponsive.css";
+import useData from "../../hooks/useData";
 
 const SideBar = ({ setNotificationIsOpen }) => {
+  const { data: photodata } = useData("/photo");
+
   return (
     <>
       <Wrapper>
@@ -14,7 +17,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
             <div className="profile-user pt-[30px] flex flex-col items-center ">
               <img
                 className="avatar w-[60px] rounded-full"
-                src={profileAvatar}
+                src={photodata?.data?.photo ? photodata?.data?.photo : profileAvatar}
                 alt=""
               />
 
