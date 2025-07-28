@@ -51,7 +51,7 @@ const Personal_info = () => {
 
     if (status_name === "isUploadedAllProfile") return null;
 
-    if (status === "pending" || status === "declined") {
+    if (status === "missing" || status === "declined") {
       return (
         <div className="declinedStatus flex flex-row-reverse items-center">
           <button
