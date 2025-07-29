@@ -5,9 +5,11 @@ import { IoNotificationsOutline } from "react-icons/io5";
 //import style
 import "./SideBarResponsive.css";
 import useData from "../../hooks/useData";
+import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data: photodata } = useData("/photo");
+  const data = getUserFromLocalStorage("user");
 
   return (
     <>
@@ -17,13 +19,19 @@ const SideBar = ({ setNotificationIsOpen }) => {
             <div className="profile-user pt-[30px] flex flex-col items-center ">
               <img
                 className="avatar w-[60px] rounded-full"
-                src={photodata?.data?.photo ? photodata?.data?.photo : profileAvatar}
+                src={
+                  photodata?.data?.photo
+                    ? photodata?.data?.photo
+                    : profileAvatar
+                }
                 alt=""
               />
 
               <div className="information text-center">
-                <p className="mt-[8px] text-white">Abdalrhman Alhowri</p>
-                <p className="admin text-white font-thin">Admin</p>
+                <p className="mt-[8px] text-white">{data?.data?.name}</p>
+                <p className="admin text-white font-thin">
+                  {data?.data?.role[0]}
+                </p>
               </div>
             </div>
             <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
