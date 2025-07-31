@@ -17,6 +17,7 @@ const TasksRequest = ({ data }) => {
           rate={item?.job_posting?.rate}
           location={item?.job_posting?.location}
           created_at={item?.created_at}
+          assigned_to={item?.assigned_to}
           previousPage="serviceRequestsDetails"
           navigateTo={`/`}
           // navigateTo={`/serviceRequestsDetails/${idJop}/${item.id}/${item.tasks}`}

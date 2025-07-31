@@ -5,11 +5,47 @@ import getLocationName from "../../../../../utils/locationMap";
 import useRequestsStore from "../../../../../store/HelpRequestsStore";
 import { BiQrScan } from "react-icons/bi";
 import AccessCode from "../../AccessCode";
+import useData from "../../../../../hooks/useData";
+import customFetch from "../../../../../utils/axios";
+import { useMutation } from "@tanstack/react-query";
+import visualphoto from "../../../../../assets/image/Img_Avatar.25.svg";
 
-const ListTasks = ({ id, status, start_at,end_at, rate, location, navigateTo,created_at }) => {
+const ListTasks = ({
+  id,
+  status,
+  start_at,
+  end_at,
+  rate,
+  location,
+  navigateTo,
+  created_at,
+  assigned_to,
+}) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [lcoationfun, setLocationFun] = useState();
+  const [photoEmployee, setPhotoEmployee] = useState(visualphoto);
+  console.log(assigned_to);
+
+  const { mutate: getPhotoEmployee } = useMutation({
+    mutationFn: () =>
+      customFetch.get(`/photo/${assigned_to}`).then((res) => res.data),
+
+    onSuccess: (data) => {
+      setPhotoEmployee(data?.data?.photo);
+      console.log(data);
+    },
+
+    onError: (error) => {
+      console.log(error?.response?.data?.errors);
+    },
+  });
+
+  useEffect(() => {
+    if (assigned_to) {
+      getPhotoEmployee();
+    }
+  }, [assigned_to]);
 
   const { showCode, QrCodeOpen, PinCodeOpen } = useRequestsStore();
 
@@ -18,7 +54,6 @@ const ListTasks = ({ id, status, start_at,end_at, rate, location, navigateTo,cre
   } else {
     document.body.classList.remove("overflow-hidden");
   }
-
 
   useEffect(() => {
     getLocationName(location?.latitude, location?.longitude)
@@ -46,7 +81,7 @@ const ListTasks = ({ id, status, start_at,end_at, rate, location, navigateTo,cre
         </div>
         <div className="DetailsList w-[50vw] flex items-center  p-3 font-[500] gap-10 pb-5">
           {id && <div className="ListIndex Index">#60{id}</div>}
-
+          <img className="w-22 rounded-[100%]" src={photoEmployee} alt="" />
           {/* navigate to userprofile */}
           <div
             className="ListInfo flex items-center gap-3 w-96"
@@ -61,7 +96,7 @@ const ListTasks = ({ id, status, start_at,end_at, rate, location, navigateTo,cre
                 )}{" "}
               </p>
               <p className="Name ml-1">
-                {end_at? (
+                {end_at ? (
                   <>end_at : {end_at}</>
                 ) : (
                   <>end_at: It hasn't end yet.</>
@@ -93,7 +128,10 @@ const ListTasks = ({ id, status, start_at,end_at, rate, location, navigateTo,cre
                 <p>Locatoion : {lcoationfun}</p>
               </div>
               <div className="">
-                <p>created at : {new Date(created_at).toISOString().split("T")[0]}</p>
+                <p>
+                  created at :{" "}
+                  {new Date(created_at).toISOString().split("T")[0]}
+                </p>
               </div>
             </div>
           </div>

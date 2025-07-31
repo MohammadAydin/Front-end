@@ -46,11 +46,9 @@ const Footer = () => {
       <div>
         <hr />
       </div>
-      <div className="flex logoGvPandCopy">
-        <p>
-          {t("footer.copyright")} <span>{t("footer.company")}</span>
-        </p>
-      </div>
+      <p>
+        {t("footer.copyright")} <span>{t("footer.company")}</span>
+      </p>
     </div>
   );
 };
