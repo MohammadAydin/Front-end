@@ -1,7 +1,8 @@
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import LogoGVP from "../assets/images/GvPLogo.png";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -11,14 +12,17 @@ const Footer = () => {
       <div className="FooterAction">
         <div className="Links">
           <Link onClick={() => window.scrollTo(0, 0)} to={"/Impressum"}>
-            {t('footer.impressum')}
+            {t("footer.impressum")}
           </Link>
           <Link
             onClick={() => window.scrollTo(0, 0)}
             to={"/Datenschutzerklärung"}
           >
-            {t('footer.privacy')}
+            {t("footer.privacy")}
           </Link>
+          <a href="https://personaldienstleister.de/">
+            <img className="LogoGvP" src={LogoGVP} alt="" />
+          </a>
         </div>
 
         <ul className="IconLinks">
@@ -42,9 +46,11 @@ const Footer = () => {
       <div>
         <hr />
       </div>
-      <p>
-        {t('footer.copyright')} <span>{t('footer.company')}</span>
-      </p>
+      <div className="flex logoGvPandCopy">
+        <p>
+          {t("footer.copyright")} <span>{t("footer.company")}</span>
+        </p>
+      </div>
     </div>
   );
 };

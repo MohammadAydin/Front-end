@@ -18,6 +18,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
             alt="logo"
           />
         </RouterLink>
+        
         <div>
           <ul>
             <li>
