@@ -12,15 +12,15 @@ import customFetch from "../utils/axios";
 import axios from "axios";
 
 const DashBoard = () => {
-  const refresh = async () => {
-    try {
-      await axios
-        .post("https://woundwann.de/v1/refresh")
-        .then((res) => console.log(res));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const refresh = async () => {
+  //   try {
+  //     await axios
+  //       .post("https://woundwann.de/v1/refresh")
+  //       .then((res) => console.log(res));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     // Dashboard wrapper
@@ -108,9 +108,9 @@ const DashBoard = () => {
             />
           </div>
         </div>
-        <button onClick={refresh} className="bg-amber-500">
+        {/* <button onClick={refresh} className="bg-amber-500">
           Refresh Token
-        </button>
+        </button> */}
       </div>
     </Wrapper>
   );
