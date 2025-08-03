@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import { getUserFromLocalStorage } from "../utils/localStorage";
+import { useAuthStore } from "../store/useAuthStore";
 
 const ProtectedRoute = ({ children }) => {
-  const user = getUserFromLocalStorage();
+  const user = useAuthStore((state) => state.user);
   if (!user) return <Navigate to="/login" />;
   return children;
 };

@@ -15,10 +15,12 @@ const Employment_schema = z.object({
     message: "Please select your vocational training status",
   }),
 
-  pregnant: z.enum(["true", "false"], {
-    message: "Please select pregnancy status",
-  }),
-
+  pregnant: z.union([
+    z.literal("true"),
+    z.literal("false"),
+    z.literal(""),
+    z.null(),
+  ]),
   corona: z.enum(["true", "false"], {
     message: "Please answer about Corona vaccine",
   }),

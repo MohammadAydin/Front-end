@@ -6,10 +6,11 @@ import Wrapper from "../assets/wrapper/FormStyle/FormLogin";
 import useFormLevel from "../store/Formlevel";
 import customFetch from "../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
-import { addUserToLocalStorage } from "../utils/localStorage";
+import { addUserToLocalStorage, getUserFromLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { createLoginSchema } from "../utils/validationSchema";
+import { useAuthStore } from "../store/useAuthStore";
 
 const FormLogin = () => {
   // Translation hook
@@ -28,6 +29,8 @@ const FormLogin = () => {
   const result = localStorage.getItem("account");
   const account = result ? JSON.parse(result) : "";
 
+  // Getting the user and setUser from the store
+  const setUser = useAuthStore((state) => state.setUser);
   // Definition of navigate
   const navigate = useNavigate();
 
@@ -64,7 +67,7 @@ const FormLogin = () => {
       }
 
       // Show login success message
-      toast.success(t('login.success'));
+      toast.success(t("login.success"));
 
       // Show a successful login message with the account
       console.log("Login successful:", response.data);
@@ -72,14 +75,16 @@ const FormLogin = () => {
       // Add user to local storage
       addUserToLocalStorage(response.data);
 
+      // User storage in Zostand store
+      setUser(getUserFromLocalStorage("user"));
+
       // Go to the home page
       setTimeout(() => {
         navigate("/");
         reset();
       }, 1500);
-
     } catch (error) {
-      toast.error(t('login.error') + ": " + error.response?.data?.error);
+      toast.error(t("login.error") + ": " + error.response?.data?.error);
 
       // Print the error message in console
       console.log("Login error:", error.response?.data?.error);
@@ -96,7 +101,7 @@ const FormLogin = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-            {t('login.title')}
+            {t("login.title")}
           </h2>
 
           <div className="relative input-group mb-2.5">
@@ -106,7 +111,7 @@ const FormLogin = () => {
               className="input-control"
               type="text"
               id="email"
-              placeholder={t('login.email.placeholder')}
+              placeholder={t("login.email.placeholder")}
               defaultValue={account.email || ""}
             />
             {errors && (
@@ -125,7 +130,7 @@ const FormLogin = () => {
                 className="input-control"
                 type={showPassword ? "text" : "password"}
                 id="password"
-                placeholder={t('login.password.placeholder')}
+                placeholder={t("login.password.placeholder")}
                 defaultValue={account.password || ""}
               />
               {errors && (
@@ -160,7 +165,7 @@ const FormLogin = () => {
               />
               {/* Remember the account */}
               <label className="text-[#194894] ml-1" htmlFor="remember">
-                {t('login.rememberPassword')}
+                {t("login.rememberPassword")}
               </label>
             </div>
             {/* Go to the password reset page */}
@@ -168,7 +173,7 @@ const FormLogin = () => {
               to="/forgetPassword"
               className="text-[#F47621] vergessen underline"
             >
-              {t('login.forgotPassword')}
+              {t("login.forgotPassword")}
             </Link>
           </div>
 
@@ -177,16 +182,16 @@ const FormLogin = () => {
             className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px]"
             type="submit"
           >
-            {t('login.loginButton')}
+            {t("login.loginButton")}
           </button>
         </form>
         {/* end form */}
 
         <div className="flex mt-4 text-[0.8rem]">
           {/* Go to the account creation page */}
-          <p>{t('login.newUser')}</p>
+          <p>{t("login.newUser")}</p>
           <p onClick={() => setLevel(2)} className="text-[#F47621] click ml-1">
-            {t('login.createAccount')}
+            {t("login.createAccount")}
           </p>
         </div>
       </Wrapper>

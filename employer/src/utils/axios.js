@@ -1,6 +1,6 @@
 import axios from "axios";
-import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 import { useAuthStore } from "../store/useAuthStore";
+import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 
 // Primary api address
 const customFetch = axios.create({
@@ -37,7 +37,7 @@ customFetch.interceptors.response.use(
 
       const existingUser = getUserFromLocalStorage();
 
-      if (!existingUser?.token) {
+      if (!existingUser?.data?.token) {
         // ⛔ No token means login attempt or expired session – do NOT retry refresh
         return Promise.reject(error);
       }

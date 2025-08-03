@@ -3,7 +3,7 @@ import { getUserFromLocalStorage } from "../utils/localStorage";
 
 export const useAuthStore = create((set) => ({
   // Fetch user from local storage
-  user: getUserFromLocalStorage("user") || null,
+  user: getUserFromLocalStorage() || null,
 
   // A function that allows user modification
   setUser: (user) => set(() => ({ user })),

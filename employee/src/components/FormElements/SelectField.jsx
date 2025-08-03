@@ -78,7 +78,10 @@ const SelectField = ({
         event.preventDefault();
         if (focusedIndex >= 0) {
           const selectedOption = Options[focusedIndex];
-          const optionValue = typeof selectedOption === 'object' ? selectedOption.value : selectedOption;
+          const optionValue =
+            typeof selectedOption === "object"
+              ? selectedOption.value
+              : selectedOption;
           handleSelect(optionValue, focusedIndex);
         }
         break;
@@ -145,10 +148,10 @@ const SelectField = ({
                     ? "bg-blue-100 text-blue-800"
                     : "hover:bg-[#919eab34]"
                 }`}
-                onClick={() => handleSelect(option, index)}
+                onClick={() => handleSelect(option?.value, index)}
                 onMouseEnter={() => setFocusedIndex(index)}
               >
-                {option}
+                {option?.value}
               </li>
             ))}
           </ul>

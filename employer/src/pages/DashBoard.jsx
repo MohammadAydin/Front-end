@@ -8,8 +8,20 @@ import AreaChart from "../components/OlderHouse/AreaChart";
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import Invoices from "../components/Invoices";
 import Card from "../components/Card";
+import customFetch from "../utils/axios";
+import axios from "axios";
 
 const DashBoard = () => {
+  const refresh = async () => {
+    try {
+      await axios
+        .post("https://woundwann.de/v1/refresh")
+        .then((res) => console.log(res));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     // Dashboard wrapper
     <Wrapper className="mt-6 ml-1.5  w-full pr-3.5 ">
@@ -96,6 +108,9 @@ const DashBoard = () => {
             />
           </div>
         </div>
+        <button onClick={refresh} className="bg-amber-500">
+          Refresh Token
+        </button>
       </div>
     </Wrapper>
   );

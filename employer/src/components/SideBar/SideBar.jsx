@@ -30,7 +30,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
               <div className="information text-center">
                 <p className="mt-[8px] text-white">{data?.data?.name}</p>
                 <p className="admin text-white font-thin">
-                  {data?.data?.role[0]}
+                  {data?.data?.role}
                 </p>
               </div>
             </div>

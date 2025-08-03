@@ -18,7 +18,6 @@ const Documents = () => {
   const [documents, setDocuments] = useState({}); // { document_id: File }
   const [isReady, setIsReady] = useState(false);
   const { data: requiredDocs } = useData("/user/documents");
-  console.log(requiredDocs);
 
   // make sure all documents is uploading
   useEffect(() => {
@@ -65,7 +64,6 @@ const Documents = () => {
   });
 
   const isUploading = uploadDocumentsMutation.isPending;
-  console.log(isUploading);
 
   const submit = () => {
     const formData = new FormData();
@@ -96,7 +94,7 @@ const Documents = () => {
       )}
       {!isReady && (
         <p className="w-full bg-[#f4212127] py-5 text-center rounded-lg text-[#f42121] mt-2">
-       uploadAllRequired
+          uploadAllRequired
         </p>
       )}
       <div className="mt-10 flex flex-col items-end">
@@ -105,7 +103,7 @@ const Documents = () => {
             onClick={() => navigate("/Personal info")}
             className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3] mr-3"
           >
-           back
+            back
           </button>
           <button
             disabled={!isReady || isUploading}
@@ -117,7 +115,7 @@ const Documents = () => {
                   : "bg-[#F47621] text-white"
               }`}
           >
-           submit
+            submit
           </button>
         </div>
         {serverError && (
