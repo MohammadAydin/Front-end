@@ -27,7 +27,6 @@ const AddLoaction = () => {
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
 
-  console.log(uploaded);
 
   const { t } = useTranslation();
   const { lengthLocations } = useParams();
@@ -90,7 +89,6 @@ const AddLoaction = () => {
       // If it doesn't success
     } catch (error) {
       // Print error message in console
-      console.log("send location error full:", error);
       // Show error message in toast
       toast.error(
         t("addLocation.sendLocationError") +

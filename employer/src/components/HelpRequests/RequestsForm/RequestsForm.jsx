@@ -67,21 +67,11 @@ const RequestsForm = () => {
       });
       queryClient.invalidateQueries(["employerJobPosting"]);
       toast.success(response?.data?.message);
-      console.log(response?.data);
 
       RequestClose(), reset();
     } catch (error) {
       console.error("Error during submission:", error?.response?.data?.message);
-      console.log({
-        title: data.Title,
-        description: data.Description,
-        employees_required: data.EmployeeCount,
-        date_from: data.date.from.toISOString().split("T")[0],
-        date_to: data.date.to.toISOString().split("T")[0],
-        location_id: Number(data.Address),
-        employee_positions_id: Number(data.Position),
-        shift_id: Number(data.Shifts),
-      });
+    
     }
   };
 

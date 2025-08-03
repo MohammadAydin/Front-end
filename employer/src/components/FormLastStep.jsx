@@ -41,7 +41,6 @@ const FormLastStep = () => {
 
   const submit = (data) => {
     // here we will send data to backend when they finish !
-    console.log(data);
     // Unloading fields
     reset();
     // Go to the next form

@@ -42,12 +42,10 @@ const PopupCheck = ({ togglePopup, idTask, handleSetLevel }) => {
       );
       // If successful
 
-      console.log(response.data);
       toast.success("Access has been verified");
 
       // If the Verify is successful
       // Print user data in the console
-      console.log("Access has been verified:", response.data);
       togglePopup();
       handleSetLevel(4);
       // Emptying form fields
@@ -58,12 +56,7 @@ const PopupCheck = ({ togglePopup, idTask, handleSetLevel }) => {
       // Show Toast error message
       toast.error(error?.response?.data?.message);
 
-      // Print the error message in console
-      console.log(
-        "Verify error:",
-        // Axios error message or server error message appears
-        error.response?.data?.message
-      );
+   
     }
   };
 

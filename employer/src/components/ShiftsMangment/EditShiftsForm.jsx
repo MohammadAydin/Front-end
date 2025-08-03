@@ -42,7 +42,6 @@ const EditShiftsForm = ({
   });
 
   const submit = (data) => {
-    console.log(data);
     addShiftMutatuin.mutate({
       name: data.shiftName,
       start_time: data.fromTime,

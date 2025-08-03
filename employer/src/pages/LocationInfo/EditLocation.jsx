@@ -35,7 +35,6 @@ const EditLocation = () => {
   const postalcode = searchParamstow.get("postal_code");
   const city = searchParamstow.get("city");
   const country = searchParamstow.get("country");
-  console.log(id);
 
   const {
     data: locations,
@@ -113,7 +112,6 @@ const EditLocation = () => {
       // If it doesn't success
     } catch (error) {
       // Print error message in console
-      console.log("send location error full:", error);
       // Show error message in toast
       toast.error(
         t("addLocation.sendLocationError") +

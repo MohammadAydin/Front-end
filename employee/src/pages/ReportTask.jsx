@@ -19,7 +19,6 @@ const ReportTask = () => {
     // Remove the default form mode
     data.preventDefault();
     // Print the message
-    console.log(ReportRef.current.value);
 
     // Go to the tasks page
     navigate("/tasksPage");

@@ -1,5 +1,4 @@
 const ShiftTime = ({ name, register, errors, timeField, PeriodField,defaultvalue }) => {
-  console.log(defaultvalue)
   return (
     <div className="flex flex-col">
       <div className="my-5">

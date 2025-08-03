@@ -27,13 +27,11 @@ const Phone_number = () => {
         }),
 
     onSuccess: () => {
-      console.log("seccess");
       setIsOtpCode(true);
       setResendTimer(60); // timer 1 min to send the code again
     },
 
     onError: (error) => {
-      console.log(error);
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =

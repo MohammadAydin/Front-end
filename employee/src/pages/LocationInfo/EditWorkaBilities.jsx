@@ -44,14 +44,12 @@ const EditWorkaBilities = () => {
         workable_distance: data.distance,
       });
       // Print response
-      console.log(response);
       // Toast presentation for success message
       toast.success(response?.data?.message);
       // Head to the main path
       navigate("/LocationInfo");
     } catch (error) {
       // Print the error message
-      console.log("erorr send distance" + error?.response?.data?.message);
     }
   };
 

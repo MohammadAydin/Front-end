@@ -25,7 +25,6 @@ const FormAddressPk = () => {
 
   const submit = (data) => {
     // here we will send data to backend when they finish !
-    console.log(data);
     reset();
     setLevel(6);
   };

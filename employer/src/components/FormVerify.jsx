@@ -9,8 +9,11 @@ import useEmailStore from "../store/storeEmail";
 import { toast } from "react-toastify";
 import customFetch from "../utils/axios";
 import { addUserToLocalStorage } from "../utils/localStorage";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/useAuthStore";
 
 const FormVerify = () => {
+  const navigate = useNavigate();
   // Store the state of the resend button
   const [isVerify, setIsVerify] = useState(false);
 
@@ -20,10 +23,9 @@ const FormVerify = () => {
   // Fetch stored email
   const email = useEmailStore((s) => s.email);
 
-  // Print the stored email when a change occurs
-  useEffect(() => {
-    console.log("Email has been updated to:", email);
-  }, [email]);
+  const [isLoading, setIsLoading] = useState(false);
+
+ 
 
   // Storing field values and setting numeric constraints
   const schema = z.object({
@@ -45,6 +47,7 @@ const FormVerify = () => {
 
   // Field dispatch function
   const submit = async (data) => {
+    setIsLoading(true);
     // Merge fields into a single field
     const code = Object.values(data).join("");
 
@@ -56,30 +59,29 @@ const FormVerify = () => {
       });
       // If successful, the account is added to LocalStorage
       addUserToLocalStorage(response.data.data);
+      useAuthStore.getState().setUser(response.data.data);
 
       toast.success("Verify successful");
 
       // If the Verify is successful
       // Print user data in the console
-      console.log("Verify successful:", response.data);
+      setIsLoading(false);
 
       // Emptying form fields
       reset();
 
+      navigate("/");
+
       // Going to the Form is the last step.
-      setLevel(4);
 
       // In case it doesn't work
     } catch (error) {
+      setIsLoading(false);
       // Show Toast error message
       toast.error(error.response?.data?.message);
 
       // Print the error message in console
-      console.log(
-        "Verify error:",
-        // Axios error message or server error message appears
-        error.response?.data?.message
-      );
+   
     }
   };
   // ResendCode function
@@ -99,7 +101,6 @@ const FormVerify = () => {
       }, 15 * 60 * 1000);
       // If unsuccessful, an error message appears
     } catch (error) {
-      console.log(error.response?.data?.message || error.message);
     }
   };
 
@@ -166,10 +167,13 @@ const FormVerify = () => {
           )}
           {/* Verification button */}
           <button
-            className="p-2 button-login mb-3 bg-[#F47621] text-white rounded-[10px]"
+            className={`p-2 button-login mb-3 ${
+              isLoading ? "bg-gray-400" : "bg-[#F47621]"
+            }  text-white rounded-[10px]`}
             type="submit"
+            disabled={isLoading}
           >
-            Verify
+            {isLoading ? "Wating ..." : "Verify"}
           </button>
         </form>
 

@@ -59,7 +59,6 @@ const ResetPasswordForm = () => {
       // Show login success message
       toast.success(response?.data?.message || t('resetPassword.success'));
       // Show a successful login message with the account
-      console.log("send email successful:", response.data);
       // Emptying form fields
       reset();
 
@@ -68,7 +67,6 @@ const ResetPasswordForm = () => {
       toast.error(error.response?.data?.message || t('resetPassword.error'));
 
       // Print the error message in console
-      console.log(error.response?.data?.message);
     }
   };
   return (

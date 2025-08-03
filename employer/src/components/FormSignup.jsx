@@ -22,6 +22,8 @@ const FormSignup = () => {
   // Store status check box remember password show and hide
   const [isChecked, setIsChecked] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   // Constraints chart from the Zod Library
   const schema = z
     .object({
@@ -57,6 +59,7 @@ const FormSignup = () => {
 
   // Transmission function
   const submit = async (data) => {
+    setIsLoading(true);
     try {
       // Sign Up post
       const response = await customFetch.post("/employer/register", {
@@ -67,14 +70,12 @@ const FormSignup = () => {
       });
       // If the login is successful
       // Print user data in the console
-      console.log("Signup response successful:", response.data);
       // Store email to send to verification
       setEmail(data.email);
       // Print the stored email
-      console.log("Email stored in store:", data.email);
       // Show a pop-up message toast successful registration
       toast.success("Signup account successful");
-
+      setIsLoading(false);
       // Emptying form fields
       reset();
 
@@ -85,7 +86,9 @@ const FormSignup = () => {
 
       // In case it doesn't work
     } catch (error) {
+      toast.error(error.response?.data?.message);
       // If the verification is incomplete, it goes to the verification
+      setIsLoading(false);
       if (
         error.response?.data?.message == "The email has already been taken."
       ) {
@@ -100,22 +103,16 @@ const FormSignup = () => {
           // Store email to send to verification
           setEmail(data.email);
           // Print the stored email
-          console.log("Email stored in store:", data.email);
           // Heading to verification in one and a half seconds
           setTimeout(() => {
             setLevel(3);
           }, 1500);
           // If the verification request is unsuccessful
         } catch {
-          console.log("error");
         }
       }
       // If the error is not related to email
-      console.log(
-        "SignUp error:",
-        // Axios error message or server error message appears
-        error.response?.data?.message || error.message
-      );
+    
     }
   };
 
@@ -239,12 +236,14 @@ const FormSignup = () => {
         </div>
         <button
           className={`p-2 mt-5 mb-3 ${
-            isChecked ? "bg-amber-600 click" : "bg-gray-400 non-click"
-          } text-white rounded-[10px]`}
+            isChecked && !isLoading
+              ? "bg-amber-600 click"
+              : "bg-gray-400 non-click"
+          }  text-white rounded-[10px]`}
           type="submit"
-          disabled={!isChecked}
+          disabled={!isChecked || isLoading}
         >
-          Sign Up
+          {!isLoading ? "Sign Up" : "Wating ... "}
         </button>
       </form>
       <div className="flex  text-[0.8rem]">

@@ -45,7 +45,6 @@ const Banking_info = () => {
       navigate("/Personal info");
     },
     onError: (error) => {
-      console.log(error);
 
       const errors = error?.response?.data?.errors;
       const fallbackMessage =

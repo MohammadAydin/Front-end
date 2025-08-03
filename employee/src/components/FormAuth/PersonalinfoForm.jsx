@@ -20,7 +20,6 @@ const PersonalinfoForm = () => {
   // Storage services
   const [services, setServices] = useState([]);
 
-  console.log(services);
 
   // Index Storage Services
   const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);

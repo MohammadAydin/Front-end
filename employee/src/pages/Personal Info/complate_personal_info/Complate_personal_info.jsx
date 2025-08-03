@@ -71,7 +71,6 @@ const Complate_personal_info = () => {
 
   const Submit = (data) => {
     const formattedDate = formatDateToISO(data.Birthday);
-    console.log(formattedDate);
 
     add_personal_info_Mutatuin.mutate({
       username: data.Username,

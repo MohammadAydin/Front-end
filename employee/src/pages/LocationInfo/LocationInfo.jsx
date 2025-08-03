@@ -31,7 +31,6 @@ const LocationInfo = () => {
       });
     },
     onError: (error) => {
-      console.log(error?.respone?.data?.meassge);
     },
   });
 

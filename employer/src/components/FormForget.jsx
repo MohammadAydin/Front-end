@@ -42,7 +42,6 @@ const FormForget = () => {
       // Show login success message
       toast.success(response.data.message);
       // Show a successful login message with the account
-      console.log("send email successful:", response.data);
       // Emptying form fields
       reset();
 
@@ -51,7 +50,6 @@ const FormForget = () => {
       toast.error("send email Login :" + error.response?.data?.message);
 
       // Print the error message in console
-      console.log("send email error:", error.response?.data?.message);
     }
   };
   return (

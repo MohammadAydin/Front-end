@@ -82,7 +82,6 @@ const LoginForm = () => {
       // In case it doesn't work
       // If he is not an employee
     } catch (error) {
-      console.log("Login error full:", error);
       toast.error(error?.response?.data?.message);
       setIsLoading(false);
     }

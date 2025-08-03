@@ -1,0 +1,182 @@
+// import { useState } from "react";
+// import { useForm } from "react-hook-form";
+// import { z } from "zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+// import Wrapper from "../assets/wrapper/FormStyle/FormLastStep";
+// import useFormLevel from "../store/Formlevel";
+// import customFetch from "../utils/axios";
+// import PopupNumber from "./PopupNumber";
+
+// //Using the Zod Library for Constraints
+// const FormLastStep = () => {
+//   // Fetching the Form Level
+//   const setLevel = useFormLevel((s) => s.setLevel);
+
+//   // Store the number separately from the code
+//   const [number, setNumber] = useState("");
+//   const [code, setCode] = useState("");
+
+//   // Opening the number verification interface
+//   // const [confirmCode, setConfirmCode] = useState(false);
+
+//   // Definition and constraints from zod
+//   const schema = z.object({
+//     MangerName: z.string(),
+//     numCode: z.string(),
+//     PhoneNumber: z.number().min(1, { message: "enter phone number" }),
+//     selectOption: z.enum(["Nursing home", "none", "none"], {
+//       errorMap: () => ({ message: "Please select an option" }),
+//     }),
+//   });
+//   // Linking to the hook-form library
+//   const {
+//     register,
+//     handleSubmit,
+//     reset,
+//     watch,
+//     formState: { errors },
+//   } = useForm({ resolver: zodResolver(schema) });
+//   const watchSelect = watch("selectOption");
+
+//   const submit = (data) => {
+//     // here we will send data to backend when they finish !
+//     console.log(data);
+//     // Unloading fields
+//     reset();
+//     // Go to the next form
+//     setLevel(5);
+//   };
+//   // Number Verification Function (later)
+//   // const confirmNumber = async () => {
+//   //   try {
+//   //     // Login post
+//   //     const response = await customFetch.post("/phone/request", {
+//   //       dialing_code: code,
+//   //       phone: number,
+//   //       phone_type: "work",
+//   //     });
+//   //     // setConfirmCode(true);
+//   //     console.log("Email stored in store:", data.email);
+//   //     // If the login is successful
+//   //     // Print user data in the console
+//   //     // toast.success("create account successful");
+//   //     console.log("create successful:", response.data);
+//   //     // Emptying form fields
+//   //     // reset();
+//   //     // setLevel(3);
+//   //     // In case it doesn't work
+//   //   } catch (error) {
+//   //     error.response?.data?.message || error.message;
+//   //   }
+//   // };
+//   return (
+//     <>
+//       <Wrapper>
+//         {/* The beginning of the form */}
+//         <form
+//           className="inputs flex flex-col  login"
+//           onSubmit={handleSubmit(submit)}
+//         >
+//           {/* Form title */}
+//           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
+//             Last Step!
+//           </h2>
+//           {/* Form description */}
+//           <p className="text-[0.6rem] mb-7 text-[#555770]">
+//             Give us your information to keep going to your account.
+//           </p>
+//           <div className="flex flex-col ">
+//             <div className="relative input-group mb-2.5">
+//               {/* name field */}
+//               <input
+//                 {...register("MangerName")}
+//                 className="input-control"
+//                 type="text"
+//                 id="MangerName"
+//                 placeholder="Manger Name"
+//               />
+//               {errors && (
+//                 <p className="text-red-500 text-[0.7rem] mt-2">
+//                   {errors?.MangerName?.message}
+//                 </p>
+//               )}
+//             </div>
+//             <div className="flex gap-1.5">
+//               <input
+//                 {...register("numCode")}
+//                 className="input-control-code h-10 "
+//                 type="text"
+//                 id="numCode"
+//                 placeholder="+"
+//                 style={{
+//                   width: "80px",
+//                 }}
+//                 value={code}
+//                 onChange={(e) => setCode(e.target.value)}
+//               />
+//               <div className="relative input-group w-full mb-2.5">
+//                 {/* PhoneNumber field */}
+//                 <input
+//                   {...register("PhoneNumber", { valueAsNumber: true })}
+//                   className="input-control"
+//                   type="text"
+//                   id="PhoneNumber"
+//                   placeholder="Phone Number"
+//                   value={number}
+//                   onChange={(e) => setNumber(e.target.value)}
+//                 />
+//                 {errors && (
+//                   <p className="text-red-500 text-[0.7rem] mt-2">
+//                     {errors?.PhoneNumber?.message}
+//                   </p>
+//                 )}
+//                 {/* <button
+//                   onClick={confirmNumber}
+//                   className="absolute top-1 right-1 bg-amber-600 text-white text-[0.8rem] p-1.5 rounded-[12px]"
+//                 >
+//                   Confirm
+//                 </button> */}
+//               </div>
+//             </div>
+
+//             <div className="relative">
+//               {/* select field */}
+//               <select
+//                 {...register("selectOption")}
+//                 className={`input-control appearance-none focus:outline-none ${
+//                   !watchSelect ? "text-gray-400" : "text-black"
+//                 }`}
+//                 id="selectOption"
+//               >
+//                 <option value="" disabled hidden>
+//                   Specialization
+//                 </option>
+//                 <option value="Nursing home">Nursing home</option>
+//                 <option value="none">none</option>
+//                 <option value="none">none</option>
+//               </select>
+
+//               {errors && (
+//                 <p className="text-red-500 text-[0.7rem] mt-2">
+//                   {errors?.selectOption?.message}
+//                 </p>
+//               )}
+//               <MdOutlineKeyboardArrowDown className="absolute top-3 right-2" />
+//             </div>
+//           </div>
+//           {/* Completion button */}
+//           <button
+//             className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px]"
+//             type="submit"
+//           >
+//             Complete your account
+//           </button>
+//         </form>
+//       </Wrapper>
+//       {/* {confirmCode && <PopupNumber onClose={() => setConfirmCode(false)} />} */}
+//     </>
+//   );
+// };
+
+// export default FormLastStep;

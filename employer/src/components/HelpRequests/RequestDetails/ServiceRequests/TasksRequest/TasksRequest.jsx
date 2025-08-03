@@ -3,7 +3,6 @@ import ListTasks from "./ListTasks";
 import { MdErrorOutline } from "react-icons/md";
 
 const TasksRequest = ({ data }) => {
-  console.log(data);
   return (
     <div className="mt-8">
       <h2 className="font-[900] text-xl mb-3">Task Request</h2>

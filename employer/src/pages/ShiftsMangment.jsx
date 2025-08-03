@@ -3,6 +3,7 @@ import ShiftsHeader from "../components/ShiftsMangment/ShiftsHeader";
 import ShiftsMain from "../components/ShiftsMangment/ShiftsMain";
 import AddShiftsForm from "../components/ShiftsMangment/AddShiftsForm";
 import "./Css Responsive/ShiftsResponsive.css";
+import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinfo";
 const ShiftsMangment = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   if (isFormOpen) {
@@ -12,6 +13,8 @@ const ShiftsMangment = () => {
   }
   return (
     <div className="ShiftsMangment p-[28px] py-[58px]">
+      <CompletePersonalinfo />
+
       <div>
         <ShiftsHeader setIsFormOpen={setIsFormOpen} />
       </div>

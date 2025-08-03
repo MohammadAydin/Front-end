@@ -19,7 +19,6 @@ const useLogout = () => {
       });
       // If successful
       // Print in Console Reply
-      console.log(response.data.message);
       //Show a successful logout message to the user
       toast.success("Logout successful");
       // Delete user and token from LocalStorage

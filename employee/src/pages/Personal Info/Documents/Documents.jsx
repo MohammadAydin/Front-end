@@ -19,7 +19,6 @@ const Documents = () => {
   const [documents, setDocuments] = useState({}); // { document_id: File }
   const [isReady, setIsReady] = useState(false);
   const { data: requiredDocs } = useData("/user/documents");
-  console.log(documents);
 
   // make sure all documents is uploading
   useEffect(() => {
@@ -64,7 +63,6 @@ const Documents = () => {
   });
 
   const isUploading = uploadDocumentsMutation.isPending;
-  console.log(isUploading);
 
 
   const submit = () => {

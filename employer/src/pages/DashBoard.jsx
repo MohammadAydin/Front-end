@@ -10,6 +10,9 @@ import Invoices from "../components/Invoices";
 import Card from "../components/Card";
 import customFetch from "../utils/axios";
 import axios from "axios";
+import useData from "../hooks/useData";
+import { useNavigate } from "react-router-dom";
+import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinfo";
 
 const DashBoard = () => {
   // const refresh = async () => {
@@ -25,6 +28,8 @@ const DashBoard = () => {
   return (
     // Dashboard wrapper
     <Wrapper className="mt-6 ml-1.5  w-full pr-3.5 ">
+      <CompletePersonalinfo />
+
       {/* Full Dashboard Container */}
       <div className="w-full DashBoard">
         {/* Container with the financial statistics section at the top */}

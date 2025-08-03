@@ -40,7 +40,6 @@ const ForgetPasswordForm = () => {
       // Show login success message
       toast.success(response.data.message || t('forgotPassword.success'));
       // Show a successful login message with the account
-      console.log("send email successful:", response.data);
       // Emptying form fields
       reset();
 
@@ -49,7 +48,6 @@ const ForgetPasswordForm = () => {
       toast.error(error.response?.data?.message || t('forgotPassword.error'));
 
       // Print the error message in console
-      console.log(error.response?.data?.message);
     }
   };
   return (

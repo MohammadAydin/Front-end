@@ -17,7 +17,6 @@ const TasksPage = () => {
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
 
-  console.log(tasks);
 
   const filterTasks =
     selectedValue === "all" || !selectedValue

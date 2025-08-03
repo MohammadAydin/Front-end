@@ -35,7 +35,6 @@ const AddLeaderForm = ({ isFormOpen, setIsFormOpen }) => {
   });
 
   const submit = (data) => {
-    console.log(data);
     reset();
     setIsFormOpen(false);
   };

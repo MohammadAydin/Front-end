@@ -18,9 +18,6 @@ const Form = () => {
       {Level == 1 && <FormLogin />}
       {Level == 2 && <FormSignup />}
       {Level == 3 && <FormVerify />}
-      {Level == 4 && <FormLastStep />}
-      {Level == 5 && <FormAddressPk />}
-      {Level == 6 && <FormLicense />}
     </Wrapper>
   );
 };

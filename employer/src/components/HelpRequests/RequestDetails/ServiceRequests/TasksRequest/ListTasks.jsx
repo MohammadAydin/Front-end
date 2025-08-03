@@ -25,7 +25,6 @@ const ListTasks = ({
   const [isHovered, setIsHovered] = useState(false);
   const [lcoationfun, setLocationFun] = useState();
   const [photoEmployee, setPhotoEmployee] = useState(visualphoto);
-  console.log(assigned_to);
 
   const { mutate: getPhotoEmployee } = useMutation({
     mutationFn: () =>
@@ -33,11 +32,9 @@ const ListTasks = ({
 
     onSuccess: (data) => {
       setPhotoEmployee(data?.data?.photo);
-      console.log(data);
     },
 
     onError: (error) => {
-      console.log(error?.response?.data?.errors);
     },
   });
 

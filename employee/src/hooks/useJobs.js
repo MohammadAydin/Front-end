@@ -4,7 +4,6 @@ import customFetch from "../utils/axios";
 const useJobs = (endpoint) => {
   const fetchJobs = async () => {
     return customFetch.get(`/matching${endpoint}`).then((response) => {
-      console.log(response.data.data);
       return response.data.data;
     });
   };

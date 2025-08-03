@@ -20,9 +20,7 @@ const VerifyEmailForm = () => {
   const [isVerify, setIsVerify] = useState(false);
 
   // Print the stored email when a change occurs
-  useEffect(() => {
-    console.log("Email has been updated to:", email);
-  }, [email]);
+ 
 
   // Storing field values and setting numeric constraints
   const schema = z.object({
@@ -56,12 +54,10 @@ const VerifyEmailForm = () => {
       });
       // If successful, the account is added to LocalStorage
       addUserToLocalStorage("user", response.data.data);
-      console.log(response.data);
       toast.success(response?.data?.message);
 
       // If the Verify is successful
       // Print user data in the console
-      console.log("Verify successful:", response.data);
 
       // Emptying form fields
       reset();
@@ -75,11 +71,7 @@ const VerifyEmailForm = () => {
       toast.error(error?.response?.data?.message);
 
       // Print the error message in console
-      console.log(
-        "Verify error:",
-        // Axios error message or server error message appears
-        error.response?.data?.message
-      );
+  
     }
   };
   // ResendCode function
@@ -102,7 +94,6 @@ const VerifyEmailForm = () => {
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
 
-      console.log(error.response?.data?.message || error.message);
     }
   };
 

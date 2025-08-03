@@ -13,7 +13,6 @@ const Contract = () => {
     queryKey: ["/employee/contract/html"],
     queryFn: fetchData,
   });
-  console.log(data);
 
   return (
     <>

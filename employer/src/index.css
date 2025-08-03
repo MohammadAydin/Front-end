@@ -110,7 +110,6 @@ input:focus {
   margin-top: 46px;
   margin-bottom: 3px;
   cursor: pointer;
-  background-color: var(--secondary-color);
 }
 
 /* notification animation */

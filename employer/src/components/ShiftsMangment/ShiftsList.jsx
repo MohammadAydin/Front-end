@@ -4,6 +4,7 @@ import { LuPencil, LuTrash2 } from "react-icons/lu";
 import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import EditShiftsForm from "./EditShiftsForm";
+import CompletePersonalinfo from "../MoreElements/CompletePersonalinfo";
 
 const ShiftsList = ({ id, name, startTime, endTime }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -21,7 +22,6 @@ const ShiftsList = ({ id, name, startTime, endTime }) => {
       queryClient.invalidateQueries(["/employer/shifts"]);
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error?.response?.data?.message);
     },
   });
@@ -64,7 +64,14 @@ const ShiftsList = ({ id, name, startTime, endTime }) => {
         </button>
       </div>
       {isFormOpen && (
-        <EditShiftsForm id={id} isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} name={name} startTime={startTime} endtime={endTime}/>
+        <EditShiftsForm
+          id={id}
+          isFormOpen={isFormOpen}
+          setIsFormOpen={setIsFormOpen}
+          name={name}
+          startTime={startTime}
+          endtime={endTime}
+        />
       )}
     </div>
   );

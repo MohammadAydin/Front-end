@@ -24,7 +24,6 @@ const JopRequest = () => {
   // To store jobsRequst
   const { data: jobs, error, isLoading } = useJobs("/jobs");
 
-  console.log(error?.response?.data?.message);
   // Using React Query to fetch data
   const queryClient = useQueryClient();
 

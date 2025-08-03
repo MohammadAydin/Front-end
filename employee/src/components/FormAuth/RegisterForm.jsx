@@ -48,7 +48,6 @@ const RegisterForm = () => {
       });
       // If the login is successful
       // Print user data in the console
-      console.log("Signup response successful:", response.data);
 
       // Show a pop-up message toast successful registration
       toast.success(response?.data?.message);
@@ -75,7 +74,6 @@ const RegisterForm = () => {
         });
 
         // Print the stored email
-        console.log("Email stored in store:", data.email);
         // Heading to verification in one and a half seconds
         setTimeout(() => { }, 1500);
         // If the verification request is unsuccessful
@@ -85,11 +83,7 @@ const RegisterForm = () => {
       }
 
       // If the error is not related to email
-      console.log(
-        "SignUp error:",
-        // Axios error message or server error message appears
-        error.response?.data?.message || error.message
-      );
+     
     }
   };
 

@@ -69,7 +69,6 @@ const PopupReview = ({ togglePopup, idTask }) => {
       // If successful
 
       navigate("/tasksPage");
-      console.log(response.data);
       toast.success("Thank you for rating us");
       // Emptying form fields
       reset();
@@ -79,12 +78,7 @@ const PopupReview = ({ togglePopup, idTask }) => {
       // Show Toast error message
       toast.error(error?.response?.data?.message);
 
-      // Print the error message in console
-      console.log(
-        "error:",
-        // Axios error message or server error message appears
-        error.response?.data?.message
-      );
+    
     }
   };
 

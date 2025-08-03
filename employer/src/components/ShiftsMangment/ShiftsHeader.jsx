@@ -1,5 +1,6 @@
 import { LuClock } from "react-icons/lu";
 import { BsPlus } from "react-icons/bs";
+import CompletePersonalinfo from "../MoreElements/CompletePersonalinfo";
 
 const ShiftsHeader = ({ setIsFormOpen }) => {
   return (

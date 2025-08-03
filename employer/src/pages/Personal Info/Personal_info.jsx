@@ -36,15 +36,13 @@ const Personal_info = () => {
     setAlCompleted(allApproved);
   }, [statusData]);
 
-  console.log(statusData);
-  console.log(statusData?.isUploadedAllProfile);
+  
 
   const sendAllInfo = useMutation({
     mutationFn: () => customFetch.post("profile/submit/review"),
 
     onSuccess: () => {
       navigate("/");
-      console.log("Successfully sent all personal info");
       toast.success("Successfully sent all personal info");
       // Show a success message or trigger refetch if needed
     },
@@ -55,7 +53,6 @@ const Personal_info = () => {
   });
 
   const handleSendAll = () => {
-    console.log("okk");
     sendAllInfo.mutate();
   };
 

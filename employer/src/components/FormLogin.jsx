@@ -6,7 +6,10 @@ import Wrapper from "../assets/wrapper/FormStyle/FormLogin";
 import useFormLevel from "../store/Formlevel";
 import customFetch from "../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
-import { addUserToLocalStorage, getUserFromLocalStorage } from "../utils/localStorage";
+import {
+  addUserToLocalStorage,
+  getUserFromLocalStorage,
+} from "../utils/localStorage";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { createLoginSchema } from "../utils/validationSchema";
@@ -15,6 +18,7 @@ import { useAuthStore } from "../store/useAuthStore";
 const FormLogin = () => {
   // Translation hook
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
 
   // Storing the state of showing and hiding the password
   const [showPassword, setShowPassword] = useState(false);
@@ -47,6 +51,7 @@ const FormLogin = () => {
 
   // Submit function
   const submit = async (data) => {
+    setIsLoading(true);
     try {
       // Login post
       const response = await customFetch.post("/login", {
@@ -70,14 +75,13 @@ const FormLogin = () => {
       toast.success(t("login.success"));
 
       // Show a successful login message with the account
-      console.log("Login successful:", response.data);
 
       // Add user to local storage
       addUserToLocalStorage(response.data);
 
       // User storage in Zostand store
       setUser(getUserFromLocalStorage("user"));
-
+      setIsLoading(false);
       // Go to the home page
       setTimeout(() => {
         navigate("/");
@@ -85,9 +89,8 @@ const FormLogin = () => {
       }, 1500);
     } catch (error) {
       toast.error(t("login.error") + ": " + error.response?.data?.error);
-
+      setIsLoading(false);
       // Print the error message in console
-      console.log("Login error:", error.response?.data?.error);
     }
   };
 
@@ -179,10 +182,13 @@ const FormLogin = () => {
 
           {/* Login button */}
           <button
-            className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px]"
+            className={`p-2 button-login mb-3 ${
+              isLoading ? "bg-gray-400" : "bg-amber-600"
+            } text-white rounded-[10px]`}
             type="submit"
+            disabled={isLoading}
           >
-            {t("login.loginButton")}
+            {isLoading ? "Wating ... " : "Login"}
           </button>
         </form>
         {/* end form */}

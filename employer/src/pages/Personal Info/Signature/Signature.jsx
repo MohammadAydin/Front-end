@@ -20,7 +20,6 @@ const Signature = () => {
   const [searchParams] = useSearchParams();
   const isUploaded = searchParams.get("uploaded") === "true";
   const { data: UplodedSignature } = useData("/signature");
-  console.log(UplodedSignature);
   const [showSignature, setShowSignature] = useState(false);
   const navigate = useNavigate();
 

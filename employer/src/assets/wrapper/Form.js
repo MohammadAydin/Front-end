@@ -47,7 +47,6 @@ const Wrapper = styled.div`
     margin-top: 30px;
     margin-bottom: 3px;
     cursor: pointer;
-    /* background-color: var(--secondary-color); */
   }
   .icon-eye {
     cursor: pointer;

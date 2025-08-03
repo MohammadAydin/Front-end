@@ -47,7 +47,6 @@ class ErrorBoundary extends React.Component {
             url: window.location.href
         };
 
-        console.log('Error Report:', errorReport);
         // You would send this to your error reporting service
         alert('Error report has been logged. Please contact support if the issue persists.');
     };

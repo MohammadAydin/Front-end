@@ -24,27 +24,21 @@ const UserProfile = () => {
     queryKey: ["/employee/contract/pdf"],
     queryFn: fetchContract,
   });
-  console.log(dataPdf);
 
   const handleDownload = () => {
-    console.log("hello");
 
     if (isLoadingPdf) {
-      console.log("file already download");
       return;
     }
 
     if (errorPdf) {
-      console.log("error by download", errorPdf);
       return;
     }
 
     if (!dataPdf) {
-      console.log("file empty");
       return;
     }
 
-    console.log("helloworld");
 
     const blob = dataPdf.data;
 

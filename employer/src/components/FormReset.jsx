@@ -66,14 +66,12 @@ const FormReset = () => {
       // Show reset password success message
       toast.success("reset password successful");
       // Show a successful reset password message
-      console.log("reset password  successful:", response.data);
 
       // In case it doesn't work
     } catch (error) {
       toast.error("reset password error:" + error.response?.data?.message);
 
       // Print the error message in console
-      console.log("reset password  error:", error.response?.data?.message);
     }
   };
   return (
