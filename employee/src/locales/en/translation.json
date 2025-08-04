@@ -412,6 +412,10 @@
             "workPermitDocument": "Work permit document",
             "idCopyTitle": "Copy of ID card / passport"
         },
+        "workPermitOptions": {
+            "yes": "Yes",
+            "no": "No"
+        },
         "validation": {
             "nationalityRequired": "Nationality is required",
             "residencePermitRequired": "Residence permit information is required",

@@ -148,7 +148,10 @@ const Residence_info = () => {
               name={"has_work_permit"}
               label={t("residenceInfo.fields.workPermit")}
               errors={errors}
-              Options={["Yes", "No"]}
+              Options={[
+                { value: "Yes", label: t("residenceInfo.workPermitOptions.yes") },
+                { value: "No", label: t("residenceInfo.workPermitOptions.no") }
+              ]}
             />
           )}
           <InputField

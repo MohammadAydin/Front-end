@@ -136,24 +136,29 @@ const SelectField = ({
           aria-labelledby={buttonId}
         >
           <ul className="py-2 font-extrabold max-h-60 overflow-y-auto">
-            {Options.map((option, index) => (
-              <li
-                key={index}
-                role="option"
-                aria-selected={selectOption === option?.value}
-                className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${
-                  focusedIndex === index
-                    ? "bg-blue-50 text-blue-700"
-                    : selectOption === option
-                    ? "bg-blue-100 text-blue-800"
-                    : "hover:bg-[#919eab34]"
-                }`}
-                onClick={() => handleSelect(option?.value, index)}
-                onMouseEnter={() => setFocusedIndex(index)}
-              >
-                {option?.value}
-              </li>
-            ))}
+            {Options.map((option, index) => {
+              const optionValue = typeof option === "object" ? option.value : option;
+              const optionLabel = typeof option === "object" ? option.label : option;
+              
+              return (
+                <li
+                  key={index}
+                  role="option"
+                  aria-selected={selectOption === optionValue}
+                  className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${
+                    focusedIndex === index
+                      ? "bg-blue-50 text-blue-700"
+                      : selectOption === optionValue
+                      ? "bg-blue-100 text-blue-800"
+                      : "hover:bg-[#919eab34]"
+                  }`}
+                  onClick={() => handleSelect(optionValue, index)}
+                  onMouseEnter={() => setFocusedIndex(index)}
+                >
+                  {optionLabel}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

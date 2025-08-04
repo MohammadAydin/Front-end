@@ -412,8 +412,12 @@
             "workPermitDocument": "Çalışma izni belgesi",
             "idCopyTitle": "Kimlik kartı / pasaport kopyası"
         },
+        "workPermitOptions": {
+            "yes": "Evet",
+            "no": "Hayır"
+        },
         "validation": {
-            "nationalityRequired": "Uyruk gereklidir",
+            "nationalityRequired": "Uyrukluk gereklidir",
             "residencePermitRequired": "İkamet izni bilgisi gereklidir",
             "workPermitRequired": "Çalışma izni bilgisi gereklidir"
         },

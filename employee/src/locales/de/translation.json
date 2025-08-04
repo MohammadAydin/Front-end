@@ -412,6 +412,10 @@
             "workPermitDocument": "Arbeitserlaubnisdokument",
             "idCopyTitle": "Kopie des Ausweises / Reisepasses"
         },
+        "workPermitOptions": {
+            "yes": "Ja",
+            "no": "Nein"
+        },
         "validation": {
             "nationalityRequired": "Staatsangehörigkeit ist erforderlich",
             "residencePermitRequired": "Informationen zur Aufenthaltsgenehmigung sind erforderlich",
