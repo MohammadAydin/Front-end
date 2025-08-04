@@ -8,10 +8,12 @@ import PopupAbout from "../components/PopupAbout";
 import useData from "../hooks/useData";
 import ProfilePhoto from "../components/UserProfile/ProfilePhoto/ProfilePhoto";
 import LocationInfo from "./LocationInfo/LocationInfo";
+import useStatusAccount from "../store/storeStatusAccount";
+import statusAccount from "../utils/statusAccountReturn";
 
 const HouseProfile = () => {
   const { data: profile, isLoading } = useData("/profile");
-  console.log(profile);
+  const status = useStatusAccount((state) => state.status);
 
   // Open and closed state storage
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +42,9 @@ const HouseProfile = () => {
       Country: "Germany",
     },
   ]);
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
   return (
     // house profile wrapper
     <Wrapper className="mt-6 w-full pr-3.5 pl-2.5 ">

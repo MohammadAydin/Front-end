@@ -13,8 +13,24 @@ import axios from "axios";
 import useData from "../hooks/useData";
 import { useNavigate } from "react-router-dom";
 import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinfo";
+import useStatusAccount from "../store/storeStatusAccount";
+import { useEffect } from "react";
+import statusAccount from "../utils/statusAccountReturn";
+
 
 const DashBoard = () => {
+  const { data: statusData, error, isLoading } = useData("/status/profile");
+  const setStatus = useStatusAccount((state) => state.setStatus);
+  const status = useStatusAccount((state) => state.status);
+
+  useEffect(() => {
+    if (statusData?.data?.status) {
+      setStatus(statusData?.data?.status);
+    }
+  }, [statusData, setStatus]);
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
   // const refresh = async () => {
   //   try {
   //     await axios

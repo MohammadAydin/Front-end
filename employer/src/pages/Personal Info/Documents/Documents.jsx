@@ -9,8 +9,12 @@ import "../../Responsive css/Personal_info.css";
 import { useTranslation } from "react-i18next";
 import Spinner from "../../../components/MoreElements/Spinner";
 import { FaHourglassHalf } from "react-icons/fa6";
+import statusAccount from "../../../utils/statusAccountReturn";
+import useStatusAccount from "../../../store/storeStatusAccount";
 
 const Documents = () => {
+    const status = useStatusAccount((state) => state.status);
+
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { OpenSuccsess } = OpenSuccsessPopup();
@@ -74,6 +78,9 @@ const Documents = () => {
 
     uploadDocumentsMutation.mutate(formData);
   };
+   if (status !== "approved") {
+    return statusAccount(status);
+  }
 
   return (
     <div className="Documents p-[28px] py-[58px]">

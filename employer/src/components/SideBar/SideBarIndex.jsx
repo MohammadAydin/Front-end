@@ -44,12 +44,12 @@ const pages = [
     icon: <LuBanknote size={24} />,
     path: "/invoices",
   },
-  {
-    id: 6,
-    name: "Leaders",
-    icon: <RiUserSettingsLine size={24} />,
-    path: "/Leaders",
-  },
+  // {
+  //   id: 6,
+  //   name: "Leaders",
+  //   icon: <RiUserSettingsLine size={24} />,
+  //   path: "/Leaders",
+  // },
   {
     id: 7,
     name: "Documents",
