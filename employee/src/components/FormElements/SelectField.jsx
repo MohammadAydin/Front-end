@@ -14,6 +14,7 @@ const SelectField = ({
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectOption, setSelectOption] = useState("");
+  const [selectedLabel, setSelectedLabel] = useState("");
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
@@ -21,8 +22,23 @@ const SelectField = ({
   useEffect(() => {
     if (value == undefined) {
       setSelectOption("");
+      setSelectedLabel("");
     }
   }, [value]);
+
+  // Update selected label when options change (e.g., language change)
+  useEffect(() => {
+    if (selectOption && Options.length > 0) {
+      const currentOption = Options.find(option => {
+        const optionValue = typeof option === "object" ? option.value : option;
+        return optionValue === selectOption;
+      });
+      if (currentOption) {
+        const optionLabel = typeof currentOption === "object" ? currentOption.label : currentOption;
+        setSelectedLabel(optionLabel);
+      }
+    }
+  }, [Options, selectOption]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,8 +52,9 @@ const SelectField = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSelect = (value, index) => {
+  const handleSelect = (value, label, index) => {
     setSelectOption(value);
+    setSelectedLabel(label);
     setValue(name, value, { shouldValidate: true });
     setIsOpen(false);
     setFocusedIndex(-1);
@@ -82,7 +99,11 @@ const SelectField = ({
             typeof selectedOption === "object"
               ? selectedOption.value
               : selectedOption;
-          handleSelect(optionValue, focusedIndex);
+          const optionLabel =
+            typeof selectedOption === "object"
+              ? selectedOption.label
+              : selectedOption;
+          handleSelect(optionValue, optionLabel, focusedIndex);
         }
         break;
       case "Home":
@@ -118,7 +139,7 @@ const SelectField = ({
         aria-describedby={errors[name] ? `${name}-error` : undefined}
         aria-controls={isOpen ? dropdownId : undefined}
       >
-        <span>{selectOption || label || t("accessibility.selectOption")}</span>
+        <span>{selectedLabel || label || t("accessibility.selectOption")}</span>
         <MdOutlineKeyboardArrowDown
           size={25}
           className={`transition-transform duration-200 ${
@@ -136,24 +157,29 @@ const SelectField = ({
           aria-labelledby={buttonId}
         >
           <ul className="py-2 font-extrabold max-h-60 overflow-y-auto">
-            {Options.map((option, index) => (
-              <li
-                key={index}
-                role="option"
-                aria-selected={selectOption === option?.value}
-                className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${
-                  focusedIndex === index
-                    ? "bg-blue-50 text-blue-700"
-                    : selectOption === option
-                    ? "bg-blue-100 text-blue-800"
-                    : "hover:bg-[#919eab34]"
-                }`}
-                onClick={() => handleSelect(option?.value, index)}
-                onMouseEnter={() => setFocusedIndex(index)}
-              >
-                {option?.value}
-              </li>
-            ))}
+            {Options.map((option, index) => {
+              const optionValue = typeof option === "object" ? option.value : option;
+              const optionLabel = typeof option === "object" ? option.label : option;
+              
+              return (
+                <li
+                  key={index}
+                  role="option"
+                  aria-selected={selectOption === optionValue}
+                  className={`px-5 py-3 cursor-pointer transition-colors duration-200 ${
+                    focusedIndex === index
+                      ? "bg-blue-50 text-blue-700"
+                      : selectOption === optionValue
+                      ? "bg-blue-100 text-blue-800"
+                      : "hover:bg-[#919eab34]"
+                  }`}
+                  onClick={() => handleSelect(optionValue, optionLabel, index)}
+                  onMouseEnter={() => setFocusedIndex(index)}
+                >
+                  {optionLabel}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

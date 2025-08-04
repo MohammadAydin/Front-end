@@ -402,7 +402,9 @@
     },
     "residenceInfo": {
         "title": "Aufenthaltsinformationen vervollständigen",
+        "titleUploaded": "Aufenthaltsinformationen",
         "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
+        "descriptionUploaded": "Sie haben Ihre Informationen bereits hochgeladen, setzen Sie den Vorgang fort",
         "fields": {
             "nationality": "Staatsangehörigkeit",
             "residencePermit": "Aufenthaltsgenehmigung",
@@ -410,12 +412,26 @@
             "placeOfBirth": "Geburtsort",
             "permitValidUntil": "Genehmigung gültig bis TT.MM.JJJJ",
             "workPermitDocument": "Arbeitserlaubnisdokument",
-            "idCopyTitle": "Kopie des Ausweises / Reisepasses"
+            "idCopyTitle": "Kopie des Ausweises / Reisepasses",
+            "front": "Vorderseite",
+            "back": "Rückseite"
+        },
+        "workPermitOptions": {
+            "yes": "Ja",
+            "no": "Nein"
         },
         "validation": {
             "nationalityRequired": "Staatsangehörigkeit ist erforderlich",
             "residencePermitRequired": "Informationen zur Aufenthaltsgenehmigung sind erforderlich",
-            "workPermitRequired": "Informationen zur Arbeitsgenehmigung sind erforderlich"
+            "workPermitRequired": "Informationen zur Arbeitsgenehmigung sind erforderlich",
+            "workPermitSelection": "Bitte wählen Sie aus, ob Sie eine Arbeitsgenehmigung haben",
+            "workPermitMustHave": "Sie müssen eine Arbeitsgenehmigung haben.",
+            "nationalityMinLength": "Bitte geben Sie Ihre Staatsangehörigkeit ein",
+            "placeOfBirthRequired": "Bitte geben Sie Ihren Geburtsort ein",
+            "permitValidDateFormat": "Bitte geben Sie das Gültigkeitsdatum der Genehmigung im Format TT.MM.JJJJ ein",
+            "uploadIdFront": "Bitte laden Sie hier die Vorderseite des Ausweises hoch!",
+            "uploadIdBack": "Bitte laden Sie hier die Rückseite des Ausweises hoch!",
+            "uploadPermitDocument": "Bitte laden Sie Ihr Genehmigungsdokument hoch!"
         },
         "back": "Zurück",
         "submit": "Absenden",
