@@ -3,7 +3,6 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import useData from "../../hooks/useData";
 import DetailsList from "./DetailsList";
 
-
 const InvoicesMain = () => {
   const { data: invoices } = useData("/invoices");
   return (

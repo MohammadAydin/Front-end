@@ -24,7 +24,7 @@ const DocumentsList = ({ setIsOpen }) => {
           className="UploadBtn w-[250px] flex gap-1 justify-center items-center font-[900] text-lg bg-[#F47621] text-white px-4 py-2 rounded-xl "
         >
           <span>
-            <MdOutlineFileDownload size={25} />
+            <MdOutlineFileDownload  size={25} />
           </span>
           Upload document
         </button>

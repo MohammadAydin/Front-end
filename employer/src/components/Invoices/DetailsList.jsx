@@ -9,8 +9,6 @@ import { FaFileInvoiceDollar } from "react-icons/fa6";
 const DetailsList = ({ id, invoice_number, from, to, total_amount }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
-  const { data: invoiceDetials, error, isLoadnig } = useData(`/invoice/${id}`);
-  console.log(invoiceDetials);
 
   return (
     <>
@@ -49,8 +47,11 @@ const DetailsList = ({ id, invoice_number, from, to, total_amount }) => {
           >
             {isHovered ? <IoEyeSharp size={25} /> : <IoEyeOutline size={25} />}
           </button>
-          <div className="invoicesDownload text-[25px] mb-1 text-3xl">
-            <MdOutlineFileDownload />
+          <div className="invoicesDownload text-[25px] mb-[0.7px] text-3xl">
+            <a href="" download>
+              {" "}
+              <MdOutlineFileDownload onClick="" className="click" />
+            </a>
           </div>
         </div>
       </div>

@@ -6,11 +6,11 @@ import InvoiceDetailsList from "./InvoiceDetailsList";
 const InvoiceDetailsMain = () => {
   const { id } = useParams();
   const { data: invoiceDetails, error, isLoading } = useData(`/invoice/${id}`);
-  console.log(invoiceDetails);
-  console.log(invoiceDetails?.invoice_number);
+
   return (
     <>
       <InvoiceDetailsList
+        key={invoiceDetails?.data?.id}
         id={invoiceDetails?.data?.id}
         invoice_number={invoiceDetails?.data?.invoice_number}
         from={invoiceDetails?.data?.from}
