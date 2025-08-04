@@ -402,7 +402,9 @@
     },
     "residenceInfo": {
         "title": "İkamet bilgilerini tamamla",
+        "titleUploaded": "İkamet bilgileri",
         "description": "Lütfen bilgilerinizi tamamlayın ve süreci devam ettirin",
+        "descriptionUploaded": "Bilgilerinizi zaten yüklediniz, işleme devam edin",
         "fields": {
             "nationality": "Uyruk",
             "residencePermit": "İkamet İzni",
@@ -410,7 +412,9 @@
             "placeOfBirth": "Doğum yeri",
             "permitValidUntil": "izin şu tarihe kadar geçerli GG.AA.YYYY",
             "workPermitDocument": "Çalışma izni belgesi",
-            "idCopyTitle": "Kimlik kartı / pasaport kopyası"
+            "idCopyTitle": "Kimlik kartı / pasaport kopyası",
+            "front": "Ön",
+            "back": "Arka"
         },
         "workPermitOptions": {
             "yes": "Evet",
@@ -419,7 +423,15 @@
         "validation": {
             "nationalityRequired": "Uyrukluk gereklidir",
             "residencePermitRequired": "İkamet izni bilgisi gereklidir",
-            "workPermitRequired": "Çalışma izni bilgisi gereklidir"
+            "workPermitRequired": "Çalışma izni bilgisi gereklidir",
+            "workPermitSelection": "Lütfen çalışma izniniz olup olmadığını seçin",
+            "workPermitMustHave": "Çalışma izniniz olmalıdır.",
+            "nationalityMinLength": "Lütfen uyruğunuzu girin",
+            "placeOfBirthRequired": "Lütfen doğum yerinizi girin",
+            "permitValidDateFormat": "Lütfen izin geçerlilik tarihini GG.AA.YYYY formatında girin",
+            "uploadIdFront": "Lütfen kimlik kartının ön yüzünü buraya yükleyin!",
+            "uploadIdBack": "Lütfen kimlik kartının arka yüzünü buraya yükleyin!",
+            "uploadPermitDocument": "Lütfen izin belgenizi yükleyin!"
         },
         "back": "Geri",
         "submit": "Gönder",

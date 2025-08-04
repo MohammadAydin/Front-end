@@ -402,7 +402,9 @@
     },
     "residenceInfo": {
         "title": "Complete residence info",
+        "titleUploaded": "Residence info",
         "description": "Please , Complete your info contiue the process",
+        "descriptionUploaded": "You have already uploaded your info contiue the process",
         "fields": {
             "nationality": "Nationality",
             "residencePermit": "Residence Permit",
@@ -410,7 +412,9 @@
             "placeOfBirth": "Place of birth",
             "permitValidUntil": "permit valid until DD.MM.YYYY",
             "workPermitDocument": "Work permit document",
-            "idCopyTitle": "Copy of ID card / passport"
+            "idCopyTitle": "Copy of ID card / passport",
+            "front": "Front",
+            "back": "Back"
         },
         "workPermitOptions": {
             "yes": "Yes",
@@ -419,7 +423,15 @@
         "validation": {
             "nationalityRequired": "Nationality is required",
             "residencePermitRequired": "Residence permit information is required",
-            "workPermitRequired": "Work permit information is required"
+            "workPermitRequired": "Work permit information is required",
+            "workPermitSelection": "Please select if you have a work permit",
+            "workPermitMustHave": "You must have a work permit.",
+            "nationalityMinLength": "Please enter your nationality",
+            "placeOfBirthRequired": "Please enter your place of birth",
+            "permitValidDateFormat": "Please enter permit valid date in DD.MM.YYYY format",
+            "uploadIdFront": "Please upload front of id card here!",
+            "uploadIdBack": "Please upload back of id card here!",
+            "uploadPermitDocument": "Please upload your permit document!"
         },
         "back": "Back",
         "submit": "Submit",

@@ -63,7 +63,7 @@ const Residence_info = () => {
     setValue,
     watch,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(residenceSchema(isUploaded)) });
+  } = useForm({ resolver: zodResolver(residenceSchema(isUploaded, t)) });
 
   useEffect(() => {
     if (isUploaded && ResidenceInfo) {
@@ -125,13 +125,13 @@ const Residence_info = () => {
     <div className="Residence_info p-[28px] py-[58px]">
       <h2 className="text-2xl font-bold mb-2">
         {isUploaded && ResidenceInfo
-          ? "Residence info"
-          : "Complete residence info"}
+          ? t("residenceInfo.titleUploaded")
+          : t("residenceInfo.title")}
       </h2>
       <p className="text-[#555770] mb-10 text-lg ">
         {isUploaded && ResidenceInfo
-          ? "You have already uploaded your info contiue the process"
-          : "Please , Complete your info contiue the process"}
+          ? t("residenceInfo.descriptionUploaded")
+          : t("residenceInfo.description")}
       </p>
       <form onSubmit={handleSubmit(submit)}>
         <NationalitySelect
@@ -179,7 +179,7 @@ const Residence_info = () => {
             <div>
               <FileUploader
                 name={"permit_document"}
-                label={"front"}
+                label={t("residenceInfo.fields.front")}
                 register={register}
                 setValue={setValue}
                 error={errors}
@@ -195,7 +195,7 @@ const Residence_info = () => {
             <FileUploader
               key={input.name}
               name={input.name}
-              label={input.label}
+              label={t(`residenceInfo.fields.${input.name === 'id_front' ? 'front' : 'back'}`)}
               register={register}
               setValue={setValue}
               error={errors}
