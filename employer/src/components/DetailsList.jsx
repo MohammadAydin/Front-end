@@ -76,12 +76,14 @@ const DetailsList = ({
                 created_at : {new Date(created_at).toISOString().split("T")[0]}
               </p>
               <p className="Email text-[#919EAB] text-sm font-[100]">
-               from  : {new Date(date_from).toISOString().split("T")[0]}&nbsp; to : 
-                &nbsp;{new Date(date_to).toISOString().split("T")[0]}
+                from : {new Date(date_from).toISOString().split("T")[0]}&nbsp;
+                to : &nbsp;{new Date(date_to).toISOString().split("T")[0]}
               </p>
               {shfit && (
                 <div>
-                  <p className="Name text-[#919EAB] text-sm font-[100]">shift : {shfit?.data?.name}</p>
+                  <p className="Name text-[#919EAB] text-sm font-[100]">
+                    shift : {shfit?.data?.name}
+                  </p>
                   <p className="Email text-[#919EAB] text-sm font-[100]">
                     {shfit?.data?.start_time} to {shfit?.data?.end_time}
                   </p>

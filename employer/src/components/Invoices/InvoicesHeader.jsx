@@ -10,15 +10,15 @@ const InvoicesHeader = () => {
       </div>
 
       <div className="InvoicesHeaderActions w-full flex justify-between">
-        <div className="InvoicesSearch">
+        {/* <div className="InvoicesSearch">
           <SearchInput />
-        </div>
+        </div> */}
 
         <div>
-          <button className="InvoicesSort flex items-center gap-1 border-2 border-[#ECECF2] rounded-lg p-2 pr-3">
+          {/* <button className="InvoicesSort flex items-center gap-1 border-2 border-[#ECECF2] rounded-lg p-2 pr-3">
             <CgSortAz size={27} />
             <span>Sort By</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

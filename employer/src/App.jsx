@@ -20,6 +20,7 @@ import {
   LocationInfo,
   AddLoaction,
   EditLocation,
+  InvoiceDetails,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -116,6 +117,11 @@ const router = createBrowserRouter([
       {
         path: "/invoices",
         element: <Invoices />,
+        // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/invoiceDetails/:id",
+        element: <InvoiceDetails />,
         // errorElement: <SinglePageError />,
       },
       {
