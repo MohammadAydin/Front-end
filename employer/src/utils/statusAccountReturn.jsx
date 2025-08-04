@@ -13,7 +13,7 @@ const statusAccount = (status) => {
         <div className="relative flex items-center justify-center text-xl font-bold flex-col text-center p-9">
           <img className="w-90" src={newStatusImg} alt="" />
           <p className="absolute bottom-5 max-[320px]:bottom-[-20px]">
-            please complete your application to start earning money
+            "Please complete your employer profile to start sending job offers."
           </p>
         </div>
         <div className="mt-2  max-[320px]:mt-10">
