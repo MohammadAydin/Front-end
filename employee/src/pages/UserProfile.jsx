@@ -8,10 +8,22 @@ import { PiEyeLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import customFetch from "../utils/axios";
+import useStatusAccount from "../store/storeStatusAccount";
+import { useEffect } from "react";
+import statusAccount from "../utils/statusAccountReturn";
 
 const UserProfile = () => {
   const { data, isLoading } = useData("/profile");
   const { t } = useTranslation();
+
+  const {
+    data: statusData,
+    errorstatus,
+    isLoadingstatus,
+  } = useData("/status/profile");
+
+  const setStatus = useStatusAccount((state) => state.setStatus);
+  const status = useStatusAccount((state) => state.status);
 
   const fetchContract = () =>
     customFetch.get("/employee/contract/pdf", { responseType: "blob" });
@@ -26,7 +38,6 @@ const UserProfile = () => {
   });
 
   const handleDownload = () => {
-
     if (isLoadingPdf) {
       return;
     }
@@ -38,7 +49,6 @@ const UserProfile = () => {
     if (!dataPdf) {
       return;
     }
-
 
     const blob = dataPdf.data;
 
@@ -63,6 +73,14 @@ const UserProfile = () => {
       : translated;
   };
 
+  useEffect(() => {
+    if (statusData?.status) {
+      setStatus(statusData?.status);
+    }
+  }, [statusData, setStatus]);
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
   return (
     <div className="UserProfile p-[28px] py-[58px]">
       <div className="w-full p-10 shadow-xl rounded-2xl mb-10">

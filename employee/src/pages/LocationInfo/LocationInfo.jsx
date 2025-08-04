@@ -13,11 +13,22 @@ import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Spinner from "../../components/MoreElements/Spinner";
+import useStatusAccount from "../../store/storeStatusAccount";
+import statusAccount from "../../utils/statusAccountReturn";
 
 const LocationInfo = () => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const [primarystatus, setPrimaryStatus] = useState();
+
+  const {
+    data: statusData,
+    errorstatus,
+    isLoadingstatus,
+  } = useData("/status/profile");
+
+  const setStatus = useStatusAccount((state) => state.setStatus);
+  const status = useStatusAccount((state) => state.status);
 
   const getStatus = useMutation({
     mutationFn: (location) =>
@@ -30,8 +41,7 @@ const LocationInfo = () => {
         queryKey: ["/locations", "locationsList"],
       });
     },
-    onError: (error) => {
-    },
+    onError: (error) => {},
   });
 
   useEffect(() => {
@@ -83,6 +93,15 @@ const LocationInfo = () => {
       );
     },
   });
+
+  useEffect(() => {
+    if (statusData?.status) {
+      setStatus(statusData?.status);
+    }
+  }, [statusData, setStatus]);
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
 
   if (isLoadinglocations || isLoading) return <Spinner />;
   const primaryLocation = locations?.find(

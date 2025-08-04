@@ -1,18 +1,18 @@
-import newStatusImg from "../assets/image/statusimage/newstatus.png";
-import pendingStatusImg from "../assets/image/statusimage/pendingstatus.png";
-import suspendedStatusImg from "../assets/image/statusimage/suspendedstatus.png";
-import OnHoldstatusImg from "../assets/image/statusimage/OnHold.png";
-import declinedstatusImg from "../assets/image/statusimage/declinedstatus.png";
-import Errorr404 from "../assets/image/statusimage/Errorr404.png";
+import newStatusImg from "../assets/images/statusimage/newstatus.png";
+import pendingStatusImg from "../assets/images/statusimage/pendingstatus.png";
+import suspendedStatusImg from "../assets/images/statusimage/suspendedstatus.png";
+import OnHoldstatusImg from "../assets/images/statusimage/OnHold.png";
+import declinedstatusImg from "../assets/images/statusimage/declinedstatus.png";
+import Errorr404 from "../assets/images/statusimage/Errorr404.png";
 import { Link } from "react-router-dom";
 const statusAccount = (status) => {
   if (status === "new") {
     return (
-      <div className="flex items-center justify-center flex-col h-full">
+      <div className="flex items-center justify-center flex-col   min-h-screen">
         <div className="relative flex items-center justify-center text-xl font-bold flex-col text-center p-9">
           <img className="w-90" src={newStatusImg} alt="" />
           <p className="absolute bottom-5 max-[320px]:bottom-[-20px]">
-            "Please complete your employer profile to start sending job offers."
+            please complete your application to start earning money{" "}
           </p>
         </div>
         <div className="mt-2  max-[320px]:mt-10">

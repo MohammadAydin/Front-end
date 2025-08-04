@@ -6,12 +6,24 @@ import { useWorkingHoursStore } from "../../store/WorkingHoursStore";
 import "../Responsive css/WorkingHours.css";
 import vectorNoData from "../../assets/images/vectors/Time management-rafiki.svg";
 import { useTranslation } from "react-i18next";
+import useStatusAccount from "../../store/storeStatusAccount";
+import { useEffect } from "react";
+import statusAccount from "../../utils/statusAccountReturn";
 
 const WorkingHours = () => {
   const { t, i18n } = useTranslation();
   const { rowData, getTotalHours, getDateRange } = useWorkingHoursStore();
 
+
   const { data } = useData("/worked/hours");
+ const {
+    data: statusData,
+    errorstatus,
+    isLoadingstatus,
+  } = useData("/status/profile");
+
+  const setStatus = useStatusAccount((state) => state.setStatus);
+  const status = useStatusAccount((state) => state.status);
 
   const hasFilteredData = rowData.length > 0;
   const displayData = hasFilteredData ? rowData : data;
@@ -31,7 +43,14 @@ const WorkingHours = () => {
     const minutes = Math.round((decimal - hours) * 60);
     return `${hours}h ${minutes}m`;
   }
-
+  useEffect(() => {
+    if (statusData?.status) {
+      setStatus(statusData?.status);
+    }
+  }, [statusData, setStatus]);
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
   return (
     <div className="WorkingHours p-[28px] py-[58px]">
       <div className="font-bold ">

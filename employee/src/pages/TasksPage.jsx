@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import imgjob from "../assets/images/jobRequest/jobRequest.svg";
 import useJobs from "../hooks/useJobs";
@@ -10,18 +10,37 @@ import statusTask from "../hooks/statusTask";
 import { BsListTask } from "react-icons/bs";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
+import useData from "../hooks/useData";
+import useStatusAccount from "../store/storeStatusAccount";
+import statusAccount from "../utils/statusAccountReturn";
 
 const TasksPage = () => {
   const [selectedValue, setSelectedValue] = useState();
   const { t } = useTranslation();
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
+  const {
+    data: statusData,
+    errorstatus,
+    isLoadingstatus,
+  } = useData("/status/profile");
 
+  const setStatus = useStatusAccount((state) => state.setStatus);
+  const status = useStatusAccount((state) => state.status);
 
   const filterTasks =
     selectedValue === "all" || !selectedValue
       ? tasks
       : tasks.filter((task) => task.status === selectedValue);
+
+  useEffect(() => {
+    if (statusData?.status) {
+      setStatus(statusData?.status);
+    }
+  }, [statusData, setStatus]);
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
 
   if (isLoading) return <Spinner />;
   if (error) {
@@ -92,7 +111,9 @@ const TasksPage = () => {
                 {/* Display price with tasks title */}
                 <div className="info">
                   <p>{task.job_posting.title}</p>
-                  <p className="text-softColor text-[0.8rem]">{task.job_posting.price}</p>
+                  <p className="text-softColor text-[0.8rem]">
+                    {task.job_posting.price}
+                  </p>
                 </div>
               </div>
               <div className="min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col ">
