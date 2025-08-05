@@ -5,7 +5,7 @@ import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 // Use different base URLs for development and production
 const getBaseURL = () => {
   // Check if we should use proxy (development mode)
-  const useProxy = import.meta.env.VITE_USE_PROXY === 'true';
+  const useProxy = import.meta.env.VITE_USE_PROXY === "true";
 
   if (useProxy && import.meta.env.DEV) {
     // Development: use proxy
@@ -17,12 +17,12 @@ const getBaseURL = () => {
 };
 
 const customFetch = axios.create({
-  baseURL: "https://woundwann.de/v1",
+  baseURL: getBaseURL(),
   withCredentials: true,
 });
 
 // Log the base URL for debugging
-console.log("API Base URL:", "https://woundwann.de/v1");
+console.log("API Base URL:", getBaseURL());
 console.log("Environment:", import.meta.env.DEV ? "development" : "production");
 
 customFetch.interceptors.request.use((config) => {
