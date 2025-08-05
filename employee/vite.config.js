@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     port: 3001,
     proxy: {
-      '/api': {
-        target: 'https://woundwann.de',
+      "/api": {
+        target: "http://127.0.0.1:8000",
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/v1')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/api/, "/v1"),
+      },
+    },
   },
 });
