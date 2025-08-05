@@ -2,27 +2,24 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 
-// // Use different base URLs for development and production
-// const getBaseURL = () => {
-//   // Check if we should use proxy (development mode)
-//   const useProxy = import.meta.env.VITE_USE_PROXY === 'true';
-
-//   if (useProxy && import.meta.env.DEV) {
-//     // Development: use proxy
-//     return "/api";
-//   } else {
-//     // Production or direct API: use environment variable or fallback
-//     return import.meta.env.VITE_API_BASE_URL || "https://woundwann.de/v1";
-//   }
-// };
+// Use different base URLs for development and production
+const getBaseURL = () => {
+  if (import.meta.env.DEV) {
+    // Development: use proxy
+    return "/api";
+  } else {
+    // Production: use direct API
+    return "https://woundwann.de/v1";
+  }
+};
 
 const customFetch = axios.create({
-  baseURL: "https://woundwann.de/v1",
+  baseURL: getBaseURL(),
   withCredentials: true,
 });
 
 // Log the base URL for debugging
-console.log("API Base URL:", "https://woundwann.de/v1");
+console.log("API Base URL:", getBaseURL());
 console.log("Environment:", import.meta.env.DEV ? "development" : "production");
 
 customFetch.interceptors.request.use((config) => {
@@ -57,8 +54,9 @@ customFetch.interceptors.response.use(
       }
 
       try {
+        const refreshURL = import.meta.env.DEV ? "/api/refresh" : "https://woundwann.de/v1/refresh";
         const { data } = await axios.post(
-          "https://woundwann.de/v1/refresh",
+          refreshURL,
           {},
           { withCredentials: true }
         );
