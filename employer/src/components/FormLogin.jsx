@@ -77,10 +77,10 @@ const FormLogin = () => {
       // Show a successful login message with the account
 
       // Add user to local storage
-      addUserToLocalStorage(response.data);
+      addUserToLocalStorage(response.data?.data);
 
       // User storage in Zostand store
-      setUser(getUserFromLocalStorage("user"));
+      setUser(getUserFromLocalStorage());
       setIsLoading(false);
       // Go to the home page
       setTimeout(() => {

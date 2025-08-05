@@ -25,9 +25,7 @@ const Complate_personal_info = () => {
 
   const add_personal_info_Mutatuin = useMutation({
     mutationFn: (info) =>
-      customFetch
-        .put("https://woundwann.de/v1/profile/personal-info", info)
-        .then((res) => res.data),
+      customFetch.put("/personal-info", info).then((res) => res.data),
 
     onSuccess: () => {
       OpenSuccsess();
@@ -37,7 +35,7 @@ const Complate_personal_info = () => {
     onError: (error) => {
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
-        error?.response?.data?.message || t('completePersonalInfo.error');
+        error?.response?.data?.message || t("completePersonalInfo.error");
 
       if (errors && typeof errors === "object") {
         const firstField = Object.keys(errors)[0];
@@ -84,8 +82,7 @@ const Complate_personal_info = () => {
     <div className="Complate_personal_info p-[28px] py-[58px]">
       <h2 className="text-2xl font-bold mb-2"> personal details </h2>
       <p className="text-[#555770] mb-10 text-lg ">
-       Complete your personal details to proceed with the task.
- 
+        Complete your personal details to proceed with the task.
       </p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="personal_info_grid grid grid-cols-2 gap-5">

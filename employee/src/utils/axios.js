@@ -2,27 +2,27 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 
-// Use different base URLs for development and production
-const getBaseURL = () => {
-  // Check if we should use proxy (development mode)
-  const useProxy = import.meta.env.VITE_USE_PROXY === "true";
+// // Use different base URLs for development and production
+// const getBaseURL = () => {
+//   // Check if we should use proxy (development mode)
+//   const useProxy = import.meta.env.VITE_USE_PROXY === "true";
 
-  if (useProxy && import.meta.env.DEV) {
-    // Development: use proxy
-    return "/api";
-  } else {
-    // Production or direct API: use environment variable or fallback
-    return import.meta.env.VITE_API_BASE_URL || "https://woundwann.de/v1";
-  }
-};
+//   if (useProxy && import.meta.env.DEV) {
+//     // Development: use proxy
+//     return "/api";
+//   } else {
+//     // Production or direct API: use environment variable or fallback
+//     return import.meta.env.VITE_API_BASE_URL || "https://woundwann.de/v1";
+//   }
+// };
 
 const customFetch = axios.create({
-  baseURL: getBaseURL(),
+  baseURL: "https://woundwann.de/v1",
   withCredentials: true,
 });
 
 // Log the base URL for debugging
-console.log("API Base URL:", getBaseURL());
+console.log("API Base URL:", "https://woundwann.de/v1");
 console.log("Environment:", import.meta.env.DEV ? "development" : "production");
 
 customFetch.interceptors.request.use((config) => {

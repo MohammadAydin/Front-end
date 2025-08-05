@@ -9,5 +9,13 @@ export default defineConfig({
   server: {
     port: 3001,
     host: "localhost",
+    proxy: {
+      "/api": {
+        target: "https://woundwann.de/v1", // الـ backend الأصلي
+        changeOrigin: true,
+        secure: true, // أو false حسب ما إذا كان السيرفر لديه شهادة SSL صالحة
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
 });

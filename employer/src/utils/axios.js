@@ -2,24 +2,40 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 
-// Primary api address
+// Use different base URLs for development and production
+const getBaseURL = () => {
+  // Check if we should use proxy (development mode)
+  const useProxy = import.meta.env.VITE_USE_PROXY === "true";
+
+  if (useProxy && import.meta.env.DEV) {
+    // Development: use proxy
+    return "/api";
+  } else {
+    // Production or direct API: use environment variable or fallback
+    return import.meta.env.VITE_API_BASE_URL || "https://woundwann.de/v1";
+  }
+};
+
 const customFetch = axios.create({
-  baseURL: "https://woundwann.de/v1",
+  baseURL: getBaseURL(),
   withCredentials: true,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
 });
 
-// Token Logout Features
-customFetch.interceptors.request.use((config) => {
-  // Fetch the user from localstorage
-  const user = getUserFromLocalStorage();
-  if (user) {
-    config.headers["Authorization"] = `Bearer ${user?.data.token}`;
-  }
+// Log the base URL for debugging
+console.log("API Base URL:", getBaseURL());
+console.log("Environment:", import.meta.env.DEV ? "development" : "production");
 
+customFetch.interceptors.request.use((config) => {
+  const user = useAuthStore.getState().user;
+    console.log("🛠 Sending token:", user?.token); // ← هذا مهم
+
+  config.headers["Accept"] = "application/json";
+  if (!config.headers["Content-Type"]) {
+    config.headers["Content-Type"] = "application/json";
+  }
+  if (user) {
+    config.headers["Authorization"] = `Bearer ${user?.token}`;
+  }
   return config;
 });
 
@@ -35,9 +51,9 @@ customFetch.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      const existingUser = getUserFromLocalStorage();
+      const existingUser = getUserFromLocalStorage("user");
 
-      if (!existingUser?.data?.token) {
+      if (!existingUser?.token) {
         // ⛔ No token means login attempt or expired session – do NOT retry refresh
         return Promise.reject(error);
       }

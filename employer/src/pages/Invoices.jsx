@@ -7,10 +7,10 @@ import useStatusAccount from "../store/storeStatusAccount";
 import statusAccount from "../utils/statusAccountReturn";
 const Invoices = () => {
   const status = useStatusAccount((state) => state.status);
-  // if (status !== "approved") {
-  //   return statusAccount(status);
-  // }
-  
+  if (status !== "approved") {
+    return statusAccount(status);
+  }
+
   return (
     <div className="Invoices p-[28px] py-[58px]">
       <CompletePersonalinfo />

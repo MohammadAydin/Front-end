@@ -78,9 +78,9 @@ const Documents = () => {
 
     uploadDocumentsMutation.mutate(formData);
   };
-   if (status !== "approved") {
-    return statusAccount(status);
-  }
+  //  if (status !== "approved") {
+  //   return statusAccount(status);
+  // }
 
   return (
     <div className="Documents p-[28px] py-[58px]">
