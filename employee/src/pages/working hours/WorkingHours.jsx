@@ -14,15 +14,8 @@ const WorkingHours = () => {
   const { t, i18n } = useTranslation();
   const { rowData, getTotalHours, getDateRange } = useWorkingHoursStore();
 
-
   const { data } = useData("/worked/hours");
- const {
-    data: statusData,
-    errorstatus,
-    isLoadingstatus,
-  } = useData("/status/profile");
 
-  const setStatus = useStatusAccount((state) => state.setStatus);
   const status = useStatusAccount((state) => state.status);
 
   const hasFilteredData = rowData.length > 0;
@@ -32,8 +25,18 @@ const WorkingHours = () => {
 
   const formatMonthName = (monthNumber) => {
     const monthKey = [
-      'january', 'february', 'march', 'april', 'may', 'june',
-      'july', 'august', 'september', 'october', 'november', 'december'
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december",
     ][monthNumber - 1];
     return t(`workingHours.monthNames.${monthKey}`);
   };
@@ -43,25 +46,19 @@ const WorkingHours = () => {
     const minutes = Math.round((decimal - hours) * 60);
     return `${hours}h ${minutes}m`;
   }
-  useEffect(() => {
-    if (statusData?.status) {
-      setStatus(statusData?.status);
-    }
-  }, [statusData, setStatus]);
-  if (status !== "approved") {
-    return statusAccount(status);
-  }
+  if (status !== "approved") return statusAccount(status);
+
   return (
     <div className="WorkingHours p-[28px] py-[58px]">
       <div className="font-bold ">
         <div className="flex justify-between mb-8 items-center">
-          <h3 className="text-2xl font-bold">{t('workingHours.title')}</h3>
+          <h3 className="text-2xl font-bold">{t("workingHours.title")}</h3>
           <FilteringHours />
         </div>
         {displayData?.length == 0 && (
           <div className="flex flex-col justify-center items-center ">
             <img className="w-[400px]" src={vectorNoData} alt="" />
-            <p className="text-xl">{t('workingHours.noDataMessage')}</p>
+            <p className="text-xl">{t("workingHours.noDataMessage")}</p>
           </div>
         )}
         {displayData && displayData.length > 0 && (
@@ -75,7 +72,7 @@ const WorkingHours = () => {
               )}
             </div>
             <div className="text-[#919EAB] font-thin mt-4 text-lg">
-              {t('workingHours.dateLabel')} &nbsp;
+              {t("workingHours.dateLabel")} &nbsp;
               {dateRange ? (
                 dateRange
               ) : (

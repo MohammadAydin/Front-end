@@ -80,9 +80,8 @@ const JopRequest = () => {
       setStatus(statusData?.status);
     }
   }, [statusData, setStatus]);
-  if (status !== "approved") {
-    return statusAccount(status);
-  }
+  if (status !== "approved") return statusAccount(status);
+
   if (isLoading) return <Spinner />;
 
   if (error) {

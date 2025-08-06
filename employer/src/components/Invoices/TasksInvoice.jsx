@@ -12,8 +12,7 @@ const TasksInvoice = ({ task }) => {
     errorpdf,
     isLoadnigpdf,
   } = useData(`/invoices/${task?.id}/download/details`);
-  console.log(pdfDetails);
-  console.log(task);
+
   return (
     <div className="mt-3.5 border-b border-dotted pb-3.5">
       <div className="w-full flex flex-wrap lg:flex-nowrap justify-between gap-4 items-center">

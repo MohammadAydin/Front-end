@@ -19,13 +19,7 @@ const TasksPage = () => {
   const { t } = useTranslation();
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
-  const {
-    data: statusData,
-    errorstatus,
-    isLoadingstatus,
-  } = useData("/status/profile");
 
-  const setStatus = useStatusAccount((state) => state.setStatus);
   const status = useStatusAccount((state) => state.status);
 
   const filterTasks =
@@ -33,14 +27,7 @@ const TasksPage = () => {
       ? tasks
       : tasks.filter((task) => task.status === selectedValue);
 
-  useEffect(() => {
-    if (statusData?.status) {
-      setStatus(statusData?.status);
-    }
-  }, [statusData, setStatus]);
-  if (status !== "approved") {
-    return statusAccount(status);
-  }
+  if (status !== "approved") return statusAccount(status);
 
   if (isLoading) return <Spinner />;
   if (error) {

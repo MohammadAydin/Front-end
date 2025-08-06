@@ -21,13 +21,6 @@ const LocationInfo = () => {
   const { t } = useTranslation();
   const [primarystatus, setPrimaryStatus] = useState();
 
-  const {
-    data: statusData,
-    errorstatus,
-    isLoadingstatus,
-  } = useData("/status/profile");
-
-  const setStatus = useStatusAccount((state) => state.setStatus);
   const status = useStatusAccount((state) => state.status);
 
   const getStatus = useMutation({
@@ -94,14 +87,7 @@ const LocationInfo = () => {
     },
   });
 
-  useEffect(() => {
-    if (statusData?.status) {
-      setStatus(statusData?.status);
-    }
-  }, [statusData, setStatus]);
-  if (status !== "approved") {
-    return statusAccount(status);
-  }
+  if (status !== "approved") return statusAccount(status);
 
   if (isLoadinglocations || isLoading) return <Spinner />;
   const primaryLocation = locations?.find(
