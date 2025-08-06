@@ -20,14 +20,14 @@ const TasksPage = () => {
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
 
-  const status = useStatusAccount((state) => state.status);
 
   const filterTasks =
     selectedValue === "all" || !selectedValue
       ? tasks
       : tasks.filter((task) => task.status === selectedValue);
 
-  if (status !== "approved") return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved")
+    return statusAccount(localStorage.getItem("statusAccount"));
 
   if (isLoading) return <Spinner />;
   if (error) {

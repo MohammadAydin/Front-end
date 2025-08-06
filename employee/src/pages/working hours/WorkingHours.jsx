@@ -46,7 +46,8 @@ const WorkingHours = () => {
     const minutes = Math.round((decimal - hours) * 60);
     return `${hours}h ${minutes}m`;
   }
-  if (status !== "approved") return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved")
+    return statusAccount(localStorage.getItem("statusAccount"));
 
   return (
     <div className="WorkingHours p-[28px] py-[58px]">

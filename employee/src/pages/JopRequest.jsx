@@ -21,9 +21,6 @@ const JopRequest = () => {
     isLoadingstatus,
   } = useData("/status/profile");
 
-  const setStatus = useStatusAccount((state) => state.setStatus);
-  const status = useStatusAccount((state) => state.status);
-
   const { t } = useTranslation();
 
   // To store the status of View All
@@ -77,10 +74,11 @@ const JopRequest = () => {
 
   useEffect(() => {
     if (statusData?.status) {
-      setStatus(statusData?.status);
+      localStorage.setItem("statusAccount", statusData?.status);
     }
-  }, [statusData, setStatus]);
-  if (status !== "approved") return statusAccount(status);
+  }, [statusData?.status]);
+  if (localStorage.getItem("statusAccount") !== "approved")
+    return statusAccount(localStorage.getItem("statusAccount"));
 
   if (isLoading) return <Spinner />;
 

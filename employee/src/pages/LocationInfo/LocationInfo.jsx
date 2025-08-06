@@ -21,7 +21,6 @@ const LocationInfo = () => {
   const { t } = useTranslation();
   const [primarystatus, setPrimaryStatus] = useState();
 
-  const status = useStatusAccount((state) => state.status);
 
   const getStatus = useMutation({
     mutationFn: (location) =>
@@ -87,7 +86,8 @@ const LocationInfo = () => {
     },
   });
 
-  if (status !== "approved") return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved")
+    return statusAccount(localStorage.getItem("statusAccount"));
 
   if (isLoadinglocations || isLoading) return <Spinner />;
   const primaryLocation = locations?.find(

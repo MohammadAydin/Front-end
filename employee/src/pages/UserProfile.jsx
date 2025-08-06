@@ -22,8 +22,6 @@ const UserProfile = () => {
   } = useData("/employee/contract/html");
   const { t } = useTranslation();
 
-  const status = useStatusAccount((state) => state.status);
-
   const fetchContract = () =>
     customFetch.get("/employee/contract/pdf", { responseType: "blob" });
 
@@ -72,7 +70,8 @@ const UserProfile = () => {
       : translated;
   };
 
-  if (status !== "approved") return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved")
+    return statusAccount(localStorage.getItem("statusAccount"));
 
   return (
     <div className="UserProfile p-[28px] py-[58px]">
