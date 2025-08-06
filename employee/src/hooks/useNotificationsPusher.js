@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { pusherService } from "../services/pusherService";
-import { getCurrentPusherConfig } from "../config/pusher";
+import { pusherConfig } from "../config/pusher";
 import customFetch from "../utils/axios";
 
 export const useNotificationsPusher = (userId = null) => {
@@ -12,7 +12,7 @@ export const useNotificationsPusher = (userId = null) => {
   const [error, setError] = useState(null);
   const queryClient = useQueryClient();
 
-  const config = getCurrentPusherConfig();
+  const config = pusherConfig;
   const actualUserId = userId || config.utils.getUserIdFromToken();
   const channelName = actualUserId
     ? config.utils.getChannelName("notifications", actualUserId)

@@ -17,20 +17,28 @@ import useStatusAccount from "../store/storeStatusAccount";
 import { useEffect } from "react";
 import statusAccount from "../utils/statusAccountReturn";
 
-
 const DashBoard = () => {
   const { data: statusData, error, isLoading } = useData("/status/profile");
-  const setStatus = useStatusAccount((state) => state.setStatus);
-  const status = useStatusAccount((state) => state.status);
 
   useEffect(() => {
     if (statusData?.data?.status) {
-      setStatus(statusData?.data?.status);
+      localStorage.setItem("statusAccount", statusData?.data?.status);
     }
-  }, [statusData, setStatus]);
-  if (status !== "approved") {
-    return statusAccount(status);
+  }, [statusData?.data?.status]);
+
+  useEffect(() => {
+    const hasReloaded = localStorage.getItem("hasReloaded");
+
+    if (!hasReloaded) {
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
   }
+
   // const refresh = async () => {
   //   try {
   //     await axios

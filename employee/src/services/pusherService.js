@@ -1,11 +1,11 @@
 import Pusher from "pusher-js";
-import { getCurrentPusherConfig } from "../config/pusher";
+import { pusherConfig } from "../config/pusher";
 
 class PusherService {
   constructor() {
     this.pusher = null;
     this.channels = new Map();
-    this.config = getCurrentPusherConfig();
+    this.config = pusherConfig;
   }
 
   initialize(customOptions = {}) {

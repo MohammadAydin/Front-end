@@ -20,6 +20,8 @@ const useLogout = () => {
       // Print in Console Reply
       //Show a successful logout message to the user
       toast.success("Logout successful");
+      localStorage.removeItem("statusAccount");
+      localStorage.removeItem("hasReloaded");
       // Delete user and token from LocalStorage
       // Go to the login page after a second and a half
       setTimeout(() => {

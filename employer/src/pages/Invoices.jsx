@@ -6,9 +6,8 @@ import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinf
 import useStatusAccount from "../store/storeStatusAccount";
 import statusAccount from "../utils/statusAccountReturn";
 const Invoices = () => {
-  const status = useStatusAccount((state) => state.status);
-  if (status !== "approved") {
-    return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
   }
 
   return (

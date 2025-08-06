@@ -50,14 +50,14 @@ const pages = [
   //   icon: <RiUserSettingsLine size={24} />,
   //   path: "/Leaders",
   // },
+  // {
+  //   id: 7,
+  //   name: "Documents",
+  //   icon: <IoDocumentTextOutline size={24} />,
+  //   path: "/Documents",
+  // },
   {
-    id: 7,
-    name: "Documents",
-    icon: <IoDocumentTextOutline size={24} />,
-    path: "/Documents",
-  },
-  {
-    id: 8,
+    id: 6,
     name: "Shifts Mangment",
     icon: <LuClock size={24} />,
     path: "/Shifts",

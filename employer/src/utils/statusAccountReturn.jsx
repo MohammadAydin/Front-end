@@ -81,8 +81,8 @@ const statusAccount = (status) => {
 
   return (
     <div className="relative h-full flex items-center justify-center text-xl font-bold flex-col text-center p-5">
-      <img className="w-90" src={Errorr404} alt="" />
-      <p className="z-10 absolute mt-70"> </p>
+      {/* <img className="w-90" src={Errorr404} alt="" />
+      <p className="z-10 absolute mt-70"> </p> */}
     </div>
   );
 };

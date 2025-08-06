@@ -77,6 +77,15 @@ const JopRequest = () => {
       localStorage.setItem("statusAccount", statusData?.status);
     }
   }, [statusData?.status]);
+
+  useEffect(() => {
+    const hasReloaded = localStorage.getItem("hasReloaded");
+
+    if (!hasReloaded) {
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
   if (localStorage.getItem("statusAccount") !== "approved")
     return statusAccount(localStorage.getItem("statusAccount"));
 

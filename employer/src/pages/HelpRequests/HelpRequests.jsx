@@ -7,10 +7,10 @@ import statusAccount from "../../utils/statusAccountReturn";
 import "../Css Responsive/HelpRequestResponsive/HelpRequest.css";
 
 const HelpRequests = () => {
-    const status = useStatusAccount((state) => state.status);
- 
-  if (status !== "approved") {
-    return statusAccount(status);
+
+  
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
   }
   return (
     <div className="HelpRequests p-[28px] py-[58px]">

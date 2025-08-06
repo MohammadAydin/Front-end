@@ -7,16 +7,14 @@ import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinf
 import statusAccount from "../utils/statusAccountReturn";
 import useStatusAccount from "../store/storeStatusAccount";
 const ShiftsMangment = () => {
-  const status = useStatusAccount((state) => state.status);
-
   const [isFormOpen, setIsFormOpen] = useState(false);
   if (isFormOpen) {
     document.body.classList.add("overflow-hidden");
   } else {
     document.body.classList.remove("overflow-hidden");
   }
-  if (status !== "approved") {
-    return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
   }
   return (
     <div className="ShiftsMangment p-[28px] py-[58px]">

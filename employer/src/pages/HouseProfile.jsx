@@ -13,7 +13,6 @@ import statusAccount from "../utils/statusAccountReturn";
 
 const HouseProfile = () => {
   const { data: profile, isLoading } = useData("/profile");
-  const status = useStatusAccount((state) => state.status);
 
   // Open and closed state storage
   const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +41,8 @@ const HouseProfile = () => {
       Country: "Germany",
     },
   ]);
-  if (status !== "approved") {
-    return statusAccount(status);
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
   }
   return (
     // house profile wrapper

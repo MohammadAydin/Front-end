@@ -29,6 +29,38 @@ export const pusherConfig = {
     },
   },
 
+  utils: {
+    getChannelName: (type, userId) => `private-${type}-${userId}`,
+    getUserIdFromToken: () => {
+      const userString = localStorage.getItem("user");
+      if (userString) {
+        try {
+          const user = JSON.parse(userString);
+          return user?.data?.id || user?.id || null;
+        } catch (parseError) {
+          return null;
+        }
+      }
+      return null;
+    },
+    isAuthenticated: () => {
+      const userString = localStorage.getItem("user");
+      if (userString) {
+        try {
+          const user = JSON.parse(userString);
+          return !!(user?.data?.token || user?.token);
+        } catch (parseError) {
+          return false;
+        }
+      }
+      return false;
+    },
+  },
+
+  events: {
+    newNotification: "new-notification",
+  },
+
   getPusherOptions: () => ({
     cluster: pusherConfig.cluster,
     forceTLS: pusherConfig.forceTLS,
