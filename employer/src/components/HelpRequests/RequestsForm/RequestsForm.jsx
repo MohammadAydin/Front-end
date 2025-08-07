@@ -23,6 +23,12 @@ const dataPosation = [
   { name: "Pflegehelfer", id: 3 },
 ];
 
+const EmployeeNumber = [
+  { name: 1, id: 1 },
+  { name: 2, id: 2 },
+  { name: 3, id: 3 },
+];
+
 const RequestsForm = () => {
   const queryClient = useQueryClient();
   const { RequestIsOpen, RequestClose, RequestDone, Done, notDone } =
@@ -71,7 +77,6 @@ const RequestsForm = () => {
       RequestClose(), reset();
     } catch (error) {
       console.error("Error during submission:", error?.response?.data?.message);
-    
     }
   };
 
@@ -138,13 +143,22 @@ const RequestsForm = () => {
                 </div>
                 <div className="w-full flex gap-3 items-center">
                   <div className="w-[22%]">
-                    <RequestsInput
+                    <SelectField
+                      data={EmployeeNumber}
+                      name={"EmployeeCount"}
+                      errors={errors}
+                      setValue={setValue}
+                      register={register}
+                      value={watch("EmployeeCount")}
+                      // { data, name, errors, setValue, register, value }
+                    />
+                    {/* <RequestsInput
                       register={register}
                       label={"Employee count"}
                       type={"number"}
                       name={"EmployeeCount"}
                       errors={errors}
-                    />
+                    /> */}
                   </div>
                   <CalendarRange
                     register={register}

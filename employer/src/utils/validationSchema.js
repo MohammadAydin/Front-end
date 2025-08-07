@@ -28,13 +28,13 @@ export const createCompletePersonalInfoSchema = (t) => {
       .min(1, t("completePersonalInfo.validation.usernameRequired"))
       .min(3, t("completePersonalInfo.validation.usernameMinLength")),
     Bio: z.string().min(1, t("completePersonalInfo.validation.bioRequired")),
-    Birthday: z
-      .string()
-      .min(1, t("completePersonalInfo.validation.birthdayRequired"))
-      .regex(
-        /^\d{2}\.\d{2}\.\d{4}$/,
-        t("completePersonalInfo.validation.birthdayFormat")
-      ),
+    // Birthday: z
+    //   .string()
+    //   .min(1, t("completePersonalInfo.validation.birthdayRequired"))
+    //   .regex(
+    //     /^\d{2}\.\d{2}\.\d{4}$/,
+    //     t("completePersonalInfo.validation.birthdayFormat")
+    //   ),
     gender: z
       .string()
       .min(1, t("completePersonalInfo.validation.genderRequired")),
@@ -43,14 +43,14 @@ export const createCompletePersonalInfoSchema = (t) => {
 
 // Create location validation schema with translations
 export const createLocationSchema = (t) => {
-    return z.object({
-        street1: z.string().min(1, t('addLocation.validation.streetRequired')),
-        postalcode: z
-            .string()
-            .min(4, t('addLocation.validation.postalCodeRequired'))
-            .regex(/^\d+$/, t('addLocation.validation.postalCodeNumber')),
-        country: z.string().min(1, t('addLocation.validation.countryRequired')),
-        city: z.string().min(1, t('addLocation.validation.cityRequired')),
-        street2: z.string().min(1, t('addLocation.validation.street2Required')),
-    });
+  return z.object({
+    street1: z.string().min(1, t("addLocation.validation.streetRequired")),
+    postalcode: z
+      .string()
+      .min(4, t("addLocation.validation.postalCodeRequired"))
+      .regex(/^\d+$/, t("addLocation.validation.postalCodeNumber")),
+    country: z.string().min(1, t("addLocation.validation.countryRequired")),
+    city: z.string().min(1, t("addLocation.validation.cityRequired")),
+    street2: z.string().min(1, t("addLocation.validation.street2Required")),
+  });
 };

@@ -5,6 +5,14 @@ import DetailsList from "./DetailsList";
 
 const InvoicesMain = () => {
   const { data: invoices } = useData("/invoices");
+  if (invoices?.data.length === 0) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        You have no invoices yet. New invoices will be issued to you on the 1st
+        of each month.
+      </div>
+    );
+  }
   return (
     <>
       {invoices?.data?.map((item, index) => (

@@ -84,7 +84,7 @@ const AddLoaction = () => {
 
       // Response printing
       OpenSuccsess();
-      navigate("/locationInfo");
+      navigate(-1);
 
       // If it doesn't success
     } catch (error) {

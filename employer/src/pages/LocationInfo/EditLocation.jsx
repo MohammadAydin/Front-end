@@ -70,7 +70,9 @@ const EditLocation = () => {
 
   useEffect(() => {
     if (uploaded === "true" && locations) {
-      const location = locations.find((location) => location.is_primary == 1);
+      const location = locations.data.find(
+        (location) => location.is_primary == 1
+      );
 
       setFormDefaults({
         id: location.id || "",
@@ -107,7 +109,7 @@ const EditLocation = () => {
       // if success
 
       OpenSuccsess();
-      navigate("/locationInfo");
+      navigate(-1);
 
       // If it doesn't success
     } catch (error) {
@@ -137,9 +139,7 @@ const EditLocation = () => {
     <Wrapper className="w-full">
       <div className="w-full">
         <h1>{t("locationEdit.title")}</h1>
-        <p className="text-softColor mt-4">
-          {t("locationEdit.description")}
-        </p>
+        <p className="text-softColor mt-4">{t("locationEdit.description")}</p>
 
         <div className="mt-3 w-full">
           <div className="form-Loacations mt-5 w-full">

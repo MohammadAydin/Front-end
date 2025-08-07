@@ -20,7 +20,6 @@ const Complate_personal_info = () => {
   const inputs = [
     { name: "Username", label: "username", type: "text" },
     { name: "Bio", label: "bio", type: "text" },
-    { name: "Birthday", label: "birthday", type: "text" },
   ];
 
   const add_personal_info_Mutatuin = useMutation({
@@ -61,19 +60,19 @@ const Complate_personal_info = () => {
     },
   });
 
-  // change the date from DD.MM.YYYY to YYYY-MM-DD
-  const formatDateToISO = (dateString) => {
-    const [day, month, year] = dateString.split(".");
-    return `${year}-${month}-${day}`;
-  };
+  // // change the date from DD.MM.YYYY to YYYY-MM-DD
+  // const formatDateToISO = (dateString) => {
+  //   const [day, month, year] = dateString.split(".");
+  //   return `${year}-${month}-${day}`;
+  // };
 
   const Submit = (data) => {
-    const formattedDate = formatDateToISO(data.Birthday);
+    // const formattedDate = formatDateToISO(data.Birthday);
 
     add_personal_info_Mutatuin.mutate({
       username: data.Username,
       bio: data.Bio,
-      birthday: formattedDate,
+      birthday: "22.02.1900",
       gender: data.gender,
     });
   };

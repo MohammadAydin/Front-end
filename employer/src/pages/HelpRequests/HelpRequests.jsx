@@ -7,8 +7,6 @@ import statusAccount from "../../utils/statusAccountReturn";
 import "../Css Responsive/HelpRequestResponsive/HelpRequest.css";
 
 const HelpRequests = () => {
-
-  
   if (localStorage.getItem("statusAccount") !== "approved") {
     return statusAccount(localStorage.getItem("statusAccount"));
   }
