@@ -20,6 +20,22 @@ const JopRequest = () => {
     errorstatus,
     isLoadingstatus,
   } = useData("/status/profile");
+  useEffect(() => {
+    if (statusData?.status) {
+      localStorage.setItem("statusAccount", statusData?.status);
+    }
+  }, [statusData?.status]);
+
+  useEffect(() => {
+    const hasReloaded = localStorage.getItem("hasReloaded");
+
+    if (!hasReloaded) {
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+  if (localStorage.getItem("statusAccount") !== "approved")
+    return statusAccount(localStorage.getItem("statusAccount"));
 
   const { t } = useTranslation();
 
@@ -71,23 +87,6 @@ const JopRequest = () => {
 
   // Store 3 jobRequest orders by cropping status
   const visibleJobs = isExpanded ? jobs : jobs?.slice(0, 3);
-
-  useEffect(() => {
-    if (statusData?.status) {
-      localStorage.setItem("statusAccount", statusData?.status);
-    }
-  }, [statusData?.status]);
-
-  useEffect(() => {
-    const hasReloaded = localStorage.getItem("hasReloaded");
-
-    if (!hasReloaded) {
-      localStorage.setItem("hasReloaded", "true");
-      window.location.reload();
-    }
-  }, []);
-  if (localStorage.getItem("statusAccount") !== "approved")
-    return statusAccount(localStorage.getItem("statusAccount"));
 
   if (isLoading) return <Spinner />;
 

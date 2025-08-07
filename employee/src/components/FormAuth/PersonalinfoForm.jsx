@@ -20,7 +20,6 @@ const PersonalinfoForm = () => {
   // Storage services
   const [services, setServices] = useState([]);
 
-
   // Index Storage Services
   const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);
 
@@ -115,7 +114,7 @@ const PersonalinfoForm = () => {
       >
         {/* Main page text */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-          {t("personalInfo.title")}
+          Your Specialization
         </h2>
 
         <div className="flex flex-col">

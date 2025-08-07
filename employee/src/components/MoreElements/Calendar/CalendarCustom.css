@@ -1,0 +1,73 @@
+.custom-calendar {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-calendar .rdp-caption_label {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+}
+
+.custom-calendar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rdp-root {
+  font-weight: 900;
+  --rdp-accent-color: #194894;
+  --rdp-accent-background-color: #d4ecff;
+  --rdp-day-width: 65px;
+  --rdp-day-height: 65px;
+  --rdp-day_button-height: 70%;
+  --rdp-day_button-width: 70%;
+  --rdp-range_middle-color: black;
+  --rdp-range_start-background: linear-gradient(
+    var(--rdp-gradient-direction),
+    transparent 30%,
+    var(--rdp-range_middle-background-color) 20%
+  );
+  --rdp-range_end-background: linear-gradient(
+    var(--rdp-gradient-direction),
+    var(--rdp-range_middle-background-color) 30%,
+    transparent 30%
+  );
+  --rdp-today-color: var(--secondary-color);
+}
+
+.year-dropdown {
+  font-size: 16px;
+  font-weight: 600;
+  color: #28293d;
+  background-color: #f1f1f5;
+  border: 1px solid #919eab;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  width: 120px;
+  z-index: 60;
+}
+
+.year-dropdown:focus {
+  outline: none;
+  border-color: #194894;
+  box-shadow: 0 0 5px rgba(25, 72, 148, 0.3);
+}
+
+.year-dropdown option {
+  background-color: #ffffff;
+  color: #28293d;
+}
