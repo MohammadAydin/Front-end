@@ -1,6 +1,14 @@
 import { useTranslation } from "react-i18next";
 
-const InputField = ({ label, type, register, errors, name, defaultvalue }) => {
+const InputField = ({
+  label,
+  type,
+  register,
+  errors,
+  name,
+  defaultvalue,
+  step,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -15,6 +23,7 @@ const InputField = ({ label, type, register, errors, name, defaultvalue }) => {
             name={name}
             placeholder=""
             defaultValue={defaultvalue && `${defaultvalue}`}
+            step={step}
           />
           <label
             className="label-email absolute z-1 left-3 top-[50%] translate-y-[-50%] px-2 bg-white copy"

@@ -25,7 +25,7 @@ const bankingInfoSchema = (isUploaded) =>
       ? z.any().optional()
       : z.any().refine((file) => file instanceof File, {
           message: "Please upload the bank card document!",
-        }),
+        })
   });
 
 export default bankingInfoSchema;

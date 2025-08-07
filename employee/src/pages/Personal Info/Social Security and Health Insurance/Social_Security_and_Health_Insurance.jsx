@@ -42,6 +42,7 @@ const Social_Security_and_Health_Insurance = () => {
       name: "number_of_children",
       label: t("socialSecurity.fields.numberOfChildren"),
       type: "number",
+      step: "any",
     },
   ];
 
@@ -171,6 +172,7 @@ const Social_Security_and_Health_Insurance = () => {
               label={input.label}
               name={input.name}
               type={input.type}
+              step={input.step ? input.step : 1}
             />
           ))}
 

@@ -22,8 +22,17 @@ import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
 import { t } from "i18next";
+import ReactFlagsSelect from "react-flags-select";
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+import SelectField from "../../components/FormElements/SelectField.jsx";
+import axios from "axios";
 
 const EditLocation = () => {
+  const [selected, setSelected] = useState("");
+  const [cites, setCites] = useState([]);
+  const [selectedName, setSelectedName] = useState("");
+
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
@@ -63,6 +72,7 @@ const EditLocation = () => {
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(baseSchema),
@@ -107,7 +117,7 @@ const EditLocation = () => {
       // if success
 
       OpenSuccsess();
-      navigate("/locationInfo");
+      navigate(-1);
 
       // If it doesn't success
     } catch (error) {
@@ -132,14 +142,43 @@ const EditLocation = () => {
     }
   }, [showPopup]);
 
+  countries.registerLocale(enLocale);
+  const handleCountrySelect = (countryCode) => {
+    console.log(countryCode);
+    const countryName = countries.getName(countryCode, "en");
+    setSelected(countryCode);
+    setSelectedName(countryName);
+    setValue("country", countryName);
+    console.log(countryName);
+  };
+  useEffect(() => {
+    const fetchCities = async () => {
+      if (!selectedName) return;
+
+      try {
+        const res = await axios.post(
+          "https://countriesnow.space/api/v0.1/countries/cities",
+          { country: selectedName }
+        );
+        setCites(res.data.data);
+        if (res.data.error === false) {
+          setCites(res.data.data);
+        } else {
+          console.error(res.data.msg);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchCities();
+  }, [selectedName]);
   return (
     // container wrapper
     <Wrapper className="w-full">
       <div className="w-full">
         <h1>{t("locationEdit.title")}</h1>
-        <p className="text-softColor mt-4">
-          {t("locationEdit.description")}
-        </p>
+        <p className="text-softColor mt-4">{t("locationEdit.description")}</p>
 
         <div className="mt-3 w-full">
           <div className="form-Loacations mt-5 w-full">
@@ -172,22 +211,21 @@ const EditLocation = () => {
                   defaultvalue={formDefaults.postalcode}
                 />
 
-                <InputField
-                  register={register}
-                  errors={errors}
-                  label={t("editLocation.fields.city")}
-                  name={"city"}
-                  type={"text"}
-                  defaultvalue={formDefaults.city}
+                <ReactFlagsSelect
+                  selected={selected}
+                  onSelect={handleCountrySelect}
+                  searchable
                 />
               </div>
-              <InputField
+              <SelectField
+                key={"city"}
+                name={"city"}
+                label={"city"}
                 register={register}
                 errors={errors}
-                label={t("editLocation.fields.country")}
-                name={"country"}
-                type={"text"}
-                defaultvalue={formDefaults.country}
+                setValue={setValue}
+                value={watch("city")}
+                Options={cites}
               />
               <div className="w-full h-[300px] overflow-hidden rounded-md mt-6">
                 <MapComponent

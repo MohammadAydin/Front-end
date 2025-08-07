@@ -23,10 +23,20 @@ import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
 
+import ReactFlagsSelect from "react-flags-select";
+
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+import SelectField from "../../components/FormElements/SelectField.jsx";
 const AddLoaction = () => {
+  const [selected, setSelected] = useState("");
+  const [selectedName, setSelectedName] = useState("");
+  const [cites, setCites] = useState([]);
+  useEffect(() => {
+    console.log("Selected changed:", selected);
+  }, [selected]);
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
-
 
   const { t } = useTranslation();
   const { lengthLocations } = useParams();
@@ -63,6 +73,7 @@ const AddLoaction = () => {
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(baseSchema),
@@ -84,7 +95,7 @@ const AddLoaction = () => {
 
       // Response printing
       OpenSuccsess();
-      navigate("/locationInfo");
+      navigate(-1);
 
       // If it doesn't success
     } catch (error) {
@@ -96,6 +107,15 @@ const AddLoaction = () => {
           (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
+  };
+  countries.registerLocale(enLocale);
+  const handleCountrySelect = (countryCode) => {
+    console.log(countryCode);
+    const countryName = countries.getName(countryCode, "en");
+    setSelected(countryCode);
+    setSelectedName(countryName);
+    setValue("country", countryName);
+    console.log(countryName);
   };
 
   // To test before passing the map
@@ -145,7 +165,28 @@ const AddLoaction = () => {
   //   };
   //   fetchLocation();
   // }, [watch("address")]);
+  useEffect(() => {
+    const fetchCities = async () => {
+      if (!selectedName) return;
 
+      try {
+        const res = await axios.post(
+          "https://countriesnow.space/api/v0.1/countries/cities",
+          { country: selectedName }
+        );
+        setCites(res.data.data);
+        if (res.data.error === false) {
+          setCites(res.data.data);
+        } else {
+          console.error(res.data.msg);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchCities();
+  }, [selectedName]);
   return (
     // container wrapper
     <Wrapper className="w-full">
@@ -187,20 +228,21 @@ const AddLoaction = () => {
                   type={"text"}
                 />
 
-                <InputField
-                  register={register}
-                  errors={errors}
-                  label={t("addLocation.fields.city")}
-                  name={"city"}
-                  type={"text"}
+                <ReactFlagsSelect
+                  selected={selected}
+                  onSelect={handleCountrySelect}
+                  searchable
                 />
               </div>
-              <InputField
+              <SelectField
+                key={"city"}
+                name={"city"}
+                label={"city"}
                 register={register}
                 errors={errors}
-                label={t("addLocation.fields.country")}
-                name={"country"}
-                type={"text"}
+                setValue={setValue}
+                value={watch("city")}
+                Options={cites}
               />
               <div className="w-full h-[300px] overflow-hidden rounded-md mt-6">
                 <MapComponent
