@@ -9,6 +9,7 @@ import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data: photodata } = useData("/photo");
+
   console.log(photodata);
   const data = getUserFromLocalStorage("user");
 
@@ -29,8 +30,8 @@ const SideBar = ({ setNotificationIsOpen }) => {
               />
 
               <div className="information text-center">
-                <p className="mt-[8px] text-white">{data?.data?.name}</p>
-                <p className="admin text-white font-thin">{data?.data?.role}</p>
+                <p className="mt-[8px] text-white">{data?.name}</p>
+                <p className="admin text-white font-thin">{data?.role}</p>
               </div>
             </div>
             <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
