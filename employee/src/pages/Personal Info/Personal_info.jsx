@@ -13,28 +13,46 @@ import "../Responsive css/Personal_info.css";
 
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const Personal_info = () => {
   const { t } = useTranslation();
-
+  const [LoadingsendAll, setLoadingsendAll] = useState(false);
   const navigate = useNavigate();
   const personalSections = PersonalSections();
+  const [allCompleted, setAlCompleted] = useState(false);
 
   const { data: statusData } = useData("/profile/status");
+  useEffect(() => {
+    if (!statusData?.data) return;
+
+    const entries = Object.entries(statusData.data).filter(
+      ([key]) => key !== "isUploadedAllProfile"
+    );
+
+    const allApproved = entries.every(([_, value]) => value === "approved");
+
+    setAlCompleted(allApproved);
+  }, [statusData]);
 
   const sendAllInfo = useMutation({
     mutationFn: () => customFetch.post("profile/submit/review"),
+
     onSuccess: () => {
+      setLoadingsendAll(false);
       toast.success("Successfully sent all personal info");
       // Show a success message or trigger refetch if needed
     },
     onError: (error) => {
+      setLoadingsendAll(false);
+
       console.error("Failed to send info:", error);
       // Optional: show error to user
     },
   });
 
   const handleSendAll = () => {
+    setLoadingsendAll(true);
     sendAllInfo.mutate();
   };
 
@@ -94,24 +112,24 @@ const Personal_info = () => {
           </div>
         )
       )}
-      {!statusData?.isUploadedAllProfile && (
-        <p className="w-full bg-[#f4752121] my-5 px-4 py-5 rounded-lg text-[#F47621] flex gap-2 items-center">
-          <AiOutlineExclamationCircle size={25} />
-          Please upload all personal info before pressing Send.
-        </p>
-      )}
-      <button
-        disabled={!statusData?.isUploadedAllProfile || sendAllInfo.isPending}
-        onClick={handleSendAll}
-        className={`w-full text-lg font-extrabold px-10 py-2 rounded-lg mt-4 ${
-          statusData?.isUploadedAllProfile
-            ? "bg-[#F47621] text-white hover:bg-[#EE6000]"
-            : "bg-gray-300 text-gray-600"
-        }`}
-      >
-        {sendAllInfo.isPending ? "Sending..." : "Send all"}
-      </button>
 
+      {!allCompleted && (
+        <button
+          disabled={
+            !statusData?.data?.isUploadedAllProfile ||
+            sendAllInfo.isPending ||
+            LoadingsendAll
+          }
+          onClick={handleSendAll}
+          className={`w-full text-lg font-extrabold px-10 py-2 rounded-lg mt-4 ${
+            statusData?.data?.isUploadedAllProfile || LoadingsendAll
+              ? "bg-[#F47621] text-white hover:bg-[#EE6000]"
+              : "bg-gray-300 text-gray-600 "
+          }`}
+        >
+          {sendAllInfo.isPending ? "Sending..." : "Send all"}
+        </button>
+      )}
       <SuccsessPopup />
     </div>
   );

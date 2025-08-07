@@ -29,6 +29,11 @@ import SelectField from "../../components/FormElements/SelectField.jsx";
 import axios from "axios";
 
 const EditLocation = () => {
+    const { data: statusLocation, error, isLoading } = useData("/profile/status");
+  const endPointLocation =
+    statusLocation?.location !== "approved"
+      ? "/locations/primary"
+      : "/locations";
   const [selected, setSelected] = useState("");
   const [cites, setCites] = useState([]);
   const [selectedName, setSelectedName] = useState("");
@@ -106,7 +111,7 @@ const EditLocation = () => {
   const submit = async (data) => {
     // Send to api
     try {
-      const response = await customFetch.put(`/locations/${formDefaults.id}`, {
+      const response = await customFetch.put(`${endPointLocation}/${formDefaults.id}`, {
         street1: data.street1,
         street2: data.street2 || "",
         city: data.city,
@@ -144,12 +149,10 @@ const EditLocation = () => {
 
   countries.registerLocale(enLocale);
   const handleCountrySelect = (countryCode) => {
-    console.log(countryCode);
     const countryName = countries.getName(countryCode, "en");
     setSelected(countryCode);
     setSelectedName(countryName);
     setValue("country", countryName);
-    console.log(countryName);
   };
   useEffect(() => {
     const fetchCities = async () => {
@@ -247,7 +250,7 @@ const EditLocation = () => {
               <Link
                 className="w-full"
                 to={`${
-                  uploaded === "true" ? "/Personal info" : "/locationInfo"
+                  uploaded === "true" ? "/Personal info" : -1
                 }`}
               >
                 <Button

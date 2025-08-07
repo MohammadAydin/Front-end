@@ -82,7 +82,6 @@ const Complate_personal_info = () => {
   const Submit = (data) => {
     // const formattedDate = formatDateToISO(data.data);
 
-    console.log(data.Birthday); // 👈 اطبع القيمة للتحقق
 
     add_personal_info_Mutatuin.mutate({
       username: data.Username,

@@ -54,7 +54,7 @@ const LoginForm = () => {
       });
       // If the login is successful
       // If the registrar is an employee
-      
+
       if (response.data.data.role == "employee") {
         // User storage in local storage
         addUserToLocalStorage("user", response.data.data);
@@ -75,7 +75,9 @@ const LoginForm = () => {
           reset();
         }, 1500);
       } else {
-        toast.error(t("login.accountError"));
+        toast.error(
+          "Sorry, the account you are trying to access does not exist."
+        );
         setIsLoading(false);
       }
 

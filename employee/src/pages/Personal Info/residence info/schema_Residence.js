@@ -51,7 +51,7 @@ const residenceSchema = (isUploaded, t) =>
         });
       }
 
-      if (!permitValid || !/^\d{2}\.\d{2}\.\d{4}$/.test(permitValid)) {
+      if (!permitValid || !/^\d{4}\-\d{2}\-\d{2}$/.test(permitValid)) {
         ctx.addIssue({
           path: ["permit_valid_until"],
           message: t ? t("residenceInfo.validation.permitValidDateFormat") : "Please enter permit valid date in DD.MM.YYYY format",

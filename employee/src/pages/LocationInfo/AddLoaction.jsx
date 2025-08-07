@@ -29,11 +29,15 @@ import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import SelectField from "../../components/FormElements/SelectField.jsx";
 const AddLoaction = () => {
+  const { data: statusLocation, error, isLoading } = useData("/profile/status");
+  const endPointLocation =
+    statusLocation?.location !== "approved"
+      ? "/locations/primary"
+      : "/locations";
   const [selected, setSelected] = useState("");
   const [selectedName, setSelectedName] = useState("");
   const [cites, setCites] = useState([]);
   useEffect(() => {
-    console.log("Selected changed:", selected);
   }, [selected]);
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
@@ -83,7 +87,7 @@ const AddLoaction = () => {
   const submit = async (data) => {
     // Send to api
     try {
-      const response = await customFetch.post("/locations", {
+      const response = await customFetch.post(endPointLocation, {
         street1: data.street1,
         street2: data.street2 || "",
         city: data.city,
@@ -110,12 +114,10 @@ const AddLoaction = () => {
   };
   countries.registerLocale(enLocale);
   const handleCountrySelect = (countryCode) => {
-    console.log(countryCode);
     const countryName = countries.getName(countryCode, "en");
     setSelected(countryCode);
     setSelectedName(countryName);
     setValue("country", countryName);
-    console.log(countryName);
   };
 
   // To test before passing the map
@@ -261,7 +263,7 @@ const AddLoaction = () => {
             <div className="flex w-[25vw] gap-3.5 ml-auto mt-16">
               {/* If Workabilities is false Displays button back the location add */}
 
-              <Link className="w-full" to="/locationInfo">
+              <Link className="w-full" to={-1}>
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
                   text={t("addLocation.back")}

@@ -48,7 +48,7 @@ const MapComponent = ({ address }) => {
       >
         <Marker
           position={location}
-          title={address}
+          title={String(address || "")}
           aria-label={t("locationInfo.locationMarker", { address })}
         />
       </GoogleMap>

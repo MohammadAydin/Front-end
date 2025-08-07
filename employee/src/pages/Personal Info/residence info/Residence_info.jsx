@@ -16,6 +16,7 @@ import NationalitySelect from "./NationalitySelect";
 import handleNationality from "../../../store/HandleNationality";
 import { useTranslation } from "react-i18next";
 import useData from "../../../hooks/useData";
+import CalendarRange from "../../../components/MoreElements/Calendar/CalendarRange";
 
 const Residence_info = () => {
   const { t } = useTranslation();
@@ -107,8 +108,8 @@ const Residence_info = () => {
 
     // if not Germany we ask for work permit
     if (selectedNationality?.label !== "Germany") {
-      const formattedDate = formatDateToISO(data.permit_valid_until);
-      formData.append("permit_valid_until", formattedDate);
+      // const formattedDate = formatDateToISO(data.permit_valid_until);
+      formData.append("permit_valid_until", data.permit_valid_until);
       formData.append(
         "has_work_permit",
         data.has_work_permit === "Yes" ? 1 : 0
@@ -149,8 +150,11 @@ const Residence_info = () => {
               label={t("residenceInfo.fields.workPermit")}
               errors={errors}
               Options={[
-                { value: "Yes", label: t("residenceInfo.workPermitOptions.yes") },
-                { value: "No", label: t("residenceInfo.workPermitOptions.no") }
+                {
+                  value: "Yes",
+                  label: t("residenceInfo.workPermitOptions.yes"),
+                },
+                { value: "No", label: t("residenceInfo.workPermitOptions.no") },
               ]}
             />
           )}
@@ -165,12 +169,11 @@ const Residence_info = () => {
         {work_permit == "Yes" && selectedNationality?.label !== "Germany" && (
           <>
             <div className="mb-8">
-              <InputField
+              <CalendarRange
                 register={register}
-                errors={errors}
-                label={t("residenceInfo.fields.permitValidUntil")}
                 name={"permit_valid_until"}
-                type={"text"}
+                setValue={setValue}
+                errors={errors}
               />
             </div>
             <p className="text-lg font-bold">
@@ -195,7 +198,11 @@ const Residence_info = () => {
             <FileUploader
               key={input.name}
               name={input.name}
-              label={t(`residenceInfo.fields.${input.name === 'id_front' ? 'front' : 'back'}`)}
+              label={t(
+                `residenceInfo.fields.${
+                  input.name === "id_front" ? "front" : "back"
+                }`
+              )}
               register={register}
               setValue={setValue}
               error={errors}

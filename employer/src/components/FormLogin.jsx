@@ -58,35 +58,41 @@ const FormLogin = () => {
         email: data.email,
         password: data.password,
       });
+      if (response.data.role == "employee") {
+        // If the login is successful
+        // If the Remember button saves the account in LocalStorage
+        if (isChecked) {
+          localStorage.setItem(
+            "account",
+            JSON.stringify({
+              email: data.email,
+              password: data.password,
+            })
+          );
+        }
 
-      // If the login is successful
-      // If the Remember button saves the account in LocalStorage
-      if (isChecked) {
-        localStorage.setItem(
-          "account",
-          JSON.stringify({
-            email: data.email,
-            password: data.password,
-          })
+        // Show login success message
+        toast.success(t("login.success"));
+
+        // Show a successful login message with the account
+
+        // Add user to local storage
+        addUserToLocalStorage(response.data?.data);
+
+        // User storage in Zostand store
+        setUser(getUserFromLocalStorage());
+        setIsLoading(false);
+        // Go to the home page
+        setTimeout(() => {
+          navigate("/");
+          reset();
+        }, 1500);
+      } else {
+        toast.error(
+          "Sorry, the account you are trying to access does not exist."
         );
+        setIsLoading(false);
       }
-
-      // Show login success message
-      toast.success(t("login.success"));
-
-      // Show a successful login message with the account
-
-      // Add user to local storage
-      addUserToLocalStorage(response.data?.data);
-
-      // User storage in Zostand store
-      setUser(getUserFromLocalStorage());
-      setIsLoading(false);
-      // Go to the home page
-      setTimeout(() => {
-        navigate("/");
-        reset();
-      }, 1500);
     } catch (error) {
       toast.error(t("login.error") + ": " + error.response?.data?.error);
       setIsLoading(false);
