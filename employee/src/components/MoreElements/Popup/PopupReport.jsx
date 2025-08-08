@@ -49,7 +49,7 @@ const PopupReport = ({ togglePopup, onConfirm, idTask }) => {
           <Button
             onClick={() => NoReason.mutate()}
             className="bg-softwhite border   p-2 rounded-[10px] w-full"
-            text={"Issue No Reason"}
+            text={"No Issue"}
           />
           {/* Submit confirmation button */}
 
@@ -57,7 +57,7 @@ const PopupReport = ({ togglePopup, onConfirm, idTask }) => {
             to={`/reportTask/${idTask}`}
             className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full text-center "
           >
-            Issue Reason
+            Issue
           </Link>
         </div>
       </div>
