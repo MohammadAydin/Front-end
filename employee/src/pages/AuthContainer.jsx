@@ -20,7 +20,7 @@ const AuthContainer = () => {
       </div>
 
       <div className="LoginItems w-[75%] h-[100vh]  flex justify-between items-center m-auto">
-        <LogoMain />
+        <img className=" w-[18%] logo" src={Logo} alt="" />
         <Wrapper>
           <Outlet />
         </Wrapper>
