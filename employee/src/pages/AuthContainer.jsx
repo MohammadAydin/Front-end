@@ -1,8 +1,8 @@
-
 import { Outlet, Link } from "react-router-dom";
 import Logo from "../assets/images/Logo Positions.svg";
 import Wrapper from "../assets/wrapper/FormStyle/Form";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import LogoMain from "../utils/LogoMain";
 
 const AuthContainer = () => {
   return (
@@ -20,7 +20,7 @@ const AuthContainer = () => {
       </div>
 
       <div className="LoginItems w-[75%] h-[100vh]  flex justify-between items-center m-auto">
-        <img className="mb-[20%] w-[30%] logo" src={Logo} alt="" />
+        <LogoMain />
         <Wrapper>
           <Outlet />
         </Wrapper>
