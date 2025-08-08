@@ -39,6 +39,7 @@ const Personal_info = () => {
     mutationFn: () => customFetch.post("profile/submit/review"),
 
     onSuccess: () => {
+      navigate("/");
       setLoadingsendAll(false);
       toast.success("Successfully sent all personal info");
       // Show a success message or trigger refetch if needed

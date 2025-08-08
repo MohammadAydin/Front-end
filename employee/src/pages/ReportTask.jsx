@@ -2,6 +2,9 @@ import React, { useRef } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import customFetch from "../utils/axios";
+import { toast } from "react-toastify";
 
 const ReportTask = () => {
   // Definition of routing from ReactRoute
@@ -13,16 +16,25 @@ const ReportTask = () => {
 
   //   Define useref to store field values
   const ReportRef = useRef();
+  const SendReport = useMutation({
+    mutationFn: () =>
+      customFetch
+        .post(`/reports/${id}`, {
+          message: ReportRef.current.value,
+          isSetIssue: true,
+        })
+        .then((res) => res.data),
+    onSuccess: (data) => {
+      navigate("/tasksPage");
 
-  //   handleSubmit function
-  const handleSubmit = (data) => {
-    // Remove the default form mode
-    data.preventDefault();
-    // Print the message
+      toast.success(data.message);
+    },
+    onError: (error) => {
+      navigate("/tasksPage");
 
-    // Go to the tasks page
-    navigate("/tasksPage");
-  };
+      toast.error(error?.response?.data?.message);
+    },
+  });
 
   return (
     <div className="Report-divMain py-7 px-5 min-h-screen relative">
@@ -34,7 +46,7 @@ const ReportTask = () => {
         <h2>{t("reportTask.officialComplaint")}</h2>
       </div>
       <div className="Report-Body mt-5 ">
-        <form onSubmit={handleSubmit}>
+        <form>
           {/* Writing area[] */}
           <textarea
             required
@@ -44,7 +56,8 @@ const ReportTask = () => {
           ></textarea>
           {/* send button */}
           <button
-            type="submit"
+            type="button"
+            onClick={() => SendReport.mutate()}
             className="bg-secondaryColor text-white py-1.5 px-5 rounded-[10px] absolute bottom-8 right-4"
           >
             {t("reportTask.sendComplaint")}

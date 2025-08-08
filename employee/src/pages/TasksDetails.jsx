@@ -18,10 +18,12 @@ import { CiFileOn } from "react-icons/ci";
 import PopupCheckEnd from "../components/TaskComponents/PopupCheckEnd";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import PopupReport from "../components/MoreElements/Popup/PopupReport";
 import PopupReview from "../components/TaskComponents/PopupReview";
 
 // Task details
 const TasksDetails = () => {
+  const [ReportPopup, setReportPopup] = useState(false);
   const { t } = useTranslation();
   // Get id from route
   const { id } = useParams();
@@ -43,11 +45,14 @@ const TasksDetails = () => {
   const [Popupend, setPopupend] = useState(false);
   const [popupReview, setPopupReview] = useState(false);
 
-  const togglePopup = () => {
-    setPopuparrived(false);
+  const togglePopupReport = () => {
+    setReportPopup(false);
   };
   const togglePopupend = () => {
     setPopupend(false);
+  };
+  const togglePopup = () => {
+    setPopuparrived(false);
   };
 
   const handleSetLevel = (newLevel) => {
@@ -177,13 +182,14 @@ const TasksDetails = () => {
                   {parseFloat(task?.total_cost).toFixed(2)}
                 </p>
               </div>
-              <Link
-                to={`/reportTask/${id}`}
+              <button
+                // to={`/reportTask/${id}`}
+                onClick={() => setReportPopup(true)}
                 className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
               >
                 <CiFileOn className="text-xl" />
                 <p className="text-xs mt-1">{t("taskDetails.reportTask")}</p>
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -237,7 +243,7 @@ const TasksDetails = () => {
                 onClick={() => OnMyWay.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                {t("taskDetails.onMyWay")}
+                On the Way
               </button>
             )}
             {localStorage.getItem("level") == 2 && (
@@ -245,7 +251,7 @@ const TasksDetails = () => {
                 onClick={() => arrived.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                {t("taskDetails.arrived")}
+                Arrived
               </button>
             )}
             {localStorage.getItem("level") == 3 && (
@@ -253,7 +259,7 @@ const TasksDetails = () => {
                 onClick={() => startWork.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                {t("taskDetails.startWork")}
+                Start Work
               </button>
             )}
             {localStorage.getItem("level") == 4 && (
@@ -261,7 +267,7 @@ const TasksDetails = () => {
                 onClick={() => endWork.mutate()}
                 className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
               >
-                I am end work
+                Complete Task
               </button>
             )}
             {localStorage.getItem("level") == 5 && (
@@ -269,7 +275,7 @@ const TasksDetails = () => {
                 onClick={() => setPopupend(true)}
                 className="text-white bg-secondaryColor text-xl p-2 w-[10em] rounded-[10px]"
               >
-                Show code end
+                Close Code
               </button>
             )}
           </div>
@@ -297,6 +303,9 @@ const TasksDetails = () => {
           handleSetLevel={handleSetLevel}
           setPopupReview={setPopupReview}
         />
+      )}
+      {ReportPopup && (
+        <PopupReport togglePopup={togglePopupReport} idTask={id} />
       )}
     </div>
   );

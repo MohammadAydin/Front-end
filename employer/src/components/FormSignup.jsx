@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { IoIosCloseCircleOutline, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,8 +8,11 @@ import useFormLevel from "../store/Formlevel";
 import { toast } from "react-toastify";
 import customFetch from "../utils/axios";
 import useEmailStore from "../store/storeEmail";
+import { CiCircleCheck } from "react-icons/ci";
 
 const FormSignup = () => {
+  const [isFocused, setIsFocused] = useState(false);
+
   // Form level storage
   const setLevel = useFormLevel((s) => s.setLevel);
   // Storing the generated email
@@ -54,6 +57,7 @@ const FormSignup = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
@@ -108,13 +112,12 @@ const FormSignup = () => {
             setLevel(3);
           }, 1500);
           // If the verification request is unsuccessful
-        } catch {
-        }
+        } catch {}
       }
       // If the error is not related to email
-    
     }
   };
+  const passwordValue = watch("password");
 
   return (
     <Wrapper>
@@ -167,7 +170,45 @@ const FormSignup = () => {
               type={`${showPassword ? "text" : "password"}`}
               id="password"
               placeholder="Password"
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
+            <div
+              className={`transition-opacity duration-300 ease-in-out ${
+                isFocused
+                  ? "opacity-100 max-h-96"
+                  : "opacity-0 max-h-0 overflow-hidden"
+              }`}
+            >
+              <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
+                Password must be at least 8 characters long.{" "}
+                {passwordValue?.length >= 8 ? (
+                  <CiCircleCheck className="text-green-600 font-bold text-2xl" />
+                ) : (
+                  <IoIosCloseCircleOutline className="text-red-500 text-2xl" />
+                )}
+              </p>
+
+              <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
+                Password must contain at least one symbol (e.g., !@#$%).{" "}
+                {/[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\\\|\<\>\,\.\?\/]/.test(
+                  passwordValue
+                ) ? (
+                  <CiCircleCheck className="text-green-600 font-bold text-2xl" />
+                ) : (
+                  <IoIosCloseCircleOutline className="text-red-500 text-2xl" />
+                )}
+              </p>
+              <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
+                Password must contain at least one uppercase and one lowercase
+                letter.{" "}
+                {/(?=.*[a-z])(?=.*[A-Z])/.test(passwordValue) ? (
+                  <CiCircleCheck className="text-green-600 font-bold text-2xl" />
+                ) : (
+                  <IoIosCloseCircleOutline className="text-red-500 text-2xl" />
+                )}
+              </p>
+            </div>
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
                 {errors?.password?.message}

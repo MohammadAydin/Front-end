@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { IoIosCloseCircleOutline, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { createRegisterSchema } from "../../utils/validationSchema";
+import { CiCircleCheck } from "react-icons/ci";
 
 const RegisterForm = () => {
+  const [isFocused, setIsFocused] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
 
   // Translation hook
@@ -30,6 +33,7 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
@@ -75,7 +79,7 @@ const RegisterForm = () => {
 
         // Print the stored email
         // Heading to verification in one and a half seconds
-        setTimeout(() => { }, 1500);
+        setTimeout(() => {}, 1500);
         // If the verification request is unsuccessful
       } catch (error) {
         toast.error(error.response?.data?.message);
@@ -83,9 +87,9 @@ const RegisterForm = () => {
       }
 
       // If the error is not related to email
-     
     }
   };
+  const passwordValue = watch("password");
 
   return (
     <>
@@ -96,7 +100,7 @@ const RegisterForm = () => {
       >
         {/* Form title */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-          {t('register.title')}
+          {t("register.title")}
         </h2>
         <div className="relative input-group mb-2.5">
           {/* firstname field */}
@@ -105,7 +109,7 @@ const RegisterForm = () => {
             className="input-control"
             type="text"
             id="firstname"
-            placeholder={t('register.firstName.placeholder')}
+            placeholder={t("register.firstName.placeholder")}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -120,7 +124,7 @@ const RegisterForm = () => {
             className="input-control"
             type="text"
             id="lastname"
-            placeholder={t('register.lastName.placeholder')}
+            placeholder={t("register.lastName.placeholder")}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -135,7 +139,7 @@ const RegisterForm = () => {
             className="input-control"
             type="text"
             id="email"
-            placeholder={t('register.email.placeholder')}
+            placeholder={t("register.email.placeholder")}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -152,8 +156,47 @@ const RegisterForm = () => {
               className="input-control"
               type={`${showPassword ? "text" : "password"}`}
               id="password"
-              placeholder={t('register.password.placeholder')}
+              placeholder={t("register.password.placeholder")}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
+            <div
+              className={`transition-opacity duration-300 ease-in-out ${
+                isFocused
+                  ? "opacity-100 max-h-96"
+                  : "opacity-0 max-h-0 overflow-hidden"
+              }`}
+            >
+              <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
+                Password must be at least 8 characters long.{" "}
+                {passwordValue?.length >= 8 ? (
+                  <CiCircleCheck className="text-green-600 font-bold text-2xl" />
+                ) : (
+                  <IoIosCloseCircleOutline className="text-red-500 text-2xl" />
+                )}
+              </p>
+
+              <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
+                Password must contain at least one symbol (e.g., !@#$%).{" "}
+                {/[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\\\|\<\>\,\.\?\/]/.test(
+                  passwordValue
+                ) ? (
+                  <CiCircleCheck className="text-green-600 font-bold text-2xl" />
+                ) : (
+                  <IoIosCloseCircleOutline className="text-red-500 text-2xl" />
+                )}
+              </p>
+              <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
+                Password must contain at least one uppercase and one lowercase
+                letter.{" "}
+                {/(?=.*[a-z])(?=.*[A-Z])/.test(passwordValue) ? (
+                  <CiCircleCheck className="text-green-600 font-bold text-2xl" />
+                ) : (
+                  <IoIosCloseCircleOutline className="text-red-500 text-2xl" />
+                )}
+              </p>
+            </div>
+
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
                 {errors?.password?.message}
@@ -180,7 +223,7 @@ const RegisterForm = () => {
               className="input-control"
               type={`${showConfirm ? "text" : "password"}`}
               id="confirmPassword"
-              placeholder={t('register.confirmPassword.placeholder')}
+              placeholder={t("register.confirmPassword.placeholder")}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -216,24 +259,26 @@ const RegisterForm = () => {
               className="text-[#194894] ml-1 text-[0.7rem]"
               htmlFor="remember"
             >
-              {t('register.termsConditions')}
+              {t("register.termsConditions")}
             </label>
           </div>
         </div>
         <button
-          className={`p-2 mt-5 mb-3 ${isChecked ? "bg-amber-600 click" : "bg-gray-400 non-click"
-            } ${isLoading ? "bg-gray-400" : "bg-amber-600 "
-            } text-white rounded-[10px]`}
+          className={`p-2 mt-5 mb-3 ${
+            isChecked ? "bg-amber-600 click" : "bg-gray-400 non-click"
+          } ${
+            isLoading ? "bg-gray-400" : "bg-amber-600 "
+          } text-white rounded-[10px]`}
           type="submit"
           disabled={!isChecked || isLoading}
         >
-          {isLoading ? t('register.loading') : t('register.signupButton')}
+          {isLoading ? t("register.loading") : t("register.signupButton")}
         </button>
       </form>
       <div className="flex  text-[0.8rem]">
-        <p>{t('register.alreadyHaveAccount')}</p>
+        <p>{t("register.alreadyHaveAccount")}</p>
         <Link to="/login" className="text-[#F47621] click">
-          {t('register.loginLink')}
+          {t("register.loginLink")}
         </Link>
       </div>
     </>

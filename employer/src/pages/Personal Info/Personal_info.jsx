@@ -36,8 +36,6 @@ const Personal_info = () => {
     setAlCompleted(allApproved);
   }, [statusData]);
 
-  
-
   const sendAllInfo = useMutation({
     mutationFn: () => customFetch.post("profile/submit/review"),
 
@@ -98,6 +96,7 @@ const Personal_info = () => {
 
   return (
     <div className="Personal_info_page p-[28px] py-[58px] text-lg">
+      <h2 className="font-bold text-2xl">Personal Info</h2>
       {personalSections.map(
         ({ icon: Icon, label, path, status_name }, index) => (
           <div
