@@ -4,7 +4,7 @@ export const pusherConfig = {
   forceTLS: import.meta.env.VITE_PUSHER_FORCE_TLS === "true",
   authEndpoint:
     import.meta.env.VITE_PUSHER_AUTH_ENDPOINT ||
-    "https://woundwann.de/broadcasting/auth",
+    "https://woundwann.de/v1/broadcasting/auth",
 
   auth: {
     getAuthHeaders: () => {
