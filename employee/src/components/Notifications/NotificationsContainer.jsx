@@ -27,7 +27,6 @@ const NotificationsContainer = ({
   };
 
   const userId = getUserId();
-
   const {
     notifications,
     unreadCount,
@@ -41,6 +40,26 @@ const NotificationsContainer = ({
   const { t } = useTranslation();
   const containerRef = useRef(null);
   const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (error && !isLoading) {
+      const retryTimer = setTimeout(() => {
+        refetch();
+      }, 3000);
+
+      return () => clearTimeout(retryTimer);
+    }
+  }, [error, isLoading, refetch]);
+
+  useEffect(() => {
+    if (notificationIsOpen && error && !isLoading) {
+      const initialRetryTimer = setTimeout(() => {
+        refetch();
+      }, 1000);
+
+      return () => clearTimeout(initialRetryTimer);
+    }
+  }, [notificationIsOpen, error, isLoading, refetch]);
 
   useEffect(() => {
     if (notificationIsOpen && closeButtonRef.current) {
@@ -123,16 +142,13 @@ const NotificationsContainer = ({
                   <span className="ml-2 text-gray-500">Loading...</span>
                 </div>
               ) : error ? (
-                <div className="text-center text-red-500 mt-10">
-                  <p>Error loading notifications</p>
-                  <button
-                    onClick={refetch}
-                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-                  >
-                    Retry
-                  </button>
+                <div className="text-center text-gray-500 mt-10">
+                  <div className="flex justify-center items-center mb-3">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-400"></div>
+                  </div>
+                  <p>Reconnecting...</p>
                 </div>
-              ) : notifications && notifications.length > 0 ? (
+              ) : unreadCount > 0 ? (
                 notifications
                   .filter((notification) => !notification.read_at)
                   .map((notification) => (
@@ -161,7 +177,7 @@ const NotificationsContainer = ({
             </div>
 
             <div className="mt-3 flex-shrink-0">
-              <button className="w-full py-2.5 text-center text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors text-sm font-medium">
+              <button className="w-full py-2.5 text-center text-[#F47621] hover:text-[#EE6000] hover:bg-[#FFDFC6] rounded-lg transition-colors text-sm font-medium">
                 See All Notifications
               </button>
             </div>

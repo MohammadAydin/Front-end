@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import {
   AiOutlineInfoCircle,
@@ -21,22 +21,30 @@ const NotificationsList = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [locallyRead, setLocallyRead] = useState(!!read_at);
-  const [hasBeenOpened, setHasBeenOpened] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
 
-  const handleToggle = () => {
+  const handleToggle = useCallback(async () => {
     const newIsOpen = !isOpen;
     setIsOpen(newIsOpen);
 
-    if (newIsOpen) {
-      setHasBeenOpened(true);
-    } else if (hasBeenOpened && !read_at && !locallyRead) {
-      setIsRemoving(true);
+    if (!newIsOpen && !read_at && !locallyRead) {
       setLocallyRead(true);
-      onMarkAsRead(id);
-      setTimeout(() => {}, 1800);
+
+      setTimeout(() => {
+        setIsRemoving(true);
+      }, 100);
+
+      try {
+        // استدعاء API لوضع علامة مقروء - هذا سيحدث الـ unreadCount تلقائياً
+        await onMarkAsRead(id);
+      } catch (error) {
+        console.error("Failed to mark notification as read:", error);
+        // في حالة الفشل، إرجاع الحالة
+        setLocallyRead(false);
+        setIsRemoving(false);
+      }
     }
-  };
+  }, [isOpen, read_at, locallyRead, onMarkAsRead, id]);
 
   const getIcon = (iconName) => {
     switch (iconName) {
@@ -74,52 +82,41 @@ const NotificationsList = ({
     }
   };
 
-  const getBgColorClasses = (color) => {
-    switch (color) {
-      case "blue":
-        return "bg-blue-500";
-      case "red":
-        return "bg-red-500";
-      case "green":
-        return "bg-green-500";
-      case "yellow":
-        return "bg-yellow-500";
-      case "orange":
-        return "bg-orange-500";
-      default:
-        return "bg-blue-500";
-    }
-  };
-
   const formatDate = (dateString) => {
     return dateString || "No date";
   };
 
   const isUnread = !read_at && !locallyRead;
 
-  if (read_at || locallyRead) {
-    return null;
+  // إخفاء الإشعار إذا كان مقروءاً أو في حالة الإزالة
+  if (locallyRead || isRemoving) {
+    return (
+      <div
+        className={`border-b border-[#919eab63] border-dashed py-1 overflow-hidden w-[95%] transition-all duration-500 ease-out ${
+          isRemoving
+            ? "opacity-0 transform translate-x-full max-h-0 py-0 mb-0"
+            : "opacity-100 transform translate-x-0"
+        }`}
+        style={{
+          transitionProperty: "opacity, transform, max-height, padding, margin",
+        }}
+      >
+        {/* المحتوى يختفي تدريجياً */}
+      </div>
+    );
   }
 
   return (
     <div
       className={`border-b border-[#919eab63] border-dashed py-1 overflow-hidden w-[95%] ${
         isOpen ? "pb-5" : "pb-1"
-      } ${
-        isRemoving
-          ? "transition-all duration-1500 ease-out opacity-0 transform scale-75 -translate-y-8 max-h-0 py-0 border-0"
-          : "transition-all duration-300 ease-out opacity-100 transform scale-100 translate-y-0"
-      }`}
-      style={{
-        transformOrigin: "center top",
-      }}
+      } transition-all duration-300 ease-out`}
     >
       <div
         onClick={handleToggle}
         className="flex items-center justify-between my-4 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
       >
         <div className="Notification flex items-center justify-between gap-4">
-          {/* Add icon display */}
           {type_details?.icon && (
             <div
               className={`text-xl ${getColorClasses(
@@ -136,9 +133,12 @@ const NotificationsList = ({
               }`}
             >
               {title}
+              {isUnread && (
+                <span className="ml-2 w-2 h-2 bg-blue-500 rounded-full inline-block"></span>
+              )}
             </p>
             <div className="NotificationInfo flex gap-5 text-sm text-[#919EAB]">
-              <span>{formatDate(created_at)}</span>{" "}
+              <span>{formatDate(created_at)}</span>
               <span
                 className={
                   type_details?.color
@@ -153,16 +153,12 @@ const NotificationsList = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-3">
-            <div>
-              <IoIosArrowDown
-                size={20}
-                className={`${
-                  isOpen && "rotate-180"
-                } transition-all duration-300 ease-out text-gray-400`}
-              />
-            </div>
-          </div>
+          <IoIosArrowDown
+            size={20}
+            className={`${
+              isOpen && "rotate-180"
+            } transition-all duration-300 ease-out text-gray-400`}
+          />
         </div>
       </div>
 
@@ -170,7 +166,6 @@ const NotificationsList = ({
         <div className="NotificationMessage slide-down bg-gray-50 p-3 rounded-lg mx-2 mb-2">
           <p className="text-gray-700 leading-relaxed">{message}</p>
 
-          {/* Additional information from type_details */}
           {type_details?.description && (
             <div className="mt-2 pt-2 border-t border-gray-200">
               <p className="text-sm text-gray-600">
