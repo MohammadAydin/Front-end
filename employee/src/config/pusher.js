@@ -4,7 +4,7 @@ export const pusherConfig = {
   forceTLS: import.meta.env.VITE_PUSHER_FORCE_TLS === "true",
   authEndpoint:
     import.meta.env.VITE_PUSHER_AUTH_ENDPOINT ||
-    "http://127.0.0.1:8000/broadcasting/auth",
+    "https://woundwann.de/broadcasting/auth",
 
   auth: {
     getAuthHeaders: () => {
@@ -41,7 +41,6 @@ export const pusherConfig = {
   },
 
   utils: {
-    // ✅ تصحيح اسم القناة لتكون private-notifications.{userId}
     getChannelName: (type, userId) => `private-${type}.${userId}`,
     getUserIdFromToken: () => {
       const userString = localStorage.getItem("user");
@@ -49,7 +48,6 @@ export const pusherConfig = {
         try {
           const user = JSON.parse(userString);
 
-          // ✅ استخدام نفس منطق NotificationsContainer
           if (user.token) {
             try {
               const tokenPayload = JSON.parse(atob(user.token.split(".")[1]));
@@ -62,7 +60,6 @@ export const pusherConfig = {
             }
           }
 
-          // Fallback للطرق الأخرى
           const userId = user.id || user.user_id || user.userId;
           console.log("User ID from user object:", userId);
           return userId;
@@ -91,7 +88,6 @@ export const pusherConfig = {
   },
 
   events: {
-    // ✅ اسم الحدث صحيح ويتطابق مع الباك إند
     newNotification: "new-notification",
   },
 
@@ -114,15 +110,12 @@ export const pusherConfig = {
       authEndpoint: pusherConfig.authEndpoint,
       auth: {
         headers: pusherConfig.auth.getAuthHeaders(),
-        // ✅ إضافة معالجة صحيحة للمصادقة مع socket ID
         params: {},
         transport: "ajax",
       },
-      // ✅ إضافة معالجة مخصصة للمصادقة
       authorizer: (channel, options) => {
         return {
           authorize: (socketId, callback) => {
-            // ✅ التأكد من أن socket ID حقيقي وليس test_socket_id
             if (!socketId || socketId === "test_socket_id") {
               callback(new Error("Invalid socket ID"), null);
               return;
@@ -131,7 +124,6 @@ export const pusherConfig = {
             const xhr = new XMLHttpRequest();
             xhr.open("POST", pusherConfig.authEndpoint, true);
 
-            // إعداد الـ headers
             const headers = pusherConfig.auth.getAuthHeaders();
             Object.keys(headers).forEach((key) => {
               xhr.setRequestHeader(key, headers[key]);
@@ -157,7 +149,6 @@ export const pusherConfig = {
               }
             };
 
-            // إرسال البيانات مع socket ID الصحيح
             const params = new URLSearchParams();
             params.append("socket_id", socketId);
             params.append("channel_name", channel.name);
@@ -180,7 +171,6 @@ export const pusherConfig = {
       maxReconnectGapInSeconds: 30,
     };
 
-    // في التطوير، أضف إعدادات إضافية
     if (!import.meta.env.PROD) {
       options.enabledTransports = ["ws", "wss", "xhr_polling", "xhr_streaming"];
       options.disableStats = true;
@@ -191,7 +181,6 @@ export const pusherConfig = {
   },
 };
 
-// ✅ إضافة دالة للحصول على الإعدادات الحالية
 export const getCurrentPusherConfig = () => {
   return {
     ...pusherConfig,

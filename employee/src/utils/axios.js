@@ -17,7 +17,7 @@ import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
 // };
 
 const customFetch = axios.create({
-  baseURL: "http://127.0.0.1:8000/v1",
+  baseURL: "https://woundwann.de/v1",
   withCredentials: true,
 });
 

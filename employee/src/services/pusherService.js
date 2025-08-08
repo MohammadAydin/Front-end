@@ -18,14 +18,13 @@ class PusherService {
     }
 
     try {
-      // Enable logging in development
       Pusher.logToConsole = !import.meta.env.PROD;
-      
+
       const defaultOptions = this.config.getPusherOptions();
       const options = { ...defaultOptions, ...customOptions };
-      
+
       this.config.logging.log("Initializing Pusher with options:", options);
-      
+
       this.pusher = new Pusher(this.config.appKey, options);
       this.setupConnectionHandlers();
       this.setupErrorHandlers();
@@ -41,26 +40,28 @@ class PusherService {
   setupConnectionHandlers() {
     if (!this.pusher) return;
 
-    this.pusher.connection.bind('connecting', () => {
+    this.pusher.connection.bind("connecting", () => {
       this.config.logging.log("Pusher connecting...");
     });
 
-    this.pusher.connection.bind('connected', () => {
+    this.pusher.connection.bind("connected", () => {
       this.config.logging.log("Pusher connected successfully!");
-      this.reconnectAttempts = 0; // Reset on successful connection
+      this.reconnectAttempts = 0;
     });
 
-    this.pusher.connection.bind('disconnected', () => {
+    this.pusher.connection.bind("disconnected", () => {
       this.config.logging.log("Pusher disconnected");
     });
 
-    this.pusher.connection.bind('failed', () => {
+    this.pusher.connection.bind("failed", () => {
       this.config.logging.error("Pusher connection failed");
       this.handleReconnection();
     });
 
-    this.pusher.connection.bind('state_change', (states) => {
-      this.config.logging.log(`Connection state changed: ${states.previous} → ${states.current}`);
+    this.pusher.connection.bind("state_change", (states) => {
+      this.config.logging.log(
+        `Connection state changed: ${states.previous} → ${states.current}`
+      );
     });
   }
 
@@ -69,7 +70,7 @@ class PusherService {
 
     this.pusher.connection.bind("error", (error) => {
       this.config.logging.error("Pusher connection error:", error);
-      
+
       if (error.error && error.error.data) {
         const errorData = error.error.data;
         if (errorData.code === 4001) {
@@ -90,10 +91,13 @@ class PusherService {
   handleReconnection() {
     if (this.reconnectAttempts < this.maxReconnectAttempts) {
       this.reconnectAttempts++;
-      const delay = this.reconnectDelay * Math.pow(2, this.reconnectAttempts - 1);
-      
-      this.config.logging.log(`Attempting reconnection ${this.reconnectAttempts}/${this.maxReconnectAttempts} in ${delay}ms`);
-      
+      const delay =
+        this.reconnectDelay * Math.pow(2, this.reconnectAttempts - 1);
+
+      this.config.logging.log(
+        `Attempting reconnection ${this.reconnectAttempts}/${this.maxReconnectAttempts} in ${delay}ms`
+      );
+
       setTimeout(() => {
         this.reconnect();
       }, delay);
@@ -104,7 +108,9 @@ class PusherService {
 
   subscribe(channelName) {
     if (!this.pusher) {
-      this.config.logging.error("Pusher not initialized. Call initialize() first.");
+      this.config.logging.error(
+        "Pusher not initialized. Call initialize() first."
+      );
       throw new Error("Pusher not initialized. Call initialize() first.");
     }
 
@@ -123,13 +129,19 @@ class PusherService {
       });
 
       channel.bind("pusher:subscription_error", (error) => {
-        this.config.logging.error(`Subscription error for ${channelName}:`, error);
+        this.config.logging.error(
+          `Subscription error for ${channelName}:`,
+          error
+        );
         this.channels.delete(channelName);
       });
 
       return channel;
     } catch (error) {
-      this.config.logging.error(`Failed to subscribe to ${channelName}:`, error);
+      this.config.logging.error(
+        `Failed to subscribe to ${channelName}:`,
+        error
+      );
       throw error;
     }
   }
@@ -145,38 +157,56 @@ class PusherService {
   bind(channelName, eventName, callback) {
     const channel = this.subscribe(channelName);
     channel.bind(eventName, callback);
-    this.config.logging.log(`Bound to event '${eventName}' on channel '${channelName}'`);
+    this.config.logging.log(
+      `Bound to event '${eventName}' on channel '${channelName}'`
+    );
   }
 
   unbind(channelName, eventName, callback) {
     if (this.channels.has(channelName)) {
       const channel = this.channels.get(channelName);
       channel.unbind(eventName, callback);
-      this.config.logging.log(`Unbound from event '${eventName}' on channel '${channelName}'`);
+      this.config.logging.log(
+        `Unbound from event '${eventName}' on channel '${channelName}'`
+      );
     }
   }
 
   subscribeToNotifications(userId = null) {
     const actualUserId = userId || this.config.utils.getUserIdFromToken();
     if (!actualUserId) {
-      this.config.logging.error("User ID is required for notifications subscription");
+      this.config.logging.error(
+        "User ID is required for notifications subscription"
+      );
       throw new Error("User ID is required for notifications subscription");
     }
 
-    const channelName = this.config.utils.getChannelName("notifications", actualUserId);
-    this.config.logging.log(`Subscribing to notifications for user: ${actualUserId}, channel: ${channelName}`);
+    const channelName = this.config.utils.getChannelName(
+      "notifications",
+      actualUserId
+    );
+    this.config.logging.log(
+      `Subscribing to notifications for user: ${actualUserId}, channel: ${channelName}`
+    );
     return this.subscribe(channelName);
   }
 
   onNewNotification(callback, userId = null) {
     const actualUserId = userId || this.config.utils.getUserIdFromToken();
     if (!actualUserId) {
-      this.config.logging.error("User ID is required for notification listener");
+      this.config.logging.error(
+        "User ID is required for notification listener"
+      );
       throw new Error("User ID is required for notification listener");
     }
 
-    const channelName = this.config.utils.getChannelName("notifications", actualUserId);
-    this.config.logging.log(`Setting up notification listener for channel: ${channelName}, event: ${this.config.events.newNotification}`);
+    const channelName = this.config.utils.getChannelName(
+      "notifications",
+      actualUserId
+    );
+    this.config.logging.log(
+      `Setting up notification listener for channel: ${channelName}, event: ${this.config.events.newNotification}`
+    );
     this.bind(channelName, this.config.events.newNotification, callback);
   }
 
@@ -205,8 +235,10 @@ class PusherService {
   getDebugInfo() {
     const userId = this.config.utils.getUserIdFromToken();
     const isAuth = this.config.utils.isAuthenticated();
-    const channelName = userId ? this.config.utils.getChannelName("notifications", userId) : null;
-    
+    const channelName = userId
+      ? this.config.utils.getChannelName("notifications", userId)
+      : null;
+
     return {
       connectionState: this.getConnectionState(),
       isConnected: this.isConnected(),
@@ -218,8 +250,8 @@ class PusherService {
       pusherConfig: {
         appKey: this.config.appKey,
         cluster: this.config.cluster,
-        authEndpoint: this.config.authEndpoint
-      }
+        authEndpoint: this.config.authEndpoint,
+      },
     };
   }
 }
