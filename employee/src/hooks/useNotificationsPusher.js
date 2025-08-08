@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { pusherService } from "../services/pusherService";
@@ -11,6 +11,10 @@ export const useNotificationsPusher = (userId = null) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const queryClient = useQueryClient();
+
+  // إضافة debouncing للـ API calls
+  const pendingMarkAsRead = useRef(new Set());
+  const markAsReadTimeout = useRef(null);
 
   const config = pusherConfig;
   const actualUserId = userId || config.utils.getUserIdFromToken();
@@ -41,7 +45,7 @@ export const useNotificationsPusher = (userId = null) => {
 
       if (data.length > 0) {
         const processedNotifications = data.map((notification) => ({
-          id: notification.id || `notification-${Date.now()}-${Math.random()}`,
+          id: notification.id,
           title:
             notification.title || notification.data?.title || "Notification",
           message:
@@ -62,7 +66,10 @@ export const useNotificationsPusher = (userId = null) => {
         }));
 
         setNotifications(processedNotifications);
-        setUnreadCount(processedNotifications.filter((n) => !n.read_at).length);
+        const unreadNotifications = processedNotifications.filter(
+          (n) => !n.read_at
+        );
+        setUnreadCount(unreadNotifications.length);
       } else {
         setNotifications([]);
         setUnreadCount(0);
@@ -77,29 +84,34 @@ export const useNotificationsPusher = (userId = null) => {
   }, []);
 
   const handleNewNotification = useCallback((data) => {
-    const notificationData = data.notification || data;
+    const notificationData = data;
+
+    if (!notificationData.id) {
+      return;
+    }
 
     const newNotification = {
-      id: notificationData.id || `live-${Date.now()}-${Math.random()}`,
-      title:
-        notificationData.title ||
-        notificationData.data?.title ||
-        "New Notification",
-      message:
-        notificationData.message ||
-        notificationData.data?.message ||
-        "You have a new notification",
-      type: notificationData.type || notificationData.data?.type || "info",
-      type_details: notificationData.type_details ||
-        notificationData.data?.type_details || {
-          icon: "info-circle",
-          color: "blue",
-        },
-      created_at: new Date().toISOString(),
+      id: notificationData.id,
+      title: notificationData.title || "New Notification",
+      message: notificationData.message || "You have a new notification",
+      type: notificationData.type || "info",
+      type_details: notificationData.type_details || {
+        icon: "info-circle",
+        color: "blue",
+      },
+      created_at: notificationData.created_at || new Date().toISOString(),
       read_at: null,
     };
 
-    setNotifications((prev) => [newNotification, ...prev]);
+    setNotifications((prev) => {
+      const exists = prev.some((n) => n.id === newNotification.id);
+      if (exists) {
+        return prev;
+      }
+      return [newNotification, ...prev];
+    });
+
+    // تحديث فوري للـ unreadCount
     setUnreadCount((prev) => prev + 1);
 
     if ("Notification" in window && Notification.permission === "granted") {
@@ -110,7 +122,6 @@ export const useNotificationsPusher = (userId = null) => {
     }
   }, []);
 
-  // Initialize Pusher
   useEffect(() => {
     if (!actualUserId || !channelName) {
       return;
@@ -125,7 +136,6 @@ export const useNotificationsPusher = (userId = null) => {
       }
 
       pusherService.initialize();
-
       pusherService.onNewNotification(handleNewNotification, actualUserId);
 
       if ("Notification" in window && Notification.permission === "default") {
@@ -143,6 +153,10 @@ export const useNotificationsPusher = (userId = null) => {
           handleNewNotification
         );
       }
+      // تنظيف الـ timeouts
+      if (markAsReadTimeout.current) {
+        clearTimeout(markAsReadTimeout.current);
+      }
     };
   }, [
     actualUserId,
@@ -152,25 +166,81 @@ export const useNotificationsPusher = (userId = null) => {
     config,
   ]);
 
-  const markAsRead = useCallback(async (notificationId) => {
-    setNotifications((prev) =>
-      prev.map((notification) =>
-        notification.id === notificationId
-          ? { ...notification, read_at: new Date().toISOString() }
-          : notification
-      )
-    );
+  // تحسين markAsRead مع تحديث فوري للـ unreadCount
+  const markAsRead = useCallback(
+    async (notificationId) => {
+      // تجنب الطلبات المتكررة
+      if (pendingMarkAsRead.current.has(notificationId)) {
+        return;
+      }
 
-    setUnreadCount((prev) => Math.max(0, prev - 1));
+      const originalNotification = notifications.find(
+        (n) => n.id === notificationId
+      );
 
-    try {
-      await customFetch.post(`/notifications/update/${notificationId}`);
-    } catch (error) {
-      // Silent fail for mark as read
-    }
-  }, []);
+      // تحديث فوري للـ UI والـ unreadCount
+      setNotifications((prev) =>
+        prev.map((notification) =>
+          notification.id === notificationId
+            ? { ...notification, read_at: new Date().toISOString() }
+            : notification
+        )
+      );
+
+      // تحديث فوري للـ unreadCount
+      setUnreadCount((prev) => Math.max(0, prev - 1));
+
+      // إضافة للـ pending set
+      pendingMarkAsRead.current.add(notificationId);
+
+      // تأخير الـ API call قليلاً لتجميع الطلبات
+      if (markAsReadTimeout.current) {
+        clearTimeout(markAsReadTimeout.current);
+      }
+
+      markAsReadTimeout.current = setTimeout(async () => {
+        try {
+          // استخدام Promise.allSettled لمعالجة عدة طلبات
+          const pendingIds = Array.from(pendingMarkAsRead.current);
+
+          if (pendingIds.length === 1) {
+            // طلب واحد
+            await customFetch.post(`/notifications/update/${notificationId}`);
+          } else {
+            // طلبات متعددة - يمكن إرسالها كـ batch
+            await Promise.allSettled(
+              pendingIds.map((id) =>
+                customFetch.post(`/notifications/update/${id}`)
+              )
+            );
+          }
+
+          // تنظيف الـ pending set
+          pendingMarkAsRead.current.clear();
+        } catch (error) {
+          // إرجاع الحالة في حالة الفشل
+          setNotifications((prev) =>
+            prev.map((notification) =>
+              notification.id === notificationId
+                ? {
+                    ...notification,
+                    read_at: originalNotification?.read_at || null,
+                  }
+                : notification
+            )
+          );
+          setUnreadCount((prev) => prev + 1);
+          pendingMarkAsRead.current.delete(notificationId);
+
+          console.error("Failed to mark notification as read:", error);
+        }
+      }, 300); // تأخير 300ms لتجميع الطلبات
+    },
+    [notifications]
+  );
 
   const markAllAsRead = useCallback(async () => {
+    // تحديث فوري للـ UI
     setNotifications((prev) =>
       prev.map((notification) => ({
         ...notification,
@@ -182,6 +252,12 @@ export const useNotificationsPusher = (userId = null) => {
     try {
       await customFetch.post("/notifications/mark-all-read");
       toast.success("All notifications marked as read");
+
+      // تنظيف الـ pending set
+      pendingMarkAsRead.current.clear();
+      if (markAsReadTimeout.current) {
+        clearTimeout(markAsReadTimeout.current);
+      }
     } catch (error) {
       toast.success("All notifications marked as read locally");
     }
@@ -195,8 +271,6 @@ export const useNotificationsPusher = (userId = null) => {
     markAsRead,
     markAllAsRead,
     refetch: fetchInitialNotifications,
-    connectionState: pusherService.getConnectionState(),
-    isConnected: pusherService.isConnected(),
   };
 };
 
