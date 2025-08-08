@@ -1,5 +1,4 @@
-
-import Logo from "../assets/image/Logo Positions.svg";
+import Logo from "../assets/image/LogoPng.png";
 import Form from "../components/Form";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 

@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import Logo from "../assets/images/Logo Positions.svg";
+import Logo from "../assets/images/LogoPng.png";
 import Wrapper from "../assets/wrapper/FormStyle/Form";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import LogoMain from "../utils/LogoMain";
