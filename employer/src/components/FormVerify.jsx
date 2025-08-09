@@ -25,8 +25,6 @@ const FormVerify = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
- 
-
   // Storing field values and setting numeric constraints
   const schema = z.object({
     code1: z.number().min(0).max(9, { message: "Enter a 1-digit number" }),
@@ -81,7 +79,6 @@ const FormVerify = () => {
       toast.error(error.response?.data?.message);
 
       // Print the error message in console
-   
     }
   };
   // ResendCode function
@@ -100,8 +97,7 @@ const FormVerify = () => {
         setIsVerify(false);
       }, 15 * 60 * 1000);
       // If unsuccessful, an error message appears
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (
@@ -128,36 +124,42 @@ const FormVerify = () => {
               className="input-control-code"
               type="text"
               id="code1"
+              maxLength={1}
             />
             <input
               {...register("code2", { valueAsNumber: true })}
               className="input-control-code"
               type="text"
               id="code2"
+              maxLength={1}
             />
             <input
               {...register("code3", { valueAsNumber: true })}
               className="input-control-code"
               type="text"
               id="code3"
+              maxLength={1}
             />
             <input
               {...register("code4", { valueAsNumber: true })}
               className="input-control-code"
               type="text"
               id="code4"
+              maxLength={1}
             />
             <input
               {...register("code5", { valueAsNumber: true })}
               className="input-control-code"
               type="text"
               id="code5"
+              maxLength={1}
             />
             <input
               {...register("code6", { valueAsNumber: true })}
               className="input-control-code"
               type="text"
               id="code6"
+              maxLength={1}
             />
           </div>
           {errors && (
