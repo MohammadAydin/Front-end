@@ -11,9 +11,9 @@ export default defineConfig({
     host: "localhost",
     proxy: {
       "/api": {
-        target: "https://woundwann.de/v1", // الـ backend الأصلي
+        target: "https://woundwann.de/v1",
         changeOrigin: true,
-        secure: true, // أو false حسب ما إذا كان السيرفر لديه شهادة SSL صالحة
+        secure: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
