@@ -15,9 +15,7 @@ export const pusherConfig = {
         try {
           const user = JSON.parse(userString);
           token = user?.data?.token || user?.token;
-        } catch (parseError) {
-          console.error("Error parsing user data:", parseError);
-        }
+        } catch (parseError) {}
       }
 
       const headers = {
@@ -27,7 +25,6 @@ export const pusherConfig = {
         "X-Requested-With": "XMLHttpRequest",
       };
 
-      // في التطوير، لا نحتاج Origin و Referer
       if (import.meta.env.PROD) {
         headers.Origin =
           import.meta.env.VITE_APP_ORIGIN || "https://woundwann.de";
@@ -35,7 +32,6 @@ export const pusherConfig = {
           import.meta.env.VITE_APP_ORIGIN || "https://woundwann.de";
       }
 
-      console.log("Auth headers:", headers);
       return headers;
     },
   },
@@ -53,18 +49,13 @@ export const pusherConfig = {
               const tokenPayload = JSON.parse(atob(user.token.split(".")[1]));
               const userId =
                 tokenPayload.sub || tokenPayload.id || tokenPayload.user_id;
-              console.log("User ID from token payload:", userId);
               return userId;
-            } catch (tokenError) {
-              console.error("Error parsing token:", tokenError);
-            }
+            } catch (tokenError) {}
           }
 
           const userId = user.id || user.user_id || user.userId;
-          console.log("User ID from user object:", userId);
           return userId;
         } catch (parseError) {
-          console.error("Error parsing user for ID:", parseError);
           return null;
         }
       }
@@ -76,10 +67,8 @@ export const pusherConfig = {
         try {
           const user = JSON.parse(userString);
           const hasToken = !!(user?.data?.token || user?.token);
-          console.log("User authenticated:", hasToken);
           return hasToken;
         } catch (parseError) {
-          console.error("Error checking authentication:", parseError);
           return false;
         }
       }
@@ -93,14 +82,8 @@ export const pusherConfig = {
 
   logging: {
     enabled: !import.meta.env.PROD,
-    log: (message, data = null) => {
-      if (pusherConfig.logging.enabled) {
-        console.log(`[Pusher] ${message}`, data || "");
-      }
-    },
-    error: (message, error = null) => {
-      console.error(`[Pusher Error] ${message}`, error || "");
-    },
+    log: (message, data = null) => {},
+    error: (message, error = null) => {},
   },
 
   getPusherOptions: () => {
@@ -153,12 +136,6 @@ export const pusherConfig = {
             params.append("socket_id", socketId);
             params.append("channel_name", channel.name);
 
-            console.log("Pusher auth request:", {
-              socketId,
-              channelName: channel.name,
-              endpoint: pusherConfig.authEndpoint,
-            });
-
             xhr.send(params);
           },
         };
@@ -176,7 +153,6 @@ export const pusherConfig = {
       options.disableStats = true;
     }
 
-    console.log("Pusher options:", options);
     return options;
   },
 };

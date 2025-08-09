@@ -35,46 +35,17 @@ class PusherService {
   setupConnectionHandlers() {
     if (!this.pusher) return;
 
-    this.pusher.connection.bind("connecting", () => {
-      // Connection connecting
-    });
-
     this.pusher.connection.bind("connected", () => {
       this.reconnectAttempts = 0;
-    });
-
-    this.pusher.connection.bind("disconnected", () => {
-      // Connection disconnected
     });
 
     this.pusher.connection.bind("failed", () => {
       this.handleReconnection();
     });
-
-    this.pusher.connection.bind("state_change", (states) => {
-      // State changed
-    });
   }
 
   setupErrorHandlers() {
     if (!this.pusher) return;
-
-    this.pusher.connection.bind("error", (error) => {
-      if (error.error && error.error.data) {
-        const errorData = error.error.data;
-        if (errorData.code === 4001) {
-          // Application does not exist
-        } else if (errorData.code === 4004) {
-          // Application over connection quota
-        } else if (errorData.code === 4100) {
-          // Over capacity
-        }
-      }
-    });
-
-    this.pusher.bind("pusher:error", (error) => {
-      // Pusher error
-    });
   }
 
   handleReconnection() {
@@ -86,8 +57,6 @@ class PusherService {
       setTimeout(() => {
         this.reconnect();
       }, delay);
-    } else {
-      // Max reconnection attempts reached
     }
   }
 
@@ -103,10 +72,6 @@ class PusherService {
     try {
       const channel = this.pusher.subscribe(channelName);
       this.channels.set(channelName, channel);
-
-      channel.bind("pusher:subscription_succeeded", () => {
-        // Successfully subscribed
-      });
 
       channel.bind("pusher:subscription_error", (error) => {
         this.channels.delete(channelName);
