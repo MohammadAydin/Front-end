@@ -58,7 +58,8 @@ const FormLogin = () => {
         email: data.email,
         password: data.password,
       });
-      if (response.data.role == "employee") {
+
+      if (response.data.data.role == "employer") {
         // If the login is successful
         // If the Remember button saves the account in LocalStorage
         if (isChecked) {
@@ -73,8 +74,6 @@ const FormLogin = () => {
 
         // Show login success message
         toast.success(t("login.success"));
-
-        // Show a successful login message with the account
 
         // Add user to local storage
         addUserToLocalStorage(response.data?.data);
@@ -96,7 +95,6 @@ const FormLogin = () => {
     } catch (error) {
       toast.error(t("login.error") + ": " + error.response?.data?.error);
       setIsLoading(false);
-      // Print the error message in console
     }
   };
 

@@ -27,7 +27,7 @@ console.log("Environment:", import.meta.env.DEV ? "development" : "production");
 
 customFetch.interceptors.request.use((config) => {
   const user = useAuthStore.getState().user;
-    console.log("🛠 Sending token:", user?.token); // ← هذا مهم
+  console.log("🛠 Sending token:", user?.token); // ← هذا مهم
 
   config.headers["Accept"] = "application/json";
   if (!config.headers["Content-Type"]) {
