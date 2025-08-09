@@ -6,11 +6,12 @@ import { useTranslation } from "react-i18next";
 import Spinner from "../components/MoreElements/Spinner";
 import { PiEyeLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import customFetch from "../utils/axios";
 import useStatusAccount from "../store/storeStatusAccount";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import statusAccount from "../utils/statusAccountReturn";
+import { toast } from "react-toastify";
 
 const UserProfile = () => {
   const { data, isLoading } = useData("/profile");
@@ -22,17 +23,30 @@ const UserProfile = () => {
   } = useData("/employee/contract/html");
   const { t } = useTranslation();
 
+  // To reject a jobRequest
+  const getPdf = useMutation({
+    mutationFn: () =>
+      customFetch.get("/employee/contract/pdf").then((res) => res.data),
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success(data.message);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
+
   const fetchContract = () =>
-    customFetch.get("/employee/contract/pdf", { responseType: "blob" });
+    customFetch
+      .get("/employee/contract/pdf")
+      .then((res) => console.log(res.data));
 
   const {
     data: dataPdf,
     isLoading: isLoadingPdf,
     error: errorPdf,
-  } = useQuery({
-    queryKey: ["/employee/contract/pdf"],
-    queryFn: fetchContract,
-  });
+  } = useData("/employee/contract/pdf");
+  console.log(dataPdf);
 
   const handleDownload = () => {
     if (isLoadingPdf) {
@@ -101,17 +115,16 @@ const UserProfile = () => {
               );
             })}
           <div className=" relative">
-            <a href="" download>
-              <button
-                onClick={handleDownload}
-                className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
-              >
-                {t("userProfile.downloadContract")}
-                <span>
-                  <HiOutlineDownload size={24} />
-                </span>
-              </button>
-            </a>
+            <button
+              onClick={() => getPdf.mutate()}
+              className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
+            >
+              {t("userProfile.downloadContract")}
+              <span>
+                <HiOutlineDownload size={24} />
+              </span>
+            </button>
+
             <Link to="/contract">
               <PiEyeLight className="text-4xl mt-3.5 absolute top-[6px] left-1.5 text-white click hover:text-black" />
             </Link>
