@@ -1,6 +1,9 @@
 import image from "../assets/images/HeroImage.png";
 import { HiDownload, HiOutlineSearch } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
+import { FaApple } from "react-icons/fa";
+import imgGooglePlay from "../assets/images/GooglePlay.png";
+import { FaAndroid } from "react-icons/fa";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -14,15 +17,33 @@ const Hero = () => {
         </h1>
         <h2>{t("hero.subtitle")}</h2>
         <div className="HeroActions">
-          <a href="https://play.google.com/store/apps/details?id=com.w.wowann">
-            <button className="DownloadBtn">
-              <HiDownload /> Herunterladen
-              <HiDownload /> {t("hero.download")}
+          <h2 className="h2">
+            <span>Wo&Wann</span> App laden
+          </h2>
+          <div className="HeroActions-download">
+            <a href="https://apps.apple.com/us/app/wo-and-wann/id6741417892">
+              <div className="apple-download">
+                <FaApple className="iconApple" />
+                <div className="">
+                  <span className="textAppleSpan">Laden im</span>
+                  <p className="textAppleP">App Store</p>
+                </div>
+              </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.w.wowann">
+              <div className="GooglePlay-download">
+                <img className="iconGooglePlay" src={imgGooglePlay} alt="" />
+                <div className="">
+                  <span className="textGooglePlaySpan">JETEZT BEI</span>
+                  <p className="textGooglePlayP">Google Play</p>
+                </div>
+              </div>
+            </a>
+
+            <button className="LearnMoreBtn">
+              <HiOutlineSearch /> {t("hero.learnMore")}
             </button>
-          </a>
-          <button className="LearnMoreBtn">
-            <HiOutlineSearch /> {t("hero.learnMore")}
-          </button>
+          </div>
         </div>
       </div>
       <img src={image} alt="" />

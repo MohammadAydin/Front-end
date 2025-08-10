@@ -1,3 +1,6 @@
+// * {
+//   margin: 0;
+// }
 .Hero {
   display: flex;
   align-items: center;
@@ -22,7 +25,72 @@
   .HeroActions {
     display: flex;
     align-items: center;
+    flex-direction: column;
 
+    h2 {
+      margin: 0;
+      margin-bottom: 10px;
+      margin-bottom: 10px;
+      font-weight: bolder;
+      span {
+        color: var(--secondary-color);
+      }
+    }
+    .HeroActions-download {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+    .apple-download {
+      background-color: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      color: white;
+      padding: 10px 10px;
+      border-radius: 8px;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    .GooglePlay-download {
+      background-color: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      color: white;
+      padding: 13px 10px;
+      border-radius: 8px;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    .textAppleSpan {
+      margin: 0;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+    .textAppleP {
+      margin: 0;
+      font-size: 17px;
+    }
+    .textGooglePlaySpan {
+      margin: 0;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+    .textGooglePlayP {
+      margin: 0;
+      font-size: 17px;
+    }
+    .iconApple {
+      font-size: 50px;
+    }
+    .iconGooglePlay {
+      width: 45px;
+    }
     button {
       display: flex;
       align-items: center;
