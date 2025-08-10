@@ -48,7 +48,6 @@ const UserProfile = () => {
         URL.revokeObjectURL(url);
       })
       .catch((error) => {
-        console.log(error);
         setLoadingPdf(false);
       });
   };

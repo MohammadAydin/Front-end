@@ -5,9 +5,10 @@ import DetailsList from "./DetailsList";
 
 const InvoicesMain = () => {
   const { data: invoices } = useData("/invoices");
-  if (invoices?.data.length === 0) {
+  console.log(invoices);
+  if (invoices?.data?.length === 0 || invoices?.data === null) {
     return (
-      <div style={{ textAlign: "center", marginTop: "2rem" }}>
+      <div className="flex  justify-center items-center h-[100vh]">
         You have no invoices yet. New invoices will be issued to you on the 1st
         of each month.
       </div>
@@ -19,11 +20,12 @@ const InvoicesMain = () => {
         <div className="InvoicesMain w-full flex items-center " key={index}>
           <div className="w-full">
             <DetailsList
-              id={item.id}
-              invoice_number={item.invoice_number}
-              from={item.from}
-              to={item.to}
-              total_amount={item.total_amount}
+              id={item?.id}
+              invoice_number={item?.invoice_number}
+              from={item?.from}
+              to={item?.to}
+              total_amount={item?.total_amount}
+              url={item?.url}
             />
           </div>
         </div>

@@ -14,11 +14,13 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { createLoginSchema } from "../utils/validationSchema";
 import { useAuthStore } from "../store/useAuthStore";
+import useEmailStore from "../store/storeEmail";
 
 const FormLogin = () => {
   // Translation hook
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
+  const setEmail = useEmailStore((s) => s.setEmail);
 
   // Storing the state of showing and hiding the password
   const [showPassword, setShowPassword] = useState(false);
@@ -93,7 +95,15 @@ const FormLogin = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      toast.error(t("login.error") + ": " + error.response?.data?.error);
+      toast.error(t("login.error") + ": " + error?.response?.data?.message);
+      console.log(error?.response?.data?.message);
+      if (
+        error?.response?.data?.message ===
+        "Your account is not active. A new verification code has been sent to your email. Please check your inbox or spam folder."
+      ) {
+        setEmail(data?.email);
+        setLevel(3);
+      }
       setIsLoading(false);
     }
   };

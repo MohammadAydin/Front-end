@@ -6,16 +6,17 @@ import useData from "../../hooks/useData";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { FaFileInvoiceDollar } from "react-icons/fa6";
 
-const DetailsList = ({ id, invoice_number, from, to, total_amount }) => {
+const DetailsList = ({ id, invoice_number, from, to, total_amount, url }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const [loadingPdf, setLoadingPdf] = useState(false);
 
   return (
     <>
       <div className="flex border-b border-[#919eab63] border-dashed items-center">
         <FaFileInvoiceDollar className="text-2xl text-green-400" />
 
-        <div className="DetailsList w-[70vw] flex items-center justify-around p-6 font-[500] pb-5">
+        <div className="DetailsList flex-1 flex items-center justify-around p-6 font-[500] pb-5">
           <div className="ListIndex Index w-[10vw] ">#{invoice_number}</div>
 
           {/* navigate to userprofile */}
@@ -47,10 +48,18 @@ const DetailsList = ({ id, invoice_number, from, to, total_amount }) => {
           >
             {isHovered ? <IoEyeSharp size={25} /> : <IoEyeOutline size={25} />}
           </button>
-          <div className="invoicesDownload text-[25px] mb-[0.7px] text-3xl">
-            <a href="" download>
-              {" "}
-              <MdOutlineFileDownload onClick="" className="click" />
+          <div className="invoicesDownload text-[25px]  text-3xl">
+            <a
+              href={url}
+              download={"invoice.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-secondaryColor text-white rounded hover:bg-blue-700"
+            >
+              <button>
+                {" "}
+                <MdOutlineFileDownload className="click mt-1" />
+              </button>
             </a>
           </div>
         </div>

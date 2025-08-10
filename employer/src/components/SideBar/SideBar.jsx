@@ -10,7 +10,6 @@ import { getUserFromLocalStorage } from "../../utils/localStorage";
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data: photodata } = useData("/photo");
 
-  console.log(photodata);
   const data = getUserFromLocalStorage("user");
 
   return (

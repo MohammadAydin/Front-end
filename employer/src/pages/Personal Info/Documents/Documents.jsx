@@ -13,7 +13,7 @@ import statusAccount from "../../../utils/statusAccountReturn";
 import useStatusAccount from "../../../store/storeStatusAccount";
 
 const Documents = () => {
-    const status = useStatusAccount((state) => state.status);
+  const status = useStatusAccount((state) => state.status);
 
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -88,6 +88,9 @@ const Documents = () => {
       <p className="text-[#555770] mb-10 text-lg ">
         Complete uploading the required files.
       </p>
+      {requiredDocs?.data?.length == 0 && (
+        <p>There are no files to upload at the moment </p>
+      )}
       {requiredDocs && (
         <div className="my-5">
           {requiredDocs?.data?.map((docs) => (
