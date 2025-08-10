@@ -40,9 +40,9 @@ const Hero = () => {
               </div>
             </a>
 
-            <button className="LearnMoreBtn">
+            {/* <button className="LearnMoreBtn">
               <HiOutlineSearch /> {t("hero.learnMore")}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
