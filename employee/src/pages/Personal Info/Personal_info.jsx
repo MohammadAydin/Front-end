@@ -25,7 +25,7 @@ const Personal_info = () => {
   const { data: statusData } = useData("/profile/status");
 
   useEffect(() => {
-    if (!statusData?.data) return;
+    if (!statusData) return;
 
     const entries = Object.entries(statusData).filter(
       ([key]) => key !== "isUploadedAllProfile"
