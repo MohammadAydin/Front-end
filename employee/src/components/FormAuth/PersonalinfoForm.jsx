@@ -192,15 +192,15 @@ const PersonalinfoForm = () => {
         </div>
         <div className="flex w-full justify-center gap-5">
           {/* Skip button directs to the main page */}
-          <Link
+          {/* <Link
             to="/"
             className="p-2 button-login mb-3 bg-white border border-gray-500 text-gray-500 text-center rounded-[10px] w-[15vw]"
           >
             Skip
-          </Link>
+          </Link> */}
           {/* Transmitter button */}
           <button
-            className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px] w-[15vw]"
+            className="p-2 button-login mb-3 bg-amber-600 text-white rounded-[10px] w-full"
             type="submit"
           >
             Submit{" "}

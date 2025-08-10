@@ -85,6 +85,12 @@ const LoginForm = () => {
       // If he is not an employee
     } catch (error) {
       toast.error(error?.response?.data?.message);
+      if (
+        error?.response?.data?.message ===
+        "Your account is not active. A new verification code has been sent to your email. Please check your inbox or spam folder."
+      ) {
+        navigate(`/verifyEmail/${data.email}`);
+      }
       setIsLoading(false);
     }
   };
