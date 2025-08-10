@@ -23,6 +23,7 @@ const Personal_info = () => {
   const [allCompleted, setAlCompleted] = useState(false);
 
   const { data: statusData } = useData("/profile/status");
+
   useEffect(() => {
     if (!statusData?.data) return;
 
@@ -47,6 +48,7 @@ const Personal_info = () => {
     onError: (error) => {
       setLoadingsendAll(false);
 
+      toast.error(error?.response?.data?.message);
       console.error("Failed to send info:", error);
       // Optional: show error to user
     },
@@ -117,13 +119,13 @@ const Personal_info = () => {
       {!allCompleted && (
         <button
           disabled={
-            !statusData?.data?.isUploadedAllProfile ||
+            !statusData?.isUploadedAllProfile ||
             sendAllInfo.isPending ||
             LoadingsendAll
           }
           onClick={handleSendAll}
           className={`w-full text-lg font-extrabold px-10 py-2 rounded-lg mt-4 ${
-            statusData?.data?.isUploadedAllProfile || LoadingsendAll
+            statusData?.isUploadedAllProfile || LoadingsendAll
               ? "bg-[#F47621] text-white hover:bg-[#EE6000]"
               : "bg-gray-300 text-gray-600 "
           }`}
