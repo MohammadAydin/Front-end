@@ -9,69 +9,50 @@ import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import customFetch from "../utils/axios";
 import useStatusAccount from "../store/storeStatusAccount";
-import { use, useEffect } from "react";
+import { createElement, use, useEffect, useState } from "react";
 import statusAccount from "../utils/statusAccountReturn";
 import { toast } from "react-toastify";
+import axios from "axios";
+import SpinnerLoading from "../components/MoreElements/SpinnerLoading";
 
 const UserProfile = () => {
   const { data, isLoading } = useData("/profile");
 
-  const {
-    data: datapdf,
-    errorpdf,
-    isloading,
-  } = useData("/employee/contract/html");
   const { t } = useTranslation();
 
-  // To reject a jobRequest
-  const getPdf = useMutation({
-    mutationFn: () =>
-      customFetch.get("/employee/contract/pdf").then((res) => res.data),
-    onSuccess: (data) => {
-      console.log(data);
-      toast.success(data.message);
-    },
-    onError: (error) => {
-      toast.error(error?.response?.data?.message);
-    },
-  });
-
-  const fetchContract = () =>
-    customFetch
-      .get("/employee/contract/pdf")
-      .then((res) => console.log(res.data));
-
-  const {
-    data: dataPdf,
-    isLoading: isLoadingPdf,
-    error: errorPdf,
-  } = useData("/employee/contract/pdf");
-  console.log(dataPdf);
-
-  const handleDownload = () => {
-    if (isLoadingPdf) {
-      return;
-    }
-
-    if (errorPdf) {
-      return;
-    }
-
-    if (!dataPdf) {
-      return;
-    }
-
-    const blob = dataPdf.data;
-
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "contract.pdf");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
+  const [loadingPdf, setLoadingPdf] = useState(false);
+  const downloadPdf = async () => {
+    setLoadingPdf(true);
+    await customFetch
+      .get("/employee/contract/pdf", {
+        responseType: "blob",
+        onDownloadProgress: function (progressEvent) {
+          if (progressEvent.lengthComputable) {
+            console.log(
+              ((progressEvent.loaded / progressEvent.total) * 100).toFixed() +
+                "%"
+            );
+          }
+        },
+      })
+      .then((obj) => {
+        setLoadingPdf(false);
+        const url = URL.createObjectURL(obj.data);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "contract.pdf";
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoadingPdf(false);
+      });
   };
+
   if (isLoading) return <Spinner />;
 
   // Function to get localized field name
@@ -116,13 +97,19 @@ const UserProfile = () => {
             })}
           <div className=" relative">
             <button
-              onClick={() => getPdf.mutate()}
+              onClick={downloadPdf}
               className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
             >
-              {t("userProfile.downloadContract")}
-              <span>
-                <HiOutlineDownload size={24} />
-              </span>
+              {loadingPdf ? (
+                <SpinnerLoading />
+              ) : (
+                <div className="flex items-center gap-2">
+                  {t("userProfile.downloadContract")}
+                  <span>
+                    <HiOutlineDownload size={24} />
+                  </span>
+                </div>
+              )}
             </button>
 
             <Link to="/contract">
