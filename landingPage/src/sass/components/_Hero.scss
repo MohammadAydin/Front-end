@@ -53,6 +53,13 @@
       border-radius: 8px;
       font-size: 20px;
       margin-right: 20px;
+      position: relative;
+    }
+    .soonApple{
+      position: absolute;
+      bottom: -50px;
+      color: black;
+      font-weight: 800;
     }
     .GooglePlay-download {
       background-color: black;

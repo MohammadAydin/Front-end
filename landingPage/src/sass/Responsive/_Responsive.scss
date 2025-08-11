@@ -264,6 +264,18 @@
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      .HeroActions-download {
+        flex-direction: row;
+        .soonApple{
+          bottom: -70px;
+        }
+        .textapple{
+          gap: 2px;
+        }
+        .textaGoogle{
+          gap: 3px;
+        }
+      }
       h1 {
         font-size: 36px;
         margin: 0;
