@@ -1,24 +1,27 @@
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
+import imgLearn from "../assets/images/Learn.jpg";
 const Features = () => {
   const { t } = useTranslation();
 
   const featureList = [
     {
-      title: t('features.userBenefits.title'),
-      des: t('features.userBenefits.description'),
-      itemsList: t('features.userBenefits.items', { returnObjects: true })
+      title: t("features.userBenefits.title"),
+      des: t("features.userBenefits.description"),
+      itemsList: t("features.userBenefits.items", { returnObjects: true }),
     },
     {
-      title: t('features.elderlyHomeBenefits.title'),
-      des: t('features.elderlyHomeBenefits.description'),
-      itemsList: t('features.elderlyHomeBenefits.items', { returnObjects: true })
-    }
+      title: t("features.elderlyHomeBenefits.title"),
+      des: t("features.elderlyHomeBenefits.description"),
+      itemsList: t("features.elderlyHomeBenefits.items", {
+        returnObjects: true,
+      }),
+    },
   ];
 
   return (
     <div className="Features">
-      <h2>{t('features.title')}</h2>
+      <h2>{t("features.title")}</h2>
+      <img className="imgLearn" src={imgLearn} alt="" />
       <div className="FeaturesList">
         {featureList?.map((feature, index) => (
           <div key={index} className="Feature">
