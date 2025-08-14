@@ -21,7 +21,9 @@ const Features = () => {
   return (
     <div className="Features">
       <h2>{t("features.title")}</h2>
+      <div className="flex justify-center mt-2.5">
       <img className="imgLearn" src={imgLearn} alt="" />
+      </div>
       <div className="FeaturesList">
         {featureList?.map((feature, index) => (
           <div key={index} className="Feature">
