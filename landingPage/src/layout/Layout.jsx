@@ -22,9 +22,9 @@ const Layout = () => {
       <SmallNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="relative">
         <div className="fixed top-52 right-0 z-50 flex ">
-          <div className={`  ${!showWhatsapp && "hidden"} relative`}>
+          <div className={`flex ${!showWhatsapp && "hidden"} relative`}>
             <img
-              className={`w-[100%] rounded-2xl top-0`}
+              className={`w-[80%]  ml-auto justify-end rounded-2xl mt-[-50px] `}
               src={imgWhatsapp}
               alt=""
             />
