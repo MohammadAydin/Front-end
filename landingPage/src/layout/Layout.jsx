@@ -21,7 +21,7 @@ const Layout = () => {
       <SmallNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="relative">
         <div className="fixed bottom-2 right-2 z-50 flex">
-          <a href="https://wa.link/q4lk2j">
+          <a href="https://wa.link/qjf0zs">
             <img src={iconWhatsapp} className="w-[50px]" alt="" />
             {/* <IoLogoWhatsapp className="text-5xl text-green-500 text-right  cursor-pointer" /> */}
           </a>
