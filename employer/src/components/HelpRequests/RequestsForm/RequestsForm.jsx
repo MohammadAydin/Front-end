@@ -60,13 +60,14 @@ const RequestsForm = () => {
   });
 
   const submit = async (data) => {
+    console.log(data);
     try {
       const response = await customFetch.post("/employerJobPosting", {
         title: data.Title,
         description: data.Description,
         employees_required: data.EmployeeCount,
-        date_from: data.date.from.toISOString().split("T")[0],
-        date_to: data.date.to.toISOString().split("T")[0],
+        date_from: new Date(data.date.from).toISOString().split("T")[0],
+        date_to: new Date(data.date.to).toISOString().split("T")[0],
         location_id: data.Address,
         employee_positions_id: data.Position,
         shift_id: data.Shifts,

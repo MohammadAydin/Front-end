@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import PopupReport from "../components/MoreElements/Popup/PopupReport";
 import PopupReview from "../components/TaskComponents/PopupReview";
+import { timeDifference } from "../utils/timeDifference";
 
 // Task details
 const TasksDetails = () => {
@@ -30,6 +31,29 @@ const TasksDetails = () => {
 
   // Fetch task data
   const { data: task, error, isLoading } = useJobs(`/tasks/${id}`);
+  // console.log(task?.task?.start_at);
+
+  // console.log(task);
+  // console.log(hoursdiff);
+  // console.log(minutesDiff);
+  // console.log(daysDiff);
+  const [hoursdiff, setHoursdiff] = useState(0);
+  const [minutesDiff, setMinutesDiff] = useState(0);
+  const [daysDiff, setDaysDiff] = useState(0);
+
+  console.log(new Date(task?.task?.StartDate));
+  useEffect(() => {
+    if (new Date(task?.task?.StartDate) > new Date()) {
+      const { days, hours, minutes } = timeDifference(
+        new Date(),
+        task?.task?.StartDate
+      );
+      setDaysDiff(days);
+      setHoursdiff(hours);
+      setMinutesDiff(minutes);
+    }
+  }, [task?.task?.StartDate]);
+
   const center = task?.coordinates
     ? { lat: task.coordinates.latitude, lng: task.coordinates.longitude }
     : { lat: 0, lng: 0 };
@@ -44,6 +68,8 @@ const TasksDetails = () => {
   const [Popuparrived, setPopuparrived] = useState(false);
   const [Popupend, setPopupend] = useState(false);
   const [popupReview, setPopupReview] = useState(false);
+  const [startTime, setStartTime] = useState(false);
+  const [endTime, setEndTime] = useState(false);
 
   const togglePopupReport = () => {
     setReportPopup(false);
@@ -173,7 +199,9 @@ const TasksDetails = () => {
               </div>
               <div className="bg-[#FFF0E5] flex gap-1.5 items-center w-fit p-1 rounded-[6px] mt-2.5 text-[#F47621]">
                 <PiHourglassLowFill />
-                <p className="text-[0.8rem]"></p>
+                <p className="text-[0.8rem]">
+                  {daysDiff} d,{hoursdiff} h,{minutesDiff} m
+                </p>
               </div>
               <div className="bg-[#E0FFE8] flex gap-1.5 items-center w-fit p-2 rounded-[6px] mt-2.5 text-[#34C759]">
                 <LuBanknote />
@@ -199,11 +227,11 @@ const TasksDetails = () => {
             <p className="text-softColor">{task?.job_posting?.description}</p>
           </div>
 
-          {/* Work duration today*/}
+          {/* Work duration today */}
           <div className="mt-8">
-            <h2 className="mb-3 text-xl">
+            {/* <h2 className="mb-3 text-xl">
               {t("taskDetails.workDurationToday")}
-            </h2>
+            </h2> */}
           </div>
         </div>
 

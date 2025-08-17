@@ -19,8 +19,7 @@ const TasksPage = () => {
   const { t } = useTranslation();
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
-
-
+  console.log(tasks);
   const filterTasks =
     selectedValue === "all" || !selectedValue
       ? tasks
@@ -92,15 +91,25 @@ const TasksPage = () => {
               key={task.id}
               className="task-div flex justify-between items-center mb-7 p-4 max-[510px]:flex-col max-[510px]:items-start max-[510px]:gap-5"
             >
-              <div className="imgAndinfo flex gap-3 items-center">
+              {console.log(task)}
+
+              <div className="imgAndinfo flex gap-3 items-center flex-wrap">
                 {/* View a picture of the elderly house*/}
                 <img className=" rounded-4xl" src={imgjob} alt="" />
                 {/* Display price with tasks title */}
                 <div className="info">
                   <p>{task.job_posting.title}</p>
-                  <p className="text-softColor text-[0.8rem]">
-                    {task.job_posting.price}
-                  </p>
+                </div>
+                <div>
+                  {" "}
+                  <div className="flex flex-col">
+                    <p className="flex text-softColor text-[0.8rem] justify-between">
+                      <span> Start Task &nbsp; </span> : &nbsp;{task.StartDate}
+                    </p>
+                    <p className="flex text-softColor text-[0.8rem] justify-between">
+                      <span>End Task &nbsp;</span> : &nbsp;{task.EndDate}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col ">

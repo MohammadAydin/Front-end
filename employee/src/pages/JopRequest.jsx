@@ -175,15 +175,44 @@ const JopRequest = () => {
               className=" flex justify-between items-center mb-7   "
             >
               <Link to={`/jobRequestDetails/${job.service_request.id}`}>
-                <div className="imgAndinfo flex gap-3 items-center">
+                <div className="imgAndinfo flex gap-8 items-center max-[1044px]:flex-col  max-[1044px]:items-start ">
                   {/* View a picture of the elderly house*/}
-                  <img className=" rounded-4xl" src={imgjob} alt="" />
-                  {/* Display price with jobRequest title */}
-                  <div className="info">
-                    <p>{job.job_posting.title}</p>
-                    <p className="text-softColor text-xs">
-                      {parseFloat(job.job_posting.total_cost).toFixed(2)} €
-                    </p>
+                  <div className="flex items-center gap-3">
+                    <img className=" rounded-4xl" src={imgjob} alt="" />
+                    {/* Display price with jobRequest title */}
+                    <div className="info">
+                      <p>{job.job_posting.title}</p>
+                      <p className="text-softColor text-xs">
+                        {job?.job_posting?.total_cost}&euro;
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-7 flex-wrap">
+                    <div className="flex flex-col mt-2 gap-2">
+                      <p className="text-softColor text-xs flex justify-between">
+                        <span>date from &nbsp;</span>:&nbsp;{" "}
+                        {job?.job_posting?.date_from.split(" ")[0]}{" "}
+                      </p>
+                      <p className="text-softColor text-xs flex justify-between">
+                        <span>date to &nbsp;</span>:&nbsp;{" "}
+                        {job?.job_posting?.date_from.split(" ")[0]}{" "}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-4 max-[720px]:flex-col">
+                      <p className="text-softColor text-xs ">
+                        shift ( {job?.job_posting?.shift?.name} ) &nbsp;:{" "}
+                      </p>
+                      <div className="flex flex-col mt-2 gap-2">
+                        <p className="text-softColor text-xs flex justify-between">
+                          <span>start time &nbsp;</span>:&nbsp;{" "}
+                          {job?.job_posting?.shift?.start_time}
+                        </p>
+                        <p className="text-softColor text-xs flex justify-between">
+                          <span>end time &nbsp;</span>:&nbsp;{" "}
+                          {job?.job_posting?.shift?.end_time}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>
