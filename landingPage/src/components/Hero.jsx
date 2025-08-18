@@ -21,6 +21,7 @@ const Hero = () => {
             <span>Wo&Wann</span> App laden
           </h2>
           <div className="HeroActions-download">
+            <a href="https://apps.apple.com/us/app/wowann/id6741417892">
               <div className="apple-download">
                 <FaApple className="iconApple" />
                 <div className="textapple">
@@ -29,6 +30,7 @@ const Hero = () => {
                 </div>
                 <p className="soonApple">Coming Soon ..</p>
               </div>
+            </a>
             <a href="https://play.google.com/store/apps/details?id=com.w.wowann">
               <div className="GooglePlay-download">
                 <img className="iconGooglePlay" src={imgGooglePlay} alt="" />
