@@ -28,7 +28,6 @@ const Hero = () => {
                   <span className="textAppleSpan">Laden im</span>
                   <p className="textAppleP">App Store</p>
                 </div>
-                <p className="soonApple">Coming Soon ..</p>
               </div>
             </a>
             <a href="https://play.google.com/store/apps/details?id=com.w.wowann">
