@@ -1,736 +1,753 @@
 {
-    "login": {
-        "title": "Bei Wo & Wann anmelden",
-        "email": {
-            "placeholder": "E-Mail-Adresse",
-            "validation": {
-                "required": "E-Mail-Adresse ist erforderlich.",
-                "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-                "maxLength": "Das Feld darf nicht länger als 255 Zeichen sein"
-            }
-        },
-        "password": {
-            "placeholder": "Passwort",
-            "validation": {
-                "required": "kann nicht leer bleiben"
-            }
-        },
-        "rememberPassword": "Passwort merken",
-        "forgotPassword": "Passwort vergessen?",
-        "loginButton": "Anmelden",
-        "loading": "Warten .. ",
-        "newUser": "Neuer Benutzer?",
-        "createAccount": "Konto erstellen",
-        "success": "Anmeldung erfolgreich",
-        "error": "Anmeldefehler",
-        "accountError": "Dieses Konto ist kein Mitarbeiterkonto"
+  "login": {
+    "title": "Bei Wo & Wann anmelden",
+    "email": {
+      "placeholder": "E-Mail-Adresse",
+      "validation": {
+        "required": "E-Mail-Adresse ist erforderlich.",
+        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "maxLength": "Das Feld darf nicht länger als 255 Zeichen sein"
+      }
     },
-    "register": {
-        "title": "Bei Wo & Wann registrieren",
-        "firstName": {
-            "placeholder": "Vorname",
-            "validation": {
-                "required": "Bitte geben Sie Ihren Vornamen ein!",
-                "minLength": "Vorname muss mindestens 3 Zeichen lang sein!",
-                "maxLength": "Vorname darf höchstens 255 Zeichen lang sein."
-            }
-        },
-        "lastName": {
-            "placeholder": "Nachname",
-            "validation": {
-                "required": "Bitte geben Sie Ihren Nachnamen ein!",
-                "minLength": "Nachname muss mindestens 3 Zeichen lang sein!",
-                "maxLength": "Nachname darf höchstens 255 Zeichen lang sein."
-            }
-        },
-        "email": {
-            "placeholder": "E-Mail-Adresse",
-            "validation": {
-                "required": "Bitte geben Sie Ihre E-Mail-Adresse ein!",
-                "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
-            }
-        },
-        "password": {
-            "placeholder": "Passwort",
-            "validation": {
-                "required": "Passwort ist erforderlich",
-                "weak": "Passwort muss Groß-, Kleinbuchstaben, Zahl und Sonderzeichen enthalten."
-            }
-        },
-        "confirmPassword": {
-            "placeholder": "Neues Passwort bestätigen",
-            "validation": {
-                "required": "Bitte bestätigen Sie Ihr Passwort",
-                "mismatch": "Passwort stimmt nicht mit der Bestätigung überein"
-            }
-        },
-        "termsConditions": "Allgemeine Geschäftsbedingungen von wo & wann zustimmen",
-        "signupButton": "Registrieren",
-        "loading": "Warten .. ",
-        "alreadyHaveAccount": "Bereits ein Konto?",
-        "loginLink": "Anmelden",
-        "success": "Registrierung erfolgreich",
-        "error": "Registrierungsfehler"
+    "password": {
+      "placeholder": "Passwort",
+      "validation": {
+        "required": "kann nicht leer bleiben"
+      }
     },
-    "forgotPassword": {
-        "title": "Passwort vergessen",
-        "description": "Sie erhalten eine E-Mail an Ihre E-Mail-Adresse, um Ihr Passwort zurückzusetzen",
-        "email": {
-            "placeholder": "E-Mail-Adresse",
-            "validation": {
-                "required": "E-Mail-Adresse ist erforderlich.",
-                "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-                "maxLength": "Das Feld darf nicht länger als 255 Zeichen sein"
-            }
-        },
-        "sendButton": "E-Mail senden",
-        "backToLogin": "zurück zur Anmeldung?",
-        "loginLink": "Anmelden",
-        "success": "Reset-E-Mail erfolgreich gesendet",
-        "error": "Fehler beim Senden der Reset-E-Mail"
+    "rememberPassword": "Passwort merken",
+    "forgotPassword": "Passwort vergessen?",
+    "loginButton": "Anmelden",
+    "loading": "Warten .. ",
+    "newUser": "Neuer Benutzer?",
+    "createAccount": "Konto erstellen",
+    "success": "Anmeldung erfolgreich",
+    "error": "Anmeldefehler",
+    "accountError": "Dieses Konto ist kein Mitarbeiterkonto"
+  },
+  "register": {
+    "title": "Bei Wo & Wann registrieren",
+    "firstName": {
+      "placeholder": "Vorname",
+      "validation": {
+        "required": "Bitte geben Sie Ihren Vornamen ein!",
+        "minLength": "Vorname muss mindestens 3 Zeichen lang sein!",
+        "maxLength": "Vorname darf höchstens 255 Zeichen lang sein."
+      }
     },
-    "resetPassword": {
-        "title": "Passwort zurücksetzen",
-        "description": "Bitte geben Sie etwas ein, woran Sie sich erinnern werden",
-        "password": {
-            "placeholder": "Passwort",
-            "validation": {
-                "required": "Bitte geben Sie Ihr Passwort ein!",
-                "weak": "Passwort muss Groß-, Kleinbuchstaben, Zahl und Sonderzeichen enthalten."
-            }
-        },
-        "confirmPassword": {
-            "placeholder": "Neues Passwort bestätigen",
-            "validation": {
-                "required": "Bitte bestätigen Sie Ihr Passwort",
-                "mismatch": "Passwort stimmt nicht mit der Bestätigung überein"
-            }
-        },
-        "resetButton": "Passwort zurücksetzen",
-        "success": "Passwort erfolgreich zurückgesetzt",
-        "error": "Fehler beim Zurücksetzen des Passworts"
+    "lastName": {
+      "placeholder": "Nachname",
+      "validation": {
+        "required": "Bitte geben Sie Ihren Nachnamen ein!",
+        "minLength": "Nachname muss mindestens 3 Zeichen lang sein!",
+        "maxLength": "Nachname darf höchstens 255 Zeichen lang sein."
+      }
     },
-    "verifyEmail": {
-        "title": "E-Mail verifizieren !",
-        "description": "Wir haben einen 6-stelligen Bestätigungscode an {email} gesendet. Bitte geben Sie den Code in das untenstehende Feld ein, um Ihre E-Mail zu verifizieren.",
-        "codeField": {
-            "validation": {
-                "required": "Geben Sie eine 1-stellige Zahl ein"
-            }
-        },
-        "verifyButton": "Verifizieren",
-        "resendText": "Haben Sie keinen Code?",
-        "resendButton": "Code erneut senden",
-        "resendWait": "Warten Sie 15 Minuten, um den Code erneut anzufordern",
-        "returnToSignIn": "Zurück zur Anmeldung",
-        "success": "E-Mail erfolgreich verifiziert",
-        "error": "Fehler beim Verifizieren der E-Mail"
+    "email": {
+      "placeholder": "E-Mail-Adresse",
+      "validation": {
+        "required": "Bitte geben Sie Ihre E-Mail-Adresse ein!",
+        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+      }
     },
-    "personalInfo": {
-        "title": "Persönliche Informationen",
-        "services": {
-            "placeholder": "Wählen Sie einen Service",
-            "validation": {
-                "required": "Bitte wählen Sie einen Service"
-            }
-        },
-        "occupation": {
-            "placeholder": "Wählen Sie einen Beruf",
-            "validation": {
-                "required": "Bitte wählen Sie einen Beruf"
-            }
-        },
-        "skipButton": "Überspringen",
-        "submitButton": "Senden",
-        "success": "Persönliche Informationen erfolgreich gespeichert",
-        "error": "Fehler beim Speichern der persönlichen Informationen"
+    "password": {
+      "placeholder": "Passwort",
+      "validation": {
+        "required": "Passwort ist erforderlich",
+        "weak": "Passwort muss Groß-, Kleinbuchstaben, Zahl und Sonderzeichen enthalten."
+      }
     },
-    "common": {
-        "loading": "Laden...",
-        "error": "Ein Fehler ist aufgetreten",
-        "success": "Erfolgreich",
-        "applicationLayout": "Hauptanwendungslayout",
-        "mainContent": "Hauptinhaltsbereich",
-        "close": "Schließen"
+    "confirmPassword": {
+      "placeholder": "Neues Passwort bestätigen",
+      "validation": {
+        "required": "Bitte bestätigen Sie Ihr Passwort",
+        "mismatch": "Passwort stimmt nicht mit der Bestätigung überein"
+      }
     },
-    "language": {
-        "english": "Englisch",
-        "german": "Deutsch",
-        "turkish": "Türkçe"
+    "termsConditions": "Allgemeine Geschäftsbedingungen von wo & wann zustimmen",
+    "signupButton": "Registrieren",
+    "loading": "Warten .. ",
+    "alreadyHaveAccount": "Bereits ein Konto?",
+    "loginLink": "Anmelden",
+    "success": "Registrierung erfolgreich",
+    "error": "Registrierungsfehler"
+  },
+  "forgotPassword": {
+    "title": "Passwort vergessen",
+    "description": "Sie erhalten eine E-Mail an Ihre E-Mail-Adresse, um Ihr Passwort zurückzusetzen",
+    "email": {
+      "placeholder": "E-Mail-Adresse",
+      "validation": {
+        "required": "E-Mail-Adresse ist erforderlich.",
+        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "maxLength": "Das Feld darf nicht länger als 255 Zeichen sein"
+      }
     },
-    "navigation": {
-        "jobRequest": "Stellenanfrage",
-        "myTasks": "Meine Aufgaben",
-        "personalInfo": "Persönliche Informationen",
-        "locationInfo": "Standortinformationen",
-        "workingHours": "Arbeitszeiten",
-        "notifications": "Benachrichtigungen",
-        "language": "Sprache",
-        "settings": "Einstellungen",
-        "logout": "Abmelden",
-        "employee": "Mitarbeiter"
+    "sendButton": "E-Mail senden",
+    "backToLogin": "zurück zur Anmeldung?",
+    "loginLink": "Anmelden",
+    "success": "Reset-E-Mail erfolgreich gesendet",
+    "error": "Fehler beim Senden der Reset-E-Mail"
+  },
+  "resetPassword": {
+    "title": "Passwort zurücksetzen",
+    "description": "Bitte geben Sie etwas ein, woran Sie sich erinnern werden",
+    "password": {
+      "placeholder": "Passwort",
+      "validation": {
+        "required": "Bitte geben Sie Ihr Passwort ein!",
+        "weak": "Passwort muss Groß-, Kleinbuchstaben, Zahl und Sonderzeichen enthalten."
+      }
     },
-    "nav": {
-        "mainNavigation": "Hauptnavigationsmenü"
+    "confirmPassword": {
+      "placeholder": "Neues Passwort bestätigen",
+      "validation": {
+        "required": "Bitte bestätigen Sie Ihr Passwort",
+        "mismatch": "Passwort stimmt nicht mit der Bestätigung überein"
+      }
     },
-    "jobRequest": {
-        "completeProfile": "Vervollständigen Sie Ihr Profil",
-        "completeButton": "Vervollständigen →",
-        "lastJobRequests": "Letzte Stellenausschreibungen",
-        "seeAll": "Alle anzeigen",
-        "showLess": "Weniger anzeigen",
-        "noJobRequests": "Es gibt momentan keine Stellenausschreibungen. Genießen Sie Ihre Zeit!",
-        "addLocation": "Standort hinzufügen",
-        "decline": "Ablehnen",
-        "accept": "Akzeptieren",
-        "noActiveLocations": "Keine gültigen aktiven Standorte für Mitarbeiter gefunden.",
-        "jobDeclineSuccess": "Stellenausschreibung erfolgreich abgelehnt",
-        "jobDeclineError": "Fehler beim Ablehnen der Stellenausschreibung",
-        "jobAcceptSuccess": "Stellenausschreibung erfolgreich angenommen",
-        "jobAcceptError": "Fehler beim Annehmen der Stellenausschreibung"
+    "resetButton": "Passwort zurücksetzen",
+    "success": "Passwort erfolgreich zurückgesetzt",
+    "error": "Fehler beim Zurücksetzen des Passworts"
+  },
+  "verifyEmail": {
+    "title": "E-Mail verifizieren !",
+    "description": "Wir haben einen 6-stelligen Bestätigungscode an {email} gesendet. Bitte geben Sie den Code in das untenstehende Feld ein, um Ihre E-Mail zu verifizieren.",
+    "codeField": {
+      "validation": {
+        "required": "Geben Sie eine 1-stellige Zahl ein"
+      }
     },
-    "tasks": {
-        "myTasks": "Meine Aufgaben",
-        "noTasksMessage": "Alles klar hier & keine Aufgaben wurden {status} noch.",
-        "seeDetails": "Details anzeigen",
-        "addLocation": "Standort hinzufügen",
-        "noActiveLocations": "Keine gültigen aktiven Standorte für Mitarbeiter gefunden.",
-        "filter": {
-            "all": "Alle",
-            "todo": "Zu erledigen",
-            "done": "Fertig",
-            "progress": "In Bearbeitung",
-            "review": "Überprüfung",
-            "cancelled": "Abgebrochen"
-        }
+    "verifyButton": "Verifizieren",
+    "resendText": "Haben Sie keinen Code?",
+    "resendButton": "Code erneut senden",
+    "resendWait": "Warten Sie 15 Minuten, um den Code erneut anzufordern",
+    "returnToSignIn": "Zurück zur Anmeldung",
+    "success": "E-Mail erfolgreich verifiziert",
+    "error": "Fehler beim Verifizieren der E-Mail"
+  },
+  "personalInfo": {
+    "title": "Persönliche Informationen",
+    "services": {
+      "placeholder": "Wählen Sie einen Service",
+      "validation": {
+        "required": "Bitte wählen Sie einen Service"
+      }
     },
-    "userProfile": {
-        "profilePhoto": "Profilfoto",
-        "notProvided": "Nicht angegeben",
-        "downloadContract": "Meinen Vertrag herunterladen",
-        "fields": {
-            "username": "Benutzername",
-            "bio": "Biografie",
-            "email": "E-Mail-Adresse",
-            "firstName": "Vorname",
-            "lastName": "Nachname",
-            "phone": "Telefonnummer",
-            "phoneNumber": "Telefonnummer",
-            "phone_number": "Telefonnummer",
-            "gender": "Geschlecht",
-            "birthday": "Geburtstag",
-            "birthDate": "Geburtsdatum",
-            "nationality": "Nationalität",
-            "address": "Adresse",
-            "city": "Stadt",
-            "occupation": "Beruf",
-            "department": "Abteilung",
-            "created_at": "Konto erstellt",
-            "updated_at": "Zuletzt aktualisiert",
-            "id": "Benutzer-ID",
-            "name": "Vollständiger Name",
-            "placeOfBirth": "Geburtsort",
-            "place_of_birth": "Geburtsort"
-        }
+    "occupation": {
+      "placeholder": "Wählen Sie einen Beruf",
+      "validation": {
+        "required": "Bitte wählen Sie einen Beruf"
+      }
     },
-    "notifications": {
-        "title": "Benachrichtigungen",
-        "notificationsList": "Liste der Benachrichtigungen",
-        "noNotifications": "Keine Benachrichtigungen verfügbar"
-    },
-    "jobRequestDetails": {
-        "myRequests": "Meine Anfragen",
-        "closeToYou": "in Ihrer Nähe",
-        "calculating": "Berechnung...",
-        "daysHoursMinutes": "{{days}} T , {{hours}} Std, {{minutes}} Min",
-        "positionDetails": "Stellendetails",
-        "medConnectLocation": "MedConnect Standort",
-        "back": "Zurück",
-        "accept": "Akzeptieren",
-        "jobAcceptSuccess": "Stellenausschreibung erfolgreich angenommen",
-        "jobAcceptError": "Fehler beim Annehmen der Stellenausschreibung",
-        "error": "Fehler"
-    },
-    "taskDetails": {
-        "calculating": "Berechnung...",
-        "daysHoursMinutes": "{{days}} T , {{hours}} Std, {{minutes}} Min",
-        "closeToYou": "in Ihrer Nähe",
-        "positionDetails": "Stellendetails",
-        "workDurationToday": "Arbeitsdauer heute",
-        "medConnectLocation": "MedConnect Standort",
-        "onMyWay": "Ich bin unterwegs",
-        "arrived": "Ich bin angekommen",
-        "startWork": "Arbeit beginnen",
-        "endWork": "Arbeit beenden",
-        "reportTask": "Aufgabe melden",
-        "back": "Zurück",
-        "onYourWay": "Sie sind unterwegs",
-        "taskTimeout": "Die Aufgabe ist abgelaufen",
-        "workStarted": "Arbeit erfolgreich begonnen",
-        "workEnded": "Arbeit erfolgreich beendet"
-    },
-    "reportTask": {
-        "officialComplaint": "Offizielle Beschwerde",
-        "subjectPlaceholder": "Betreff der Beschwerde : ",
-        "sendComplaint": "Beschwerde senden"
-    },
-    "locationInfo": {
-        "title": "Standortinformationen",
-        "addresses": "Adressen",
-        "addNewAddress": "Neue Adresse hinzufügen",
-        "noAddressMessage": "Es gibt derzeit keine Adresse. Bitte fügen Sie eine Adresse hinzu.",
-        "addressNumber": "Adresse {{number}}",
-        "active": "Aktiv",
-        "activate": "Aktivieren",
-        "primary": "Primär",
-        "commutingRange": "Ihr akzeptabler Arbeitsweg:",
-        "locationDeleteSuccess": "Standort erfolgreich gelöscht",
-        "locationDeleteError": "Fehler beim Löschen des Standorts",
-        "locationActivateSuccess": "Standort erfolgreich aktiviert",
-        "locationActivateError": "Fehler beim Aktivieren des Standorts",
-        "mapView": "Kartenansicht für {{address}}",
-        "locationMarker": "Standortmarkierung für {{address}}"
-    },
-    "addLocation": {
-        "title": "Neuen Standort hinzufügen",
-        "primaryLocation": "Dies wird der Hauptstandort sein",
-        "alternateLocation": "Dies wird der alternative Standort sein",
-        "fields": {
-            "title": "Titel",
-            "street": "Straße",
-            "house": "Haus",
-            "postalCode": "Postleitzahl",
-            "city": "Stadt",
-            "country": "Land"
-        },
-        "validation": {
-            "titleRequired": "Titel ist erforderlich",
-            "streetRequired": "Straßenname ist erforderlich",
-            "street2Required": "Straße2 ist erforderlich",
-            "postalCodeRequired": "Postleitzahl muss mindestens 4 Zeichen haben",
-            "postalCodeNumber": "Postleitzahl muss eine Zahl sein",
-            "cityRequired": "Stadt ist erforderlich",
-            "countryRequired": "Land ist erforderlich"
-        },
-        "back": "Zurück",
-        "next": "Weiter",
-        "sendLocationError": "Fehler beim Senden des Standorts"
-    },
-    "editLocation": {
-        "title": "Standort bearbeiten",
-        "description": "Bearbeiten Sie Ihre Standortdaten und der neue Standort wird gespeichert.",
-        "fields": {
-            "title": "Titel",
-            "street": "Straße",
-            "house": "Haus",
-            "postalCode": "Postleitzahl",
-            "city": "Stadt",
-            "country": "Land"
-        },
-        "back": "Zurück",
-        "edit": "Bearbeiten"
-    },
-    "workAbilities": {
-        "title": "Arbeitsfähigkeiten",
-        "description": "Vervollständigen Sie Ihre Bearbeitung der Arbeitsfähigkeiten",
-        "distanceDescription": "Arbeitsfähigkeiten: Bitte geben Sie die maximale Entfernung (in Kilometern) an, die Sie bereit sind zu reisen, um Ihren Arbeitsplatz zu erreichen.",
-        "determineDistance": "Entfernung bestimmen",
-        "kmLabel": "km",
-        "distanceRequired": "Entfernung ist erforderlich",
-        "distanceNumber": "Entfernung muss eine Zahl sein",
-        "back": "Zurück",
-        "next": "Weiter"
-    },
-    "personalInfoSections": {
-        "personalInfo": "Persönliche Informationen",
-        "phoneNumber": "Ihre Telefonnummer",
-        "residenceInfo": "Aufenthaltsinformationen",
-        "bankingInfo": "Bankinformationen",
-        "socialSecurity": "Sozialversicherung und Krankenversicherung",
-        "requiredDocuments": "Erforderliche Dokumente",
-        "yourLocations": "Ihre Standorte",
-        "employmentData": "Arbeitsberechtigung & Gesundheitsinformationen",
-        "signature": "Ihre Unterschrift",
-        "complete": "Vervollständigen",
-        "pending": "Ausstehend",
-        "completed": "Abgeschlossen",
-        "rejected": "Abgelehnt"
-    },
-    "completePersonalInfo": {
-        "title": "Persönliche Informationen vervollständigen",
-        "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
-        "fields": {
-            "username": "Benutzername",
-            "bio": "Biografie",
-            "birthday": "Geburtstag TT.MM.JJJJ",
-            "gender": "Geschlecht"
-        },
-        "genderOptions": {
-            "male": "Männlich",
-            "female": "Weiblich",
-            "other": "Andere"
-        },
-        "validation": {
-            "usernameRequired": "Benutzername ist erforderlich",
-            "usernameMinLength": "Benutzername muss mindestens 3 Zeichen haben",
-            "bioRequired": "Biografie ist erforderlich",
-            "birthdayRequired": "Geburtstag ist erforderlich",
-            "birthdayFormat": "Bitte geben Sie das Datum im Format TT.MM.JJJJ ein",
-            "genderRequired": "Bitte wählen Sie ein Geschlecht aus"
-        },
-        "back": "Zurück",
-        "submit": "Absenden",
-        "success": "Persönliche Informationen erfolgreich gespeichert",
-        "error": "Etwas ist schief gelaufen!"
-    },
-    "phoneNumber": {
-        "title": "Ihre Telefonnummer",
-        "description": "Bitte geben Sie Ihre Telefonnummer zur Verifizierung ein",
-        "fields": {
-            "phoneNumber": "Telefonnummer"
-        },
-        "validation": {
-            "phoneRequired": "Telefonnummer ist erforderlich",
-            "phoneFormat": "Bitte geben Sie eine gültige Telefonnummer ein"
-        },
-        "sendOtp": "OTP senden",
-        "verifyOtp": "OTP verifizieren",
-        "resendOtp": "OTP erneut senden",
-        "back": "Zurück",
-        "success": "Telefonnummer erfolgreich verifiziert",
-        "error": "Telefonnummer konnte nicht verifiziert werden"
-    },
-    "residenceInfo": {
-        "title": "Aufenthaltsinformationen vervollständigen",
-        "titleUploaded": "Aufenthaltsinformationen",
-        "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
-        "descriptionUploaded": "Sie haben Ihre Informationen bereits hochgeladen, setzen Sie den Vorgang fort",
-        "fields": {
-            "nationality": "Staatsangehörigkeit",
-            "residencePermit": "Aufenthaltsgenehmigung",
-            "workPermit": "Haben Sie eine Arbeitsgenehmigung?",
-            "placeOfBirth": "Geburtsort",
-            "permitValidUntil": "Genehmigung gültig bis TT.MM.JJJJ",
-            "workPermitDocument": "Arbeitserlaubnisdokument",
-            "idCopyTitle": "Kopie des Ausweises / Reisepasses",
-            "front": "Vorderseite",
-            "back": "Rückseite"
-        },
-        "workPermitOptions": {
-            "yes": "Ja",
-            "no": "Nein"
-        },
-        "validation": {
-            "nationalityRequired": "Staatsangehörigkeit ist erforderlich",
-            "residencePermitRequired": "Informationen zur Aufenthaltsgenehmigung sind erforderlich",
-            "workPermitRequired": "Informationen zur Arbeitsgenehmigung sind erforderlich",
-            "workPermitSelection": "Bitte wählen Sie aus, ob Sie eine Arbeitsgenehmigung haben",
-            "workPermitMustHave": "Sie müssen eine Arbeitsgenehmigung haben.",
-            "nationalityMinLength": "Bitte geben Sie Ihre Staatsangehörigkeit ein",
-            "placeOfBirthRequired": "Bitte geben Sie Ihren Geburtsort ein",
-            "permitValidDateFormat": "Bitte geben Sie das Gültigkeitsdatum der Genehmigung im Format TT.MM.JJJJ ein",
-            "uploadIdFront": "Bitte laden Sie hier die Vorderseite des Ausweises hoch!",
-            "uploadIdBack": "Bitte laden Sie hier die Rückseite des Ausweises hoch!",
-            "uploadPermitDocument": "Bitte laden Sie Ihr Genehmigungsdokument hoch!"
-        },
-        "back": "Zurück",
-        "submit": "Absenden",
-        "success": "Aufenthaltsinformationen erfolgreich gespeichert",
-        "error": "Aufenthaltsinformationen konnten nicht gespeichert werden"
-    },
-    "bankingInfo": {
-        "title": "Bankinformationen vervollständigen",
-        "description": "Bitte vervollständigen Sie Ihre Bankinformationen",
-        "fields": {
-            "bankName": "Bankname",
-            "iban": "IBAN",
-            "bic": "BIC",
-            "accountHolder": "Kontoinhaber"
-        },
-        "bankCard": "Bankkarte",
-        "uploadBankCard": "Vorderseite der Karte hochladen",
-        "validation": {
-            "bankNameRequired": "Bankname ist erforderlich",
-            "ibanRequired": "IBAN ist erforderlich",
-            "ibanFormat": "Bitte geben Sie eine gültige IBAN ein",
-            "bicRequired": "BIC/SWIFT-Code ist erforderlich",
-            "accountHolderRequired": "Kontoinhaber ist erforderlich"
-        },
-        "back": "Zurück",
-        "submit": "Absenden",
-        "success": "Bankinformationen erfolgreich gespeichert",
-        "error": "Bankinformationen konnten nicht gespeichert werden"
-    },
-    "socialSecurity": {
-        "title": "Sozialversicherung und Krankenversicherung vervollständigen",
-        "description": "Bitte vervollständigen Sie Ihre Sozialversicherungs- und Krankenversicherungsangaben",
-        "fields": {
-            "socialSecurityNumber": "Sozialversicherungsnummer",
-            "healthInsurance": "Name der Krankenkasse",
-            "insuranceNumber": "Krankenversicherungsnummer",
-            "taxIdentificationNumber": "Steueridentifikationsnummer",
-            "taxBracket": "Steuerklasse",
-            "maritalStatus": "Familienstand",
-            "healthInsuranceType": "Krankenversicherungsart",
-            "numberOfChildren": "Anzahl der Kinder"
-        },
-        "maritalStatusOptions": {
-            "single": "Ledig",
-            "married": "Verheiratet",
-            "divorced": "Geschieden",
-            "widowed": "Verwitwet"
-        },
-        "insuranceTypeOptions": {
-            "public": "Gesetzlich",
-            "private": "Privat"
-        },
-        "validation": {
-            "socialSecurityRequired": "Sozialversicherungsnummer ist erforderlich",
-            "healthInsuranceRequired": "Krankenversicherungsanbieter ist erforderlich",
-            "insuranceNumberRequired": "Versicherungsnummer ist erforderlich"
-        },
-        "back": "Zurück",
-        "submit": "Absenden",
-        "success": "Sozialversicherungsinformationen erfolgreich gespeichert",
-        "error": "Sozialversicherungsinformationen konnten nicht gespeichert werden"
-    },
-    "documents": {
-        "title": "Erforderliche Dokumente",
-        "description": "Bitte laden Sie die erforderlichen Dokumente hoch",
-        "uploadDocument": "Dokument hochladen",
-        "removeDocument": "Entfernen",
-        "supportedFormats": "Unterstützte Formate: PDF, JPG, PNG",
-        "maxFileSize": "Maximale Dateigröße: 10MB",
-        "uploadAllRequired": "Bitte laden Sie alle erforderlichen Dokumente hoch, bevor Sie auf Hinzufügen klicken.",
-        "uploading": "Ihre Dokumente werden hochgeladen, bitte warten...",
-        "documentTypes": {
-            "id": "Ausweis",
-            "passport": "Reisepass",
-            "residencePermit": "Aufenthaltsgenehmigung",
-            "workPermit": "Arbeitsgenehmigung",
-            "cv": "Lebenslauf",
-            "certificates": "Zertifikate"
-        },
-        "validation": {
-            "documentRequired": "Dieses Dokument ist erforderlich",
-            "invalidFormat": "Ungültiges Dateiformat",
-            "fileTooLarge": "Datei zu groß"
-        },
-        "back": "Zurück",
-        "submit": "Hinzufügen",
-        "success": "Dokumente erfolgreich hochgeladen",
-        "error": "Dokumente konnten nicht hochgeladen werden"
-    },
-    "employmentData": {
-        "title": "Arbeitsberechtigung & Gesundheitsinformationen",
-        "description": "Bitte geben Sie Ihre Arbeitsberechtigung und Gesundheitsinformationen an",
-        "fields": {
-            "workEligibility": "Arbeitsberechtigungsstatus",
-            "healthConditions": "Gesundheitliche Beschwerden",
-            "allergies": "Allergien",
-            "medications": "Aktuelle Medikamente",
-            "highestDegree": "Was ist Ihr höchster Bildungsabschluss?",
-            "vocationalTraining": "Haben Sie eine Berufsausbildung?",
-            "pregnancy": "Sind Sie schwanger?",
-            "coronaVaccine": "Sind Sie gegen Corona geimpft?",
-            "hepatitisVaccine": "Sind Sie gegen Hepatitis geimpft?",
-            "ageConfirmation": "Sind Sie über 18 Jahre alt?"
-        },
-        "qualificationOptions": {
-            "technical": "Technisch/Abitur",
-            "intermediate": "Mittlerer Schulabschluss",
-            "secondary": "Haupt-/Grundschulabschluss",
-            "none": "Ohne Schulabschluss"
-        },
-        "yesNoOptions": {
-            "yes": "Ja",
-            "no": "Nein"
-        },
-        "termsAcceptance": "Ich akzeptiere die",
-        "termsAndConditions": "Allgemeinen Geschäftsbedingungen",
-        "validation": {
-            "workEligibilityRequired": "Arbeitsberechtigungsstatus ist erforderlich",
-            "healthConditionsRequired": "Informationen zu Gesundheitszuständen sind erforderlich"
-        },
-        "back": "Zurück",
-        "submit": "Absenden",
-        "success": "Beschäftigungsdaten erfolgreich gespeichert",
-        "error": "Beschäftigungsdaten konnten nicht gespeichert werden"
-    },
-    "signature": {
-        "title": "Unterschrift vervollständigen",
-        "description": "Bitte vervollständigen Sie Ihre Unterschrift",
-        "yourSignature": "Ihre Unterschrift",
-        "uploadSignature": "Unterschrift hochladen",
-        "drawSignature": "Unterschrift zeichnen",
-        "clearSignature": "Löschen",
-        "deleteSignature": "Löschen",
-        "signHere": "Hier unterschreiben",
-        "orUpload": "oder laden Sie Ihre Unterschrift hoch",
-        "validation": {
-            "signatureRequired": "Bitte geben Sie eine Unterschrift an",
-            "invalidFormat": "Unterschrift muss eine PNG-, JPG- oder JPEG-Datei sein",
-            "fileTooLarge": "Unterschrift muss kleiner als 2MB sein"
-        },
-        "back": "Zurück",
-        "submit": "Absenden",
-        "showSignature": "Unterschrift anzeigen",
-        "close": "Schließen",
-        "success": "Unterschrift erfolgreich gespeichert",
-        "error": "Unterschrift konnte nicht gespeichert werden"
-    },
-    "workingHours": {
-        "title": "Gesamtstunden",
-        "noDataMessage": "Noch keine Arbeitszeit protokolliert.",
-        "workingHoursChart": "Arbeitszeiten",
-        "dateLabel": "Datum:",
-        "filter": {
-            "filterBy": "Filtern nach",
-            "last7Days": "Letzte 7 Tage",
-            "last14Days": "Letzte 14 Tage",
-            "last28Days": "Letzte 28 Tage",
-            "last90Days": "Letzte 90 Tage",
-            "last365Days": "Letzte 365 Tage",
-            "lifetime": "Gesamt"
-        },
-        "monthNames": {
-            "january": "Januar",
-            "february": "Februar",
-            "march": "März",
-            "april": "April",
-            "may": "Mai",
-            "june": "Juni",
-            "july": "Juli",
-            "august": "August",
-            "september": "September",
-            "october": "Oktober",
-            "november": "November",
-            "december": "Dezember"
-        },
-        "monthAbbreviations": {
-            "jan": "Jan",
-            "feb": "Feb",
-            "mar": "Mär",
-            "apr": "Apr",
-            "may": "Mai",
-            "jun": "Jun",
-            "jul": "Jul",
-            "aug": "Aug",
-            "sep": "Sep",
-            "oct": "Okt",
-            "nov": "Nov",
-            "dec": "Dez"
-        }
-    },
-    "formElements": {
-        "buttons": {
-            "add": "Hinzufügen",
-            "cancel": "Abbrechen",
-            "back": "Zurück",
-            "next": "Weiter",
-            "submit": "Absenden",
-            "save": "Speichern",
-            "edit": "Bearbeiten",
-            "delete": "Löschen",
-            "confirm": "Bestätigen",
-            "close": "Schließen"
-        },
-        "fileUploader": {
-            "dropFiles": "Dateien hier ablegen oder klicken zum",
-            "browse": "Durchsuchen",
-            "throughDevice": "Ihres Geräts"
-        },
-        "imageUploader": {
-            "allowedFormats": "Erlaubt: *.jpeg, *.jpg, *.png, *.gif",
-            "maxSize": "Max. Größe 3,1 MB",
-            "altText": "Avatar-Vorschau"
-        },
-        "successPopup": {
-            "title": "Ihre Anfrage wurde erfolgreich gesendet",
-            "description": "Ihre Daten werden vom Administrator überprüft und Sie erhalten eine Antwort"
-        },
-        "validation": {
-            "required": "Dieses Feld ist erforderlich",
-            "invalidFormat": "Ungültiges Format",
-            "fileTooLarge": "Dateigröße ist zu groß"
-        }
-    },
-    "userProfileComponents": {
-        "profilePhoto": {
-            "saveButton": "Speichern",
-            "successMessage": "Ihr Profilbild wurde erfolgreich geändert.",
-            "errorMessage": "Etwas ist schief gelaufen!",
-            "validation": {
-                "acceptedTypes": "Nur .jpeg, .jpg, .png, .gif Dateien sind erlaubt",
-                "maxFileSize": "Maximale Dateigröße ist 3,1 MB"
-            }
-        }
-    },
-    "accessibility": {
-        "loading": "Lädt...",
-        "loadingContent": "Inhalt wird geladen, bitte warten",
-        "skipToContent": "Zum Hauptinhalt springen",
-        "closeDialog": "Dialog schließen",
-        "menu": "Menü",
-        "navigation": "Navigation",
-        "searchResults": "Suchergebnisse",
-        "noResults": "Keine Ergebnisse gefunden",
-        "error": "Fehler",
-        "success": "Erfolg",
-        "warning": "Warnung",
-        "info": "Information",
-        "profileImage": "Profilbild",
-        "uploadImage": "Bild hochladen",
-        "removeImage": "Bild entfernen",
-        "selectOption": "Option auswählen",
-        "openDropdown": "Dropdown öffnen",
-        "closeDropdown": "Dropdown schließen",
-        "previousPage": "Vorherige Seite",
-        "nextPage": "Nächste Seite",
-        "currentPage": "Aktuelle Seite",
-        "toggleNotifications": "Benachrichtigungen umschalten",
-        "languageSelector": "Sprachauswahl",
-        "openLanguageMenu": "Sprachmenü öffnen",
-        "closeLanguageMenu": "Sprachmenü schließen"
-    },
-    "errorBoundary": {
-        "title": "Etwas ist schief gelaufen",
-        "description": "Es tut uns leid, aber etwas Unerwartetes ist passiert. Bitte aktualisieren Sie die Seite oder wenden Sie sich an den Support, wenn das Problem weiterhin besteht.",
-        "refresh": "Seite aktualisieren",
-        "goHome": "Zur Startseite",
-        "reportError": "Fehler melden",
-        "errorDetails": "Fehlerdetails",
-        "showDetails": "Details anzeigen",
-        "hideDetails": "Details ausblenden",
-        "errorLabel": "Fehler:",
-        "componentStackLabel": "Komponenten-Stack:"
-    },
-    "performance": {
-        "optimizing": "Optimiert...",
-        "retrying": "Wird wiederholt...",
-        "connectionError": "Verbindungsfehler",
-        "tryAgain": "Erneut versuchen",
-        "offline": "Sie sind offline",
-        "online": "Sie sind wieder online"
-    },
-    "taskComponents": {
-        "manualScannerEntry": "Manuelle Scanner-Nummer eingeben",
-        "confirmationPopup": "Sind die eingegebenen Informationen korrekt?",
-        "noEdit": "Nein, ich möchte bearbeiten",
-        "yesConfirm": "Ja, bestätigen"
-    },
-    "locationEdit": {
-        "title": "Standort bearbeiten",
-        "description": "Bearbeiten Sie Ihre Standortdaten und der neue Standort wird gespeichert."
-    },
-    "phoneNumberAdd": {
-        "addNumber": "Nummer hinzufügen"
-    },
-    "status": {
-        "uploaded": "Hochgeladen"
-    },
-    "taskExample": {
-        "title": "Titel: Hilf uns in unserem Haus",
-        "price": "Preis: ca. 50€"
+    "skipButton": "Überspringen",
+    "submitButton": "Senden",
+    "success": "Persönliche Informationen erfolgreich gespeichert",
+    "error": "Fehler beim Speichern der persönlichen Informationen"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolgreich",
+    "applicationLayout": "Hauptanwendungslayout",
+    "mainContent": "Hauptinhaltsbereich",
+    "close": "Schließen"
+  },
+  "language": {
+    "english": "Englisch",
+    "german": "Deutsch",
+    "turkish": "Türkçe"
+  },
+  "navigation": {
+    "jobRequest": "Stellenanfrage",
+    "myTasks": "Meine Aufgaben",
+    "personalInfo": "Persönliche Informationen",
+    "locationInfo": "Standortinformationen",
+    "workingHours": "Arbeitszeiten",
+    "notifications": "Benachrichtigungen",
+    "language": "Sprache",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "employee": "Mitarbeiter"
+  },
+  "nav": {
+    "mainNavigation": "Hauptnavigationsmenü"
+  },
+  "jobRequest": {
+    "completeProfile": "Vervollständigen Sie Ihr Profil",
+    "completeButton": "Vervollständigen →",
+    "lastJobRequests": "Letzte Stellenausschreibungen",
+    "seeAll": "Alle anzeigen",
+    "showLess": "Weniger anzeigen",
+    "noJobRequests": "Es gibt momentan keine Stellenausschreibungen. Genießen Sie Ihre Zeit!",
+    "addLocation": "Standort hinzufügen",
+    "decline": "Ablehnen",
+    "accept": "Akzeptieren",
+    "noActiveLocations": "Keine gültigen aktiven Standorte für Mitarbeiter gefunden.",
+    "jobDeclineSuccess": "Stellenausschreibung erfolgreich abgelehnt",
+    "jobDeclineError": "Fehler beim Ablehnen der Stellenausschreibung",
+    "jobAcceptSuccess": "Stellenausschreibung erfolgreich angenommen",
+    "jobAcceptError": "Fehler beim Annehmen der Stellenausschreibung"
+  },
+  "tasks": {
+    "myTasks": "Meine Aufgaben",
+    "noTasksMessage": "Alles klar hier & keine Aufgaben wurden {status} noch.",
+    "seeDetails": "Details anzeigen",
+    "addLocation": "Standort hinzufügen",
+    "noActiveLocations": "Keine gültigen aktiven Standorte für Mitarbeiter gefunden.",
+    "filter": {
+      "all": "Alle",
+      "todo": "Zu erledigen",
+      "done": "Fertig",
+      "progress": "In Bearbeitung",
+      "review": "Überprüfung",
+      "cancelled": "Abgebrochen"
     }
+  },
+  "userProfile": {
+    "profilePhoto": "Profilfoto",
+    "notProvided": "Nicht angegeben",
+    "downloadContract": "Meinen Vertrag herunterladen",
+    "fields": {
+      "username": "Benutzername",
+      "bio": "Biografie",
+      "email": "E-Mail-Adresse",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "phone": "Telefonnummer",
+      "phoneNumber": "Telefonnummer",
+      "phone_number": "Telefonnummer",
+      "gender": "Geschlecht",
+      "birthday": "Geburtstag",
+      "birthDate": "Geburtsdatum",
+      "nationality": "Nationalität",
+      "address": "Adresse",
+      "city": "Stadt",
+      "occupation": "Beruf",
+      "department": "Abteilung",
+      "created_at": "Konto erstellt",
+      "updated_at": "Zuletzt aktualisiert",
+      "id": "Benutzer-ID",
+      "name": "Vollständiger Name",
+      "placeOfBirth": "Geburtsort",
+      "place_of_birth": "Geburtsort"
+    }
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "notificationsList": "Liste der Benachrichtigungen",
+    "noNotifications": "Keine Benachrichtigungen verfügbar"
+  },
+  "jobRequestDetails": {
+    "myRequests": "Meine Anfragen",
+    "closeToYou": "in Ihrer Nähe",
+    "calculating": "Berechnung...",
+    "daysHoursMinutes": "{{days}} T , {{hours}} Std, {{minutes}} Min",
+    "positionDetails": "Stellendetails",
+    "medConnectLocation": "MedConnect Standort",
+    "back": "Zurück",
+    "accept": "Akzeptieren",
+    "jobAcceptSuccess": "Stellenausschreibung erfolgreich angenommen",
+    "jobAcceptError": "Fehler beim Annehmen der Stellenausschreibung",
+    "error": "Fehler"
+  },
+  "taskDetails": {
+    "calculating": "Berechnung...",
+    "daysHoursMinutes": "{{days}} T , {{hours}} Std, {{minutes}} Min",
+    "closeToYou": "in Ihrer Nähe",
+    "positionDetails": "Stellendetails",
+    "workDurationToday": "Arbeitsdauer heute",
+    "medConnectLocation": "MedConnect Standort",
+    "onMyWay": "Ich bin unterwegs",
+    "arrived": "Ich bin angekommen",
+    "startWork": "Arbeit beginnen",
+    "endWork": "Arbeit beenden",
+    "reportTask": "Aufgabe melden",
+    "back": "Zurück",
+    "onYourWay": "Sie sind unterwegs",
+    "taskTimeout": "Die Aufgabe ist abgelaufen",
+    "workStarted": "Arbeit erfolgreich begonnen",
+    "workEnded": "Arbeit erfolgreich beendet"
+  },
+  "reportTask": {
+    "officialComplaint": "Offizielle Beschwerde",
+    "subjectPlaceholder": "Betreff der Beschwerde : ",
+    "sendComplaint": "Beschwerde senden"
+  },
+  "locationInfo": {
+    "title": "Standortinformationen",
+    "addresses": "Adressen",
+    "addNewAddress": "Neue Adresse hinzufügen",
+    "noAddressMessage": "Es gibt derzeit keine Adresse. Bitte fügen Sie eine Adresse hinzu.",
+    "addressNumber": "Adresse {{number}}",
+    "active": "Aktiv",
+    "activate": "Aktivieren",
+    "primary": "Primär",
+    "commutingRange": "Ihr akzeptabler Arbeitsweg:",
+    "locationDeleteSuccess": "Standort erfolgreich gelöscht",
+    "locationDeleteError": "Fehler beim Löschen des Standorts",
+    "locationActivateSuccess": "Standort erfolgreich aktiviert",
+    "locationActivateError": "Fehler beim Aktivieren des Standorts",
+    "mapView": "Kartenansicht für {{address}}",
+    "locationMarker": "Standortmarkierung für {{address}}"
+  },
+  "addLocation": {
+    "title": "Neuen Standort hinzufügen",
+    "primaryLocation": "Dies wird der Hauptstandort sein",
+    "alternateLocation": "Dies wird der alternative Standort sein",
+    "fields": {
+      "title": "Titel",
+      "street": "Straße",
+      "house": "Haus",
+      "postalCode": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land"
+    },
+    "validation": {
+      "titleRequired": "Titel ist erforderlich",
+      "streetRequired": "Straßenname ist erforderlich",
+      "street2Required": "Straße2 ist erforderlich",
+      "postalCodeRequired": "Postleitzahl muss mindestens 4 Zeichen haben",
+      "postalCodeNumber": "Postleitzahl muss eine Zahl sein",
+      "cityRequired": "Stadt ist erforderlich",
+      "countryRequired": "Land ist erforderlich"
+    },
+    "back": "Zurück",
+    "next": "Weiter",
+    "sendLocationError": "Fehler beim Senden des Standorts"
+  },
+  "editLocation": {
+    "title": "Standort bearbeiten",
+    "description": "Bearbeiten Sie Ihre Standortdaten und der neue Standort wird gespeichert.",
+    "fields": {
+      "title": "Titel",
+      "street": "Straße",
+      "house": "Haus",
+      "postalCode": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land"
+    },
+    "back": "Zurück",
+    "edit": "Bearbeiten"
+  },
+  "workAbilities": {
+    "title": "Arbeitsfähigkeiten",
+    "description": "Vervollständigen Sie Ihre Bearbeitung der Arbeitsfähigkeiten",
+    "distanceDescription": "Arbeitsfähigkeiten: Bitte geben Sie die maximale Entfernung (in Kilometern) an, die Sie bereit sind zu reisen, um Ihren Arbeitsplatz zu erreichen.",
+    "determineDistance": "Entfernung bestimmen",
+    "kmLabel": "km",
+    "distanceRequired": "Entfernung ist erforderlich",
+    "distanceNumber": "Entfernung muss eine Zahl sein",
+    "back": "Zurück",
+    "next": "Weiter"
+  },
+  "personalInfoSections": {
+    "personalInfo": "Persönliche Informationen",
+    "phoneNumber": "Ihre Telefonnummer",
+    "residenceInfo": "Aufenthaltsinformationen",
+    "bankingInfo": "Bankinformationen",
+    "socialSecurity": "Sozialversicherung und Krankenversicherung",
+    "requiredDocuments": "Erforderliche Dokumente",
+    "yourLocations": "Ihre Standorte",
+    "employmentData": "Arbeitsberechtigung & Gesundheitsinformationen",
+    "signature": "Ihre Unterschrift",
+    "complete": "Vervollständigen",
+    "pending": "Ausstehend",
+    "completed": "Abgeschlossen",
+    "rejected": "Abgelehnt"
+  },
+  "completePersonalInfo": {
+    "title": "Persönliche Informationen vervollständigen",
+    "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
+    "fields": {
+      "username": "Benutzername",
+      "bio": "Biografie",
+      "birthday": "Geburtstag TT.MM.JJJJ",
+      "gender": "Geschlecht"
+    },
+    "genderOptions": {
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Andere"
+    },
+    "validation": {
+      "usernameRequired": "Benutzername ist erforderlich",
+      "usernameMinLength": "Benutzername muss mindestens 3 Zeichen haben",
+      "bioRequired": "Biografie ist erforderlich",
+      "birthdayRequired": "Geburtstag ist erforderlich",
+      "birthdayFormat": "Bitte geben Sie das Datum im Format TT.MM.JJJJ ein",
+      "genderRequired": "Bitte wählen Sie ein Geschlecht aus"
+    },
+    "back": "Zurück",
+    "submit": "Absenden",
+    "success": "Persönliche Informationen erfolgreich gespeichert",
+    "error": "Etwas ist schief gelaufen!"
+  },
+  "phoneNumber": {
+    "title": "Ihre Telefonnummer",
+    "description": "Bitte geben Sie Ihre Telefonnummer zur Verifizierung ein",
+    "fields": {
+      "phoneNumber": "Telefonnummer"
+    },
+    "validation": {
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneFormat": "Bitte geben Sie eine gültige Telefonnummer ein"
+    },
+    "sendOtp": "OTP senden",
+    "verifyOtp": "OTP verifizieren",
+    "resendOtp": "OTP erneut senden",
+    "back": "Zurück",
+    "success": "Telefonnummer erfolgreich verifiziert",
+    "error": "Telefonnummer konnte nicht verifiziert werden"
+  },
+  "residenceInfo": {
+    "title": "Aufenthaltsinformationen vervollständigen",
+    "titleUploaded": "Aufenthaltsinformationen",
+    "description": "Bitte vervollständigen Sie Ihre Informationen, um den Vorgang fortzusetzen",
+    "descriptionUploaded": "Sie haben Ihre Informationen bereits hochgeladen, setzen Sie den Vorgang fort",
+    "fields": {
+      "nationality": "Staatsangehörigkeit",
+      "residencePermit": "Aufenthaltsgenehmigung",
+      "workPermit": "Haben Sie eine Arbeitsgenehmigung?",
+      "placeOfBirth": "Geburtsort",
+      "permitValidUntil": "Genehmigung gültig bis TT.MM.JJJJ",
+      "workPermitDocument": "Arbeitserlaubnisdokument",
+      "idCopyTitle": "Kopie des Ausweises / Reisepasses",
+      "front": "Vorderseite",
+      "back": "Rückseite"
+    },
+    "workPermitOptions": {
+      "yes": "Ja",
+      "no": "Nein"
+    },
+    "validation": {
+      "nationalityRequired": "Staatsangehörigkeit ist erforderlich",
+      "residencePermitRequired": "Informationen zur Aufenthaltsgenehmigung sind erforderlich",
+      "workPermitRequired": "Informationen zur Arbeitsgenehmigung sind erforderlich",
+      "workPermitSelection": "Bitte wählen Sie aus, ob Sie eine Arbeitsgenehmigung haben",
+      "workPermitMustHave": "Sie müssen eine Arbeitsgenehmigung haben.",
+      "nationalityMinLength": "Bitte geben Sie Ihre Staatsangehörigkeit ein",
+      "placeOfBirthRequired": "Bitte geben Sie Ihren Geburtsort ein",
+      "permitValidDateFormat": "Bitte geben Sie das Gültigkeitsdatum der Genehmigung im Format TT.MM.JJJJ ein",
+      "uploadIdFront": "Bitte laden Sie hier die Vorderseite des Ausweises hoch!",
+      "uploadIdBack": "Bitte laden Sie hier die Rückseite des Ausweises hoch!",
+      "uploadPermitDocument": "Bitte laden Sie Ihr Genehmigungsdokument hoch!"
+    },
+    "back": "Zurück",
+    "submit": "Absenden",
+    "success": "Aufenthaltsinformationen erfolgreich gespeichert",
+    "error": "Aufenthaltsinformationen konnten nicht gespeichert werden"
+  },
+  "bankingInfo": {
+    "title": "Bankinformationen vervollständigen",
+    "description": "Bitte vervollständigen Sie Ihre Bankinformationen",
+    "fields": {
+      "bankName": "Bankname",
+      "iban": "IBAN",
+      "bic": "BIC",
+      "accountHolder": "Kontoinhaber"
+    },
+    "bankCard": "Bankkarte",
+    "uploadBankCard": "Vorderseite der Karte hochladen",
+    "validation": {
+      "bankNameRequired": "Bankname ist erforderlich",
+      "ibanRequired": "IBAN ist erforderlich",
+      "ibanFormat": "Bitte geben Sie eine gültige IBAN ein",
+      "bicRequired": "BIC/SWIFT-Code ist erforderlich",
+      "accountHolderRequired": "Kontoinhaber ist erforderlich"
+    },
+    "back": "Zurück",
+    "submit": "Absenden",
+    "success": "Bankinformationen erfolgreich gespeichert",
+    "error": "Bankinformationen konnten nicht gespeichert werden"
+  },
+  "socialSecurity": {
+    "title": "Sozialversicherung und Krankenversicherung vervollständigen",
+    "description": "Bitte vervollständigen Sie Ihre Sozialversicherungs- und Krankenversicherungsangaben",
+    "fields": {
+      "socialSecurityNumber": "Sozialversicherungsnummer",
+      "healthInsurance": "Name der Krankenkasse",
+      "insuranceNumber": "Krankenversicherungsnummer",
+      "taxIdentificationNumber": "Steueridentifikationsnummer",
+      "taxBracket": "Steuerklasse",
+      "maritalStatus": "Familienstand",
+      "healthInsuranceType": "Krankenversicherungsart",
+      "numberOfChildren": "Anzahl der Kinder"
+    },
+    "maritalStatusOptions": {
+      "single": "Ledig",
+      "married": "Verheiratet",
+      "divorced": "Geschieden",
+      "widowed": "Verwitwet"
+    },
+    "insuranceTypeOptions": {
+      "public": "Gesetzlich",
+      "private": "Privat"
+    },
+    "validation": {
+      "socialSecurityRequired": "Sozialversicherungsnummer ist erforderlich",
+      "healthInsuranceRequired": "Krankenversicherungsanbieter ist erforderlich",
+      "insuranceNumberRequired": "Versicherungsnummer ist erforderlich"
+    },
+    "back": "Zurück",
+    "submit": "Absenden",
+    "success": "Sozialversicherungsinformationen erfolgreich gespeichert",
+    "error": "Sozialversicherungsinformationen konnten nicht gespeichert werden"
+  },
+  "documents": {
+    "title": "Erforderliche Dokumente",
+    "description": "Bitte laden Sie die erforderlichen Dokumente hoch",
+    "uploadDocument": "Dokument hochladen",
+    "removeDocument": "Entfernen",
+    "supportedFormats": "Unterstützte Formate: PDF, JPG, PNG",
+    "maxFileSize": "Maximale Dateigröße: 10MB",
+    "uploadAllRequired": "Bitte laden Sie alle erforderlichen Dokumente hoch, bevor Sie auf Hinzufügen klicken.",
+    "uploading": "Ihre Dokumente werden hochgeladen, bitte warten...",
+    "documentTypes": {
+      "id": "Ausweis",
+      "passport": "Reisepass",
+      "residencePermit": "Aufenthaltsgenehmigung",
+      "workPermit": "Arbeitsgenehmigung",
+      "cv": "Lebenslauf",
+      "certificates": "Zertifikate"
+    },
+    "validation": {
+      "documentRequired": "Dieses Dokument ist erforderlich",
+      "invalidFormat": "Ungültiges Dateiformat",
+      "fileTooLarge": "Datei zu groß"
+    },
+    "back": "Zurück",
+    "submit": "Hinzufügen",
+    "success": "Dokumente erfolgreich hochgeladen",
+    "error": "Dokumente konnten nicht hochgeladen werden"
+  },
+  "employmentData": {
+    "title": "Arbeitsberechtigung & Gesundheitsinformationen",
+    "description": "Bitte geben Sie Ihre Arbeitsberechtigung und Gesundheitsinformationen an",
+    "fields": {
+      "workEligibility": "Arbeitsberechtigungsstatus",
+      "healthConditions": "Gesundheitliche Beschwerden",
+      "allergies": "Allergien",
+      "medications": "Aktuelle Medikamente",
+      "highestDegree": "Was ist Ihr höchster Bildungsabschluss?",
+      "vocationalTraining": "Haben Sie eine Berufsausbildung?",
+      "pregnancy": "Sind Sie schwanger?",
+      "coronaVaccine": "Sind Sie gegen Corona geimpft?",
+      "hepatitisVaccine": "Sind Sie gegen Hepatitis geimpft?",
+      "ageConfirmation": "Sind Sie über 18 Jahre alt?"
+    },
+    "qualificationOptions": {
+      "technical": "Technisch/Abitur",
+      "intermediate": "Mittlerer Schulabschluss",
+      "secondary": "Haupt-/Grundschulabschluss",
+      "none": "Ohne Schulabschluss"
+    },
+    "yesNoOptions": {
+      "yes": "Ja",
+      "no": "Nein"
+    },
+    "termsAcceptance": "Ich akzeptiere die",
+    "termsAndConditions": "Allgemeinen Geschäftsbedingungen",
+    "validation": {
+      "workEligibilityRequired": "Arbeitsberechtigungsstatus ist erforderlich",
+      "healthConditionsRequired": "Informationen zu Gesundheitszuständen sind erforderlich"
+    },
+    "back": "Zurück",
+    "submit": "Absenden",
+    "success": "Beschäftigungsdaten erfolgreich gespeichert",
+    "error": "Beschäftigungsdaten konnten nicht gespeichert werden"
+  },
+  "signature": {
+    "title": "Unterschrift vervollständigen",
+    "description": "Bitte vervollständigen Sie Ihre Unterschrift",
+    "yourSignature": "Ihre Unterschrift",
+    "uploadSignature": "Unterschrift hochladen",
+    "drawSignature": "Unterschrift zeichnen",
+    "clearSignature": "Löschen",
+    "deleteSignature": "Löschen",
+    "signHere": "Hier unterschreiben",
+    "orUpload": "oder laden Sie Ihre Unterschrift hoch",
+    "validation": {
+      "signatureRequired": "Bitte geben Sie eine Unterschrift an",
+      "invalidFormat": "Unterschrift muss eine PNG-, JPG- oder JPEG-Datei sein",
+      "fileTooLarge": "Unterschrift muss kleiner als 2MB sein"
+    },
+    "back": "Zurück",
+    "submit": "Absenden",
+    "showSignature": "Unterschrift anzeigen",
+    "close": "Schließen",
+    "success": "Unterschrift erfolgreich gespeichert",
+    "error": "Unterschrift konnte nicht gespeichert werden"
+  },
+  "workingHours": {
+    "title": "Gesamtstunden",
+    "noDataMessage": "Noch keine Arbeitszeit protokolliert.",
+    "workingHoursChart": "Arbeitszeiten",
+    "dateLabel": "Datum:",
+    "filter": {
+      "filterBy": "Filtern nach",
+      "last7Days": "Letzte 7 Tage",
+      "last14Days": "Letzte 14 Tage",
+      "last28Days": "Letzte 28 Tage",
+      "last90Days": "Letzte 90 Tage",
+      "last365Days": "Letzte 365 Tage",
+      "lifetime": "Gesamt"
+    },
+    "monthNames": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "März",
+      "april": "April",
+      "may": "Mai",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "August",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Dezember"
+    },
+    "monthAbbreviations": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mär",
+      "apr": "Apr",
+      "may": "Mai",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Okt",
+      "nov": "Nov",
+      "dec": "Dez"
+    }
+  },
+  "formElements": {
+    "buttons": {
+      "add": "Hinzufügen",
+      "cancel": "Abbrechen",
+      "back": "Zurück",
+      "next": "Weiter",
+      "submit": "Absenden",
+      "save": "Speichern",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "confirm": "Bestätigen",
+      "close": "Schließen"
+    },
+    "fileUploader": {
+      "dropFiles": "Dateien hier ablegen oder klicken zum",
+      "browse": "Durchsuchen",
+      "throughDevice": "Ihres Geräts"
+    },
+    "imageUploader": {
+      "allowedFormats": "Erlaubt: *.jpeg, *.jpg, *.png, *.gif",
+      "maxSize": "Max. Größe 3,1 MB",
+      "altText": "Avatar-Vorschau"
+    },
+    "successPopup": {
+      "title": "Ihre Anfrage wurde erfolgreich gesendet",
+      "description": "Ihre Daten werden vom Administrator überprüft und Sie erhalten eine Antwort"
+    },
+    "validation": {
+      "required": "Dieses Feld ist erforderlich",
+      "invalidFormat": "Ungültiges Format",
+      "fileTooLarge": "Dateigröße ist zu groß"
+    }
+  },
+  "userProfileComponents": {
+    "profilePhoto": {
+      "saveButton": "Speichern",
+      "successMessage": "Ihr Profilbild wurde erfolgreich geändert.",
+      "errorMessage": "Etwas ist schief gelaufen!",
+      "validation": {
+        "acceptedTypes": "Nur .jpeg, .jpg, .png, .gif Dateien sind erlaubt",
+        "maxFileSize": "Maximale Dateigröße ist 3,1 MB"
+      }
+    }
+  },
+  "accessibility": {
+    "loading": "Lädt...",
+    "loadingContent": "Inhalt wird geladen, bitte warten",
+    "skipToContent": "Zum Hauptinhalt springen",
+    "closeDialog": "Dialog schließen",
+    "menu": "Menü",
+    "navigation": "Navigation",
+    "searchResults": "Suchergebnisse",
+    "noResults": "Keine Ergebnisse gefunden",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "warning": "Warnung",
+    "info": "Information",
+    "profileImage": "Profilbild",
+    "uploadImage": "Bild hochladen",
+    "removeImage": "Bild entfernen",
+    "selectOption": "Option auswählen",
+    "openDropdown": "Dropdown öffnen",
+    "closeDropdown": "Dropdown schließen",
+    "previousPage": "Vorherige Seite",
+    "nextPage": "Nächste Seite",
+    "currentPage": "Aktuelle Seite",
+    "toggleNotifications": "Benachrichtigungen umschalten",
+    "languageSelector": "Sprachauswahl",
+    "openLanguageMenu": "Sprachmenü öffnen",
+    "closeLanguageMenu": "Sprachmenü schließen"
+  },
+  "errorBoundary": {
+    "title": "Etwas ist schief gelaufen",
+    "description": "Es tut uns leid, aber etwas Unerwartetes ist passiert. Bitte aktualisieren Sie die Seite oder wenden Sie sich an den Support, wenn das Problem weiterhin besteht.",
+    "refresh": "Seite aktualisieren",
+    "goHome": "Zur Startseite",
+    "reportError": "Fehler melden",
+    "errorDetails": "Fehlerdetails",
+    "showDetails": "Details anzeigen",
+    "hideDetails": "Details ausblenden",
+    "errorLabel": "Fehler:",
+    "componentStackLabel": "Komponenten-Stack:"
+  },
+  "performance": {
+    "optimizing": "Optimiert...",
+    "retrying": "Wird wiederholt...",
+    "connectionError": "Verbindungsfehler",
+    "tryAgain": "Erneut versuchen",
+    "offline": "Sie sind offline",
+    "online": "Sie sind wieder online"
+  },
+  "taskComponents": {
+    "manualScannerEntry": "Manuelle Scanner-Nummer eingeben",
+    "confirmationPopup": "Sind die eingegebenen Informationen korrekt?",
+    "noEdit": "Nein, ich möchte bearbeiten",
+    "yesConfirm": "Ja, bestätigen"
+  },
+  "locationEdit": {
+    "title": "Standort bearbeiten",
+    "description": "Bearbeiten Sie Ihre Standortdaten und der neue Standort wird gespeichert."
+  },
+  "phoneNumberAdd": {
+    "addNumber": "Nummer hinzufügen"
+  },
+  "status": {
+    "uploaded": "Hochgeladen"
+  },
+  "taskExample": {
+    "title": "Titel: Hilf uns in unserem Haus",
+    "price": "Preis: ca. 50€"
+  },
+  "childrenDocuments": {
+    "title": "Kinderdokumente",
+    "requiredNotice": "Bitte laden Sie Dokumente für alle {{count}} Kinder hoch, bevor Sie absenden.",
+    "uploadTitle": "Dokument für Kind {{number}} hochladen",
+    "dragDropText": "Ziehen Sie Ihre PDF-Datei hierher oder klicken Sie zum Auswählen",
+    "selectFile": "Datei auswählen",
+    "fileRequirements": "Nur PDF-Dateien, maximal 5MB",
+    "fileUploaded": "Datei hochgeladen",
+    "existingFileUploaded": "Vorhandene Datei hochgeladen",
+    "changeFile": "Datei ändern",
+    "remove": "Entfernen",
+    "errors": {
+      "invalidFileType": "Bitte wählen Sie nur eine PDF-Datei aus",
+      "fileTooLarge": "Dateigröße muss weniger als 5MB betragen",
+      "allFilesRequired": "Bitte laden Sie Dokumente für alle Kinder hoch, bevor Sie absenden"
+    }
+  }
 }
