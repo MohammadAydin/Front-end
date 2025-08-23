@@ -28,8 +28,12 @@ import ReactFlagsSelect from "react-flags-select";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import SelectField from "../../components/FormElements/SelectField.jsx";
+import Spinner from "../../components/MoreElements/Spinner.jsx";
+import SpinnerLoading from "../../components/MoreElements/SpinnerLoading.jsx";
+import SelectFieldCity from "../../components/FormElements/SelectFieldCity.jsx";
 const AddLoaction = () => {
   const { data: statusLocation, error, isLoading } = useData("/profile/status");
+
   const endPointLocation =
     statusLocation?.location !== "approved"
       ? "/locations/primary"
@@ -37,8 +41,7 @@ const AddLoaction = () => {
   const [selected, setSelected] = useState("");
   const [selectedName, setSelectedName] = useState("");
   const [cites, setCites] = useState([]);
-  useEffect(() => {
-  }, [selected]);
+  useEffect(() => {}, [selected]);
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
 
@@ -47,7 +50,7 @@ const AddLoaction = () => {
   const { OpenSuccsess } = OpenSuccsessPopup();
   // Navigate definition for routing
   const navigate = useNavigate();
-
+  const [isLoadingCity, setLoadingCity] = useState(false);
   // storage case lat
   // const [lat, setLat] = useState(0);
   // storage case lng
@@ -168,21 +171,28 @@ const AddLoaction = () => {
   //   fetchLocation();
   // }, [watch("address")]);
   useEffect(() => {
+    setLoadingCity(true);
     const fetchCities = async () => {
-      if (!selectedName) return;
+      if (!selectedName) {
+        setLoadingCity(false);
+        return;
+      }
 
       try {
         const res = await axios.post(
           "https://countriesnow.space/api/v0.1/countries/cities",
           { country: selectedName }
         );
+        setLoadingCity(false);
         setCites(res.data.data);
         if (res.data.error === false) {
           setCites(res.data.data);
         } else {
           console.error(res.data.msg);
+          setLoadingCity(false);
         }
       } catch (error) {
+        setLoadingCity(false);
         console.error(error.message);
       }
     };
@@ -236,15 +246,17 @@ const AddLoaction = () => {
                   searchable
                 />
               </div>
-              <SelectField
-                key={"city"}
-                name={"city"}
-                label={"city"}
+              <SelectFieldCity
+                key="city"
+                name="city"
+                label="city"
                 register={register}
                 errors={errors}
                 setValue={setValue}
                 value={watch("city")}
                 Options={cites}
+                disabled={isLoadingCity}
+                loading={isLoadingCity}
               />
               <div className="w-full h-[300px] overflow-hidden rounded-md mt-6">
                 <MapComponent

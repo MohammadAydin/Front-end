@@ -27,9 +27,10 @@ import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import SelectField from "../../components/FormElements/SelectField.jsx";
 import axios from "axios";
+import SelectFieldCity from "../../components/FormElements/SelectFieldCity.jsx";
 
 const EditLocation = () => {
-    const { data: statusLocation, error, isLoading } = useData("/profile/status");
+  const { data: statusLocation, error, isLoading } = useData("/profile/status");
   const endPointLocation =
     statusLocation?.location !== "approved"
       ? "/locations/primary"
@@ -67,6 +68,7 @@ const EditLocation = () => {
 
   const { OpenSuccsess } = OpenSuccsessPopup();
   const navigate = useNavigate();
+  const [isLoadingCity, setLoadingCity] = useState(false);
 
   // Constraints chart from the Zod Library
   const baseSchema = createLocationSchema(t);
@@ -111,14 +113,17 @@ const EditLocation = () => {
   const submit = async (data) => {
     // Send to api
     try {
-      const response = await customFetch.put(`${endPointLocation}/${formDefaults.id}`, {
-        street1: data.street1,
-        street2: data.street2 || "",
-        city: data.city,
-        country: data.country,
-        postal_code: data.postalcode || "",
-        title: "nullTest",
-      });
+      const response = await customFetch.put(
+        `${endPointLocation}/${formDefaults.id}`,
+        {
+          street1: data.street1,
+          street2: data.street2 || "",
+          city: data.city,
+          country: data.country,
+          postal_code: data.postalcode || "",
+          title: "nullTest",
+        }
+      );
       // if success
 
       OpenSuccsess();
@@ -155,14 +160,18 @@ const EditLocation = () => {
     setValue("country", countryName);
   };
   useEffect(() => {
+    setLoadingCity(true);
     const fetchCities = async () => {
-      if (!selectedName) return;
-
+      if (!selectedName) {
+        setLoadingCity(false);
+        return;
+      }
       try {
         const res = await axios.post(
           "https://countriesnow.space/api/v0.1/countries/cities",
           { country: selectedName }
         );
+        setLoadingCity(false);
         setCites(res.data.data);
         if (res.data.error === false) {
           setCites(res.data.data);
@@ -170,6 +179,8 @@ const EditLocation = () => {
           console.error(res.data.msg);
         }
       } catch (error) {
+        setLoadingCity(false);
+
         console.error(error.message);
       }
     };
@@ -220,15 +231,17 @@ const EditLocation = () => {
                   searchable
                 />
               </div>
-              <SelectField
-                key={"city"}
-                name={"city"}
-                label={"city"}
+              <SelectFieldCity
+                key="city"
+                name="city"
+                label="city"
                 register={register}
                 errors={errors}
                 setValue={setValue}
                 value={watch("city")}
                 Options={cites}
+                disabled={isLoadingCity}
+                loading={isLoadingCity}
               />
               <div className="w-full h-[300px] overflow-hidden rounded-md mt-6">
                 <MapComponent
@@ -249,9 +262,7 @@ const EditLocation = () => {
 
               <Link
                 className="w-full"
-                to={`${
-                  uploaded === "true" ? "/Personal info" : -1
-                }`}
+                to={`${uploaded === "true" ? "/Personal info" : -1}`}
               >
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
