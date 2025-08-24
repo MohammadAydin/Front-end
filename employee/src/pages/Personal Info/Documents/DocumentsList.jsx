@@ -1,5 +1,6 @@
 import folderSvg from "../../../assets/images/ic_folder.svg";
-import { MdOutlineFileDownload } from "react-icons/md";
+import { FiUpload } from "react-icons/fi";
+
 import { FaRegClock } from "react-icons/fa";
 import { useState } from "react";
 import UploadDocs from "./UploadDocs";
@@ -42,13 +43,15 @@ const DocumentsList = ({ docs, setDocuments }) => {
       <div className="documentsBtn flex flex-col items-center justify-center">
         <button
           onClick={() => setIsOpen(true)}
-          className="UploadBtn w-[250px] flex gap-1 justify-center items-center font-[900] text-lg bg-[#F47621] text-white px-4 py-2 rounded-xl "
+          className={`UploadBtn w-[250px] flex gap-1 justify-center items-center font-[900] text-lg ${
+            docs?.status == "uploaded" ? "bg-green-400" : "bg-[#F47621]"
+          } text-white px-4 py-2 rounded-xl`}
           aria-label={t("documents.uploadDocument")}
         >
           <span>
-            <MdOutlineFileDownload size={25} />
+            <FiUpload size={25} />
           </span>
-          {t("documents.uploadDocument")}
+          {docs?.status == "uploaded" ? "reupload" : "uploadDocument"}
         </button>
         {docs.duo_to && (
           <p className="text-[#637381] text-sm flex items-center gap-1 mt-2">
@@ -56,7 +59,6 @@ const DocumentsList = ({ docs, setDocuments }) => {
             <span> {docs.duo_to}</span>
           </p>
         )}
-
       </div>
 
       <UploadDocs
