@@ -1,10 +1,19 @@
 import React from "react";
 import DetailsList from "../DetailsList";
 import useData from "../../hooks/useData";
+import { useTranslation } from "react-i18next";
 
 const HelpRequestsMain = () => {
-  const { data: jopPosting, error, isLoadnig } = useData("/employerJobPosting");
+  const { t } = useTranslation();
 
+  const { data: jopPosting, error, isLoadnig } = useData("/employerJobPosting");
+  if (jopPosting?.data.length == 0) {
+    return (
+      <div className="flex justify-center mt-20">
+        {t("HelpRequests.noneJop")}
+      </div>
+    );
+  }
   return (
     <div>
       {jopPosting?.data?.map((item) => (

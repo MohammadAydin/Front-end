@@ -13,7 +13,7 @@ const Layout = () => {
   return (
     <div className="app-layout">
       <div className="flex" role="application" aria-label={t('common.applicationLayout')}>
-        <aside className="max-sm:hidden" role="navigation" aria-label={t('nav.mainNavigation')}>
+        <aside className="max-sm:hidden " role="navigation" aria-label={t('nav.mainNavigation')}>
           <SideBar setNotificationIsOpen={setNotificationIsOpen} />
         </aside>
         <div className="w-full">

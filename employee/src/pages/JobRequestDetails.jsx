@@ -52,7 +52,6 @@ const JobRequestDetails = () => {
     jobs?.service_request?.job_posting?.shift?.start_time,
   ]);
 
-  console.log(hoursdiff);
   // -----------------------
   // Date and difference calculation process
 

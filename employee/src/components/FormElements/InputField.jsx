@@ -24,6 +24,7 @@ const InputField = ({
             placeholder=""
             defaultValue={defaultvalue && `${defaultvalue}`}
             step={step}
+            onWheel={(e) => e.currentTarget.blur()}
           />
           <label
             className="label-email absolute z-1 left-3 top-[50%] translate-y-[-50%] px-2 bg-white copy"

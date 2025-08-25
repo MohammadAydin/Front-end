@@ -1,0 +1,292 @@
+{
+  "language": {
+    "switch": "Dili Değiştir",
+    "english": "İngilizce",
+    "german": "Almanca",
+    "turkish": "Türkçe"
+  },
+
+  "login": {
+    "title": "Wo & Wann'e Giriş Yap",
+    "email": {
+      "label": "E-posta Adresi",
+      "placeholder": "E-posta Adresi",
+      "validation": {
+        "required": "E-posta adresi gerekli.",
+        "invalid": "Lütfen geçerli bir e-posta adresi girin.",
+        "maxLength": "Alan 255 karakterden uzun olamaz."
+      }
+    },
+    "password": {
+      "label": "Şifre",
+      "placeholder": "Şifre",
+      "validation": {
+        "required": "Şifre boş olamaz."
+      }
+    },
+    "rememberPassword": "Şifreyi hatırla",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "newUser": "Yeni kullanıcı?",
+    "createAccount": "Hesap oluştur",
+    "success": "Giriş başarılı",
+    "error": "Giriş hatası",
+    "loginButton": {
+      "waiting": "Bekleniyor ...",
+      "login": "Giriş Yap"
+    }
+  },
+
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "close": "Kapat",
+    "confirm": "Onayla",
+    "yes": "Evet",
+    "no": "Hayır"
+  },
+
+  "Signup": {
+    "title": "Wo & Wann'e Kayıt Ol",
+    "fields": {
+      "HouseName": "Yaşlı Evi Adı",
+      "Email": "E-posta Adresi",
+      "Password": "Şifre",
+      "password": {
+        "minLength": "Şifre en az 8 karakter olmalıdır.",
+        "symbol": "Şifre en az bir sembol içermelidir (ör. !@#$%).",
+        "upperLower": "Şifre en az bir büyük ve bir küçük harf içermelidir."
+      },
+      "confirmPassword": "Yeni Şifreyi Onayla",
+      "termsLabel": "Wo & Wann Kullanım Şartlarını kabul et",
+      "signUpButton": "Kayıt Ol",
+      "waitingText": "Bekleniyor ...",
+      "alreadyAccount": "Zaten hesabınız var mı?",
+      "logIn": "Giriş Yap"
+    }
+  },
+  "forgotPassword": {
+    "title": "Şifreyi Unut",
+    "description": "Şifrenizi sıfırlamak için e-posta adresinize bir e-posta alacaksınız",
+    "fields": {
+      "email": "E-posta Adresi"
+    },
+    "sendButton": "E-postayı Gönder",
+    "backToLogin": "Girişe geri dön?",
+    "loginLink": "Giriş Yap"
+  },
+  "VerifyEmail": {
+    "title": "E-postanızı doğrulayın!",
+    "description": "6 haneli bir doğrulama kodunu gönderdik. Lütfen e-posta adresinizi doğrulamak için aşağıdaki kutuya kodu girin:",
+    "verifyButton": {
+      "waiting": "Bekleniyor ...",
+      "verify": "Doğrula"
+    },
+    "noCode": "Kodunuz yok mu?",
+    "resendCode": "Kodu yeniden gönder",
+    "returnToSignIn": "Girişe Dön"
+  },
+  "StatusAccount": {
+    "new": "İş teklifleri göndermeye başlamak için işveren profilinizi tamamlayın.",
+    "pending": "Bilgileriniz alındı. Kısa süre içinde size geri döneceğiz.",
+    "suspended": "Hesabınız şu anda askıya alınmıştır. Lütfen daha sonra tekrar kontrol edin.",
+    "onHold": "Hesabınız şu anda beklemede. Lütfen daha sonra tekrar kontrol edin.",
+    "declined": "Gönderilen belgeler kabul edilmedi. Lütfen geçerli dosyaları yeniden yükleyin.",
+    "button": {
+      "Complete": "Profili Tamamla",
+      "Re-upload": "Yeniden Yükle"
+    }
+  },
+  "SideBar": {
+    "pages": {
+      "Dashboard": "Gösterge Paneli",
+      "HouseProfile": "Ev Profili",
+      "PersonalInfo": "Kişisel Bilgiler",
+      "HelpRequests": "Yardım Talepleri",
+      "Invoices": "Faturalar",
+      "ShiftsManagement": "Vardiya Yönetimi"
+    },
+
+    "settings": {
+      "Language": "Dil",
+      "Settings": "Ayarlar",
+      "Logout": "Çıkış Yap"
+    }
+  },
+  "PersonalSections": {
+    "title": "Kişisel Bilgiler",
+    "personalInfo": "Kişisel Bilgiler",
+    "phoneNumber": "Telefon Numarası",
+    "requiredDocuments": "Gerekli Belgeler",
+    "yourLocations": "Konumlarınız",
+    "signature": "İmza",
+    "button": {
+      "Complete": "Tamamla",
+      "Edit": "Düzenle",
+      "send": {
+        "Sendall": "Hepsini gönder",
+        "Sending": "Gönderiliyor..."
+      }
+    }
+  },
+  "personaldetails": {
+    "title": "Kişisel Bilgiler",
+    "description": "Göreve devam edebilmek için kişisel bilgilerinizi tamamlayın.",
+    "gender": {
+      "male": "Erkek",
+      "female": "Kadın",
+      "other": "Diğer"
+    },
+    "fields": {
+      "username": "Kullanıcı adı",
+      "bio": "Hakkında"
+    },
+    "button": {
+      "Cancel": "İptal",
+      "Add": "Ekle"
+    },
+    "validation": {
+      "usernameRequired": "Kullanıcı adı gereklidir",
+      "usernameMinLength": "Kullanıcı adı en az 3 karakter olmalıdır",
+      "bioRequired": "Biyografi gereklidir",
+      "birthdayRequired": "Doğum günü gereklidir",
+      "birthdayFormat": "Lütfen tarihi GG.AA.YYYY formatında girin",
+      "genderRequired": "Lütfen bir cinsiyet seçin"
+    }
+  },
+  "phoneNumber": {
+    "title": "Telefon Numaranız",
+    "description": "Lütfen doğrulama için telefon numaranızı girin",
+    "fields": {
+      "phoneNumber": "Telefon Numarası"
+    },
+    "validation": {
+      "phoneRequired": "Telefon numarası gereklidir",
+      "phoneFormat": "Lütfen geçerli bir telefon numarası girin"
+    },
+    "sendOtp": "OTP Gönder",
+    "verifyOtp": "OTP Doğrula",
+    "resendOtp": "OTP Yeniden Gönder",
+    "back": "Geri",
+    "success": "Telefon numarası başarıyla doğrulandı",
+    "error": "Telefon numarası doğrulanamadı"
+  },
+  "documents": {
+    "title": "Gerekli Belgeler",
+    "description": "Lütfen gerekli belgeleri yükleyin",
+    "uploadDocument": "Belge Yükle",
+    "removeDocument": "Kaldır",
+    "supportedFormats": "Desteklenen formatlar: PDF, JPG, PNG",
+    "maxFileSize": "Maksimum dosya boyutu: 10MB",
+    "uploadAllRequired": "Ekle'ye basmadan önce lütfen tüm gerekli belgeleri yükleyin.",
+    "uploading": "Belgeleriniz yükleniyor, lütfen bekleyin...",
+    "documentTypes": {
+      "id": "Kimlik Belgesi",
+      "passport": "Pasaport",
+      "residencePermit": "İkamet İzni",
+      "workPermit": "Çalışma İzni",
+      "cv": "CV/Özgeçmiş",
+      "certificates": "Sertifikalar"
+    },
+    "validation": {
+      "documentRequired": "Bu belge gereklidir",
+      "invalidFormat": "Geçersiz dosya formatı",
+      "fileTooLarge": "Dosya boyutu çok büyük"
+    },
+    "back": "Geri",
+    "submit": "Ekle",
+    "success": "Belgeler başarıyla yüklendi",
+    "error": "Belgeler yüklenemedi"
+  },
+  "addLocation": {
+    "Pleaseenteryourlocation": "Lütfen konumunuzu girin",
+    "alternateLocation": "Alternatif konum",
+    "primaryLocation": "Ana konum",
+    "fields": {
+      "street": "Sokak",
+      "house": "Ev",
+      "postalCode": "Posta Kodu",
+      "city": "Şehir",
+      "country": "Ülke"
+    },
+    "next": "İleri",
+    "back": "Geri",
+    "popup": {
+      "title": "Onay Popup'u",
+      "noEdit": "Düzenleme yok",
+      "yesConfirm": "Evet, onayla"
+    }
+  },
+  "signature": {
+    "title": "İmzayı Tamamla",
+    "description": "Lütfen İmzanızı Tamamlayın",
+    "yourSignature": "İmzanız",
+    "uploadSignature": "İmza Yükle",
+    "drawSignature": "İmza Çiz",
+    "clearSignature": "Temizle",
+    "deleteSignature": "Sil",
+    "signHere": "Buraya imzala",
+    "orUpload": "veya İmzanızı Yükleyin",
+    "validation": {
+      "signatureRequired": "Lütfen bir imza sağlayın",
+      "invalidFormat": "İmza PNG, JPG veya JPEG görüntüsü olmalıdır",
+      "fileTooLarge": "İmza 2MB'den küçük olmalıdır"
+    },
+    "back": "Geri",
+    "submit": "Gönder",
+    "showSignature": "İmzayı Göster",
+    "close": "Kapat",
+    "success": "İmza başarıyla kaydedildi",
+    "error": "İmza kaydedilemedi"
+  },
+  "HouseProfile": {
+    "title": "Ev Profili",
+    "label": {
+      "ElderlyhouseName": "Huzurevi Adı",
+      "Mangername": "Yönetici Adı",
+      "Email": "E-posta",
+      "PhoneNumber": "Telefon Numarası",
+      "Address": "Adres",
+      "City": "Şehir",
+      "ZipCode": "Posta Kodu",
+      "About": "Hakkında"
+    },
+    "avatar": {
+      "type": "İzin verilen: *.jpeg, *.jpg, *.png, *.gif",
+      "max": "Maksimum boyut 3,1 MB",
+      "save": "kaydet"
+    }
+  },
+  "LocationInfo": {
+    "title": "Konum Bilgisi",
+    "description": "Adresler",
+    "add": "Yeni Adres Ekle",
+    "address": "Adres",
+    "primary": "Birincil Konum",
+    "status": {
+      "active": "Aktif",
+      "activate": "Etkinleştir",
+      "primary": "Birincil"
+    }
+  },
+  "HelpRequests": {
+    "title": "Yardım Talepleri",
+    "noneJop": "Henüz herhangi bir talep göndermediniz — ilk geçici iş talebinizi şimdi oluşturun",
+    "add": "Yeni yardım talebi oluştur"
+  },
+  "Invoices": {
+    "title": "Faturalar",
+    "noneInvoices": "Henüz faturanız yok. Yeni faturalar her ayın 1’inde size gönderilecektir."
+  },
+  "Shifts": {
+    "title": "Vardiya Yönetimi",
+    "add": "Yeni Vardiya Ekle"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "noneNotifications": "Henüz bildirim yok!",
+    "seeAll": "Tüm Bildirimleri Gör"
+  }
+}

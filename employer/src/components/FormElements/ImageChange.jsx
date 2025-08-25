@@ -3,8 +3,11 @@ import previewImg from "../../assets/image/Img_Avatar.25.svg";
 import { IoMdCamera } from "react-icons/io";
 import useData from "../../hooks/useData";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const ImageChange = ({ register, setValue, name = "avatar", errors }) => {
+  const { t } = useTranslation();
+
   const { data: photodata } = useData("/photo");
 
   const [preview, setPreview] = useState(photodata?.data?.photo);
@@ -46,8 +49,8 @@ const ImageChange = ({ register, setValue, name = "avatar", errors }) => {
       />
 
       <div className="imageDetails text-[#919EAB] text-center">
-        <p className="mt-2.5">Allowed *.jpeg, *.jpg, *.png, *.gif</p>
-        <p>Max size of 3.1 MB</p>
+        <p className="mt-2.5"> {t("HouseProfile.avatar.type")}</p>
+        <p>{t("HouseProfile.avatar.max")}</p>
       </div>
       {errors[name] && (
         <p className="text-red-500 ml-2">{errors[name].message}</p>

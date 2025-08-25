@@ -21,6 +21,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import PopupReport from "../components/MoreElements/Popup/PopupReport";
 import PopupReview from "../components/TaskComponents/PopupReview";
 import { timeDifference } from "../utils/timeDifference";
+import customFetch from "../utils/axios";
 
 // Task details
 const TasksDetails = () => {
@@ -97,14 +98,16 @@ const TasksDetails = () => {
   }, [task?.task?.status]);
   const OnMyWay = useMutation({
     mutationFn: () =>
-      // customFetch
-      //   .post(`/matching/declineRequest/${jobId}`)
-      //   .then((res) => res.data),
-      handleSetLevel(2),
-    onSuccess: () => {
-      toast.success("ok your in way");
+      customFetch
+        .put(`/matching/tasks/${id}/on-the-way`)
+        .then((res) => res.data),
+
+    onSuccess: (data) => {
+      console.log(data);
+      handleSetLevel(2), toast.success("ok your in way");
     },
     onError: (error) => {
+      console.log(error?.response?.data?.message);
       toast.error("no your in way");
     },
   });
@@ -216,7 +219,7 @@ const TasksDetails = () => {
                 className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
               >
                 <CiFileOn className="text-xl" />
-                <p className="text-xs mt-1">{t("taskDetails.reportTask")}</p>
+                <p className="text-xs mt-1">Cancel Task</p>
               </button>
             </div>
           </div>

@@ -32,7 +32,6 @@ const Phone_number = () => {
     },
 
     onError: (error) => {
-
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
         error?.response?.data?.message || t("phoneNumber.error");
@@ -75,16 +74,14 @@ const Phone_number = () => {
 
   return (
     <div className="Social_Insurance p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">phoneNumber</h2>
+      <h2 className="text-2xl font-bold mb-2">{t("phoneNumber.title")}</h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Enter your phone number to continue working.
+        {t("phoneNumber.description")}
       </p>
 
       {!isOtpCode ? (
         <>
-          <p className="mb-5 text-lg font-bold">
-          addNumber
-          </p>
+          <p className="mb-5 text-lg font-bold">addNumber</p>
           <form onSubmit={handleSubmit(Submit)} className="">
             <div className="flex gap-5 items-start">
               <div className="Phone_number_falg border border-[#919eab80] px-5 flex items-center justify-center  rounded-lg w-25">
@@ -101,7 +98,7 @@ const Phone_number = () => {
                   register={register}
                   errors={errors}
                   name={"phone_number"}
-                  label="phoneNumber"
+                  label={t("phoneNumber.fields.phoneNumber")}
                   type={"tel"}
                 />
                 {serverError && (
@@ -115,7 +112,7 @@ const Phone_number = () => {
               type="submit"
               className="mt-5 font-bold text-lg hover:text-[#EE6000] cursor-pointer text-blue-900"
             >
-              sendOtp
+              {t("phoneNumber.sendOtp")}
             </button>
           </form>
           <div className="flex justify-end">
@@ -123,7 +120,7 @@ const Phone_number = () => {
               onClick={() => navigate("/Personal info")}
               className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3]"
             >
-             back
+             {t("phoneNumber.back")} 
             </button>
           </div>
         </>

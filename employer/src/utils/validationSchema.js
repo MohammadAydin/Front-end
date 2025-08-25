@@ -25,9 +25,9 @@ export const createCompletePersonalInfoSchema = (t) => {
   return z.object({
     Username: z
       .string()
-      .min(1, t("completePersonalInfo.validation.usernameRequired"))
-      .min(3, t("completePersonalInfo.validation.usernameMinLength")),
-    Bio: z.string().min(1, t("completePersonalInfo.validation.bioRequired")),
+      .min(1, t("personaldetails.validation.usernameRequired"))
+      .min(3, t("personaldetails.validation.usernameMinLength")),
+    Bio: z.string().min(1, t("personaldetails.validation.bioRequired")),
     // Birthday: z
     //   .string()
     //   .min(1, t("completePersonalInfo.validation.birthdayRequired"))
@@ -35,9 +35,7 @@ export const createCompletePersonalInfoSchema = (t) => {
     //     /^\d{2}\.\d{2}\.\d{4}$/,
     //     t("completePersonalInfo.validation.birthdayFormat")
     //   ),
-    gender: z
-      .string()
-      .min(1, t("completePersonalInfo.validation.genderRequired")),
+    gender: z.string().min(1, t("personaldetails.validation.genderRequired")),
   });
 };
 

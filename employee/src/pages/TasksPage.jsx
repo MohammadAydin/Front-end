@@ -93,7 +93,7 @@ const TasksPage = () => {
             >
               {console.log(task)}
 
-              <div className="imgAndinfo flex gap-3 items-center flex-wrap">
+              <div className="imgAndinfo flex gap-5 items-center flex-wrap">
                 {/* View a picture of the elderly house*/}
                 <img className=" rounded-4xl" src={imgjob} alt="" />
                 {/* Display price with tasks title */}
@@ -112,13 +112,21 @@ const TasksPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col ">
-                <Link
-                  to={`/taskDetails/${task.id}`}
-                  className="border  py-1 px-3.5 rounded-[10px]"
-                >
-                  {t("tasks.seeDetails")}
-                </Link>
+              <div
+                className={`${
+                  task.status == "done" && " flex-row-reverse"
+                } min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col `}
+              >
+                {console.log(task.status)}
+                {task.status !== "done" && (
+                  <Link
+                    to={`/taskDetails/${task.id}`}
+                    className="border  py-1 px-3.5 rounded-[10px]"
+                  >
+                    {t("tasks.seeDetails")}
+                  </Link>
+                )}
+
                 <div
                   className={`${
                     statusTask(task.status).statusColorClass

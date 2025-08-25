@@ -11,8 +11,10 @@ import customFetch from "../utils/axios";
 import { addUserToLocalStorage } from "../utils/localStorage";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import { useTranslation } from "react-i18next";
 
 const FormVerify = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // Store the state of the resend button
   const [isVerify, setIsVerify] = useState(false);
@@ -110,12 +112,12 @@ const FormVerify = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-2.5">
-            Verify your email !
+            {t("VerifyEmail.title")}
           </h2>
           {/* Forme description */}
           <p className="text-[13px] mb-8 text-[#555770]">
-            We've emailed a 6-digit confirmation code to {email}, please enter
-            the code in below box to verify your email.
+            {t("VerifyEmail.description")}
+            &nbsp;{email}
           </p>
           {/* Fields container */}
           <div className="flex justify-between">
@@ -175,13 +177,15 @@ const FormVerify = () => {
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? "Wating ..." : "Verify"}
+            {isLoading
+              ? t("VerifyEmail.verifyButton.waiting")
+              : t("VerifyEmail.verifyButton.verify")}
           </button>
         </form>
 
         <div className="flex mt-4 text-[0.8rem] justify-center">
           {/* Resend Code button */}
-          <p>Don’t have a code? </p>
+          <p>{t("VerifyEmail.noCode")}</p>
           <button
             disabled={isVerify}
             onClick={ResendCode}
@@ -189,7 +193,7 @@ const FormVerify = () => {
               isVerify ? "text-gray-700" : "text-[#F47621] click"
             } click`}
           >
-            Resend code
+            {t("VerifyEmail.resendCode")}{" "}
           </button>
         </div>
         {/* The button to go to the login page */}
@@ -198,7 +202,7 @@ const FormVerify = () => {
           className="text-[0.8rem] mt-3.5 flex justify-center items-center"
         >
           <IoIosArrowBack />
-          Return to Sign in
+          {t("VerifyEmail.returnToSignIn")}
         </button>
       </Wrapper>
     </>

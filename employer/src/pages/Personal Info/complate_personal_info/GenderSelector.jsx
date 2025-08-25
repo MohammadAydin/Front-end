@@ -7,9 +7,21 @@ const GenderSelector = ({ control, name }) => {
   const { t } = useTranslation();
 
   const genderOptions = [
-    { value: "male", label: "male", icon: <FaMars /> },
-    { value: "female", label: "female", icon: <FaVenus /> },
-    { value: "diverse", label: "other", icon: <FaTransgenderAlt /> },
+    {
+      value: "male",
+      label: t("personaldetails.gender.male"),
+      icon: <FaMars />,
+    },
+    {
+      value: "female",
+      label: t("personaldetails.gender.female"),
+      icon: <FaVenus />,
+    },
+    {
+      value: "diverse",
+      label: t("personaldetails.gender.other"),
+      icon: <FaTransgenderAlt />,
+    },
   ];
 
   return (

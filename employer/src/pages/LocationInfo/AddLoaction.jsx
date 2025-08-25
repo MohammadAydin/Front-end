@@ -27,8 +27,8 @@ const AddLoaction = () => {
   const [searchParams] = useSearchParams();
   const uploaded = searchParams.get("uploaded");
 
-
   const { t } = useTranslation();
+
   const { lengthLocations } = useParams();
   const { OpenSuccsess } = OpenSuccsessPopup();
   // Navigate definition for routing
@@ -152,9 +152,11 @@ const AddLoaction = () => {
       <div className="w-full">
         {/* If Workabilities is false Displays text the location add */}
 
-        <h1>Please enter your location</h1>
+        <h1>{t("addLocation.Pleaseenteryourlocation")}</h1>
         <p className=" text-softColor mt-4">
-          {lengthLocations == 0 ? "primaryLocation" : "alternateLocation"}
+          {lengthLocations == 0
+            ? t("addLocation.primaryLocation")
+            : t("addLocation.alternateLocation")}
         </p>
 
         <div className="mt-3 w-full">
@@ -166,21 +168,21 @@ const AddLoaction = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label="street"
+                  label={t("addLocation.fields.street")}
                   name={"street1"}
                   type={"text"}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label="house"
+                  label={t("addLocation.fields.house")}
                   name={"street2"}
                   type={"text"}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label="postalCode"
+                  label={t("addLocation.fields.postalCode")}
                   name={"postalcode"}
                   type={"text"}
                 />
@@ -188,7 +190,7 @@ const AddLoaction = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label="city"
+                  label={t("addLocation.fields.city")}
                   name={"city"}
                   type={"text"}
                 />
@@ -196,7 +198,7 @@ const AddLoaction = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label="country"
+                label={t("addLocation.fields.country")}
                 name={"country"}
                 type={"text"}
               />
@@ -217,10 +219,10 @@ const AddLoaction = () => {
             <div className="flex w-[25vw] gap-3.5 ml-auto mt-16">
               {/* If Workabilities is false Displays button back the location add */}
 
-              <Link className="w-full" to="/locationInfo">
+              <Link className="w-full" to="/Personal info">
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text="back"
+                  text={t(`addLocation.back`)}
                 />
               </Link>
 
@@ -229,7 +231,7 @@ const AddLoaction = () => {
                 onClick={togglePopup}
                 type="button"
                 className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text="next"
+                text={t(`addLocation.next`)}
               />
             </div>
           </div>

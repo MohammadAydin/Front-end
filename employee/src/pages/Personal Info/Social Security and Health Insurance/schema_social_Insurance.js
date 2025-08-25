@@ -25,14 +25,25 @@ const schema_social_Insurance = z.object({
     message: "Please select your health insurance type",
   }),
 
-  number_of_children: z.coerce.number({
-    required_error: "Please enter number of children",
-    invalid_type_error: "Please enter a valid number",
-  }),
+  number_of_children: z.coerce
+    .number()
+    .transform((val) => (val ? Number(val) : undefined))
+    .refine(
+      (val) => val === undefined || val >= 0,
+      "Must be a positive number"
+    ),
 
   marital_status: z.enum(["single", "married", "divorced", "widowed"], {
     message: "Please select your marital status",
   }),
+
+  children_documents: z
+    .array(
+      z
+        .any()
+        .refine((files) => files?.length > 0, "Please upload the child's file")
+    )
+    .optional(),
 });
 
 export default schema_social_Insurance;

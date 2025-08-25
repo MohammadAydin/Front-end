@@ -76,12 +76,12 @@ const Signature = () => {
   return (
     <div className="Signature p-[28px] py-[58px]">
       <h2 className="text-2xl font-bold mb-2">
-        {isUploaded && UplodedSignature ? "Signature" : "Complete Signature "}
+        {isUploaded && UplodedSignature ? "Signature" : t("signature.title")}
       </h2>
       <p className="text-[#555770] mb-5 text-lg ">
         {isUploaded && UplodedSignature
           ? "You have already uploaded a signature"
-          : "Please , Complete your Signature"}
+          : t("signature.description")}
       </p>
       {isUploaded && UplodedSignature && (
         <>
@@ -89,7 +89,7 @@ const Signature = () => {
             onClick={() => setShowSignature(true)}
             className="w-full mb-10 text-[#F47621] bg-[#FFDFC6] font-bold rounded-xl py-3"
           >
-          showSignature
+            showSignature
           </button>
           {showSignature && (
             <div className="w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
@@ -110,7 +110,7 @@ const Signature = () => {
                   className="w-full bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
                   onClick={() => setShowSignature(false)}
                 >
-                 close
+                  {t("signature.close")}
                 </button>
               </div>
             </div>
@@ -126,7 +126,7 @@ const Signature = () => {
           setValue={setValue}
           error={errors}
           name={"signature"}
-          label="uploadSignature"
+          label={t("signature.uploadSignature")}
         />
         {serverError && (
           <p className="text-red-600 font-medium text-start mb-4">
@@ -134,8 +134,8 @@ const Signature = () => {
           </p>
         )}
         <SubmitButtons
-          submitLabel={isUploaded ? "Submit" : "Add"}
-          prevLabel="back"
+          submitLabel={isUploaded ? t("signature.Submit") : "Add"}
+          prevLabel={t("signature.back")}
           onCancel={() => navigate("/Personal info")}
         />
       </form>

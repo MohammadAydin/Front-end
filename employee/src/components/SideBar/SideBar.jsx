@@ -18,7 +18,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
   return (
     <>
       <Wrapper>
-        <div className="SideBar w-[320px] rounded-2xl flex flex-col justify-between items-center fixed z-10">
+        <div className="SideBar w-[320px] rounded-2xl flex flex-col justify-between items-center fixed z-10 ">
           <div className="w-full">
             <Link
               to={"/profile"}

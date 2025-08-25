@@ -11,66 +11,56 @@ import {
 
 import { NavLink } from "react-router-dom";
 import Germany from "../../assets/image/icon-sidebar/germany.svg";
+import turkey from "../../assets/image/icon-sidebar/turkey.png";
+import unitedstates from "../../assets/image/icon-sidebar/united-states.png";
 import useLogout from "./logoutFun";
-
-const pages = [
-  {
-    id: 1,
-    name: "Dashboard",
-    icon: <CiGrid41 size={24} />,
-    path: "/",
-  },
-  {
-    id: 2,
-    name: "House Profile",
-    icon: <RiHome6Line size={24} />,
-    path: "houseProfile",
-  },
-  {
-    id: 3,
-    name: "Personal Info",
-    icon: <LuUserRound size={24} />,
-    path: "/Personal info",
-  },
-  {
-    id: 4,
-    name: "Help Requests",
-    icon: <PiBellSimpleRingingBold size={24} />,
-    path: "/helpRequests",
-  },
-  {
-    id: 5,
-    name: "Invoices",
-    icon: <LuBanknote size={24} />,
-    path: "/invoices",
-  },
-  // {
-  //   id: 6,
-  //   name: "Leaders",
-  //   icon: <RiUserSettingsLine size={24} />,
-  //   path: "/Leaders",
-  // },
-  // {
-  //   id: 7,
-  //   name: "Documents",
-  //   icon: <IoDocumentTextOutline size={24} />,
-  //   path: "/Documents",
-  // },
-  {
-    id: 6,
-    name: "Shifts Mangment",
-    icon: <LuClock size={24} />,
-    path: "/Shifts",
-  },
-];
-
-const Settings = [
-  { id: 1, name: "Language", icon: <IoLanguage size={24} /> },
-  { id: 2, name: "Settings", icon: <IoSettingsOutline size={24} /> },
-  { id: 3, name: "Logout", icon: <IoLogOutOutline size={24} /> },
-];
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import customFetch from "../../utils/axios";
+import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
 
 const PagesList = () => {
+  const { t } = useTranslation();
+
+  const pages = [
+    // {
+    //   id: 1,
+    //   name: t("SideBar.pages.Dashboard"),
+    //   icon: <CiGrid41 size={24} />,
+    //   path: "/",
+    // },
+    {
+      id: 2,
+      name: t("SideBar.pages.HouseProfile"),
+      icon: <RiHome6Line size={24} />,
+      path: "/",
+    },
+    {
+      id: 3,
+      name: t("SideBar.pages.PersonalInfo"),
+      icon: <LuUserRound size={24} />,
+      path: "/Personal info",
+    },
+    {
+      id: 4,
+      name: t("SideBar.pages.HelpRequests"),
+      icon: <PiBellSimpleRingingBold size={24} />,
+      path: "/helpRequests",
+    },
+    {
+      id: 5,
+      name: t("SideBar.pages.Invoices"),
+      icon: <LuBanknote size={24} />,
+      path: "/invoices",
+    },
+    {
+      id: 6,
+      name: t("SideBar.pages.ShiftsManagement"),
+      icon: <LuClock size={24} />,
+      path: "/shifts",
+    },
+  ];
   return (
     <ul className="sidebarList">
       {pages.map((page) => (
@@ -89,22 +79,94 @@ const PagesList = () => {
 // setting list
 
 const SettingList = () => {
+  const [Language, setLanguage] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const Settings = [
+    {
+      id: 1,
+      key: "language",
+      name: t("SideBar.settings.Language"),
+      icon: <IoLanguage size={24} />,
+    },
+    {
+      id: 2,
+      key: "settings",
+      name: t("SideBar.settings.Settings"),
+      icon: <IoSettingsOutline size={24} />,
+    },
+    {
+      id: 3,
+      key: "logout",
+      name: t("SideBar.settings.Logout"),
+      icon: <IoLogOutOutline size={24} />,
+    },
+  ];
+  const languageList = [
+    { id: 1, key: "en", name: "English", code: "US", img: unitedstates },
+    { id: 2, key: "de", name: "Germany", code: "DE", img: Germany },
+    { id: 3, key: "tr", name: "Turkish", code: "TR", img: turkey },
+  ];
+
   const logout = useLogout();
+  const handleClick = (itemKey) => {
+    if (itemKey === "logout") logout();
+    if (itemKey === "language") setLanguage(!Language);
+  };
+
+  const changeLanguage = useMutation({
+    mutationFn: (key) =>
+      customFetch
+        .post(
+          `/language/set
+`,
+          {
+            language: key,
+          }
+        )
+        .then((res) => res.data),
+
+    onSuccess: (data, key) => {
+      console.log(data);
+      i18n.changeLanguage(key);
+      toast.success(data.message);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
   return (
-    <ul className="sidebarList">
+    <ul className="sidebarList ">
       {Settings.map((item) => (
         <li
-          className={`flex items-center justify-between w-full cursor-pointer hover:font-bold`}
+          className={`flex items-center justify-between w-full cursor-pointer hover:font-bold relative`}
           key={item.id}
-          onClick={item.name == "Logout" ? logout : null}
+          onClick={() => handleClick(item.key)}
         >
+          {item.key === "language" && (
+            <div
+              className={`bg-white text-black rounded-[10px] text-xs flex flex-col p-2 absolute top-[-190px] ${
+                !Language && "hidden"
+              }`}
+            >
+              {languageList.map((lang) => (
+                <div
+                  className="flex gap-4 hover:bg-gray-200  p-4 items-center justify-between"
+                  onClick={() => changeLanguage.mutate(lang.key)}
+                >
+                  <div className="flex gap-4">
+                    <p>{lang.code}</p>
+                    <p>{lang.name}</p>
+                  </div>
+                  <img className="flag w-6" src={lang.img} alt="Language" />
+                </div>
+              ))}
+            </div>
+          )}
           <div className="flex items-center gap-2 ">
             {item.icon}
             <span className="pageName">{item.name}</span>
           </div>
-          {item.name === "Language" && (
-            <img className="mt-1 flag" src={Germany} alt="Language" />
-          )}
         </li>
       ))}
     </ul>

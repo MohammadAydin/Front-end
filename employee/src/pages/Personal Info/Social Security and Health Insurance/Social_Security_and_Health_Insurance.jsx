@@ -1,21 +1,33 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import InputField from "../../../components/FormElements/InputField";
-import SubmitButtons from "../../../components/FormElements/SubmitButtons";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import customFetch from "../../../utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import schema_social_Insurance from "./schema_social_Insurance";
+import InputField from "../../../components/FormElements/InputField";
 import SelectField from "../../../components/FormElements/SelectField";
-import "../../Responsive css/Personal_info.css";
+import SubmitButtons from "../../../components/FormElements/SubmitButtons";
+import BirthCertificateInput from "./BirthCertificateInput";
+import customFetch from "../../../utils/axios";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
+import useData from "../../../../../employer/src/hooks/useData";
 
 const Social_Security_and_Health_Insurance = () => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
-  const [serverError, setServerError] = useState("");
+  const navigate = useNavigate();
+  const { data } = useData("/profile/social-insurance-info");
+  console.log(data);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema_social_Insurance),
+  });
 
   const social_Insurance_inputs = [
     {
@@ -97,71 +109,50 @@ const Social_Security_and_Health_Insurance = () => {
     },
   ];
 
-  const add_Social_Insurance_Mutatuin = useMutation({
-    mutationFn: (insurance) =>
-      customFetch
-        .post(
-          "https://woundwann.de/v1/profile/social-insurance-info",
-          insurance
-        )
-        .then((res) => {
-          res.data;
-        }),
-
+  const add_Social_Insurance_Mutation = useMutation({
+    mutationFn: (formData) =>
+      customFetch.post("/profile/social-insurance-info", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      }),
     onSuccess: () => {
       OpenSuccsess();
       navigate("/Personal info");
     },
-
-    onError: (error) => {
-      const errors = error?.response?.data?.errors;
-      const fallbackMessage =
-        error?.response?.data?.message || t("socialSecurity.error");
-
-      if (errors && typeof errors === "object") {
-        const firstField = Object.keys(errors)[0];
-        const firstMessage = errors[firstField]?.[0];
-
-        setServerError(firstMessage || fallbackMessage);
-      } else {
-        setServerError(fallbackMessage);
-      }
-    },
   });
 
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(schema_social_Insurance),
-    defaultValues: {
-      ["number_of_children"]: 0,
-    },
-  });
-  // send data to backend
   const submit = (data) => {
-    add_Social_Insurance_Mutatuin.mutate({
-      social_insurance_number: data.social_insurance_number,
-      health_insurance_company: data.health_insurance_company_name,
-      health_insurance_number: data.health_insurance_number,
-      health_insurance_type: data.health_insurance_type,
-      tax_identification_number: data.tax_identification_number,
-      tax_bracket: data.tax_bracket,
-      marital_status: data.marital_status,
-      number_of_children: data.number_of_children,
+    const formData = new FormData();
+
+    formData.append("social_insurance_number", data.social_insurance_number);
+    formData.append(
+      "health_insurance_company",
+      data.health_insurance_company_name
+    );
+    formData.append("health_insurance_number", data.health_insurance_number);
+    formData.append("health_insurance_type", data.health_insurance_type);
+    formData.append(
+      "tax_identification_number",
+      data.tax_identification_number
+    );
+    formData.append("tax_bracket", data.tax_bracket);
+    formData.append("marital_status", data.marital_status);
+    formData.append("number_of_children", data.number_of_children);
+
+    Object.values(data.children_documents || {}).forEach((fileList) => {
+      if (fileList && fileList[0])
+        formData.append("children_documents[]", fileList[0]);
     });
+
+    add_Social_Insurance_Mutation.mutate(formData);
   };
 
   return (
     <div className="Social_Insurance p-[28px] py-[58px]">
       <h2 className="text-2xl font-bold mb-2">{t("socialSecurity.title")}</h2>
-      <p className="text-[#555770] mb-10 text-lg ">
+      <p className="text-[#555770] mb-10 text-lg">
         {t("socialSecurity.description")}
       </p>
+
       <form onSubmit={handleSubmit(submit)}>
         <div className="Social_Insurance_grid w-full grid grid-cols-2 gap-5 mb-8">
           {social_Insurance_inputs.map((input) => (
@@ -172,7 +163,7 @@ const Social_Security_and_Health_Insurance = () => {
               label={input.label}
               name={input.name}
               type={input.type}
-              step={input.step ? input.step : 1}
+              step={input.step || 1}
             />
           ))}
 
@@ -189,11 +180,30 @@ const Social_Security_and_Health_Insurance = () => {
             />
           ))}
         </div>
-        {serverError && (
-          <p className="text-red-600 font-medium text-start mb-4">
-            {serverError}
-          </p>
+
+        {watch("number_of_children") > 0 && (
+          <>
+            <h2 className="text-2xl font-bold mb-2">
+              Children's Birth Certificate
+            </h2>
+            <div>
+              {Array.from(
+                { length: watch("number_of_children") },
+                (_, index) => (
+                  <BirthCertificateInput
+                    key={index}
+                    index={index}
+                    register={register}
+                    errors={errors}
+                    setValue={setValue}
+                    watch={watch}
+                  />
+                )
+              )}
+            </div>
+          </>
         )}
+
         <SubmitButtons
           prevLabel={t("socialSecurity.back")}
           onCancel={() => navigate("/Personal info")}

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  height: 100vh;
   width: 320px;
 
   a {
@@ -9,7 +8,6 @@ const Wrapper = styled.div`
   }
   .SideBar {
     background-color: #194894;
-    height: 100vh;
     border: 20px white solid;
     border-radius: 36px;
   }
@@ -35,7 +33,7 @@ const Wrapper = styled.div`
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     font-size: 18px;
   }
   .pageName {

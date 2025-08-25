@@ -45,15 +45,18 @@ const router = createBrowserRouter([
 
     // errorElement: <Error />,
     children: [
-      {
-        index: true,
-        element: <DashBoard />,
-        // errorElement: <SinglePageError />,
-      },
+      // {
+      //   index: true,
+      //   element: <DashBoard />,
+      // errorElement: <SinglePageError />,
+      // },
 
       {
-        path: "houseProfile",
+        // path: "houseProfile",
+        index: true,
+
         element: <HouseProfile />,
+
         // errorElement: <SinglePageError />,
       },
       // {

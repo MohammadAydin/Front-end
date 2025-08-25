@@ -1,13 +1,15 @@
 import { LuClock } from "react-icons/lu";
 import { BsPlus } from "react-icons/bs";
 import CompletePersonalinfo from "../MoreElements/CompletePersonalinfo";
+import { useTranslation } from "react-i18next";
 
 const ShiftsHeader = ({ setIsFormOpen }) => {
+  const { t } = useTranslation();
   return (
     <div className="ShiftsHeader w-full flex justify-between items-center">
       <div className="flex items-center gap-2">
         <LuClock size={30} />
-        <h2 className="font-[900] text-xl">Shifts Mangment</h2>
+        <h2 className="font-[900] text-xl">{t("Shifts.title")} </h2>
       </div>
       <div>
         <button
@@ -17,7 +19,7 @@ const ShiftsHeader = ({ setIsFormOpen }) => {
           <span>
             <BsPlus size={30} />
           </span>
-          Add new Shift
+          {t("Shifts.add")}
         </button>
       </div>
     </div>

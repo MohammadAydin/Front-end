@@ -33,7 +33,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
                 <p className="admin text-white font-thin">{data?.role}</p>
               </div>
             </div>
-            <div className="group-item m-[25px]  mt-15 flex flex-col items-start ">
+            <div className="group-item m-[25px]  mt-5 flex flex-col items-start ">
               <PagesList />
               <button
                 onClick={() => setNotificationIsOpen(true)}

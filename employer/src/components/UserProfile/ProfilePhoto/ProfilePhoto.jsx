@@ -29,7 +29,8 @@ const ProfilePhoto = () => {
       queryClient.invalidateQueries({ queryKey: ["/photo"] });
     },
     onError: (error) => {
-      const message = error?.response?.data?.message || "error upload photo profile";
+      const message =
+        error?.response?.data?.message || "error upload photo profile";
       setServerError(message);
     },
   });
@@ -76,7 +77,7 @@ const ProfilePhoto = () => {
           type="submit"
           className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
         >
-          Save
+          {t("HouseProfile.avatar.save")}
         </button>
       </div>
 

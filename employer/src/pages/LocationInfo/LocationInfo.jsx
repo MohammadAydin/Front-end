@@ -30,8 +30,7 @@ const LocationInfo = () => {
         queryKey: ["/locations", "locationsList"],
       });
     },
-    onError: (error) => {
-    },
+    onError: (error) => {},
   });
 
   useEffect(() => {
@@ -91,14 +90,16 @@ const LocationInfo = () => {
   return (
     <>
       <div className="py-5 px-5">
-        <div className="text-2xl font-bold mt-2">locationInfo</div>
+        <div className="text-2xl font-bold mt-2">
+          {t("LocationInfo.title")}{" "}
+        </div>
         <div className="flex flex-col">
           <div className="list-location">
             {/* Container with the bottom section for adding addresses */}
             <div className="mt-3.5 shadow-locationsList p-3.5 mb-5">
               {/* A container that contains the container title and the add button{" "} */}
               <div className="flex justify-between max-[600px]:flex-col max-[600px]:gap-2.5">
-                <p>addresses</p>
+                <p>{t("LocationInfo.description")}</p>
                 {/* When the add button is pressed, a popup opens to add the address */}
                 <Link
                   to={`/addLoaction/${locations?.length}`}
@@ -107,7 +108,8 @@ const LocationInfo = () => {
                   }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
                 >
                   <FaPlus />
-                  {t("locationInfo.addNewAddress")}
+
+                  {t("LocationInfo.add")}
                 </Link>
               </div>
               {locations?.length == 0 && (
@@ -131,8 +133,8 @@ const LocationInfo = () => {
                       }`}
                     >
                       {location.is_primary == 1
-                        ? "Primary Location"
-                        : ` Address ${index + 2}`}
+                        ? t("LocationInfo.primary")
+                        : ` ${t("LocationInfo.address")} ${index + 2}`}
                     </h2>
                     <div
                       className="flex justify-between flex-1 gap-3.5 max-[820px]:w-full
@@ -162,14 +164,16 @@ const LocationInfo = () => {
                             } text-white py-1 w-[100px] rounded-[5px]`}
                             disabled={location.is_active}
                           >
-                            {location.is_active ? "Active" : "Activate"}
+                            {location.is_active
+                              ? t("LocationInfo.status.active")
+                              : t("LocationInfo.status.activate")}
                           </button>
                           {location.is_primary == 1 ? (
                             <div
                               className="text-center  bg-secondaryColor
                              text-white py-1 w-[100px] rounded-[5px] non-click"
                             >
-                              Primary
+                              {t("LocationInfo.status.primary")}
                             </div>
                           ) : (
                             <div className="flex gap-2 items-center justify-center w-[100px]">

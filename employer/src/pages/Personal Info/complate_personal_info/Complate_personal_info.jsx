@@ -18,8 +18,12 @@ const Complate_personal_info = () => {
   const [serverError, setServerError] = useState("");
 
   const inputs = [
-    { name: "Username", label: "username", type: "text" },
-    { name: "Bio", label: "bio", type: "text" },
+    {
+      name: "Username",
+      label: t("personaldetails.fields.username"),
+      type: "text",
+    },
+    { name: "Bio", label: t("personaldetails.fields.bio"), type: "text" },
   ];
 
   const add_personal_info_Mutatuin = useMutation({
@@ -79,9 +83,9 @@ const Complate_personal_info = () => {
 
   return (
     <div className="Complate_personal_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2"> personal details </h2>
+      <h2 className="text-2xl font-bold mb-2">{t("personaldetails.title")} </h2>
       <p className="text-[#555770] mb-10 text-lg ">
-        Complete your personal details to proceed with the task.
+        {t("personaldetails.description")}{" "}
       </p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="personal_info_grid grid grid-cols-2 gap-5">

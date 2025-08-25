@@ -1,9 +1,13 @@
 import Logo from "../assets/image/Logo Positions.svg";
 import FormForget from "../components/FormForget";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const ForgetPassword = () => {
   return (
-    <div className="LoginPage">
+    <div className="LoginPage relative">
+      <div className="absolute top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
       <div className="backgorund h-fit">
         <div className="ballBackgorund large"></div>
         <div className="ballBackgorund meduim"></div>

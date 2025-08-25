@@ -202,7 +202,9 @@ const FormLogin = () => {
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? "Wating ... " : "Login"}
+            {isLoading
+              ? t("login.loginButton.waiting")
+              : t("login.loginButton.login")}
           </button>
         </form>
         {/* end form */}

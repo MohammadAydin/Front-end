@@ -168,7 +168,7 @@ const NotificationsContainer = ({
                     <div className="text-2xl text-gray-400">✓</div>
                   </div>
                   <p className="text-lg font-medium text-gray-500">
-                    No notifications yet!
+                    {t("notifications.noneNotifications")}
                   </p>
                 </div>
               )}
@@ -176,7 +176,7 @@ const NotificationsContainer = ({
 
             <div className="mt-3 flex-shrink-0">
               <button className="w-full py-2.5 text-center text-[#F47621] hover:text-[#EE6000] hover:bg-[#FFDFC6] rounded-lg transition-colors text-sm font-medium">
-                See All Notifications
+                {t("notifications.seeAll")}
               </button>
             </div>
           </div>

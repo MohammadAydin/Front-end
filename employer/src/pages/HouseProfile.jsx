@@ -10,8 +10,35 @@ import ProfilePhoto from "../components/UserProfile/ProfilePhoto/ProfilePhoto";
 import LocationInfo from "./LocationInfo/LocationInfo";
 import useStatusAccount from "../store/storeStatusAccount";
 import statusAccount from "../utils/statusAccountReturn";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const HouseProfile = () => {
+  const { t } = useTranslation();
+  const {
+    data: statusData,
+    error,
+    isLoadingstatus,
+  } = useData("/status/profile");
+
+  useEffect(() => {
+    if (statusData?.data?.status) {
+      localStorage.setItem("statusAccount", statusData?.data?.status);
+    }
+  }, [statusData?.data?.status]);
+
+  useEffect(() => {
+    const hasReloaded = localStorage.getItem("hasReloaded");
+
+    if (!hasReloaded) {
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
+  }
   const { data: profile, isLoading } = useData("/profile");
 
   // Open and closed state storage
@@ -50,7 +77,7 @@ const HouseProfile = () => {
       {/* Full-page container */}
       <div className="relative">
         {/* Upper title */}
-        <p className="">My Profile</p>
+        <p className="">{t("HouseProfile.title")}</p>
         {/* Container containing the data partition */}
         <div className="imgAndInput flex gap-5 mt-3.5 max-[730px]:flex-col">
           {/* Container containing the image section */}
@@ -68,19 +95,19 @@ const HouseProfile = () => {
                   {/* A box containing a description with data */}
                   <div className="relative info-square">
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      Elderly house Name{" "}
+                      {t("HouseProfile.label.ElderlyhouseName")}
                     </p>
                     Elderly house
                   </div>
                   <div className="relative info-square">
                     <p className=" p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      Email{" "}
+                      {t("HouseProfile.label.Email")}
                     </p>
                     {profile?.data?.email}
                   </div>
                   <div className="relative info-square">
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      Address{" "}
+                      {t("HouseProfile.label.Address")}
                     </p>
                     {profile?.data?.address || "empty"}{" "}
                   </div>
@@ -89,19 +116,19 @@ const HouseProfile = () => {
                 <div className="right w-full justify-center  flex flex-col gap-3.5">
                   <div className="relative info-square">
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      Manger name{" "}
+                      {t("HouseProfile.label.Mangername")}
                     </p>
                     {profile?.data?.name || "empty"}
                   </div>
                   <div className="relative info-square">
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      Phone Number{" "}
+                      {t("HouseProfile.label.PhoneNumber")}
                     </p>
                     {profile?.data?.phone || "empty"}
                   </div>
                   <div className="relative info-square">
                     <p className="p-[1px] text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      City{" "}
+                      {t("HouseProfile.label.City")}
                     </p>
                     Berlin
                   </div>
@@ -111,7 +138,7 @@ const HouseProfile = () => {
               <div className="mt-4">
                 <div className="relative info-square">
                   <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                    Zip/Code
+                    {t("HouseProfile.label.ZipCode")}
                   </p>
                   506540
                 </div>
@@ -120,7 +147,7 @@ const HouseProfile = () => {
               <div className="mt-4">
                 <div className="relative info-square flex justify-between items-center">
                   <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                    About
+                    {t("HouseProfile.label.About")}
                   </p>
                   {/* If there is input information, display it or dummy text */}
                   {about ? about : "About Elderly House"}

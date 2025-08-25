@@ -66,7 +66,7 @@ const Personal_info = () => {
             onClick={() => navigate(`${path}`)}
             className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold w-[165px]"
           >
-            Complete &nbsp; →
+            {t("PersonalSections.button.Complete")} &nbsp; →
           </button>
           <Status status={status} />
         </div>
@@ -84,7 +84,7 @@ const Personal_info = () => {
             }}
             className="text-[#F47621] bg-[#FFDFC6] px-7 p-2 rounded-lg font-bold w-[165px]"
           >
-            Edit &nbsp; →
+            {t("PersonalSections.button.Edit")} &nbsp; →
           </button>
           <Status status={status} />
         </div>
@@ -96,7 +96,7 @@ const Personal_info = () => {
 
   return (
     <div className="Personal_info_page p-[28px] py-[58px] text-lg">
-      <h2 className="font-bold text-2xl">Personal Info</h2>
+      <h2 className="font-bold text-2xl">{t("PersonalSections.title")}</h2>
       {personalSections.map(
         ({ icon: Icon, label, path, status_name }, index) => (
           <div
@@ -129,7 +129,11 @@ const Personal_info = () => {
               : "bg-gray-300 text-gray-600"
           }`}
         >
-          {sendAllInfo.isPending ? "Sending..." : "Send all"}
+          <button>
+            {sendAllInfo.isPending
+              ? t("PersonalSections.button.send.Sending")
+              : t("PersonalSections.button.send.Sendall")}
+          </button>
         </button>
       )}
 

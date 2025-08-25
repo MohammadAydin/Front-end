@@ -6,8 +6,10 @@ import Wrapper from "../assets/wrapper/Form";
 import customFetch from "../utils/axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const FormForget = () => {
+  const { t } = useTranslation();
   // Store the state of the send code button
   const [isSend, setIsSend] = useState(false);
 
@@ -62,12 +64,10 @@ const FormForget = () => {
         >
           {/* Form title */}
           <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-            forget Password
+            {t("forgotPassword.title")}
           </h2>
-          {/* Forme description */}
           <p className="text-[13px] mb-4 text-[#555770]">
-            You will receive an email to your email address to reset your
-            password
+            {t("forgotPassword.description")}
           </p>
           <div className="relative input-group ">
             {/* Email field */}
@@ -76,7 +76,7 @@ const FormForget = () => {
               className="input-control"
               type="text"
               id="email"
-              placeholder="email address"
+              placeholder={t("forgotPassword.fields.email")}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -93,16 +93,16 @@ const FormForget = () => {
             }  text-white rounded-[10px]`}
             type="submit"
           >
-            Send Email
+            {t("forgotPassword.sendButton")}
           </button>
         </form>
         {/* end form */}
         <div className="flex mt-4 text-[0.8rem]">
           {" "}
           {/* Go to the account creation page */}
-          <p>back to Login?</p>
+          <p>{t("forgotPassword.backToLogin")}</p>
           <Link to="/login" className="text-[#F47621] click">
-            Login
+            {t("forgotPassword.loginLink")}
           </Link>
         </div>
       </Wrapper>

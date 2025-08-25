@@ -12,6 +12,7 @@ if (import.meta.env.DEV) {
 import "./index.css";
 import "./responsive.css";
 import App from "./App.jsx";
+import "./i18n";
 
 // create a new instance of QueryClient
 const queryClient = new QueryClient();

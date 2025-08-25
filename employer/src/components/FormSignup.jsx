@@ -9,8 +9,10 @@ import { toast } from "react-toastify";
 import customFetch from "../utils/axios";
 import useEmailStore from "../store/storeEmail";
 import { CiCircleCheck } from "react-icons/ci";
+import { useTranslation } from "react-i18next";
 
 const FormSignup = () => {
+  const { t } = useTranslation();
   const [isFocused, setIsFocused] = useState(false);
 
   // Form level storage
@@ -122,13 +124,14 @@ const FormSignup = () => {
   return (
     <Wrapper>
       {/* start form */}
+
       <form
         className="inputs flex flex-col  SignUp"
         onSubmit={handleSubmit(submit)}
       >
         {/* Form title */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-8">
-          Sign up to Wo & Wann
+          {t("Signup.title")}
         </h2>
         <div className="relative input-group mb-2.5">
           {/* name field */}
@@ -137,7 +140,7 @@ const FormSignup = () => {
             className="input-control"
             type="text"
             id="name"
-            placeholder="Elderly House name"
+            placeholder={t("Signup.fields.HouseName")}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -152,7 +155,7 @@ const FormSignup = () => {
             className="input-control"
             type="text"
             id="email"
-            placeholder="Email Address"
+            placeholder={t("Signup.fields.Email")}
           />
           {errors && (
             <p className="text-red-500 text-[0.7rem] mt-2">
@@ -169,7 +172,7 @@ const FormSignup = () => {
               className="input-control"
               type={`${showPassword ? "text" : "password"}`}
               id="password"
-              placeholder="Password"
+              placeholder={t("Signup.fields.Password")}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
@@ -181,7 +184,7 @@ const FormSignup = () => {
               }`}
             >
               <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
-                Password must be at least 8 characters long.{" "}
+                {t("Signup.fields.password.minLength")}
                 {passwordValue?.length >= 8 ? (
                   <CiCircleCheck className="text-green-600 font-bold text-2xl" />
                 ) : (
@@ -190,7 +193,7 @@ const FormSignup = () => {
               </p>
 
               <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
-                Password must contain at least one symbol (e.g., !@#$%).{" "}
+                {t("Signup.fields.password.symbol")}
                 {/[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\\\|\<\>\,\.\?\/]/.test(
                   passwordValue
                 ) ? (
@@ -200,8 +203,8 @@ const FormSignup = () => {
                 )}
               </p>
               <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1">
-                Password must contain at least one uppercase and one lowercase
-                letter.{" "}
+                {t("Signup.fields.password.upperLower")}
+
                 {/(?=.*[a-z])(?=.*[A-Z])/.test(passwordValue) ? (
                   <CiCircleCheck className="text-green-600 font-bold text-2xl" />
                 ) : (
@@ -235,7 +238,7 @@ const FormSignup = () => {
               className="input-control"
               type={`${showConfirm ? "text" : "password"}`}
               id="confirmPassword"
-              placeholder="Confirm New Password"
+              placeholder={t("Signup.fields.confirmPassword")}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -271,7 +274,7 @@ const FormSignup = () => {
               className="text-[#194894] ml-1 text-[0.7rem]"
               htmlFor="remember"
             >
-              Agree to Terms & Conditions of wo & wann
+              {t("Signup.fields.termsLabel")}
             </label>
           </div>
         </div>
@@ -284,13 +287,15 @@ const FormSignup = () => {
           type="submit"
           disabled={!isChecked || isLoading}
         >
-          {!isLoading ? "Sign Up" : "Wating ... "}
+          {!isLoading
+            ? t("Signup.fields.signUpButton")
+            : t("Signup.fields.waitingText")}
         </button>
       </form>
       <div className="flex  text-[0.8rem]">
-        <p>Already have an account?</p>
+        <p>{t("Signup.fields.alreadyAccount")}</p>
         <p onClick={() => setLevel(1)} className="text-[#F47621] click">
-          Log in
+          {t("Signup.fields.logIn")}
         </p>
       </div>
     </Wrapper>

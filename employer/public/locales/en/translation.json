@@ -1,0 +1,291 @@
+{
+  "language": {
+    "switch": "Switch Language",
+    "english": "English",
+    "german": "German",
+    "turkish": "Turkish"
+  },
+
+  "login": {
+    "title": "Log in to Wo & Wann",
+    "email": {
+      "label": "Email Address",
+      "placeholder": "email address",
+      "validation": {
+        "required": "Email address is required.",
+        "invalid": "Please enter a valid email address.",
+        "maxLength": "The field must be no longer than 255 characters"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "password",
+      "validation": {
+        "required": "Password cannot be left empty"
+      }
+    },
+    "rememberPassword": "Remember Password",
+    "forgotPassword": "Forgot Password?",
+    "newUser": "New user?",
+    "createAccount": "Create an account",
+    "success": "Login successful",
+    "error": "Login error",
+    "loginButton": {
+      "waiting": "Waiting ...",
+      "login": "Login"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+
+  "Signup": {
+    "title": "Sign up to Wo & Wann",
+    "fields": {
+      "HouseName": "Elderly House name",
+      "Email": "Email Address",
+      "Password": "Password",
+      "password": {
+        "minLength": "Password must be at least 8 characters long.",
+        "symbol": "Password must contain at least one symbol (e.g., !@#$%).",
+        "upperLower": "Password must contain at least one uppercase and one lowercase letter."
+      },
+      "confirmPassword": "Confirm New Password",
+      "termsLabel": "Agree to Terms & Conditions of wo & wann",
+      "signUpButton": "Sign Up",
+      "waitingText": "Waiting ...",
+      "alreadyAccount": "Already have an account?",
+      "logIn": "Log in"
+    }
+  },
+  "forgotPassword": {
+    "title": "Forget Password",
+    "description": "You will receive an email to your email address to reset your password",
+    "fields": {
+      "email": "Email Address"
+    },
+    "sendButton": "Send Email",
+    "backToLogin": "Back to Login?",
+    "loginLink": "Login"
+  },
+  "VerifyEmail": {
+    "title": "Verify your email !",
+    "description": "We've emailed a 6-digit confirmation code, please enter the code in the box below to verify your email:",
+    "verifyButton": {
+      "waiting": "Waiting ...",
+      "verify": "Verify"
+    },
+    "noCode": "Don’t have a code?",
+    "resendCode": "Resend code",
+    "returnToSignIn": "Return to Sign in"
+  },
+  "StatusAccount": {
+    "new": "Please complete your employer profile to start sending job offers.",
+    "pending": "Your information has been received. We’ll get back to you shortly.",
+    "suspended": "Your account is currently suspended. Please check back later.",
+    "onHold": "Your account is currently on hold. Please check back later.",
+    "declined": "The submitted documents were not accepted. Kindly re-upload valid files.",
+    "button": {
+      "Complete": "Complete Profile",
+      "Re-upload": "Re-upload"
+    }
+  },
+  "SideBar": {
+    "pages": {
+      "Dashboard": "Dashboard",
+      "HouseProfile": "House Profile",
+      "PersonalInfo": "Personal Info",
+      "HelpRequests": "Help Requests",
+      "Invoices": "Invoices",
+      "ShiftsManagement": "Shifts Management"
+    },
+
+    "settings": {
+      "Language": "Language",
+      "Settings": "Settings",
+      "Logout": "Logout"
+    }
+  },
+  "PersonalSections": {
+    "title": "Personal Info",
+    "personalInfo": "Personal Info",
+    "phoneNumber": "Phone Number",
+    "requiredDocuments": "Required Documents",
+    "yourLocations": "Your Locations",
+    "signature": "Signature",
+    "button": {
+      "Complete": "Complete",
+      "Edit": "Edit",
+      "send": {
+        "Sendall": "Send all",
+        "Sending": "Sending"
+      }
+    }
+  },
+  "personaldetails": {
+    "title": "personal details",
+    "description": "Complete your personal details to proceed with the task.",
+    "gender": {
+      "male": "male",
+      "female": "female",
+      "other": "other"
+    },
+    "fields": {
+      "username": "username",
+      "bio": "bio"
+    },
+    "button": {
+      "Cancel": "Cancel",
+      "Add": "Add"
+    },
+    "validation": {
+      "usernameRequired": "Username is required",
+      "usernameMinLength": "Username must be at least 3 characters",
+      "bioRequired": "Bio is required",
+      "birthdayRequired": "Birthday is required",
+      "birthdayFormat": "Please enter the date in DD.MM.YYYY format",
+      "genderRequired": "Please select a gender"
+    }
+  },
+  "phoneNumber": {
+    "title": "Your Phone Number",
+    "description": "Please enter your phone number for verification",
+    "fields": {
+      "phoneNumber": "Phone Number"
+    },
+    "validation": {
+      "phoneRequired": "Phone number is required",
+      "phoneFormat": "Please enter a valid phone number"
+    },
+    "sendOtp": "Send OTP",
+    "verifyOtp": "Verify OTP",
+    "resendOtp": "Resend OTP",
+    "back": "Back",
+    "success": "Phone number verified successfully",
+    "error": "Phone number could not be verified"
+  },
+  "documents": {
+    "title": "Required Documents",
+    "description": "Please upload the required documents",
+    "uploadDocument": "Upload Document",
+    "removeDocument": "Remove",
+    "supportedFormats": "Supported formats: PDF, JPG, PNG",
+    "maxFileSize": "Maximum file size: 10MB",
+    "uploadAllRequired": "Please upload all required documents before pressing 'Add'.",
+    "uploading": "Your documents are being uploaded, please wait...",
+    "documentTypes": {
+      "id": "Identity Document",
+      "passport": "Passport",
+      "residencePermit": "Residence Permit",
+      "workPermit": "Work Permit",
+      "cv": "CV/Resume",
+      "certificates": "Certificates"
+    },
+    "validation": {
+      "documentRequired": "This document is required",
+      "invalidFormat": "Invalid file format",
+      "fileTooLarge": "File size is too large"
+    },
+    "back": "Back",
+    "submit": "Add",
+    "success": "Documents uploaded successfully",
+    "error": "Failed to upload documents"
+  },
+  "addLocation": {
+    "Pleaseenteryourlocation": "Please enter your location",
+    "alternateLocation": "Alternate location",
+    "primaryLocation": "Primary location",
+    "fields": {
+      "street": "street",
+      "house": "house",
+      "postalCode": "postalCode",
+      "city": "city",
+      "country": "country"
+    },
+    "next": "next",
+    "back": "back",
+    "popup": {
+      "title": "Confirmation Popup",
+      "noEdit": "noEdit",
+      "yesConfirm": "yesConfirm"
+    }
+  },
+  "signature": {
+    "title": "Complete Signature",
+    "description": "Please complete your signature",
+    "yourSignature": "Your Signature",
+    "uploadSignature": "Upload Signature",
+    "drawSignature": "Draw Signature",
+    "clearSignature": "Clear",
+    "deleteSignature": "Delete",
+    "signHere": "Sign Here",
+    "orUpload": "or Upload Your Signature",
+    "validation": {
+      "signatureRequired": "Please provide a signature",
+      "invalidFormat": "Signature must be a PNG, JPG, or JPEG image",
+      "fileTooLarge": "Signature must be smaller than 2MB"
+    },
+    "back": "Back",
+    "submit": "Submit",
+    "showSignature": "Show Signature",
+    "close": "Close",
+    "success": "Signature saved successfully",
+    "error": "Failed to save signature"
+  },
+  "HouseProfile": {
+    "title": "House Profile",
+    "label": {
+      "ElderlyhouseName": "Elderly house Name",
+      "Mangername": "Manger name",
+      "Email": "Email",
+      "PhoneNumber": "Phone Number",
+      "Address": "Address",
+      "City": "City",
+      "ZipCode": "Zip/Code",
+      "About": "About"
+    },
+    "avatar": {
+      "type": "Allowed *.jpeg, *.jpg, *.png, *.gif",
+      "max": "Max size of 3.1 MB",
+      "save": "save"
+    }
+  },
+  "LocationInfo": {
+    "title": "locationInfo",
+    "description": "addresses",
+    "add": "addNewAddress",
+    "address": "Address",
+    "primary": "Primary Location",
+    "status": {
+      "active": "Active",
+      "activate": "Activate",
+      "primary": "primary"
+    }
+  },
+  "HelpRequests": {
+    "title": "Help Requests",
+    "noneJop": "You haven’t sent any requests yet — post your first temporary job request now",
+    "add": "Create new help requests"
+  },
+  "Invoices": {
+    "title": "Invoices",
+    "noneInvoices": "You have no invoices yet. New invoices will be issued to you on the 1st of each month."
+  },
+  "Shifts": {
+    "title": "Shifts Mangment",
+    "add": "Add new Shift"
+  },
+  "notifications": {
+    "title": "notifications",
+    "noneNotifications": "No notifications yet!",
+    "seeAll": "See All Notifications"
+  }
+}

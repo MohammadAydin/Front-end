@@ -2,15 +2,16 @@ import React from "react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import useData from "../../hooks/useData";
 import DetailsList from "./DetailsList";
+import { useTranslation } from "react-i18next";
 
 const InvoicesMain = () => {
+  const { t } = useTranslation();
   const { data: invoices } = useData("/invoices");
   console.log(invoices);
   if (invoices?.data?.length === 0 || invoices?.data === null) {
     return (
       <div className="flex  justify-center items-center h-[100vh]">
-        You have no invoices yet. New invoices will be issued to you on the 1st
-        of each month.
+        {t("Invoices.noneInvoices")}
       </div>
     );
   }

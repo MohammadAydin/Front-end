@@ -5,14 +5,16 @@ import OnHoldstatusImg from "../assets/image/statusimage/OnHold.png";
 import declinedstatusImg from "../assets/image/statusimage/declinedstatus.png";
 import Errorr404 from "../assets/image/statusimage/Errorr404.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const statusAccount = (status) => {
+  const { t } = useTranslation();
   if (status === "new") {
     return (
       <div className="flex items-center justify-center flex-col h-full">
         <div className="relative flex items-center justify-center text-xl font-bold flex-col text-center p-9">
           <img className="w-90" src={newStatusImg} alt="" />
           <p className="absolute bottom-5 max-[320px]:bottom-[-20px]">
-            "Please complete your employer profile to start sending job offers."
+            {t("StatusAccount.new")}
           </p>
         </div>
         <div className="mt-2  max-[320px]:mt-10">
@@ -20,7 +22,7 @@ const statusAccount = (status) => {
             to="/Personal Info"
             className=" bg-blue-400 text-white p-2.5 rounded-[15px]"
           >
-            Complete Profile
+            {t("StatusAccount.button.Complete")}
           </Link>
         </div>
       </div>
@@ -30,9 +32,7 @@ const statusAccount = (status) => {
     return (
       <div className="relative  h-full flex items-center justify-center text-xl font-bold flex-col text-center p-9">
         <img className="w-90" src={pendingStatusImg} alt="" />
-        <p className="z-10 absolute mt-84">
-          Your information has been received. We’ll get back to you shortly.
-        </p>
+        <p className="z-10 absolute mt-84">{t("StatusAccount.pending")}</p>
       </div>
     );
   }
@@ -41,9 +41,7 @@ const statusAccount = (status) => {
     return (
       <div className="relative  h-full flex items-center justify-center text-xl font-bold flex-col text-center p-9">
         <img className="w-90" src={suspendedStatusImg} alt="" />
-        <p className="z-10 absolute mt-92">
-          "Your account is currently suspended. Please check back later."
-        </p>
+        <p className="z-10 absolute mt-92">{t("StatusAccount.suspended")}</p>
       </div>
     );
   }
@@ -51,9 +49,7 @@ const statusAccount = (status) => {
     return (
       <div className="relative  h-full flex items-center justify-center text-xl font-bold flex-col text-center p-9">
         <img className="w-90" src={OnHoldstatusImg} alt="" />
-        <p className="z-10 absolute mt-70">
-          Your account is currently on hold. Please check back later.
-        </p>
+        <p className="z-10 absolute mt-70">{t("StatusAccount.onHold")}</p>
       </div>
     );
   }
@@ -62,17 +58,14 @@ const statusAccount = (status) => {
       <div className="flex items-center justify-center flex-col   h-full">
         <div className="relative  flex items-center justify-center text-xl font-bold flex-col text-center p-5">
           <img className="w-90" src={declinedstatusImg} alt="" />
-          <p className="z-10 absolute mt-70">
-            The submitted documents were not accepted. Kindly re-upload valid
-            files.
-          </p>
+          <p className="z-10 absolute mt-70">{t("StatusAccount.declined")}</p>
         </div>
         <div className="max-[320px]:mt-10">
           <Link
             to="/Personal Info"
             className=" bg-blue-400 text-white p-2.5 rounded-[15px]"
           >
-            Re-upload{" "}
+            {t("StatusAccount.button.Re-upload")}
           </Link>
         </div>
       </div>
