@@ -3,17 +3,28 @@ import money from "../assets/images/editmoneypng.png";
 import { IoRocket } from "react-icons/io5";
 import { motion } from "framer-motion";
 const Rewards = () => {
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: -250,
+    },
+    visible: {
+      opacity: 1,
+      y: -10,
+      transition: {
+        delay: 0.4,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 200,
+      },
+    },
+  };
   return (
     <div className=" bg-white border border-gray-200 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5">
       <motion.div
-        initial={{ y: -250, opacity: 0 }}
-        animate={{ y: -10, opacity: 1 }}
-        transition={{
-          delay: 0.4,
-          duration: 0.5,
-          type: "spring",
-          stiffness: 200,
-        }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
         className="flex items-center justify-around Rewards flex-wrap max-[1041px]:flex-col mb-8 p-6"
       >
         <div className="text-[var(--font-color)] text-3xl flex flex-col max-[1041px]:order-2 max-[1041px]:items-center max-[1041px]:text-2xl max-[500px]:text-xl max-[400px]:text-xs gap-6">

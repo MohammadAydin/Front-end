@@ -40,7 +40,6 @@ const Contact = () => {
         phone: data.number,
         message: data.message,
       });
-      // تحقق من حالة الاستجابة
       if (response?.status === 200 || response?.status === 201) {
         setSuccess(t('contact.successMessage'));
         setServerError("");
