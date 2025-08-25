@@ -34,7 +34,7 @@ const Hero = () => {
               <div className="GooglePlay-download">
                 <img className="iconGooglePlay" src={imgGooglePlay} alt="" />
                 <div className="textaGoogle">
-                  <span className="textGooglePlaySpan">JETEZT BEI</span>
+                  <span className="textGooglePlaySpan ">JETEZT BEI</span>
                   <p className="textGooglePlayP">Google Play</p>
                 </div>
               </div>

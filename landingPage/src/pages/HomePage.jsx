@@ -8,10 +8,12 @@ import NachstenSchritt from "../components/NachstenSchritt";
 import Navbar from "../components/Navbar";
 import Registrieren from "../components/Registrieren";
 import SmallNavbar from "../components/SmallNavbar";
+import Rewards from "../components/Rewards";
 
 const HomePage = () => {
   return (
     <div className="App">
+      <Rewards />
       <Hero />
       <NachstenSchritt />
       <Registrieren />
