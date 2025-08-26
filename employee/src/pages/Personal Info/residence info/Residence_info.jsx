@@ -17,6 +17,7 @@ import handleNationality from "../../../store/HandleNationality";
 import { useTranslation } from "react-i18next";
 import useData from "../../../hooks/useData";
 import CalendarRange from "../../../components/MoreElements/Calendar/CalendarRange";
+import UploadGuidelines from "../../../components/MoreElements/UploadGuidelines ";
 
 const Residence_info = () => {
   const { t } = useTranslation();
@@ -193,27 +194,34 @@ const Residence_info = () => {
         <p className="text-lg font-bold">
           {t("residenceInfo.fields.idCopyTitle")}
         </p>
-        <div className="ID_Upload flex gap-5">
-          {ID_card.map((input) => (
-            <FileUploader
-              key={input.name}
-              name={input.name}
-              label={t(
-                `residenceInfo.fields.${
-                  input.name === "id_front" ? "front" : "back"
-                }`
-              )}
-              register={register}
-              setValue={setValue}
-              error={errors}
-            />
-          ))}
+        <div className="ID_Upload grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div className="lg:col-span-1">
+            <UploadGuidelines />
+          </div>
+
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
+            {ID_card.map((input) => (
+              <FileUploader
+                key={input.name}
+                name={input.name}
+                label={t(
+                  `residenceInfo.fields.${
+                    input.name === "id_front" ? "front" : "back"
+                  }`
+                )}
+                register={register}
+                setValue={setValue}
+                error={errors}
+              />
+            ))}
+          </div>
         </div>
         {serverError && (
           <p className="text-red-600 font-medium text-start mb-4">
             {serverError}
           </p>
         )}
+
         <SubmitButtons
           prevLabel={t("residenceInfo.back")}
           onCancel={() => navigate("/Personal info")}
