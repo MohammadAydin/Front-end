@@ -19,18 +19,7 @@ const HomePage = () => {
     <div className="App">
       <Rewards />
       <Hero />
-      <div className="flex justify-center my-8 flex-col items-center gap-8 p-4">
-        <h2 className="text-4xl text-center text-wrap text-[var(--primary-color)] flex gap-2 ">
-          <span className="text-[var(--secondary-color)]">
-            Melde dich schnell an
-          </span>{" "}
-          , um das Angebot zu sichern!
-          <a href="https://user.woundwann.de/login">
-            <BsArrowDownLeftCircleFill className=" mt-4 animate-bounce text-[var(--secondary-color)]" />
-          </a>
-        </h2>
-        <img className="rounded-[20px] w-2xl" src={euro} alt="" />
-      </div>
+
       <NachstenSchritt />
       <Registrieren />
       <Features />
