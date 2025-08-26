@@ -1,94 +1,95 @@
 {
-    "nav": {
-        "home": "Home",
-        "about": "About Us",
-        "contact": "Contact",
-        "signIn": "Sign In"
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact",
+    "signInuser": "Employee Login",
+    "signInelderly": "Elderly Login"
+  },
+  "hero": {
+    "title": "Connect caregivers and nursing homes effortlessly – with",
+    "subtitle": "Caregiver or facility? Become part of a strong network with just a few clicks – simply register and get started!",
+    "appComingSoon": "Our app is coming soon",
+    "download": "Download Our App",
+    "learnMore": "Learn More"
+  },
+  "nextStep": {
+    "caregiverTitle": "Ready for the next step?",
+    "caregiverDescription": "Find your perfect part-time job today with",
+    "employerTitle": "Ready for qualified staff?",
+    "employerDescription": "Find reliable caregivers – today with"
+  },
+  "register": {
+    "title": "Register now",
+    "description": "A service project that connects caregivers and nursing professionals with nursing homes. Through this project, nursing homes can request a caregiver or assistant when needed, and they can accept and respond to requests"
+  },
+  "features": {
+    "title": "Features or Benefits Area",
+    "userBenefits": {
+      "title": "Benefits for Users",
+      "description": "With our app, you can easily and effortlessly apply for a job.",
+      "items": [
+        "Easy connections",
+        "Flexible work schedule",
+        "Flexible workplace",
+        "Get your job without an interview",
+        "You also don't need a resume",
+        "There's a lot of flexibility in the work"
+      ]
     },
-    "hero": {
-        "title": "Connect caregivers and nursing homes effortlessly – with",
-        "subtitle": "Caregiver or facility? Become part of a strong network with just a few clicks – simply register and get started!",
-        "appComingSoon": "Our app is coming soon",
-        "download": "Download Our App",
-        "learnMore": "Learn More"
-    },
-    "nextStep": {
-        "caregiverTitle": "Ready for the next step?",
-        "caregiverDescription": "Find your perfect part-time job today with",
-        "employerTitle": "Ready for qualified staff?",
-        "employerDescription": "Find reliable caregivers – today with"
-    },
-    "register": {
-        "title": "Register now",
-        "description": "A service project that connects caregivers and nursing professionals with nursing homes. Through this project, nursing homes can request a caregiver or assistant when needed, and they can accept and respond to requests"
-    },
-    "features": {
-        "title": "Features or Benefits Area",
-        "userBenefits": {
-            "title": "Benefits for Users",
-            "description": "With our app, you can easily and effortlessly apply for a job.",
-            "items": [
-                "Easy connections",
-                "Flexible work schedule",
-                "Flexible workplace",
-                "Get your job without an interview",
-                "You also don't need a resume",
-                "There's a lot of flexibility in the work"
-            ]
-        },
-        "elderlyHomeBenefits": {
-            "title": "Benefits for Nursing Homes",
-            "description": "With our service, you can request staff at any time. Without loss of time, without stress and at fixed prices. The smart solution for companies that want to plan flexibly and cost-effectively.",
-            "items": [
-                "Available staff 24/7",
-                "Easy search for employees",
-                "Everything on one platform",
-                "Fixed prices – no negotiations needed, no time wasted.",
-                "You can even search for the nearest employees!",
-                "Save time",
-                "Get access to all your analytics anytime"
-            ]
-        }
-    },
-    "howItWorks": {
-        "title": "How Wo & Wann works",
-        "steps": [
-            {
-                "title": "Sign up",
-                "description": "Create an account as a caregiver or nursing home"
-            },
-            {
-                "title": "Post or accept job requests",
-                "description": "Nursing homes can post requests that caregivers can directly accept."
-            },
-            {
-                "title": "Complete online service",
-                "description": "Without complications, effort or phone calls"
-            }
-        ]
-    },
-    "contact": {
-        "title": "Contact",
-        "description": "Do you have questions? Contact us directly via email or through the contact form on this page.",
-        "name": "Full Name",
-        "email": "Email Address",
-        "phone": "Contact Number",
-        "subject": "Subject",
-        "message": "Message",
-        "send": "Send",
-        "successMessage": "Message sent successfully!",
-        "errorMessage": "Error sending message. Please try again.",
-        "office": "Office",
-        "emailTitle": "Email",
-        "phoneTitle": "Contact Number"
-    },
-    "footer": {
-        "copyright": "Copyrights © 2025 All Rights Reserved by",
-        "company": "WoundWann",
-        "impressum": "Legal Notice",
-        "privacy": "Privacy Policy"
-    },
-    "common": {
-        "brandName": "Wo & Wann"
+    "elderlyHomeBenefits": {
+      "title": "Benefits for Nursing Homes",
+      "description": "With our service, you can request staff at any time. Without loss of time, without stress and at fixed prices. The smart solution for companies that want to plan flexibly and cost-effectively.",
+      "items": [
+        "Available staff 24/7",
+        "Easy search for employees",
+        "Everything on one platform",
+        "Fixed prices – no negotiations needed, no time wasted.",
+        "You can even search for the nearest employees!",
+        "Save time",
+        "Get access to all your analytics anytime"
+      ]
     }
+  },
+  "howItWorks": {
+    "title": "How Wo & Wann works",
+    "steps": [
+      {
+        "title": "Sign up",
+        "description": "Create an account as a caregiver or nursing home"
+      },
+      {
+        "title": "Post or accept job requests",
+        "description": "Nursing homes can post requests that caregivers can directly accept."
+      },
+      {
+        "title": "Complete online service",
+        "description": "Without complications, effort or phone calls"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Do you have questions? Contact us directly via email or through the contact form on this page.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Contact Number",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "successMessage": "Message sent successfully!",
+    "errorMessage": "Error sending message. Please try again.",
+    "office": "Office",
+    "emailTitle": "Email",
+    "phoneTitle": "Contact Number"
+  },
+  "footer": {
+    "copyright": "Copyrights © 2025 All Rights Reserved by",
+    "company": "WoundWann",
+    "impressum": "Legal Notice",
+    "privacy": "Privacy Policy"
+  },
+  "common": {
+    "brandName": "Wo & Wann"
+  }
 }

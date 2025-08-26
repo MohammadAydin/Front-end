@@ -1,7 +1,7 @@
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
-import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const SmallNavbar = ({ isOpen, setIsOpen }) => {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
             <ul>
               <li>
                 <RouterLink onClick={() => setIsOpen(false)} to={"/"}>
-                  {t('nav.home')}
+                  {t("nav.home")}
                 </RouterLink>
               </li>
               <li>
@@ -24,7 +24,7 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                 >
-                  {t('nav.about')}
+                  {t("nav.about")}
                 </ScrollLink>
               </li>
               <li>
@@ -34,14 +34,22 @@ const SmallNavbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                 >
-                  {t('nav.contact')}
+                  {t("nav.contact")}
                 </ScrollLink>
               </li>
             </ul>
             <LanguageSwitcher />
-            <a className="SignInBtn" href="https://user.woundwann.de/">
-              {t('nav.signIn')}
-            </a>
+            <div className="SignInBtns ">
+              <a className="SignInBtn mb-3.5" href="https://user.woundwann.de/">
+                {t("nav.signInuser")}
+              </a>
+              <a
+                className="SignInBtn"
+                href="https://employer.woundwann.de/login"
+              >
+                {t("nav.signInelderly")}
+              </a>
+            </div>
           </div>
         </div>
       )}

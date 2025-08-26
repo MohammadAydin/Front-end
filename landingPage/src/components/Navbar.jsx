@@ -42,9 +42,20 @@ const Navbar = ({ isOpen, setIsOpen }) => {
             </li>
           </ul>
           <LanguageSwitcher />
-          <a className="SignInBtn" href="https://user.woundwann.de/">
-            {t("nav.signIn")}
-          </a>
+          <div className=" gap-4">
+            <a
+              className="SignInBtn w-32 text-center"
+              href="https://user.woundwann.de/"
+            >
+              {t("nav.signInuser")}
+            </a>
+            <a
+              className="SignInBtn w-32 text-center"
+              href="https://employer.woundwann.de/login"
+            >
+              {t("nav.signInelderly")}
+            </a>
+          </div>
         </div>
         <div onClick={() => setIsOpen(!isOpen)} className="NavIcon">
           <HiOutlineViewList size={40} />
