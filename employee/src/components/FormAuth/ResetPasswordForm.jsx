@@ -50,9 +50,16 @@ const ResetPasswordForm = () => {
       });
       // If the email send is successful
       setIsSend(true);
-      // setTimeout(() => {
-      //   navigate("/login");
-      // }, 1500);
+      if (response?.data?.data?.role == "employee") {
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      } else if (response?.data?.data?.role == "employer") {
+        setTimeout(() => {
+          navigate("https://employer.woundwann.de/login");
+        }, 1500);
+      }
+
       console.log(response?.data?.data?.role);
       setTimeout(() => {
         setIsSend(false);
