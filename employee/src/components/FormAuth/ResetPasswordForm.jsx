@@ -50,13 +50,13 @@ const ResetPasswordForm = () => {
       });
       // If the email send is successful
       setIsSend(true);
-      if (response?.data?.data?.role == "employee") {
+      if (response?.data?.data?.role === "employee") {
         setTimeout(() => {
           navigate("/login");
         }, 1500);
-      } else if (response?.data?.data?.role == "employer") {
+      } else if (response?.data?.data?.role === "employer") {
         setTimeout(() => {
-          navigate("https://employer.woundwann.de/login");
+          window.location.href = "https://employer.woundwann.de/login";
         }, 1500);
       }
 
