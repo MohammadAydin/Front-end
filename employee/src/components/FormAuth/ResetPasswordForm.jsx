@@ -5,7 +5,7 @@ import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { createResetPasswordSchema } from "../../utils/validationSchema";
 
 const ResetPasswordForm = () => {
@@ -50,21 +50,22 @@ const ResetPasswordForm = () => {
       });
       // If the email send is successful
       setIsSend(true);
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
+      // setTimeout(() => {
+      //   navigate("/login");
+      // }, 1500);
+      console.log(response?.data);
       setTimeout(() => {
         setIsSend(false);
       }, 15 * 60 * 1000);
       // Show login success message
-      toast.success(response?.data?.message || t('resetPassword.success'));
+      toast.success(response?.data?.message || t("resetPassword.success"));
       // Show a successful login message with the account
       // Emptying form fields
       reset();
 
       // In case it doesn't work
     } catch (error) {
-      toast.error(error.response?.data?.message || t('resetPassword.error'));
+      toast.error(error.response?.data?.message || t("resetPassword.error"));
 
       // Print the error message in console
     }
@@ -78,11 +79,11 @@ const ResetPasswordForm = () => {
       >
         {/* Form title */}
         <h2 className="formTitle font-bold text-[2.4vw] mt-6 text-[#28293D] mb-4">
-          {t('resetPassword.title')}
+          {t("resetPassword.title")}
         </h2>
         {/* Forme description */}
         <p className="text-[13px] mb-4 text-[#555770]">
-          {t('resetPassword.description')}
+          {t("resetPassword.description")}
         </p>
         <div className="  relative">
           <div className="relative input-group mb-3.5">
@@ -92,7 +93,7 @@ const ResetPasswordForm = () => {
               className="input-control"
               type={`${showPassword ? "text" : "password"}`}
               id="password"
-              placeholder={t('resetPassword.password.placeholder')}
+              placeholder={t("resetPassword.password.placeholder")}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -120,7 +121,7 @@ const ResetPasswordForm = () => {
               className="input-control"
               type={`${showConfirm ? "text" : "password"}`}
               id="confirmPassword"
-              placeholder={t('resetPassword.confirmPassword.placeholder')}
+              placeholder={t("resetPassword.confirmPassword.placeholder")}
             />
             {errors && (
               <p className="text-red-500 text-[0.7rem] mt-2">
@@ -144,11 +145,12 @@ const ResetPasswordForm = () => {
         {/* Login button */}
         <button
           disabled={isSend}
-          className={`p-2 mt-2.5 ${isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
-            }  text-white rounded-[10px]`}
+          className={`p-2 mt-2.5 ${
+            isSend ? "bg-gray-700 pointer-events-none" : " bg-amber-600"
+          }  text-white rounded-[10px]`}
           type="submit"
         >
-          {t('resetPassword.resetButton')}
+          {t("resetPassword.resetButton")}
         </button>
       </form>
       {/* end form */}
