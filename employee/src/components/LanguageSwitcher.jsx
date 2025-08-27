@@ -1,6 +1,9 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { IoLanguageOutline, IoChevronDown } from "react-icons/io5";
+import customFetch from "../utils/axios";
+import { toast } from "react-toastify";
 
 const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation();
@@ -16,10 +19,28 @@ const LanguageSwitcher = () => {
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
 
-  const handleLanguageChange = (languageCode) => {
-    i18n.changeLanguage(languageCode);
-    setIsOpen(false);
-  };
+  const changeLanguage = useMutation({
+    mutationFn: (key) =>
+      customFetch
+        .post(
+          `/language/set
+`,
+          {
+            language: key,
+          }
+        )
+        .then((res) => res.data),
+
+    onSuccess: (data, key) => {
+      i18n.changeLanguage(key);
+      setIsOpen(false);
+
+      toast.success(data.message);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -77,7 +98,7 @@ const LanguageSwitcher = () => {
             {languages.map((language) => (
               <button
                 key={language.code}
-                onClick={() => handleLanguageChange(language.code)}
+                onClick={() => changeLanguage.mutate(language.code)}
                 className={`${
                   i18n.language === language.code
                     ? "bg-gray-100 text-gray-900"

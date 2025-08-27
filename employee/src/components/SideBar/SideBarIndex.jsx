@@ -13,6 +13,9 @@ import Germany from "../../assets/images/icon-sidebar/germany.svg";
 import useLogout from "./logoutFun";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useRef } from "react";
+import { useMutation } from "@tanstack/react-query";
+import customFetch from "../../utils/axios";
+import { toast } from "react-toastify";
 
 const pages = [
   {
@@ -48,9 +51,24 @@ const pages = [
 ];
 
 const Settings = [
-  { id: 1, name: "navigation.language", icon: <IoLanguage size={24} />, type: "language" },
-  { id: 2, name: "navigation.settings", icon: <IoSettingsOutline size={24} />, type: "normal" },
-  { id: 3, name: "navigation.logout", icon: <IoLogOutOutline size={24} />, type: "logout" },
+  {
+    id: 1,
+    name: "navigation.language",
+    icon: <IoLanguage size={24} />,
+    type: "language",
+  },
+  {
+    id: 2,
+    name: "navigation.settings",
+    icon: <IoSettingsOutline size={24} />,
+    type: "normal",
+  },
+  {
+    id: 3,
+    name: "navigation.logout",
+    icon: <IoLogOutOutline size={24} />,
+    type: "logout",
+  },
 ];
 
 const PagesList = ({ setIsOpen }) => {
@@ -82,17 +100,40 @@ const SettingList = () => {
   const dropdownRef = useRef(null);
 
   const languages = [
-    { code: 'en', name: t('language.english'), flag: '🇺🇸' },
-    { code: 'de', name: t('language.german'), flag: '🇩🇪' },
-    { code: 'tr', name: t('language.turkish'), flag: '🇹🇷' }
+    { code: "en", name: t("language.english"), flag: "🇺🇸" },
+    { code: "de", name: t("language.german"), flag: "🇩🇪" },
+    { code: "tr", name: t("language.turkish"), flag: "🇹🇷" },
   ];
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   const handleLanguageChange = (languageCode) => {
     i18n.changeLanguage(languageCode);
     setIsLanguageDropdownOpen(false);
   };
+  const changeLanguage = useMutation({
+    mutationFn: (key) =>
+      customFetch
+        .post(
+          `/language/set
+`,
+          {
+            language: key,
+          }
+        )
+        .then((res) => res.data),
+
+    onSuccess: (data, key) => {
+      i18n.changeLanguage(key);
+      setIsLanguageDropdownOpen(false);
+
+      toast.success(data.message);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -102,9 +143,9 @@ const SettingList = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -146,11 +187,12 @@ const SettingList = () => {
           {languages.map((language) => (
             <button
               key={language.code}
-              onClick={() => handleLanguageChange(language.code)}
-              className={`${i18n.language === language.code
-                ? 'bg-blue-50 text-blue-600'
-                : 'text-gray-700 hover:bg-gray-100'
-                } group flex items-center px-4 py-2 text-sm w-full text-left transition-colors duration-200`}
+              onClick={() => changeLanguage.mutate(language.code)}
+              className={`${
+                i18n.language === language.code
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
+              } group flex items-center px-4 py-2 text-sm w-full text-left transition-colors duration-200`}
             >
               <span className="mr-4 text-lg">{language.flag}</span>
               <span className="flex-1">{language.name}</span>
