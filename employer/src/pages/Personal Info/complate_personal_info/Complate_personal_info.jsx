@@ -77,7 +77,6 @@ const Complate_personal_info = () => {
       username: data.Username,
       bio: data.Bio,
       birthday: "22.02.1900",
-      gender: data.gender,
     });
   };
 
@@ -89,12 +88,12 @@ const Complate_personal_info = () => {
       </p>
       <form onSubmit={handleSubmit(Submit)}>
         <div className="personal_info_grid grid grid-cols-2 gap-5">
-          <div>
+          {/* <div>
             <GenderSelector name="gender" control={control} />
             {errors.gender && (
               <p className="text-red-500 mt-2">{errors.gender.message}</p>
             )}
-          </div>
+          </div> */}
           {inputs.map((input) => (
             <InputField
               key={input.name}

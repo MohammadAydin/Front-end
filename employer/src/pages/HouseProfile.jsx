@@ -20,6 +20,7 @@ const HouseProfile = () => {
     error,
     isLoadingstatus,
   } = useData("/status/profile");
+  console.log(statusData);
 
   useEffect(() => {
     if (statusData?.data?.status) {
@@ -35,11 +36,11 @@ const HouseProfile = () => {
       window.location.reload();
     }
   }, []);
+  const { data: profile, isLoading } = useData("/profile");
 
   if (localStorage.getItem("statusAccount") !== "approved") {
     return statusAccount(localStorage.getItem("statusAccount"));
   }
-  const { data: profile, isLoading } = useData("/profile");
 
   // Open and closed state storage
   const [isOpen, setIsOpen] = useState(false);

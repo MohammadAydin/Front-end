@@ -35,7 +35,6 @@ export const createCompletePersonalInfoSchema = (t) => {
     //     /^\d{2}\.\d{2}\.\d{4}$/,
     //     t("completePersonalInfo.validation.birthdayFormat")
     //   ),
-    gender: z.string().min(1, t("personaldetails.validation.genderRequired")),
   });
 };
 
