@@ -212,6 +212,7 @@
     },
     "next": "next",
     "back": "back",
+    "edit": "edit",
     "popup": {
       "title": "Confirmation Popup",
       "noEdit": "noEdit",

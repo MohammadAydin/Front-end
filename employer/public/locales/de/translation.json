@@ -212,6 +212,7 @@
     },
     "next": "Weiter",
     "back": "Zurück",
+    "edit": "bearbeiten",
     "popup": {
       "title": "Bestätigungs-Popup",
       "noEdit": "Nicht bearbeiten",

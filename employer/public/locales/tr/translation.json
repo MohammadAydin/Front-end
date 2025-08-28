@@ -213,6 +213,7 @@
     },
     "next": "İleri",
     "back": "Geri",
+    "edit": "düzenle",
     "popup": {
       "title": "Onay Popup'u",
       "noEdit": "Düzenleme yok",

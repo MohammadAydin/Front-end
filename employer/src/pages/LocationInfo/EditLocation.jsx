@@ -35,6 +35,7 @@ const EditLocation = () => {
   const postalcode = searchParamstow.get("postal_code");
   const city = searchParamstow.get("city");
   const country = searchParamstow.get("country");
+  const { lengthLocations } = useParams();
 
   const {
     data: locations,
@@ -138,9 +139,12 @@ const EditLocation = () => {
     // container wrapper
     <Wrapper className="w-full">
       <div className="w-full">
-        <h1>{t("locationEdit.title")}</h1>
-        <p className="text-softColor mt-4">{t("locationEdit.description")}</p>
-
+        <h1>{t("addLocation.Pleaseenteryourlocation")}</h1>
+        <p className=" text-softColor mt-4">
+          {lengthLocations == 0
+            ? t("addLocation.primaryLocation")
+            : t("addLocation.alternateLocation")}
+        </p>
         <div className="mt-3 w-full">
           <div className="form-Loacations mt-5 w-full">
             <form onSubmit={(e) => e.preventDefault()} className="w-full">
@@ -150,7 +154,7 @@ const EditLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("editLocation.fields.street")}
+                  label={t("addLocation.fields.street")}
                   name={"street1"}
                   type={"text"}
                   defaultvalue={formDefaults.street1}
@@ -158,7 +162,7 @@ const EditLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("editLocation.fields.house")}
+                  label={t("addLocation.fields.house")}
                   name={"street2"}
                   type={"text"}
                   defaultvalue={formDefaults.street2}
@@ -166,7 +170,7 @@ const EditLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("editLocation.fields.postalCode")}
+                  label={t("addLocation.fields.postalCode")}
                   name={"postalcode"}
                   type={"text"}
                   defaultvalue={formDefaults.postalcode}
@@ -175,7 +179,7 @@ const EditLocation = () => {
                 <InputField
                   register={register}
                   errors={errors}
-                  label={t("editLocation.fields.city")}
+                  label={t("addLocation.fields.city")}
                   name={"city"}
                   type={"text"}
                   defaultvalue={formDefaults.city}
@@ -184,7 +188,7 @@ const EditLocation = () => {
               <InputField
                 register={register}
                 errors={errors}
-                label={t("editLocation.fields.country")}
+                label={t("addLocation.fields.country")}
                 name={"country"}
                 type={"text"}
                 defaultvalue={formDefaults.country}
@@ -214,7 +218,7 @@ const EditLocation = () => {
               >
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text={t("editLocation.back")}
+                  text={t("addLocation.back")}
                 />
               </Link>
 
@@ -223,7 +227,7 @@ const EditLocation = () => {
                 onClick={togglePopup}
                 type="button"
                 className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text={t("editLocation.edit")}
+                text={t("addLocation.edit")}
               />
             </div>
           </div>
