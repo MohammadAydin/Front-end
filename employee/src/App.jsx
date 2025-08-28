@@ -79,7 +79,7 @@ const router = createBrowserRouter([
         element: <Banking_info />,
       },
       {
-        path: "Social Insurance",
+        path: "SocialInsurance",
         element: <Social_Security_and_Health_Insurance />,
       },
       {

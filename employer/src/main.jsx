@@ -3,27 +3,26 @@ import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { LoadScript } from "@react-google-maps/api";
-// main.jsx أو App.jsx
 import { useAuthStore } from "./store/useAuthStore";
 
-if (import.meta.env.DEV) {
-  window.useAuthStore = useAuthStore; // هذا ما يتيح استخدامه في Console
-}
 import "./index.css";
 import "./responsive.css";
-import App from "./App.jsx";
 import "./i18n";
+import App from "./App.jsx";
 
-// create a new instance of QueryClient
+if (import.meta.env.DEV) {
+  window.useAuthStore = useAuthStore;
+}
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <LoadScript googleMapsApiKey="AIzaSyDH-rfDKqld3jf64z84P9e34iNBkdSwZlw">
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <App />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </LoadScript>
+      </LoadScript>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </StrictMode>
 );

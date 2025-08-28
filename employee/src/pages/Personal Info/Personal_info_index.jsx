@@ -41,7 +41,7 @@ const PersonalSections = () => {
     {
       icon: MdOutlineHealthAndSafety,
       label: t("personalInfoSections.socialSecurity"),
-      path: "/Social Insurance",
+      path: "/SocialInsurance",
       status_name: "social_security",
     },
     {
