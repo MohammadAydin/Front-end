@@ -16,8 +16,6 @@ const Social_Security_and_Health_Insurance = () => {
   const { t } = useTranslation();
   const { OpenSuccsess } = OpenSuccsessPopup();
   const navigate = useNavigate();
-  const { data } = useData("/profile/social-insurance-info");
-  console.log(data);
 
   const {
     register,
