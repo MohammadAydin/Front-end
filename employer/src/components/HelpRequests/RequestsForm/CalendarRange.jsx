@@ -42,7 +42,7 @@ const CalendarRange = ({ register, name, errors, setValue }) => {
         {errors[name] && <p className="text-red-500">{errors[name].message}</p>}
       </div>
       {isOpen && (
-        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-67%] z-50 bg-white shadow-2xl p-4 rounded-md">
+        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-50 bg-white shadow-2xl p-4 rounded-md">
           <div className="CalendarRange w-[400px] flex justify-end">
             <IoClose
               className=" cursor-pointer"

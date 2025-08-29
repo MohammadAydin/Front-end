@@ -77,6 +77,8 @@ const RequestsForm = () => {
 
       RequestClose(), reset();
     } catch (error) {
+      toast.error(error?.response?.data?.message);
+
       console.error("Error during submission:", error?.response?.data?.message);
     }
   };
@@ -142,7 +144,7 @@ const RequestsForm = () => {
                     </div>
                   ))}
                 </div>
-                <div className="w-full flex gap-3 items-center">
+                <div className="w-full flex gap-3 items-center h-full">
                   <div className="w-[22%]">
                     <SelectField
                       data={EmployeeNumber}

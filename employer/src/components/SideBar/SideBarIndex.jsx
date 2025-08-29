@@ -151,6 +151,7 @@ const SettingList = () => {
             >
               {languageList.map((lang) => (
                 <div
+                  key={lang?.id}
                   className="flex gap-4 hover:bg-gray-200  p-4 items-center justify-between"
                   onClick={() => changeLanguage.mutate(lang.key)}
                 >

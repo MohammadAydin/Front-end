@@ -36,11 +36,6 @@ const HouseProfile = () => {
       window.location.reload();
     }
   }, []);
-  const { data: profile, isLoading } = useData("/profile");
-
-  if (localStorage.getItem("statusAccount") !== "approved") {
-    return statusAccount(localStorage.getItem("statusAccount"));
-  }
 
   // Open and closed state storage
   const [isOpen, setIsOpen] = useState(false);
@@ -69,6 +64,11 @@ const HouseProfile = () => {
       Country: "Germany",
     },
   ]);
+  const { data: profile, isLoading } = useData("/profile");
+
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return statusAccount(localStorage.getItem("statusAccount"));
+  }
   if (localStorage.getItem("statusAccount") !== "approved") {
     return statusAccount(localStorage.getItem("statusAccount"));
   }
