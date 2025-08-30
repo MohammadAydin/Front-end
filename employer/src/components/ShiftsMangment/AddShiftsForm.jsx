@@ -8,8 +8,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
 const AddShiftsForm = ({ isFormOpen, setIsFormOpen }) => {
   const time = [
-    { label: "From", timeField: "fromTime", PeriodField: "fromPeriod" },
-    { label: "To", timeField: "toTime", PeriodField: "toPeriod" },
+    { label: "From", timeField: "fromTime" },
+    { label: "To", timeField: "toTime" },
   ];
 
   const queryClient = useQueryClient();
@@ -77,7 +77,6 @@ const AddShiftsForm = ({ isFormOpen, setIsFormOpen }) => {
                     register={register}
                     errors={errors}
                     timeField={field.timeField}
-                    PeriodField={field.PeriodField}
                   />
                 ))}
               </div>

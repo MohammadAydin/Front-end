@@ -69,9 +69,6 @@ const HouseProfile = () => {
   if (localStorage.getItem("statusAccount") !== "approved") {
     return statusAccount(localStorage.getItem("statusAccount"));
   }
-  if (localStorage.getItem("statusAccount") !== "approved") {
-    return statusAccount(localStorage.getItem("statusAccount"));
-  }
   return (
     // house profile wrapper
     <Wrapper className="mt-6 w-full pr-3.5 pl-2.5 ">
