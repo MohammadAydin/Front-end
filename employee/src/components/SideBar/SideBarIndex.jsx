@@ -16,6 +16,8 @@ import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
+import Popup from "../MoreElements/Popup/Popup";
+import PopupLogout from "../MoreElements/Popup/PopupLogout";
 
 const pages = [
   {
@@ -94,6 +96,17 @@ const PagesList = ({ setIsOpen }) => {
 // setting list
 
 const SettingList = () => {
+  const [isPopupLogout, setPopupLogout] = useState(false);
+  const togglePopupLogout = () => {
+    setPopupLogout(!isPopupLogout);
+  };
+  const onConfirm = () => {
+    logout();
+  };
+  const togglePopup = () => {
+    setPopuparrived(false);
+  };
+
   const logout = useLogout();
   const { t, i18n } = useTranslation();
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
@@ -151,7 +164,7 @@ const SettingList = () => {
 
   const handleItemClick = (item) => {
     if (item.type === "logout") {
-      logout();
+      togglePopupLogout();
     } else if (item.type === "language") {
       setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
     }
@@ -202,6 +215,9 @@ const SettingList = () => {
             </button>
           ))}
         </div>
+      )}
+      {isPopupLogout && (
+        <PopupLogout togglePopup={togglePopupLogout} onConfirm={onConfirm} />
       )}
     </div>
   );
