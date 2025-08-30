@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+import PopupLogout from "../MoreElements/Popup/PopupLogout";
 
 const PagesList = () => {
   const { t } = useTranslation();
@@ -79,6 +80,13 @@ const PagesList = () => {
 // setting list
 
 const SettingList = () => {
+  const [isPopupLogout, setPopupLogout] = useState(false);
+  const togglePopupLogout = () => {
+    setPopupLogout(!isPopupLogout);
+  };
+  const onConfirm = () => {
+    logout();
+  };
   const [Language, setLanguage] = useState(false);
   const { t, i18n } = useTranslation();
 
@@ -110,7 +118,9 @@ const SettingList = () => {
 
   const logout = useLogout();
   const handleClick = (itemKey) => {
-    if (itemKey === "logout") logout();
+    if (itemKey === "logout") {
+      togglePopupLogout();
+    }
     if (itemKey === "language") setLanguage(!Language);
   };
 
@@ -169,6 +179,9 @@ const SettingList = () => {
           </div>
         </li>
       ))}
+      {isPopupLogout && (
+        <PopupLogout togglePopup={togglePopupLogout} onConfirm={onConfirm} />
+      )}
     </ul>
   );
 };

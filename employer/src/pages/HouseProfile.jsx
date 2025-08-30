@@ -12,6 +12,7 @@ import useStatusAccount from "../store/storeStatusAccount";
 import statusAccount from "../utils/statusAccountReturn";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import StatusAccount from "../utils/statusAccountReturn";
 
 const HouseProfile = () => {
   const { t } = useTranslation();
@@ -66,7 +67,7 @@ const HouseProfile = () => {
   const { data: profile, isLoading } = useData("/profile");
 
   if (localStorage.getItem("statusAccount") !== "approved") {
-    return statusAccount(localStorage.getItem("statusAccount"));
+    return <StatusAccount status={localStorage.getItem("statusAccount")} />;
   }
   return (
     // house profile wrapper

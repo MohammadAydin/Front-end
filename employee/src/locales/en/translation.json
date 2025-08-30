@@ -168,6 +168,11 @@
     "language": "Language",
     "settings": "Settings",
     "logout": "Logout",
+    "logoutPopup": {
+      "confirmation": "Are you sure you want to log out?",
+      "cancel": "No, cancel",
+      "confirm": "Yes, I'm sure"
+    },
     "employee": "Employee"
   },
   "nav": {

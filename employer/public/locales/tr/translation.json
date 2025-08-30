@@ -112,7 +112,12 @@
     "settings": {
       "Language": "Dil",
       "Settings": "Ayarlar",
-      "Logout": "Çıkış Yap"
+      "Logout": "Çıkış Yap",
+      "logout": {
+        "confirmation": "Çıkış yapmak istediğinizden emin misiniz?",
+        "cancel": "Hayır, iptal",
+        "confirm": "Evet, eminim"
+      }
     }
   },
   "PersonalSections": {
