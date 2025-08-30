@@ -42,7 +42,6 @@ const TasksDetails = () => {
   const [minutesDiff, setMinutesDiff] = useState(0);
   const [daysDiff, setDaysDiff] = useState(0);
 
-  console.log(new Date(task?.task?.StartDate));
   useEffect(() => {
     if (new Date(task?.task?.StartDate) > new Date()) {
       const { days, hours, minutes } = timeDifference(
@@ -107,7 +106,6 @@ const TasksDetails = () => {
       handleSetLevel(2), toast.success("ok your in way");
     },
     onError: (error) => {
-      console.log(error?.response?.data?.message);
       toast.error("no your in way");
     },
   });

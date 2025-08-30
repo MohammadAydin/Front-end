@@ -20,7 +20,6 @@ const HouseProfile = () => {
     error,
     isLoadingstatus,
   } = useData("/status/profile");
-  console.log(statusData);
 
   useEffect(() => {
     if (statusData?.data?.status) {

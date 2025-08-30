@@ -62,7 +62,6 @@ const VerifyEmailForm = () => {
       addUserToLocalStorage(response?.data?.data);
       useAuthStore.getState().setUser(response.data.data);
 
-      console.log(response);
       toast.success(response?.data?.message);
 
       // If the Verify is successful

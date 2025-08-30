@@ -9,7 +9,6 @@ const DocumentsList = ({ docs, setDocuments }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUploading, setIsUploading] = useState("");
   const { t } = useTranslation();
-  console.log(docs?.status);
 
   if (isOpen) {
     document.body.classList.add("overflow-hidden");

@@ -19,7 +19,6 @@ const TasksPage = () => {
   const { t } = useTranslation();
   // To store tasks
   const { data: tasks, error, isLoading } = useJobs("/tasks");
-  console.log(tasks);
   const filterTasks =
     selectedValue === "all" || !selectedValue
       ? tasks
@@ -91,7 +90,6 @@ const TasksPage = () => {
               key={task.id}
               className="task-div flex justify-between items-center mb-7 p-4 max-[510px]:flex-col max-[510px]:items-start max-[510px]:gap-5"
             >
-              {console.log(task)}
 
               <div className="imgAndinfo flex gap-5 items-center flex-wrap">
                 {/* View a picture of the elderly house*/}
@@ -117,7 +115,6 @@ const TasksPage = () => {
                   task.status == "done" && " flex-row-reverse"
                 } min-w-[10vw] flex items-center gap-3 justify-start  max-[750px]:flex-col `}
               >
-                {console.log(task.status)}
                 {task.status !== "done" && (
                   <Link
                     to={`/taskDetails/${task.id}`}

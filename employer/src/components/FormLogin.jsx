@@ -96,7 +96,6 @@ const FormLogin = () => {
       }
     } catch (error) {
       toast.error(t("login.error") + ": " + error?.response?.data?.message);
-      console.log(error?.response?.data?.message);
       if (
         error?.response?.data?.message ===
         "Your account is not active. A new verification code has been sent to your email. Please check your inbox or spam folder."

@@ -60,7 +60,6 @@ const ResetPasswordForm = () => {
         }, 1500);
       }
 
-      console.log(response?.data?.data?.role);
       setTimeout(() => {
         setIsSend(false);
       }, 15 * 60 * 1000);

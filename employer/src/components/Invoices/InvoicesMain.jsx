@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 const InvoicesMain = () => {
   const { t } = useTranslation();
   const { data: invoices } = useData("/invoices");
-  console.log(invoices);
   if (invoices?.data?.length === 0 || invoices?.data === null) {
     return (
       <div className="flex  justify-center items-center h-[100vh]">

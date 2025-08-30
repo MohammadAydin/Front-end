@@ -18,7 +18,6 @@ const FileUploadForm = ({ isOpen, setIsOpen }) => {
   const [fileName, setFileName] = useState("");
 
   const onSubmit = (data) => {
-    console.log(data);
     setIsOpen(false);
     resetForm();
   };

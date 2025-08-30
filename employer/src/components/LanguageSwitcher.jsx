@@ -31,7 +31,6 @@ const LanguageSwitcher = () => {
         .then((res) => res.data),
 
     onSuccess: (data, key) => {
-      console.log(data);
       i18n.changeLanguage(key);
       toast.success(data.message);
       setIsOpen(false);
