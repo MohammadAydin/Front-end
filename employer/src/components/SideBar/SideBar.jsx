@@ -19,7 +19,7 @@ const SideBar = ({ setNotificationIsOpen }) => {
           <div className="w-full">
             <div className="profile-user pt-[30px] flex flex-col items-center ">
               <img
-                className="avatar w-[60px] rounded-full"
+                className="avatar w-[60px] h-[60px] rounded-full"
                 src={
                   photodata?.data?.photo
                     ? photodata?.data?.photo
