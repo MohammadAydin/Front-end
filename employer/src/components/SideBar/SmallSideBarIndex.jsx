@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import PopupLogout from "../MoreElements/Popup/PopupLogout";
 
-const PagesList = () => {
+const SmallPagesList = ({ setIsOpen }) => {
   const { t } = useTranslation();
 
   const pages = [
@@ -66,7 +66,10 @@ const PagesList = () => {
     <ul className="sidebarList">
       {pages.map((page) => (
         <NavLink to={page.path} key={page.id}>
-          <li className="nav-item flex items-center gap-2 mx-[5px] relative group">
+          <li
+            onClick={() => setIsOpen(false)}
+            className="nav-item flex items-center gap-2 mx-[5px] relative group"
+          >
             {page.icon}
             <p className="pageName">{page.name}</p>
             <span className="SmallpageName hidden">{page.name}</span>
@@ -79,7 +82,7 @@ const PagesList = () => {
 
 // setting list
 
-const SettingList = () => {
+const SmallSettingList = ({ setIsOpen }) => {
   const [isPopupLogout, setPopupLogout] = useState(false);
   const togglePopupLogout = () => {
     setPopupLogout(!isPopupLogout);
@@ -139,10 +142,11 @@ const SettingList = () => {
     onSuccess: (data, key) => {
       i18n.changeLanguage(key);
       toast.success(data.message);
-      
+      setIsOpen(false);
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message);
+      setIsOpen(false);
     },
   });
   return (
@@ -186,4 +190,4 @@ const SettingList = () => {
     </ul>
   );
 };
-export { PagesList, SettingList };
+export { SmallPagesList, SmallSettingList };

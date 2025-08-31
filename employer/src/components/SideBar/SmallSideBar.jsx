@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsList } from "react-icons/bs";
 import profileAvatar from "../../assets/image/Img_Avatar.25.svg";
 import { PagesList, SettingList } from "./SideBarIndex";
+import { SmallPagesList, SmallSettingList } from "./SmallSideBarIndex";
 
 const SmallSideBar = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -19,10 +20,10 @@ const SmallSideBar = () => {
       {isOpen && (
         <div className="sideBarMenu w-[93%] left-[50%] top-[10%] p-5 py-8 translate-x-[-50%] bg-[#194894] absolute text-white rounded-lg z-[1000]">
           <div className="mb-15">
-            <PagesList />
+            <SmallPagesList setIsOpen={setIsOpen} />
           </div>
           <div>
-            <SettingList />
+            <SmallSettingList  setIsOpen={setIsOpen}/>
           </div>
         </div>
       )}
