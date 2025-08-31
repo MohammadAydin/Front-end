@@ -11,6 +11,8 @@ import useData from "../../../hooks/useData";
 import customFetch from "../../../utils/axios";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import PopupDetailsJop from "../../MoreElements/Popup/PopupDetailsJop";
 
 const inputs = [
   { name: "Title", label: "Title", type: "text" },
@@ -34,6 +36,11 @@ const RequestsForm = () => {
   const { RequestIsOpen, RequestClose, RequestDone, Done, notDone } =
     useRequestsStore();
   const { data: dataShift, error, isLoading } = useData("/employer/shifts");
+  const [showDetails, setShowDetails] = useState(false);
+  const togglePopupDetails = () => {
+    setShowDetails(!togglePopupDetails);
+  };
+
   const {
     data: dataLocationt,
     errorLocation,
@@ -59,29 +66,38 @@ const RequestsForm = () => {
     },
   });
 
-  const submit = async (data) => {
-    console.log(data);
-    try {
-      const response = await customFetch.post("/employerJobPosting", {
-        title: data.Title,
-        description: data.Description,
-        employees_required: data.EmployeeCount,
-        date_from: new Date(data.date.from).toISOString().split("T")[0],
-        date_to: new Date(data.date.to).toISOString().split("T")[0],
-        location_id: data.Address,
-        employee_positions_id: data.Position,
-        shift_id: data.Shifts,
-      });
-      queryClient.invalidateQueries(["employerJobPosting"]);
-      toast.success(response?.data?.message);
+  const [formData, setFormData] = useState(null);
 
-      RequestClose(), reset();
-    } catch (error) {
-      toast.error(error?.response?.data?.message);
-
-      console.error("Error during submission:", error?.response?.data?.message);
+  const submit = (data) => {
+    if (data) {
+      setFormData(data);
+      setShowDetails(true);
     }
   };
+
+  // const submit = async (data) => {
+  //   console.log(data);
+  //   try {
+  //     const response = await customFetch.post("/employerJobPosting", {
+  //       title: data.Title,
+  //       description: data.Description,
+  //       employees_required: data.EmployeeCount,
+  //       date_from: new Date(data.date.from).toISOString().split("T")[0],
+  //       date_to: new Date(data.date.to).toISOString().split("T")[0],
+  //       location_id: data.Address,
+  //       employee_positions_id: data.Position,
+  //       shift_id: data.Shifts,
+  //     });
+  //     queryClient.invalidateQueries(["employerJobPosting"]);
+  //     toast.success(response?.data?.message);
+
+  //     RequestClose(), reset();
+  //   } catch (error) {
+  //     toast.error(error?.response?.data?.message);
+
+  //     console.error("Error during submission:", error?.response?.data?.message);
+  //   }
+  // };
 
   return (
     <>
@@ -170,13 +186,50 @@ const RequestsForm = () => {
                     errors={errors}
                   />
                 </div>
+
                 <SubmitButtons
                   onCancel={() => {
                     RequestClose(), reset();
                   }}
                   submitLabel="Send"
+                  setShowDetails={setShowDetails}
                 />
               </form>
+              {showDetails && formData && (
+                <PopupDetailsJop
+                  formData={formData} // ✅ ضروري
+                  togglePopup={() => setShowDetails(false)}
+                  onConfirm={async () => {
+                    try {
+                      const response = await customFetch.post(
+                        "/employerJobPosting",
+                        {
+                          title: formData.Title,
+                          description: formData.Description,
+                          employees_required: formData.EmployeeCount,
+                          date_from: new Date(formData.date.from)
+                            .toISOString()
+                            .split("T")[0],
+                          date_to: new Date(formData.date.to)
+                            .toISOString()
+                            .split("T")[0],
+                          location_id: formData.Address,
+                          employee_positions_id: formData.Position,
+                          shift_id: formData.Shifts,
+                        }
+                      );
+
+                      queryClient.invalidateQueries(["employerJobPosting"]);
+                      toast.success(response?.data?.message);
+
+                      RequestClose();
+                      reset();
+                    } catch (error) {
+                      toast.error(error?.response?.data?.message);
+                    }
+                  }}
+                />
+              )}
             </div>
           )}
         </div>

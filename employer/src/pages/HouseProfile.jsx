@@ -21,6 +21,13 @@ const HouseProfile = () => {
     error,
     isLoadingstatus,
   } = useData("/status/profile");
+  const {
+    data: Location,
+    erroLocationr,
+    isLoadingLocation,
+  } = useData("/locations");
+  const primaryAddress = Location?.data?.find((item) => item.is_primary === 1);
+  console.log(primaryAddress);
 
   useEffect(() => {
     if (statusData?.data?.status) {
@@ -65,6 +72,7 @@ const HouseProfile = () => {
     },
   ]);
   const { data: profile, isLoading } = useData("/profile");
+  console.log(profile);
 
   if (localStorage.getItem("statusAccount") !== "approved") {
     return <StatusAccount status={localStorage.getItem("statusAccount")} />;
@@ -107,7 +115,7 @@ const HouseProfile = () => {
                     <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                       {t("HouseProfile.label.Address")}
                     </p>
-                    {profile?.data?.address || "empty"}{" "}
+                    {primaryAddress?.street1}{" "}
                   </div>
                 </div>
                 {/* A container containing the right and right sides */}
@@ -128,18 +136,18 @@ const HouseProfile = () => {
                     <p className="p-[1px] text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                       {t("HouseProfile.label.City")}
                     </p>
-                    Berlin
+                    {primaryAddress?.city}
                   </div>
                 </div>
               </div>
               {/* A customized box for Zip/Code*/}
               <div className="mt-4">
-                <div className="relative info-square">
+                {/* <div className="relative info-square">
                   <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
                     {t("HouseProfile.label.ZipCode")}
                   </p>
                   506540
-                </div>
+                </div> */}
               </div>
               {/* Customized box for about */}
               <div className="mt-4">

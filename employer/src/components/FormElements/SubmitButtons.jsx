@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-const SubmitButtons = ({ onCancel, submitLabel = "Add" }) => {
+const SubmitButtons = ({ onCancel, submitLabel = "Add", setShowDetails }) => {
   const { t } = useTranslation();
   return (
     <div className="SubmitButtons flex gap-3 items-center justify-end">
@@ -12,7 +12,9 @@ const SubmitButtons = ({ onCancel, submitLabel = "Add" }) => {
         {t("personaldetails.button.Cancel")}
       </button>
       <button
-        type="submit"
+        onClick={() => setShowDetails(true)}
+        // type="submit"
+        type="button"
         className="bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
       >
         {t("personaldetails.button.Add")}
