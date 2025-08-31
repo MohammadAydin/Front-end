@@ -15,7 +15,7 @@ const PopupLogout = ({ togglePopup, onConfirm }) => {
         {/* Alert icon */}
         <RiErrorWarningLine className="text-secondaryColor text-9xl " />
 
-        <p className="mt-8"> {t("navigation.logoutPopup.confirmation")}</p>
+        <p className="mt-8 text-black"> {t("navigation.logoutPopup.confirmation")}</p>
         {/* Close icon */}
         <button className="close-modal" onClick={togglePopup}>
           <IoMdClose />
@@ -24,7 +24,7 @@ const PopupLogout = ({ togglePopup, onConfirm }) => {
           {/* Cancel modification button */}
           <Button
             onClick={togglePopup}
-            className="bg-softwhite border   p-2 rounded-[10px] w-full"
+            className="bg-softwhite border text-black p-2 rounded-[10px] w-full"
             text={t("navigation.logoutPopup.cancel")}
           />
           {/* Submit confirmation button */}
