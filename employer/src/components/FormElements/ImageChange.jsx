@@ -5,7 +5,13 @@ import useData from "../../hooks/useData";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-const ImageChange = ({ register, setValue, name = "avatar", errors }) => {
+const ImageChange = ({
+  register,
+  setValue,
+  name = "avatar",
+  errors,
+  watch,
+}) => {
   const { t } = useTranslation();
 
   const { data: photodata } = useData("/photo");
@@ -23,6 +29,7 @@ const ImageChange = ({ register, setValue, name = "avatar", errors }) => {
       setValue(name, file, { shouldValidate: true });
     }
   };
+  const avatarFile = watch("avatar");
 
   return (
     <div className="w-full flex flex-col  items-center gap-5 mb-8">
@@ -47,13 +54,19 @@ const ImageChange = ({ register, setValue, name = "avatar", errors }) => {
         type="file"
         accept="image/*"
       />
+      {avatarFile && avatarFile instanceof File ? (
+        <>
+          <div className="imageDetails text-[#919EAB] text-center">
+            <p className="mt-2.5">{t("HouseProfile.avatar.type")}</p>
+            <p>{t("HouseProfile.avatar.max")}</p>
+          </div>
 
-      <div className="imageDetails text-[#919EAB] text-center">
-        <p className="mt-2.5"> {t("HouseProfile.avatar.type")}</p>
-        <p>{t("HouseProfile.avatar.max")}</p>
-      </div>
-      {errors[name] && (
-        <p className="text-red-500 ml-2">{errors[name].message}</p>
+          {errors[name] && (
+            <p className="text-red-500 ml-2">{errors[name].message}</p>
+          )}
+        </>
+      ) : (
+        ""
       )}
     </div>
   );

@@ -27,6 +27,7 @@ const ProfilePhoto = () => {
     onSuccess: () => {
       setServerSuccess("success upload photo profile");
       queryClient.invalidateQueries({ queryKey: ["/photo"] });
+      resetField("avatar");
     },
     onError: (error) => {
       const message =
@@ -49,6 +50,8 @@ const ProfilePhoto = () => {
     handleSubmit,
     setValue,
     formState: { errors },
+    watch,
+    resetField,
   } = useForm({ resolver: zodResolver(ShemaPhoto) });
 
   const submit = (data) => {
@@ -57,6 +60,7 @@ const ProfilePhoto = () => {
 
     addAvatar.mutate(formData);
   };
+  const avatarFile = watch("avatar");
 
   return (
     <form
@@ -69,16 +73,19 @@ const ProfilePhoto = () => {
           setValue={setValue}
           errors={errors}
           avatar={data?.photo}
+          watch={watch}
         />
         {serverSuccess && (
           <p className=" text-green-600 font-medium mt-2">{serverSuccess}</p>
         )}
-        <button
-          type="submit"
-          className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
-        >
-          {t("HouseProfile.avatar.save")}
-        </button>
+        {avatarFile && avatarFile instanceof File && (
+          <button
+            type="submit"
+            className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
+          >
+            {t("HouseProfile.avatar.save")}
+          </button>
+        )}
       </div>
 
       {serverError && (
