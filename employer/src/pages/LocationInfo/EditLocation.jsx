@@ -207,7 +207,7 @@ const EditLocation = () => {
                 />
               </div>
             </form>
-            <div className="flex w-[25vw] gap-3.5 ml-auto mt-16">
+            <div className="flex w-[25vw] gap-3.5 ml-auto mt-8">
               {/* If Workabilities is false Displays button back the location add */}
 
               <Link

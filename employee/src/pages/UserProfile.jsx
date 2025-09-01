@@ -79,7 +79,9 @@ const UserProfile = () => {
         <div className="UserProfileInfo w-[730px] grid grid-cols-2 gap-2">
           {data &&
             Object.entries(data).map(([key, value]) => {
-              if (key === "avatar") return null;
+              if (key === "avatar" || key === "is_viewable_contract")
+                return null;
+
               return (
                 <div
                   key={key}
@@ -94,27 +96,30 @@ const UserProfile = () => {
                 </div>
               );
             })}
-          <div className=" relative">
-            <button
-              onClick={downloadPdf}
-              className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
-            >
-              {loadingPdf ? (
-                <SpinnerLoading />
-              ) : (
-                <div className="flex items-center gap-2">
-                  {t("userProfile.downloadContract")}
-                  <span>
-                    <HiOutlineDownload size={24} />
-                  </span>
-                </div>
-              )}
-            </button>
+          {data?.is_viewable_contract && (
+            <div className=" relative">
+              <button
+                disabled
+                onClick={downloadPdf}
+                className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
+              >
+                {loadingPdf ? (
+                  <SpinnerLoading />
+                ) : (
+                  <div className="flex items-center gap-2">
+                    {t("userProfile.downloadContract")}
+                    <span>
+                      <HiOutlineDownload size={24} />
+                    </span>
+                  </div>
+                )}
+              </button>
 
-            <Link to="/contract">
-              <PiEyeLight className="text-4xl mt-3.5 absolute top-[6px] left-1.5 text-white click hover:text-black" />
-            </Link>
-          </div>
+              <Link to="/contract">
+                <PiEyeLight className="text-4xl mt-3.5 absolute top-[6px] left-1.5 text-white click hover:text-black" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

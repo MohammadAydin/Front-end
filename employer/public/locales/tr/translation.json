@@ -294,5 +294,43 @@
     "title": "Bildirimler",
     "noneNotifications": "Henüz bildirim yok!",
     "seeAll": "Tüm Bildirimleri Gör"
+  },
+
+  "RequestsForm": {
+    "title": "Yeni yardım talebi oluştur",
+    "confirmTitle": "Talep detaylarını onayla",
+    "warningTitle": "Önemli Uyarı",
+    "successTitle": "Talepleriniz başarıyla gönderildi",
+    "backToManagement": "Yönetime geri dön",
+    "fields": {
+      "title": "Başlık",
+      "description": "Açıklama",
+      "position": "Pozisyon",
+      "shifts": "Vardiyalar",
+      "address": "Adres",
+      "employeeCount": "Çalışan Sayısı",
+      "dateRange": "Tarih Aralığı"
+    },
+    "buttons": {
+      "next": "İleri",
+      "cancel": "İptal",
+      "confirm": "Onayla",
+      "submitRequest": "Talebi Gönder"
+    },
+    "warning": {
+      "cancellationPolicy": "İptal Politikası",
+      "policyText": "İş talebini bir çalışan kabul ettikten sonra iptal edemezsiniz ve iptal edilirse bir ücret",
+      "willbecharged": "Ücret alınacaktır.",
+      "acknowledgeText": "\"Talebi Gönder\" butonuna tıklayarak bu iptal politikasını kabul ettiğinizi ve onayladığınızı belirtirsiniz."
+    },
+    "summary": {
+      "title": "Talep Özeti",
+      "subtitle": "Lütfen talep detaylarınızı gözden geçirin",
+      "verified": "Tüm bilgiler doğrulandı ve gönderime hazır"
+    },
+    "employee": {
+      "singular": "Çalışan",
+      "plural": "Çalışanlar"
+    }
   }
 }

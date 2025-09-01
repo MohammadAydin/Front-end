@@ -1,0 +1,107 @@
+/* RequestSummary Responsive Styles */
+
+/* Custom scrollbar for webkit browsers */
+.request-summary-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.request-summary-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.request-summary-scroll::-webkit-scrollbar-thumb {
+  background: #F47621;
+  border-radius: 3px;
+}
+
+.request-summary-scroll::-webkit-scrollbar-thumb:hover {
+  background: #194894;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .request-summary-container {
+    max-height: 65vh !important;
+  }
+  
+  .request-summary-header {
+    padding: 0.75rem !important;
+  }
+  
+  .request-summary-content {
+    padding: 0.75rem !important;
+  }
+  
+  .request-summary-card {
+    padding: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .request-summary-container {
+    max-height: 70vh !important;
+  }
+}
+
+/* Ensure proper spacing on very small screens */
+@media (max-width: 480px) {
+  .request-summary-container {
+    max-height: 60vh !important;
+  }
+  
+  .request-summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Smooth transitions for better UX */
+.request-summary-card {
+  transition: all 0.3s ease;
+}
+
+.request-summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure sticky header works properly */
+.request-summary-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to right, #F47621, #194894) !important;
+}
+
+/* Fix for modal scrolling */
+.RequestsForm {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Ensure modal container allows scrolling */
+.modal-container {
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 768px) {
+  .RequestsForm {
+    max-height: 95vh;
+    margin: 1rem;
+    width: calc(100% - 2rem);
+  }
+  
+  .modal-container {
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}

@@ -27,7 +27,6 @@ const HouseProfile = () => {
     isLoadingLocation,
   } = useData("/locations");
   const primaryAddress = Location?.data?.find((item) => item.is_primary === 1);
-  console.log(primaryAddress);
 
   useEffect(() => {
     if (statusData?.data?.status) {
@@ -72,7 +71,6 @@ const HouseProfile = () => {
     },
   ]);
   const { data: profile, isLoading } = useData("/profile");
-  console.log(profile);
 
   if (localStorage.getItem("statusAccount") !== "approved") {
     return <StatusAccount status={localStorage.getItem("statusAccount")} />;
@@ -150,20 +148,20 @@ const HouseProfile = () => {
                 </div> */}
               </div>
               {/* Customized box for about */}
-              <div className="mt-4">
-                <div className="relative info-square flex justify-between items-center">
-                  <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                    {t("HouseProfile.label.About")}
-                  </p>
-                  {/* If there is input information, display it or dummy text */}
-                  {about ? about : "About Elderly House"}
-                  {/* The edit icon, when clicked, opens the edit popup */}
-                  <RiPencilLine
-                    onClick={() => setIsOpenAbout(true)}
-                    className="click text-[1.3rem] text-gray-400"
-                  />
-                </div>
-              </div>
+              {/* <div className="mt-4"> */}
+              {/* <div className="relative info-square flex justify-between items-center"> */}
+              {/* <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white"> */}
+              {/* {t("HouseProfile.label.About")} */}
+              {/* </p> */}
+              {/* If there is input information, display it or dummy text */}
+              {/* {about ? about : "About Elderly House"} */}
+              {/* The edit icon, when clicked, opens the edit popup */}
+              {/* <RiPencilLine */}
+              {/* // onClick={() => setIsOpenAbout(true)} */}
+              {/* className="click text-[1.3rem] text-gray-400" */}
+              {/* /> */}
+              {/* </div> */}
+              {/* </div> */}
             </div>
           </div>
         </div>

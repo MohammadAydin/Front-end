@@ -293,5 +293,43 @@
     "title": "notifications",
     "noneNotifications": "No notifications yet!",
     "seeAll": "See All Notifications"
+  },
+
+  "RequestsForm": {
+    "title": "Create new help request",
+    "confirmTitle": "Confirm Request Details",
+    "warningTitle": "Important Warning",
+    "successTitle": "Your Requests has been sent successfully",
+    "backToManagement": "Back to management",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "position": "Position",
+      "shifts": "Shifts",
+      "address": "Address",
+      "employeeCount": "Employee Count",
+      "dateRange": "Date Range"
+    },
+    "buttons": {
+      "next": "Next",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "submitRequest": "Submit Request"
+    },
+    "warning": {
+      "cancellationPolicy": "Cancellation Policy",
+      "policyText": "You cannot cancel the work request once it has been accepted by an employee, and if canceled, a fee of",
+      "willbecharged": "will be charged.",
+      "acknowledgeText": "By clicking \"Submit Request\", you acknowledge and agree to this cancellation policy."
+    },
+    "summary": {
+      "title": "Request Summary",
+      "subtitle": "Please review your request details",
+      "verified": "All information has been verified and ready for submission"
+    },
+    "employee": {
+      "singular": "Employee",
+      "plural": "Employees"
+    }
   }
 }

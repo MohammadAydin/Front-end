@@ -294,5 +294,43 @@
     "title": "Benachrichtigungen",
     "noneNotifications": "Noch keine Benachrichtigungen!",
     "seeAll": "Alle Benachrichtigungen anzeigen"
+  },
+
+  "RequestsForm": {
+    "title": "Neue Hilfeanfrage erstellen",
+    "confirmTitle": "Anfragedetails bestätigen",
+    "warningTitle": "Wichtige Warnung",
+    "successTitle": "Ihre Anfragen wurden erfolgreich gesendet",
+    "backToManagement": "Zurück zur Verwaltung",
+    "fields": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "position": "Position",
+      "shifts": "Schichten",
+      "address": "Adresse",
+      "employeeCount": "Anzahl der Mitarbeiter",
+      "dateRange": "Datumsbereich"
+    },
+    "buttons": {
+      "next": "Weiter",
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen",
+      "submitRequest": "Anfrage senden"
+    },
+    "warning": {
+      "cancellationPolicy": "Stornierungsrichtlinie",
+      "policyText": "Sie können die Arbeitsanfrage nicht stornieren, sobald sie von einem Mitarbeiter angenommen wurde. Bei Stornierung wird eine Gebühr von",
+      "willbecharged": "Es wird eine Gebühr erhoben.",
+      "acknowledgeText": "Durch Klicken auf \"Anfrage senden\" bestätigen und stimmen Sie dieser Stornierungsrichtlinie zu."
+    },
+    "summary": {
+      "title": "Anfragezusammenfassung",
+      "subtitle": "Bitte überprüfen Sie Ihre Anfragedetails",
+      "verified": "Alle Informationen wurden überprüft und sind zur Übermittlung bereit"
+    },
+    "employee": {
+      "singular": "Mitarbeiter",
+      "plural": "Mitarbeiter"
+    }
   }
 }

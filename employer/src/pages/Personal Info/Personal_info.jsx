@@ -59,7 +59,11 @@ const Personal_info = () => {
 
     if (status_name === "isUploadedAllProfile") return null;
 
-    if (status === "missing" || status === "declined") {
+    if (
+      status === "missing" ||
+      status === "declined" ||
+      status === "rejected"
+    ) {
       return (
         <div className="declinedStatus flex flex-row-reverse items-center">
           <button
@@ -129,11 +133,9 @@ const Personal_info = () => {
               : "bg-gray-300 text-gray-600"
           }`}
         >
-          <button>
-            {sendAllInfo.isPending
-              ? t("PersonalSections.button.send.Sending")
-              : t("PersonalSections.button.send.Sendall")}
-          </button>
+          {sendAllInfo.isPending
+            ? t("PersonalSections.button.send.Sending")
+            : t("PersonalSections.button.send.Sendall")}
         </button>
       )}
 
