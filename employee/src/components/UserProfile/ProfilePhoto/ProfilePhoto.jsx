@@ -15,6 +15,8 @@ const ProfilePhoto = () => {
   const [serverSuccess, setServerSuccess] = useState("");
   const { data } = useData("/photo");
   const queryClient = useQueryClient();
+  const [hasImage, setHasImage] = useState(false);
+  const [isUpload, setisUpload] = useState(false);
 
   const addAvatar = useMutation({
     mutationFn: (formData) =>
@@ -26,7 +28,9 @@ const ProfilePhoto = () => {
 
     onSuccess: () => {
       setServerSuccess(t("userProfileComponents.profilePhoto.successMessage"));
+      setisUpload(true);
       queryClient.invalidateQueries({ queryKey: ["/photo"] });
+      window.location.reload();
     },
     onError: (error) => {
       const message =
@@ -70,6 +74,7 @@ const ProfilePhoto = () => {
           setValue={setValue}
           errors={errors}
           avatar={data?.photo}
+          setHasImage={setHasImage}
         />
         {serverSuccess && (
           <p className=" text-green-600 font-medium text-start mt-2">
@@ -77,10 +82,14 @@ const ProfilePhoto = () => {
           </p>
         )}
       </div>
+
       <div>
         <button
           type="submit"
-          className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
+          className={`w-[200px] ${
+            !hasImage ? "bg-gray-400" : "bg-[#F47621] "
+          }  text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 `}
+          disabled={!hasImage}
         >
           {t("userProfileComponents.profilePhoto.saveButton")}
         </button>
