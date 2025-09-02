@@ -86,14 +86,43 @@ const RequestsForm = () => {
     setCurrentStep(3);
   };
 
+  const formatDateForAPI = (date) => {
+    if (!date) return "";
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const handleFinalSubmit = async () => {
+    const dateFrom = formatDateForAPI(formData.date.from);
+    const dateTo = formatDateForAPI(formData.date.to);
+    
+    console.log(
+      "title",
+      formData.Title,
+      "description:",
+      formData.Description,
+      "employees_required:",
+      formData.EmployeeCount,
+      "date_from:",
+      dateFrom,
+      "date_to:",
+      dateTo,
+      "location_id:",
+      formData.Address,
+      "employee_positions_id:",
+      formData.Position,
+      "shift_id:",
+      formData.Shifts
+    );
     try {
       const response = await customFetch.post("/employerJobPosting", {
         title: formData.Title,
         description: formData.Description,
         employees_required: formData.EmployeeCount,
-        date_from: new Date(formData.date.from).toISOString().split("T")[0],
-        date_to: new Date(formData.date.to).toISOString().split("T")[0],
+        date_from: dateFrom,
+        date_to: dateTo,
         location_id: formData.Address,
         employee_positions_id: formData.Position,
         shift_id: formData.Shifts,
