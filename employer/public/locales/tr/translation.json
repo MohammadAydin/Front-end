@@ -118,6 +118,11 @@
         "cancel": "Hayır, iptal",
         "confirm": "Evet, eminim"
       }
+    },
+    "Settings": {
+      "account": "Hesabım",
+      "deleteAccount": "Hesabı sil",
+      "changePassword": "Şifreyi değiştir"
     }
   },
   "PersonalSections": {
@@ -293,7 +298,13 @@
   "notifications": {
     "title": "Bildirimler",
     "noneNotifications": "Henüz bildirim yok!",
-    "seeAll": "Tüm Bildirimleri Gör"
+    "seeAll": "Tüm Bildirimleri Gör",
+    "back": "geri",
+    "loading": "Yükleniyor...",
+    "errorLoading": "Bildirimler yüklenirken hata oluştu",
+    "noNotificationsFound": "Bildirim bulunamadı",
+    "notificationsCount": "{{count}} bildirim",
+    "unreadIndicator": "Okunmamış bildirim göstergesi"
   },
 
   "RequestsForm": {

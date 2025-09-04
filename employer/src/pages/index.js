@@ -25,3 +25,4 @@ export { default as Documents } from "./Personal Info/Documents/Documents.jsx";
 export { default as LocationInfo } from "./LocationInfo/LocationInfo.jsx";
 export { default as EditLocation } from "./LocationInfo/EditLocation.jsx";
 export { default as AddLoaction } from "./LocationInfo/AddLoaction.jsx";
+export { default as Notifications } from "./notifications/Notifications.jsx";

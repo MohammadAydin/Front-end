@@ -246,7 +246,13 @@
   "notifications": {
     "title": "Benachrichtigungen",
     "notificationsList": "Liste der Benachrichtigungen",
-    "noNotifications": "Keine Benachrichtigungen verfügbar"
+    "noNotifications": "Keine Benachrichtigungen verfügbar",
+    "back": "zurück",
+    "loading": "Laden...",
+    "errorLoading": "Fehler beim Laden der Benachrichtigungen",
+    "noNotificationsFound": "Keine Benachrichtigungen gefunden",
+    "notificationsCount": "{{count}} Benachrichtigungen",
+    "unreadIndicator": "Ungelesene Benachrichtigung"
   },
   "jobRequestDetails": {
     "myRequests": "Meine Anfragen",

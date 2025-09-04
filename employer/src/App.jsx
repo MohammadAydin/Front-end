@@ -21,6 +21,7 @@ import {
   AddLoaction,
   EditLocation,
   InvoiceDetails,
+  Notifications,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -127,11 +128,7 @@ const router = createBrowserRouter([
         element: <InvoiceDetails />,
         // errorElement: <SinglePageError />,
       },
-      {
-        path: "/notifications",
-        element: <HouseProfile />,
-        // errorElement: <SinglePageError />,
-      },
+
       {
         path: "/Leaders",
         element: <Leaders />,
@@ -145,6 +142,11 @@ const router = createBrowserRouter([
       {
         path: "/Shifts",
         element: <ShiftsMangment />,
+        // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/Notifications",
+        element: <Notifications />,
         // errorElement: <SinglePageError />,
       },
     ],

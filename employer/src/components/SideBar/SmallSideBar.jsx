@@ -20,10 +20,10 @@ const SmallSideBar = () => {
       {isOpen && (
         <div className="sideBarMenu w-[93%] left-[50%] top-[10%] p-5 py-8 translate-x-[-50%] bg-[#194894] absolute text-white rounded-lg z-[1000]">
           <div className="mb-15">
-            <SmallPagesList setIsOpen={setIsOpen} />
+            <PagesList setIsOpen={setIsOpen} />
           </div>
           <div>
-            <SmallSettingList  setIsOpen={setIsOpen}/>
+            <SettingList setIsOpen={setIsOpen} />
           </div>
         </div>
       )}

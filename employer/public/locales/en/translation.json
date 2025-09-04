@@ -117,6 +117,11 @@
         "cancel": "No, cancel",
         "confirm": "Yes, I'm sure"
       }
+    },
+    "Settings": {
+      "account": "My Account",
+      "deleteAccount": "Delete Account",
+      "changePassword": "Change Password"
     }
   },
   "PersonalSections": {
@@ -290,9 +295,15 @@
     "add": "Add new Shift"
   },
   "notifications": {
-    "title": "notifications",
+    "title": "Notifications",
     "noneNotifications": "No notifications yet!",
-    "seeAll": "See All Notifications"
+    "seeAll": "See All Notifications",
+    "back": "back",
+    "loading": "Loading...",
+    "errorLoading": "Error loading notifications",
+    "noNotificationsFound": "No notifications found",
+    "notificationsCount": "{{count}} notifications",
+    "unreadIndicator": "Unread notification indicator"
   },
 
   "RequestsForm": {

@@ -246,7 +246,13 @@
   "notifications": {
     "title": "Bildirimler",
     "notificationsList": "Bildirimler listesi",
-    "noNotifications": "Bildirim bulunmamaktadır"
+    "noNotifications": "Bildirim bulunmamaktadır",
+    "back": "geri",
+    "loading": "Yükleniyor...",
+    "errorLoading": "Bildirimler yüklenirken hata oluştu",
+    "noNotificationsFound": "Bildirim bulunamadı",
+    "notificationsCount": "{{count}} bildirim",
+    "unreadIndicator": "Okunmamış bildirim göstergesi"
   },
   "jobRequestDetails": {
     "myRequests": "Taleplerim",

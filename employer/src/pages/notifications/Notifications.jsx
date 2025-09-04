@@ -73,20 +73,22 @@ const Notifications = () => {
           </div>
 
           <p className="text-gray-500 mt-1">
-            {data ? t("notifications.notificationsCount", { count: data.length }) : t("notifications.noNotifications")}
+            {data?.data
+              ? t("notifications.notificationsCount", { count: data?.data.length })
+              : t("notifications.noNotifications")}
           </p>
         </div>
       </div>
 
       {/* Notifications List */}
       <div className="max-w-4xl mx-auto px-6 py-6">
-        {!data || data.length === 0 ? (
+        {!data?.data || data?.data.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-500 text-lg">{t("notifications.noNotificationsFound")}</p>
           </div>
         ) : (
           <div className="space-y-3">
-            {data.map((notification) => {
+            {data?.data.map((notification) => {
               const isExpanded = expandedId === notification.id;
               const isUnread = !notification.read_at;
               const colorClass = getColor(notification.type_details?.color);
