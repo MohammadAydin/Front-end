@@ -44,7 +44,7 @@ const SmallSideBar = ({ setNotificationIsOpen }) => {
             <PagesList setIsOpen={setIsOpen} />
           </div>
           <div>
-            <SettingList />
+            <SettingList setIsOpen={setIsOpen} />
           </div>
         </div>
       )}

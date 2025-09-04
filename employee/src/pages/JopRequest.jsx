@@ -12,6 +12,7 @@ import useData from "../hooks/useData";
 import { useTranslation } from "react-i18next";
 import useStatusAccount from "../store/storeStatusAccount";
 import statusAccount from "../utils/statusAccountReturn";
+import PopupJop from "../components/MoreElements/Popup/PopupJop";
 
 const JopRequest = () => {
   const { data } = useData("/profile/status/progress");
@@ -50,6 +51,10 @@ const JopRequest = () => {
 
   // Using React Query to fetch data
   const queryClient = useQueryClient();
+  const [PopupWarning, setPopupWarning] = useState(false);
+  const togglePopup = () => {
+    setPopupWarning(!PopupWarning);
+  };
 
   // To reject a jobRequest
   const DeclineJob = useMutation({
@@ -151,12 +156,17 @@ const JopRequest = () => {
         <div className="head-List flex justify-between">
           <h2 className="text-xl">{t("jobRequest.lastJobRequests")}</h2>
           {/* Button to view all jobRequest */}
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-secondaryColor"
-          >
-            {!isExpanded ? t("jobRequest.seeAll") : t("jobRequest.showLess")}
-          </button>
+          <div className="flex gap-2 items-center">
+            <div className=" rounded-[50%] text-white py-2 px-4  bg-secondaryColor">
+              {jobs?.length}
+            </div>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-secondaryColor"
+            >
+              {!isExpanded ? t("jobRequest.seeAll") : t("jobRequest.showLess")}
+            </button>
+          </div>
         </div>
         <div className="body-list mt-3.5 ">
           {/* Loop through jobRequest array */}
@@ -226,12 +236,18 @@ const JopRequest = () => {
                 </button>
                 {/* Accept button */}
                 <button
-                  onClick={() => AcceptJob.mutate(job.service_request.id)}
+                  onClick={() => setPopupWarning(true)}
                   className="bg-secondaryColor text-white pt-2 pb-2 pr-8 pl-8 rounded-xl"
                 >
                   {t("jobRequest.accept")}
                 </button>
               </div>
+              {PopupWarning && (
+                <PopupJop
+                  onConfirm={() => AcceptJob.mutate(job.service_request.id)}
+                  togglePopup={togglePopup}
+                />
+              )}
             </div>
           ))}
         </div>

@@ -219,7 +219,7 @@ const AddLoaction = () => {
             <div className="flex w-[25vw] gap-3.5 ml-auto mt-8">
               {/* If Workabilities is false Displays button back the location add */}
 
-              <Link className="w-full" to="/Personal info">
+              <Link className="w-full" to={-1}>
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
                   text={t(`addLocation.back`)}

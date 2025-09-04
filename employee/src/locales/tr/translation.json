@@ -167,6 +167,11 @@
     "notifications": "Bildirimler",
     "language": "Dil",
     "settings": "Ayarlar",
+    "Settings": {
+      "account": "Hesabım",
+      "deleteAccount": "Hesabı sil",
+      "changePassword": "Şifreyi değiştir"
+    },
     "logout": "Çıkış Yap",
     "logoutPopup": {
       "confirmation": "Çıkış yapmak istediğinizden emin misiniz?",
@@ -745,5 +750,10 @@
   "taskExample": {
     "title": "başlık: Evimizde bize yardım edin",
     "price": "fiyat: yaklaşık 50$"
+  },
+  "jopComponents": {
+    "confirmationPopup": "Bir iş talebini kabul edip daha sonra iptal edersen, puanın düşecektir.",
+    "accept": "Onayla",
+    "cancel": "İptal"
   }
 }

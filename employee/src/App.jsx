@@ -23,6 +23,7 @@ import {
   EditWorkaBilities,
   WorkingHours,
   Contract,
+  Notifications,
 } from "./pages";
 import LoginForm from "./components/FormAuth/LoginForm";
 import RegisterForm from "./components/FormAuth/RegisterForm";
@@ -86,6 +87,7 @@ const router = createBrowserRouter([
         path: "Employment data",
         element: <Employment_data />,
       },
+
       {
         path: "documents",
         element: <Documents />,
@@ -133,6 +135,10 @@ const router = createBrowserRouter([
       {
         path: "working hours",
         element: <WorkingHours />,
+      },
+      {
+        path: "notifications",
+        element: <Notifications />,
       },
       // -------------------------------------------------------------
     ],

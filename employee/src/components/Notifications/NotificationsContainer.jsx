@@ -4,6 +4,7 @@ import useNotificationsPusher from "../../hooks/useNotificationsPusher";
 import "./ResponsiveNotifications.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const NotificationsContainer = ({
   notificationIsOpen,
@@ -177,9 +178,14 @@ const NotificationsContainer = ({
             </div>
 
             <div className="mt-3 flex-shrink-0">
-              <button className="w-full py-2.5 text-center text-[#F47621] hover:text-[#EE6000] hover:bg-[#FFDFC6] rounded-lg transition-colors text-sm font-medium">
-                See All Notifications
-              </button>
+              <Link to="/notifications">
+                <button
+                  onClick={() => setNotificationIsOpen(!notificationIsOpen)}
+                  className="w-full py-2.5 text-center text-[#F47621] hover:text-[#EE6000] hover:bg-[#FFDFC6] rounded-lg transition-colors text-sm font-medium"
+                >
+                  See All Notifications
+                </button>
+              </Link>
             </div>
           </div>
         </div>

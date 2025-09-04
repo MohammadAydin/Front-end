@@ -262,7 +262,9 @@ const EditLocation = () => {
 
               <Link
                 className="w-full"
-                to={`${uploaded === "true" ? "/Personal info" : -1}`}
+                to={`${
+                  uploaded === "true" ? "/Personal info" : "/locationInfo"
+                }`}
               >
                 <Button
                   className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"

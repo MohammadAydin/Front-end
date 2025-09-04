@@ -6,26 +6,28 @@ import { IoMdClose } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 // Pass confirmation props and change the state of the popup
-const Popup = ({ togglePopup, onConfirm }) => {
+const PopupJop = ({ togglePopup, onConfirm }) => {
   const { t } = useTranslation();
   return (
     <div className="modal  ">
       <div onClick={togglePopup} className="overlay "></div>
-      <div className="modal-content flex flex-col items-center rounded-[10px]">
+      <div className="modal-content w-[30%] flex flex-col items-center rounded-[10px] ">
         {/* Alert icon */}
         <RiErrorWarningLine className="text-secondaryColor text-9xl " />
 
-        <p className="mt-8">{t("taskComponents.confirmationPopup")}</p>
+        <p className="mt-8 text-center">
+          {t("jopComponents.confirmationPopup")}
+        </p>
         {/* Close icon */}
         <button className="close-modal" onClick={togglePopup}>
           <IoMdClose />
         </button>
-        <div className="flex w-[25vw] gap-3.5 mt-14 mb-6 ">
+        <div className="flex w-full gap-3.5 mt-14 mb-6 ">
           {/* Cancel modification button */}
           <Button
             onClick={togglePopup}
             className="bg-softwhite border   p-2 rounded-[10px] w-full"
-            text={t("taskComponents.noEdit")}
+            text={t("jopComponents.cancel")}
           />
           {/* Submit confirmation button */}
           <Button
@@ -35,7 +37,7 @@ const Popup = ({ togglePopup, onConfirm }) => {
             }}
             type="button"
             className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-            text={t("taskComponents.yesConfirm")}
+            text={t("jopComponents.accept")}
           />
         </div>
       </div>
@@ -43,4 +45,4 @@ const Popup = ({ togglePopup, onConfirm }) => {
   );
 };
 
-export default Popup;
+export default PopupJop;

@@ -8,7 +8,7 @@ import {
   IoLocationOutline,
 } from "react-icons/io5";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Germany from "../../assets/images/icon-sidebar/germany.svg";
 import useLogout from "./logoutFun";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import Popup from "../MoreElements/Popup/Popup";
 import PopupLogout from "../MoreElements/Popup/PopupLogout";
-
+import { RiDeleteBin6Line, RiLockPasswordLine } from "react-icons/ri";
 const pages = [
   {
     id: 1,
@@ -63,7 +63,7 @@ const Settings = [
     id: 2,
     name: "navigation.settings",
     icon: <IoSettingsOutline size={24} />,
-    type: "normal",
+    type: "settings",
   },
   {
     id: 3,
@@ -95,7 +95,7 @@ const PagesList = ({ setIsOpen }) => {
 
 // setting list
 
-const SettingList = () => {
+const SettingList = ({ setIsOpen }) => {
   const [isPopupLogout, setPopupLogout] = useState(false);
   const togglePopupLogout = () => {
     setPopupLogout(!isPopupLogout);
@@ -103,13 +103,11 @@ const SettingList = () => {
   const onConfirm = () => {
     logout();
   };
-  const togglePopup = () => {
-    setPopuparrived(false);
-  };
 
   const logout = useLogout();
   const { t, i18n } = useTranslation();
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [issettingsDropdownOpen, setIssettingsropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const languages = [
@@ -117,14 +115,30 @@ const SettingList = () => {
     { code: "de", name: t("language.german"), flag: "🇩🇪" },
     { code: "tr", name: t("language.turkish"), flag: "🇹🇷" },
   ];
+  const SettingsPage = [
+    {
+      id: 1,
+      name: t("navigation.Settings.account"),
+      icon: <LuUserRound size={18} />,
+      toPage: "profile",
+    },
+    {
+      id: 2,
+      name: t("navigation.Settings.deleteAccount"),
+      icon: <RiDeleteBin6Line size={18} />,
+      toPage: "/",
+    },
+    {
+      id: 3,
+      name: t("navigation.Settings.changePassword"),
+      icon: <RiLockPasswordLine size={18} />,
+      toPage: "/",
+    },
+  ];
 
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
 
-  const handleLanguageChange = (languageCode) => {
-    i18n.changeLanguage(languageCode);
-    setIsLanguageDropdownOpen(false);
-  };
   const changeLanguage = useMutation({
     mutationFn: (key) =>
       customFetch
@@ -149,10 +163,16 @@ const SettingList = () => {
   });
 
   // Close dropdown when clicking outside
+  const langRef = useRef(null);
+  const settingsRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (langRef.current && !langRef.current.contains(event.target)) {
         setIsLanguageDropdownOpen(false);
+      }
+      if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+        setIssettingsropdownOpen(false);
       }
     };
 
@@ -167,6 +187,8 @@ const SettingList = () => {
       togglePopupLogout();
     } else if (item.type === "language") {
       setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+    } else if (item.type === "settings") {
+      setIssettingsropdownOpen(!issettingsDropdownOpen);
     }
     // For normal settings, you can add navigation logic here later
   };
@@ -194,7 +216,7 @@ const SettingList = () => {
       {/* Language Dropdown */}
       {isLanguageDropdownOpen && (
         <div
-          ref={dropdownRef}
+          ref={langRef}
           className="absolute bottom-full left-0 mb-2 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
         >
           {languages.map((language) => (
@@ -213,6 +235,27 @@ const SettingList = () => {
                 <span className="text-blue-500 ml-3">✓</span>
               )}
             </button>
+          ))}
+        </div>
+      )}
+      {issettingsDropdownOpen && (
+        <div
+          ref={settingsRef}
+          className="absolute left-0 flex flex-col gap-4 top-[-100px] p-3 pr-3 mb-2 w-[180px] bg-white rounded-lg shadow-lg border border-gray-200 py-4 z-50"
+        >
+          {SettingsPage.map((Page) => (
+            <Link key={Page.id} to={Page.toPage}>
+              <button
+                onClick={() => {
+                  setIssettingsropdownOpen(false);
+                  setIsOpen(false);
+                }}
+                className="text-gray-700 hover:bg-gray-100 group w-fit flex items-center   text-[0.8em] text-left transition-colors duration-200"
+              >
+                <span className="mr-4 text-lg">{Page.icon}</span>
+                <span className="flex-1">{Page.name}</span>
+              </button>
+            </Link>
           ))}
         </div>
       )}

@@ -167,6 +167,11 @@
     "notifications": "Notifications",
     "language": "Language",
     "settings": "Settings",
+    "Settings": {
+      "account": "My Account",
+      "deleteAccount": "Delete Account",
+      "changePassword": "Change Password"
+    },
     "logout": "Logout",
     "logoutPopup": {
       "confirmation": "Are you sure you want to log out?",
@@ -745,5 +750,10 @@
   "taskExample": {
     "title": "title : Help us in our house",
     "price": "price : approximately 50$"
+  },
+  "jopComponents": {
+    "confirmationPopup": "If you accept a job request and later cancel it, your rating will decrease.",
+    "accept": "Accept",
+    "cancel": "Cancel"
   }
 }

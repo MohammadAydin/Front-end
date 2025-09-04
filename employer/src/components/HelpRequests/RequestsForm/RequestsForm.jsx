@@ -53,6 +53,7 @@ const RequestsForm = () => {
     errorLocation,
     isLoadingLocation,
   } = useData("/locations");
+  const [loadingPost, setLoadingPost] = useState(false);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(null);
@@ -89,15 +90,15 @@ const RequestsForm = () => {
   const formatDateForAPI = (date) => {
     if (!date) return "";
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
   const handleFinalSubmit = async () => {
     const dateFrom = formatDateForAPI(formData.date.from);
     const dateTo = formatDateForAPI(formData.date.to);
-    
+
     console.log(
       "title",
       formData.Title,
@@ -116,6 +117,7 @@ const RequestsForm = () => {
       "shift_id:",
       formData.Shifts
     );
+    setLoadingPost(true);
     try {
       const response = await customFetch.post("/employerJobPosting", {
         title: formData.Title,
@@ -129,7 +131,7 @@ const RequestsForm = () => {
       });
       queryClient.invalidateQueries(["employerJobPosting"]);
       toast.success(response?.data?.message);
-
+      setLoadingPost(false);
       setCurrentStep(1);
       setFormData(null);
       RequestClose();
@@ -137,6 +139,7 @@ const RequestsForm = () => {
     } catch (error) {
       toast.error(error?.response?.data?.message);
       console.error("Error during submission:", error?.response?.data?.message);
+      setLoadingPost(false);
     }
   };
 
@@ -304,8 +307,11 @@ const RequestsForm = () => {
                       {t("RequestsForm.buttons.cancel")}
                     </button>
                     <button
+                      disabled={loadingPost}
                       onClick={handleFinalSubmit}
-                      className="bg-[#F47621] text-white text-lg font-extrabold px-8 py-3 rounded-lg hover:bg-[#EE6000]"
+                      className={`${
+                        loadingPost ? "bg-gray-400" : "bg-[#F47621]"
+                      }  text-white text-lg font-extrabold px-8 py-3 rounded-lg hover:bg-[#EE6000]`}
                     >
                       {t("RequestsForm.buttons.submitRequest")}
                     </button>

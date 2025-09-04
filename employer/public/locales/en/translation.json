@@ -219,9 +219,9 @@
     "back": "back",
     "edit": "edit",
     "popup": {
-      "title": "Confirmation Popup",
-      "noEdit": "noEdit",
-      "yesConfirm": "yesConfirm"
+      "title": "Are you sure?",
+      "noEdit": "Cancel",
+      "yesConfirm": "Confirm"
     }
   },
   "signature": {

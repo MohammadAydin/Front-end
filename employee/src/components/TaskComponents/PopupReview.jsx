@@ -77,8 +77,6 @@ const PopupReview = ({ togglePopup, idTask }) => {
     } catch (error) {
       // Show Toast error message
       toast.error(error?.response?.data?.message);
-
-    
     }
   };
 

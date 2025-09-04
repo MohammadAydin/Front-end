@@ -167,6 +167,11 @@
     "notifications": "Benachrichtigungen",
     "language": "Sprache",
     "settings": "Einstellungen",
+    "Settings": {
+      "account": "Mein Konto",
+      "deleteAccount": "Konto löschen",
+      "changePassword": "Passwort ändern"
+    },
     "logout": "Abmelden",
     "logoutPopup": {
       "confirmation": "Sind Sie sicher, dass Sie sich abmelden möchten?",
@@ -745,5 +750,10 @@
   "taskExample": {
     "title": "Titel: Hilf uns in unserem Haus",
     "price": "Preis: ca. 50€"
+  },
+  "jopComponents": {
+    "confirmationPopup": "Wenn du eine Jobanfrage annimmst und sie später stornierst, wird deine Bewertung sinken.",
+    "accept": "Annehmen",
+    "cancel": "Abbrechen"
   }
 }

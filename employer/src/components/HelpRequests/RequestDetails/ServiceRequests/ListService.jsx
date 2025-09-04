@@ -27,8 +27,8 @@ const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
                     ? "bg-green-400"
                     : status == "cancel"
                     ? "bg-red-500"
-                    : status == "cancel"
-                    ? "bg-yellow-200 text-black"
+                    : status == "taken"
+                    ? "bg-blue-400 text-white"
                     : ""
                 }`}
               >
