@@ -211,17 +211,17 @@ const TasksDetails = () => {
                   {parseFloat(task?.total_cost).toFixed(2)}
                 </p>
               </div>
-              {!task?.task?.status == "review" ||
-                (!task?.task?.status == "cancel" && (
-                  <button
-                    // to={`/reportTask/${id}`}
-                    onClick={() => setReportPopup(true)}
-                    className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
-                  >
-                    <CiFileOn className="text-xl" />
-                    <p className="text-xs mt-1">Cancel Task</p>
-                  </button>
-                ))}
+              {task?.task?.status !== "review" ||
+              task?.task?.status !== "cancel" ? (
+                <button
+                  // to={`/reportTask/${id}`}
+                  onClick={() => setReportPopup(true)}
+                  className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
+                >
+                  <CiFileOn className="text-xl" />
+                  <p className="text-xs mt-1">Cancel Task</p>
+                </button>
+              ) : null}
             </div>
           </div>
 
@@ -269,51 +269,51 @@ const TasksDetails = () => {
           </div>
 
           {/* buttons */}
-          {!task?.task?.status == "review" ||
-            (!task?.task?.status == "cancel" && (
-              <div className="flex gap-5 mt-[30vh] justify-end max-[1109px]:mt-[6vh]">
-                {level == 1 && (
-                  <button
-                    onClick={() => OnMyWay.mutate()}
-                    className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
-                  >
-                    On the Way
-                  </button>
-                )}
-                {localStorage.getItem("level") == 2 && (
-                  <button
-                    onClick={() => arrived.mutate()}
-                    className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
-                  >
-                    Arrived
-                  </button>
-                )}
-                {localStorage.getItem("level") == 3 && (
-                  <button
-                    onClick={() => startWork.mutate()}
-                    className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
-                  >
-                    Start Work
-                  </button>
-                )}
-                {localStorage.getItem("level") == 4 && (
-                  <button
-                    onClick={() => endWork.mutate()}
-                    className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
-                  >
-                    Complete Task
-                  </button>
-                )}
-                {localStorage.getItem("level") == 5 && (
-                  <button
-                    onClick={() => setPopupend(true)}
-                    className="text-white bg-secondaryColor text-xl p-2 w-[10em] rounded-[10px]"
-                  >
-                    Finish Task{" "}
-                  </button>
-                )}
-              </div>
-            ))}
+          {task?.task?.status !== "review" ||
+          task?.task?.status !== "cancel" ? (
+            <div className="flex gap-5 mt-[30vh] justify-end max-[1109px]:mt-[6vh]">
+              {level == 1 && (
+                <button
+                  onClick={() => OnMyWay.mutate()}
+                  className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
+                >
+                  On the Way
+                </button>
+              )}
+              {localStorage.getItem("level") == 2 && (
+                <button
+                  onClick={() => arrived.mutate()}
+                  className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
+                >
+                  Arrived
+                </button>
+              )}
+              {localStorage.getItem("level") == 3 && (
+                <button
+                  onClick={() => startWork.mutate()}
+                  className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
+                >
+                  Start Work
+                </button>
+              )}
+              {localStorage.getItem("level") == 4 && (
+                <button
+                  onClick={() => endWork.mutate()}
+                  className="text-white bg-secondaryColor text-xl p-2 w-[8em] rounded-[10px]"
+                >
+                  Complete Task
+                </button>
+              )}
+              {localStorage.getItem("level") == 5 && (
+                <button
+                  onClick={() => setPopupend(true)}
+                  className="text-white bg-secondaryColor text-xl p-2 w-[10em] rounded-[10px]"
+                >
+                  Finish Task{" "}
+                </button>
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
       {Popuparrived && (
