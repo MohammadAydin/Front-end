@@ -99,7 +99,6 @@ const UserProfile = () => {
           {data?.is_viewable_contract && (
             <div className=" relative">
               <button
-                disabled
                 onClick={downloadPdf}
                 className="contractDownloadBtn w-[400px] bg-[#F47621] text-white px-5 py-2 font-bold text-lg rounded-lg mt-4 hover:bg-[#EE6000] flex gap-2 items-center justify-center"
               >
