@@ -285,7 +285,20 @@
   "HelpRequests": {
     "title": "Yardım Talepleri",
     "noneJop": "Henüz herhangi bir talep göndermediniz — ilk geçici iş talebinizi şimdi oluşturun",
-    "add": "Yeni yardım talebi oluştur"
+    "add": "Yeni yardım talebi oluştur",
+    "filter": {
+      "all": "Tümü",
+      "todo": "Yapılacak",
+      "done": "Tamamlandı",
+      "progress": "Devam ediyor",
+      "review": "İncelemede",
+      "Canceled": "İptal edildi",
+      "Arrived": "Ulaştı",
+      "OntheWay": "Yolda",
+      "cancel": "İptal et",
+      "pending": "Beklemede",
+      "taken": "Alındı"
+    }
   },
   "Invoices": {
     "title": "Faturalar",

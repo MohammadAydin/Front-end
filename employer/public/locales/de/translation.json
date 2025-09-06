@@ -285,7 +285,20 @@
   "HelpRequests": {
     "title": "Hilfsanfragen",
     "noneJop": "Sie haben noch keine Anfragen gesendet — erstellen Sie jetzt Ihre erste temporäre Jobanfrage",
-    "add": "Neue Hilfsanfrage erstellen"
+    "add": "Neue Hilfsanfrage erstellen",
+    "filter": {
+      "all": "Alle",
+      "todo": "Zu erledigen",
+      "done": "Erledigt",
+      "progress": "In Bearbeitung",
+      "review": "Zur Überprüfung",
+      "Canceled": "Abgebrochen",
+      "Arrived": "Angekommen",
+      "OntheWay": "Unterwegs",
+      "cancel": "Stornieren",
+      "pending": "Ausstehend",
+      "taken": "Übernommen"
+    }
   },
   "Invoices": {
     "title": "Rechnungen",

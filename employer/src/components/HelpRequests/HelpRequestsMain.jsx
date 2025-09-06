@@ -1,21 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import DetailsList from "../DetailsList";
 import useData from "../../hooks/useData";
 import { useTranslation } from "react-i18next";
+import Filter from "../MoreElements/Filter";
 
 const HelpRequestsMain = () => {
   const { t } = useTranslation();
-
-  const { data: jopPosting, error, isLoadnig } = useData("/employerJobPosting");
+  const [selectedValue, setSelectedValue] = useState("all");
+  const endpoint =
+    selectedValue === "all"
+      ? "/employerJobPosting"
+      : `/employerJobPosting?status=${selectedValue}`;
+  const { data: jopPosting } = useData(endpoint);
   if (jopPosting?.data.length == 0) {
     return (
-      <div className="flex justify-center mt-20">
-        {t("HelpRequests.noneJop")}
-      </div>
+      <>
+        <div className="flex justify-end my-3 ">
+          <Filter
+            options={[
+              "all",
+              "taken",
+              "pending",
+              "cancel",
+              "todo",
+              "done",
+              "progress",
+              "review",
+              "OntheWay",
+              "Arrived",
+              "Canceled",
+            ]}
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
+          />
+        </div>
+        <div className="flex justify-center mt-20">
+          {t("HelpRequests.noneJop")}
+        </div>
+      </>
     );
   }
   return (
     <div>
+      <div className="flex justify-end my-3 ">
+        <Filter
+          options={[
+            "all",
+            "taken",
+            "pending",
+            "cancel",
+            "todo",
+            "done",
+            "progress",
+            "review",
+            "OntheWay",
+            "Arrived",
+            "Canceled",
+          ]}
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+        />
+      </div>
       {jopPosting?.data?.map((item) => (
         <DetailsList
           key={item.id}

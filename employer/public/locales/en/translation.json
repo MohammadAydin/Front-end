@@ -284,7 +284,20 @@
   "HelpRequests": {
     "title": "Help Requests",
     "noneJop": "You haven’t sent any requests yet — post your first temporary job request now",
-    "add": "Create new help requests"
+    "add": "Create new help requests",
+    "filter": {
+      "all": "All",
+      "todo": "To Do",
+      "done": "Done",
+      "progress": "In Progress",
+      "review": "In Review",
+      "Canceled": "Canceled",
+      "Arrived": "Arrived",
+      "OntheWay": "On the Way",
+      "cancel": "Cancel",
+      "pending": "Pending",
+      "taken": "Taken"
+    }
   },
   "Invoices": {
     "title": "Invoices",
