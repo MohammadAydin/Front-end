@@ -41,7 +41,17 @@ const schema_social_Insurance = z.object({
     .array(
       z
         .any()
-        .refine((files) => files?.length > 0, "Please upload the child's file")
+        .refine(
+          (fileList) => fileList?.length > 0,
+          "Please upload the child's file"
+        )
+        .refine(
+          (fileList) =>
+            Array.from(fileList || []).every(
+              (file) => file.size <= 2 * 1024 * 1024
+            ),
+          "Each file must be less than 2 MB"
+        )
     )
     .optional(),
 });

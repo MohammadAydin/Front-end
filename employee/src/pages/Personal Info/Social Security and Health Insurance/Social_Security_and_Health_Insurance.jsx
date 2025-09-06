@@ -11,6 +11,7 @@ import customFetch from "../../../utils/axios";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
 import useData from "../../../../../employer/src/hooks/useData";
+import { toast } from "react-toastify";
 
 const Social_Security_and_Health_Insurance = () => {
   const { t } = useTranslation();
@@ -115,6 +116,11 @@ const Social_Security_and_Health_Insurance = () => {
     onSuccess: () => {
       OpenSuccsess();
       navigate("/Personal info");
+    },
+    onError: (error) => {
+      console.log("error");
+      console.log(error);
+      toast.error(error?.response?.data?.message);
     },
   });
 
