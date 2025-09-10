@@ -17,7 +17,7 @@ const ServiceRequests = ({ data, title }) => {
           navigateTo={`/serviceRequestsDetails?data=${encodeURIComponent(
             JSON.stringify(item)
           )}&title=${encodeURIComponent(title)}`}
-          // navigateTo={`/serviceRequestsDetails/${idJop}/${item.id}/${item.tasks}`}
+        // navigateTo={`/serviceRequestsDetails/${idJop}/${item.id}/${item.tasks}`}
         />
       ))}
     </div>
