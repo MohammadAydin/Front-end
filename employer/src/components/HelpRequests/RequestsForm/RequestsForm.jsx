@@ -170,12 +170,34 @@ const RequestsForm = () => {
               </button>
             </div>
           ) : (
-            <div className="RequestsForm w-[880px] min-h-fit bg-white rounded-2xl text-black p-6 py-8 my-8">
+            <div className="RequestsForm w-[880px] min-h-fit bg-white rounded-2xl text-black p-6 py-8 my-8 shadow-xl">
+              {/* Progress Stepper */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between">
+                  {[1, 2, 3].map((step, idx) => (
+                    <div key={step} className="flex-1 flex items-center">
+                      <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-semibold border transition-colors ${currentStep >= step ? 'bg-[#F47621] text-white border-[#F47621]' : 'bg-white text-gray-500 border-gray-300'
+                        }`}>
+                        {step}
+                      </div>
+                      {idx < 2 && (
+                        <div className={`h-0.5 flex-1 mx-2 ${currentStep > step ? 'bg-[#F47621]' : 'bg-gray-200'}`}></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-2 flex justify-between text-xs text-gray-500">
+                  <span>Details</span>
+                  <span>Review</span>
+                  <span>Confirm</span>
+                </div>
+              </div>
               {currentStep === 1 && (
                 <>
                   <h3 className="text-2xl font-[900]">
                     {t("RequestsForm.title")}
                   </h3>
+                  <p className="text-sm text-gray-600 mb-4">Provide the basic information to create a new job posting.</p>
                   <form action="" onSubmit={handleSubmit(handleNextStep)}>
                     <div className="w-full flex items-center gap-3">
                       {inputs.map((input) => (
@@ -193,20 +215,19 @@ const RequestsForm = () => {
                       {selectOptions.map((name) => (
                         <div
                           key={name}
-                          className={`${
-                            name === "Address" ? "col-span-2" : ""
-                          }`}
+                          className={`${name === "Address" ? "col-span-2" : ""
+                            }`}
                         >
                           <SelectField
                             data={
                               name === "Shifts"
                                 ? [
-                                    ...(dataShift?.data || []),
-                                    { id: "custom", name: "Custom Shift" },
-                                  ]
+                                  ...(dataShift?.data || []),
+                                  { id: "custom", name: "Custom Shift" },
+                                ]
                                 : name === "Address"
-                                ? resultLocation
-                                : dataPosation
+                                  ? resultLocation
+                                  : dataPosation
                             }
                             name={name}
                             errors={errors}
@@ -214,6 +235,12 @@ const RequestsForm = () => {
                             register={register}
                             value={watch(name)}
                           />
+                          {(name === 'Shifts' && isLoading) && (
+                            <p className="text-xs text-gray-500 mt-1">Loading shifts...</p>
+                          )}
+                          {(name === 'Address' && isLoadingLocation) && (
+                            <p className="text-xs text-gray-500 mt-1">Loading locations...</p>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -227,6 +254,7 @@ const RequestsForm = () => {
                           register={register}
                           value={watch("EmployeeCount")}
                         />
+                        <p className="text-xs text-gray-500 mt-1">Number of helpers you need for this job.</p>
                       </div>
                       <CalendarRange
                         register={register}
@@ -309,9 +337,8 @@ const RequestsForm = () => {
                     <button
                       disabled={loadingPost}
                       onClick={handleFinalSubmit}
-                      className={`${
-                        loadingPost ? "bg-gray-400" : "bg-[#F47621]"
-                      }  text-white text-lg font-extrabold px-8 py-3 rounded-lg hover:bg-[#EE6000]`}
+                      className={`${loadingPost ? "bg-gray-400" : "bg-[#F47621]"
+                        }  text-white text-lg font-extrabold px-8 py-3 rounded-lg hover:bg-[#EE6000]`}
                     >
                       {t("RequestsForm.buttons.submitRequest")}
                     </button>
