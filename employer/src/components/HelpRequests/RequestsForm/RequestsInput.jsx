@@ -12,7 +12,7 @@ const RequestsInput = ({ label, type, register, errors, name }) => {
         type={type}
         id={name}
         name={name}
-        placeholder={name}
+        placeholder={label}
       />
 
       {errors[name] && <p className="text-red-500 ">{errors[name].message}</p>}

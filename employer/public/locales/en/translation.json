@@ -340,6 +340,7 @@
       "shifts": "Shifts",
       "address": "Address",
       "employeeCount": "Employee Count",
+      "date": "Date",
       "dateRange": "Date Range",
       "custom_shift": "Custom Shift"
     },

@@ -342,6 +342,7 @@
       "address": "Adresse",
       "employeeCount": "Anzahl der Mitarbeiter",
       "dateRange": "Datumsbereich",
+      "date": "Datum",
       "custom_shift": "Schicht konfigurieren"
     },
     "buttons": {

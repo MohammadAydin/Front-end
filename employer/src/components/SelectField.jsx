@@ -43,7 +43,7 @@ const SelectField = ({
           selectOption ? "text-black" : "text-[#919EAB]"
         }`}
       >
-        {selectname || name}
+        {label}
         <span>
           <MdOutlineKeyboardArrowDown size={25} />
         </span>

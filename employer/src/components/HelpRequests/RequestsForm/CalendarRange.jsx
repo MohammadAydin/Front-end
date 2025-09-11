@@ -4,16 +4,17 @@ import "react-day-picker/dist/style.css";
 import "./CalendarCustom.css";
 import { IoClose } from "react-icons/io5";
 import { PiCalendarDotsBold } from "react-icons/pi";
+import { useTranslation } from "react-i18next";
 
 const CalendarRange = ({ register, name, errors, setValue }) => {
   const [range, setRange] = useState({ from: undefined, to: undefined });
   const [isOpen, setIsOpen] = useState(false);
-
+  const { t } = useTranslation();
   const formatDate = (date) => {
     if (!date) return "";
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -24,7 +25,7 @@ const CalendarRange = ({ register, name, errors, setValue }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <label className=" font-extrabold text-sm" htmlFor={name}>
-          Date
+          {t("RequestsForm.fields.date")}
         </label>
         <input
           {...register(name)}
@@ -35,7 +36,7 @@ const CalendarRange = ({ register, name, errors, setValue }) => {
               ? `${formatDate(range.from)} to ${formatDate(range.to)}`
               : ""
           }
-          placeholder="Select date range"
+          placeholder={t("RequestsForm.fields.dateRange")}
           className="w-full p-4 my-2 border border-[#919EAB] rounded-2xl  focus:outline-[#919EAB] cursor-pointer"
         />
         <div
