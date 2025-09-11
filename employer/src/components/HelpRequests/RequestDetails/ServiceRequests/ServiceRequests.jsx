@@ -5,7 +5,7 @@ const ServiceRequests = ({ data, title }) => {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const counts = useMemo(() => {
-    const base = { all: data?.length || 0, pending: 0, taken: 0, progress: 0, done: 0, cancel: 0 };
+    const base = { all: data?.length || 0, pending: 0, taken: 0 };
     (data || []).forEach((i) => {
       const key = String(i.status || "");
       if (base[key] !== undefined) base[key] += 1; else base[key] = 1;
@@ -23,9 +23,6 @@ const ServiceRequests = ({ data, title }) => {
     { key: "all", label: "All" },
     { key: "pending", label: "Pending" },
     { key: "taken", label: "Taken" },
-    { key: "progress", label: "In Progress" },
-    { key: "done", label: "Done" },
-    { key: "cancel", label: "Cancelled" },
   ];
 
   return (
@@ -41,8 +38,8 @@ const ServiceRequests = ({ data, title }) => {
             key={f.key}
             onClick={() => setActiveFilter(f.key)}
             className={`px-3 py-1 rounded-full text-sm border transition-colors ${activeFilter === f.key
-                ? "bg-[#F47621] text-white border-[#F47621]"
-                : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+              ? "bg-[#F47621] text-white border-[#F47621]"
+              : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
               }`}
           >
             {f.label}
