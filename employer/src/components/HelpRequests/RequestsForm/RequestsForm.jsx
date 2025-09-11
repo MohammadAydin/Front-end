@@ -62,7 +62,11 @@ const RequestsForm = () => {
     name: item?.street1,
     id: item.id,
   }));
-  const selectOptions = ["Position", "Shifts", "Address"];
+  const selectOptions = [
+    { name: "Position", label: t("RequestsForm.fields.position"), id: 1 },
+    { name: "Shifts", label: t("RequestsForm.fields.shifts"), id: 2 },
+    { name: "Address", label: t("RequestsForm.fields.address"), id: 3 },
+  ];
 
   const {
     register,
@@ -72,7 +76,7 @@ const RequestsForm = () => {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(RequestSchema),
+    resolver: zodResolver(RequestSchema(t)),
     defaultValues: {
       ["EmployeeCount"]: 1,
     },
@@ -190,29 +194,35 @@ const RequestsForm = () => {
                       ))}
                     </div>
                     <div className=" grid grid-cols-2 gap-x-3">
-                      {selectOptions.map((name) => (
+                      {selectOptions.map((selectOption) => (
                         <div
-                          key={name}
+                          key={selectOption.name}
                           className={`${
-                            name === "Address" ? "col-span-2" : ""
+                            selectOption.name === "Address" ? "col-span-2" : ""
                           }`}
                         >
                           <SelectField
                             data={
-                              name === "Shifts"
+                              selectOption.name === "Shifts"
                                 ? [
                                     ...(dataShift?.data || []),
-                                    { id: "custom", name: "Custom Shift" },
+                                    {
+                                      id: "custom",
+                                      name: t(
+                                        "RequestsForm.fields.custom_shift"
+                                      ),
+                                    },
                                   ]
-                                : name === "Address"
+                                : selectOption.name === "Address"
                                 ? resultLocation
                                 : dataPosation
                             }
-                            name={name}
+                            name={selectOption.name}
                             errors={errors}
                             setValue={setValue}
                             register={register}
-                            value={watch(name)}
+                            value={watch(selectOption.name)}
+                            label={selectOption.label}
                           />
                         </div>
                       ))}
@@ -226,6 +236,7 @@ const RequestsForm = () => {
                           setValue={setValue}
                           register={register}
                           value={watch("EmployeeCount")}
+                          label={t("RequestsForm.fields.employeeCount")}
                         />
                       </div>
                       <CalendarRange

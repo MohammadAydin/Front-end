@@ -3,6 +3,7 @@ import avatar from "../assets/image/Img_Avatar.25.svg";
 import { IoEyeOutline, IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useData from "../hooks/useData";
+import { useTranslation } from "react-i18next";
 
 const DetailsList = ({
   id,
@@ -31,6 +32,7 @@ const DetailsList = ({
 }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const { t } = useTranslation();
   const {
     data: shfit,
     error,
@@ -65,7 +67,7 @@ const DetailsList = ({
               <div>
                 <p className="Name ">{title}</p>
                 <p className="Email text-[#919EAB] text-sm font-[100]">
-                  Workers needed : {employees_required}{" "}
+                  {t("HelpRequests.workers_needed")} : {employees_required}{" "}
                 </p>
               </div>
             </div>
@@ -73,16 +75,19 @@ const DetailsList = ({
           {created_at && (
             <div>
               <p className="Name ">
-                created_at : {new Date(created_at).toISOString().split("T")[0]}
+                {t("HelpRequests.created_at")} :{" "}
+                {new Date(created_at).toISOString().split("T")[0]}
               </p>
               <p className="Email text-[#919EAB] text-sm font-[100]">
-                from : {new Date(date_from).toISOString().split("T")[0]}&nbsp;
-                to : &nbsp;{new Date(date_to).toISOString().split("T")[0]}
+                {t("HelpRequests.from")} :{" "}
+                {new Date(date_from).toISOString().split("T")[0]}&nbsp;{" "}
+                {t("HelpRequests.to")} : &nbsp;
+                {new Date(date_to).toISOString().split("T")[0]}
               </p>
               {shfit && (
                 <div>
                   <p className="Name text-[#919EAB] text-sm font-[100]">
-                    shift : {shfit?.data?.name}
+                    {t("HelpRequests.shift")} : {shfit?.data?.name}
                   </p>
                   <p className="Email text-[#919EAB] text-sm font-[100]">
                     {shfit?.data?.start_time} to {shfit?.data?.end_time}

@@ -106,7 +106,8 @@
       "PersonalInfo": "Kişisel Bilgiler",
       "HelpRequests": "Yardım Talepleri",
       "Invoices": "Faturalar",
-      "ShiftsManagement": "Vardiya Yönetimi"
+      "ShiftsManagement": "Vardiya Yönetimi",
+      "Notifications": "Bildirimler"
     },
 
     "settings": {
@@ -298,7 +299,12 @@
       "cancel": "İptal et",
       "pending": "Beklemede",
       "taken": "Alındı"
-    }
+    },
+    "created_at": "Oluşturulma tarihi",
+    "workers_needed": "Gerekli işçiler",
+    "from": "Başlangıç",
+    "to": "Bitiş",
+    "shift": "Vardiya"
   },
   "Invoices": {
     "title": "Faturalar",
@@ -306,7 +312,9 @@
   },
   "Shifts": {
     "title": "Vardiya Yönetimi",
-    "add": "Yeni Vardiya Ekle"
+    "add": "Yeni Vardiya Ekle",
+    "from": "Başlangıç",
+    "to": "Bitiş"
   },
   "notifications": {
     "title": "Bildirimler",
@@ -333,7 +341,8 @@
       "shifts": "Vardiyalar",
       "address": "Adres",
       "employeeCount": "Çalışan Sayısı",
-      "dateRange": "Tarih Aralığı"
+      "dateRange": "Tarih Aralığı",
+      "custom_shift": "Özel vardiya"
     },
     "buttons": {
       "next": "İleri",

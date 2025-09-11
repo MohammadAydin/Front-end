@@ -5,12 +5,13 @@ import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import EditShiftsForm from "./EditShiftsForm";
 import CompletePersonalinfo from "../MoreElements/CompletePersonalinfo";
+import { useTranslation } from "react-i18next";
 
 const ShiftsList = ({ id, name, startTime, endTime }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const containerRef = useRef(null);
   const [maxWidth, setMaxWidth] = useState(0);
-
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const deleteShift = useMutation({
     mutationFn: (id) =>
@@ -44,11 +45,11 @@ const ShiftsList = ({ id, name, startTime, endTime }) => {
       </div>
       <div className="shifttime flex gap-10">
         <div>
-          <span>From:</span>
+          <span>{t("Shifts.from")} :</span>
           <span className="font-thin ml-2">{startTime}</span>
         </div>
         <div>
-          <span>To:</span>
+          <span>{t("Shifts.to")}:</span>
           <span className="font-thin ml-2">{endTime}</span>
         </div>
       </div>
