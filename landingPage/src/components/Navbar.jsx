@@ -11,19 +11,21 @@ const Navbar = ({ isOpen, setIsOpen }) => {
   return (
     <header>
       <div className="Navbar">
-        <motion.div
-          className="logo-container z-20"
-          style={{ display: "inline-block", cursor: "pointer" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-        >
-          <motion.img
-            src="https://woundwann.s3.eu-central-1.amazonaws.com/company/logos/logo_de_h_.png"
-            alt="logo"
-            drag
-          />
-        </motion.div>
+        <Link to="/">
+          <motion.div
+            className="logo-container z-20"
+            style={{ display: "inline-block", cursor: "pointer" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            <motion.img
+              src="https://woundwann.s3.eu-central-1.amazonaws.com/company/logos/logo_de_h_.png"
+              alt="logo"
+              drag
+            />
+          </motion.div>
+        </Link>
 
         <div>
           <ul>
