@@ -12,22 +12,22 @@ const Status = ({ status }) => {
       {status === "pending" ? (
         <div className="flex items-center pr-8 gap-3 text-lg font-bold text-yellow-500">
           <IoTimeOutline size={30} />
-          <span>{status}</span>
+          <span>{t("statusPersonalInfo.pending")}</span>
         </div>
       ) : status === "approved" ? (
         <div className="flex items-center pr-4 gap-3 text-lg font-bold text-green-500">
           <HiOutlineCheckCircle size={30} />
-          <span>{status}</span>
+          <span>{t("statusPersonalInfo.approved")}</span>
         </div>
       ) : status === "declined" ? (
         <div className="flex items-center pr-8 gap-3 text-lg font-bold text-red-500">
           <FaRegTimesCircle size={30} />
-          <span>{status}</span>
+          <span>{t("statusPersonalInfo.declined")}</span>
         </div>
       ) : status === "uploaded" ? (
         <div className="flex items-center pr-8 gap-3 text-lg font-bold text-blue-500">
           <GrUploadOption size={30} />
-          <span>{status}</span>
+          <span>{t("statusPersonalInfo.uploaded")}</span>
         </div>
       ) : (
         ""

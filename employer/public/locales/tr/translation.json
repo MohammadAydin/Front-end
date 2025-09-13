@@ -366,5 +366,11 @@
       "singular": "Çalışan",
       "plural": "Çalışanlar"
     }
+  },
+  "statusPersonalInfo": {
+    "pending": "Beklemede",
+    "approved": "Onaylandı",
+    "declined": "Reddedildi",
+    "uploaded": "Yüklendi"
   }
 }

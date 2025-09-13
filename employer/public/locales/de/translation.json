@@ -366,5 +366,11 @@
       "singular": "Mitarbeiter",
       "plural": "Mitarbeiter"
     }
+  },
+  "statusPersonalInfo": {
+    "pending": "Ausstehend",
+    "approved": "Genehmigt",
+    "declined": "Abgelehnt",
+    "uploaded": "Hochgeladen"
   }
 }
