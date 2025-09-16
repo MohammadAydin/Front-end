@@ -18,7 +18,7 @@ import {
   MdPending,
   MdCancel,
   MdPlayArrow,
-  MdFlag
+  MdFlag,
 } from "react-icons/md";
 
 const ListTasks = ({
@@ -45,8 +45,7 @@ const ListTasks = ({
       setPhotoEmployee(data?.data?.photo);
     },
 
-    onError: (error) => {
-    },
+    onError: (error) => {},
   });
 
   useEffect(() => {
@@ -134,7 +133,11 @@ const ListTasks = ({
               <div className="bg-blue-600 text-white px-3 py-1 rounded-lg font-semibold text-sm">
                 #{id}
               </div>
-              <div className={`flex items-center gap-2 px-3 py-1 rounded-full border text-sm font-medium ${getStatusColor(status)}`}>
+              <div
+                className={`flex items-center gap-2 px-3 py-1 rounded-full border text-sm font-medium ${getStatusColor(
+                  status
+                )}`}
+              >
                 {getStatusIcon(status)}
                 <span className="capitalize">{status}</span>
               </div>

@@ -9,7 +9,7 @@ import {
   FaClock,
   FaUsers,
   FaBuilding,
-  FaChevronRight
+  FaChevronRight,
 } from "react-icons/fa";
 
 const DetailsList = ({
@@ -32,7 +32,7 @@ const DetailsList = ({
   PhoneNumber,
   price,
   total,
-  status,
+  // status,
   navigateTo,
   previousPage,
   shiftid,
@@ -45,25 +45,60 @@ const DetailsList = ({
     isLoadnig,
   } = useData(`/employer/shifts/${shiftid}`);
 
-  // Function to get status badge styling
-  const getStatusBadge = (status) => {
-    const statusConfig = {
-      'taken': { color: 'bg-blue-100 text-blue-800 border-blue-200', text: 'Taken' },
-      'pending': { color: 'bg-yellow-100 text-yellow-800 border-yellow-200', text: 'Pending' },
-      'cancel': { color: 'bg-red-100 text-red-800 border-red-200', text: 'Cancelled' },
-      'todo': { color: 'bg-gray-100 text-gray-800 border-gray-200', text: 'To Do' },
-      'done': { color: 'bg-green-100 text-green-800 border-green-200', text: 'Completed' },
-      'progress': { color: 'bg-purple-100 text-purple-800 border-purple-200', text: 'In Progress' },
-      'review': { color: 'bg-orange-100 text-orange-800 border-orange-200', text: 'Under Review' },
-      'OntheWay': { color: 'bg-indigo-100 text-indigo-800 border-indigo-200', text: 'On The Way' },
-      'Arrived': { color: 'bg-emerald-100 text-emerald-800 border-emerald-200', text: 'Arrived' },
-      'Canceled': { color: 'bg-red-100 text-red-800 border-red-200', text: 'Canceled' }
-    };
+  // // Function to get status badge styling
+  // const getStatusBadge = (status) => {
+  //   const statusConfig = {
+  //     taken: {
+  //       color: "bg-blue-100 text-blue-800 border-blue-200",
+  //       text: "Taken",
+  //     },
+  //     pending: {
+  //       color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+  //       text: "Pending",
+  //     },
+  //     cancel: {
+  //       color: "bg-red-100 text-red-800 border-red-200",
+  //       text: "Cancelled",
+  //     },
+  //     todo: {
+  //       color: "bg-gray-100 text-gray-800 border-gray-200",
+  //       text: "To Do",
+  //     },
+  //     done: {
+  //       color: "bg-green-100 text-green-800 border-green-200",
+  //       text: "Completed",
+  //     },
+  //     progress: {
+  //       color: "bg-purple-100 text-purple-800 border-purple-200",
+  //       text: "In Progress",
+  //     },
+  //     review: {
+  //       color: "bg-orange-100 text-orange-800 border-orange-200",
+  //       text: "Under Review",
+  //     },
+  //     OntheWay: {
+  //       color: "bg-indigo-100 text-indigo-800 border-indigo-200",
+  //       text: "On The Way",
+  //     },
+  //     Arrived: {
+  //       color: "bg-emerald-100 text-emerald-800 border-emerald-200",
+  //       text: "Arrived",
+  //     },
+  //     Canceled: {
+  //       color: "bg-red-100 text-red-800 border-red-200",
+  //       text: "Canceled",
+  //     },
+  //   };
 
-    return statusConfig[status] || { color: 'bg-gray-100 text-gray-800 border-gray-200', text: status || 'Unknown' };
-  };
+  //   return (
+  //     statusConfig[status] || {
+  //       color: "bg-gray-100 text-gray-800 border-gray-200",
+  //       text: status || "Unknown",
+  //     }
+  //   );
+  // };
 
-  const statusBadge = getStatusBadge(status);
+  // const statusBadge = getStatusBadge(status);
 
   return (
     <div
@@ -96,10 +131,12 @@ const DetailsList = ({
             </div>
           </div>
 
-          {/* Status Badge */}
-          <div className={`px-3 py-1 rounded-full text-sm font-medium border ${statusBadge.color}`}>
+          {/* Status Badge
+          <div
+            className={`px-3 py-1 rounded-full text-sm font-medium border ${statusBadge.color}`}
+          >
             {statusBadge.text}
-          </div>
+          </div> */}
         </div>
 
         {/* Main Content Grid */}
@@ -108,7 +145,9 @@ const DetailsList = ({
           <div className="flex items-center space-x-2 p-3 bg-blue-50 rounded-lg">
             <FaUsers className="text-blue-600 text-lg" />
             <div>
-              <p className="text-sm font-medium text-gray-900">{employees_required}</p>
+              <p className="text-sm font-medium text-gray-900">
+                {employees_required}
+              </p>
               <p className="text-xs text-gray-600">Workers Needed</p>
             </div>
           </div>
@@ -140,7 +179,9 @@ const DetailsList = ({
             <div className="flex items-center space-x-2 p-3 bg-orange-50 rounded-lg">
               <FaClock className="text-orange-600 text-lg" />
               <div>
-                <p className="text-sm font-medium text-gray-900">{shfit?.data?.name}</p>
+                <p className="text-sm font-medium text-gray-900">
+                  {shfit?.data?.name}
+                </p>
                 <p className="text-xs text-gray-600">
                   {shfit?.data?.start_time} - {shfit?.data?.end_time}
                 </p>
@@ -151,9 +192,7 @@ const DetailsList = ({
 
         {/* Footer with Action Button */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div className="text-sm text-gray-500">
-            Click to view details
-          </div>
+          <div className="text-sm text-gray-500">Click to view details</div>
           <div className="flex items-center space-x-2 text-[#F47621] group-hover:text-[#E55A1A] transition-colors">
             <span className="text-sm font-medium">View Details</span>
             <FaChevronRight className="text-sm group-hover:translate-x-1 transition-transform" />

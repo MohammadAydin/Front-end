@@ -30,12 +30,18 @@ const HelpRequestsMain = () => {
     }
     switch (sortKey) {
       case "oldest":
-        return [...list].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+        return [...list].sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
       case "date_from":
-        return [...list].sort((a, b) => new Date(a.date_from) - new Date(b.date_from));
+        return [...list].sort(
+          (a, b) => new Date(a.date_from) - new Date(b.date_from)
+        );
       case "newest":
       default:
-        return [...list].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        return [...list].sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
     }
   }, [items, search, sortKey]);
 
@@ -133,7 +139,7 @@ const HelpRequestsMain = () => {
             specialist="t"
             address="t"
             price="t"
-            status={item?.status || "pending"}
+            // status={item?.status || "pending"}
             navigateTo={`/helpRequests/${item.id}`}
           />
         ))}
