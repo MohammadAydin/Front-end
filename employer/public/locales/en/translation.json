@@ -105,7 +105,8 @@
       "PersonalInfo": "Personal Info",
       "HelpRequests": "Help Requests",
       "Invoices": "Invoices",
-      "ShiftsManagement": "Shifts Management"
+      "ShiftsManagement": "Shifts Management",
+      "Notifications": "Notifications"
     },
 
     "settings": {
@@ -297,7 +298,12 @@
       "cancel": "Cancel",
       "pending": "Pending",
       "taken": "Taken"
-    }
+    },
+    "created_at": "created_at",
+    "workers_needed": "workers_needed",
+    "from": "from",
+    "to": "to",
+    "shift": "shift"
   },
   "Invoices": {
     "title": "Invoices",
@@ -305,7 +311,9 @@
   },
   "Shifts": {
     "title": "Shifts Mangment",
-    "add": "Add new Shift"
+    "add": "Add new Shift",
+    "from": "from",
+    "to": "to"
   },
   "notifications": {
     "title": "Notifications",
@@ -332,7 +340,9 @@
       "shifts": "Shifts",
       "address": "Address",
       "employeeCount": "Employee Count",
-      "dateRange": "Date Range"
+      "date": "Date",
+      "dateRange": "Date Range",
+      "custom_shift": "Custom Shift"
     },
     "buttons": {
       "next": "Next",
@@ -355,5 +365,11 @@
       "singular": "Employee",
       "plural": "Employees"
     }
+  },
+  "statusPersonalInfo": {
+    "pending": "Pending",
+    "approved": "Approved",
+    "declined": "Declined",
+    "uploaded": "uploaded"
   }
 }

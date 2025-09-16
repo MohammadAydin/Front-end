@@ -105,7 +105,8 @@
       "PersonalInfo": "Persönliche Informationen",
       "HelpRequests": "Hilfsanfragen",
       "Invoices": "Rechnungen",
-      "ShiftsManagement": "Schichtverwaltung"
+      "ShiftsManagement": "Schichtverwaltung",
+      "Notifications": "Benachrichtigungen"
     },
 
     "settings": {
@@ -298,7 +299,12 @@
       "cancel": "Stornieren",
       "pending": "Ausstehend",
       "taken": "Übernommen"
-    }
+    },
+    "created_at": "Erstellt um",
+    "workers_needed": "Benötigte Mitarbeiter",
+    "from": "Von",
+    "to": "Bis",
+    "shift": "Schicht"
   },
   "Invoices": {
     "title": "Rechnungen",
@@ -306,7 +312,9 @@
   },
   "Shifts": {
     "title": "Schichtverwaltung",
-    "add": "Neue Schicht hinzufügen"
+    "add": "Neue Schicht hinzufügen",
+    "from": "Von",
+    "to": "Bis"
   },
   "notifications": {
     "title": "Benachrichtigungen",
@@ -330,10 +338,12 @@
       "title": "Titel",
       "description": "Beschreibung",
       "position": "Position",
-      "shifts": "Schichten",
+      "shifts": "Schicht",
       "address": "Adresse",
       "employeeCount": "Anzahl der Mitarbeiter",
-      "dateRange": "Datumsbereich"
+      "dateRange": "Datumsbereich",
+      "date": "Datum",
+      "custom_shift": "Schicht konfigurieren"
     },
     "buttons": {
       "next": "Weiter",
@@ -356,5 +366,11 @@
       "singular": "Mitarbeiter",
       "plural": "Mitarbeiter"
     }
+  },
+  "statusPersonalInfo": {
+    "pending": "Ausstehend",
+    "approved": "Genehmigt",
+    "declined": "Abgelehnt",
+    "uploaded": "Hochgeladen"
   }
 }

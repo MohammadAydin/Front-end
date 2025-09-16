@@ -182,16 +182,22 @@ const JopRequest = () => {
           {visibleJobs?.map((job) => (
             <div
               key={job.service_request.id}
-              className=" flex justify-between items-center mb-7   "
+              className="flex justify-between items-start mb-7 gap-6"
             >
               <Link to={`/jobRequestDetails/${job.service_request.id}`}>
-                <div className="imgAndinfo flex gap-8 items-center max-[1044px]:flex-col  max-[1044px]:items-start ">
-                  {/* View a picture of the elderly house*/}
-                  <div className="flex items-center gap-3">
-                    <img className=" rounded-4xl" src={imgjob} alt="" />
+                <div className="imgAndinfo flex gap-8 items-center flex-wrap max-[1044px]:flex-col max-[1044px]:items-start">
+                  {/* View a picture of the elderly house */}
+                  <div className="flex items-center gap-3 w-[250px]">
+                    <img
+                      className="rounded-4xl w-16 h-16 object-cover"
+                      src={imgjob}
+                      alt=""
+                    />
                     {/* Display price with jobRequest title */}
-                    <div className="info">
-                      <p>{job.job_posting.title}</p>
+                    <div className="info flex-grow min-w-[200px] max-w-[250px]">
+                      <p className="truncate text-wrap">
+                        {job.job_posting.title}
+                      </p>
                       <p className="text-softColor text-xs">
                         {job?.job_posting?.total_cost}&euro;
                       </p>
@@ -205,12 +211,12 @@ const JopRequest = () => {
                       </p>
                       <p className="text-softColor text-xs flex justify-between">
                         <span>date to &nbsp;</span>:&nbsp;{" "}
-                        {job?.job_posting?.date_from.split(" ")[0]}{" "}
+                        {job?.job_posting?.date_to.split(" ")[0]}{" "}
                       </p>
                     </div>
                     <div className="flex items-center gap-4 max-[720px]:flex-col">
-                      <p className="text-softColor text-xs ">
-                        shift ( {job?.job_posting?.shift?.name} ) &nbsp;:{" "}
+                      <p className="text-softColor text-xs">
+                        shift ({job?.job_posting?.shift?.name}) &nbsp;:{" "}
                       </p>
                       <div className="flex flex-col mt-2 gap-2">
                         <p className="text-softColor text-xs flex justify-between">
@@ -226,11 +232,11 @@ const JopRequest = () => {
                   </div>
                 </div>
               </Link>
-              <div className="buttons flex gap-3.5 max-[811px]:flex-col ">
+              <div className="buttons flex gap-3.5 max-[811px]:flex-col">
                 {/* Decline button */}
                 <button
                   onClick={() => DeclineJob.mutate(job.service_request.id)}
-                  className="bg-softwhite  pt-2 pb-2 pr-8 pl-8 rounded-xl Decline-Job"
+                  className="bg-softwhite pt-2 pb-2 pr-8 pl-8 rounded-xl Decline-Job"
                 >
                   {t("jobRequest.decline")}
                 </button>

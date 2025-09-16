@@ -62,7 +62,11 @@ const RequestsForm = () => {
     name: item?.street1,
     id: item.id,
   }));
-  const selectOptions = ["Position", "Shifts", "Address"];
+  const selectOptions = [
+    { name: "Position", label: t("RequestsForm.fields.position"), id: 1 },
+    { name: "Shifts", label: t("RequestsForm.fields.shifts"), id: 2 },
+    { name: "Address", label: t("RequestsForm.fields.address"), id: 3 },
+  ];
 
   const {
     register,
@@ -72,7 +76,7 @@ const RequestsForm = () => {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(RequestSchema),
+    resolver: zodResolver(RequestSchema(t)),
     defaultValues: {
       ["EmployeeCount"]: 1,
     },
@@ -212,33 +216,39 @@ const RequestsForm = () => {
                       ))}
                     </div>
                     <div className=" grid grid-cols-2 gap-x-3">
-                      {selectOptions.map((name) => (
+                      {selectOptions.map((selectOption) => (
                         <div
-                          key={name}
-                          className={`${name === "Address" ? "col-span-2" : ""
+                          key={selectOption.name}
+                          className={`${selectOption.name === "Address" ? "col-span-2" : ""
                             }`}
                         >
                           <SelectField
                             data={
-                              name === "Shifts"
+                              selectOption.name === "Shifts"
                                 ? [
                                   ...(dataShift?.data || []),
-                                  { id: "custom", name: "Custom Shift" },
+                                  {
+                                    id: "custom",
+                                    name: t(
+                                      "RequestsForm.fields.custom_shift"
+                                    ),
+                                  },
                                 ]
-                                : name === "Address"
+                                : selectOption.name === "Address"
                                   ? resultLocation
                                   : dataPosation
                             }
-                            name={name}
+                            name={selectOption.name}
                             errors={errors}
                             setValue={setValue}
                             register={register}
-                            value={watch(name)}
+                            value={watch(selectOption.name)}
+                            label={selectOption.label}
                           />
-                          {(name === 'Shifts' && isLoading) && (
+                          {(selectOption.name === 'Shifts' && isLoading) && (
                             <p className="text-xs text-gray-500 mt-1">Loading shifts...</p>
                           )}
-                          {(name === 'Address' && isLoadingLocation) && (
+                          {(selectOption.name === 'Address' && isLoadingLocation) && (
                             <p className="text-xs text-gray-500 mt-1">Loading locations...</p>
                           )}
                         </div>
@@ -253,6 +263,7 @@ const RequestsForm = () => {
                           setValue={setValue}
                           register={register}
                           value={watch("EmployeeCount")}
+                          label={t("RequestsForm.fields.employeeCount")}
                         />
                         <p className="text-xs text-gray-500 mt-1">Number of helpers you need for this job.</p>
                       </div>

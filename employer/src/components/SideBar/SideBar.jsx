@@ -6,9 +6,11 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import "./SideBarResponsive.css";
 import useData from "../../hooks/useData";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
+import { useTranslation } from "react-i18next";
 
 const SideBar = ({ setNotificationIsOpen }) => {
   const { data: photodata } = useData("/photo");
+  const { t } = useTranslation();
 
   const data = getUserFromLocalStorage("user");
 
@@ -40,8 +42,10 @@ const SideBar = ({ setNotificationIsOpen }) => {
                 className="nav-item flex items-center gap-2 mx-[5px] relative group text-white mt-[25px]"
               >
                 <IoNotificationsOutline size={24} />
-                <p className="pageName ">Notifications</p>
-                <span className="SmallpageName hidden">Notifications</span>
+                <p className="pageName ">{t("SideBar.pages.Notifications")}</p>
+                <span className="SmallpageName hidden">
+                  {t("SideBar.pages.Notifications")}
+                </span>
               </button>
             </div>
           </div>

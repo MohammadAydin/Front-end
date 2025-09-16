@@ -32,6 +32,7 @@ const TasksDetails = () => {
 
   // Fetch task data
   const { data: task, error, isLoading } = useJobs(`/tasks/${id}`);
+
   // console.log(task?.task?.start_at);
 
   // console.log(task);
@@ -224,7 +225,10 @@ const TasksDetails = () => {
               ) : null}
             </div>
           </div>
-
+          <div className="mt-5 flex flex-col  gap-3 ">
+            <p>start at: {task?.task?.start_at}</p>
+            <p>end at: {task?.task?.end_at}</p>
+          </div>
           {/* Task description */}
           <div className="mt-8">
             <h2 className="mb-3 text-xl">{t("taskDetails.positionDetails")}</h2>

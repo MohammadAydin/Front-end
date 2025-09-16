@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const SelectField = ({ data, name, errors, setValue, register, value }) => {
+const SelectField = ({
+  data,
+  name,
+  errors,
+  setValue,
+  register,
+  value,
+  label,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectOption, setSelectOption] = useState("");
   const [selectname, setSelectname] = useState();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   useEffect(() => {
     if (value == undefined) {
@@ -22,7 +32,7 @@ const SelectField = ({ data, name, errors, setValue, register, value }) => {
 
   return (
     <div className=" relative text-sm w-full">
-      <h2 className="mt-5 font-extrabold">{name}</h2>
+      <h2 className="mt-5 font-extrabold">{label}</h2>
 
       <input type="hidden" {...register(name)} value={selectOption} readOnly />
 
@@ -33,7 +43,7 @@ const SelectField = ({ data, name, errors, setValue, register, value }) => {
           selectOption ? "text-black" : "text-[#919EAB]"
         }`}
       >
-        {selectname || name}
+        {label}
         <span>
           <MdOutlineKeyboardArrowDown size={25} />
         </span>
@@ -45,7 +55,7 @@ const SelectField = ({ data, name, errors, setValue, register, value }) => {
               <li
                 key={option?.id}
                 onClick={() => {
-                  if (option?.name === "Custom Shift") {
+                  if (option?.name === t("RequestsForm.fields.custom_shift")) {
                     navigate("/Shifts");
                   } else {
                     handleSelect(option);
