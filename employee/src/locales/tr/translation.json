@@ -760,6 +760,29 @@
   "jopComponents": {
     "confirmationPopup": "Bir iş talebini kabul edip daha sonra iptal edersen, puanın düşecektir.",
     "accept": "Onayla",
-    "cancel": "İptal"
+    "cancel": "İptal",
+    "incompleteProfileWarning": "Çalışmaya başlamadan önce tüm gerekli bilgileri tamamlamalısınız.",
+    "completeProfileButton": "Profili Tamamla",
+    "learnMore": "Daha Fazla Bilgi",
+    "completeProfileToView": "İş detaylarını görüntülemek için profilinizi tamamlayın",
+    "notAvailableTitle": "Profili Tamamla",
+    "hiddenPrice": "Fiyat Gizli",
+    "fakeJobs": {
+      "job1": {
+        "price": "50"
+      },
+      "job2": {
+        "price": "45"
+      },
+      "job3": {
+        "price": "55"
+      },
+      "job4": {
+        "price": "48"
+      },
+      "job5": {
+        "price": "52"
+      }
+    }
   }
 }
