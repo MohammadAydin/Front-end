@@ -55,8 +55,6 @@ const PopupCheck = ({ togglePopup, idTask, handleSetLevel }) => {
     } catch (error) {
       // Show Toast error message
       toast.error(error?.response?.data?.message);
-
-   
     }
   };
 

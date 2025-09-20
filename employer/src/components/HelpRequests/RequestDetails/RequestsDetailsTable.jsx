@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaAlignLeft } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaUsers,
+  FaAlignLeft,
+} from "react-icons/fa";
 import helpRequestDetails from "./helpIndex";
 import useData from "../../../hooks/useData";
 import ServiceRequests from "./ServiceRequests/ServiceRequests";
@@ -57,11 +62,21 @@ const RequestsDetailsTable = ({ id }) => {
           <div className="flex flex-wrap gap-2">
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm">
               <FaMapMarkerAlt />
-              <span>{loc?.city}, {loc?.country}</span>
+              <span>
+                {loc?.city}, {loc?.country}
+              </span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm">
               <FaCalendarAlt />
-              <span>{job?.date_from ? new Date(job?.date_from).toLocaleDateString("en-GB") : "-"} → {job?.date_to ? new Date(job?.date_to).toLocaleDateString("en-GB") : "-"}</span>
+              <span>
+                {job?.date_from
+                  ? new Date(job?.date_from).toLocaleDateString("en-GB")
+                  : "-"}{" "}
+                →{" "}
+                {job?.date_to
+                  ? new Date(job?.date_to).toLocaleDateString("en-GB")
+                  : "-"}
+              </span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm">
               <FaUsers />
@@ -81,7 +96,9 @@ const RequestsDetailsTable = ({ id }) => {
             </div>
             <div>
               <p className="text-sm text-gray-500">Helpers Needed</p>
-              <p className="text-base font-semibold text-gray-900">{job?.employees_required}</p>
+              <p className="text-base font-semibold text-gray-900">
+                {job?.employees_required}
+              </p>
             </div>
           </div>
           <div className="bg-white rounded-lg border border-gray-200 p-4 flex items-center gap-3">
@@ -90,7 +107,11 @@ const RequestsDetailsTable = ({ id }) => {
             </div>
             <div>
               <p className="text-sm text-gray-500">From</p>
-              <p className="text-base font-semibold text-gray-900">{job?.date_from ? new Date(job?.date_from).toLocaleDateString("en-GB") : "-"}</p>
+              <p className="text-base font-semibold text-gray-900">
+                {job?.date_from
+                  ? new Date(job?.date_from).toLocaleDateString("en-GB")
+                  : "-"}
+              </p>
             </div>
           </div>
           <div className="bg-white rounded-lg border border-gray-200 p-4 flex items-center gap-3">
@@ -99,7 +120,11 @@ const RequestsDetailsTable = ({ id }) => {
             </div>
             <div>
               <p className="text-sm text-gray-500">To</p>
-              <p className="text-base font-semibold text-gray-900">{job?.date_to ? new Date(job?.date_to).toLocaleDateString("en-GB") : "-"}</p>
+              <p className="text-base font-semibold text-gray-900">
+                {job?.date_to
+                  ? new Date(job?.date_to).toLocaleDateString("en-GB")
+                  : "-"}
+              </p>
             </div>
           </div>
         </div>
@@ -114,11 +139,12 @@ const RequestsDetailsTable = ({ id }) => {
             </h3>
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-500">
-                {isJobDetailsCollapsed ? 'Show Details' : 'Hide Details'}
+                {isJobDetailsCollapsed ? "Show Details" : "Hide Details"}
               </span>
               <svg
-                className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${isJobDetailsCollapsed ? 'rotate-180' : ''
-                  }`}
+                className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+                  isJobDetailsCollapsed ? "rotate-180" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -136,36 +162,63 @@ const RequestsDetailsTable = ({ id }) => {
 
         {/* Collapsible Content */}
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out ${isJobDetailsCollapsed ? 'max-h-0' : 'max-h-[1000px]'
-            }`}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isJobDetailsCollapsed ? "max-h-0" : "max-h-[1000px]"
+          }`}
         >
           <div className="rounded-b-md overflow-hidden border-l border-r border-b border-gray-200">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-white">
               {/* Title */}
               <div className="flex items-start gap-3 p-4 rounded-lg border border-gray-200">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-gray-50 text-gray-700 flex items-center justify-center font-bold">T</div>
+                <div className="h-10 w-10 shrink-0 rounded-full bg-gray-50 text-gray-700 flex items-center justify-center font-bold">
+                  T
+                </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-500">Job Posting Title</p>
-                  <p className="mt-1 text-base font-semibold text-gray-900">{job?.title}</p>
+                  <p className="text-xs uppercase tracking-wide text-gray-500">
+                    Job Posting Title
+                  </p>
+                  <p className="mt-1 text-base font-semibold text-gray-900">
+                    {job?.title}
+                  </p>
                 </div>
               </div>
 
               {/* Location */}
               <div className="flex items-start gap-3 p-4 rounded-lg border border-gray-200">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center"><FaMapMarkerAlt /></div>
+                <div className="h-10 w-10 shrink-0 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <FaMapMarkerAlt />
+                </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-500">Location</p>
-                  <p className="mt-1 text-base font-semibold text-gray-900">{loc?.title}</p>
-                  <p className="text-sm text-gray-600">{loc?.city}, {loc?.country}</p>
+                  <p className="text-xs uppercase tracking-wide text-gray-500">
+                    Location
+                  </p>
+                  <p className="mt-1 text-base font-semibold text-gray-900">
+                    {loc?.title}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {loc?.city}, {loc?.country}
+                  </p>
                 </div>
               </div>
 
               {/* Dates */}
               <div className="flex items-start gap-3 p-4 rounded-lg border border-gray-200">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center"><FaCalendarAlt /></div>
+                <div className="h-10 w-10 shrink-0 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center">
+                  <FaCalendarAlt />
+                </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-500">Dates</p>
-                  <p className="mt-1 text-base font-semibold text-gray-900">{job?.date_from ? new Date(job?.date_from).toLocaleDateString("en-GB") : "-"} → {job?.date_to ? new Date(job?.date_to).toLocaleDateString("en-GB") : "-"}</p>
+                  <p className="text-xs uppercase tracking-wide text-gray-500">
+                    Dates
+                  </p>
+                  <p className="mt-1 text-base font-semibold text-gray-900">
+                    {job?.date_from
+                      ? new Date(job?.date_from).toLocaleDateString("en-GB")
+                      : "-"}{" "}
+                    →{" "}
+                    {job?.date_to
+                      ? new Date(job?.date_to).toLocaleDateString("en-GB")
+                      : "-"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -173,10 +226,16 @@ const RequestsDetailsTable = ({ id }) => {
             {/* Description */}
             <div className="p-4 bg-[#F9FAFB] border-t border-gray-200">
               <div className="flex items-start gap-3">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center"><FaAlignLeft /></div>
+                <div className="h-10 w-10 shrink-0 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center">
+                  <FaAlignLeft />
+                </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">Job Posting Description</p>
-                  <p className="text-gray-800 leading-relaxed">{job?.description || 'No description provided.'}</p>
+                  <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                    Job Posting Description
+                  </p>
+                  <p className="text-gray-800 leading-relaxed">
+                    {job?.description || "No description provided."}
+                  </p>
                 </div>
               </div>
             </div>
@@ -184,7 +243,10 @@ const RequestsDetailsTable = ({ id }) => {
         </div>
       </div>
 
-      <ServiceRequests data={JopPostingDetails?.data?.service_requests} title={JopPostingDetails?.data?.job_posting?.title} />
+      <ServiceRequests
+        data={JopPostingDetails?.data?.service_requests}
+        title={JopPostingDetails?.data?.job_posting?.title}
+      />
     </div>
   );
 };

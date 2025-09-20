@@ -11,6 +11,10 @@ import {
   FaBuilding,
   FaChevronRight,
 } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import customFetch from "../utils/axios";
+import { toast } from "react-toastify";
 
 const DetailsList = ({
   id,
@@ -44,6 +48,7 @@ const DetailsList = ({
     error,
     isLoadnig,
   } = useData(`/employer/shifts/${shiftid}`);
+  const queryClient = useQueryClient();
 
   // // Function to get status badge styling
   // const getStatusBadge = (status) => {
@@ -99,12 +104,19 @@ const DetailsList = ({
   // };
 
   // const statusBadge = getStatusBadge(status);
+  const DeleteJop = useMutation({
+    mutationFn: () => customFetch.delete(`/job/${id}`).then((res) => res.data),
+    onSuccess: (data) => {
+      toast.success(data.message);
 
+      queryClient.invalidateQueries(["/employerJobPosting"]);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
   return (
-    <div
-      className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 mb-4 overflow-hidden group cursor-pointer"
-      onClick={() => navigate(navigateTo)}
-    >
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 mb-4 overflow-hidden group ">
       <div className="p-6">
         {/* Header Row */}
         <div className="flex items-start justify-between mb-4">
@@ -130,13 +142,10 @@ const DetailsList = ({
               </div>
             </div>
           </div>
-
-          {/* Status Badge
-          <div
-            className={`px-3 py-1 rounded-full text-sm font-medium border ${statusBadge.color}`}
-          >
-            {statusBadge.text}
-          </div> */}
+          {/* delete button */}
+          <div className="text-red-400 text-2xl cursor-pointer">
+            <MdDelete onClick={() => DeleteJop.mutate()} />
+          </div>
         </div>
 
         {/* Main Content Grid */}
@@ -191,7 +200,10 @@ const DetailsList = ({
         </div>
 
         {/* Footer with Action Button */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div
+          className="flex items-center justify-between pt-4 border-t border-gray-100 cursor-pointer"
+          onClick={() => navigate(navigateTo)}
+        >
           <div className="text-sm text-gray-500">Click to view details</div>
           <div className="flex items-center space-x-2 text-[#F47621] group-hover:text-[#E55A1A] transition-colors">
             <span className="text-sm font-medium">View Details</span>

@@ -181,7 +181,8 @@ const AddLoaction = () => {
       try {
         const res = await axios.post(
           "https://countriesnow.space/api/v0.1/countries/cities",
-          { country: selectedName }
+          { country: selectedName },
+          { timeout: 20000 }
         );
         setLoadingCity(false);
         setCites(res.data.data);

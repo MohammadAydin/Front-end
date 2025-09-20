@@ -16,9 +16,15 @@ const statusTask = (text) => {
   } else if (text === "review") {
     status.statusText = "Review";
     status.statusColorClass = "bg-yellow-400";
-  }  else if (text === "Canselled") {
-    status.statusText = "Canselled";
-    status.statusColorClass = "bg-red-400";
+  } else if (text === "Canceled") {
+    status.statusText = "Canceled";
+    status.statusColorClass = "bg-red-500";
+  } else if (text === "OntheWay") {
+    status.statusText = "OntheWay";
+    status.statusColorClass = "bg-blue-400";
+  } else if (text === "Arrived") {
+    status.statusText = "Arrived";
+    status.statusColorClass = "bg-amber-400";
   } else {
     status.statusText = "Unknown";
     status.statusColorClass = "bg-gray-300";

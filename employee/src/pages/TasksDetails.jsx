@@ -25,13 +25,99 @@ import customFetch from "../utils/axios";
 
 // Task details
 const TasksDetails = () => {
+  const queryClient = useQueryClient();
+
   const [ReportPopup, setReportPopup] = useState(false);
+
   const { t } = useTranslation();
   // Get id from route
   const { id } = useParams();
 
   // Fetch task data
   const { data: task, error, isLoading } = useJobs(`/tasks/${id}`);
+
+  const [location, setLocation] = useState({
+    latitude: null,
+    longitude: null,
+    error: null,
+  });
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude, error: null });
+        },
+        (error) => {
+          setLocation({
+            latitude: null,
+            longitude: null,
+            error: error.message,
+          });
+        }
+      );
+    } else {
+      setLocation({
+        latitude: null,
+        longitude: null,
+        error: "Geolocation is not supported by this browser.",
+      });
+    }
+  }, []);
+
+  const OnMyWay = useMutation({
+    mutationFn: () =>
+      customFetch
+        .put(`/matching/tasks/${id}/on-the-way`)
+        .then((res) => res.data),
+
+    onSuccess: (data) => {
+      console.log(data);
+      handleSetLevel(2), toast.success(data?.message);
+      queryClient.invalidateQueries([`/tasks/${id}`]);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
+  const arrived = useMutation({
+    mutationFn: () =>
+      customFetch
+        .put(`/matching/tasks/${id}/arrived`, {
+          latitude: location.latitude,
+          longitude: location.longitude,
+        })
+        .then((res) => res.data),
+
+    // handleSetLevel(3),
+    onSuccess: (data) => {
+      toast.success(data?.message);
+      queryClient.invalidateQueries([`/tasks/${id}`]);
+    },
+    onError: (error) => {
+      console.log("sss");
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    },
+  });
+  const statusButton = () => {
+    if (task?.task?.status === "todo") {
+      return { ButtonName: "Started Route", func: OnMyWay };
+    }
+    if (task?.task?.status === "OntheWay") {
+      return { ButtonName: "Arrived", func: arrived };
+    }
+    if (task?.task?.status === "Arrived") {
+      return { ButtonName: "Start Work", func: startWork };
+    }
+    if (task?.task?.status === "Arrived") {
+      return { ButtonName: "Start Work", func: startWork };
+    }
+    if (task?.task?.status === "progress") {
+      return { ButtonName: "Finish Task", func: endWork };
+    }
+  };
 
   // console.log(task?.task?.start_at);
 
@@ -58,8 +144,6 @@ const TasksDetails = () => {
   const center = task?.coordinates
     ? { lat: task.coordinates.latitude, lng: task.coordinates.longitude }
     : { lat: 0, lng: 0 };
-
-  const queryClient = useQueryClient();
 
   const [level, setLevel] = useState(() => {
     const savedLevel = localStorage.getItem("level");
@@ -96,35 +180,7 @@ const TasksDetails = () => {
       handleSetLevel(null);
     }
   }, [task?.task?.status]);
-  const OnMyWay = useMutation({
-    mutationFn: () =>
-      customFetch
-        .put(`/matching/tasks/${id}/on-the-way`)
-        .then((res) => res.data),
 
-    onSuccess: (data) => {
-      console.log(data);
-      handleSetLevel(2), toast.success(data?.message);
-    },
-    onError: (error) => {
-      toast.error(error?.response?.data?.message);
-    },
-  });
-
-  const arrived = useMutation({
-    mutationFn: () =>
-      // customFetch
-      //   .post(`/matching/declineRequest/${jobId}`)
-      //   .then((res) => res.data),
-
-      handleSetLevel(3),
-    onSuccess: () => {
-      toast.success("ok your arrived");
-    },
-    onError: (error) => {
-      toast.error("no your arrived");
-    },
-  });
   const startWork = useMutation({
     mutationFn: () =>
       // customFetch
@@ -132,9 +188,12 @@ const TasksDetails = () => {
       //   .then((res) => res.data),
 
       setPopuparrived(true),
-    onSuccess: () => {},
+    onSuccess: () => {
+      toast.success("Enter pin code start work");
+    },
     onError: (error) => {
-      toast.error("no your arrived");
+      console.log(error);
+      toast.error("The work start process did not succeed");
     },
   });
   const endWork = useMutation({
@@ -142,15 +201,23 @@ const TasksDetails = () => {
       // customFetch
       //   .post(`/matching/declineRequest/${jobId}`)
       //   .then((res) => res.data),
-
-      handleSetLevel(5),
+      setPopupend(true),
+    // handleSetLevel(5),
     onSuccess: () => {
-      toast.success("ok your end work");
+      toast.success("Enter Pin Code end work");
     },
     onError: (error) => {
-      toast.error("no your arrived");
+      toast.error("The work end process did not succeed");
     },
   });
+  const [dayDifferencTask, setDayDifferencTask] = useState(false);
+  useEffect(() => {
+    const { days } = timeDifference(new Date(), task?.task?.StartDate);
+    console.log(days);
+    if (days >= 1) {
+      setDayDifferencTask(true);
+    }
+  }, [task?.task?.StartDate]);
 
   // Show download or error status
   if (isLoading) return <Spinner />;
@@ -225,10 +292,21 @@ const TasksDetails = () => {
               ) : null}
             </div>
           </div>
-          <div className="mt-5 flex flex-col  gap-3 ">
-            <p>start at: {task?.task?.start_at}</p>
-            <p>end at: {task?.task?.end_at}</p>
+          <div className="mt-5 flex flex-col gap-4 p-4 bg-white rounded-2xl shadow-md border border-gray-100 w-fit">
+            <div className="flex items-center justify-between">
+              <span className="text-gray-500 font-medium">Start Date : </span>
+              <span className="text-gray-800 font-semibold">
+                {task?.task?.StartDate}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-500 font-medium">End Date : </span>
+              <span className="text-gray-800 font-semibold">
+                {task?.task?.EndDate}
+              </span>
+            </div>
           </div>
+
           {/* Task description */}
           <div className="mt-8">
             <h2 className="mb-3 text-xl">{t("taskDetails.positionDetails")}</h2>
@@ -272,7 +350,7 @@ const TasksDetails = () => {
             </GoogleMap>
           </div>
 
-          {/* buttons */}
+          {/* buttons
           {task?.task?.status !== "review" ||
           task?.task?.status !== "cancel" ? (
             <div className="flex gap-5 mt-[30vh] justify-end max-[1109px]:mt-[6vh]">
@@ -317,7 +395,15 @@ const TasksDetails = () => {
                 </button>
               )}
             </div>
-          ) : null}
+          ) : null} */}
+          <div className="flex gap-5 mt-[30vh] justify-end max-[1109px]:mt-[6vh]">
+            <button
+              onClick={() => statusButton()?.func.mutate()}
+              className="text-white bg-secondaryColor text-xl p-2 w-[10em] rounded-[10px]"
+            >
+              {statusButton()?.ButtonName}
+            </button>
+          </div>
         </div>
       </div>
       {Popuparrived && (
@@ -344,7 +430,12 @@ const TasksDetails = () => {
         />
       )}
       {ReportPopup && (
-        <PopupReport togglePopup={togglePopupReport} idTask={id} />
+        <PopupReport
+          status={task?.task?.status}
+          dayDifferencTask={dayDifferencTask}
+          togglePopup={togglePopupReport}
+          idTask={id}
+        />
       )}
     </div>
   );

@@ -2,11 +2,34 @@ import { useState } from "react";
 import { IoEyeOutline, IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { FaCalendarAlt, FaUserCheck } from "react-icons/fa";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import customFetch from "../../../../utils/axios";
+import { toast } from "react-toastify";
+import { MdDelete } from "react-icons/md";
+import PopupWarningTask from "../../../MoreElements/Popup/PopupWarningTask";
 
 const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const [ShowPopup, setShowPopup] = useState(false);
+  const togglePupup = () => {
+    setShowPopup(!ShowPopup);
+  };
+  const queryClient = useQueryClient();
 
+  const DeleteService = useMutation({
+    mutationFn: () =>
+      customFetch.delete(`/service-request/${id}`).then((res) => res.data),
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries([`/employerJobPosting/${id}`]);
+    },
+    onError: (error) => {
+      queryClient.invalidateQueries([`/employerJobPosting/${id}`]);
+
+      toast.error(error?.response?.data?.message);
+    },
+  });
   const getStatusBadge = (status) => {
     const map = {
       pending: {
@@ -42,7 +65,7 @@ const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
   return (
     <div
       className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 mb-3 cursor-pointer"
-      onClick={() => navigate(navigateTo)}
+      // onClick={() => navigate(navigateTo)}
     >
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
@@ -66,7 +89,16 @@ const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
           {badge.text}
         </div>
       </div>
-      <div className="px-4 pb-4 pt-0 flex items-center justify-end">
+      <div className="px-4 pb-4 pt-0 flex items-center justify-end gap-2">
+        {/* delete button */}
+        <div className="text-red-400 text-2xl cursor-pointer">
+          <MdDelete
+            onClick={() => DeleteService.mutate()}
+            // onClick={() => {
+            //   employeeNum <= 0 ? DeleteService.mutate() : togglePupup();
+            // }}
+          />
+        </div>
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -79,6 +111,12 @@ const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
           {isHovered ? <IoEyeSharp size={18} /> : <IoEyeOutline size={18} />}
         </button>
       </div>
+      {ShowPopup && (
+        <PopupWarningTask
+          togglePopup={togglePupup}
+          onConfirm={() => DeleteService.mutate()}
+        />
+      )}
     </div>
   );
 };

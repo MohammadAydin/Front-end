@@ -184,7 +184,9 @@ const ListTasks = ({
                   <div className="min-w-0">
                     <p className="text-sm text-gray-600">Start Time</p>
                     <p className="font-medium text-gray-900 break-words">
-                      {start_at ? start_at : "Not started yet"}
+                      {start_at
+                        ? start_at.replace("T", " ").split(".")[0]
+                        : "Not started yet"}
                     </p>
                   </div>
                 </div>
@@ -194,7 +196,9 @@ const ListTasks = ({
                   <div className="min-w-0">
                     <p className="text-sm text-gray-600">End Time</p>
                     <p className="font-medium text-gray-900 break-words">
-                      {end_at ? end_at : "Not ended yet"}
+                      {end_at
+                        ? end_at.replace("T", " ").split(".")[0]
+                        : "Not ended yet"}
                     </p>
                   </div>
                 </div>

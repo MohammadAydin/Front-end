@@ -371,5 +371,8 @@
     "approved": "Approved",
     "declined": "Declined",
     "uploaded": "uploaded"
+  },
+  "personalInfoSchema": {
+    "gender": ""
   }
 }

@@ -171,11 +171,7 @@ function App() {
       {/* Wrapping the application with QueryClientProvider to provide data via react-query */}
       {/* Making the pages rely on the route. */}
       <RouterProvider router={router}></RouterProvider>
-      <ToastContainer
-        position="top-center"
-        autoClose={1500}
-        pauseOnHover={false}
-      />
+      <ToastContainer position="top-center" autoClose={1500} />
     </>
   );
 }
