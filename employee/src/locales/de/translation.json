@@ -760,6 +760,29 @@
   "jopComponents": {
     "confirmationPopup": "Wenn du eine Jobanfrage annimmst und sie später stornierst, wird deine Bewertung sinken.",
     "accept": "Annehmen",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "incompleteProfileWarning": "Sie müssen alle erforderlichen Informationen vervollständigen, bevor Sie mit der Arbeit beginnen können.",
+    "completeProfileButton": "Profil vervollständigen",
+    "learnMore": "Mehr erfahren",
+    "completeProfileToView": "Vervollständigen Sie Ihr Profil, um Stellendetails anzuzeigen",
+    "notAvailableTitle": "Profil Vervollständigen",
+    "hiddenPrice": "Preis Versteckt",
+    "fakeJobs": {
+      "job1": {
+        "price": "50"
+      },
+      "job2": {
+        "price": "45"
+      },
+      "job3": {
+        "price": "55"
+      },
+      "job4": {
+        "price": "48"
+      },
+      "job5": {
+        "price": "52"
+      }
+    }
   }
 }

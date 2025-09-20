@@ -760,6 +760,29 @@
   "jopComponents": {
     "confirmationPopup": "If you accept a job request and later cancel it, your rating will decrease.",
     "accept": "Accept",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "incompleteProfileWarning": "You must complete all required information before you can start working.",
+    "completeProfileButton": "Complete Profile",
+    "learnMore": "Learn More",
+    "completeProfileToView": "Complete your profile to view job details",
+    "notAvailableTitle": "Complete Profile",
+    "hiddenPrice": "Price Hidden",
+    "fakeJobs": {
+      "job1": {
+        "price": "50"
+      },
+      "job2": {
+        "price": "45"
+      },
+      "job3": {
+        "price": "55"
+      },
+      "job4": {
+        "price": "48"
+      },
+      "job5": {
+        "price": "52"
+      }
+    }
   }
 }
