@@ -170,6 +170,7 @@
   "phoneNumber": {
     "title": "Telefon Numaranız",
     "description": "Lütfen doğrulama için telefon numaranızı girin",
+    "addNumber": "Telefon Numarası Ekle",
     "fields": {
       "phoneNumber": "Telefon Numarası"
     },
@@ -334,6 +335,7 @@
     "warningTitle": "Önemli Uyarı",
     "successTitle": "Talepleriniz başarıyla gönderildi",
     "backToManagement": "Yönetime geri dön",
+    "basicInfo": "Yeni bir iş ilanı oluşturmak için temel bilgileri sağlayın.",
     "fields": {
       "title": "Başlık",
       "description": "Açıklama",
@@ -372,5 +374,114 @@
     "approved": "Onaylandı",
     "declined": "Reddedildi",
     "uploaded": "Yüklendi"
+  },
+  "formElements": {
+    "fileUploader": {
+      "dropFiles": "Dosyaları buraya bırakın veya",
+      "throughDevice": "cihazınızdan göz atın"
+    }
+  },
+  "positions": {
+    "Pflegefachkraft": "Nitelikli Hemşire",
+    "Pflegefachassistent": "Hemşire Yardımcısı",
+    "Pflegehelfer": "Bakım Yardımcısı"
+  },
+  "navigation": {
+    "back": "Geri"
+  },
+  "completePersonalInfo": {
+    "error": "Kişisel bilgiler kaydedilirken bir hata oluştu"
+  },
+  "messages": {
+    "successUploadAllInfo": "Tüm kişisel bilgiler başarıyla gönderildi",
+    "errorUploadInfo": "Bilgiler gönderilirken hata oluştu",
+    "successUploadPhoto": "Profil fotoğrafı başarıyla yüklendi",
+    "errorUploadPhoto": "Profil fotoğrafı yüklenirken hata oluştu"
+  },
+  "taskActions": {
+    "cancelReason": "Lütfen görevi iptal etme nedeninizi bize bildirin"
+  },
+  "validation": {
+    "selectGender": "Lütfen cinsiyetinizi seçin",
+    "enterUsername": "Lütfen kullanıcı adınızı girin",
+    "enterBirthDate": "Lütfen doğum tarihini GG.AA.YYYY formatında girin",
+    "validDate": "Lütfen geçerli bir tarih girin",
+    "enterShiftName": "Lütfen vardiya adını girin",
+    "startDateRequired": "Başlangıç tarihi gereklidir",
+    "endDateRequired": "Bitiş tarihi gereklidir",
+    "validDateRange": "Lütfen geçerli bir tarih aralığı seçin",
+    "phoneNumberShort": "Telefon numarası çok kısa",
+    "phoneNumberLong": "Telefon numarası çok uzun",
+    "otpMustBe6Digits": "OTP 6 haneli olmalıdır",
+    "uploadDocument": "Lütfen belgeyi yükleyin!",
+    "provideSignature": "Lütfen bir imza sağlayın",
+    "invalidFormat": "Geçersiz format",
+    "fileTooLarge": "Dosya çok büyük",
+    "accountHolderShort": "Hesap sahibi adı çok kısa",
+    "accountHolderLong": "Hesap sahibi adı çok uzun",
+    "bankNameShort": "Banka adı çok kısa",
+    "bankNameLong": "Banka adı çok uzun",
+    "enterBIC": "Lütfen BIC'inizi girin",
+    "invalidIBAN": "Geçersiz IBAN formatı (DE ile başlamalı ve 22 karakter olmalıdır)",
+    "uploadBankCard": "Lütfen banka kartı belgesini yükleyin!",
+    "nameRequired": "Ad gereklidir",
+    "positionRequired": "Pozisyon gereklidir",
+    "invalidEmail": "Geçersiz e-posta",
+    "invalidPhoneNumber": "Geçersiz telefon numarası",
+    "invalidPhoneFormat": "Geçersiz telefon numarası formatı",
+    "passwordMinLength": "Şifre en az 6 karakter olmalıdır",
+    "acceptedImageTypes": "Yalnızca .jpeg, .jpg, .png, .gif dosyaları kabul edilir",
+    "maxFileSize": "Maksimum dosya boyutu 3,1 MB",
+    "selectPermission": "En az bir izin seçin",
+    "enterTaxNumber": "Lütfen vergi kimlik numaranizi girin",
+    "enterTaxBracket": "Lütfen vergi dilimini girin",
+    "enterSocialInsuranceNumber": "Lütfen sosyal sigorta numaranizi girin",
+    "enterHealthInsuranceName": "Lütfen sağlik sigortası şirket adını girin",
+    "enterHealthInsuranceNumber": "Lütfen sağlik sigortası numaranizi girin",
+    "selectHealthInsuranceType": "Lütfen sağlik sigortası türünüzü seçin",
+    "enterChildrenNumber": "Lütfen çocuk sayısını girin",
+    "enterValidNumber": "Lütfen geçerli bir sayı girin",
+    "selectMaritalStatus": "Lütfen medeni durumunuzu seçin",
+    "selectWorkPermit": "Lütfen çalışma izniniz olup olmadığını seçin",
+    "enterNationality": "Lütfen uyruğunuzu girin",
+    "enterPlaceOfBirth": "Lütfen doğum yerinizi girin",
+    "uploadIdFront": "Lütfen kimlik kartının ön yüzünü yükleyin!",
+    "uploadIdBack": "Lütfen kimlik kartının arka yüzünü yükleyin!",
+    "uploadPermitDocument": "Lütfen izin belgenizi yükleyin!",
+    "enterPermitDate": "Lütfen izin geçerlilik tarihini GG.AA.YYYY formatında girin",
+    "mustHaveWorkPermit": "Çalışma izniniz olmalıdır.",
+    "selectSchoolQualification": "Lütfen en yüksek okul niteliginizi seçin",
+    "selectVocationalTraining": "Lütfen meslek eğitimi durumunuzu seçin",
+    "selectPregnancyStatus": "Lütfen hamilelik durumunuzu seçin",
+    "answerCoronaVaccine": "Lütfen Corona aşısı hakkında cevaplayın",
+    "answerHepatitisVaccine": "Lütfen Hepatit aşısı hakkında cevaplayın",
+    "confirmOver18": "Lütfen 18 yaşının üzerinde olduğunuzu onaylayın",
+    "acceptTerms": "Hizmet Şartlarını ve Koşullarını kabul etmelisiniz"
+  },
+  "userProfileComponents": {
+    "profilePhoto": {
+      "validation": {
+        "acceptedTypes": "Yalnızca .jpeg, .jpg, .png, .gif dosyaları kabul edilir",
+        "maxFileSize": "Maksimum dosya boyutu 3,1 MB"
+      }
+    }
+  },
+  "employmentData": {
+    "title": "İstihdam Verileri",
+    "description": "Lütfen istihdam bilgilerinizi sağlayın",
+    "termsAcceptance": "Kabul ediyorum",
+    "termsAndConditions": "Hizmet Şartları ve Koşulları",
+    "back": "Geri"
+  },
+  "idCard": {
+    "front": "Ön yüz",
+    "back": "Arka yüz"
+  },
+  "taskRequests": {
+    "title": "Görev Talepleri",
+    "noTasksAvailable": "Mevcut görev yok",
+    "tasksWillAppear": "Görevler oluşturulduğunda burada görünecektir",
+    "taskCount": "{{count}} görev",
+    "taskCountPlural": "{{count}} görev"
   }
 }

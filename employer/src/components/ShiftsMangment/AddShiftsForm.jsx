@@ -1,12 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import shiftTimeSchema from "./validationSchema";
+import createShiftTimeSchema from "./validationSchema";
 import InputField from "../InputField";
 import { useForm } from "react-hook-form";
 import ShiftTime from "./ShiftTime";
 import SubmitButtons from "../FormElements/SubmitButtons";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
+import { useTranslation } from "react-i18next";
+
 const AddShiftsForm = ({ isFormOpen, setIsFormOpen }) => {
+  const { t } = useTranslation();
   const time = [
     { label: "From", timeField: "fromTime" },
     { label: "To", timeField: "toTime" },
@@ -33,7 +36,7 @@ const AddShiftsForm = ({ isFormOpen, setIsFormOpen }) => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(shiftTimeSchema),
+    resolver: zodResolver(createShiftTimeSchema(t)),
   });
 
   const submit = (data) => {

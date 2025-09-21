@@ -169,6 +169,7 @@
   "phoneNumber": {
     "title": "Your Phone Number",
     "description": "Please enter your phone number for verification",
+    "addNumber": "Add Phone Number",
     "fields": {
       "phoneNumber": "Phone Number"
     },
@@ -333,6 +334,7 @@
     "warningTitle": "Important Warning",
     "successTitle": "Your Requests has been sent successfully",
     "backToManagement": "Back to management",
+    "basicInfo": "Provide the basic information to create a new job posting.",
     "fields": {
       "title": "Title",
       "description": "Description",
@@ -374,5 +376,114 @@
   },
   "personalInfoSchema": {
     "gender": ""
+  },
+  "formElements": {
+    "fileUploader": {
+      "dropFiles": "Drop files here or",
+      "throughDevice": "browse through your device"
+    }
+  },
+  "positions": {
+    "Pflegefachkraft": "Qualified Nurse",
+    "Pflegefachassistent": "Nursing Assistant",
+    "Pflegehelfer": "Care Helper"
+  },
+  "navigation": {
+    "back": "Back"
+  },
+  "completePersonalInfo": {
+    "error": "An error occurred while saving personal information"
+  },
+  "messages": {
+    "successUploadAllInfo": "Successfully sent all personal info",
+    "errorUploadInfo": "Failed to send info",
+    "successUploadPhoto": "Profile photo uploaded successfully",
+    "errorUploadPhoto": "Error uploading profile photo"
+  },
+  "taskActions": {
+    "cancelReason": "Please tell us the reason for canceling the task"
+  },
+  "validation": {
+    "selectGender": "Please select your gender",
+    "enterUsername": "Please enter your username",
+    "enterBirthDate": "Please enter birth date in the format DD.MM.YYYY",
+    "validDate": "Please enter a valid date",
+    "enterShiftName": "Please enter Shift name",
+    "startDateRequired": "Start date is required",
+    "endDateRequired": "End date is required",
+    "validDateRange": "Please select a valid date range",
+    "phoneNumberShort": "Phone number is too short",
+    "phoneNumberLong": "Phone number is too long",
+    "otpMustBe6Digits": "OTP must be 6 digits",
+    "uploadDocument": "Please upload the document!",
+    "provideSignature": "Please provide a signature",
+    "invalidFormat": "Invalid format",
+    "fileTooLarge": "File is too large",
+    "accountHolderShort": "Account holder name is too short",
+    "accountHolderLong": "Account holder name is too long",
+    "bankNameShort": "Bank name is too short",
+    "bankNameLong": "Bank name is too long",
+    "enterBIC": "Please enter your BIC",
+    "invalidIBAN": "Invalid IBAN format (should start with DE and be 22 characters)",
+    "uploadBankCard": "Please upload the bank card document!",
+    "nameRequired": "Name is required",
+    "positionRequired": "Position is required",
+    "invalidEmail": "Invalid email",
+    "invalidPhoneNumber": "Invalid phone number",
+    "invalidPhoneFormat": "Invalid phone number format",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "acceptedImageTypes": "Only .jpeg, .jpg, .png, .gif files are accepted",
+    "maxFileSize": "Max file size is 3.1 MB",
+    "selectPermission": "Select at least one permission",
+    "enterTaxNumber": "Please enter your tax identification number",
+    "enterTaxBracket": "Please enter your tax bracket",
+    "enterSocialInsuranceNumber": "Please enter your social insurance number",
+    "enterHealthInsuranceName": "Please enter your Social insurance company name",
+    "enterHealthInsuranceNumber": "Please enter your health insurance number",
+    "selectHealthInsuranceType": "Please select your health insurance type",
+    "enterChildrenNumber": "Please enter number of children",
+    "enterValidNumber": "Please enter a valid number",
+    "selectMaritalStatus": "Please select your marital status",
+    "selectWorkPermit": "Please select if you have a work permit",
+    "enterNationality": "Please enter your nationality",
+    "enterPlaceOfBirth": "Please enter your place of birth",
+    "uploadIdFront": "Please upload front of id card here!",
+    "uploadIdBack": "Please upload back of id card here!",
+    "uploadPermitDocument": "Please upload your permit document!",
+    "enterPermitDate": "Please enter permit valid date in DD.MM.YYYY format",
+    "mustHaveWorkPermit": "You must have a work permit.",
+    "selectSchoolQualification": "Please select your highest school qualification",
+    "selectVocationalTraining": "Please select your vocational training status",
+    "selectPregnancyStatus": "Please select pregnancy status",
+    "answerCoronaVaccine": "Please answer about Corona vaccine",
+    "answerHepatitisVaccine": "Please answer about Hepatitis vaccine",
+    "confirmOver18": "Please confirm that you are over 18",
+    "acceptTerms": "You must accept the Terms and Conditions"
+  },
+  "userProfileComponents": {
+    "profilePhoto": {
+      "validation": {
+        "acceptedTypes": "Only .jpeg, .jpg, .png, .gif files are accepted",
+        "maxFileSize": "Max file size is 3.1 MB"
+      }
+    }
+  },
+  "employmentData": {
+    "title": "Employment Data",
+    "description": "Please provide your employment information",
+    "termsAcceptance": "I accept the",
+    "termsAndConditions": "Terms and Conditions",
+    "back": "Back"
+  },
+  "idCard": {
+    "front": "Front",
+    "back": "Back"
+  },
+  "taskRequests": {
+    "title": "Task Requests",
+    "noTasksAvailable": "No tasks available",
+    "tasksWillAppear": "Tasks will appear here once they are created",
+    "taskCount": "{{count}} task",
+    "taskCountPlural": "{{count}} tasks"
   }
 }

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const Employment_schema = z.object({
+const createEmploymentSchema = (t) => z.object({
   school_qualification: z.enum(
     [
       "Technical/Abitur",
@@ -8,32 +8,32 @@ const Employment_schema = z.object({
       "Secondary/elementary school leaving certificate",
       "without school leaving certificate",
     ],
-    { message: "Please select your highest school qualification" }
+    { message: t("validation.selectSchoolQualification") }
   ),
 
   vocational_training: z.enum(["true", "false"], {
-    message: "Please select your vocational training status",
+    message: t("validation.selectVocationalTraining"),
   }),
 
   pregnant: z.enum(["true", "false"], {
-    message: "Please select pregnancy status",
+    message: t("validation.selectPregnancyStatus"),
   }),
 
   corona: z.enum(["true", "false"], {
-    message: "Please answer about Corona vaccine",
+    message: t("validation.answerCoronaVaccine"),
   }),
 
   hepatitis: z.enum(["true", "false"], {
-    message: "Please answer about Hepatitis vaccine",
+    message: t("validation.answerHepatitisVaccine"),
   }),
 
   over18: z.literal("true", {
-    errorMap: () => ({ message: "Please confirm that you are over 18" }),
+    errorMap: () => ({ message: t("validation.confirmOver18") }),
   }),
 
   terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the Terms and Conditions" }),
+    errorMap: () => ({ message: t("validation.acceptTerms") }),
   }),
 });
 
-export default Employment_schema;
+export default createEmploymentSchema;

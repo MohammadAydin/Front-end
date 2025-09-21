@@ -2,20 +2,20 @@ import { z } from "zod";
 
 const MAX_SIZE_MB = 2;
 
-const signatureSchema = () =>
+const createSignatureSchema = (t) =>
   z.object({
     signature: z
-      .instanceof(File, { message: "Please provide a signature" })
+      .instanceof(File, { message: t("validation.provideSignature") })
 
       .refine(
         (file) => ["image/png", "image/jpeg", "image/jpg"].includes(file.type),
         {
-          message: "invalidFormat",
+          message: t("validation.invalidFormat"),
         }
       )
       .refine((file) => file.size <= MAX_SIZE_MB * 1024 * 1024, {
-        message: "fileTooLarge",
+        message: t("validation.fileTooLarge"),
       }),
   });
 
-export default signatureSchema;
+export default createSignatureSchema;

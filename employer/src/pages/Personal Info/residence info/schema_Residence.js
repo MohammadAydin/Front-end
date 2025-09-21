@@ -1,35 +1,35 @@
 import { z } from "zod";
 
-const residenceSchema = (isUploaded) =>
+const createResidenceSchema = (t, isUploaded) =>
   z
     .object({
       has_work_permit: z
         .string()
         .optional()
         .refine((val) => val === "Yes" || val === "No" || !val, {
-          message: "Please select if you have a work permit",
+          message: t("validation.selectWorkPermit"),
         }),
 
       nationality: z
         .string()
-        .min(2, { message: "Please enter your nationality" }),
+        .min(2, { message: t("validation.enterNationality") }),
 
       place_of_birth: z
         .string()
-        .min(2, { message: "Please enter your place of birth" }),
+        .min(2, { message: t("validation.enterPlaceOfBirth") }),
 
       permit_valid_until: z.string().optional(),
 
       id_front: isUploaded
         ? z.any().optional()
         : z.any().refine((file) => file instanceof File, {
-            message: "Please upload front of id card here!",
+            message: t("validation.uploadIdFront"),
           }),
 
       id_back: isUploaded
         ? z.any().optional()
         : z.any().refine((file) => file instanceof File, {
-            message: "Please upload back of id card here!",
+            message: t("validation.uploadIdBack"),
           }),
 
       permit_document: z.any().optional(),
@@ -46,7 +46,7 @@ const residenceSchema = (isUploaded) =>
       if (!doc || !(doc instanceof File)) {
         ctx.addIssue({
           path: ["permit_document"],
-          message: "Please upload your permit document!",
+          message: t("validation.uploadPermitDocument"),
           code: z.ZodIssueCode.custom,
         });
       }
@@ -54,7 +54,7 @@ const residenceSchema = (isUploaded) =>
       if (!permitValid || !/^\d{2}\.\d{2}\.\d{4}$/.test(permitValid)) {
         ctx.addIssue({
           path: ["permit_valid_until"],
-          message: "Please enter permit valid date in DD.MM.YYYY format",
+          message: t("validation.enterPermitDate"),
           code: z.ZodIssueCode.custom,
         });
       }
@@ -62,16 +62,16 @@ const residenceSchema = (isUploaded) =>
       if (!hasPermit || (hasPermit !== "Yes" && hasPermit !== "No")) {
         ctx.addIssue({
           path: ["has_work_permit"],
-          message: "Please select if you have a work permit",
+          message: t("validation.selectWorkPermit"),
           code: z.ZodIssueCode.custom,
         });
       } else if (hasPermit === "No") {
         ctx.addIssue({
           path: ["has_work_permit"],
-          message: "You must have a work permit.",
+          message: t("validation.mustHaveWorkPermit"),
           code: z.ZodIssueCode.custom,
         });
       }
     });
 
-export default residenceSchema;
+export default createResidenceSchema;

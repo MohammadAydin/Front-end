@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-const phoneSchema = z.object({
+const createPhoneSchema = (t) => z.object({
   phone_number: z
     .string()
-    .min(6, "Phone number is too short")
-    .max(11, "Phone number is too long"),
+    .min(6, t("validation.phoneNumberShort"))
+    .max(11, t("validation.phoneNumberLong")),
 });
 
-const otpSchema = z.object({
-  code: z.string().length(6, "OTP must be 6 digits"),
+const createOtpSchema = (t) => z.object({
+  code: z.string().length(6, t("validation.otpMustBe6Digits")),
 });
 
-export { phoneSchema, otpSchema };
+export { createPhoneSchema, createOtpSchema };

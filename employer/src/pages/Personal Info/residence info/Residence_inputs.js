@@ -1,11 +1,11 @@
-const ID_card = [
+const createIDCard = (t) => [
   {
     name: "id_front",
-    label: "Front",
+    label: t("idCard.front"),
   },
   {
     name: "id_back",
-    label: "back",
+    label: t("idCard.back"),
   },
 ];
-export { ID_card };
+export { createIDCard };

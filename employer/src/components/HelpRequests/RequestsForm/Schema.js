@@ -10,11 +10,11 @@ const RequestSchema = (t) =>
     EmployeeCount: z.number().min(1).max(10),
     date: z
       .object({
-        from: z.date({ required_error: "Start date is required" }),
-        to: z.date({ required_error: "End date is required" }),
+        from: z.date({ required_error: t("validation.startDateRequired") }),
+        to: z.date({ required_error: t("validation.endDateRequired") }),
       })
       .refine((data) => data.from && data.to, {
-        message: "Please select a valid date range",
+        message: t("validation.validDateRange"),
       }),
   });
 

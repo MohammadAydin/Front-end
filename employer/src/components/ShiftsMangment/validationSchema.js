@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-export const shiftTimeSchema = z.object({
-  shiftName: z.string().min(1, "Please enter Shift name"),
+export const createShiftTimeSchema = (t) => z.object({
+  shiftName: z.string().min(1, t("validation.enterShiftName")),
 
   fromTime: z
     .string()
@@ -31,4 +31,4 @@ export const shiftTimeSchema = z.object({
 //   }
 // );
 
-export default shiftTimeSchema;
+export default createShiftTimeSchema;

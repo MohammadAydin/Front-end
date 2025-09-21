@@ -111,7 +111,7 @@ const Complate_personal_info = () => {
           </p>
         )}
         <SubmitButtons
-          prevLabel="back"
+          prevLabel={t("navigation.back")}
           onCancel={() => navigate("/Personal info")}
         />
       </form>
