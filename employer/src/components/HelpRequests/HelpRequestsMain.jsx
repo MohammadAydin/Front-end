@@ -12,6 +12,7 @@ const HelpRequestsMain = () => {
       ? "/employerJobPosting"
       : `/employerJobPosting?status=${selectedValue}`;
   const { data: jopPosting } = useData(endpoint);
+  console.log(jopPosting);
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState("newest");
 
@@ -130,6 +131,7 @@ const HelpRequestsMain = () => {
             shiftid={item?.shift_id}
             date_from={item?.date_from}
             date_to={item?.date_to}
+            canCancel={item?.canCancel}
             index="t"
             avatarPhoto="t"
             name="t"

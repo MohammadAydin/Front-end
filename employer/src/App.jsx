@@ -22,6 +22,7 @@ import {
   EditLocation,
   InvoiceDetails,
   Notifications,
+  ReportTask,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
         path: "/serviceRequestsDetails",
         // path: "/serviceRequestsDetails/:idJop/:idServices/:task",
         element: <ServiceRequestsDetails />,
+      },
+      {
+        path: "/reportTask/:id",
+        element: <ReportTask />,
       },
       {
         path: "/UserProfile/:id",

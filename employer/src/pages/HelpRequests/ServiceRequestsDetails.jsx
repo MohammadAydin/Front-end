@@ -12,8 +12,8 @@ const ServiceRequestsDetails = () => {
   const query = new URLSearchParams(location.search);
   const data = JSON.parse(decodeURIComponent(query.get("data")));
   const title = query.get("title");
-
-
+  const idJopPosting = query.get("jobId");
+  console.log(idJopPosting);
 
   const navigate = useNavigate();
   return (
@@ -29,9 +29,12 @@ const ServiceRequestsDetails = () => {
       </div>
       <div className="HelpRequestDetailsHeader my-5 flex justify-between items-center">
         <h2 className="font-extrabold text-2xl">Service Requests Details</h2>
-       
       </div>
-      <ServicesDetailsTable data={data} title={title} />
+      <ServicesDetailsTable
+        data={data}
+        title={title}
+        idJopPosting={idJopPosting}
+      />
     </div>
   );
 };

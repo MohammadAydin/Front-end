@@ -7,7 +7,7 @@ import { BiQrScan } from "react-icons/bi";
 import AccessCode from "../../AccessCode";
 import useData from "../../../../../hooks/useData";
 import customFetch from "../../../../../utils/axios";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import visualphoto from "../../../../../assets/image/Img_Avatar.25.svg";
 import {
   MdLocationOn,
@@ -19,7 +19,10 @@ import {
   MdCancel,
   MdPlayArrow,
   MdFlag,
+  MdDelete,
 } from "react-icons/md";
+import { toast } from "react-toastify";
+import PopupReport from "./PopupReport";
 
 const ListTasks = ({
   id,
@@ -31,11 +34,29 @@ const ListTasks = ({
   navigateTo,
   created_at,
   assigned_to,
+  idJopPosting,
 }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [lcoationfun, setLocationFun] = useState();
   const [photoEmployee, setPhotoEmployee] = useState(visualphoto);
+  const [canDelete, setCanDelete] = useState(true);
+  const [isPopupReport, setPopupReport] = useState(false);
+  const ReportTask = () => {
+    navigate(`/reportTask/${id}`);
+  };
+  const togglePopup = () => {
+    setPopupReport(!isPopupReport);
+  };
+  useEffect(() => {
+    if (
+      status === "OntheWay" ||
+      status === "Arrived" ||
+      status === "progress"
+    ) {
+      setCanDelete(false);
+    }
+  }, [status]);
 
   const { mutate: getPhotoEmployee } = useMutation({
     mutationFn: () =>
@@ -54,7 +75,8 @@ const ListTasks = ({
     }
   }, [assigned_to]);
 
-  const { showCode, QrCodeOpen, PinCodeOpen } = useRequestsStore();
+  const { showCode, selectedTaskId, QrCodeOpen, PinCodeOpen } =
+    useRequestsStore();
 
   useEffect(() => {
     if (showCode) {
@@ -80,7 +102,21 @@ const ListTasks = ({
       .then((name) => setLocationFun(name))
       .catch((err) => console.error(err));
   }, []);
+  const queryClient = useQueryClient();
+  const DeleteTask = useMutation({
+    mutationFn: () =>
+      customFetch.delete(`/cancel/task/${id}`).then((res) => res.data),
 
+    onSuccess: (data) => {
+      toast.success(data?.message);
+      queryClient.invalidateQueries([`/employerJobPosting/${idJopPosting}`]);
+      navigate(-1);
+    },
+
+    onError: (error) => {
+      toast.error(error?.response?.data?.message);
+    },
+  });
   const getStatusIcon = (status) => {
     switch (status) {
       case "done":
@@ -144,8 +180,15 @@ const ListTasks = ({
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full lg:w-auto">
+              <MdDelete
+                onClick={() =>
+                  canDelete ? DeleteTask.mutate() : setPopupReport(true)
+                }
+                className="text-3xl text-red-500 cursor-pointer"
+              />
+
               <button
-                onClick={QrCodeOpen}
+                onClick={() => QrCodeOpen(id)}
                 className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2.5 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base flex-1 sm:flex-none min-h-[44px]"
               >
                 <BiQrScan size={18} />
@@ -153,7 +196,7 @@ const ListTasks = ({
                 <span className="xs:hidden">QR</span>
               </button>
               <button
-                onClick={PinCodeOpen}
+                onClick={() => PinCodeOpen(id)}
                 className="flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800 font-medium px-4 py-2.5 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-sm sm:text-base border border-gray-300 hover:border-gray-400 flex-1 sm:flex-none min-h-[44px]"
               >
                 <span className="hidden xs:inline">Pin Code</span>
@@ -162,7 +205,6 @@ const ListTasks = ({
             </div>
           </div>
         </div>
-
         {/* Main Content */}
         <div className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
@@ -229,8 +271,17 @@ const ListTasks = ({
             </div>
           </div>
         </div>
+        {showCode && selectedTaskId === id && (
+          <AccessCode id={id} taskstatus={status} />
+        )}{" "}
+        {isPopupReport && (
+          <PopupReport
+            title={"Please tell us the reason for canceling the tas"}
+            togglePopup={togglePopup}
+            onConfirm={ReportTask}
+          />
+        )}
       </div>
-      {showCode && <AccessCode id={id} taskstatus={status} />}
     </>
   );
 };

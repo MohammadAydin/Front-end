@@ -29,6 +29,7 @@ const DetailsList = ({
   email,
   date_from,
   date_to,
+  canCancel,
   orderDate,
   orderTime,
   specialist,
@@ -143,8 +144,13 @@ const DetailsList = ({
             </div>
           </div>
           {/* delete button */}
-          <div className="text-red-400 text-2xl cursor-pointer">
-            <MdDelete onClick={() => DeleteJop.mutate()} />
+          <div className="">
+            <MdDelete
+              className={`${
+                canCancel ? "text-red-400 " : "text-gray-400"
+              } 00 text-2xl cursor-pointer`}
+              onClick={() => DeleteJop.mutate()}
+            />
           </div>
         </div>
 

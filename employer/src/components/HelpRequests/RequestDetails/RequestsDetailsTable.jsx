@@ -246,6 +246,7 @@ const RequestsDetailsTable = ({ id }) => {
       <ServiceRequests
         data={JopPostingDetails?.data?.service_requests}
         title={JopPostingDetails?.data?.job_posting?.title}
+        idJopPosting={id}
       />
     </div>
   );

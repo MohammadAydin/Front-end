@@ -5,11 +5,13 @@ import {
   MdWork,
   MdCalendarToday,
   MdFlag,
-  MdInfo
+  MdInfo,
 } from "react-icons/md";
 import TasksRequest from "./TasksRequest/TasksRequest";
-const ServicesDetailsTable = ({ data, title }) => {
-  const [isServiceDetailsCollapsed, setIsServiceDetailsCollapsed] = useState(true);
+const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
+  console.log(data);
+  const [isServiceDetailsCollapsed, setIsServiceDetailsCollapsed] =
+    useState(true);
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
@@ -39,7 +41,9 @@ const ServicesDetailsTable = ({ data, title }) => {
         {/* Header with Toggle Button */}
         <div
           className="px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100"
-          onClick={() => setIsServiceDetailsCollapsed(!isServiceDetailsCollapsed)}
+          onClick={() =>
+            setIsServiceDetailsCollapsed(!isServiceDetailsCollapsed)
+          }
         >
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
@@ -51,14 +55,16 @@ const ServicesDetailsTable = ({ data, title }) => {
                   Service Details
                 </h3>
                 <p className="text-sm text-gray-500">
-                  {isServiceDetailsCollapsed ? 'Click to view service information' : 'Click to hide service information'}
+                  {isServiceDetailsCollapsed
+                    ? "Click to view service information"
+                    : "Click to hide service information"}
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="text-sm text-gray-500 font-medium">
-                {isServiceDetailsCollapsed ? 'Show Details' : 'Hide Details'}
+                {isServiceDetailsCollapsed ? "Show Details" : "Hide Details"}
               </span>
               <div className="p-1 rounded-full hover:bg-gray-200 transition-colors duration-200">
                 {isServiceDetailsCollapsed ? (
@@ -73,8 +79,9 @@ const ServicesDetailsTable = ({ data, title }) => {
 
         {/* Collapsible Content */}
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out ${isServiceDetailsCollapsed ? 'max-h-0' : 'max-h-[500px]'
-            }`}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isServiceDetailsCollapsed ? "max-h-0" : "max-h-[500px]"
+          }`}
         >
           <div className="p-6 bg-gray-50">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -82,12 +89,18 @@ const ServicesDetailsTable = ({ data, title }) => {
               <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center gap-3 mb-3">
                   <MdWork className="text-blue-500 text-xl" />
-                  <h4 className="font-semibold text-gray-800">Job Information</h4>
+                  <h4 className="font-semibold text-gray-800">
+                    Job Information
+                  </h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-600 font-medium">Position:</span>
-                    <span className="text-sm font-semibold text-gray-800">{title || 'N/A'}</span>
+                    <span className="text-sm text-gray-600 font-medium">
+                      Position:
+                    </span>
+                    <span className="text-sm font-semibold text-gray-800">
+                      {title || "N/A"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -96,13 +109,21 @@ const ServicesDetailsTable = ({ data, title }) => {
               <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center gap-3 mb-3">
                   <MdFlag className="text-green-500 text-xl" />
-                  <h4 className="font-semibold text-gray-800">Service Status</h4>
+                  <h4 className="font-semibold text-gray-800">
+                    Service Status
+                  </h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-600 font-medium">Status:</span>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(data?.status)}`}>
-                      {data?.status || 'Unknown'}
+                    <span className="text-sm text-gray-600 font-medium">
+                      Status:
+                    </span>
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(
+                        data?.status
+                      )}`}
+                    >
+                      {data?.status || "Unknown"}
                     </span>
                   </div>
                 </div>
@@ -112,18 +133,24 @@ const ServicesDetailsTable = ({ data, title }) => {
               <div className="bg-white rounded-lg p-4 border border-gray-200 md:col-span-2">
                 <div className="flex items-center gap-3 mb-3">
                   <MdCalendarToday className="text-purple-500 text-xl" />
-                  <h4 className="font-semibold text-gray-800">Service Schedule</h4>
+                  <h4 className="font-semibold text-gray-800">
+                    Service Schedule
+                  </h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-600 font-medium">Start Date:</span>
+                    <span className="text-sm text-gray-600 font-medium">
+                      Start Date:
+                    </span>
                     <span className="text-sm font-semibold text-gray-800">
-                      {data?.date ? new Date(data.date).toLocaleDateString("en-GB", {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      }) : 'Not specified'}
+                      {data?.date
+                        ? new Date(data.date).toLocaleDateString("en-GB", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : "Not specified"}
                     </span>
                   </div>
                 </div>
@@ -133,7 +160,7 @@ const ServicesDetailsTable = ({ data, title }) => {
         </div>
       </div>
 
-      <TasksRequest data={data?.tasks} />
+      <TasksRequest data={data?.tasks} idJopPosting={idJopPosting} />
     </div>
   );
 };

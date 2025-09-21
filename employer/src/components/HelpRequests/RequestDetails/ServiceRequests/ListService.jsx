@@ -8,7 +8,15 @@ import { toast } from "react-toastify";
 import { MdDelete } from "react-icons/md";
 import PopupWarningTask from "../../../MoreElements/Popup/PopupWarningTask";
 
-const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
+const ListService = ({
+  id,
+  date,
+  status,
+  navigateTo,
+  employeeNum,
+  canCancel,
+  idJopPosting,
+}) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [ShowPopup, setShowPopup] = useState(false);
@@ -91,8 +99,11 @@ const ListService = ({ id, date, status, navigateTo, employeeNum }) => {
       </div>
       <div className="px-4 pb-4 pt-0 flex items-center justify-end gap-2">
         {/* delete button */}
-        <div className="text-red-400 text-2xl cursor-pointer">
+        <div className="">
           <MdDelete
+            className={`${
+              canCancel ? "text-red-400" : "text-gray-500"
+            }  text-2xl cursor-pointer`}
             onClick={() => DeleteService.mutate()}
             // onClick={() => {
             //   employeeNum <= 0 ? DeleteService.mutate() : togglePupup();

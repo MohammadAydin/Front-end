@@ -13,10 +13,19 @@ const useRequestsStore = create((set) => ({
   showCode: false,
   QrCode: false,
   PinCode: false,
+  selectedTaskId: null,
 
-  CodeClose: () => set({ showCode: false, QrCode: false, PinCode: false }),
-  QrCodeOpen: () => set({ QrCode: true, showCode: true }),
-  PinCodeOpen: () => set({ PinCode: true, showCode: true }),
+  CodeClose: () =>
+    set({
+      showCode: false,
+      QrCode: false,
+      PinCode: false,
+      selectedTaskId: null,
+    }),
+  QrCodeOpen: (taskId) =>
+    set({ QrCode: true, showCode: true, selectedTaskId: taskId }),
+  PinCodeOpen: (taskId) =>
+    set({ PinCode: true, showCode: true, selectedTaskId: taskId }),
 }));
 
 export default useRequestsStore;

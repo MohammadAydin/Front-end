@@ -95,16 +95,16 @@ const TasksPage = () => {
                 <img className=" rounded-4xl" src={imgjob} alt="" />
                 {/* Display price with tasks title */}
                 <div className="info">
-                  <p className="">{task.job_posting.title}</p>
+                  <p className="">{task?.job_posting.title}</p>
                 </div>
                 <div>
                   {" "}
                   <div className="flex flex-col">
                     <p className="flex text-softColor text-[0.8rem] justify-between">
-                      <span> Start Task &nbsp; </span> : &nbsp;{task.StartDate}
+                      <span> Start Task &nbsp; </span> : &nbsp;{task?.StartDate}
                     </p>
                     <p className="flex text-softColor text-[0.8rem] justify-between">
-                      <span>End Task &nbsp;</span> : &nbsp;{task.EndDate}
+                      <span>End Task &nbsp;</span> : &nbsp;{task?.EndDate}
                     </p>
                   </div>
                 </div>

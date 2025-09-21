@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 import useData from "../../../hooks/useData";
 
 const AccessCode = ({ id, taskstatus }) => {
+  console.log(id);
   console.log("id : " + id + "status : " + taskstatus);
   const { QrCode, PinCode, CodeClose } = useRequestsStore();
   const { data: code, error, isLoading } = useData(`/employer/task/${id}/pin`);
