@@ -25,6 +25,33 @@
   },
   "features": {
     "title": "Features or Benefits Area",
+    "subtitle": "It's that simple:",
+    "steps": [
+      {
+        "title": "Register via our website or app",
+        "description": "Sign up through our platform to get started"
+      },
+      {
+        "title": "Receive offers directly on your mobile phone",
+        "description": "Get job offers from nursing homes sent directly to your phone"
+      },
+      {
+        "title": "Choose your shift and time yourself - You decide!",
+        "description": "Select your preferred working hours and shifts"
+      },
+      {
+        "title": "We will settle your hours at the end of the month",
+        "description": "Your working hours are automatically calculated and processed"
+      },
+      {
+        "title": "Salary + surcharges punctually to your account",
+        "description": "Receive your payment and bonuses on time every month"
+      }
+    ],
+    "professional": {
+      "title": "Professional Caregiver",
+      "description": "Join our network of qualified healthcare professionals"
+    },
     "userBenefits": {
       "title": "Benefits for Users",
       "description": "With our app, you can easily and effortlessly apply for a job.",

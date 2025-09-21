@@ -25,6 +25,33 @@
   },
   "features": {
     "title": "Funktionsbereich oder Vorteile bereich",
+    "subtitle": "So einfach geht's:",
+    "steps": [
+      {
+        "title": "Über unsere Website oder App anmelden",
+        "description": "Registrieren Sie sich über unsere Plattform um loszulegen"
+      },
+      {
+        "title": "Angebote von Altenheimen direkt aufs Handy bekommen",
+        "description": "Erhalten Sie Jobangebote von Altenheimen direkt auf Ihr Handy"
+      },
+      {
+        "title": "Schicht und Uhrzeit selbst auswählen - Sie entscheiden!",
+        "description": "Wählen Sie Ihre bevorzugten Arbeitszeiten und Schichten"
+      },
+      {
+        "title": "Wir rechnen Ihre Stunden am Monatsende ab",
+        "description": "Ihre Arbeitsstunden werden automatisch berechnet und abgerechnet"
+      },
+      {
+        "title": "Gehalt + Zuschläge pünktlich aufs Konto",
+        "description": "Erhalten Sie Ihr Gehalt und Boni pünktlich jeden Monat"
+      }
+    ],
+    "professional": {
+      "title": "Professionelle Pflegekraft",
+      "description": "Werden Sie Teil unseres Netzwerks qualifizierter Gesundheitsfachkräfte"
+    },
     "userBenefits": {
       "title": "Vorteile für Benutzer",
       "description": "Mit unserer App kannst du dich ganz einfach und unkompliziert auf einen Job haben.",
