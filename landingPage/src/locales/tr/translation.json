@@ -25,6 +25,33 @@
   },
   "features": {
     "title": "Özellikler veya Avantajlar Alanı",
+    "subtitle": "Bu kadar basit:",
+    "steps": [
+      {
+        "title": "Web sitemiz veya uygulamamız üzerinden kayıt olun",
+        "description": "Başlamak için platformumuz üzerinden kayıt olun"
+      },
+      {
+        "title": "Huzurevlerinden teklifleri doğrudan telefonunuza alın",
+        "description": "Huzurevlerinden iş tekliflerini doğrudan telefonunuza alın"
+      },
+      {
+        "title": "Vardiya ve saati kendiniz seçin - Siz karar verin!",
+        "description": "Tercih ettiğiniz çalışma saatleri ve vardiyaları seçin"
+      },
+      {
+        "title": "Saatlerinizi ay sonunda hesaplayacağız",
+        "description": "Çalışma saatleriniz otomatik olarak hesaplanır ve işlenir"
+      },
+      {
+        "title": "Maaş + ek ücretler zamanında hesabınıza",
+        "description": "Maaşınızı ve primlerinizi her ay zamanında alın"
+      }
+    ],
+    "professional": {
+      "title": "Profesyonel Bakıcı",
+      "description": "Nitelikli sağlık profesyonelleri ağımıza katılın"
+    },
     "userBenefits": {
       "title": "Kullanıcılar İçin Avantajlar",
       "description": "Uygulamamızla kolayca ve zahmetsizce işe başvurabilirsiniz.",
