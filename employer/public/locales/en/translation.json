@@ -303,7 +303,11 @@
     "workers_needed": "workers_needed",
     "from": "from",
     "to": "to",
-    "shift": "shift"
+    "shift": "shift",
+    "addTitle": "Add New Job Request",
+    "addDesc": "Create and submit a new job request",
+    "showTitle": "Show All Job Requests",
+    "showDesc": "View and manage all job requests"
   },
   "Invoices": {
     "title": "Invoices",

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HelpRequestsHeader from "../../components/HelpRequests/HelpRequestsHeader";
 import HelpRequestsMain from "../../components/HelpRequests/HelpRequestsMain";
 import RequestsForm from "../../components/HelpRequests/RequestsForm/RequestsForm";
@@ -15,13 +16,10 @@ const HelpRequests = () => {
   return (
     <div className="HelpRequests p-[28px] py-[58px]">
       <CompletePersonalinfo />
-      <div>
-        <HelpRequestsHeader />
-      </div>
+      <div></div>
       <div className="my-5">
         <HelpRequestsMain />
       </div>
-      <RequestsForm />
     </div>
   );
 };

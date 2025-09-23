@@ -50,7 +50,7 @@ const PagesList = ({ setIsOpen }) => {
       id: 4,
       name: t("SideBar.pages.HelpRequests"),
       icon: <PiBellSimpleRingingBold size={24} />,
-      path: "/helpRequests",
+      path: "/coustomHelpRequest",
     },
     {
       id: 5,

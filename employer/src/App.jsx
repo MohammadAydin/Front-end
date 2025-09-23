@@ -23,6 +23,7 @@ import {
   InvoiceDetails,
   Notifications,
   ReportTask,
+  CoustomHelpRequest,
 } from "./pages";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -103,6 +104,11 @@ const router = createBrowserRouter([
       {
         path: "/helpRequests",
         element: <HelpRequests />,
+        // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/coustomHelpRequest",
+        element: <CoustomHelpRequest />,
         // errorElement: <SinglePageError />,
       },
       {
