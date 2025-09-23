@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-const createPersonalInfoSchema = (t) => z.object({
-  gender: z.string().min(1, t("validation.selectGender")),
-  Username: z.string().min(1, t("validation.enterUsername")),
+const personalInfoSchema = z.object({
+  gender: z.string().min(1, "Please select your gender"),
+  Username: z.string().min(1, "Please enter your username"),
   Bio: z.string().optional(),
   Birthday: z
     .string()
     .regex(
       /^\d{2}\.\d{2}\.\d{4}$/,
-      t("validation.enterBirthDate")
+      "Please enter birth date in the format DD.MM.YYYY"
     )
     .refine(
       (value) => {
@@ -22,7 +22,7 @@ const createPersonalInfoSchema = (t) => z.object({
         );
       },
       {
-        message: t("validation.validDate"),
+        message: "Please enter a valid date",
       }
     ),
 
@@ -34,4 +34,4 @@ const createPersonalInfoSchema = (t) => z.object({
   // ),
 });
 
-export default createPersonalInfoSchema;
+export default personalInfoSchema;

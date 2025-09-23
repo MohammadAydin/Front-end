@@ -26,6 +26,12 @@ const inputs = [
   },
 ];
 
+const dataPosation = [
+  { name: "Pflegefachkraft", id: 1 },
+  { name: "Pflegefachassistent", id: 2 },
+  { name: "Pflegehelfer", id: 3 },
+];
+
 const EmployeeNumber = [
   { name: 1, id: 1 },
   { name: 2, id: 2 },
@@ -51,12 +57,6 @@ const RequestsForm = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(null);
-
-  const dataPosation = [
-    { name: t("positions.Pflegefachkraft"), id: 1 },
-    { name: t("positions.Pflegefachassistent"), id: 2 },
-    { name: t("positions.Pflegehelfer"), id: 3 },
-  ];
 
   const resultLocation = dataLocationt?.data?.map((item) => ({
     name: item?.street1,
@@ -201,7 +201,7 @@ const RequestsForm = () => {
                   <h3 className="text-2xl font-[900]">
                     {t("RequestsForm.title")}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">{t("RequestsForm.basicInfo")}</p>
+                  <p className="text-sm text-gray-600 mb-4">Provide the basic information to create a new job posting.</p>
                   <form action="" onSubmit={handleSubmit(handleNextStep)}>
                     <div className="w-full flex items-center gap-3">
                       {inputs.map((input) => (

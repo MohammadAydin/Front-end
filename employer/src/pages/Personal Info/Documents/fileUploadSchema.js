@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-const createDocumentFileUploadSchema = (t) => z.object({
+const fileUploadSchema = z.object({
   document: z.any().refine((file) => file instanceof File, {
-    message: t("validation.uploadDocument"),
+    message: "Please upload the document!",
   }),
 });
 
-export default createDocumentFileUploadSchema;
+export default fileUploadSchema;

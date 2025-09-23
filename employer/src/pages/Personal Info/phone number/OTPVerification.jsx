@@ -5,7 +5,7 @@ import customFetch from "../../../utils/axios";
 import { useState } from "react";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
-import { createOtpSchema } from "./phoneSchema";
+import { otpSchema } from "./phoneSchema";
 import { useTranslation } from "react-i18next";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 
@@ -20,7 +20,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(createOtpSchema),
+    resolver: zodResolver(otpSchema),
   });
 
   const verifyOtpMutation = useMutation({
@@ -35,6 +35,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
     },
 
     onError: (error) => {
+
       const errors = error?.response?.data?.errors;
       const fallbackMessage =
         error?.response?.data?.message || t("phoneNumber.error");
@@ -89,7 +90,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
           </button>
         </div>
         <SubmitButtons
-          prevLabel={t("navigation.back")}
+          prevLabel="back"
           onCancel={() => setIsOtpCode(false)}
         />
       </form>

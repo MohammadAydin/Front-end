@@ -1,31 +1,31 @@
 import { z } from "zod";
 
-const createBankingInfoSchema = (t, isUploaded) =>
+const bankingInfoSchema = (isUploaded) =>
   z.object({
     AcountHolder: z
       .string()
-      .min(2, t("validation.accountHolderShort"))
-      .max(100, t("validation.accountHolderLong")),
+      .min(2, "Account holder name is too short")
+      .max(100, "Account holder name is too long"),
 
     BankName: z
       .string()
-      .min(2, t("validation.bankNameShort"))
-      .max(100, t("validation.bankNameLong")),
+      .min(2, "Bank name is too short")
+      .max(100, "Bank name is too long"),
 
-    BIC: z.string().min(2, t("validation.enterBIC")),
+    BIC: z.string().min(2, "Please enter your BIC"),
     // .regex(/^[A-Z0-9]{8}([A-Z0-9]{3})?$/, "Invalid BIC (e.g. DEUTDEFFXXX)"),
 
     IBAN: z.string().regex(
       /^DE\d{20}$/,
       // /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/
-      t("validation.invalidIBAN")
+      "Invalid IBAN format (should start with DE and be 22 characters)"
     ),
 
     bankCard: isUploaded
       ? z.any().optional()
       : z.any().refine((file) => file instanceof File, {
-          message: t("validation.uploadBankCard"),
+          message: "Please upload the bank card document!",
         }),
   });
 
-export default createBankingInfoSchema;
+export default bankingInfoSchema;

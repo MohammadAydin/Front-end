@@ -2,13 +2,15 @@ import HelpRequestsHeader from "../../components/HelpRequests/HelpRequestsHeader
 import HelpRequestsMain from "../../components/HelpRequests/HelpRequestsMain";
 import RequestsForm from "../../components/HelpRequests/RequestsForm/RequestsForm";
 import CompletePersonalinfo from "../../components/MoreElements/CompletePersonalinfo";
+import useData from "../../hooks/useData";
 import useStatusAccount from "../../store/storeStatusAccount";
+import StatusAccount from "../../utils/statusAccountReturn";
 import statusAccount from "../../utils/statusAccountReturn";
 import "../Css Responsive/HelpRequestResponsive/HelpRequest.css";
 
 const HelpRequests = () => {
   if (localStorage.getItem("statusAccount") !== "approved") {
-    return statusAccount(localStorage.getItem("statusAccount"));
+    return <StatusAccount status={localStorage.getItem("statusAccount")} />;
   }
   return (
     <div className="HelpRequests p-[28px] py-[58px]">

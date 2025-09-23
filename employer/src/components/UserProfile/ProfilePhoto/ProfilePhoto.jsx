@@ -25,13 +25,13 @@ const ProfilePhoto = () => {
         .then((res) => res.data),
 
     onSuccess: () => {
-      setServerSuccess(t("messages.successUploadPhoto"));
+      setServerSuccess("success upload photo profile");
       queryClient.invalidateQueries({ queryKey: ["/photo"] });
       resetField("avatar");
     },
     onError: (error) => {
       const message =
-        error?.response?.data?.message || t("messages.errorUploadPhoto");
+        error?.response?.data?.message || "error upload photo profile";
       setServerError(message);
     },
   });

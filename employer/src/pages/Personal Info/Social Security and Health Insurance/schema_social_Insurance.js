@@ -1,38 +1,38 @@
 import { z } from "zod";
 
-const createSocialInsuranceSchema = (t) => z.object({
+const schema_social_Insurance = z.object({
   tax_identification_number: z
     .string()
-    .min(1, t("validation.enterTaxNumber")),
+    .min(1, "Please enter your tax identification number"),
 
   tax_bracket: z.enum(["1", "2", "3", "4", "5", "6"], {
-    message: t("validation.enterTaxBracket"),
+    message: "Please enter your tax bracket",
   }),
 
   social_insurance_number: z
     .string()
-    .min(1, t("validation.enterSocialInsuranceNumber")),
+    .min(1, "Please enter your social insurance number"),
 
   health_insurance_company_name: z
     .string()
-    .min(1, t("validation.enterHealthInsuranceName")),
+    .min(1, "Please enter your Social insurance company name"),
 
   health_insurance_number: z
     .string()
-    .min(1, t("validation.enterHealthInsuranceNumber")),
+    .min(1, "Please enter your health insurance number"),
 
   health_insurance_type: z.enum(["public", "private"], {
-    message: t("validation.selectHealthInsuranceType"),
+    message: "Please select your health insurance type",
   }),
 
   number_of_children: z.coerce.number({
-    required_error: t("validation.enterChildrenNumber"),
-    invalid_type_error: t("validation.enterValidNumber"),
+    required_error: "Please enter number of children",
+    invalid_type_error: "Please enter a valid number",
   }),
 
   marital_status: z.enum(["single", "married", "divorced", "widowed"], {
-    message: t("validation.selectMaritalStatus"),
+    message: "Please select your marital status",
   }),
 });
 
-export default createSocialInsuranceSchema;
+export default schema_social_Insurance;

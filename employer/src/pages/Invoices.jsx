@@ -5,9 +5,10 @@ import "./Css Responsive/InvoicesResponsive.css";
 import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinfo";
 import useStatusAccount from "../store/storeStatusAccount";
 import statusAccount from "../utils/statusAccountReturn";
+import StatusAccount from "../utils/statusAccountReturn";
 const Invoices = () => {
   if (localStorage.getItem("statusAccount") !== "approved") {
-    return statusAccount(localStorage.getItem("statusAccount"));
+    return <StatusAccount status={localStorage.getItem("statusAccount")} />;
   }
 
   return (

@@ -169,7 +169,6 @@
   "phoneNumber": {
     "title": "Ihre Telefonnummer",
     "description": "Bitte geben Sie Ihre Telefonnummer zur Verifizierung ein",
-    "addNumber": "Telefonnummer hinzufügen",
     "fields": {
       "phoneNumber": "Telefonnummer"
     },
@@ -335,7 +334,6 @@
     "warningTitle": "Wichtige Warnung",
     "successTitle": "Ihre Anfragen wurden erfolgreich gesendet",
     "backToManagement": "Zurück zur Verwaltung",
-    "basicInfo": "Geben Sie die grundlegenden Informationen ein, um eine neue Stellenausschreibung zu erstellen.",
     "fields": {
       "title": "Titel",
       "description": "Beschreibung",
@@ -374,114 +372,5 @@
     "approved": "Genehmigt",
     "declined": "Abgelehnt",
     "uploaded": "Hochgeladen"
-  },
-  "formElements": {
-    "fileUploader": {
-      "dropFiles": "Dateien hier ablegen oder",
-      "throughDevice": "durch Ihr Gerät durchsuchen"
-    }
-  },
-  "positions": {
-    "Pflegefachkraft": "Pflegefachkraft",
-    "Pflegefachassistent": "Pflegefachassistent",
-    "Pflegehelfer": "Pflegehelfer"
-  },
-  "navigation": {
-    "back": "Zurück"
-  },
-  "completePersonalInfo": {
-    "error": "Ein Fehler ist beim Speichern der persönlichen Informationen aufgetreten"
-  },
-  "messages": {
-    "successUploadAllInfo": "Alle persönlichen Informationen erfolgreich gesendet",
-    "errorUploadInfo": "Fehler beim Senden der Informationen",
-    "successUploadPhoto": "Profilbild erfolgreich hochgeladen",
-    "errorUploadPhoto": "Fehler beim Hochladen des Profilbildes"
-  },
-  "taskActions": {
-    "cancelReason": "Bitte teilen Sie uns den Grund für die Stornierung der Aufgabe mit"
-  },
-  "validation": {
-    "selectGender": "Bitte wählen Sie Ihr Geschlecht aus",
-    "enterUsername": "Bitte geben Sie Ihren Benutzernamen ein",
-    "enterBirthDate": "Bitte geben Sie das Geburtsdatum im Format TT.MM.JJJJ ein",
-    "validDate": "Bitte geben Sie ein gültiges Datum ein",
-    "enterShiftName": "Bitte geben Sie den Schichtname ein",
-    "startDateRequired": "Startdatum ist erforderlich",
-    "endDateRequired": "Enddatum ist erforderlich",
-    "validDateRange": "Bitte wählen Sie einen gültigen Datumsbereich aus",
-    "phoneNumberShort": "Telefonnummer ist zu kurz",
-    "phoneNumberLong": "Telefonnummer ist zu lang",
-    "otpMustBe6Digits": "OTP muss 6 Ziffern haben",
-    "uploadDocument": "Bitte laden Sie das Dokument hoch!",
-    "provideSignature": "Bitte geben Sie eine Unterschrift an",
-    "invalidFormat": "Ungültiges Format",
-    "fileTooLarge": "Datei ist zu groß",
-    "accountHolderShort": "Kontoinhaber-Name ist zu kurz",
-    "accountHolderLong": "Kontoinhaber-Name ist zu lang",
-    "bankNameShort": "Bankname ist zu kurz",
-    "bankNameLong": "Bankname ist zu lang",
-    "enterBIC": "Bitte geben Sie Ihre BIC ein",
-    "invalidIBAN": "Ungültiges IBAN-Format (sollte mit DE beginnen und 22 Zeichen haben)",
-    "uploadBankCard": "Bitte laden Sie das Bankkarten-Dokument hoch!",
-    "nameRequired": "Name ist erforderlich",
-    "positionRequired": "Position ist erforderlich",
-    "invalidEmail": "Ungültige E-Mail",
-    "invalidPhoneNumber": "Ungültige Telefonnummer",
-    "invalidPhoneFormat": "Ungültiges Telefonnummer-Format",
-    "passwordMinLength": "Passwort muss mindestens 6 Zeichen lang sein",
-    "acceptedImageTypes": "Nur .jpeg, .jpg, .png, .gif Dateien sind erlaubt",
-    "maxFileSize": "Maximale Dateigröße ist 3,1 MB",
-    "selectPermission": "Wählen Sie mindestens eine Berechtigung aus",
-    "enterTaxNumber": "Bitte geben Sie Ihre Steueridentifikationsnummer ein",
-    "enterTaxBracket": "Bitte geben Sie Ihre Steuerklasse ein",
-    "enterSocialInsuranceNumber": "Bitte geben Sie Ihre Sozialversicherungsnummer ein",
-    "enterHealthInsuranceName": "Bitte geben Sie den Namen Ihrer Krankenversicherung ein",
-    "enterHealthInsuranceNumber": "Bitte geben Sie Ihre Krankenversicherungsnummer ein",
-    "selectHealthInsuranceType": "Bitte wählen Sie Ihren Krankenversicherungstyp aus",
-    "enterChildrenNumber": "Bitte geben Sie die Anzahl der Kinder ein",
-    "enterValidNumber": "Bitte geben Sie eine gültige Zahl ein",
-    "selectMaritalStatus": "Bitte wählen Sie Ihren Familienstand aus",
-    "selectWorkPermit": "Bitte wählen Sie aus, ob Sie eine Arbeitserlaubnis haben",
-    "enterNationality": "Bitte geben Sie Ihre Nationalität ein",
-    "enterPlaceOfBirth": "Bitte geben Sie Ihren Geburtsort ein",
-    "uploadIdFront": "Bitte laden Sie die Vorderseite des Ausweises hoch!",
-    "uploadIdBack": "Bitte laden Sie die Rückseite des Ausweises hoch!",
-    "uploadPermitDocument": "Bitte laden Sie Ihr Erlaubnisdokument hoch!",
-    "enterPermitDate": "Bitte geben Sie das Gültigkeitsdatum der Erlaubnis im Format TT.MM.JJJJ ein",
-    "mustHaveWorkPermit": "Sie müssen eine Arbeitserlaubnis haben.",
-    "selectSchoolQualification": "Bitte wählen Sie Ihren höchsten Schulabschluss aus",
-    "selectVocationalTraining": "Bitte wählen Sie Ihren Berufsausbildungsstatus aus",
-    "selectPregnancyStatus": "Bitte wählen Sie den Schwangerschaftsstatus aus",
-    "answerCoronaVaccine": "Bitte antworten Sie zur Corona-Impfung",
-    "answerHepatitisVaccine": "Bitte antworten Sie zur Hepatitis-Impfung",
-    "confirmOver18": "Bitte bestätigen Sie, dass Sie über 18 Jahre alt sind",
-    "acceptTerms": "Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren"
-  },
-  "userProfileComponents": {
-    "profilePhoto": {
-      "validation": {
-        "acceptedTypes": "Nur .jpeg, .jpg, .png, .gif Dateien sind erlaubt",
-        "maxFileSize": "Maximale Dateigröße ist 3,1 MB"
-      }
-    }
-  },
-  "employmentData": {
-    "title": "Beschäftigungsdaten",
-    "description": "Bitte geben Sie Ihre Beschäftigungsinformationen an",
-    "termsAcceptance": "Ich akzeptiere die",
-    "termsAndConditions": "Allgemeinen Geschäftsbedingungen",
-    "back": "Zurück"
-  },
-  "idCard": {
-    "front": "Vorderseite",
-    "back": "Rückseite"
-  },
-  "taskRequests": {
-    "title": "Aufgabenanfragen",
-    "noTasksAvailable": "Keine Aufgaben verfügbar",
-    "tasksWillAppear": "Aufgaben werden hier angezeigt, sobald sie erstellt wurden",
-    "taskCount": "{{count}} Aufgabe",
-    "taskCountPlural": "{{count}} Aufgaben"
   }
 }

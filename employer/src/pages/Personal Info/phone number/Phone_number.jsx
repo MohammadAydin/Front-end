@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
-import { createPhoneSchema } from "./phoneSchema";
+import { phoneSchema } from "./phoneSchema";
 import OTPVerification from "./OTPVerification";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -63,7 +63,7 @@ const Phone_number = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(createPhoneSchema(t)) });
+  } = useForm({ resolver: zodResolver(phoneSchema) });
 
   const Submit = (data) => {
     const fullPhone = "+49" + data.phone_number;
@@ -81,7 +81,7 @@ const Phone_number = () => {
 
       {!isOtpCode ? (
         <>
-          <p className="mb-5 text-lg font-bold">{t("phoneNumber.addNumber")}</p>
+          <p className="mb-5 text-lg font-bold">addNumber</p>
           <form onSubmit={handleSubmit(Submit)} className="">
             <div className="flex gap-5 items-start">
               <div className="Phone_number_falg border border-[#919eab80] px-5 flex items-center justify-center  rounded-lg w-25">
@@ -120,7 +120,7 @@ const Phone_number = () => {
               onClick={() => navigate("/Personal info")}
               className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3]"
             >
-              {t("phoneNumber.back")}
+             {t("phoneNumber.back")} 
             </button>
           </div>
         </>

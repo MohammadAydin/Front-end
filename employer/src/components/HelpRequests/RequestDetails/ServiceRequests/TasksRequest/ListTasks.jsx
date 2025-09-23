@@ -276,7 +276,7 @@ const ListTasks = ({
         )}{" "}
         {isPopupReport && (
           <PopupReport
-            title={t("taskActions.cancelReason")}
+            title={"Please tell us the reason for canceling the tas"}
             togglePopup={togglePopup}
             onConfirm={ReportTask}
           />

@@ -6,6 +6,7 @@ import "./Css Responsive/ShiftsResponsive.css";
 import CompletePersonalinfo from "../components/MoreElements/CompletePersonalinfo";
 import statusAccount from "../utils/statusAccountReturn";
 import useStatusAccount from "../store/storeStatusAccount";
+import StatusAccount from "../utils/statusAccountReturn";
 const ShiftsMangment = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   if (isFormOpen) {
@@ -14,7 +15,7 @@ const ShiftsMangment = () => {
     document.body.classList.remove("overflow-hidden");
   }
   if (localStorage.getItem("statusAccount") !== "approved") {
-    return statusAccount(localStorage.getItem("statusAccount"));
+    return <StatusAccount status={localStorage.getItem("statusAccount")} />;
   }
   return (
     <div className="ShiftsMangment p-[28px] py-[58px]">

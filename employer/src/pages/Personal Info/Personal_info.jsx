@@ -41,7 +41,7 @@ const Personal_info = () => {
 
     onSuccess: () => {
       navigate("/");
-      toast.success(t("messages.successUploadAllInfo"));
+      toast.success("Successfully sent all personal info");
       // Show a success message or trigger refetch if needed
     },
     onError: (error) => {
