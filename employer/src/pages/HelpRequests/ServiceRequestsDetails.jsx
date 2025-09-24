@@ -28,7 +28,13 @@ const ServiceRequestsDetails = () => {
         &gt; Service Requests Details
       </div>
       <div className="HelpRequestDetailsHeader my-5 flex justify-between items-center">
-        <h2 className="font-extrabold text-2xl">Service Requests Details</h2>
+        <h2 className="font-extrabold text-2xl">
+          Job On {data?.date ? new Date(data.date).toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          }) : 'Unknown Date'} Details
+        </h2>
       </div>
       <ServicesDetailsTable
         data={data}
