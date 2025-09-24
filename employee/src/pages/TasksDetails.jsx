@@ -15,6 +15,7 @@ import { LuBanknote } from "react-icons/lu";
 import iconoclock from "../assets/icons/icoonoclock.svg";
 import PopupCheck from "../components/TaskComponents/PopupCheck";
 import { CiFileOn } from "react-icons/ci";
+import { MdCancel, MdReportProblem } from "react-icons/md";
 import PopupCheckEnd from "../components/TaskComponents/PopupCheckEnd";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -281,14 +282,50 @@ const TasksDetails = () => {
               </div>
               {task?.task?.status !== "review" ||
               task?.task?.status !== "cancel" ? (
-                <button
-                  // to={`/reportTask/${id}`}
-                  onClick={() => setReportPopup(true)}
-                  className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
-                >
-                  <CiFileOn className="text-xl" />
-                  <p className="text-xs mt-1">Cancel Task</p>
-                </button>
+                <div className="flex gap-3.5 flex-wrap">
+                  {/* Cancel Task Button with Enhanced Tooltip */}
+                  <div className="relative group">
+                    <button
+                      onClick={() => setReportPopup(true)}
+                      disabled={dayDifferencTask === false}
+                      className={`flex items-center gap-1.5 w-fit p-2 rounded-[6px] mt-2.5 font-medium transition-all duration-300 shadow-sm text-[0.8rem] ${
+                        dayDifferencTask === false
+                          ? "text-gray-400 bg-gray-200 cursor-not-allowed"
+                          : "text-white bg-red-500 hover:bg-red-600 hover:shadow-lg"
+                      }`}
+                    >
+                      <MdCancel />
+                      <p>{t("taskDetails.cancelTask")}</p>
+                    </button>
+                    
+                    {/* Enhanced Tooltip */}
+                    {dayDifferencTask === false && (
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 sm:px-4 py-2 sm:py-3 bg-gray-900 text-white text-xs sm:text-sm rounded-md sm:rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 w-64 sm:w-80 text-center">
+                        <div className="relative">
+                          <p className="font-medium mb-1">{t("taskDetails.cannotCancelTitle")}</p>
+                          <p className="text-gray-300 text-xs sm:text-xs leading-relaxed">
+                            {t("taskDetails.cannotCancelMessage")}
+                          </p>
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Have Issue Button */}
+                  <button
+                    onClick={() => window.location.href = `http://localhost:3001/reportTask/${id}`}
+                    className="flex items-center gap-1.5 w-fit p-2 rounded-[6px] mt-2.5 text-white bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 hover:from-orange-500 hover:via-orange-600 hover:to-red-600 font-medium transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden text-[0.8rem]"
+                    style={{
+                      background: 'linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ef4444 100%)',
+                      boxShadow: '0 4px 15px rgba(249, 115, 22, 0.4)'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity duration-300 transform -skew-x-12"></div>
+                    <MdReportProblem className="relative z-10" />
+                    <p className="relative z-10">{t("taskDetails.haveIssue")}</p>
+                  </button>
+                </div>
               ) : null}
             </div>
           </div>

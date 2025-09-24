@@ -283,7 +283,11 @@
     "onYourWay": "Yoldasınız",
     "taskTimeout": "Görev zaman aşımına uğradı",
     "workStarted": "İş başarıyla başladı",
-    "workEnded": "İş başarıyla sona erdi"
+    "workEnded": "İş başarıyla sona erdi",
+    "cancelTask": "Görevi İptal Et",
+    "haveIssue": "Sorun Bildir",
+    "cannotCancelTitle": "Görev İptal Edilemez",
+    "cannotCancelMessage": "İş 24 saat içinde başlayacaksa görevi iptal edemezsiniz. Eğer bir sorununuz varsa, lütfen 'Sorun Bildir' butonunu kullanarak bildirin."
   },
   "reportTask": {
     "officialComplaint": "Resmi Şikayet",
