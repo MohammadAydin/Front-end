@@ -283,7 +283,11 @@
     "onYourWay": "Sie sind unterwegs",
     "taskTimeout": "Die Aufgabe ist abgelaufen",
     "workStarted": "Arbeit erfolgreich begonnen",
-    "workEnded": "Arbeit erfolgreich beendet"
+    "workEnded": "Arbeit erfolgreich beendet",
+    "cancelTask": "Aufgabe Stornieren",
+    "haveIssue": "Problem Melden",
+    "cannotCancelTitle": "Aufgabe Kann Nicht Storniert Werden",
+    "cannotCancelMessage": "Sie können die Aufgabe nicht stornieren, wenn die Arbeit innerhalb von 24 Stunden beginnt. Wenn Sie ein Problem haben, verwenden Sie bitte die Schaltfläche 'Problem Melden', um es zu melden."
   },
   "reportTask": {
     "officialComplaint": "Offizielle Beschwerde",

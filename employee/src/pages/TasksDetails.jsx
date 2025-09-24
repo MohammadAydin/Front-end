@@ -15,6 +15,7 @@ import { LuBanknote } from "react-icons/lu";
 import iconoclock from "../assets/icons/icoonoclock.svg";
 import PopupCheck from "../components/TaskComponents/PopupCheck";
 import { CiFileOn } from "react-icons/ci";
+import { MdCancel, MdReportProblem } from "react-icons/md";
 import PopupCheckEnd from "../components/TaskComponents/PopupCheckEnd";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -275,20 +276,72 @@ const TasksDetails = () => {
               <div className="bg-[#E0FFE8] flex gap-1.5 items-center w-fit p-2 rounded-[6px] mt-2.5 text-[#34C759]">
                 <LuBanknote />
                 <p className="text-[0.8rem]">
-                  {/* Remove commas from the cost */}
                   {parseFloat(task?.total_cost).toFixed(2)}
                 </p>
               </div>
               {task?.task?.status !== "review" ||
               task?.task?.status !== "cancel" ? (
-                <button
-                  // to={`/reportTask/${id}`}
-                  onClick={() => setReportPopup(true)}
-                  className="flex items-center gap-1 text-secondaryColor bg-softwhite py-1 px-2.5 rounded-[10px] mt-1.5"
-                >
-                  <CiFileOn className="text-xl" />
-                  <p className="text-xs mt-1">Cancel Task</p>
-                </button>
+                <div className="flex gap-3.5 flex-wrap">
+                  <div className="relative group">
+                    <button
+                      onClick={() => setReportPopup(true)}
+                      disabled={dayDifferencTask === false}
+                      className={`flex items-center gap-1.5 w-fit p-2 rounded-[6px] mt-2.5 font-medium transition-all duration-300 shadow-sm text-[0.8rem] ${
+                        dayDifferencTask === false
+                          ? "text-gray-400 bg-gray-200 cursor-not-allowed"
+                          : "text-white bg-red-500 hover:bg-red-600 hover:shadow-lg"
+                      }`}
+                    >
+                      <MdCancel />
+                      <p>{t("taskDetails.cancelTask")}</p>
+                    </button>
+                    
+                    {dayDifferencTask === false && (
+                      <div 
+                        className="absolute bottom-full mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 text-center"
+                        style={{
+                          maxWidth: 'min(280px, calc(100vw - 2rem))',
+                          minWidth: '200px',
+                          left: '80%',
+                          transform: 'translateX(-50%)',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word',
+                          whiteSpace: 'normal',
+                          hyphens: 'auto'
+                        }}
+                      >
+                        <div className="relative">
+                          <p className="font-medium mb-1 text-sm">{t("taskDetails.cannotCancelTitle")}</p>
+                          <p className="text-gray-300 text-xs leading-relaxed break-words whitespace-normal hyphens-auto">
+                            {t("taskDetails.cannotCancelMessage")}
+                          </p>
+                        </div>
+                        <div 
+                          className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            borderLeft: '8px solid transparent',
+                            borderRight: '8px solid transparent',
+                            borderTop: '8px solid #111827'
+                          }}
+                        ></div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Have Issue Button */}
+                  <button
+                    onClick={() => window.location.href = `http://localhost:3001/reportTask/${id}`}
+                    className="flex items-center gap-1.5 w-fit p-2 rounded-[6px] mt-2.5 text-white bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 hover:from-orange-500 hover:via-orange-600 hover:to-red-600 font-medium transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden text-[0.8rem]"
+                    style={{
+                      background: 'linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ef4444 100%)',
+                      boxShadow: '0 4px 15px rgba(249, 115, 22, 0.4)'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity duration-300 transform -skew-x-12"></div>
+                    <MdReportProblem className="relative z-10" />
+                    <p className="relative z-10">{t("taskDetails.haveIssue")}</p>
+                  </button>
+                </div>
               ) : null}
             </div>
           </div>

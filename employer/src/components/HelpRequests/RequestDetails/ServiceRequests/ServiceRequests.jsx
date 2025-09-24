@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import ListService from "./ListService";
 
-const ServiceRequests = ({ data, title, idJopPosting }) => {
+const ServiceRequests = ({ data, title, idJopPosting, jobPostingData }) => {
   const [activeFilter, setActiveFilter] = useState("all");
   const counts = useMemo(() => {
     const base = { all: data?.length || 0, pending: 0, taken: 0 };
@@ -19,7 +19,6 @@ const ServiceRequests = ({ data, title, idJopPosting }) => {
     return data.filter((i) => i.status === activeFilter);
   }, [data, activeFilter]);
 
-  console.log(filtered);
   const filters = [
     { key: "all", label: "All" },
     { key: "pending", label: "Pending" },
@@ -72,6 +71,8 @@ const ServiceRequests = ({ data, title, idJopPosting }) => {
           date={item.date}
           status={item.status}
           employeeNum={item?.employees_assigned}
+          employeesRequired={item?.employees_required || item?.job_posting?.employees_required || jobPostingData?.employees_required}
+          tasks={item?.tasks || []}
           previousPage="helpRequests"
           navigateTo={`/serviceRequestsDetails?data=${encodeURIComponent(
             JSON.stringify(item)

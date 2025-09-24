@@ -283,7 +283,11 @@
     "onYourWay": "You are on your way",
     "taskTimeout": "The task is timed out",
     "workStarted": "Work has started successfully",
-    "workEnded": "Work has ended successfully"
+    "workEnded": "Work has ended successfully",
+    "cancelTask": "Cancel Task",
+    "haveIssue": "Report Issue",
+    "cannotCancelTitle": "Cannot Cancel Task",
+    "cannotCancelMessage": "You cannot cancel the task when work will start within 24 hours. If you have a problem, please use the 'Report Issue' button to report it."
   },
   "reportTask": {
     "officialComplaint": "Official Complaint",
