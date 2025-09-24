@@ -276,14 +276,12 @@ const TasksDetails = () => {
               <div className="bg-[#E0FFE8] flex gap-1.5 items-center w-fit p-2 rounded-[6px] mt-2.5 text-[#34C759]">
                 <LuBanknote />
                 <p className="text-[0.8rem]">
-                  {/* Remove commas from the cost */}
                   {parseFloat(task?.total_cost).toFixed(2)}
                 </p>
               </div>
               {task?.task?.status !== "review" ||
               task?.task?.status !== "cancel" ? (
                 <div className="flex gap-3.5 flex-wrap">
-                  {/* Cancel Task Button with Enhanced Tooltip */}
                   <div className="relative group">
                     <button
                       onClick={() => setReportPopup(true)}
@@ -298,16 +296,34 @@ const TasksDetails = () => {
                       <p>{t("taskDetails.cancelTask")}</p>
                     </button>
                     
-                    {/* Enhanced Tooltip */}
                     {dayDifferencTask === false && (
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 sm:px-4 py-2 sm:py-3 bg-gray-900 text-white text-xs sm:text-sm rounded-md sm:rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 w-64 sm:w-80 text-center">
+                      <div 
+                        className="absolute bottom-full mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 text-center"
+                        style={{
+                          maxWidth: 'min(280px, calc(100vw - 2rem))',
+                          minWidth: '200px',
+                          left: '80%',
+                          transform: 'translateX(-50%)',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word',
+                          whiteSpace: 'normal',
+                          hyphens: 'auto'
+                        }}
+                      >
                         <div className="relative">
-                          <p className="font-medium mb-1">{t("taskDetails.cannotCancelTitle")}</p>
-                          <p className="text-gray-300 text-xs sm:text-xs leading-relaxed">
+                          <p className="font-medium mb-1 text-sm">{t("taskDetails.cannotCancelTitle")}</p>
+                          <p className="text-gray-300 text-xs leading-relaxed break-words whitespace-normal hyphens-auto">
                             {t("taskDetails.cannotCancelMessage")}
                           </p>
-                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
                         </div>
+                        <div 
+                          className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            borderLeft: '8px solid transparent',
+                            borderRight: '8px solid transparent',
+                            borderTop: '8px solid #111827'
+                          }}
+                        ></div>
                       </div>
                     )}
                   </div>
