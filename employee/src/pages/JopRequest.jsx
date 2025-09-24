@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Spinner from "../components/MoreElements/Spinner";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { HiOutlineBriefcase } from "react-icons/hi2";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import useData from "../hooks/useData";
 import { useTranslation } from "react-i18next";
 import useStatusAccount from "../store/storeStatusAccount";
@@ -43,16 +44,12 @@ const JopRequest = () => {
 
   const { t } = useTranslation();
 
-  // To store the status of View All
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Definition of routing from ReactRoute
   const navigate = useNavigate();
 
-  // To store jobsRequst
   const { data: jobs, error, isLoading } = useJobs("/jobs");
 
-  // Using React Query to fetch data
   const queryClient = useQueryClient();
   const [PopupWarning, setPopupWarning] = useState(false);
   const [PopupIncompleteProfileWarning, setPopupIncompleteProfileWarning] = useState(false);
@@ -65,7 +62,6 @@ const JopRequest = () => {
     setPopupIncompleteProfileWarning(!PopupIncompleteProfileWarning);
   };
 
-  // Fake job data for new users
   const generateFakeJobs = () => {
     const shifts = [
       { name: "Frühschicht", start_time: "06:00", end_time: "14:00" },
@@ -73,7 +69,16 @@ const JopRequest = () => {
       { name: "Nachtschicht", start_time: "22:00", end_time: "06:00" },
     ];
     
-    // Get user creation date from localStorage
+    const locations = [
+      "Frankfurt am Main",
+      "Friedberg",
+      "Gießen",
+      "Offenbach am Main",
+      "Bad Nauheim",
+      "Bad Homberg",
+      "Oberursel"
+    ];
+    
     const userDataString = localStorage.getItem("user");
     let createdAt = new Date();
     
@@ -88,21 +93,18 @@ const JopRequest = () => {
       }
     }
     
-    // Generate dates after account creation (can be in future)
     const generateValidDates = () => {
       const dates = [];
       
-      // Generate 5 dates starting from account creation date
       for (let i = 0; i < 5; i++) {
         const jobDate = new Date(createdAt);
-        // Add random days between 1-30 days after account creation
-        const randomDays = Math.floor(Math.random() * 30) + 1 + i; // +i to avoid duplicates
+        const randomDays = Math.floor(Math.random() * 30) + 1 + i;
         jobDate.setDate(jobDate.getDate() + randomDays);
         
         dates.push(jobDate.toISOString().split('T')[0]);
       }
       
-      return dates.sort(); // Sort dates chronologically
+      return dates.sort();
     };
     
     const dates = generateValidDates();
@@ -110,16 +112,20 @@ const JopRequest = () => {
     return Array.from({ length: 5 }, (_, index) => {
       const jobKey = `job${index + 1}`;
       const shift = shifts[index % shifts.length];
-      // Use modulo to handle case where we have fewer than 5 unique dates
       const date = dates[index % dates.length];
+      
+      const randomPrice = Math.floor(Math.random() * 51) + 50;
+      
+      const randomLocation = locations[Math.floor(Math.random() * locations.length)];
       
       return {
         service_request: {
           id: `fake_${index + 1}`
         },
         job_posting: {
-          title: "Complete Profile", // This will be replaced by spoiler anyway
-          total_cost: t(`jopComponents.fakeJobs.${jobKey}.price`),
+          title: "Complete Profile",
+          total_cost: `${randomPrice}€`,
+          location: randomLocation,
           date_from: `${date} 00:00:00`,
           date_to: `${date} 23:59:59`,
           shift: shift
@@ -263,13 +269,13 @@ const JopRequest = () => {
           {visibleJobs?.map((job) => (
             <div
               key={job.service_request.id}
-              className="flex justify-between items-start mb-7 gap-6"
+              className="flex justify-between items-start mb-7 gap-6 max-[1044px]:flex-col max-[1044px]:gap-4"
             >
               {!String(job.service_request.id).startsWith('fake_') ? (
                 <Link to={`/jobRequestDetails/${job.service_request.id}`}>
-                  <div className="imgAndinfo flex gap-8 items-center flex-wrap max-[1044px]:flex-col max-[1044px]:items-start">
+                  <div className="imgAndinfo flex gap-8 items-center flex-wrap max-[1044px]:flex-col max-[1044px]:items-start max-[720px]:gap-4">
                     {/* View a picture of the elderly house */}
-                    <div className="flex items-center gap-3 w-[250px]">
+                    <div className="flex items-center gap-3 w-[250px] max-[720px]:w-full max-[720px]:flex-col max-[720px]:items-start">
                       <img
                         className="rounded-4xl w-16 h-16 object-cover"
                         src={imgjob}
@@ -295,11 +301,17 @@ const JopRequest = () => {
                         )}
                       </div>
                       <p className="text-softColor text-xs">
-                        {job?.job_posting?.total_cost}&euro;
+                        {job?.job_posting?.total_cost}
                       </p>
+                      {isNewUser && job?.job_posting?.location && (
+                        <p className="text-softColor text-xs mt-1 flex items-center gap-1">
+                          <FaMapMarkerAlt className="text-xs" />
+                          {job?.job_posting?.location}
+                        </p>
+                      )}
                     </div>
                     </div>
-                    <div className="flex gap-7 flex-wrap">
+                    <div className="flex gap-7 flex-wrap max-[720px]:flex-col max-[720px]:gap-4">
                       <div className="flex flex-col mt-2 gap-2">
                         <p className="text-softColor text-xs flex justify-between">
                           <span>date from &nbsp;</span>:&nbsp;{" "}
@@ -329,9 +341,9 @@ const JopRequest = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="imgAndinfo flex gap-8 items-center flex-wrap max-[1044px]:flex-col max-[1044px]:items-start">
+                <div className="imgAndinfo flex gap-8 items-center flex-wrap max-[1044px]:flex-col max-[1044px]:items-start max-[720px]:gap-4">
                   {/* View a picture of the elderly house */}
-                  <div className="flex items-center gap-3 w-[250px]">
+                  <div className="flex items-center gap-3 w-[250px] max-[720px]:w-full max-[720px]:flex-col max-[720px]:items-start">
                     <img
                       className="rounded-4xl w-16 h-16 object-cover"
                       src={imgjob}
@@ -357,11 +369,17 @@ const JopRequest = () => {
                         )}
                       </div>
                       <p className="text-softColor text-xs">
-                        {job?.job_posting?.total_cost}&euro;
+                        {job?.job_posting?.total_cost}
                       </p>
+                      {isNewUser && job?.job_posting?.location && (
+                        <p className="text-softColor text-xs mt-1 flex items-center gap-1">
+                          <FaMapMarkerAlt className="text-xs" />
+                          {job?.job_posting?.location}
+                        </p>
+                      )}
                     </div>
                   </div>
-                  <div className="flex gap-7 flex-wrap">
+                  <div className="flex gap-7 flex-wrap max-[720px]:flex-col max-[720px]:gap-4">
                     <div className="flex flex-col mt-2 gap-2">
                       <p className="text-softColor text-xs flex justify-between">
                         <span>date from &nbsp;</span>:&nbsp;{" "}
@@ -390,7 +408,7 @@ const JopRequest = () => {
                   </div>
                 </div>
               )}
-              <div className="buttons flex gap-3.5 max-[811px]:flex-col">
+              <div className="buttons flex gap-3.5 max-[811px]:flex-col max-[1044px]:w-full max-[1044px]:mt-4">
                 {isNewUser ? (
                   /* For new users, show only Learn More button */
                   <button
