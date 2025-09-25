@@ -29,24 +29,13 @@ const ListService = ({
   employeesRequired,
   canCancel,
   idJopPosting,
-  tasks = [], // إضافة المهام لمعرفة حالة كل موظف
+  tasks = [], 
 }) => {
-  // Debug: Log the data to see what we're getting
-  console.log(`Service ${id}: employeesRequired=${employeesRequired}, employeeNum=${employeeNum}`);
-  console.log('Full service data:', { id, date, status, employeeNum, employeesRequired, tasks });
   
-  // دالة للحصول على حالة التاسك لكل slot
   const getSlotStatus = (slotIndex) => {
-    console.log(`Checking slot ${slotIndex} for service ${id}`);
-    console.log('Available tasks:', tasks);
-    
-    // محاولة العثور على المهمة بطريقتين
     const task = tasks.find(t => t.slot_index === slotIndex) || 
                  tasks.find(t => t.id && slotIndex < employeeNum) ||
-                 tasks[slotIndex]; // استخدام الفهرس كبديل
-    
-    console.log(`Task found for slot ${slotIndex}:`, task);
-    
+                 tasks[slotIndex]; 
     if (!task) return null;
     
     switch (task.status) {
@@ -168,38 +157,42 @@ const ListService = ({
             {Array.from({ length: employeesRequired || 1 }, (_, index) => {
               const slotStatus = getSlotStatus(index);
               const hasEmployee = index < employeeNum;
+              const isAvailable = !slotStatus && !hasEmployee;
+              const isClickable = !isAvailable;
               
               return (
-                <div key={index} className="flex flex-col items-center gap-1">
-                  <div
-                    className={`
-                      w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-200
-                      ${slotStatus 
-                        ? slotStatus.color 
-                        : hasEmployee
-                          ? 'bg-green-100 border-green-300 text-green-700'
-                          : 'bg-gray-50 border-dashed border-gray-300 text-gray-400'
-                      }
-                    `}
-                    title={slotStatus ? slotStatus.text : hasEmployee ? 'Employee assigned' : 'Available slot'}
-                  >
-                    {slotStatus ? (
-                      <slotStatus.icon className="w-3 h-3" />
-                    ) : hasEmployee ? (
-                      <FaCheck className="w-3 h-3" />
-                    ) : (
-                      <FaPlus className="w-3 h-3" />
-                    )}
-                  </div>
-                  <span className={`text-xs font-medium ${
-                    slotStatus 
-                      ? slotStatus.color.replace('bg-', 'text-').replace('-100', '-700')
+                <div
+                  key={index}
+                  className={`
+                    px-3 py-2 rounded-lg border-2 flex items-center gap-2 text-xs font-medium min-w-[100px] justify-center
+                    ${slotStatus 
+                      ? `${slotStatus.color} ${isClickable ? 'cursor-pointer' : ''}`
                       : hasEmployee
-                        ? 'text-green-600'
-                        : 'text-gray-400'
-                  }`}>
-                    {slotStatus ? slotStatus.text : hasEmployee ? 'Assigned' : 'Available'}
-                  </span>
+                        ? `bg-green-100 border-green-300 text-green-700 ${isClickable ? 'cursor-pointer' : ''}`
+                        : 'bg-gray-50 border-dashed border-gray-300 text-gray-400 cursor-default'
+                    }
+                  `}
+                  title={slotStatus ? slotStatus.text : hasEmployee ? 'Employee assigned' : 'Available slot'}
+                  onClick={isClickable ? () => {
+                    navigate(navigateTo);
+                  } : undefined}
+                >
+                  {slotStatus ? (
+                    <>
+                      <slotStatus.icon className="w-3 h-3" />
+                      <span>{slotStatus.text}</span>
+                    </>
+                  ) : hasEmployee ? (
+                    <>
+                      <FaCheck className="w-3 h-3" />
+                      <span>Assigned</span>
+                    </>
+                  ) : (
+                    <>
+                      <FaPlus className="w-3 h-3" />
+                      <span>Available</span>
+                    </>
+                  )}
                 </div>
               );
             })}

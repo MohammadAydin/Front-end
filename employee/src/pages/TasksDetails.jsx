@@ -330,7 +330,7 @@ const TasksDetails = () => {
                   
                   {/* Have Issue Button */}
                   <button
-                    onClick={() => window.location.href = `http://localhost:3001/reportTask/${id}`}
+                    onClick={() => window.location.href = `/reportTask/${id}`}
                     className="flex items-center gap-1.5 w-fit p-2 rounded-[6px] mt-2.5 text-white bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 hover:from-orange-500 hover:via-orange-600 hover:to-red-600 font-medium transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden text-[0.8rem]"
                     style={{
                       background: 'linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ef4444 100%)',
