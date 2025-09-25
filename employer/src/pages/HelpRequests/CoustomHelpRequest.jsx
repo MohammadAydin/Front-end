@@ -3,11 +3,14 @@ import useRequestsStore from "../../store/HelpRequestsStore";
 import RequestsForm from "../../components/HelpRequests/RequestsForm/RequestsForm";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import StatusAccount from "../../utils/statusAccountReturn";
 
 const CoustomHelpRequest = () => {
   const { RequestOpen } = useRequestsStore();
   const { t } = useTranslation();
-
+  if (localStorage.getItem("statusAccount") !== "approved") {
+    return <StatusAccount status={localStorage.getItem("statusAccount")} />;
+  }
   return (
     <>
       <div className="flex flex-col gap-6 p-6 h-screen justify-center">
