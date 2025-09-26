@@ -39,7 +39,12 @@ const JopRequest = () => {
   }, []);
   // Only redirect for certain statuses, allow "new" users and users without status to see fake jobs
   const currentStatus = localStorage.getItem("statusAccount");
-  if (currentStatus && currentStatus !== "approved" && currentStatus !== "new" && currentStatus !== "")
+  if (
+    currentStatus &&
+    currentStatus !== "approved" &&
+    currentStatus !== "new" &&
+    currentStatus !== ""
+  )
     return statusAccount(currentStatus);
 
   const { t } = useTranslation();
@@ -52,8 +57,9 @@ const JopRequest = () => {
 
   const queryClient = useQueryClient();
   const [PopupWarning, setPopupWarning] = useState(false);
-  const [PopupIncompleteProfileWarning, setPopupIncompleteProfileWarning] = useState(false);
-  
+  const [PopupIncompleteProfileWarning, setPopupIncompleteProfileWarning] =
+    useState(false);
+
   const togglePopup = () => {
     setPopupWarning(!PopupWarning);
   };
@@ -68,7 +74,7 @@ const JopRequest = () => {
       { name: "Spätschicht", start_time: "14:00", end_time: "22:00" },
       { name: "Nachtschicht", start_time: "22:00", end_time: "06:00" },
     ];
-    
+
     const locations = [
       "Frankfurt am Main",
       "Friedberg",
@@ -76,12 +82,12 @@ const JopRequest = () => {
       "Offenbach am Main",
       "Bad Nauheim",
       "Bad Homberg",
-      "Oberursel"
+      "Oberursel",
     ];
-    
+
     const userDataString = localStorage.getItem("user");
     let createdAt = new Date();
-    
+
     if (userDataString) {
       try {
         const userData = JSON.parse(userDataString);
@@ -92,35 +98,36 @@ const JopRequest = () => {
         console.error("Error parsing user data:", error);
       }
     }
-    
+
     const generateValidDates = () => {
       const dates = [];
-      
+
       for (let i = 0; i < 5; i++) {
         const jobDate = new Date(createdAt);
         const randomDays = Math.floor(Math.random() * 30) + 1 + i;
         jobDate.setDate(jobDate.getDate() + randomDays);
-        
-        dates.push(jobDate.toISOString().split('T')[0]);
+
+        dates.push(jobDate.toISOString().split("T")[0]);
       }
-      
+
       return dates.sort();
     };
-    
+
     const dates = generateValidDates();
-    
+
     return Array.from({ length: 5 }, (_, index) => {
       const jobKey = `job${index + 1}`;
       const shift = shifts[index % shifts.length];
       const date = dates[index % dates.length];
-      
+
       const randomPrice = Math.floor(Math.random() * 51) + 50;
-      
-      const randomLocation = locations[Math.floor(Math.random() * locations.length)];
-      
+
+      const randomLocation =
+        locations[Math.floor(Math.random() * locations.length)];
+
       return {
         service_request: {
-          id: `fake_${index + 1}`
+          id: `fake_${index + 1}`,
         },
         job_posting: {
           title: "Complete Profile",
@@ -128,8 +135,8 @@ const JopRequest = () => {
           location: randomLocation,
           date_from: `${date} 00:00:00`,
           date_to: `${date} 23:59:59`,
-          shift: shift
-        }
+          shift: shift,
+        },
       };
     });
   };
@@ -171,8 +178,12 @@ const JopRequest = () => {
   // Determine which jobs to show based on user status and progress
   const userStatus = localStorage.getItem("statusAccount");
   const hasIncompleteProfile = data?.show_progress_bar === true;
-  const isNewUser = userStatus === "new" || userStatus === null || userStatus === "" || hasIncompleteProfile;
-  
+  const isNewUser =
+    userStatus === "new" ||
+    userStatus === null ||
+    userStatus === "" ||
+    hasIncompleteProfile;
+
   let jobsToShow;
   if (isNewUser) {
     // Show fake jobs for new users, users without status, or users with incomplete profile
@@ -181,7 +192,7 @@ const JopRequest = () => {
     // Show real jobs for approved users with complete profile
     jobsToShow = jobs;
   }
-  
+
   // Store 3 jobRequest orders by cropping status
   const visibleJobs = isExpanded ? jobsToShow : jobsToShow?.slice(0, 3);
 
@@ -271,7 +282,7 @@ const JopRequest = () => {
               key={job.service_request.id}
               className="flex justify-between items-start mb-7 gap-6 max-[1044px]:flex-col max-[1044px]:gap-4"
             >
-              {!String(job.service_request.id).startsWith('fake_') ? (
+              {!String(job.service_request.id).startsWith("fake_") ? (
                 <Link to={`/jobRequestDetails/${job.service_request.id}`}>
                   <div className="imgAndinfo flex gap-8 items-center flex-wrap max-[1044px]:flex-col max-[1044px]:items-start max-[720px]:gap-4">
                     {/* View a picture of the elderly house */}
@@ -282,45 +293,51 @@ const JopRequest = () => {
                         alt=""
                       />
                       {/* Display price with jobRequest title */}
-                    <div className="info flex-grow min-w-[200px] max-w-[250px]">
-                      <div className="relative group">
-                        <p className={`truncate text-wrap transition-all duration-300 ${
-                          isNewUser 
-                            ? 'telegram-spoiler' 
-                            : ''
-                        }`}>
-                          {isNewUser ? 'Complete Profile' : job.job_posting.title}
-                        </p>
-                        {isNewUser && (
-                          <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-10 animate-fadeIn">
-                            <div className="bg-black text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap shadow-lg">
-                              {t("jopComponents.completeProfileToView")}
-                              <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                      <div className="info flex-grow min-w-[200px] max-w-[250px]">
+                        <div className="relative group">
+                          <p
+                            className={`truncate text-wrap transition-all duration-300 ${
+                              isNewUser ? "telegram-spoiler" : ""
+                            }`}
+                          >
+                            {isNewUser
+                              ? "Complete Profile"
+                              : job.job_posting.title}
+                          </p>
+                          {isNewUser && (
+                            <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-10 animate-fadeIn">
+                              <div className="bg-black text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap shadow-lg">
+                                {t("jopComponents.completeProfileToView")}
+                                <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                              </div>
                             </div>
-                          </div>
+                          )}
+                        </div>
+                        <p className="text-softColor text-xs">
+                          {job?.job_posting?.total_cost}
+                        </p>
+                        {isNewUser && job?.job_posting?.location && (
+                          <p className="text-softColor text-xs mt-1 flex items-center gap-1">
+                            <FaMapMarkerAlt className="text-xs" />
+                            {job?.job_posting?.location}
+                          </p>
                         )}
                       </div>
-                      <p className="text-softColor text-xs">
-                        {job?.job_posting?.total_cost}
-                      </p>
-                      {isNewUser && job?.job_posting?.location && (
-                        <p className="text-softColor text-xs mt-1 flex items-center gap-1">
-                          <FaMapMarkerAlt className="text-xs" />
-                          {job?.job_posting?.location}
-                        </p>
-                      )}
                     </div>
-                    </div>
-                    <div className="flex gap-7 flex-wrap max-[720px]:flex-col max-[720px]:gap-4">
+                    <div className="flex gap-7 flex-wrap max-[720px]:flex-col max-[720px]:gap-4 items-center">
                       <div className="flex flex-col mt-2 gap-2">
                         <p className="text-softColor text-xs flex justify-between">
-                          <span>date from &nbsp;</span>:&nbsp;{" "}
-                          {job?.job_posting?.date_from.split(" ")[0]}{" "}
+                          <span>start date &nbsp;</span>:&nbsp;{" "}
+                          {
+                            new Date(job?.service_request?.date)
+                              .toISOString()
+                              .split("T")[0]
+                          }{" "}
                         </p>
-                        <p className="text-softColor text-xs flex justify-between">
+                        {/* <p className="text-softColor text-xs flex justify-between">
                           <span>date to &nbsp;</span>:&nbsp;{" "}
                           {job?.job_posting?.date_to.split(" ")[0]}{" "}
-                        </p>
+                        </p> */}
                       </div>
                       <div className="flex items-center gap-4 max-[720px]:flex-col">
                         <p className="text-softColor text-xs">
@@ -352,12 +369,14 @@ const JopRequest = () => {
                     {/* Display price with jobRequest title */}
                     <div className="info flex-grow min-w-[200px] max-w-[250px]">
                       <div className="relative group">
-                        <p className={`truncate text-wrap transition-all duration-300 ${
-                          isNewUser 
-                            ? 'telegram-spoiler' 
-                            : ''
-                        }`}>
-                          {isNewUser ? 'Complete Profile' : job.job_posting.title}
+                        <p
+                          className={`truncate text-wrap transition-all duration-300 ${
+                            isNewUser ? "telegram-spoiler" : ""
+                          }`}
+                        >
+                          {isNewUser
+                            ? "Complete Profile"
+                            : job.job_posting.title}
                         </p>
                         {isNewUser && (
                           <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-10 animate-fadeIn">
@@ -422,7 +441,9 @@ const JopRequest = () => {
                   <>
                     <button
                       onClick={() => {
-                        if (!String(job.service_request.id).startsWith('fake_')) {
+                        if (
+                          !String(job.service_request.id).startsWith("fake_")
+                        ) {
                           DeclineJob.mutate(job.service_request.id);
                         }
                       }}
