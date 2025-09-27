@@ -140,7 +140,7 @@ const SettingList = ({ setIsOpen }) => {
       id: 3,
       name: t("SideBar.Settings.changePassword"),
       icon: <RiLockPasswordLine size={18} />,
-      toPage: "/",
+      toPage: "/change-password",
     },
   ];
 

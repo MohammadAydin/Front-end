@@ -25,6 +25,7 @@ import {
   ReportTask,
   CoustomHelpRequest,
 } from "./pages";
+import ChangePassword from "./components/ChangePassword";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
@@ -159,6 +160,10 @@ const router = createBrowserRouter([
         path: "/Notifications",
         element: <Notifications />,
         // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/change-password",
+        element: <ChangePassword />,
       },
     ],
   },

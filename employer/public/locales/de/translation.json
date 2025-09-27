@@ -397,5 +397,36 @@
     "delete": "Serviceanfrage löschen",
     "deleting": "Wird gelöscht...",
     "cannotDelete": "Diese Serviceanfrage kann nicht gelöscht werden, da bereits ein Mitarbeiter sie angenommen hat"
+  },
+  "changePassword": {
+    "title": "Passwort ändern",
+    "subtitle": "Geben Sie Ihr aktuelles Passwort ein und wählen Sie ein neues",
+    "oldPassword": "Aktuelles Passwort",
+    "oldPasswordPlaceholder": "Geben Sie Ihr aktuelles Passwort ein",
+    "newPassword": "Neues Passwort",
+    "newPasswordPlaceholder": "Geben Sie Ihr neues Passwort ein",
+    "confirmPassword": "Neues Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Bestätigen Sie Ihr neues Passwort",
+    "changeButton": "Passwort ändern",
+    "changing": "Passwort wird geändert...",
+    "success": "Passwort erfolgreich geändert",
+    "error": "Passwort konnte nicht geändert werden",
+    "passwordRequirements": "Passwort-Anforderungen",
+    "validation": {
+      "oldPasswordRequired": "Aktuelles Passwort ist erforderlich",
+      "newPasswordRequired": "Neues Passwort ist erforderlich",
+      "confirmPasswordRequired": "Bitte bestätigen Sie Ihr neues Passwort",
+      "passwordTooShort": "Passwort muss mindestens 8 Zeichen haben",
+      "passwordRequirements": "Passwort muss alle Anforderungen erfüllen",
+      "passwordsDoNotMatch": "Passwörter stimmen nicht überein",
+      "samePassword": "Neues Passwort muss sich vom aktuellen unterscheiden"
+    },
+    "requirements": {
+      "minLength": "Mindestens 8 Zeichen",
+      "uppercase": "Ein Großbuchstabe",
+      "lowercase": "Ein Kleinbuchstabe",
+      "numbers": "Eine Zahl",
+      "specialChar": "Ein Sonderzeichen"
+    }
   }
 }
