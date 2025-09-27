@@ -376,5 +376,25 @@
     "approved": "Genehmigt",
     "declined": "Abgelehnt",
     "uploaded": "Hochgeladen"
+  },
+  "deleteJob": {
+    "title": "Stellenlöschung bestätigen",
+    "message": "Sind Sie sicher, dass Sie diese Stelle löschen möchten?",
+    "noCharge": "✓ Es werden keine finanziellen Gebühren erhoben",
+    "reason": "da noch kein Mitarbeiter die Arbeit angenommen hat",
+    "cancel": "Abbrechen",
+    "delete": "Stelle löschen",
+    "deleting": "Wird gelöscht...",
+    "cannotDelete": "Diese Stelle kann nicht gelöscht werden, da bereits ein Mitarbeiter sie angenommen hat"
+  },
+  "deleteService": {
+    "title": "Serviceanfrage-Löschung bestätigen",
+    "message": "Sind Sie sicher, dass Sie diese Serviceanfrage löschen möchten?",
+    "noCharge": "✓ Es werden keine finanziellen Gebühren erhoben",
+    "reason": "da noch kein Mitarbeiter die Arbeit angenommen hat",
+    "cancel": "Abbrechen",
+    "delete": "Serviceanfrage löschen",
+    "deleting": "Wird gelöscht...",
+    "cannotDelete": "Diese Serviceanfrage kann nicht gelöscht werden, da bereits ein Mitarbeiter sie angenommen hat"
   }
 }

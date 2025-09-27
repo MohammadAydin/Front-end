@@ -378,5 +378,25 @@
   },
   "personalInfoSchema": {
     "gender": ""
+  },
+  "deleteJob": {
+    "title": "Confirm Job Deletion",
+    "message": "Are you sure you want to delete this job?",
+    "noCharge": "✓ No financial charges will be applied to you",
+    "reason": "because no employee has accepted the work yet",
+    "cancel": "Cancel",
+    "delete": "Delete Job",
+    "deleting": "Deleting...",
+    "cannotDelete": "This job cannot be deleted because an employee has already accepted it"
+  },
+  "deleteService": {
+    "title": "Confirm Service Request Deletion",
+    "message": "Are you sure you want to delete this service request?",
+    "noCharge": "✓ No financial charges will be applied to you",
+    "reason": "because no employee has accepted the work yet",
+    "cancel": "Cancel",
+    "delete": "Delete Service Request",
+    "deleting": "Deleting...",
+    "cannotDelete": "This service request cannot be deleted because an employee has already accepted it"
   }
 }

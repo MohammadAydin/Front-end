@@ -376,5 +376,25 @@
     "approved": "Onaylandı",
     "declined": "Reddedildi",
     "uploaded": "Yüklendi"
+  },
+  "deleteJob": {
+    "title": "İş Silmeyi Onayla",
+    "message": "Bu işi silmek istediğinizden emin misiniz?",
+    "noCharge": "✓ Size herhangi bir mali ücret uygulanmayacak",
+    "reason": "çünkü henüz hiçbir çalışan işi kabul etmedi",
+    "cancel": "İptal",
+    "delete": "İşi Sil",
+    "deleting": "Siliniyor...",
+    "cannotDelete": "Bu iş silinemez çünkü zaten bir çalışan tarafından kabul edilmiş"
+  },
+  "deleteService": {
+    "title": "Hizmet Talebi Silmeyi Onayla",
+    "message": "Bu hizmet talebini silmek istediğinizden emin misiniz?",
+    "noCharge": "✓ Size herhangi bir mali ücret uygulanmayacak",
+    "reason": "çünkü henüz hiçbir çalışan işi kabul etmedi",
+    "cancel": "İptal",
+    "delete": "Hizmet Talebini Sil",
+    "deleting": "Siliniyor...",
+    "cannotDelete": "Bu hizmet talebi silinemez çünkü zaten bir çalışan tarafından kabul edilmiş"
   }
 }
