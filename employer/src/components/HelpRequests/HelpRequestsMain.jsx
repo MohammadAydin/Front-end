@@ -141,6 +141,7 @@ const HelpRequestsMain = () => {
             specialist="t"
             address="t"
             price="t"
+            employeePosition={item?.employeePosition}
             // status={item?.status || "pending"}
             navigateTo={`/helpRequests/${item.id}`}
           />

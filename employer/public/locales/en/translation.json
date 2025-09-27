@@ -108,6 +108,7 @@
       "ShiftsManagement": "Shifts Management",
       "Notifications": "Notifications"
     },
+    "healthcareFacility": "Healthcare Facility",
 
     "settings": {
       "Language": "Language",
@@ -271,15 +272,15 @@
     }
   },
   "LocationInfo": {
-    "title": "locationInfo",
-    "description": "addresses",
-    "add": "addNewAddress",
+    "title": "Location Info",
+    "description": "Addresses",
+    "add": "Add new address",
     "address": "Address",
     "primary": "Primary Location",
     "status": {
       "active": "Active",
       "activate": "Activate",
-      "primary": "primary"
+      "primary": "Primary"
     }
   },
   "HelpRequests": {

@@ -232,16 +232,18 @@ const ListService = ({
           </div>
           
           <div className="flex items-center gap-2">
-            {/* delete button */}
-            <MdDelete
-              className={`${
-                canCancel 
-                  ? "text-red-400 hover:text-red-600 hover:scale-110" 
-                  : "text-gray-400 hover:text-gray-600 hover:scale-110 cursor-not-allowed"
-              } text-xl cursor-pointer transition-all duration-200`}
-              onClick={handleDeleteClick}
-              title={canCancel ? "Delete service request" : "Cannot delete - has assigned employees"}
-            />
+            {/* delete button - hide for expired or cancel_without_repost status */}
+            {status !== "expired" && status !== "cancel_without_repost" && (
+              <MdDelete
+                className={`${
+                  canCancel 
+                    ? "text-red-400 hover:text-red-600 hover:scale-110" 
+                    : "text-gray-400 hover:text-gray-600 hover:scale-110 cursor-not-allowed"
+                } text-xl cursor-pointer transition-all duration-200`}
+                onClick={handleDeleteClick}
+                title={canCancel ? "Delete service request" : "Cannot delete - has assigned employees"}
+              />
+            )}
             
             <button
               onClick={(e) => {

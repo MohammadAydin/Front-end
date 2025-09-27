@@ -112,7 +112,7 @@ const LocationInfo = () => {
                   }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
                 >
                   <FaPlus />
-                  {t("locationInfo.addNewAddress")}
+                  {t("locationInfo.addNewAddress")} 
                 </Link>
               </div>
               {locations?.length == 0 && (
@@ -136,8 +136,8 @@ const LocationInfo = () => {
                       }`}
                     >
                       {location.is_primary == 1
-                        ? "Primary Location"
-                        : ` Address ${index + 2}`}
+                        ? t("locationInfo.primaryLocation")
+                        : `${t("locationInfo.addressNumber", { number: index + 2 })}`}
                     </h2>
                     <div
                       className="flex justify-between flex-1 gap-3.5 max-[820px]:w-full
@@ -167,14 +167,14 @@ const LocationInfo = () => {
                             } text-white py-1 w-[100px] rounded-[5px]`}
                             disabled={location.is_active}
                           >
-                            {location.is_active ? "Active" : "Activate"}
+                            {location.is_active ? t("locationInfo.active") : t("locationInfo.activate")}
                           </button>
                           {location.is_primary == 1 ? (
                             <div
                               className="text-center  bg-secondaryColor
                              text-white py-1 w-[100px] rounded-[5px] non-click"
                             >
-                              Primary
+                              {t("locationInfo.primary")}
                             </div>
                           ) : (
                             <div className="flex gap-2 items-center justify-center w-[100px]">
@@ -205,7 +205,7 @@ const LocationInfo = () => {
             <div className="w-full">
               <div className="flex justify-between w-full">
                 <p className="text-gray-500 text-sm">
-                  Your Acceptable Commuting Range:
+                  {t("locationInfo.commutingRange")}
                 </p>
                 <Link to={`/EditWorkaBilities/${workable?.workable_distance}`}>
                   <RiPencilLine className="click text-[1.5rem] text-gray-400" />

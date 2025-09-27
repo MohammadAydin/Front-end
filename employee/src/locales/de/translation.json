@@ -303,6 +303,7 @@
     "active": "Aktiv",
     "activate": "Aktivieren",
     "primary": "Primär",
+    "primaryLocation": "Hauptstandort",
     "commutingRange": "Ihr akzeptabler Arbeitsweg:",
     "locationDeleteSuccess": "Standort erfolgreich gelöscht",
     "locationDeleteError": "Fehler beim Löschen des Standorts",

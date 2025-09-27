@@ -45,6 +45,7 @@ const DetailsList = ({
   navigateTo,
   previousPage,
   shiftid,
+  employeePosition,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -155,12 +156,12 @@ const DetailsList = ({
               </h3>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span className="flex items-center">
-                  <FaBuilding className="mr-1" />
-                  Job Posting
+                  <FaUsers className="mr-1" />
+                  {employeePosition?.name || "Job Posting"}
                 </span>
                 <span className="flex items-center">
                   <FaCalendarAlt className="mr-1" />
-                  Created {new Date(created_at).toLocaleDateString("en-GB")}
+                  Created at {new Date(created_at).toLocaleDateString("en-GB")}
                 </span>
               </div>
             </div>
