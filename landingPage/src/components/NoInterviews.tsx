@@ -178,7 +178,7 @@ const NoInterviews = () => {
                             {/* Professional Healthcare Image */}
                             <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                                    src="/healthcare-professional.jpeg"
                                     alt="Professional healthcare team working together"
                                     className="w-full h-full object-cover"
                                 />
