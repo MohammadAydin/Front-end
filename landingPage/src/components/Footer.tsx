@@ -48,9 +48,9 @@ const Footer = () => {
     ];
 
     const trustIndicators = [
-        { icon: Users, label: t('footer.trustIndicators.caregivers') },
-        { icon: Shield, label: t('footer.trustIndicators.facilities') },
-        { icon: Clock, label: t('footer.trustIndicators.available') }
+        { icon: Users, label: '5,000+ Caregivers' },
+        { icon: Shield, label: '500+ Facilities' },
+        { icon: Clock, label: '24/7 Available' }
     ];
 
     const containerVariants = {

@@ -37,6 +37,7 @@ const Impressum = () => {
         { icon: MapPin, label: t('impressum.address') },
         { icon: MapPin, label: t('impressum.postalCode') },
         { icon: Mail, label: t('impressum.email') },
+        { icon: Shield, label: t('impressum.privacyEmail') },
         { icon: Globe, label: t('impressum.website') },
         { icon: User, label: t('impressum.ceo') },
         { icon: FileText, label: t('impressum.registrationNumber') },

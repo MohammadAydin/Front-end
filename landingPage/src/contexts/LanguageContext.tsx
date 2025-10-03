@@ -13,9 +13,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   de: {
     // Navigation
+    'nav.about': 'Über uns',
     'nav.howItWorks': 'Wie es funktioniert',
     'nav.benefits': 'Vorteile',
     'nav.testimonials': 'Kundenstimmen',
+    'nav.faq': 'FAQ',
     'nav.pricing': 'Preise',
     'nav.contact': 'Kontakt',
     'nav.login': 'Anmelden',
@@ -204,9 +206,6 @@ const translations = {
     'footer.tagline': 'Wo & Wann Sie Personal brauchen',
     'footer.location': 'Unser Standort',
     'footer.viewOnMaps': 'Auf Google Maps anzeigen',
-    'footer.trustIndicators.caregivers': '5.000+ Pflegekräfte',
-    'footer.trustIndicators.facilities': '500+ Einrichtungen',
-    'footer.trustIndicators.available': '24/7 verfügbar',
 
     // Impressum
     'impressum.title': 'Impressum',
@@ -215,6 +214,7 @@ const translations = {
     'impressum.address': 'Haagstraße. 25',
     'impressum.postalCode': '61169 Friedberg',
     'impressum.email': 'E-Mail: info@woundwann.de',
+    'impressum.privacyEmail': 'Datenschutz-E-Mail: privacy@woundwann.de',
     'impressum.website': 'Website: https://woundwann.de',
     'impressum.ceo': 'Geschäftsführer: Ahmad Alzein',
     'impressum.registrationNumber': 'Registernummer: HRB 10713',
@@ -254,6 +254,7 @@ const translations = {
     'privacy.dataPortabilityDesc': 'Ihnen steht das Recht zu, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an Dritte aushändigen zu lassen. Die Bereitstellung erfolgt in einem maschinenlesbaren Format. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.',
     'privacy.dataRights': 'Recht auf Auskunft, Berichtigung, Sperrung, Löschung',
     'privacy.dataRightsDesc': 'Sie haben jederzeit im Rahmen der geltenden gesetzlichen Bestimmungen das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, Herkunft der Daten, deren Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Diesbezüglich und auch zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit über die im Impressum aufgeführten Kontaktmöglichkeiten an uns wenden.',
+    'privacy.privacyEmail': 'Datenschutz-E-Mail: privacy@woundwann.de',
     'privacy.sslEncryption': 'SSL- bzw. TLS-Verschlüsselung',
     'privacy.sslEncryptionDesc': 'Aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, die Sie an uns als Seitenbetreiber senden, nutzt unsere Website eine SSL-bzw. TLS-Verschlüsselung. Damit sind Daten, die Sie über diese Website übermitteln, für Dritte nicht mitlesbar. Sie erkennen eine verschlüsselte Verbindung an der „https://" Adresszeile Ihres Browsers und am Schloss-Symbol in der Browserzeile.',
     'privacy.contactForm': 'Kontaktformular',
@@ -326,12 +327,6 @@ const translations = {
     'appDownload.feature4Desc': 'Dokumentieren Sie Pflegeleistungen und Arbeitszeiten sicher und DSGVO-konform',
     'appDownload.qrTitle': 'QR-Code scannen',
     'appDownload.qrSubtitle': 'Scannen Sie den QR-Code, um die App direkt zu installieren',
-    'appDownload.appName': 'Woundwann',
-    'appDownload.appSubtitle': 'Healthcare Staffing',
-    'appDownload.notificationNewJob': 'Neuer Job verfügbar',
-    'appDownload.notificationMessage': 'Nachricht von Einrichtung',
-    'appDownload.platformIOS': 'iOS',
-    'appDownload.platformAndroid': 'Android',
 
     // Contact
     'contact.title': 'Kontaktieren Sie uns',
@@ -340,7 +335,6 @@ const translations = {
     'contact.form.name': 'Ihr Name',
     'contact.form.email': 'Ihre E-Mail',
     'contact.form.company': 'Unternehmen (optional)',
-    'contact.form.phone': 'Telefon',
     'contact.form.subject': 'Betreff',
     'contact.form.message': 'Ihre Nachricht',
     'contact.form.send': 'Nachricht senden',
@@ -353,7 +347,6 @@ const translations = {
     'contact.form.namePlaceholder': 'Max Mustermann',
     'contact.form.companyPlaceholder': 'Ihr Unternehmen',
     'contact.form.messagePlaceholder': 'Ihre Nachricht an uns...',
-    'contact.form.phonePlaceholder': '+49 123 456789',
 
     // Registration Section
     'registration.title': 'Jetzt bei Wo&Wann anmelden und Geld verdienen. Jetzt anmelden!',
@@ -381,12 +374,131 @@ const translations = {
     'contact.guarantee.desc': 'Wir antworten normalerweise innerhalb von 24 Stunden auf alle Anfragen. Für dringende Angelegenheiten rufen Sie uns direkt an.',
     'contact.social.title': 'Folgen Sie uns',
     'contact.social.desc': 'Bleiben Sie mit uns in Verbindung und erhalten Sie die neuesten Updates',
+
+    // About Us Section
+    'about.title': 'Über uns',
+    'about.subtitle': 'Die Zukunft der Pflegevermittlung ist digital',
+    'about.description1': 'Wir sind die erste komplett digital arbeitende Zeitarbeitsplattform, die Pflegekräfte und Pflegeeinrichtungen direkt miteinander verbindet.',
+    'about.description2': 'Unser Service ermöglicht es Pflegeheimen, flexibel Pflegefachkräfte oder Pflegehelfer anzufordern – schnell, unkompliziert und transparent.',
+    'about.feature1.title': 'Digital First',
+    'about.feature1.description': 'Komplett digitale Plattform ohne Papierkram',
+    'about.feature2.title': 'Direkte Verbindung',
+    'about.feature2.description': 'Pflegekräfte und Einrichtungen direkt vernetzt',
+    'about.feature3.title': 'Schnell & Flexibel',
+    'about.feature3.description': 'Sofortige Personalanfragen und -vermittlung',
+    'about.feature4.title': 'Transparent',
+    'about.feature4.description': 'Klare Prozesse und faire Konditionen',
+
+    // FAQ Section
+    'faq.badge': 'Häufig gestellte Fragen',
+    'faq.title': 'FAQ – Unterlagen & Datenschutz',
+    'faq.subtitle': 'Alles was Sie über die erforderlichen Unterlagen und den Datenschutz bei Woundwann wissen müssen',
+    'faq.categories.all': 'Alle',
+    'faq.categories.documents': 'Unterlagen',
+    'faq.categories.legal': 'Rechtsgrundlagen',
+    'faq.categories.privacy': 'Datenschutz',
+    'faq.categories.rights': 'Ihre Rechte',
+    'faq.categories.contact': 'Kontakt',
+    'faq.searchPlaceholder': 'Fragen durchsuchen...',
+    'faq.documentsRequired.question': 'Was brauchen wir von dir, um dich einzusetzen?',
+    'faq.documentsRequired.answer': `
+      <ul class="space-y-3">
+        <li><strong>Amtlicher Ausweis</strong> (Personalausweis/Reisepass) – Identitätsnachweis</li>
+        <li><strong>Berufsurkunde / Erlaubnis nach Pflegeberufegesetz (PflBG)</strong> (für Pflegefachfrau/-mann) oder entsprechender Qualifikationsnachweis (Helfer/in). Grundlage: PflBG §1–2 (Erlaubnis zum Führen der Berufsbezeichnung)</li>
+        <li><strong>Anerkennung ausländischer Abschlüsse</strong> (falls die Ausbildung im Ausland erworben wurde) – staatliche Anerkennung ist Voraussetzung zum Führen der Berufsbezeichnung</li>
+        <li><strong>Aufenthalts- und Arbeitserlaubnis</strong> (wenn erforderlich)</li>
+        <li><strong>Bankverbindung & Steuer-ID</strong> (für Abrechnung)</li>
+        <li><strong>Erweitertes Führungszeugnis (eFZ)</strong> bei Einsatz mit besonders schutzbedürftigen Personen (Pflege/Betreuung). Rechtsgrundlage: §30a BZRG</li>
+        <li><strong>Nachweis Masernschutz</strong>, sofern gesetzlich verlangt (Beschäftigte in bestimmten Gesundheits-/Gemeinschaftseinrichtungen, insb. Jahrgänge nach 1970)</li>
+      </ul>
+      <p class="mt-4 text-sm text-gray-600"><em>Hinweis: Welche Nachweise im Einzelfall erforderlich sind, richtet sich nach Einsatzort/Einrichtung und Rechtslage.</em></p>
+    `,
+    'faq.whyDocuments.question': 'Warum brauchen wir diese Unterlagen? (Rechtsgrundlagen)',
+    'faq.whyDocuments.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Vertrag & Einsatz</h4>
+          <p>Verarbeitung deiner Daten ist erforderlich zur Anbahnung/Durchführung des Beschäftigungsverhältnisses (Art. 6 Abs. 1 lit. b DSGVO i. V. m. § 26 BDSG).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Gesetzliche Pflichten im Gesundheitsbereich</h4>
+          <p>Dazu gehört u. a. PflBG sowie ggf. eFZ/Masernschutz. Gesundheitsdaten (z. B. Impf-/Immunitätsnachweise) sind besondere Kategorien; Verarbeitung erfolgt nur, soweit arbeits-/sozialrechtlich erforderlich (Art. 9 Abs. 2 b DSGVO; § 22 BDSG).</p>
+        </div>
+      </div>
+    `,
+    'faq.dataProtection.question': 'Wie schützen und speichern wir deine Daten?',
+    'faq.dataProtection.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Datensparsamkeit & Zweckbindung</h4>
+          <p>Wir erheben nur, was für Einsatz/Abrechnung/Compliance nötig ist.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Technische & organisatorische Maßnahmen</h4>
+          <p>Verschlüsselung, rollenbasierte Zugriffe, Protokollierung; regelmäßige Überprüfung gemäß Art. 32 DSGVO.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Speicherort</h4>
+          <p>Bevorzugt innerhalb der EU/EWR. Bei notwendigen Drittland-Übermittlungen setzen wir geeignete Garantien (z. B. Standardvertragsklauseln, Art. 46 DSGVO).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Auftragsverarbeiter</h4>
+          <p>Nur vertraglich gebundene Dienstleister nach DSGVO. Datenschutzbeauftragter: Sobald regelmäßig ≥ 20 Personen automatisiert Daten verarbeiten, wird ein DSB benannt (§ 38 BDSG).</p>
+        </div>
+      </div>
+    `,
+    'faq.storageDuration.question': 'Wie lange speichern wir? (Aufbewahrungsfristen)',
+    'faq.storageDuration.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Bewerber/innen (ohne Einstellung)</h4>
+          <p>i. d. R. Löschung nach 6 Monaten ab Abschluss des Verfahrens (Dokumentation zur Abwehr möglicher AGG-Ansprüche); längere Speicherung nur mit ausdrücklicher Einwilligung (Talentpool).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Beschäftigte (in der Personalakte)</h4>
+          <ul class="space-y-2 ml-4">
+            <li><strong>Steuer-/Handelsunterlagen:</strong> 10 Jahre nach § 147 AO bzw. nach HGB § 257</li>
+            <li><strong>Arbeitszeitnachweise:</strong> mind. 2 Jahre nach § 16 Abs. 2 ArbZG</li>
+            <li><strong>Unfallversicherung:</strong> 5 Jahre gem. § 165 SGB VII</li>
+            <li><strong>Führungszeugnis:</strong> meist genügt Sichtvermerk/Vermerk über Prüfung; Kopien werden nur gespeichert, wenn zwingend erforderlich</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    'faq.yourRights.question': 'Deine Rechte (DSGVO)',
+    'faq.yourRights.answer': `
+      <p>Du kannst jederzeit Auskunft (Art. 15), Berichtigung, Löschung (Art. 17) oder Einschränkung verlangen; außerdem Datenübertragbarkeit und Widerspruch, sowie Beschwerde bei der Aufsichtsbehörde.</p>
+    `,
+    'faq.contactPerson.question': 'Ansprechpartner',
+    'faq.contactPerson.answer': `
+      <div class="space-y-3">
+        <div>
+          <h4 class="font-semibold text-gray-900">Verantwortlicher:</h4>
+          <p>Wo & Wann Personal Service GmbH</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Datenschutz-Kontakt:</h4>
+          <p>privacy@woundwann.de</p>
+        </div>
+        <p class="text-sm text-gray-600">Wir beantworten Anfragen zum Datenschutz in der Regel binnen 30 Tagen (Art. 12 DSGVO).</p>
+      </div>
+    `,
+    'faq.contactCard.title': 'Kontakt & Datenschutz',
+    'faq.contactCard.company': 'Unternehmen',
+    'faq.contactCard.companyName': 'Wo & Wann Personal Service GmbH',
+    'faq.contactCard.address': 'Adresse',
+    'faq.contactCard.fullAddress': 'Haagstr.25 - Friedberg 61169 - Deutschland',
+    'faq.contactCard.email': 'E-Mail',
+    'faq.contactCard.emailAddress': 'privacy@woundwann.de',
+    'faq.contactCard.responseTime': 'Wir beantworten Anfragen zum Datenschutz in der Regel binnen 30 Tagen.',
   },
   en: {
     // Navigation
+    'nav.about': 'About Us',
     'nav.howItWorks': 'How it Works',
     'nav.benefits': 'Benefits',
     'nav.testimonials': 'Testimonials',
+    'nav.faq': 'FAQ',
     'nav.pricing': 'Pricing',
     'nav.contact': 'Contact',
     'nav.login': 'Sign In',
@@ -575,9 +687,6 @@ const translations = {
     'footer.tagline': 'Where & When You Need Staff',
     'footer.location': 'Our Location',
     'footer.viewOnMaps': 'View on Google Maps',
-    'footer.trustIndicators.caregivers': '5,000+ Caregivers',
-    'footer.trustIndicators.facilities': '500+ Facilities',
-    'footer.trustIndicators.available': '24/7 Available',
 
     // Impressum
     'impressum.title': 'Legal Notice',
@@ -586,6 +695,7 @@ const translations = {
     'impressum.address': 'Haagstraße. 25',
     'impressum.postalCode': '61169 Friedberg',
     'impressum.email': 'Email: info@woundwann.de',
+    'impressum.privacyEmail': 'Privacy Email: privacy@woundwann.de',
     'impressum.website': 'Website: https://woundwann.de',
     'impressum.ceo': 'Managing Director: Ahmad Alzein',
     'impressum.registrationNumber': 'Registration Number: HRB 10713',
@@ -625,6 +735,7 @@ const translations = {
     'privacy.dataPortabilityDesc': 'You have the right to have data that we process automatically on the basis of your consent or in fulfillment of a contract handed over to you or to third parties. The provision is made in a machine-readable format. If you request the direct transfer of the data to another responsible party, this will only be done insofar as it is technically feasible.',
     'privacy.dataRights': 'Right to Information, Correction, Blocking, Deletion',
     'privacy.dataRightsDesc': 'You have the right at any time within the framework of the applicable legal provisions to free information about your stored personal data, origin of the data, their recipients and the purpose of data processing and, if applicable, a right to correction, blocking or deletion of this data. In this regard and also for further questions on the subject of personal data, you can contact us at any time via the contact options listed in the imprint.',
+    'privacy.privacyEmail': 'Privacy Email: privacy@woundwann.de',
     'privacy.sslEncryption': 'SSL or TLS Encryption',
     'privacy.sslEncryptionDesc': 'For security reasons and to protect the transmission of confidential content that you send to us as the site operator, our website uses SSL or TLS encryption. This means that data that you transmit via this website cannot be read by third parties. You can recognize an encrypted connection by the "https://" address line of your browser and the lock symbol in the browser line.',
     'privacy.contactForm': 'Contact Form',
@@ -697,12 +808,6 @@ const translations = {
     'appDownload.feature4Desc': 'Document care services and working hours securely and GDPR-compliant',
     'appDownload.qrTitle': 'Scan QR Code',
     'appDownload.qrSubtitle': 'Scan the QR code to install the app directly',
-    'appDownload.appName': 'Woundwann',
-    'appDownload.appSubtitle': 'Healthcare Staffing',
-    'appDownload.notificationNewJob': 'New job available',
-    'appDownload.notificationMessage': 'Message from facility',
-    'appDownload.platformIOS': 'iOS',
-    'appDownload.platformAndroid': 'Android',
 
     // Contact
     'contact.title': 'Contact Us',
@@ -711,7 +816,6 @@ const translations = {
     'contact.form.name': 'Your Name',
     'contact.form.email': 'Your Email',
     'contact.form.company': 'Company (optional)',
-    'contact.form.phone': 'Phone',
     'contact.form.subject': 'Subject',
     'contact.form.message': 'Your Message',
     'contact.form.send': 'Send Message',
@@ -724,7 +828,6 @@ const translations = {
     'contact.form.namePlaceholder': 'Enter your name',
     'contact.form.companyPlaceholder': 'Your company name',
     'contact.form.messagePlaceholder': 'Write your message here...',
-    'contact.form.phonePlaceholder': '+1 234 567 8900',
 
     // Registration Section
     'registration.title': 'Register now with Wo&Wann to earn money. Register now!',
@@ -752,12 +855,131 @@ const translations = {
     'contact.guarantee.desc': 'We typically respond to all inquiries within 24 hours. For urgent matters, please call us directly.',
     'contact.social.title': 'Follow Us',
     'contact.social.desc': 'Stay connected with us and get the latest updates',
+
+    // About Us Section
+    'about.title': 'About Us',
+    'about.subtitle': 'The future of care staffing is digital',
+    'about.description1': 'We are the first completely digital temporary staffing platform that directly connects caregivers and care facilities.',
+    'about.description2': 'Our service enables care facilities to flexibly request nursing professionals or nursing assistants – quickly, easily and transparently.',
+    'about.feature1.title': 'Digital First',
+    'about.feature1.description': 'Completely digital platform without paperwork',
+    'about.feature2.title': 'Direct Connection',
+    'about.feature2.description': 'Caregivers and facilities directly connected',
+    'about.feature3.title': 'Fast & Flexible',
+    'about.feature3.description': 'Immediate staffing requests and placement',
+    'about.feature4.title': 'Transparent',
+    'about.feature4.description': 'Clear processes and fair conditions',
+
+    // FAQ Section
+    'faq.badge': 'Frequently Asked Questions',
+    'faq.title': 'FAQ – Documents & Data Protection',
+    'faq.subtitle': 'Everything you need to know about required documents and data protection at Woundwann',
+    'faq.categories.all': 'All',
+    'faq.categories.documents': 'Documents',
+    'faq.categories.legal': 'Legal Basis',
+    'faq.categories.privacy': 'Data Protection',
+    'faq.categories.rights': 'Your Rights',
+    'faq.categories.contact': 'Contact',
+    'faq.searchPlaceholder': 'Search questions...',
+    'faq.documentsRequired.question': 'What do we need from you to employ you?',
+    'faq.documentsRequired.answer': `
+      <ul class="space-y-3">
+        <li><strong>Official ID</strong> (ID card/passport) – Identity verification</li>
+        <li><strong>Professional certificate / Authorization under Nursing Professions Act (PflBG)</strong> (for nursing professionals) or corresponding qualification certificate (assistant). Basis: PflBG §1–2 (Authorization to use professional title)</li>
+        <li><strong>Recognition of foreign qualifications</strong> (if training was acquired abroad) – state recognition is prerequisite for using professional title</li>
+        <li><strong>Residence and work permit</strong> (if required)</li>
+        <li><strong>Bank details & Tax ID</strong> (for billing)</li>
+        <li><strong>Extended certificate of good conduct (eFZ)</strong> for work with particularly vulnerable persons (care/support). Legal basis: §30a BZRG</li>
+        <li><strong>Measles protection proof</strong>, if legally required (employees in certain health/community facilities, especially birth years after 1970)</li>
+      </ul>
+      <p class="mt-4 text-sm text-gray-600"><em>Note: Which documents are required in individual cases depends on the place of employment/facility and legal situation.</em></p>
+    `,
+    'faq.whyDocuments.question': 'Why do we need these documents? (Legal basis)',
+    'faq.whyDocuments.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Contract & Employment</h4>
+          <p>Processing your data is necessary for initiating/conducting the employment relationship (Art. 6 para. 1 lit. b GDPR in conjunction with § 26 BDSG).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Legal obligations in healthcare</h4>
+          <p>This includes PflBG as well as eFZ/measles protection if applicable. Health data (e.g. vaccination/immunity certificates) are special categories; processing only occurs to the extent required by labor/social law (Art. 9 para. 2 b GDPR; § 22 BDSG).</p>
+        </div>
+      </div>
+    `,
+    'faq.dataProtection.question': 'How do we protect and store your data?',
+    'faq.dataProtection.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Data minimization & Purpose limitation</h4>
+          <p>We only collect what is necessary for employment/billing/compliance.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Technical & organizational measures</h4>
+          <p>Encryption, role-based access, logging; regular review according to Art. 32 GDPR.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Storage location</h4>
+          <p>Preferably within EU/EEA. For necessary third-country transfers, we use appropriate safeguards (e.g. standard contractual clauses, Art. 46 GDPR).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Data processors</h4>
+          <p>Only contractually bound service providers under GDPR. Data protection officer: As soon as ≥ 20 persons regularly process data automatically, a DPO is appointed (§ 38 BDSG).</p>
+        </div>
+      </div>
+    `,
+    'faq.storageDuration.question': 'How long do we store? (Retention periods)',
+    'faq.storageDuration.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Applicants (without employment)</h4>
+          <p>Generally deletion after 6 months from completion of procedure (documentation to defend against possible AGG claims); longer storage only with express consent (talent pool).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Employees (in personnel file)</h4>
+          <ul class="space-y-2 ml-4">
+            <li><strong>Tax/commercial documents:</strong> 10 years according to § 147 AO or HGB § 257</li>
+            <li><strong>Working time records:</strong> min. 2 years according to § 16 para. 2 ArbZG</li>
+            <li><strong>Accident insurance:</strong> 5 years according to § 165 SGB VII</li>
+            <li><strong>Certificate of good conduct:</strong> usually sight note/note about verification is sufficient; copies are only stored if absolutely necessary</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    'faq.yourRights.question': 'Your Rights (GDPR)',
+    'faq.yourRights.answer': `
+      <p>You can request information (Art. 15), correction, deletion (Art. 17) or restriction at any time; also data portability and objection, as well as complaint to the supervisory authority.</p>
+    `,
+    'faq.contactPerson.question': 'Contact Person',
+    'faq.contactPerson.answer': `
+      <div class="space-y-3">
+        <div>
+          <h4 class="font-semibold text-gray-900">Responsible party:</h4>
+          <p>Wo & Wann Personal Service GmbH</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Data protection contact:</h4>
+          <p>privacy@woundwann.de</p>
+        </div>
+        <p class="text-sm text-gray-600">We typically respond to data protection inquiries within 30 days (Art. 12 GDPR).</p>
+      </div>
+    `,
+    'faq.contactCard.title': 'Contact & Data Protection',
+    'faq.contactCard.company': 'Company',
+    'faq.contactCard.companyName': 'Wo & Wann Personal Service GmbH',
+    'faq.contactCard.address': 'Address',
+    'faq.contactCard.fullAddress': 'Haagstr.25 - Friedberg 61169 - Germany',
+    'faq.contactCard.email': 'Email',
+    'faq.contactCard.emailAddress': 'privacy@woundwann.de',
+    'faq.contactCard.responseTime': 'We typically respond to data protection inquiries within 30 days.',
   },
   tr: {
     // Navigation
+    'nav.about': 'Hakkımızda',
     'nav.howItWorks': 'Nasıl Çalışır',
     'nav.benefits': 'Avantajlar',
     'nav.testimonials': 'Müşteri Yorumları',
+    'nav.faq': 'SSS',
     'nav.pricing': 'Fiyatlandırma',
     'nav.contact': 'İletişim',
     'nav.login': 'Giriş Yap',
@@ -954,9 +1176,6 @@ const translations = {
     'footer.tagline': 'İhtiyaç Duyduğunuz Yerde ve Zamanda Personel',
     'footer.location': 'Konumumuz',
     'footer.viewOnMaps': 'Google Haritalarda Görüntüle',
-    'footer.trustIndicators.caregivers': '5.000+ Bakıcı',
-    'footer.trustIndicators.facilities': '500+ Tesis',
-    'footer.trustIndicators.available': '7/24 Müsait',
 
     // Impressum
     'impressum.title': 'Yasal Uyarı',
@@ -965,6 +1184,7 @@ const translations = {
     'impressum.address': 'Haagstraße. 25',
     'impressum.postalCode': '61169 Friedberg',
     'impressum.email': 'E-posta: info@woundwann.de',
+    'impressum.privacyEmail': 'Gizlilik E-postası: privacy@woundwann.de',
     'impressum.website': 'Website: https://woundwann.de',
     'impressum.ceo': 'Genel Müdür: Ahmad Alzein',
     'impressum.registrationNumber': 'Kayıt Numarası: HRB 10713',
@@ -1004,6 +1224,7 @@ const translations = {
     'privacy.dataPortabilityDesc': 'Onayınız temelinde veya bir sözleşmenin yerine getirilmesi kapsamında otomatik olarak işlediğimiz verilerin size veya üçüncü taraflara teslim edilmesini isteme hakkınız vardır. Sağlama makine tarafından okunabilir formatta yapılır.',
     'privacy.dataRights': 'Bilgi Alma, Düzeltme, Engelleme, Silme Hakkı',
     'privacy.dataRightsDesc': 'Geçerli yasal hükümler çerçevesinde, saklanan kişisel verileriniz, verilerin kaynağı, alıcıları ve veri işleme amacı hakkında her zaman ücretsiz bilgi alma hakkınız vardır.',
+    'privacy.privacyEmail': 'Gizlilik E-postası: privacy@woundwann.de',
     'privacy.sslEncryption': 'SSL veya TLS Şifreleme',
     'privacy.sslEncryptionDesc': 'Güvenlik nedenleriyle ve bize site operatörü olarak gönderdiğiniz gizli içeriğin korunması için web sitemiz SSL veya TLS şifreleme kullanır.',
     'privacy.contactForm': 'İletişim Formu',
@@ -1084,12 +1305,6 @@ const translations = {
     'appDownload.feature4Desc': 'Bakım hizmetlerini ve çalışma saatlerini güvenli ve KVKK uyumlu şekilde belgeleyin',
     'appDownload.qrTitle': 'QR Kod Tarayın',
     'appDownload.qrSubtitle': 'Uygulamayı doğrudan yüklemek için QR kodu tarayın',
-    'appDownload.appName': 'Woundwann',
-    'appDownload.appSubtitle': 'Sağlık Personeli İstihdamı',
-    'appDownload.notificationNewJob': 'Yeni iş mevcut',
-    'appDownload.notificationMessage': 'Tesis mesajı',
-    'appDownload.platformIOS': 'iOS',
-    'appDownload.platformAndroid': 'Android',
 
     // Contact
     'contact.title': 'İletişim',
@@ -1098,7 +1313,6 @@ const translations = {
     'contact.form.name': 'Adınız',
     'contact.form.email': 'E-posta Adresiniz',
     'contact.form.company': 'Şirket (isteğe bağlı)',
-    'contact.form.phone': 'Telefon',
     'contact.form.subject': 'Konu',
     'contact.form.message': 'Mesajınız',
     'contact.form.send': 'Mesaj Gönder',
@@ -1115,6 +1329,21 @@ const translations = {
     'contact.guarantee.desc': 'Genellikle tüm taleplere 24 saat içinde yanıt veriyoruz. Acil durumlar için lütfen doğrudan arayın.',
     'contact.social.title': 'Bizi Takip Edin',
     'contact.social.desc': 'Bizimle bağlantıda kalın ve en son güncellemeleri alın',
+
+    // About Us Section
+    'about.title': 'Hakkımızda',
+    'about.subtitle': 'Bakım personeli istihdamının geleceği dijital',
+    'about.description1': 'Bakıcıları ve bakım tesislerini doğrudan birbirine bağlayan ilk tamamen dijital geçici istihdam platformuyuz.',
+    'about.description2': 'Hizmetimiz, bakım tesislerinin hemşirelik profesyonelleri veya bakım asistanları talep etmesini sağlar – hızlı, kolay ve şeffaf bir şekilde.',
+    'about.feature1.title': 'Dijital Öncelik',
+    'about.feature1.description': 'Kağıt işi olmayan tamamen dijital platform',
+    'about.feature2.title': 'Doğrudan Bağlantı',
+    'about.feature2.description': 'Bakıcılar ve tesisler doğrudan bağlı',
+    'about.feature3.title': 'Hızlı ve Esnek',
+    'about.feature3.description': 'Anında personel talepleri ve yerleştirme',
+    'about.feature4.title': 'Şeffaf',
+    'about.feature4.description': 'Net süreçler ve adil koşullar',
+
     'contact.form.subjectPlaceholder': 'Konu Seçin',
     'contact.form.subjectGeneral': 'Genel Sorgu',
     'contact.form.subjectSupport': 'Teknik Destek',
@@ -1124,7 +1353,6 @@ const translations = {
     'contact.form.namePlaceholder': 'Adınızı girin',
     'contact.form.companyPlaceholder': 'Şirket adınız',
     'contact.form.messagePlaceholder': 'Mesajınızı buraya yazın...',
-    'contact.form.phonePlaceholder': '+90 123 456 7890',
 
     // Registration Section
     'registration.title': 'Wo&Wann\'a şimdi kayıt olun ve para kazanın. Şimdi kayıt olun!',
@@ -1139,6 +1367,109 @@ const translations = {
     'registration.feature2': '20€ Hoş Geldin Bonusu',
     'registration.feature3': 'Esnek Çalışma Saatleri',
     'registration.feature4': 'Güvenli Ödeme',
+
+    // FAQ Section
+    'faq.badge': 'Sıkça Sorulan Sorular',
+    'faq.title': 'SSS – Belgeler ve Veri Koruması',
+    'faq.subtitle': 'Woundwann\'da gerekli belgeler ve veri koruması hakkında bilmeniz gereken her şey',
+    'faq.categories.all': 'Tümü',
+    'faq.categories.documents': 'Belgeler',
+    'faq.categories.legal': 'Yasal Dayanak',
+    'faq.categories.privacy': 'Veri Koruması',
+    'faq.categories.rights': 'Haklarınız',
+    'faq.categories.contact': 'İletişim',
+    'faq.searchPlaceholder': 'Soruları ara...',
+    'faq.documentsRequired.question': 'Sizi işe almak için neler gerekiyor?',
+    'faq.documentsRequired.answer': `
+      <ul class="space-y-3">
+        <li><strong>Resmi Kimlik</strong> (Kimlik kartı/pasaport) – Kimlik doğrulama</li>
+        <li><strong>Meslek belgesi / Bakım Meslekleri Yasası (PflBG) yetkisi</strong> (bakım profesyonelleri için) veya ilgili yeterlilik belgesi (asistan). Dayanak: PflBG §1–2 (Meslek unvanı kullanma yetkisi)</li>
+        <li><strong>Yabancı diplomaların tanınması</strong> (eğitim yurtdışında alındıysa) – devlet tanınması meslek unvanı kullanmanın ön koşuludur</li>
+        <li><strong>İkamet ve çalışma izni</strong> (gerekirse)</li>
+        <li><strong>Banka bilgileri ve Vergi Kimlik No</strong> (faturalandırma için)</li>
+        <li><strong>Genişletilmiş sabıka kaydı (eFZ)</strong> özellikle korunması gereken kişilerle (bakım/destek) çalışma için. Yasal dayanak: §30a BZRG</li>
+        <li><strong>Kızamık koruma belgesi</strong>, yasal olarak gerekliyse (belirli sağlık/topluluk tesislerinde çalışanlar, özellikle 1970 sonrası doğumlular)</li>
+      </ul>
+      <p class="mt-4 text-sm text-gray-600"><em>Not: Hangi belgelerin gerekli olduğu, çalışma yeri/tesis ve yasal duruma göre değişir.</em></p>
+    `,
+    'faq.whyDocuments.question': 'Neden bu belgelere ihtiyacımız var? (Yasal dayanak)',
+    'faq.whyDocuments.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Sözleşme ve İstihdam</h4>
+          <p>Verilerinizin işlenmesi, istihdam ilişkisinin başlatılması/yürütülmesi için gereklidir (Madde 6 fıkra 1 lit. b KVKK ile birlikte § 26 BDSG).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Sağlık sektöründeki yasal yükümlülükler</h4>
+          <p>Bu, PflBG'nin yanı sıra eFZ/kızamık korumasını da içerir. Sağlık verileri (örn. aşı/bağışıklık belgeleri) özel kategorilerdir; işleme sadece iş/sosyal hukuk gerektirdiği ölçüde gerçekleşir (Madde 9 fıkra 2 b KVKK; § 22 BDSG).</p>
+        </div>
+      </div>
+    `,
+    'faq.dataProtection.question': 'Verilerinizi nasıl koruyor ve saklıyoruz?',
+    'faq.dataProtection.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Veri tasarrufu ve amaç sınırlaması</h4>
+          <p>Sadece istihdam/faturalandırma/uyumluluk için gerekli olanları topluyoruz.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Teknik ve organizasyonel önlemler</h4>
+          <p>Şifreleme, rol tabanlı erişim, günlükleme; Madde 32 KVKK'ya göre düzenli inceleme.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Saklama yeri</h4>
+          <p>Tercihen AB/AEA içinde. Gerekli üçüncü ülke transferleri için uygun güvenceler kullanıyoruz (örn. standart sözleşme maddeleri, Madde 46 KVKK).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Veri işleyiciler</h4>
+          <p>Sadece KVKK'ya göre sözleşmeli hizmet sağlayıcılar. Veri koruma görevlisi: ≥ 20 kişi düzenli olarak verileri otomatik işlediğinde, bir VKG atanır (§ 38 BDSG).</p>
+        </div>
+      </div>
+    `,
+    'faq.storageDuration.question': 'Ne kadar süre saklıyoruz? (Saklama süreleri)',
+    'faq.storageDuration.answer': `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Başvurular (istihdam olmadan)</h4>
+          <p>Genellikle prosedürün tamamlanmasından 6 ay sonra silme (olası AGG taleplerini savuşturmak için dokümantasyon); daha uzun saklama sadece açık rıza ile (yetenek havuzu).</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-2">Çalışanlar (personel dosyasında)</h4>
+          <ul class="space-y-2 ml-4">
+            <li><strong>Vergi/ticari belgeler:</strong> § 147 AO veya HGB § 257'ye göre 10 yıl</li>
+            <li><strong>Çalışma süresi kayıtları:</strong> § 16 fıkra 2 ArbZG'ye göre en az 2 yıl</li>
+            <li><strong>İş kazası sigortası:</strong> § 165 SGB VII'ye göre 5 yıl</li>
+            <li><strong>Sabıka kaydı:</strong> genellikle görme notu/doğrulama notu yeterlidir; kopyalar sadece kesinlikle gerekliyse saklanır</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    'faq.yourRights.question': 'Haklarınız (KVKK)',
+    'faq.yourRights.answer': `
+      <p>Her zaman bilgi (Madde 15), düzeltme, silme (Madde 17) veya kısıtlama talep edebilirsiniz; ayrıca veri taşınabilirliği ve itiraz, denetim otoritesine şikayet.</p>
+    `,
+    'faq.contactPerson.question': 'İletişim Kişisi',
+    'faq.contactPerson.answer': `
+      <div class="space-y-3">
+        <div>
+          <h4 class="font-semibold text-gray-900">Sorumlu taraf:</h4>
+          <p>Wo & Wann Personal Service GmbH</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Veri koruma iletişimi:</h4>
+          <p>privacy@woundwann.de</p>
+        </div>
+        <p class="text-sm text-gray-600">Veri koruma taleplerine genellikle 30 gün içinde yanıt veriyoruz (Madde 12 KVKK).</p>
+      </div>
+    `,
+    'faq.contactCard.title': 'İletişim ve Veri Koruması',
+    'faq.contactCard.company': 'Şirket',
+    'faq.contactCard.companyName': 'Wo & Wann Personal Service GmbH',
+    'faq.contactCard.address': 'Adres',
+    'faq.contactCard.fullAddress': 'Haagstr.25 - Friedberg 61169 - Almanya',
+    'faq.contactCard.email': 'E-posta',
+    'faq.contactCard.emailAddress': 'privacy@woundwann.de',
+    'faq.contactCard.responseTime': 'Veri koruma taleplerine genellikle 30 gün içinde yanıt veriyoruz.',
   }
 };
 

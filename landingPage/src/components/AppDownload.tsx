@@ -190,8 +190,8 @@ const AppDownload = () => {
                                                     <div className="w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-3 flex items-center justify-center">
                                                         <Smartphone className="w-8 h-8 text-white" />
                                                     </div>
-                                                    <h3 className="text-white font-bold text-lg">{t('appDownload.appName')}</h3>
-                                                    <p className="text-white/70 text-sm">{t('appDownload.appSubtitle')}</p>
+                                                    <h3 className="text-white font-bold text-lg">Woundwann</h3>
+                                                    <p className="text-white/70 text-sm">Healthcare Staffing</p>
                                                 </div>
 
                                                 {/* Active Feature Display */}
@@ -220,13 +220,13 @@ const AppDownload = () => {
                                                     <div className="bg-success/20 backdrop-blur-sm rounded-xl p-3">
                                                         <div className="flex items-center space-x-2">
                                                             <Bell className="w-4 h-4 text-success" />
-                                                            <span className="text-white text-xs">{t('appDownload.notificationNewJob')}</span>
+                                                            <span className="text-white text-xs">New job available</span>
                                                         </div>
                                                     </div>
                                                     <div className="bg-primary/20 backdrop-blur-sm rounded-xl p-3">
                                                         <div className="flex items-center space-x-2">
                                                             <MessageCircle className="w-4 h-4 text-primary" />
-                                                            <span className="text-white text-xs">{t('appDownload.notificationMessage')}</span>
+                                                            <span className="text-white text-xs">Message from facility</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -335,7 +335,7 @@ const AppDownload = () => {
                                             className="w-full h-48 object-contain"
                                         />
                                     </div>
-                                    <p className="mt-2 text-xs text-muted-foreground">{t('appDownload.platformIOS')}</p>
+                                    <p className="mt-2 text-xs text-muted-foreground">iOS</p>
                                 </div>
                                 <div>
                                     <div className="rounded-2xl border border-border overflow-hidden bg-background p-3">
@@ -345,7 +345,7 @@ const AppDownload = () => {
                                             className="w-full h-48 object-contain"
                                         />
                                     </div>
-                                    <p className="mt-2 text-xs text-muted-foreground">{t('appDownload.platformAndroid')}</p>
+                                    <p className="mt-2 text-xs text-muted-foreground">Android</p>
                                 </div>
                             </div>
                         </motion.div>

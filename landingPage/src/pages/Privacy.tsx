@@ -121,6 +121,10 @@ const Privacy = () => {
                                 <p className="text-muted-foreground">{t('privacy.contactPerson')}</p>
                                 <p className="text-muted-foreground">{t('privacy.address')}</p>
                                 <p className="text-muted-foreground">{t('privacy.city')}</p>
+                                <div className="flex items-center space-x-2 mt-3 pt-3 border-t border-border">
+                                    <Shield className="w-4 h-4 text-primary" />
+                                    <p className="text-muted-foreground">{t('privacy.privacyEmail')}</p>
+                                </div>
                             </div>
 
                             <p className="mt-4 text-muted-foreground leading-relaxed">

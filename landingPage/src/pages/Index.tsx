@@ -4,7 +4,9 @@ import NoInterviews from '@/components/NoInterviews';
 import Registration from '@/components/Registration';
 import HowItWorks from '@/components/HowItWorks';
 import Benefits from '@/components/Benefits';
+import AboutUs from '@/components/AboutUs';
 import Testimonials from '@/components/Testimonials';
+import FAQ from '@/components/FAQ';
 import AppDownload from '@/components/AppDownload';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -25,11 +27,13 @@ const Index = () => {
       <div className="relative z-10">
         <Navigation />
         <Hero />
+        <AboutUs />
         <NoInterviews />
         <Registration />
         <HowItWorks />
         <Benefits />
         <Testimonials />
+        <FAQ />
         <AppDownload />
         <Contact />
         <Footer />

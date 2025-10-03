@@ -11,9 +11,11 @@ const Navigation = () => {
   const { language, setLanguage, t } = useLanguage();
 
   const navItems = [
+    { href: '#about', label: t('nav.about') },
     { href: '#how-it-works', label: t('nav.howItWorks') },
     { href: '#benefits', label: t('nav.benefits') },
     { href: '#testimonials', label: t('nav.testimonials') },
+    { href: '#faq', label: t('nav.faq') },
     { href: '#contact', label: t('nav.contact') }
   ];
 
