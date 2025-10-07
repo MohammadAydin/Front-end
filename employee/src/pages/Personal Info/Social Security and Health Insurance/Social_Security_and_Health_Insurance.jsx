@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -12,6 +13,7 @@ import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
 import useData from "../../../../../employer/src/hooks/useData";
 import { toast } from "react-toastify";
+import "./Social_Security_and_Health_Insurance.css";
 
 const Social_Security_and_Health_Insurance = () => {
   const { t } = useTranslation();
@@ -49,12 +51,12 @@ const Social_Security_and_Health_Insurance = () => {
       label: t("socialSecurity.fields.insuranceNumber"),
       type: "text",
     },
-    {
-      name: "number_of_children",
-      label: t("socialSecurity.fields.numberOfChildren"),
-      type: "number",
-      step: "any",
-    },
+    // {
+    //   name: "number_of_children",
+    //   label: t("socialSecurity.fields.numberOfChildren"),
+    //   type: "number",
+    //   step: "any",
+    // },
   ];
 
   const social_Insurance_select = [
@@ -124,6 +126,14 @@ const Social_Security_and_Health_Insurance = () => {
     },
   });
 
+  const maritalStatus = watch("marital_status");
+  const numberOfChildren = watch("number_of_children");
+
+  useEffect(() => {
+    if (maritalStatus !== "married" && numberOfChildren) {
+      setValue("number_of_children", 0.0);
+    }
+  }, [maritalStatus, numberOfChildren, setValue]);
   const submit = (data) => {
     const formData = new FormData();
 
@@ -170,6 +180,34 @@ const Social_Security_and_Health_Insurance = () => {
               step={input.step || 1}
             />
           ))}
+          {watch("marital_status") === "married" && (
+            <div>
+              <div className="InputField relative input-group ">
+                <input
+                  {...register("number_of_children")}
+                  className="input-control input_children"
+                  type="number"
+                  id={"number_of_children"}
+                  name={"number_of_children"}
+                  placeholder=""
+                  // defaultValue={defaultvalue && `${defaultvalue}`}
+                  step={0.5}
+                  onWheel={(e) => e.currentTarget.blur()}
+                />
+                <label
+                  className="label-email absolute z-1 left-3 top-[50%] translate-y-[-50%] px-2 bg-white copy"
+                  htmlFor={"number_of_children"}
+                >
+                  {t("socialSecurity.fields.numberOfChildren")}
+                </label>
+              </div>
+              {errors["number_of_children"] && (
+                <p className="InputErrors text-red-500 mt-3.5 mb-1">
+                  {errors["number_of_children"].message}
+                </p>
+              )}
+            </div>
+          )}
 
           {social_Insurance_select.map((select) => (
             <SelectField
