@@ -12,9 +12,13 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { RiErrorWarningLine } from "react-icons/ri";
+import { IoMdClose } from "react-icons/io";
+import { FaMoneyBillWave, FaCheckCircle } from "react-icons/fa";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "../utils/axios";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const DetailsList = ({
   id,
@@ -41,9 +45,12 @@ const DetailsList = ({
   navigateTo,
   previousPage,
   shiftid,
+  employeePosition,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const {
     data: shfit,
     error,
@@ -109,13 +116,29 @@ const DetailsList = ({
     mutationFn: () => customFetch.delete(`/job/${id}`).then((res) => res.data),
     onSuccess: (data) => {
       toast.success(data.message);
-
+      setShowDeleteModal(false);
       queryClient.invalidateQueries(["/employerJobPosting"]);
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message);
     },
   });
+
+  const handleDeleteClick = () => {
+    if (canCancel) {
+      setShowDeleteModal(true);
+    } else {
+      toast.warning(t('deleteJob.cannotDelete') || "Cannot delete this job");
+    }
+  };
+
+  const handleConfirmDelete = () => {
+    DeleteJop.mutate();
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteModal(false);
+  };
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 mb-4 overflow-hidden group ">
       <div className="p-6">
@@ -133,12 +156,12 @@ const DetailsList = ({
               </h3>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span className="flex items-center">
-                  <FaBuilding className="mr-1" />
-                  Job Posting
+                  <FaUsers className="mr-1" />
+                  {employeePosition?.name || "Job Posting"}
                 </span>
                 <span className="flex items-center">
                   <FaCalendarAlt className="mr-1" />
-                  Created {new Date(created_at).toLocaleDateString("en-GB")}
+                  Created at {new Date(created_at).toLocaleDateString("en-GB")}
                 </span>
               </div>
             </div>
@@ -147,9 +170,11 @@ const DetailsList = ({
           <div className="">
             <MdDelete
               className={`${
-                canCancel ? "text-red-400 " : "text-gray-400"
-              } 00 text-2xl cursor-pointer`}
-              onClick={() => DeleteJop.mutate()}
+                canCancel 
+                  ? "text-red-400 hover:text-red-600 hover:scale-110" 
+                  : "text-gray-400 hover:text-gray-600 hover:scale-110 cursor-not-allowed"
+              } text-2xl cursor-pointer transition-all duration-200`}
+              onClick={handleDeleteClick}
             />
           </div>
         </div>
@@ -217,6 +242,73 @@ const DetailsList = ({
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && canCancel && (
+        <div className="modal">
+          <div onClick={handleCancelDelete} className="overlay"></div>
+          <div 
+            className="modal-content flex flex-col items-center justify-center rounded-[10px] max-w-[90vw] sm:max-w-[500px]"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              background: '#ffffff',
+              padding: '20px 24px',
+              borderRadius: '10px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+            }}
+          >
+            {/* Warning icon - responsive sizing */}
+            <RiErrorWarningLine className="text-[#F47621] text-6xl sm:text-8xl lg:text-9xl" />
+
+            {/* Text content - responsive padding and font sizes */}
+            <p className="mt-6 sm:mt-8 text-center px-2 sm:px-4 text-sm sm:text-base lg:text-lg leading-relaxed max-w-[90%] mx-auto">
+              {t('deleteJob.message')}
+            </p>
+            
+            {/* Additional info about no charges with icon */}
+            <div className="mt-6 flex items-center justify-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <FaCheckCircle className="text-green-500 text-xl" />
+                <FaMoneyBillWave className="text-gray-400 text-lg" />
+              </div>
+              <div className="text-center">
+                <p className="text-gray-700 text-sm font-medium">
+                  {t('deleteJob.noCharge')}
+                </p>
+                <p className="text-gray-500 text-xs mt-1">
+                  {t('deleteJob.reason')}
+                </p>
+              </div>
+            </div>
+            
+            {/* Close icon */}
+            <button className="close-modal" onClick={handleCancelDelete}>
+              <IoMdClose />
+            </button>
+            
+            {/* Buttons container - responsive width and spacing */}
+            <div className="flex flex-col sm:flex-row w-full max-w-[280px] sm:max-w-[400px] lg:max-w-[450px] gap-3 sm:gap-3.5 mt-8 sm:mt-12 lg:mt-14 mb-2 sm:mb-4">
+              <button
+                onClick={handleCancelDelete}
+                className="bg-softwhite border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 p-3 sm:p-2 rounded-[10px] w-full text-sm sm:text-base font-medium transition-colors duration-200"
+              >
+                {t('deleteJob.cancel')}
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                disabled={DeleteJop.isPending}
+                type="button"
+                className="bg-[#F47621] hover:bg-[#E55A1A] text-white p-3 sm:p-2 rounded-[10px] w-full text-sm sm:text-base font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {DeleteJop.isPending ? t('deleteJob.deleting') : t('deleteJob.delete')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

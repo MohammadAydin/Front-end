@@ -109,6 +109,7 @@
       "ShiftsManagement": "Vardiya Yönetimi",
       "Notifications": "Bildirimler"
     },
+    "healthcareFacility": "Sağlık Kurumu",
 
     "settings": {
       "Language": "Dil",
@@ -376,5 +377,56 @@
     "approved": "Onaylandı",
     "declined": "Reddedildi",
     "uploaded": "Yüklendi"
+  },
+  "deleteJob": {
+    "title": "İş Silmeyi Onayla",
+    "message": "Bu işi silmek istediğinizden emin misiniz?",
+    "noCharge": "✓ Size herhangi bir mali ücret uygulanmayacak",
+    "reason": "çünkü henüz hiçbir çalışan işi kabul etmedi",
+    "cancel": "İptal",
+    "delete": "İşi Sil",
+    "deleting": "Siliniyor...",
+    "cannotDelete": "Bu iş silinemez çünkü zaten bir çalışan tarafından kabul edilmiş"
+  },
+  "deleteService": {
+    "title": "Hizmet Talebi Silmeyi Onayla",
+    "message": "Bu hizmet talebini silmek istediğinizden emin misiniz?",
+    "noCharge": "✓ Size herhangi bir mali ücret uygulanmayacak",
+    "reason": "çünkü henüz hiçbir çalışan işi kabul etmedi",
+    "cancel": "İptal",
+    "delete": "Hizmet Talebini Sil",
+    "deleting": "Siliniyor...",
+    "cannotDelete": "Bu hizmet talebi silinemez çünkü zaten bir çalışan tarafından kabul edilmiş"
+  },
+  "changePassword": {
+    "title": "Şifre Değiştir",
+    "subtitle": "Mevcut şifrenizi girin ve yeni bir şifre seçin",
+    "oldPassword": "Mevcut Şifre",
+    "oldPasswordPlaceholder": "Mevcut şifrenizi girin",
+    "newPassword": "Yeni Şifre",
+    "newPasswordPlaceholder": "Yeni şifrenizi girin",
+    "confirmPassword": "Yeni Şifreyi Onayla",
+    "confirmPasswordPlaceholder": "Yeni şifrenizi onaylayın",
+    "changeButton": "Şifre Değiştir",
+    "changing": "Şifre değiştiriliyor...",
+    "success": "Şifre başarıyla değiştirildi",
+    "error": "Şifre değiştirilemedi",
+    "passwordRequirements": "Şifre Gereksinimleri",
+    "validation": {
+      "oldPasswordRequired": "Mevcut şifre gerekli",
+      "newPasswordRequired": "Yeni şifre gerekli",
+      "confirmPasswordRequired": "Lütfen yeni şifrenizi onaylayın",
+      "passwordTooShort": "Şifre en az 8 karakter olmalı",
+      "passwordRequirements": "Şifre tüm gereksinimleri karşılamalı",
+      "passwordsDoNotMatch": "Şifreler eşleşmiyor",
+      "samePassword": "Yeni şifre mevcut şifreden farklı olmalı"
+    },
+    "requirements": {
+      "minLength": "En az 8 karakter",
+      "uppercase": "Bir büyük harf",
+      "lowercase": "Bir küçük harf",
+      "numbers": "Bir rakam",
+      "specialChar": "Bir özel karakter"
+    }
   }
 }

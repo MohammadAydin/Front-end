@@ -303,6 +303,7 @@
     "active": "Aktif",
     "activate": "Aktifleştir",
     "primary": "Birincil",
+    "primaryLocation": "Birincil Konum",
     "commutingRange": "Kabul Edilebilir Yolculuk Mesafeniz:",
     "locationDeleteSuccess": "Konum başarıyla silindi",
     "locationDeleteError": "Konum silinemedi",
