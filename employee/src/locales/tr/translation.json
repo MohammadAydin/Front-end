@@ -241,6 +241,11 @@
       "name": "Tam Ad",
       "placeOfBirth": "Doğum Yeri",
       "place_of_birth": "Doğum Yeri"
+    },
+    "EditBio": {
+      "title": "Biyografiyi Düzenle",
+      "submit": "Düzenle",
+      "cancel": "İptal"
     }
   },
   "notifications": {

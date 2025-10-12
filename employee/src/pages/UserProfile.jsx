@@ -14,9 +14,16 @@ import statusAccount from "../utils/statusAccountReturn";
 import { toast } from "react-toastify";
 import axios from "axios";
 import SpinnerLoading from "../components/MoreElements/SpinnerLoading";
+import { FaRegEdit } from "react-icons/fa";
+import InputEditBio from "../components/MoreElements/bioElement/InputEditBio";
 
 const UserProfile = () => {
-  const { data, isLoading } = useData("/profile");
+  const { data, isLoading, refetch } = useData("/profile");
+  const [editBio, setEditBio] = useState(false);
+  const toggleInput = () => {
+    setEditBio(!editBio);
+  };
+  console.log(data);
 
   const { t } = useTranslation();
 
@@ -79,23 +86,41 @@ const UserProfile = () => {
         <div className="UserProfileInfo w-[730px] grid grid-cols-2 gap-2">
           {data &&
             Object.entries(data).map(([key, value]) => {
-              if (key === "avatar" || key === "is_viewable_contract")
+              if (
+                key === "avatar" ||
+                key === "is_viewable_contract" ||
+                key === "bio"
+              )
                 return null;
 
               return (
                 <div
                   key={key}
                   className={`relative  h-[55px] border-2 border-[#919eab54] rounded-xl flex items-center px-3 mb-4  ${
-                    key === "bio" ? "col-span-2" : ""
+                    key === "bio" ? "col-span-2 overflow-auto py-10 " : ""
                   }`}
                 >
-                  <p className="absolute top-[-10px] left-5 text-[#6373817c] bg-white px-2">
+                  <p className="absolute top-[-15px] left-5 text-[#6373817c] bg-white px-2">
                     {getFieldLabel(key)}
                   </p>
-                  <p>{value || t("userProfile.notProvided")}</p>
+                  <p className="absolute top-2">
+                    {value || t("userProfile.notProvided")}
+                  </p>
                 </div>
               );
             })}
+          <div className=" relative col-span-2 border-2 border-[#919eab54] rounded-[10px] px-3 min-h-[50px] max-h-[100px] overflow-auto py-2">
+            <p className=" text-[#6373817c] bg-white px-2">
+              {/* {getFieldLabel(key)} */}
+              {getFieldLabel("bio")}
+            </p>
+            <p className="">{data?.bio || t("userProfile.notProvided")}</p>
+            <FaRegEdit
+              onClick={() => setEditBio(true)}
+              className=" absolute top-4 right-4 text-[20px] click text-secondaryColor"
+            />
+          </div>
+
           {data?.is_viewable_contract && (
             <div className=" relative">
               <button
@@ -121,6 +146,16 @@ const UserProfile = () => {
           )}
         </div>
       </div>
+      {/* A component for editing the bio display */}
+      {editBio && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+          <InputEditBio
+            toggleInput={toggleInput}
+            defaultValue={data?.bio}
+            refetch={refetch}
+          />
+        </div>
+      )}
     </div>
   );
 };
