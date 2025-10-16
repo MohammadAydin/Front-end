@@ -11,19 +11,19 @@ import useData from "../../../hooks/useData";
 import customFetch from "../../../utils/axios";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TiWarning } from "react-icons/ti";
 import RequestSummary from "./RequestSummary";
 import "./RequestSummary.css";
 import { useTranslation } from "react-i18next";
 
 const inputs = [
-  { name: "Title", label: "RequestsForm.fields.title", type: "text" },
-  {
-    name: "Description",
-    label: "RequestsForm.fields.description",
-    type: "text",
-  },
+  // { name: "Title", label: "RequestsForm.fields.title", type: "text" },
+  // {
+  //   name: "Description",
+  //   label: "RequestsForm.fields.description",
+  //   type: "text",
+  // },
 ];
 
 const dataPosation = [
@@ -43,6 +43,12 @@ const EmployeeNumber = [
 ];
 
 const RequestsForm = () => {
+  const {
+    data: PosationList,
+    errorPosation,
+    isLoadingPosation,
+  } = useData("/positions/list");
+  console.log(PosationList);
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { RequestIsOpen, RequestClose, RequestDone, Done, notDone } =
@@ -62,6 +68,7 @@ const RequestsForm = () => {
     name: item?.street1,
     id: item.id,
   }));
+
   const selectOptions = [
     { name: "Position", label: t("RequestsForm.fields.position"), id: 1 },
     { name: "Shifts", label: t("RequestsForm.fields.shifts"), id: 2 },
@@ -82,6 +89,28 @@ const RequestsForm = () => {
     },
   });
 
+  const Position = watch("Position");
+  const Address = watch("Address");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (Position == 1) {
+      setDescription(
+        "Verantwortlich für die professionelle Pflege, Medikamentengabe und Dokumentation. Führt medizinische Aufgaben selbstständig durch und betreut Bewohner fachgerecht."
+      );
+    } else if (Position == 2) {
+      setDescription(
+        "Unterstützt Pflegefachkräfte bei der Grundpflege und täglichen Betreuung. Führt einfache pflegerische Tätigkeiten unter Anleitung aus."
+      );
+    } else if (Position == 3) {
+      setDescription(
+        "Hilft bei Körperpflege, Ernährung und Mobilität der Bewohner. Sorgt für Wohlbefinden und unterstützt das Pflegeteam im Alltag."
+      );
+    }
+  }, [Position]);
+  console.log(Position);
+  console.log(Address);
+  // useEffect(() => {}, []);
   const handleNextStep = (data) => {
     setFormData(data);
     setCurrentStep(2);
@@ -124,8 +153,8 @@ const RequestsForm = () => {
     setLoadingPost(true);
     try {
       const response = await customFetch.post("/employerJobPosting", {
-        title: formData.Title,
-        description: formData.Description,
+        title: "Dringend",
+        description: description,
         employees_required: formData.EmployeeCount,
         date_from: dateFrom,
         date_to: dateTo,
@@ -180,12 +209,21 @@ const RequestsForm = () => {
                 <div className="flex items-center justify-between">
                   {[1, 2, 3].map((step, idx) => (
                     <div key={step} className="flex-1 flex items-center">
-                      <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-semibold border transition-colors ${currentStep >= step ? 'bg-[#F47621] text-white border-[#F47621]' : 'bg-white text-gray-500 border-gray-300'
-                        }`}>
+                      <div
+                        className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-semibold border transition-colors ${
+                          currentStep >= step
+                            ? "bg-[#F47621] text-white border-[#F47621]"
+                            : "bg-white text-gray-500 border-gray-300"
+                        }`}
+                      >
                         {step}
                       </div>
                       {idx < 2 && (
-                        <div className={`h-0.5 flex-1 mx-2 ${currentStep > step ? 'bg-[#F47621]' : 'bg-gray-200'}`}></div>
+                        <div
+                          className={`h-0.5 flex-1 mx-2 ${
+                            currentStep > step ? "bg-[#F47621]" : "bg-gray-200"
+                          }`}
+                        ></div>
                       )}
                     </div>
                   ))}
@@ -201,7 +239,9 @@ const RequestsForm = () => {
                   <h3 className="text-2xl font-[900]">
                     {t("RequestsForm.title")}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">Provide the basic information to create a new job posting.</p>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Provide the basic information to create a new job posting.
+                  </p>
                   <form action="" onSubmit={handleSubmit(handleNextStep)}>
                     <div className="w-full flex items-center gap-3">
                       {inputs.map((input) => (
@@ -219,24 +259,25 @@ const RequestsForm = () => {
                       {selectOptions.map((selectOption) => (
                         <div
                           key={selectOption.name}
-                          className={`${selectOption.name === "Address" ? "col-span-2" : ""
-                            }`}
+                          className={`${
+                            selectOption.name === "Address" ? "col-span-2" : ""
+                          }`}
                         >
                           <SelectField
                             data={
                               selectOption.name === "Shifts"
                                 ? [
-                                  ...(dataShift?.data || []),
-                                  {
-                                    id: "custom",
-                                    name: t(
-                                      "RequestsForm.fields.custom_shift"
-                                    ),
-                                  },
-                                ]
+                                    ...(dataShift?.data || []),
+                                    {
+                                      id: "custom",
+                                      name: t(
+                                        "RequestsForm.fields.custom_shift"
+                                      ),
+                                    },
+                                  ]
                                 : selectOption.name === "Address"
-                                  ? resultLocation
-                                  : dataPosation
+                                ? resultLocation
+                                : PosationList?.data
                             }
                             name={selectOption.name}
                             errors={errors}
@@ -245,12 +286,17 @@ const RequestsForm = () => {
                             value={watch(selectOption.name)}
                             label={selectOption.label}
                           />
-                          {(selectOption.name === 'Shifts' && isLoading) && (
-                            <p className="text-xs text-gray-500 mt-1">Loading shifts...</p>
+                          {selectOption.name === "Shifts" && isLoading && (
+                            <p className="text-xs text-gray-500 mt-1">
+                              Loading shifts...
+                            </p>
                           )}
-                          {(selectOption.name === 'Address' && isLoadingLocation) && (
-                            <p className="text-xs text-gray-500 mt-1">Loading locations...</p>
-                          )}
+                          {selectOption.name === "Address" &&
+                            isLoadingLocation && (
+                              <p className="text-xs text-gray-500 mt-1">
+                                Loading locations...
+                              </p>
+                            )}
                         </div>
                       ))}
                     </div>
@@ -265,7 +311,9 @@ const RequestsForm = () => {
                           value={watch("EmployeeCount")}
                           label={t("RequestsForm.fields.employeeCount")}
                         />
-                        <p className="text-xs text-gray-500 mt-1">Number of helpers you need for this job.</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Number of helpers you need for this job.
+                        </p>
                       </div>
                       <CalendarRange
                         register={register}
@@ -348,8 +396,9 @@ const RequestsForm = () => {
                     <button
                       disabled={loadingPost}
                       onClick={handleFinalSubmit}
-                      className={`${loadingPost ? "bg-gray-400" : "bg-[#F47621]"
-                        }  text-white text-lg font-extrabold px-8 py-3 rounded-lg hover:bg-[#EE6000]`}
+                      className={`${
+                        loadingPost ? "bg-gray-400" : "bg-[#F47621]"
+                      }  text-white text-lg font-extrabold px-8 py-3 rounded-lg hover:bg-[#EE6000]`}
                     >
                       {t("RequestsForm.buttons.submitRequest")}
                     </button>
