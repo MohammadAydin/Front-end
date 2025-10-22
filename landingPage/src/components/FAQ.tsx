@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { FileText, Shield, Clock, Users, Mail, MapPin, Search, X, ChevronDown, HelpCircle, BookOpen, Lock, CheckCircle } from 'lucide-react';
+import { FileText, Shield, Clock, Users, Mail, MapPin, Search, X, ChevronDown, HelpCircle, BookOpen, Lock, CheckCircle, FileCheck } from 'lucide-react';
 
 const FAQ = () => {
     const { t } = useLanguage();
@@ -63,6 +63,22 @@ const FAQ = () => {
             icon: Mail,
             category: 'contact',
             color: 'primary'
+        },
+        {
+            id: 'terms-payment',
+            question: t('faq.termsPayment.question'),
+            answer: t('faq.termsPayment.answer'),
+            icon: FileCheck,
+            category: 'terms',
+            color: 'accent'
+        },
+        {
+            id: 'terms-employee-payment',
+            question: t('faq.termsEmployeePayment.question'),
+            answer: t('faq.termsEmployeePayment.answer'),
+            icon: FileCheck,
+            category: 'terms',
+            color: 'accent'
         }
     ];
 
@@ -72,7 +88,8 @@ const FAQ = () => {
         { id: 'legal', label: t('faq.categories.legal'), icon: Shield, count: faqItems.filter(item => item.category === 'legal').length, color: 'success' },
         { id: 'privacy', label: t('faq.categories.privacy'), icon: Lock, count: faqItems.filter(item => item.category === 'privacy').length, color: 'accent' },
         { id: 'rights', label: t('faq.categories.rights'), icon: Users, count: faqItems.filter(item => item.category === 'rights').length, color: 'success' },
-        { id: 'contact', label: t('faq.categories.contact'), icon: Mail, count: faqItems.filter(item => item.category === 'contact').length, color: 'primary' }
+        { id: 'contact', label: t('faq.categories.contact'), icon: Mail, count: faqItems.filter(item => item.category === 'contact').length, color: 'primary' },
+        { id: 'terms', label: t('faq.categories.terms'), icon: FileCheck, count: faqItems.filter(item => item.category === 'terms').length, color: 'accent' }
     ];
 
     const filteredItems = faqItems.filter(item => {

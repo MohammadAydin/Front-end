@@ -399,6 +399,7 @@ const translations = {
     'faq.categories.privacy': 'Datenschutz',
     'faq.categories.rights': 'Ihre Rechte',
     'faq.categories.contact': 'Kontakt',
+    'faq.categories.terms': 'Allgemeinen Geschäftsbedingungen',
     'faq.searchPlaceholder': 'Fragen durchsuchen...',
     'faq.documentsRequired.question': 'Was brauchen wir von dir, um dich einzusetzen?',
     'faq.documentsRequired.answer': `
@@ -491,6 +492,10 @@ const translations = {
     'faq.contactCard.email': 'E-Mail',
     'faq.contactCard.emailAddress': 'privacy@woundwann.de',
     'faq.contactCard.responseTime': 'Wir beantworten Anfragen zum Datenschutz in der Regel binnen 30 Tagen.',
+    'faq.termsPayment.question': '500 € für jede neue Altenheim',
+    'faq.termsPayment.answer': 'Eine Nettozahlung in Höhe von 500 EUR pro Mitarbeiter wird gewährt, sofern die Pflegeeinrichtung zehn vollständige Schichten anfordert.',
+    'faq.termsEmployeePayment.question': '20€ für erste Schicht',
+    'faq.termsEmployeePayment.answer': 'Der Mitarbeiter hat Anspruch auf eine Nettovergütung in Höhe von 20 EUR nach Abschluss seiner ersten Schicht über die App, sofern er alle erforderlichen persönlichen und offiziellen Daten gemäß den Bestimmungen des deutschen Arbeitsrechts vollständig angegeben hat.',
   },
   en: {
     // Navigation
@@ -880,6 +885,7 @@ const translations = {
     'faq.categories.privacy': 'Data Protection',
     'faq.categories.rights': 'Your Rights',
     'faq.categories.contact': 'Contact',
+    'faq.categories.terms': 'General Terms and Conditions',
     'faq.searchPlaceholder': 'Search questions...',
     'faq.documentsRequired.question': 'What do we need from you to employ you?',
     'faq.documentsRequired.answer': `
@@ -972,6 +978,10 @@ const translations = {
     'faq.contactCard.email': 'Email',
     'faq.contactCard.emailAddress': 'privacy@woundwann.de',
     'faq.contactCard.responseTime': 'We typically respond to data protection inquiries within 30 days.',
+    'faq.termsPayment.question': '500 € for each new nursing home',
+    'faq.termsPayment.answer': 'A net payment of 500 EUR per employee will be granted if the care facility requests ten complete shifts.',
+    'faq.termsEmployeePayment.question': '20€ for first shift',
+    'faq.termsEmployeePayment.answer': 'The employee is entitled to a net remuneration of 20 EUR after completing their first shift through the app, provided they have fully provided all required personal and official data in accordance with German labor law regulations.',
   },
   tr: {
     // Navigation
@@ -1378,6 +1388,7 @@ const translations = {
     'faq.categories.privacy': 'Veri Koruması',
     'faq.categories.rights': 'Haklarınız',
     'faq.categories.contact': 'İletişim',
+    'faq.categories.terms': 'Genel Şartlar ve Koşullar',
     'faq.searchPlaceholder': 'Soruları ara...',
     'faq.documentsRequired.question': 'Sizi işe almak için neler gerekiyor?',
     'faq.documentsRequired.answer': `
@@ -1470,6 +1481,10 @@ const translations = {
     'faq.contactCard.email': 'E-posta',
     'faq.contactCard.emailAddress': 'privacy@woundwann.de',
     'faq.contactCard.responseTime': 'Veri koruma taleplerine genellikle 30 gün içinde yanıt veriyoruz.',
+    'faq.termsPayment.question': 'Her yeni bakım evi için 500 €',
+    'faq.termsPayment.answer': 'Bakım tesisi on tam vardiya talep etmesi durumunda çalışan başına 500 EUR net ödeme yapılacaktır.',
+    'faq.termsEmployeePayment.question': 'İlk vardiya için 20€',
+    'faq.termsEmployeePayment.answer': 'Çalışan, uygulama üzerinden ilk vardiyasını tamamladıktan sonra, Alman iş hukuku düzenlemelerine uygun olarak gerekli tüm kişisel ve resmi verileri tam olarak sağlaması koşuluyla 20 EUR net ücret alma hakkına sahiptir.',
   }
 };
 
