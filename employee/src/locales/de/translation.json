@@ -241,6 +241,11 @@
       "name": "Vollständiger Name",
       "placeOfBirth": "Geburtsort",
       "place_of_birth": "Geburtsort"
+    },
+    "EditBio": {
+      "title": "Biografie bearbeiten",
+      "submit": "Bearbeiten",
+      "cancel": "Abbrechen"
     }
   },
   "notifications": {

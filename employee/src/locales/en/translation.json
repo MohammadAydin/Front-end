@@ -241,6 +241,11 @@
       "name": "Full Name",
       "placeOfBirth": "Place of Birth",
       "place_of_birth": "Place of Birth"
+    },
+    "EditBio": {
+      "title": "EditBio",
+      "submit": "Edit",
+      "cancel": "Cancel"
     }
   },
   "notifications": {

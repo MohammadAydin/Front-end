@@ -2,9 +2,9 @@ import { z } from "zod";
 
 const RequestSchema = (t) =>
   z.object({
-    Title: z.string(),
+    // Title: z.string(),
     Position: z.number(),
-    Description: z.string(),
+    // Description: z.string(),
     Shifts: z.number(),
     Address: z.number(),
     EmployeeCount: z.number().min(1).max(10),

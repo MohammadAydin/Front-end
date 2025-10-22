@@ -129,11 +129,6 @@ const Social_Security_and_Health_Insurance = () => {
   const maritalStatus = watch("marital_status");
   const numberOfChildren = watch("number_of_children");
 
-  useEffect(() => {
-    if (maritalStatus !== "married" && numberOfChildren) {
-      setValue("number_of_children", 0.0);
-    }
-  }, [maritalStatus, numberOfChildren, setValue]);
   const submit = (data) => {
     const formData = new FormData();
 
@@ -180,34 +175,33 @@ const Social_Security_and_Health_Insurance = () => {
               step={input.step || 1}
             />
           ))}
-          {watch("marital_status") === "married" && (
-            <div>
-              <div className="InputField relative input-group ">
-                <input
-                  {...register("number_of_children")}
-                  className="input-control input_children"
-                  type="number"
-                  id={"number_of_children"}
-                  name={"number_of_children"}
-                  placeholder=""
-                  // defaultValue={defaultvalue && `${defaultvalue}`}
-                  step={0.5}
-                  onWheel={(e) => e.currentTarget.blur()}
-                />
-                <label
-                  className="label-email absolute z-1 left-3 top-[50%] translate-y-[-50%] px-2 bg-white copy"
-                  htmlFor={"number_of_children"}
-                >
-                  {t("socialSecurity.fields.numberOfChildren")}
-                </label>
-              </div>
-              {errors["number_of_children"] && (
-                <p className="InputErrors text-red-500 mt-3.5 mb-1">
-                  {errors["number_of_children"].message}
-                </p>
-              )}
+
+          <div>
+            <div className="InputField relative input-group ">
+              <input
+                {...register("number_of_children")}
+                className="input-control input_children"
+                type="number"
+                id={"number_of_children"}
+                name={"number_of_children"}
+                placeholder=""
+                // defaultValue={defaultvalue && `${defaultvalue}`}
+                step={0.5}
+                onWheel={(e) => e.currentTarget.blur()}
+              />
+              <label
+                className="label-email absolute z-1 left-3 top-[50%] translate-y-[-50%] px-2 bg-white copy"
+                htmlFor={"number_of_children"}
+              >
+                {t("socialSecurity.fields.numberOfChildren")}
+              </label>
             </div>
-          )}
+            {errors["number_of_children"] && (
+              <p className="InputErrors text-red-500 mt-3.5 mb-1">
+                {errors["number_of_children"].message}
+              </p>
+            )}
+          </div>
 
           {social_Insurance_select.map((select) => (
             <SelectField
