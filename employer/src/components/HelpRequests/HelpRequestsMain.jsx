@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import ServiceRequestCard from "./ServiceRequestCard";
 import useData from "../../hooks/useData";
 import { useTranslation } from "react-i18next";
+import { useQueries } from "@tanstack/react-query";
+import customFetch from "../../utils/axios";
 
 const HelpRequestsMain = () => {
   const { t } = useTranslation();
@@ -9,8 +11,8 @@ const HelpRequestsMain = () => {
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState("newest");
 
-  // Fetch all job postings with service requests
-  const { data: jopPosting } = useData("/employerJobPosting");
+  // Fetch all job postings
+  const { data: jopPosting, isLoading: isJobListLoading } = useData("/employerJobPosting");
   console.log(jopPosting);
 
   // Status tabs configuration
@@ -25,21 +27,38 @@ const HelpRequestsMain = () => {
 
   const jobPostings = jopPosting?.data || [];
 
-  // Flatten service requests from all job postings
+  // Fetch details for each job posting to get service_requests
+  const jobIds = useMemo(() => jobPostings.map((jp) => jp.id), [jobPostings]);
+
+  const detailsQueries = useQueries({
+    queries: jobIds.map((id) => ({
+      queryKey: ["/employerJobPosting", id],
+      queryFn: async () => {
+        const res = await customFetch.get(`/employerJobPosting/${id}`);
+        return res.data; // keep same shape used elsewhere: { success, data: { job_posting, service_requests, ... } }
+      },
+      enabled: jobIds.length > 0,
+      staleTime: 60 * 1000,
+    })),
+  });
+
+  const isDetailsLoading = detailsQueries.some((q) => q.isLoading);
+
+  // Flatten service requests from all job posting details
   const serviceRequests = useMemo(() => {
-    const allServiceRequests = [];
-    jobPostings.forEach((jobPosting) => {
-      if (jobPosting.serviceRequests && jobPosting.serviceRequests.length > 0) {
-        jobPosting.serviceRequests.forEach((serviceRequest) => {
-          allServiceRequests.push({
-            ...serviceRequest,
-            jobPosting: jobPosting,
-          });
+    const all = [];
+    detailsQueries.forEach((q) => {
+      const srList = q.data?.data?.service_requests || [];
+      const jp = q.data?.data?.job_posting;
+      srList.forEach((sr) => {
+        all.push({
+          ...sr,
+          jobPosting: jp,
         });
-      }
+      });
     });
-    return allServiceRequests;
-  }, [jobPostings]);
+    return all;
+  }, [detailsQueries]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -84,6 +103,20 @@ const HelpRequestsMain = () => {
     if (status === "all") return serviceRequests.length;
     return serviceRequests.filter((sr) => sr.status === status).length;
   };
+
+  if (isJobListLoading || isDetailsLoading) {
+    return (
+      <div>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-[#0F1A43]">Service Requests</h1>
+          <p className="text-sm text-gray-600 mt-1">{t('common.loading') || 'Loading...'}</p>
+        </div>
+        <div className="border border-dashed border-gray-300 rounded-xl p-10 text-center bg-white text-gray-600">
+          {t("HelpRequests.noneJop")}
+        </div>
+      </div>
+    );
+  }
 
   if (serviceRequests.length === 0) {
     return (
