@@ -449,6 +449,7 @@
     "viewDetails": "View Details",
     "backToList": "Back to Service Requests",
     "detailsTitle": "Service Request Details",
+    "jobPosting": "Job Posting",
     "jobPostingInfo": "Job Posting Information",
     "jobTitle": "Title",
     "description": "Description",
@@ -467,6 +468,42 @@
     "timeSchedule": "Time Schedule",
     "start": "Start",
     "end": "End",
-    "noSchedule": "No schedule set"
+    "noSchedule": "No schedule set",
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "taken": "Taken"
+    },
+    "emptyFilter": "No service requests found for this filter.",
+    "employeeSlots": "Employee Slots",
+    "availableSlot": "Available slot",
+    "available": "Available",
+    "employeesSummary": {
+      "none": "No employees assigned yet ({{needed}} needed)",
+      "one": "1 employee assigned ({{needed}} needed)",
+      "many": "{{count}} employees assigned ({{needed}} needed)"
+    },
+    "deleteTooltip": "Delete service request",
+    "cannotDeleteTooltip": "Cannot delete - has assigned employees",
+    "status": {
+      "expired": "Expired",
+      "cancelWithRepost": "Cancel with Repost",
+      "cancelWithoutRepost": "Cancel without Repost"
+    },
+    "statusLabel": "Status"
+  },
+  "task": {
+    "title": "Task Requests",
+    "noTasks": "No tasks available",
+    "noTasksHint": "Tasks will appear here once they are created",
+    "status": {
+      "assigned": "Assigned",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "review": "Under Review",
+      "cancelled": "Cancelled",
+      "onTheWay": "On The Way",
+      "arrived": "Arrived"
+    }
   }
 }

@@ -446,6 +446,7 @@
     "viewDetails": "Detayları Görüntüle",
     "backToList": "Hizmet Taleplerine Dön",
     "detailsTitle": "Hizmet Talebi Detayları",
+    "jobPosting": "İş İlanı",
     "jobPostingInfo": "İş İlanı Bilgileri",
     "jobTitle": "Başlık",
     "description": "Açıklama",
@@ -464,6 +465,42 @@
     "timeSchedule": "Zaman Çizelgesi",
     "start": "Başlangıç",
     "end": "Bitiş",
-    "noSchedule": "Çizelge belirlenmedi"
+    "noSchedule": "Çizelge belirlenmedi",
+    "filters": {
+      "all": "Tümü",
+      "pending": "Beklemede",
+      "taken": "Alındı"
+    },
+    "emptyFilter": "Bu filtre için hizmet talebi bulunamadı.",
+    "employeeSlots": "Çalışan Yuvaları",
+    "availableSlot": "Uygun yuva",
+    "available": "Uygun",
+    "employeesSummary": {
+      "none": "Henüz çalışan atanmadı ({{needed}} gerekli)",
+      "one": "1 çalışan atandı ({{needed}} gerekli)",
+      "many": "{{count}} çalışan atandı ({{needed}} gerekli)"
+    },
+    "deleteTooltip": "Hizmet talebini sil",
+    "cannotDeleteTooltip": "Silinemez - atanmış çalışanlar var",
+    "status": {
+      "expired": "Süresi doldu",
+      "cancelWithRepost": "Yeniden yayımlayarak iptal",
+      "cancelWithoutRepost": "Yeniden yayımlamadan iptal"
+    },
+    "statusLabel": "Durum"
+  },
+  "task": {
+    "title": "Görev Talepleri",
+    "noTasks": "Görev yok",
+    "noTasksHint": "Görevler oluşturulduğunda burada görünecek",
+    "status": {
+      "assigned": "Atandı",
+      "inProgress": "Devam ediyor",
+      "completed": "Tamamlandı",
+      "review": "İncelemede",
+      "cancelled": "İptal edildi",
+      "onTheWay": "Yolda",
+      "arrived": "Ulaştı"
+    }
   }
 }

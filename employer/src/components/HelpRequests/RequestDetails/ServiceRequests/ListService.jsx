@@ -46,21 +46,21 @@ const ListService = ({
     
     switch (task.status) {
       case 'todo':
-        return { icon: FaClock, color: 'bg-yellow-100 border-yellow-300 text-yellow-700', text: 'Assigned' };
+        return { icon: FaClock, color: 'bg-yellow-100 border-yellow-300 text-yellow-700', text: t('task.status.assigned') };
       case 'progress':
-        return { icon: FaPlay, color: 'bg-blue-100 border-blue-300 text-blue-700', text: 'In Progress' };
+        return { icon: FaPlay, color: 'bg-blue-100 border-blue-300 text-blue-700', text: t('task.status.inProgress') };
       case 'done':
-        return { icon: FaCheck, color: 'bg-green-100 border-green-300 text-green-700', text: 'Completed' };
+        return { icon: FaCheck, color: 'bg-green-100 border-green-300 text-green-700', text: t('task.status.completed') };
       case 'review':
-        return { icon: FaSearch, color: 'bg-indigo-100 border-indigo-300 text-indigo-700', text: 'Under Review' };
+        return { icon: FaSearch, color: 'bg-indigo-100 border-indigo-300 text-indigo-700', text: t('task.status.review') };
       case 'Canceled':
-        return { icon: FaTimes, color: 'bg-red-100 border-red-300 text-red-700', text: 'Cancelled' };
+        return { icon: FaTimes, color: 'bg-red-100 border-red-300 text-red-700', text: t('task.status.cancelled') };
       case 'OntheWay':
-        return { icon: FaArrowRight, color: 'bg-orange-100 border-orange-300 text-orange-700', text: 'On The Way' };
+        return { icon: FaArrowRight, color: 'bg-orange-100 border-orange-300 text-orange-700', text: t('task.status.onTheWay') };
       case 'Arrived':
-        return { icon: FaCircle, color: 'bg-emerald-100 border-emerald-300 text-emerald-700', text: 'Arrived' };
+        return { icon: FaCircle, color: 'bg-emerald-100 border-emerald-300 text-emerald-700', text: t('task.status.arrived') };
       default:
-        return { icon: FaQuestion, color: 'bg-purple-100 border-purple-300 text-purple-700', text: 'Pending' };
+        return { icon: FaQuestion, color: 'bg-purple-100 border-purple-300 text-purple-700', text: t('serviceRequest.filters.pending') };
     }
   };
   const navigate = useNavigate();
@@ -104,29 +104,29 @@ const ListService = ({
     const map = {
       pending: {
         color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-        text: "Pending",
+        text: t('serviceRequest.filters.pending'),
       },
       cancel: {
         color: "bg-red-100 text-red-800 border-red-200",
-        text: "Cancelled",
+        text: t('task.status.cancelled'),
       },
       taken: {
         color: "bg-blue-100 text-blue-800 border-blue-200",
-        text: "Taken",
+        text: t('serviceRequest.filters.taken'),
       },
       done: {
         color: "bg-green-100 text-green-800 border-green-200",
-        text: "Completed",
+        text: t('task.status.completed'),
       },
       progress: {
         color: "bg-purple-100 text-purple-800 border-purple-200",
-        text: "In Progress",
+        text: t('task.status.inProgress'),
       },
     };
     return (
       map[status] || {
         color: "bg-gray-100 text-gray-800 border-gray-200",
-        text: status || "Unknown",
+        text: status || t('common.notAvailable'),
       }
     );
   };
@@ -168,9 +168,9 @@ const ListService = ({
         {/* Employee Slots Preview */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-sm font-semibold text-gray-700">Employee Slots</h4>
+            <h4 className="text-sm font-semibold text-gray-700">{t('serviceRequest.employeeSlots')}</h4>
             <span className="text-xs text-gray-500">
-              {employeeNum} assigned
+              {employeeNum} {t('task.status.assigned')}
             </span>
           </div>
           
@@ -194,7 +194,7 @@ const ListService = ({
                         : 'bg-gray-50 border-dashed border-gray-300 text-gray-400 cursor-default'
                     }
                   `}
-                  title={slotStatus ? slotStatus.text : hasEmployee ? 'Employee assigned' : 'Available slot'}
+                  title={slotStatus ? slotStatus.text : hasEmployee ? t('task.status.assigned') : t('serviceRequest.availableSlot')}
                   onClick={isClickable ? () => {
                     navigate(navigateTo);
                   } : undefined}
@@ -207,12 +207,12 @@ const ListService = ({
                   ) : hasEmployee ? (
                     <>
                       <FaCheck className="w-3 h-3" />
-                      <span>Assigned</span>
+                      <span>{t('task.status.assigned')}</span>
                     </>
                   ) : (
                     <>
                       <FaPlus className="w-3 h-3" />
-                      <span>Available</span>
+                      <span>{t('serviceRequest.available')}</span>
                     </>
                   )}
                 </div>
@@ -225,9 +225,11 @@ const ListService = ({
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-500">
-              {employeeNum === 0 ? `No employees assigned yet (${employeesRequired || 1} needed)` : 
-               employeeNum === 1 ? `1 employee assigned (${employeesRequired || 1} needed)` : 
-               `${employeeNum} employees assigned (${employeesRequired || 1} needed)`}
+              {employeeNum === 0
+                ? t('serviceRequest.employeesSummary.none', { needed: employeesRequired || 1 })
+                : employeeNum === 1
+                  ? t('serviceRequest.employeesSummary.one', { needed: employeesRequired || 1 })
+                  : t('serviceRequest.employeesSummary.many', { count: employeeNum, needed: employeesRequired || 1 })}
             </span>
           </div>
           
@@ -241,7 +243,7 @@ const ListService = ({
                     : "text-gray-400 hover:text-gray-600 hover:scale-110 cursor-not-allowed"
                 } text-xl cursor-pointer transition-all duration-200`}
                 onClick={handleDeleteClick}
-                title={canCancel ? "Delete service request" : "Cannot delete - has assigned employees"}
+                title={canCancel ? t('serviceRequest.deleteTooltip') : t('serviceRequest.cannotDeleteTooltip')}
               />
             )}
             
@@ -253,7 +255,7 @@ const ListService = ({
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               className="text-[#F47621] hover:text-[#E55A1A] transition-colors p-1"
-              title="View details"
+              title={t('serviceRequest.viewDetails')}
             >
               {isHovered ? <IoEyeSharp size={18} /> : <IoEyeOutline size={18} />}
             </button>

@@ -19,34 +19,35 @@ const ServiceRequestCard = ({
   const navigate = useNavigate();
   const { t } = useTranslation();
   
+  const shiftId = jobPosting?.shift_id;
   const {
     data: shift,
     error,
     isLoading,
-  } = useData(`/employer/shifts/${jobPosting?.shift_id}`);
+  } = useData(shiftId ? `/employer/shifts/${shiftId}` : '/employer/shifts/skip', undefined, { enabled: Boolean(shiftId) });
 
   // Function to get status badge styling
   const getStatusBadge = (status) => {
     const statusConfig = {
       taken: {
         color: "bg-blue-100 text-blue-800 border-blue-200",
-        text: "Taken",
+        text: t('serviceRequest.filters.taken'),
       },
       pending: {
         color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-        text: "Pending",
+        text: t('serviceRequest.filters.pending'),
       },
       expired: {
         color: "bg-red-100 text-red-800 border-red-200",
-        text: "Expired",
+        text: t('serviceRequest.status.expired'),
       },
       cancel_with_repost: {
         color: "bg-orange-100 text-orange-800 border-orange-200",
-        text: "Cancel with Repost",
+        text: t('serviceRequest.status.cancelWithRepost'),
       },
       cancel_without_repost: {
         color: "bg-gray-100 text-gray-800 border-gray-200",
-        text: "Cancel without Repost",
+        text: t('serviceRequest.status.cancelWithoutRepost'),
       },
     };
 
@@ -59,6 +60,13 @@ const ServiceRequestCard = ({
   };
 
   const statusBadge = getStatusBadge(serviceRequest?.status);
+  const city = jobPosting?.location?.city;
+  const street = jobPosting?.location?.street || jobPosting?.location?.street1 || jobPosting?.location?.street2;
+  const locationText =
+    [city, street].filter(Boolean).join(" - ") ||
+    jobPosting?.location?.title ||
+    (typeof jobPosting?.location === 'string' ? jobPosting.location : '') ||
+    t('common.notAvailable');
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 mb-4 overflow-hidden group">
@@ -76,7 +84,7 @@ const ServiceRequestCard = ({
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span className="flex items-center">
                   <FaBriefcase className="mr-1" />
-                  {jobPosting?.employeePosition?.name || "Job Posting"}
+                  {jobPosting?.employeePosition?.name || t('serviceRequest.jobPosting')}
                 </span>
                 <span className="flex items-center">
                   <FaCalendarAlt className="mr-1" />
@@ -108,15 +116,12 @@ const ServiceRequestCard = ({
             </div>
           </div>
 
-          {/* Location */}
+          {/* Location (city + street) */}
           <div className="flex items-center space-x-2 p-3 bg-green-50 rounded-lg">
             <FaMapMarkerAlt className="text-green-600 text-lg" />
             <div>
               <p className="text-sm font-medium text-gray-900">
-                {jobPosting?.location?.city}
-              </p>
-              <p className="text-xs text-gray-600">
-                {jobPosting?.location?.country}
+                {locationText}
               </p>
             </div>
           </div>

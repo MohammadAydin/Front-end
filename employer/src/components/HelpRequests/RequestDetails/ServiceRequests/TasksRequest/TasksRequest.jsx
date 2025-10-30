@@ -1,18 +1,20 @@
 import { useEffect } from "react";
 import ListTasks from "./ListTasks";
 import { MdErrorOutline, MdTaskAlt } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const TasksRequest = ({ data, idJopPosting }) => {
+  const { t } = useTranslation();
   return (
     <div className="mt-8">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-blue-100 rounded-lg">
           <MdTaskAlt className="text-2xl text-blue-600" />
         </div>
-        <h2 className="font-bold text-2xl text-gray-800">Task Requests</h2>
+        <h2 className="font-bold text-2xl text-gray-800">{t('task.title')}</h2>
         {data?.length > 0 && (
           <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
-            {data.length} task{data.length !== 1 ? "s" : ""}
+            {t('serviceRequest.taskCount', { count: data.length })}
           </span>
         )}
       </div>
@@ -46,10 +48,10 @@ const TasksRequest = ({ data, idJopPosting }) => {
               <MdErrorOutline className="text-3xl text-red-500" />
             </div>
             <p className="text-gray-600 text-lg font-medium">
-              No tasks available
+              {t('task.noTasks')}
             </p>
             <p className="text-gray-500 text-sm">
-              Tasks will appear here once they are created
+              {t('task.noTasksHint')}
             </p>
           </div>
         </div>

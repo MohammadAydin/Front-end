@@ -7,6 +7,7 @@ import "../Css Responsive/HelpRequestResponsive/HelpRequestDetails.css";
 import useData from "../../hooks/useData";
 import { useEffect, useState } from "react";
 import ServicesDetailsTable from "../../components/HelpRequests/RequestDetails/ServiceRequests/ServicesDetailsTable";
+import { useTranslation } from "react-i18next";
 
 const ServiceRequestsDetails = () => {
   const query = new URLSearchParams(location.search);
@@ -16,6 +17,7 @@ const ServiceRequestsDetails = () => {
   console.log(idJopPosting);
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <div className="HelpRequestDetails p-[28px] py-[58px]">
       <div className="font-extrabold">
@@ -23,17 +25,17 @@ const ServiceRequestsDetails = () => {
           onClick={() => navigate(-1)}
           className="font-light cursor-pointer hover:text-[#F47621]"
         >
-          Jop Posting Details &nbsp;
+          {t('serviceRequest.jobPostingInfo')} &nbsp;
         </span>
-        &gt; Service Requests Details
+        &gt; {t('serviceRequest.detailsTitle')}
       </div>
       <div className="HelpRequestDetailsHeader my-5 flex justify-between items-center">
         <h2 className="font-extrabold text-2xl">
-          Job On {data?.date ? new Date(data.date).toLocaleDateString('en-GB', {
+          {t('serviceRequest.jobTitle')} {t('serviceRequest.start')} {data?.date ? new Date(data.date).toLocaleDateString('en-GB', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
-          }) : 'Unknown Date'} Details
+          }) : t('common.notAvailable')} {t('serviceRequest.detailsTitle')}
         </h2>
       </div>
       <ServicesDetailsTable

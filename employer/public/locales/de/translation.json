@@ -446,6 +446,7 @@
     "viewDetails": "Details anzeigen",
     "backToList": "Zurück zu Dienstleistungsanfragen",
     "detailsTitle": "Details der Dienstleistungsanfrage",
+    "jobPosting": "Stellenausschreibung",
     "jobPostingInfo": "Stellenausschreibungsinformationen",
     "jobTitle": "Titel",
     "description": "Beschreibung",
@@ -464,6 +465,42 @@
     "timeSchedule": "Zeitplan",
     "start": "Start",
     "end": "Ende",
-    "noSchedule": "Kein Zeitplan festgelegt"
+    "noSchedule": "Kein Zeitplan festgelegt",
+    "filters": {
+      "all": "Alle",
+      "pending": "Ausstehend",
+      "taken": "Übernommen"
+    },
+    "emptyFilter": "Für diesen Filter wurden keine Dienstleistungsanfragen gefunden.",
+    "employeeSlots": "Mitarbeiterplätze",
+    "availableSlot": "Verfügbarer Platz",
+    "available": "Verfügbar",
+    "employeesSummary": {
+      "none": "Noch keine Mitarbeiter zugewiesen ({{needed}} benötigt)",
+      "one": "1 Mitarbeiter zugewiesen ({{needed}} benötigt)",
+      "many": "{{count}} Mitarbeiter zugewiesen ({{needed}} benötigt)"
+    },
+    "deleteTooltip": "Serviceanfrage löschen",
+    "cannotDeleteTooltip": "Löschen nicht möglich – Mitarbeiter zugewiesen",
+    "status": {
+      "expired": "Abgelaufen",
+      "cancelWithRepost": "Mit Neuveröffentlichung stornieren",
+      "cancelWithoutRepost": "Ohne Neuveröffentlichung stornieren"
+    },
+    "statusLabel": "Status"
+  },
+  "task": {
+    "title": "Aufgabenanfragen",
+    "noTasks": "Keine Aufgaben verfügbar",
+    "noTasksHint": "Aufgaben erscheinen hier, sobald sie erstellt wurden",
+    "status": {
+      "assigned": "Zugewiesen",
+      "inProgress": "In Bearbeitung",
+      "completed": "Abgeschlossen",
+      "review": "In Prüfung",
+      "cancelled": "Abgebrochen",
+      "onTheWay": "Unterwegs",
+      "arrived": "Angekommen"
+    }
   }
 }

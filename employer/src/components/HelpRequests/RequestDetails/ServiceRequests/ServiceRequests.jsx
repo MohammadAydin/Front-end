@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import ListService from "./ListService";
+import { useTranslation } from "react-i18next";
 
 const ServiceRequests = ({ data, title, idJopPosting, jobPostingData }) => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
   const counts = useMemo(() => {
     const base = { all: data?.length || 0, pending: 0, taken: 0 };
@@ -20,16 +22,16 @@ const ServiceRequests = ({ data, title, idJopPosting, jobPostingData }) => {
   }, [data, activeFilter]);
 
   const filters = [
-    { key: "all", label: "All" },
-    { key: "pending", label: "Pending" },
-    { key: "taken", label: "Taken" },
+    { key: "all", label: t('serviceRequest.filters.all') },
+    { key: "pending", label: t('serviceRequest.filters.pending') },
+    { key: "taken", label: t('serviceRequest.filters.taken') },
   ];
 
   return (
     <div className="mt-8">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-[900] text-xl">Service Requests</h2>
-        <span className="text-sm text-gray-600">{counts.all} total</span>
+        <h2 className="font-[900] text-xl">{t('serviceRequest.title')}</h2>
+        <span className="text-sm text-gray-600">{counts.all} {t('serviceRequest.totalRequests')}</span>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-4">
@@ -59,7 +61,7 @@ const ServiceRequests = ({ data, title, idJopPosting, jobPostingData }) => {
 
       {filtered.length === 0 && (
         <div className="border border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-600 bg-white">
-          No service requests found for this filter.
+          {t('serviceRequest.emptyFilter')}
         </div>
       )}
 

@@ -8,10 +8,12 @@ import {
   MdInfo,
 } from "react-icons/md";
 import TasksRequest from "./TasksRequest/TasksRequest";
+import { useTranslation } from "react-i18next";
 const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
   console.log(data);
   const [isServiceDetailsCollapsed, setIsServiceDetailsCollapsed] =
     useState(true);
+  const { t } = useTranslation();
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
@@ -52,19 +54,19 @@ const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-800">
-                  Service Details
+                  {t('serviceRequest.detailsTitle')}
                 </h3>
                 <p className="text-sm text-gray-500">
                   {isServiceDetailsCollapsed
-                    ? "Click to view service information"
-                    : "Click to hide service information"}
+                    ? t('serviceRequest.clickToView')
+                    : t('serviceRequest.backToList')}
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="text-sm text-gray-500 font-medium">
-                {isServiceDetailsCollapsed ? "Show Details" : "Hide Details"}
+                {isServiceDetailsCollapsed ? t('serviceRequest.viewDetails') : t('common.close')}
               </span>
               <div className="p-1 rounded-full hover:bg-gray-200 transition-colors duration-200">
                 {isServiceDetailsCollapsed ? (
@@ -90,16 +92,16 @@ const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
                 <div className="flex items-center gap-3 mb-3">
                   <MdWork className="text-blue-500 text-xl" />
                   <h4 className="font-semibold text-gray-800">
-                    Job Information
+                    {t('serviceRequest.jobPostingInfo')}
                   </h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="text-sm text-gray-600 font-medium">
-                      Position:
+                      {t('serviceRequest.jobTitle')}:
                     </span>
                     <span className="text-sm font-semibold text-gray-800">
-                      {title || "N/A"}
+                      {title || t('common.notAvailable')}
                     </span>
                   </div>
                 </div>
@@ -110,20 +112,20 @@ const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
                 <div className="flex items-center gap-3 mb-3">
                   <MdFlag className="text-green-500 text-xl" />
                   <h4 className="font-semibold text-gray-800">
-                    Service Status
+                    {t('serviceRequest.serviceRequestInfo')}
                   </h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="text-sm text-gray-600 font-medium">
-                      Status:
+                      {t('serviceRequest.statusLabel')}
                     </span>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(
                         data?.status
                       )}`}
                     >
-                      {data?.status || "Unknown"}
+                      {data?.status || t('common.notAvailable')}
                     </span>
                   </div>
                 </div>
@@ -134,13 +136,13 @@ const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
                 <div className="flex items-center gap-3 mb-3">
                   <MdCalendarToday className="text-purple-500 text-xl" />
                   <h4 className="font-semibold text-gray-800">
-                    Service Schedule
+                    {t('serviceRequest.timeSchedule')}
                   </h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="text-sm text-gray-600 font-medium">
-                      Start Date:
+                      {t('serviceRequest.start')} {t('serviceRequest.serviceDate')}:
                     </span>
                     <span className="text-sm font-semibold text-gray-800">
                       {data?.date
@@ -150,7 +152,7 @@ const ServicesDetailsTable = ({ data, title, idJopPosting }) => {
                             month: "long",
                             day: "numeric",
                           })
-                        : "Not specified"}
+                        : t('common.notAvailable')}
                     </span>
                   </div>
                 </div>

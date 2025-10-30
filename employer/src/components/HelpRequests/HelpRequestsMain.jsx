@@ -50,10 +50,12 @@ const HelpRequestsMain = () => {
     detailsQueries.forEach((q) => {
       const srList = q.data?.data?.service_requests || [];
       const jp = q.data?.data?.job_posting;
+      const loc = q.data?.data?.location;
       srList.forEach((sr) => {
         all.push({
           ...sr,
-          jobPosting: jp,
+          jobPosting: { ...jp, location: loc },
+          location: loc,
         });
       });
     });
