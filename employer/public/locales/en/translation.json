@@ -44,7 +44,8 @@
     "close": "Close",
     "confirm": "Confirm",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "notAvailable": "N/A"
   },
 
   "Signup": {
@@ -430,5 +431,42 @@
       "numbers": "One number",
       "specialChar": "One special character"
     }
+  },
+  "serviceRequest": {
+    "title": "Service Requests",
+    "totalRequests": "total service requests",
+    "searchPlaceholder": "Search by title, location, or date...",
+    "sortNewest": "Newest First",
+    "sortOldest": "Oldest First",
+    "sortByDate": "By Service Date",
+    "showing": "Showing",
+    "serviceRequests": "service request",
+    "serviceRequests_plural": "service requests",
+    "noResults": "No service requests found matching your criteria",
+    "workersAssigned": "Workers Assigned",
+    "serviceDate": "Service Date",
+    "clickToView": "Click to view tasks and details",
+    "viewDetails": "View Details",
+    "backToList": "Back to Service Requests",
+    "detailsTitle": "Service Request Details",
+    "jobPostingInfo": "Job Posting Information",
+    "jobTitle": "Title",
+    "description": "Description",
+    "workersRequired": "Workers Required",
+    "location": "Location",
+    "jobPeriod": "Job Period",
+    "serviceRequestInfo": "Service Request Information",
+    "tasks": "Tasks",
+    "taskCount": "task",
+    "taskCount_plural": "tasks",
+    "qrCode": "QR Code",
+    "pin": "PIN",
+    "assignedEmployee": "Assigned Employee",
+    "employee": "Employee",
+    "noEmployeeAssigned": "No employee assigned",
+    "timeSchedule": "Time Schedule",
+    "start": "Start",
+    "end": "End",
+    "noSchedule": "No schedule set"
   }
 }

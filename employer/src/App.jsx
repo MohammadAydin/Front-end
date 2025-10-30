@@ -5,6 +5,7 @@ import {
   HouseProfile,
   HelpRequests,
   HelpRequestDetails,
+  ServiceRequestDetails,
   Invoices,
   Leaders,
   Documents,
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
       {
         path: "/helpRequests/:id",
         element: <HelpRequestDetails />,
+      },
+      {
+        path: "/helpRequests/:jobId/service-request/:serviceRequestId",
+        element: <ServiceRequestDetails />,
       },
       {
         path: "/serviceRequestsDetails",

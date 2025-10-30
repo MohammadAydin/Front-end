@@ -7,6 +7,7 @@ export { default as HouseProfile } from "./HouseProfile.jsx";
 export { default as HelpRequests } from "./HelpRequests/HelpRequests.jsx";
 export { default as CoustomHelpRequest } from "./HelpRequests/CoustomHelpRequest.jsx";
 export { default as HelpRequestDetails } from "./HelpRequests/HelpRequestDetails.jsx";
+export { default as ServiceRequestDetails } from "./HelpRequests/ServiceRequestDetails.jsx";
 export { default as ServiceRequestsDetails } from "./HelpRequests/ServiceRequestsDetails.jsx";
 export { default as UserProfile } from "./UserProfile.jsx";
 
