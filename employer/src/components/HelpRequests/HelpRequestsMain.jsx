@@ -52,6 +52,7 @@ const HelpRequestsMain = () => {
       const jp = q.data?.data?.job_posting;
       const loc = q.data?.data?.location;
       const employeePosition = q.data?.data?.employeePosition || jobPostings[index]?.employeePosition;
+      const shift = q.data?.data?.shift;
       srList.forEach((sr) => {
         all.push({
           ...sr,
@@ -61,6 +62,7 @@ const HelpRequestsMain = () => {
             employeePosition: employeePosition || jp?.employeePosition
           },
           location: loc,
+          shift,
         });
       });
     });

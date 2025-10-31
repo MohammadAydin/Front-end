@@ -21,12 +21,15 @@ const ServiceRequestCard = ({
   const navigate = useNavigate();
   const { t } = useTranslation();
   
+  // Prefer shift from the details response if present; otherwise fetch by id
+  const shiftFromDetails = serviceRequest?.shift;
   const shiftId = jobPosting?.shift_id;
-  const {
-    data: shift,
-    error,
-    isLoading,
-  } = useData(shiftId ? `/employer/shifts/${shiftId}` : '/employer/shifts/skip', undefined, { enabled: Boolean(shiftId) });
+  const { data: shiftFetched, isLoading } = useData(
+    !shiftFromDetails && shiftId ? `/employer/shifts/${shiftId}` : '/employer/shifts/skip',
+    undefined,
+    { enabled: !shiftFromDetails && Boolean(shiftId) }
+  );
+  const shiftData = shiftFromDetails || shiftFetched?.data;
 
   const queryClient = useQueryClient();
   const deleteMutation = useMutation({
@@ -124,13 +127,13 @@ const ServiceRequestCard = ({
           <div className="flex items-center space-x-2 p-3 bg-orange-50 rounded-lg">
             <FaClock className="text-orange-600 text-lg" />
             <div>
-              {shift?.data ? (
+              {shiftData ? (
                 <>
                   <p className="text-sm font-medium text-gray-900">
-                    {shift.data.name}
+                    {shiftData.name}
                   </p>
                   <p className="text-xs text-gray-600">
-                    {shift.data.start_time} - {shift.data.end_time}
+                    {shiftData.start_time} - {shiftData.end_time}
                   </p>
                 </>
               ) : (
