@@ -20,7 +20,7 @@ const ServiceRequestCard = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  
+
   // Prefer shift from the details response if present; otherwise fetch by id
   const shiftFromDetails = serviceRequest?.shift;
   const shiftId = jobPosting?.shift_id;
@@ -117,7 +117,9 @@ const ServiceRequestCard = ({
             <FaBriefcase className="text-indigo-600 text-lg" />
             <div>
               <p className="text-sm font-medium text-gray-900">
-                {jobPosting?.employeePosition?.name || jobPosting?.position?.name || t('common.notAvailable')}
+                {(jobPosting?.employeePosition?.name || jobPosting?.position?.name || t('common.notAvailable')) === 'Pflegefachassistent'
+                  ? 'Pflegefachassistent – ein Jahr Ausbildung'
+                  : (jobPosting?.employeePosition?.name || jobPosting?.position?.name || t('common.notAvailable'))}
               </p>
               <p className="text-xs text-gray-600">{t('serviceRequest.position')}</p>
             </div>

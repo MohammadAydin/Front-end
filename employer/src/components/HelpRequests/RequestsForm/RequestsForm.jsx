@@ -277,7 +277,13 @@ const RequestsForm = () => {
                                   ]
                                 : selectOption.name === "Address"
                                 ? resultLocation
-                                : PosationList?.data
+                                : (PosationList?.data || []).map((p) => ({
+                                    ...p,
+                                    name:
+                                      p?.name === "Pflegefachassistent"
+                                        ? "Pflegefachassistent – ein Jahr Ausbildung"
+                                        : p?.name,
+                                  }))
                             }
                             name={selectOption.name}
                             errors={errors}

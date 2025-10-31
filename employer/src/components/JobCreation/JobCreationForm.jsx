@@ -161,7 +161,13 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Position Select */}
               <SelectField
-                data={PosationList?.data}
+                data={(PosationList?.data || []).map((p) => ({
+                  ...p,
+                  name:
+                    p?.name === "Pflegefachassistent"
+                      ? "Pflegefachassistent – ein Jahr Ausbildung"
+                      : p?.name,
+                }))}
                 name="Position"
                 errors={errors}
                 setValue={setValue}

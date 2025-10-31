@@ -157,7 +157,9 @@ const DetailsList = ({
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span className="flex items-center">
                   <FaUsers className="mr-1" />
-                  {employeePosition?.name || "Job Posting"}
+                  {(employeePosition?.name === 'Pflegefachassistent')
+                    ? 'Pflegefachassistent – ein Jahr Ausbildung'
+                    : (employeePosition?.name || 'Job Posting')}
                 </span>
                 <span className="flex items-center">
                   <FaCalendarAlt className="mr-1" />
