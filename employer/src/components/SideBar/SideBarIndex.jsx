@@ -7,7 +7,9 @@ import {
   IoLogOutOutline,
   IoSettingsOutline,
   IoDocumentTextOutline,
+  IoAddCircleOutline,
 } from "react-icons/io5";
+import { IoEyeOutline } from "react-icons/io5";
 
 import { Link, NavLink } from "react-router-dom";
 import Germany from "../../assets/image/icon-sidebar/germany.svg";
@@ -48,18 +50,24 @@ const PagesList = ({ setIsOpen }) => {
     },
     {
       id: 4,
-      name: t("SideBar.pages.HelpRequests"),
-      icon: <PiBellSimpleRingingBold size={24} />,
-      path: "/coustomHelpRequest",
+      name: t("SideBar.pages.AddJob"),
+      icon: <IoAddCircleOutline size={24} />,
+      path: "/add-job",
     },
     {
       id: 5,
+      name: t("SideBar.pages.ViewJobs"),
+      icon: <IoEyeOutline size={24} />,
+      path: "/view-jobs",
+    },
+    {
+      id: 6,
       name: t("SideBar.pages.Invoices"),
       icon: <LuBanknote size={24} />,
       path: "/invoices",
     },
     {
-      id: 6,
+      id: 7,
       name: t("SideBar.pages.ShiftsManagement"),
       icon: <LuClock size={24} />,
       path: "/shifts",

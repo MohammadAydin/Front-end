@@ -25,6 +25,8 @@ import {
   Notifications,
   ReportTask,
   CoustomHelpRequest,
+  AddJob,
+  ViewJobs,
 } from "./pages";
 import ChangePassword from "./components/ChangePassword";
 
@@ -112,6 +114,14 @@ const router = createBrowserRouter([
         path: "/coustomHelpRequest",
         element: <CoustomHelpRequest />,
         // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/add-job",
+        element: <AddJob />,
+      },
+      {
+        path: "/view-jobs",
+        element: <ViewJobs />,
       },
       {
         path: "/helpRequests/:id",

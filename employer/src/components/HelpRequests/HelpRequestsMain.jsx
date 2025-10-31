@@ -47,20 +47,25 @@ const HelpRequestsMain = () => {
   // Flatten service requests from all job posting details
   const serviceRequests = useMemo(() => {
     const all = [];
-    detailsQueries.forEach((q) => {
+    detailsQueries.forEach((q, index) => {
       const srList = q.data?.data?.service_requests || [];
       const jp = q.data?.data?.job_posting;
       const loc = q.data?.data?.location;
+      const employeePosition = q.data?.data?.employeePosition || jobPostings[index]?.employeePosition;
       srList.forEach((sr) => {
         all.push({
           ...sr,
-          jobPosting: { ...jp, location: loc },
+          jobPosting: { 
+            ...jp, 
+            location: loc,
+            employeePosition: employeePosition || jp?.employeePosition
+          },
           location: loc,
         });
       });
     });
     return all;
-  }, [detailsQueries]);
+  }, [detailsQueries, jobPostings]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();

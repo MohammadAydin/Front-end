@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { IoEyeOutline, IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { 
-  FaCalendarAlt, 
-  FaUserCheck, 
-  FaClock, 
-  FaPlay, 
-  FaCheck, 
-  FaTimes, 
-  FaArrowRight, 
-  FaCircle, 
-  FaQuestion, 
+import {
+  FaCalendarAlt,
+  FaUserCheck,
+  FaClock,
+  FaPlay,
+  FaCheck,
+  FaTimes,
+  FaArrowRight,
+  FaCircle,
+  FaQuestion,
   FaPlus,
   FaSearch
 } from "react-icons/fa";
@@ -33,17 +33,17 @@ const ListService = ({
   employeesRequired,
   canCancel,
   idJopPosting,
-  tasks = [], 
+  tasks = [],
 }) => {
   const { t } = useTranslation();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  
+
   const getSlotStatus = (slotIndex) => {
-    const task = tasks.find(t => t.slot_index === slotIndex) || 
-                 tasks.find(t => t.id && slotIndex < employeeNum) ||
-                 tasks[slotIndex]; 
+    const task = tasks.find(t => t.slot_index === slotIndex) ||
+      tasks.find(t => t.id && slotIndex < employeeNum) ||
+      tasks[slotIndex];
     if (!task) return null;
-    
+
     switch (task.status) {
       case 'todo':
         return { icon: FaClock, color: 'bg-yellow-100 border-yellow-300 text-yellow-700', text: t('task.status.assigned') };
@@ -135,7 +135,7 @@ const ListService = ({
   return (
     <div
       className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 mb-3 cursor-pointer"
-      // onClick={() => navigate(navigateTo)}
+    // onClick={() => navigate(navigateTo)}
     >
       <div className="p-4">
         {/* Header Row */}
@@ -173,7 +173,7 @@ const ListService = ({
               {employeeNum} {t('task.status.assigned')}
             </span>
           </div>
-          
+
           {/* Slot Indicators */}
           <div className="flex gap-2 flex-wrap">
             {Array.from({ length: employeesRequired || 1 }, (_, index) => {
@@ -181,13 +181,13 @@ const ListService = ({
               const hasEmployee = index < employeeNum;
               const isAvailable = !slotStatus && !hasEmployee;
               const isClickable = !isAvailable;
-              
+
               return (
                 <div
                   key={index}
                   className={`
                     px-3 py-2 rounded-lg border-2 flex items-center gap-2 text-xs font-medium min-w-[100px] justify-center
-                    ${slotStatus 
+                    ${slotStatus
                       ? `${slotStatus.color} ${isClickable ? 'cursor-pointer' : ''}`
                       : hasEmployee
                         ? `bg-green-100 border-green-300 text-green-700 ${isClickable ? 'cursor-pointer' : ''}`
@@ -232,21 +232,20 @@ const ListService = ({
                   : t('serviceRequest.employeesSummary.many', { count: employeeNum, needed: employeesRequired || 1 })}
             </span>
           </div>
-          
+
           <div className="flex items-center gap-2">
             {/* delete button - hide for expired or cancel_without_repost status */}
             {status !== "expired" && status !== "cancel_without_repost" && (
               <MdDelete
-                className={`${
-                  canCancel 
-                    ? "text-red-400 hover:text-red-600 hover:scale-110" 
+                className={`${canCancel
+                    ? "text-red-400 hover:text-red-600 hover:scale-110"
                     : "text-gray-400 hover:text-gray-600 hover:scale-110 cursor-not-allowed"
-                } text-xl cursor-pointer transition-all duration-200`}
+                  } text-xl cursor-pointer transition-all duration-200`}
                 onClick={handleDeleteClick}
                 title={canCancel ? t('serviceRequest.deleteTooltip') : t('serviceRequest.cannotDeleteTooltip')}
               />
             )}
-            
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -262,7 +261,7 @@ const ListService = ({
           </div>
         </div>
       </div>
-      
+
       {ShowPopup && (
         <PopupWarningTask
           togglePopup={togglePupup}
@@ -274,7 +273,7 @@ const ListService = ({
       {showDeleteModal && canCancel && (
         <div className="modal">
           <div onClick={handleCancelDelete} className="overlay"></div>
-          <div 
+          <div
             className="modal-content flex flex-col items-center justify-center rounded-[10px] max-w-[90vw] sm:max-w-[500px]"
             style={{
               position: 'absolute',
@@ -294,7 +293,7 @@ const ListService = ({
             <p className="mt-6 sm:mt-8 text-center px-2 sm:px-4 text-sm sm:text-base lg:text-lg leading-relaxed max-w-[90%] mx-auto">
               {t('deleteService.message')}
             </p>
-            
+
             {/* Additional info about no charges with icon */}
             <div className="mt-6 flex items-center justify-center space-x-3">
               <div className="flex items-center space-x-2">
@@ -310,12 +309,12 @@ const ListService = ({
                 </p>
               </div>
             </div>
-            
+
             {/* Close icon */}
             <button className="close-modal" onClick={handleCancelDelete}>
               <IoMdClose />
             </button>
-            
+
             {/* Buttons container - responsive width and spacing */}
             <div className="flex flex-col sm:flex-row w-full max-w-[280px] sm:max-w-[400px] lg:max-w-[450px] gap-3 sm:gap-3.5 mt-8 sm:mt-12 lg:mt-14 mb-2 sm:mb-4">
               <button

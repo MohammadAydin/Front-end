@@ -103,6 +103,8 @@
       "Dashboard": "Übersicht",
       "HouseProfile": "Hausprofil",
       "PersonalInfo": "Persönliche Informationen",
+      "AddJob": "Auftrag hinzufügen",
+      "ViewJobs": "Aufträge anzeigen",
       "HelpRequests": "Hilfsanfragen",
       "Invoices": "Rechnungen",
       "ShiftsManagement": "Schichtverwaltung",
@@ -440,6 +442,7 @@
     "serviceRequests": "Dienstleistungsanfrage",
     "serviceRequests_plural": "Dienstleistungsanfragen",
     "noResults": "Keine Dienstleistungsanfragen gefunden, die Ihren Kriterien entsprechen",
+    "position": "Position",
     "workersAssigned": "Zugewiesene Arbeiter",
     "serviceDate": "Servicedatum",
     "clickToView": "Klicken Sie, um Aufgaben und Details anzuzeigen",
@@ -502,5 +505,52 @@
       "onTheWay": "Unterwegs",
       "arrived": "Angekommen"
     }
+  },
+  "RequestsForm": {
+    "validation": {
+      "position": "Position ist erforderlich",
+      "address": "Adresse ist erforderlich",
+      "shift": "Schicht ist erforderlich",
+      "employeeCount": "Anzahl der Mitarbeiter ist erforderlich"
+    },
+    "fields": {
+      "position": "Position",
+      "address": "Adresse",
+      "shifts": "Schicht",
+      "employeeCount": "Mitarbeiteranzahl",
+      "date": "Datum",
+      "dateRange": "Kalender von bis"
+    }
+  },
+  "AddJob": {
+    "title": "Auftrag hinzufügen",
+    "createButton": "Neuen Auftrag erstellen",
+    "formTitle": "Neue Anfrage erstellen",
+    "formSubtitle": "Füllen Sie die Details aus, um eine neue Stellenanzeige zu erstellen",
+    "addNewShift": "+ Neue Schicht hinzufügen",
+    "addNewShiftButton": "Neue Schicht hinzufügen",
+    "addNewShiftTitle": "Neue Schicht hinzufügen",
+    "shiftNameLabel": "Schichtname",
+    "shiftNamePlaceholder": "Schichtname eingeben",
+    "addTimeLabel": "Zeit hinzufügen",
+    "fromLabel": "Von :",
+    "toLabel": "Bis :",
+    "cancelButton": "Abbrechen",
+    "addButton": "Hinzufügen",
+    "adding": "Wird hinzugefügt...",
+    "submitButton": "Senden",
+    "successMessage": "Auftrag erfolgreich erstellt!",
+    "errorMessage": "Fehler beim Erstellen des Auftrags. Bitte versuchen Sie es erneut.",
+    "shiftCreatedSuccess": "Schicht erfolgreich erstellt!",
+    "shiftCreatedError": "Fehler beim Erstellen der Schicht. Bitte versuchen Sie es erneut.",
+    "shiftValidation": {
+      "name": "Schichtname ist erforderlich",
+      "fromTime": "Startzeit ist erforderlich",
+      "toTime": "Endzeit ist erforderlich"
+    }
+  },
+  "ViewJobs": {
+    "title": "Aufträge anzeigen",
+    "subtitle": "Alle Ihre veröffentlichten Aufträge und Serviceanfragen anzeigen"
   }
 }

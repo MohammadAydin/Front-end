@@ -104,6 +104,8 @@
       "Dashboard": "Gösterge Paneli",
       "HouseProfile": "Ev Profili",
       "PersonalInfo": "Kişisel Bilgiler",
+      "AddJob": "İş ekle",
+      "ViewJobs": "İşleri görüntüle",
       "HelpRequests": "Yardım Talepleri",
       "Invoices": "Faturalar",
       "ShiftsManagement": "Vardiya Yönetimi",
@@ -440,6 +442,7 @@
     "serviceRequests": "hizmet talebi",
     "serviceRequests_plural": "hizmet talepleri",
     "noResults": "Kriterlerinize uygun hizmet talebi bulunamadı",
+    "position": "Pozisyon",
     "workersAssigned": "Atanan Çalışanlar",
     "serviceDate": "Hizmet Tarihi",
     "clickToView": "Görevleri ve detayları görmek için tıklayın",
@@ -502,5 +505,52 @@
       "onTheWay": "Yolda",
       "arrived": "Ulaştı"
     }
+  },
+  "RequestsForm": {
+    "validation": {
+      "position": "Pozisyon gereklidir",
+      "address": "Adres gereklidir",
+      "shift": "Vardiya gereklidir",
+      "employeeCount": "Çalışan sayısı gereklidir"
+    },
+    "fields": {
+      "position": "Pozisyon",
+      "address": "Adres",
+      "shifts": "Vardiya",
+      "employeeCount": "Çalışan sayısı",
+      "date": "Tarih",
+      "dateRange": "Takvim başlangıç bitiş"
+    }
+  },
+  "AddJob": {
+    "title": "İş ekle",
+    "createButton": "Yeni iş oluştur",
+    "formTitle": "Yeni talep oluştur",
+    "formSubtitle": "Yeni bir iş ilanı oluşturmak için detayları doldurun",
+    "addNewShift": "+ Yeni vardiya ekle",
+    "addNewShiftButton": "Yeni vardiya ekle",
+    "addNewShiftTitle": "Yeni Vardiya Ekle",
+    "shiftNameLabel": "Vardiya Adı",
+    "shiftNamePlaceholder": "Vardiya adını girin",
+    "addTimeLabel": "Zaman Ekle",
+    "fromLabel": "Başlangıç :",
+    "toLabel": "Bitiş :",
+    "cancelButton": "İptal",
+    "addButton": "Ekle",
+    "adding": "Ekleniyor...",
+    "submitButton": "Gönder",
+    "successMessage": "İş başarıyla oluşturuldu!",
+    "errorMessage": "İş oluşturulamadı. Lütfen tekrar deneyin.",
+    "shiftCreatedSuccess": "Vardiya başarıyla oluşturuldu!",
+    "shiftCreatedError": "Vardiya oluşturulamadı. Lütfen tekrar deneyin.",
+    "shiftValidation": {
+      "name": "Vardiya adı gereklidir",
+      "fromTime": "Başlangıç zamanı gereklidir",
+      "toTime": "Bitiş zamanı gereklidir"
+    }
+  },
+  "ViewJobs": {
+    "title": "İşleri görüntüle",
+    "subtitle": "Yayınlanan tüm işlerinizi ve hizmet taleplerinizi görüntüleyin"
   }
 }

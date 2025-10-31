@@ -81,16 +81,6 @@ const ServiceRequestCard = ({
               <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-[#F47621] transition-colors">
                 {jobPosting?.title}
               </h3>
-              <div className="flex items-center space-x-4 text-sm text-gray-500">
-                <span className="flex items-center">
-                  <FaBriefcase className="mr-1" />
-                  {jobPosting?.employeePosition?.name || t('serviceRequest.jobPosting')}
-                </span>
-                <span className="flex items-center">
-                  <FaCalendarAlt className="mr-1" />
-                  {new Date(serviceRequest?.date).toLocaleDateString("en-GB")}
-                </span>
-              </div>
             </div>
           </div>
           {/* Status Badge */}
@@ -104,7 +94,39 @@ const ServiceRequestCard = ({
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          {/* Position */}
+          <div className="flex items-center space-x-2 p-3 bg-indigo-50 rounded-lg">
+            <FaBriefcase className="text-indigo-600 text-lg" />
+            <div>
+              <p className="text-sm font-medium text-gray-900">
+                {jobPosting?.employeePosition?.name || jobPosting?.position?.name || t('common.notAvailable')}
+              </p>
+              <p className="text-xs text-gray-600">{t('serviceRequest.position')}</p>
+            </div>
+          </div>
+
+          {/* Shift Information */}
+          <div className="flex items-center space-x-2 p-3 bg-orange-50 rounded-lg">
+            <FaClock className="text-orange-600 text-lg" />
+            <div>
+              {shift?.data ? (
+                <>
+                  <p className="text-sm font-medium text-gray-900">
+                    {shift.data.name}
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    {shift.data.start_time} - {shift.data.end_time}
+                  </p>
+                </>
+              ) : (
+                <p className="text-sm font-medium text-gray-900">
+                  {isLoading ? t('common.loading') : t('common.notAvailable')}
+                </p>
+              )}
+            </div>
+          </div>
+
           {/* Workers Assigned */}
           <div className="flex items-center space-x-2 p-3 bg-blue-50 rounded-lg">
             <FaUsers className="text-blue-600 text-lg" />
@@ -117,17 +139,18 @@ const ServiceRequestCard = ({
           </div>
 
           {/* Location (city + street) */}
-          <div className="flex items-center space-x-2 p-3 bg-green-50 rounded-lg">
+          <div className="flex items-center space-x-2 p-3 bg-green-50 rounded-lg col-span-1 md:col-span-2 lg:col-span-1">
             <FaMapMarkerAlt className="text-green-600 text-lg" />
             <div>
               <p className="text-sm font-medium text-gray-900">
                 {locationText}
               </p>
+              <p className="text-xs text-gray-600">{t('serviceRequest.location')}</p>
             </div>
           </div>
 
           {/* Service Date */}
-          <div className="flex items-center space-x-2 p-3 bg-purple-50 rounded-lg">
+          <div className="flex items-center space-x-2 p-3 bg-purple-50 rounded-lg col-span-1 md:col-span-2 lg:col-span-2">
             <FaCalendarAlt className="text-purple-600 text-lg" />
             <div>
               <p className="text-sm font-medium text-gray-900">
@@ -136,21 +159,6 @@ const ServiceRequestCard = ({
               <p className="text-xs text-gray-600">{t('serviceRequest.serviceDate')}</p>
             </div>
           </div>
-
-          {/* Shift Information */}
-          {shift && (
-            <div className="flex items-center space-x-2 p-3 bg-orange-50 rounded-lg">
-              <FaClock className="text-orange-600 text-lg" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">
-                  {shift?.data?.name}
-                </p>
-                <p className="text-xs text-gray-600">
-                  {shift?.data?.start_time} - {shift?.data?.end_time}
-                </p>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Footer with Action Button */}

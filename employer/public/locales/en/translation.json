@@ -104,6 +104,8 @@
       "Dashboard": "Dashboard",
       "HouseProfile": "House Profile",
       "PersonalInfo": "Personal Info",
+      "AddJob": "Add job",
+      "ViewJobs": "View jobs",
       "HelpRequests": "Help Requests",
       "Invoices": "Invoices",
       "ShiftsManagement": "Shifts Management",
@@ -443,6 +445,7 @@
     "serviceRequests": "service request",
     "serviceRequests_plural": "service requests",
     "noResults": "No service requests found matching your criteria",
+    "position": "Position",
     "workersAssigned": "Workers Assigned",
     "serviceDate": "Service Date",
     "clickToView": "Click to view tasks and details",
@@ -505,5 +508,52 @@
       "onTheWay": "On The Way",
       "arrived": "Arrived"
     }
+  },
+  "RequestsForm": {
+    "validation": {
+      "position": "Position is required",
+      "address": "Address is required",
+      "shift": "Shift is required",
+      "employeeCount": "Employee count is required"
+    },
+    "fields": {
+      "position": "Position",
+      "address": "Address",
+      "shifts": "Shift",
+      "employeeCount": "Employee count",
+      "date": "Date",
+      "dateRange": "Calendar from to"
+    }
+  },
+  "AddJob": {
+    "title": "Add job",
+    "createButton": "Create new job",
+    "formTitle": "Create new request",
+    "formSubtitle": "Fill in the details to create a new job posting",
+    "addNewShift": "+ Add new shift",
+    "addNewShiftButton": "Add new shift",
+    "addNewShiftTitle": "Add New Shift",
+    "shiftNameLabel": "Name Shift",
+    "shiftNamePlaceholder": "Enter shift name",
+    "addTimeLabel": "Add Time",
+    "fromLabel": "From :",
+    "toLabel": "To :",
+    "cancelButton": "Cancel",
+    "addButton": "Add",
+    "adding": "Adding...",
+    "submitButton": "Send",
+    "successMessage": "Job created successfully!",
+    "errorMessage": "Failed to create job. Please try again.",
+    "shiftCreatedSuccess": "Shift created successfully!",
+    "shiftCreatedError": "Failed to create shift. Please try again.",
+    "shiftValidation": {
+      "name": "Shift name is required",
+      "fromTime": "From time is required",
+      "toTime": "To time is required"
+    }
+  },
+  "ViewJobs": {
+    "title": "View jobs",
+    "subtitle": "View all your posted jobs and service requests"
   }
 }
