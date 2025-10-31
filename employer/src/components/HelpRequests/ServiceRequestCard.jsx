@@ -10,6 +10,8 @@ import {
   FaChevronRight,
   FaTasks,
 } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 const ServiceRequestCard = ({
@@ -25,6 +27,18 @@ const ServiceRequestCard = ({
     error,
     isLoading,
   } = useData(shiftId ? `/employer/shifts/${shiftId}` : '/employer/shifts/skip', undefined, { enabled: Boolean(shiftId) });
+
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation({
+    mutationFn: async () => {
+      const res = await (await import("../../utils/axios")).default.delete(`/service-request/${serviceRequest?.id}`);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["/employerJobPosting"]);
+      if (jobPosting?.id) queryClient.invalidateQueries([["/employerJobPosting", jobPosting.id]]);
+    },
+  });
 
   // Function to get status badge styling
   const getStatusBadge = (status) => {
@@ -162,15 +176,40 @@ const ServiceRequestCard = ({
         </div>
 
         {/* Footer with Action Button */}
-        <div
-          className="flex items-center justify-between pt-4 border-t border-gray-100 cursor-pointer"
-          onClick={() => navigate(`/helpRequests/${jobPosting?.id}/service-request/${serviceRequest?.id}`)}
-        >
-          <div className="text-sm text-gray-500">{t('serviceRequest.clickToView')}</div>
-          <div className="flex items-center space-x-2 text-[#F47621] group-hover:text-[#E55A1A] transition-colors">
-            <span className="text-sm font-medium">{t('serviceRequest.viewDetails')}</span>
-            <FaChevronRight className="text-sm group-hover:translate-x-1 transition-transform" />
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+          <div className="flex items-center gap-3">
+            {(serviceRequest?.status !== "expired" && serviceRequest?.status !== "cancel_without_repost") && (
+              deleteMutation.isPending ? (
+                <div className="flex items-center gap-2 text-gray-500 text-sm">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                  <span>{t('deleteService.deleting')}</span>
+                </div>
+              ) : (
+                <button
+                  className={`${serviceRequest?.canCancel ? "text-red-500 hover:text-red-700" : "text-gray-400 cursor-not-allowed"} flex items-center gap-1 text-sm`}
+                  disabled={!serviceRequest?.canCancel}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (serviceRequest?.canCancel) deleteMutation.mutate();
+                  }}
+                  title={serviceRequest?.canCancel ? t('serviceRequest.deleteTooltip') : t('serviceRequest.cannotDeleteTooltip')}
+                >
+                  <MdDelete size={16} />
+                  <span>{t('deleteService.delete')}</span>
+                </button>
+              )
+            )}
           </div>
+          <button
+            className="flex items-center space-x-2 text-[#F47621] hover:text-[#E55A1A] transition-colors"
+            onClick={() => navigate(`/helpRequests/${jobPosting?.id}/service-request/${serviceRequest?.id}`)}
+          >
+            <span className="text-sm font-medium">{t('serviceRequest.viewDetails')}</span>
+            <FaChevronRight className="text-sm" />
+          </button>
         </div>
       </div>
     </div>
