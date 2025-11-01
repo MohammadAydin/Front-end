@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
@@ -53,6 +53,7 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
     EmployeeCount: z.union([z.string(), z.number()]).refine((val) => val !== "" && val !== null && val !== undefined, {
       message: t("RequestsForm.validation.employeeCount"),
     }),
+    Description: z.string().optional(),
     date: z.object({
       from: z.date(),
       to: z.date(),
@@ -74,6 +75,21 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
   });
 
   const Position = watch("Position");
+
+  // Auto-fill description based on position
+  useEffect(() => {
+    if (Position) {
+      const descriptionMap = {
+        "1": "Verantwortlich für die professionelle Pflege, Medikamentengabe und Dokumentation. Führt medizinische Aufgaben selbstständig durch und betreut Bewohner fachgerecht.",
+        "2": "Unterstützt Pflegefachkräfte bei der Grundpflege und täglichen Betreuung. Führt einfache pflegerische Tätigkeiten unter Anleitung aus.",
+        "3": "Hilft bei Körperpflege, Ernährung und Mobilität der Bewohner. Sorgt für Wohlbefinden und unterstützt das Pflegeteam im Alltag.",
+      };
+      const newDescription = descriptionMap[String(Position)];
+      if (newDescription) {
+        setValue("Description", newDescription);
+      }
+    }
+  }, [Position, setValue]);
 
   // Handle Add New Shift button click
   const handleAddNewShift = () => {
@@ -98,14 +114,7 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
     const dateFrom = formatDateForAPI(data.date.from);
     const dateTo = formatDateForAPI(data.date.to);
 
-    let description = "";
-    if (data.Position == 1) {
-      description = "Verantwortlich für die professionelle Pflege, Medikamentengabe und Dokumentation. Führt medizinische Aufgaben selbstständig durch und betreut Bewohner fachgerecht.";
-    } else if (data.Position == 2) {
-      description = "Unterstützt Pflegefachkräfte bei der Grundpflege und täglichen Betreuung. Führt einfache pflegerische Tätigkeiten unter Anleitung aus.";
-    } else if (data.Position == 3) {
-      description = "Hilft bei Körperpflege, Ernährung und Mobilität der Bewohner. Sorgt für Wohlbefinden und unterstützt das Pflegeteam im Alltag.";
-    }
+    const description = data.Description || "";
 
     setLoadingPost(true);
     try {
@@ -192,6 +201,22 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
               {isLoadingLocation && (
                 <p className="text-xs text-gray-500 mt-1">Loading locations...</p>
               )}
+
+              {/* Description Input */}
+              <div className="mb-4">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {t("RequestsForm.fields.description")}
+                </label>
+                <textarea
+                  {...register("Description")}
+                  rows={4}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47621] resize-none"
+                  placeholder={t("RequestsForm.fields.description")}
+                />
+                {errors.Description && (
+                  <p className="text-red-500 text-sm mt-1">{errors.Description.message}</p>
+                )}
+              </div>
 
               {/* Employee Count Select */}
               <SelectField

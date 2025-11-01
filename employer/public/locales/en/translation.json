@@ -522,7 +522,8 @@
       "shifts": "Shift",
       "employeeCount": "Employee count",
       "date": "Date",
-      "dateRange": "Calendar from to"
+      "dateRange": "Calendar from to",
+      "description": "Description"
     }
   },
   "AddJob": {

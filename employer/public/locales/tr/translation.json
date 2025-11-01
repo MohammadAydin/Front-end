@@ -519,7 +519,8 @@
       "shifts": "Vardiya",
       "employeeCount": "Çalışan sayısı",
       "date": "Tarih",
-      "dateRange": "Takvim başlangıç bitiş"
+      "dateRange": "Takvim başlangıç bitiş",
+      "description": "Açıklama"
     }
   },
   "AddJob": {

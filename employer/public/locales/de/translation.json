@@ -519,7 +519,8 @@
       "shifts": "Schicht",
       "employeeCount": "Mitarbeiteranzahl",
       "date": "Datum",
-      "dateRange": "Kalender von bis"
+      "dateRange": "Kalender von bis",
+      "description": "Beschreibung"
     }
   },
   "AddJob": {
