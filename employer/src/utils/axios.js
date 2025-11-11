@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { addUserToLocalStorage, getUserFromLocalStorage } from "./localStorage";
+import { API_BASE_URL, getApiUrl } from "../config/api";
 
 // Use different base URLs for development and production
 const getBaseURL = () => {
@@ -12,7 +13,7 @@ const getBaseURL = () => {
     return "/api";
   } else {
     // Production or direct API: use environment variable or fallback
-    return import.meta.env.VITE_API_BASE_URL || "https://woundwann.de/v1";
+    return import.meta.env.VITE_API_BASE_URL || API_BASE_URL;
   }
 };
 
@@ -59,7 +60,7 @@ customFetch.interceptors.response.use(
 
       try {
         const { data } = await axios.post(
-          "https://woundwann.de/v1/refresh",
+          getApiUrl("/refresh"),
           {},
           { withCredentials: true }
         );

@@ -6,6 +6,7 @@ import FileUploader from "../../../components/FormElements/FileUploader";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import bankingInfoSchema from "./BankingInfoSchema";
 import "../../Responsive css/Personal_info.css";
@@ -35,7 +36,7 @@ const Banking_info = () => {
   const addBankingMutatuin = useMutation({
     mutationFn: (formData) =>
       customFetch
-        .post("https://woundwann.de/v1/profile/banking-info", formData, {
+        .post(getApiUrl("/profile/banking-info"), formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => res.data),

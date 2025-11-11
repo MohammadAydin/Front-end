@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import { useTranslation } from "react-i18next";
 
 const Employment_data = () => {
@@ -87,7 +88,7 @@ const Employment_data = () => {
   const addEmploymentDataMutatuin = useMutation({
     mutationFn: (EmploymentData) =>
       customFetch
-        .post("https://woundwann.de/v1/employee/info", EmploymentData)
+        .post(getApiUrl("/employee/info"), EmploymentData)
         .then((res) => res.data),
 
     onSuccess: () => {

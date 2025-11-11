@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import { phoneSchema } from "./phoneSchema";
 import OTPVerification from "./OTPVerification";
 import { useEffect, useState } from "react";
@@ -21,7 +22,7 @@ const Phone_number = () => {
   const sendCodeMutation = useMutation({
     mutationFn: (phoneNumber) =>
       customFetch
-        .post("https://woundwann.de/v1/send-otp", phoneNumber)
+        .post(getApiUrl("/send-otp"), phoneNumber)
         .then((res) => {
           res.data;
         }),

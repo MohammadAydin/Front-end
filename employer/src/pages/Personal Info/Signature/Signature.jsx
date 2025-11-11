@@ -8,6 +8,7 @@ import FileUploader from "../../../components/FormElements/FileUploader";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
@@ -26,7 +27,7 @@ const Signature = () => {
   const addSignatureMutatuin = useMutation({
     mutationFn: (Signature) =>
       customFetch
-        .post("https://woundwann.de/v1/upload-signature", Signature, {
+        .post(getApiUrl("/upload-signature"), Signature, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => res.data),
@@ -99,9 +100,8 @@ const Signature = () => {
                 </p>
                 <div className="h-[250px] border border-[#555770] rounded-2xl flex justify-center items-center">
                   <img
-                    src={`${
-                      UplodedSignature.data?.url
-                    }?t=${new Date().getTime()}`}
+                    src={`${UplodedSignature.data?.url
+                      }?t=${new Date().getTime()}`}
                     alt="Uploaded Signature"
                     className="max-h-full max-w-full object-contain"
                   />

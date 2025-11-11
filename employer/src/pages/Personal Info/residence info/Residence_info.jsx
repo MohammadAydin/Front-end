@@ -8,6 +8,7 @@ import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import residenceSchema from "./schema_Residence";
 import "../../Responsive css/Personal_info.css";
@@ -31,7 +32,7 @@ const Residence_info = () => {
   const add_Residence_info_Mutatuin = useMutation({
     mutationFn: (info) =>
       customFetch
-        .post("https://woundwann.de/v1/profile/residence-work-permits", info, {
+        .post(getApiUrl("/profile/residence-work-permits"), info, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => res.data),

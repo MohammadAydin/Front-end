@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import { useState } from "react";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +27,7 @@ const OTPVerification = ({ phone, setIsOtpCode, resendCode, resendTimer }) => {
   const verifyOtpMutation = useMutation({
     mutationFn: (data) =>
       customFetch
-        .post("https://woundwann.de/v1/verify-otp", data)
+        .post(getApiUrl("/verify-otp"), data)
         .then((res) => res.data),
 
     onSuccess: () => {

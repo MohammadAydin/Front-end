@@ -6,6 +6,7 @@ import ShiftTime from "./ShiftTime";
 import SubmitButtons from "../FormElements/SubmitButtons";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
+import { getApiUrl } from "../../config/api";
 const AddShiftsForm = ({ isFormOpen, setIsFormOpen }) => {
   const time = [
     { label: "From", timeField: "fromTime" },
@@ -16,7 +17,7 @@ const AddShiftsForm = ({ isFormOpen, setIsFormOpen }) => {
   const addShiftMutatuin = useMutation({
     mutationFn: (shift) =>
       customFetch
-        .post("https://woundwann.de/v1/employer/shifts", shift)
+        .post(getApiUrl("/employer/shifts"), shift)
         .then((res) => res.data),
 
     onSuccess: () => {

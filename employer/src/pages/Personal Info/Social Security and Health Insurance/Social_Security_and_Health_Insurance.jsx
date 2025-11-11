@@ -5,6 +5,7 @@ import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import schema_social_Insurance from "./schema_social_Insurance";
 import SelectField from "../../../components/FormElements/SelectField";
@@ -100,7 +101,7 @@ const Social_Security_and_Health_Insurance = () => {
     mutationFn: (insurance) =>
       customFetch
         .post(
-          "https://woundwann.de/v1/profile/social-insurance-info",
+          getApiUrl("/profile/social-insurance-info"),
           insurance
         )
         .then((res) => {

@@ -1,10 +1,12 @@
+import { getApiUrl, API_BASE_URL } from "./api";
+
 export const pusherConfig = {
   appKey: import.meta.env.VITE_PUSHER_APP_KEY || "95d433c70538220738bd",
   cluster: import.meta.env.VITE_PUSHER_CLUSTER || "eu",
   forceTLS: import.meta.env.VITE_PUSHER_FORCE_TLS === "true",
   authEndpoint:
     import.meta.env.VITE_PUSHER_AUTH_ENDPOINT ||
-    "https://woundwann.de/v1/broadcasting/auth",
+    getApiUrl("/broadcasting/auth"),
 
   auth: {
     getAuthHeaders: () => {
@@ -30,9 +32,11 @@ export const pusherConfig = {
       // في التطوير، لا نحتاج Origin و Referer
       if (import.meta.env.PROD) {
         headers.Origin =
-          import.meta.env.VITE_APP_ORIGIN || "https://woundwann.de";
+          import.meta.env.VITE_APP_ORIGIN ||
+          API_BASE_URL.replace(/\/+$/, "").replace(/\/v1$/, "");
         headers.Referer =
-          import.meta.env.VITE_APP_ORIGIN || "https://woundwann.de";
+          import.meta.env.VITE_APP_ORIGIN ||
+          API_BASE_URL.replace(/\/+$/, "").replace(/\/v1$/, "");
       }
 
       return headers;

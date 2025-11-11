@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useMutation } from "@tanstack/react-query";
 import customFetch from "../../../utils/axios";
+import { getApiUrl } from "../../../config/api";
 import "../../Responsive css/Personal_info.css";
 import { useTranslation } from "react-i18next";
 import Spinner from "../../../components/MoreElements/Spinner";
@@ -41,7 +42,7 @@ const Documents = () => {
   const uploadDocumentsMutation = useMutation({
     mutationFn: (formData) =>
       customFetch
-        .post("https://woundwann.de/v1/upload/documents", formData, {
+        .post(getApiUrl("/upload/documents"), formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => res.data),

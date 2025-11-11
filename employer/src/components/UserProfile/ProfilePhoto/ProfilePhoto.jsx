@@ -8,6 +8,7 @@ import customFetch from "../../../utils/axios";
 import { useEffect, useState } from "react";
 import useData from "../../../hooks/useData";
 import { useTranslation } from "react-i18next";
+import { getApiUrl } from "../../../config/api";
 
 const ProfilePhoto = () => {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ const ProfilePhoto = () => {
   const addAvatar = useMutation({
     mutationFn: (formData) =>
       customFetch
-        .post("https://woundwann.de/v1/upload-photo", formData, {
+        .post(getApiUrl("/upload-photo"), formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => res.data),
