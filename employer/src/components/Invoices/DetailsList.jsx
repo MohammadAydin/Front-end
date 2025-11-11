@@ -69,7 +69,7 @@ const DetailsList = ({ id, invoice_number, from, to, total_amount, url }) => {
             <span className="text-sm font-medium">{t('Invoices.summary')}</span>
           </a>
           
-          {/* Download Detailed Invoice 
+          {/* Download Detailed Invoice */}
           {isLoadingDetails ? (
             <div className="flex items-center gap-2 px-3 py-2 bg-gray-300 text-white rounded-lg">
               <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@ const DetailsList = ({ id, invoice_number, from, to, total_amount, url }) => {
               <span className="text-sm font-medium">{t('Invoices.detailed')}</span>
             </a>
           ) : null}
-          */}
+          
         </div>
       </div>
     </>
