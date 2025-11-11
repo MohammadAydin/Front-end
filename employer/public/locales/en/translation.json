@@ -315,7 +315,15 @@
   },
   "Invoices": {
     "title": "Invoices",
-    "noneInvoices": "You have no invoices yet. New invoices will be issued to you on the 1st of each month."
+    "noneInvoices": "You have no invoices yet. New invoices will be issued to you on the 1st of each month.",
+    "viewDetails": "View invoice details",
+    "downloadSummary": "Download summary invoice",
+    "downloadDetailed": "Download detailed invoice",
+    "summary": "Summary",
+    "detailed": "Detailed"
+  },
+  "accessibility": {
+    "loadingContent": "Loading content, please wait"
   },
   "Shifts": {
     "title": "Shifts Mangment",

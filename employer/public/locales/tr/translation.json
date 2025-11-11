@@ -315,7 +315,15 @@
   },
   "Invoices": {
     "title": "Faturalar",
-    "noneInvoices": "Henüz faturanız yok. Yeni faturalar her ayın 1’inde size gönderilecektir."
+    "noneInvoices": "Henüz faturanız yok. Yeni faturalar her ayın 1'inde size gönderilecektir.",
+    "viewDetails": "Fatura detaylarını görüntüle",
+    "downloadSummary": "Özet faturayı indir",
+    "downloadDetailed": "Detaylı faturayı indir",
+    "summary": "Özet",
+    "detailed": "Detaylı"
+  },
+  "accessibility": {
+    "loadingContent": "İçerik yükleniyor, lütfen bekleyin"
   },
   "Shifts": {
     "title": "Vardiya Yönetimi",

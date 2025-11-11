@@ -315,7 +315,15 @@
   },
   "Invoices": {
     "title": "Rechnungen",
-    "noneInvoices": "Sie haben noch keine Rechnungen. Neue Rechnungen werden Ihnen am 1. jedes Monats ausgestellt."
+    "noneInvoices": "Sie haben noch keine Rechnungen. Neue Rechnungen werden Ihnen am 1. jedes Monats ausgestellt.",
+    "viewDetails": "Rechnungsdetails anzeigen",
+    "downloadSummary": "Zusammenfassungsrechnung herunterladen",
+    "downloadDetailed": "Detaillierte Rechnung herunterladen",
+    "summary": "Zusammenfassung",
+    "detailed": "Detailliert"
+  },
+  "accessibility": {
+    "loadingContent": "Inhalt wird geladen, bitte warten"
   },
   "Shifts": {
     "title": "Schichtverwaltung",

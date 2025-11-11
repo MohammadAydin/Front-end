@@ -20,25 +20,32 @@ const TasksRequest = ({ data, idJopPosting }) => {
       </div>
 
       <div className="space-y-4">
-        {data?.map((item) => (
-          <div key={item?.id}>
-            <ListTasks
-              key={item?.id}
-              id={item?.id}
-              status={item?.status}
-              start_at={item?.start_at}
-              end_at={item?.end_at}
-              rate={item?.job_posting?.rate}
-              location={item?.job_posting?.location}
-              created_at={item?.created_at}
-              assigned_to={item?.assigned_to}
-              idJopPosting={idJopPosting}
-              previousPage="serviceRequestsDetails"
-              navigateTo={`/`}
-              // navigateTo={`/serviceRequestsDetails/${idJop}/${item.id}/${item.tasks}`}
-            />
-          </div>
-        ))}
+        {data?.map((item) => {
+          console.groupCollapsed(`Task Debug – ID: ${item?.id}`);
+          console.log("Raw task data:", item);
+          console.log("Job posting data:", item?.job_posting);
+          console.log("Assigned employee:", item?.employee);
+          console.groupEnd();
+
+          return (
+            <div key={item?.id}>
+              <ListTasks
+                key={item?.id}
+                id={item?.id}
+                status={item?.status}
+                start_at={item?.start_at}
+                end_at={item?.end_at}
+                rate={item?.job_posting?.rate}
+                location={item?.job_posting?.location}
+                created_at={item?.created_at}
+                assigned_to={item?.assigned_to}
+                idJopPosting={idJopPosting}
+                previousPage="serviceRequestsDetails"
+                navigateTo={`/`}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {data?.length === 0 && (
