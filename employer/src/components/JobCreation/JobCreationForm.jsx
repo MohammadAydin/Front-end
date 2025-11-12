@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import customFetch from "../../utils/axios";
 import { useTranslation } from "react-i18next";
@@ -11,7 +10,7 @@ import CalendarRange from "../HelpRequests/RequestsForm/CalendarRange";
 import SubmitButtons from "../FormElements/SubmitButtons";
 import AddShiftDialog from "./AddShiftDialog";
 import { z } from "zod";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoCheckmarkCircleOutline, IoWarningOutline } from "react-icons/io5";
 
 const EmployeeNumber = [
   { name: 1, id: 1 },
@@ -31,6 +30,11 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
   const [showReview, setShowReview] = useState(false);
   const [reviewData, setReviewData] = useState(null);
   const [autoDescription, setAutoDescription] = useState("");
+  const [feedback, setFeedback] = useState({
+    visible: false,
+    type: "success",
+    message: "",
+  });
 
   // Fetch required data
   const { data: PosationList, isLoading: isLoadingPosition } = useData("/positions/list");
@@ -95,6 +99,22 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
     }
   }, [Position, setValue]);
 
+  useEffect(() => {
+    if (!feedback.visible) {
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setFeedback((prev) => ({
+        ...prev,
+        visible: false,
+        message: "",
+      }));
+    }, 5000);
+
+    return () => clearTimeout(timeoutId);
+  }, [feedback.visible]);
+
   // Handle Add New Shift button click
   const handleAddNewShift = () => {
     setIsShiftDialogOpen(true);
@@ -152,14 +172,22 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
         shift_id: reviewData.shift,
       });
       queryClient.invalidateQueries(["employerJobPosting"]);
-      toast.success(response?.data?.message || t("AddJob.successMessage"));
+      setFeedback({
+        visible: true,
+        type: "success",
+        message: response?.data?.message || t("AddJob.successMessage"),
+      });
       setLoadingPost(false);
       setIsFormOpen(false);
       setShowReview(false);
       setReviewData(null);
       reset();
     } catch (error) {
-      toast.error(error?.response?.data?.message || t("AddJob.errorMessage"));
+      setFeedback({
+        visible: true,
+        type: "error",
+        message: error?.response?.data?.message || t("AddJob.errorMessage"),
+      });
       console.error("Error during submission:", error?.response?.data?.message);
       setLoadingPost(false);
     }
@@ -200,113 +228,113 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
                 {t("AddJob.formSubtitle")}
               </p>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* Position Select */}
-              <SelectField
-                data={(PosationList?.data || []).map((p) => ({
-                  ...p,
-                  name:
-                    p?.name === "Pflegefachassistent"
-                      ? "Pflegefachassistent – ein Jahr Ausbildung"
-                      : p?.name,
-                }))}
-                name="Position"
-                errors={errors}
-                setValue={setValue}
-                register={register}
-                value={watch("Position")}
-                label={t("RequestsForm.fields.position")}
-              />
-              {isLoadingPosition && (
-                <p className="text-xs text-gray-500 mt-1">Loading positions...</p>
-              )}
-
-              {/* Address Select */}
-              <SelectField
-                data={resultLocation}
-                name="Address"
-                errors={errors}
-                setValue={setValue}
-                register={register}
-                value={watch("Address")}
-                label={t("RequestsForm.fields.address")}
-              />
-              {isLoadingLocation && (
-                <p className="text-xs text-gray-500 mt-1">Loading locations...</p>
-              )}
-
-              {/* Description Input */}
-              <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  {t("RequestsForm.fields.description")}
-                </label>
-                <textarea
-                  {...register("Description")}
-                  rows={4}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47621] resize-none"
-                  placeholder={t("RequestsForm.fields.description")}
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {/* Position Select */}
+                <SelectField
+                  data={(PosationList?.data || []).map((p) => ({
+                    ...p,
+                    name:
+                      p?.name === "Pflegefachassistent"
+                        ? "Pflegefachassistent – ein Jahr Ausbildung"
+                        : p?.name,
+                  }))}
+                  name="Position"
+                  errors={errors}
+                  setValue={setValue}
+                  register={register}
+                  value={watch("Position")}
+                  label={t("RequestsForm.fields.position")}
                 />
-                {errors.Description && (
-                  <p className="text-red-500 text-sm mt-1">{errors.Description.message}</p>
+                {isLoadingPosition && (
+                  <p className="text-xs text-gray-500 mt-1">Loading positions...</p>
                 )}
-              </div>
 
-              {/* Employee Count Select */}
-              <SelectField
-                data={EmployeeNumber}
-                name="EmployeeCount"
-                errors={errors}
-                setValue={setValue}
-                register={register}
-                value={watch("EmployeeCount")}
-                label={t("RequestsForm.fields.employeeCount")}
-              />
+                {/* Address Select */}
+                <SelectField
+                  data={resultLocation}
+                  name="Address"
+                  errors={errors}
+                  setValue={setValue}
+                  register={register}
+                  value={watch("Address")}
+                  label={t("RequestsForm.fields.address")}
+                />
+                {isLoadingLocation && (
+                  <p className="text-xs text-gray-500 mt-1">Loading locations...</p>
+                )}
 
-              {/* Shift Select with Add New Shift button */}
-              <div className="relative">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  {t("RequestsForm.fields.shifts")}
-                </label>
-                <div className="flex gap-2 items-center">
-                  <div className="flex-1">
-                    <SelectField
-                      data={dataShift?.data || []}
-                      name="Shifts"
-                      errors={errors}
-                      setValue={setValue}
-                      register={register}
-                      value={watch("Shifts")}
-                      label=""
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleAddNewShift}
-                    className="bg-gradient-to-r from-[#F47621] to-[#EE6000] text-white font-bold py-3 px-4 rounded-lg hover:shadow-lg transition-all whitespace-nowrap"
-                  >
-                    {t("AddJob.addNewShiftButton")}
-                  </button>
+                {/* Description Input */}
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    {t("RequestsForm.fields.description")}
+                  </label>
+                  <textarea
+                    {...register("Description")}
+                    rows={4}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47621] resize-none"
+                    placeholder={t("RequestsForm.fields.description")}
+                  />
+                  {errors.Description && (
+                    <p className="text-red-500 text-sm mt-1">{errors.Description.message}</p>
+                  )}
                 </div>
-                {isLoadingShift && (
-                  <p className="text-xs text-gray-500 mt-1">Loading shifts...</p>
-                )}
-              </div>
 
-              {/* Calendar Date Range */}
-              <CalendarRange
-                register={register}
-                name="date"
-                setValue={setValue}
-                errors={errors}
-              />
+                {/* Employee Count Select */}
+                <SelectField
+                  data={EmployeeNumber}
+                  name="EmployeeCount"
+                  errors={errors}
+                  setValue={setValue}
+                  register={register}
+                  value={watch("EmployeeCount")}
+                  label={t("RequestsForm.fields.employeeCount")}
+                />
 
-              {/* Submit Buttons */}
-              <SubmitButtons
-                onCancel={handleClose}
-                submitLabel={t("AddJob.reviewButton")}
-                disabled={loadingPost}
-              />
-            </form>
+                {/* Shift Select with Add New Shift button */}
+                <div className="relative">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    {t("RequestsForm.fields.shifts")}
+                  </label>
+                  <div className="flex gap-2 items-center">
+                    <div className="flex-1">
+                      <SelectField
+                        data={dataShift?.data || []}
+                        name="Shifts"
+                        errors={errors}
+                        setValue={setValue}
+                        register={register}
+                        value={watch("Shifts")}
+                        label=""
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleAddNewShift}
+                      className="bg-gradient-to-r from-[#F47621] to-[#EE6000] text-white font-bold py-3 px-4 rounded-lg hover:shadow-lg transition-all whitespace-nowrap"
+                    >
+                      {t("AddJob.addNewShiftButton")}
+                    </button>
+                  </div>
+                  {isLoadingShift && (
+                    <p className="text-xs text-gray-500 mt-1">Loading shifts...</p>
+                  )}
+                </div>
+
+                {/* Calendar Date Range */}
+                <CalendarRange
+                  register={register}
+                  name="date"
+                  setValue={setValue}
+                  errors={errors}
+                />
+
+                {/* Submit Buttons */}
+                <SubmitButtons
+                  onCancel={handleClose}
+                  submitLabel={t("AddJob.reviewButton")}
+                  disabled={loadingPost}
+                />
+              </form>
             </div>
           </div>
         </div>
@@ -418,15 +446,58 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
                 type="button"
                 onClick={handleConfirm}
                 disabled={loadingPost}
-                className={`px-6 py-2 rounded-lg text-white font-semibold transition-colors ${
-                  loadingPost ? "bg-gray-400" : "bg-[#F47621] hover:bg-[#EE6000]"
-                }`}
+                className={`px-6 py-2 rounded-lg text-white font-semibold transition-colors ${loadingPost ? "bg-gray-400" : "bg-[#F47621] hover:bg-[#EE6000]"
+                  }`}
               >
                 {loadingPost
                   ? t("RequestsForm.buttons.submitting")
                   : t("RequestsForm.buttons.submitRequest")}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {feedback.visible && (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center px-4 sm:px-6 lg:px-10 bg-transparent pointer-events-none">
+          <div
+            className={`pointer-events-auto w-full max-w-2xl rounded-[34px] shadow-2xl border-[3px] bg-white px-6 py-7 sm:px-10 sm:py-9 flex flex-col sm:flex-row sm:items-start gap-5 sm:gap-6 ${feedback.type === "success" ? "border-green-500" : "border-red-500"
+              }`}
+          >
+            <div className="text-5xl sm:text-6xl flex-shrink-0 flex items-center justify-center">
+              {feedback.type === "success" ? (
+                <IoCheckmarkCircleOutline className="text-green-500" />
+              ) : (
+                <IoWarningOutline className="text-red-500" />
+              )}
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <p
+                className={`text-xl sm:text-2xl font-semibold ${feedback.type === "success" ? "text-gray-900" : "text-red-600"
+                  }`}
+              >
+                {feedback.type === "success"
+                  ? t("AddJob.successTitle")
+                  : t("AddJob.errorTitle")}
+              </p>
+              <p className="text-base sm:text-lg text-gray-600 mt-3 leading-relaxed">
+                {feedback.message}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                setFeedback((prev) => ({
+                  ...prev,
+                  visible: false,
+                  message: "",
+                }))
+              }
+              className="text-gray-400 hover:text-gray-600 transition-colors self-start sm:self-center mt-2 sm:mt-0"
+              aria-label={t("RequestsForm.buttons.cancel")}
+            >
+              <IoClose size={22} />
+            </button>
           </div>
         </div>
       )}
