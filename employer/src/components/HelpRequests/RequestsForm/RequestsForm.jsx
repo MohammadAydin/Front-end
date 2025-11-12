@@ -186,24 +186,26 @@ const RequestsForm = () => {
   return (
     <>
       {RequestIsOpen && (
-        <div className="fixed inset-0 z-50 flex justify-center items-start pt-8 pb-8 bg-[#28293d94] text-white overflow-y-auto modal-container">
-          {RequestDone ? (
-            <div className="RequestsDone w-[600px] h-[500px] bg-white rounded-2xl text-[#4CE452] flex flex-col items-center justify-center gap-2 my-8">
-              <HiOutlineCheckCircle size={200} />
-              <p className="text-black font-extrabold text-xl my-3">
-                {t("RequestsForm.successTitle")}
-              </p>
-              <button
-                onClick={() => {
-                  notDone(), RequestClose();
-                }}
-                className="flex gap-1 items-center font-[900] text-lg bg-[#F47621] text-white px-10 py-2 rounded-xl cursor-pointer"
-              >
-                {t("RequestsForm.backToManagement")}
-              </button>
-            </div>
-          ) : (
-            <div className="RequestsForm w-[880px] min-h-fit bg-white rounded-2xl text-black p-6 py-8 my-8 shadow-xl">
+        <div className="fixed inset-0 z-50 bg-[#28293d94] text-white">
+          <div className="w-full h-full overflow-y-auto flex justify-center items-center py-8 px-4 sm:px-6">
+            {RequestDone ? (
+              <div className="RequestsDone w-full max-w-[600px] bg-white rounded-2xl text-[#4CE452] flex flex-col items-center justify-center gap-2 p-8 sm:p-10">
+                <HiOutlineCheckCircle size={200} />
+                <p className="text-black font-extrabold text-xl my-3">
+                  {t("RequestsForm.successTitle")}
+                </p>
+                <button
+                  onClick={() => {
+                    notDone();
+                    RequestClose();
+                  }}
+                  className="flex gap-1 items-center font-[900] text-lg bg-[#F47621] text-white px-10 py-2 rounded-xl cursor-pointer"
+                >
+                  {t("RequestsForm.backToManagement")}
+                </button>
+              </div>
+            ) : (
+              <div className="RequestsForm w-full max-w-[880px] bg-white rounded-2xl text-black p-6 sm:p-8 shadow-xl max-h-[90vh] overflow-y-auto">
               {/* Progress Stepper */}
               <div className="mb-6">
                 <div className="flex items-center justify-between">
@@ -412,7 +414,8 @@ const RequestsForm = () => {
                 </>
               )}
             </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </>
