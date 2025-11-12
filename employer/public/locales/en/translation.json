@@ -360,11 +360,18 @@
       "dateRange": "Date Range",
       "custom_shift": "Custom Shift"
     },
+    "validation": {
+      "position": "Position is required",
+      "address": "Address is required",
+      "shift": "Shift is required",
+      "employeeCount": "Employee count is required"
+    },
     "buttons": {
       "next": "Next",
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "submitRequest": "Submit Request"
+      "submitRequest": "Submit Request",
+      "submitting": "Submitting..."
     },
     "warning": {
       "cancellationPolicy": "Cancellation Policy",
@@ -517,28 +524,13 @@
       "arrived": "Arrived"
     }
   },
-  "RequestsForm": {
-    "validation": {
-      "position": "Position is required",
-      "address": "Address is required",
-      "shift": "Shift is required",
-      "employeeCount": "Employee count is required"
-    },
-    "fields": {
-      "position": "Position",
-      "address": "Address",
-      "shifts": "Shift",
-      "employeeCount": "Employee count",
-      "date": "Date",
-      "dateRange": "Calendar from to",
-      "description": "Description"
-    }
-  },
   "AddJob": {
     "title": "Add job",
     "createButton": "Create new job",
     "formTitle": "Create new request",
     "formSubtitle": "Fill in the details to create a new job posting",
+    "reviewTitle": "Review Job Details",
+    "reviewButton": "Review job information",
     "addNewShift": "+ Add new shift",
     "addNewShiftButton": "Add new shift",
     "addNewShiftTitle": "Add New Shift",

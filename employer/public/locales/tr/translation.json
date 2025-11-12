@@ -360,11 +360,18 @@
       "dateRange": "Tarih Aralığı",
       "custom_shift": "Özel vardiya"
     },
+    "validation": {
+      "position": "Pozisyon gereklidir",
+      "address": "Adres gereklidir",
+      "shift": "Vardiya gereklidir",
+      "employeeCount": "Çalışan sayısı gereklidir"
+    },
     "buttons": {
       "next": "İleri",
       "cancel": "İptal",
       "confirm": "Onayla",
-      "submitRequest": "Talebi Gönder"
+      "submitRequest": "Talebi Gönder",
+      "submitting": "Gönderiliyor..."
     },
     "warning": {
       "cancellationPolicy": "İptal Politikası",
@@ -514,28 +521,13 @@
       "arrived": "Ulaştı"
     }
   },
-  "RequestsForm": {
-    "validation": {
-      "position": "Pozisyon gereklidir",
-      "address": "Adres gereklidir",
-      "shift": "Vardiya gereklidir",
-      "employeeCount": "Çalışan sayısı gereklidir"
-    },
-    "fields": {
-      "position": "Pozisyon",
-      "address": "Adres",
-      "shifts": "Vardiya",
-      "employeeCount": "Çalışan sayısı",
-      "date": "Tarih",
-      "dateRange": "Takvim başlangıç bitiş",
-      "description": "Açıklama"
-    }
-  },
   "AddJob": {
     "title": "İş ekle",
     "createButton": "Yeni iş oluştur",
     "formTitle": "Yeni talep oluştur",
     "formSubtitle": "Yeni bir iş ilanı oluşturmak için detayları doldurun",
+    "reviewTitle": "İş detaylarını gözden geçirin",
+    "reviewButton": "İş bilgilerini incele",
     "addNewShift": "+ Yeni vardiya ekle",
     "addNewShiftButton": "Yeni vardiya ekle",
     "addNewShiftTitle": "Yeni Vardiya Ekle",

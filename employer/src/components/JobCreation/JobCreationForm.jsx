@@ -28,6 +28,9 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
   const queryClient = useQueryClient();
   const [loadingPost, setLoadingPost] = useState(false);
   const [isShiftDialogOpen, setIsShiftDialogOpen] = useState(false);
+  const [showReview, setShowReview] = useState(false);
+  const [reviewData, setReviewData] = useState(null);
+  const [autoDescription, setAutoDescription] = useState("");
 
   // Fetch required data
   const { data: PosationList, isLoading: isLoadingPosition } = useData("/positions/list");
@@ -78,16 +81,17 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
 
   // Auto-fill description based on position
   useEffect(() => {
-    if (Position) {
-      const descriptionMap = {
-        "1": "Verantwortlich für die professionelle Pflege, Medikamentengabe und Dokumentation. Führt medizinische Aufgaben selbstständig durch und betreut Bewohner fachgerecht.",
-        "2": "Unterstützt Pflegefachkräfte bei der Grundpflege und täglichen Betreuung. Führt einfache pflegerische Tätigkeiten unter Anleitung aus.",
-        "3": "Hilft bei Körperpflege, Ernährung und Mobilität der Bewohner. Sorgt für Wohlbefinden und unterstützt das Pflegeteam im Alltag.",
-      };
-      const newDescription = descriptionMap[String(Position)];
-      if (newDescription) {
-        setValue("Description", newDescription);
-      }
+    const descriptionMap = {
+      "1": "Verantwortlich für die professionelle Pflege, Medikamentengabe und Dokumentation. Führt medizinische Aufgaben selbstständig durch und betreut Bewohner fachgerecht.",
+      "2": "Unterstützt Pflegefachkräfte bei der Grundpflege und täglichen Betreuung. Führt einfache pflegerische Tätigkeiten unter Anleitung aus.",
+      "3": "Hilft bei Körperpflege, Ernährung und Mobilität der Bewohner. Sorgt für Wohlbefinden und unterstützt das Pflegeteam im Alltag.",
+    };
+
+    const newDescription = Position ? descriptionMap[String(Position)] || "" : "";
+    setAutoDescription(newDescription);
+
+    if (newDescription) {
+      setValue("Description", newDescription, { shouldDirty: false });
     }
   }, [Position, setValue]);
 
@@ -111,27 +115,48 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
   };
 
   const onSubmit = async (data) => {
-    const dateFrom = formatDateForAPI(data.date.from);
-    const dateTo = formatDateForAPI(data.date.to);
+    const composedDescription =
+      data.Description && data.Description.trim().length > 0
+        ? data.Description
+        : autoDescription;
 
-    const description = data.Description || "";
+    setReviewData({
+      position: data.Position,
+      address: data.Address,
+      description: composedDescription,
+      employeesRequired: data.EmployeeCount,
+      shift: data.Shifts,
+      dateRange: data.date,
+    });
+    setShowReview(true);
+  };
+
+  const handleConfirm = async () => {
+    if (!reviewData) return;
+
+    const dateFrom = formatDateForAPI(reviewData.dateRange?.from);
+    const dateTo = formatDateForAPI(reviewData.dateRange?.to);
+
+    const descriptionToSend = reviewData.description || "";
 
     setLoadingPost(true);
     try {
       const response = await customFetch.post("/employerJobPosting", {
         title: "Dringend",
-        description: description,
-        employees_required: data.EmployeeCount,
+        description: descriptionToSend,
+        employees_required: reviewData.employeesRequired,
         date_from: dateFrom,
         date_to: dateTo,
-        location_id: data.Address,
-        employee_positions_id: data.Position,
-        shift_id: data.Shifts,
+        location_id: reviewData.address,
+        employee_positions_id: reviewData.position,
+        shift_id: reviewData.shift,
       });
       queryClient.invalidateQueries(["employerJobPosting"]);
       toast.success(response?.data?.message || t("AddJob.successMessage"));
       setLoadingPost(false);
       setIsFormOpen(false);
+      setShowReview(false);
+      setReviewData(null);
       reset();
     } catch (error) {
       toast.error(error?.response?.data?.message || t("AddJob.errorMessage"));
@@ -140,8 +165,15 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
     }
   };
 
+  const handleCancelReview = () => {
+    setShowReview(false);
+    setReviewData(null);
+  };
+
   const handleClose = () => {
     setIsFormOpen(false);
+    setShowReview(false);
+    setReviewData(null);
     reset();
   };
 
@@ -168,7 +200,7 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
                 {t("AddJob.formSubtitle")}
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               {/* Position Select */}
               <SelectField
                 data={(PosationList?.data || []).map((p) => ({
@@ -271,10 +303,129 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
               {/* Submit Buttons */}
               <SubmitButtons
                 onCancel={handleClose}
-                submitLabel={t("AddJob.submitButton")}
+                submitLabel={t("AddJob.reviewButton")}
                 disabled={loadingPost}
               />
             </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showReview && reviewData && (
+        <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-[#28293d94] px-4 py-6">
+          <div className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 overflow-y-auto max-h-[90vh]">
+            <button
+              type="button"
+              onClick={handleCancelReview}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              aria-label={t("RequestsForm.buttons.cancel")}
+            >
+              <IoClose size={28} />
+            </button>
+
+            <div>
+              <h4 className="text-2xl font-semibold text-gray-900">
+                {t("AddJob.reviewTitle")}
+              </h4>
+              <p className="text-sm text-gray-600 mt-2">
+                {t("RequestsForm.summary.subtitle")}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
+              <div className="border border-gray-200 rounded-lg p-4">
+                <p className="font-medium text-gray-900">
+                  {t("RequestsForm.fields.position")}
+                </p>
+                <p className="mt-1">
+                  {
+                    PosationList?.data?.find(
+                      (pos) => String(pos.id) === String(reviewData.position)
+                    )?.name
+                  }
+                </p>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-4">
+                <p className="font-medium text-gray-900">
+                  {t("RequestsForm.fields.address")}
+                </p>
+                <p className="mt-1">
+                  {
+                    resultLocation?.find(
+                      (loc) => String(loc.id) === String(reviewData.address)
+                    )?.name
+                  }
+                </p>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-4 sm:col-span-2">
+                <p className="font-medium text-gray-900">
+                  {t("RequestsForm.fields.description")}
+                </p>
+                <p className="mt-1 whitespace-pre-line">
+                  {reviewData.description || "-"}
+                </p>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-4">
+                <p className="font-medium text-gray-900">
+                  {t("RequestsForm.fields.employeeCount")}
+                </p>
+                <p className="mt-1">{reviewData.employeesRequired}</p>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-4">
+                <p className="font-medium text-gray-900">
+                  {t("RequestsForm.fields.shifts")}
+                </p>
+                <p className="mt-1">
+                  {
+                    dataShift?.data?.find(
+                      (shift) => String(shift.id) === String(reviewData.shift)
+                    )?.name
+                  }
+                </p>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-4 sm:col-span-2">
+                <p className="font-medium text-gray-900">
+                  {t("RequestsForm.fields.dateRange")}
+                </p>
+                <p className="mt-1">
+                  {reviewData.dateRange?.from?.toLocaleDateString?.() || "-"} -{" "}
+                  {reviewData.dateRange?.to?.toLocaleDateString?.() || "-"}
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              {t("RequestsForm.warning.policyText")}{" "}
+              <span className="font-semibold">&euro; 50</span>{" "}
+              {t("RequestsForm.warning.willbecharged")}
+            </div>
+
+            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3">
+              <button
+                type="button"
+                onClick={handleCancelReview}
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                {t("RequestsForm.buttons.cancel")}
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirm}
+                disabled={loadingPost}
+                className={`px-6 py-2 rounded-lg text-white font-semibold transition-colors ${
+                  loadingPost ? "bg-gray-400" : "bg-[#F47621] hover:bg-[#EE6000]"
+                }`}
+              >
+                {loadingPost
+                  ? t("RequestsForm.buttons.submitting")
+                  : t("RequestsForm.buttons.submitRequest")}
+              </button>
             </div>
           </div>
         </div>

@@ -360,11 +360,18 @@
       "date": "Datum",
       "custom_shift": "Schicht konfigurieren"
     },
+    "validation": {
+      "position": "Position ist erforderlich",
+      "address": "Adresse ist erforderlich",
+      "shift": "Schicht ist erforderlich",
+      "employeeCount": "Anzahl der Mitarbeiter ist erforderlich"
+    },
     "buttons": {
       "next": "Weiter",
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
-      "submitRequest": "Anfrage senden"
+      "submitRequest": "Anfrage senden",
+      "submitting": "Wird gesendet..."
     },
     "warning": {
       "cancellationPolicy": "Stornierungsrichtlinie",
@@ -514,28 +521,13 @@
       "arrived": "Angekommen"
     }
   },
-  "RequestsForm": {
-    "validation": {
-      "position": "Position ist erforderlich",
-      "address": "Adresse ist erforderlich",
-      "shift": "Schicht ist erforderlich",
-      "employeeCount": "Anzahl der Mitarbeiter ist erforderlich"
-    },
-    "fields": {
-      "position": "Position",
-      "address": "Adresse",
-      "shifts": "Schicht",
-      "employeeCount": "Mitarbeiteranzahl",
-      "date": "Datum",
-      "dateRange": "Kalender von bis",
-      "description": "Beschreibung"
-    }
-  },
   "AddJob": {
     "title": "Auftrag hinzufügen",
     "createButton": "Neuen Auftrag erstellen",
     "formTitle": "Neue Anfrage erstellen",
     "formSubtitle": "Füllen Sie die Details aus, um eine neue Stellenanzeige zu erstellen",
+    "reviewTitle": "Auftragsdetails überprüfen",
+    "reviewButton": "Auftragsinformationen prüfen",
     "addNewShift": "+ Neue Schicht hinzufügen",
     "addNewShiftButton": "Neue Schicht hinzufügen",
     "addNewShiftTitle": "Neue Schicht hinzufügen",
