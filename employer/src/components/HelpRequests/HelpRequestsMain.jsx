@@ -17,12 +17,12 @@ const HelpRequestsMain = () => {
 
   // Status tabs configuration
   const statusTabs = [
-    { key: "all", label: "All", color: "bg-gray-100 text-gray-800" },
-    { key: "taken", label: "Taken", color: "bg-blue-100 text-blue-800" },
-    { key: "pending", label: "Pending", color: "bg-yellow-100 text-yellow-800" },
-    { key: "expired", label: "Expired", color: "bg-red-100 text-red-800" },
-    { key: "cancel_with_repost", label: "Cancel with Repost", color: "bg-orange-100 text-orange-800" },
-    { key: "cancel_without_repost", label: "Cancel without Repost", color: "bg-gray-100 text-gray-800" },
+    { key: "all", label: t("serviceRequest.filters.all"), color: "bg-gray-100 text-gray-800" },
+    { key: "taken", label: t("serviceRequest.filters.taken"), color: "bg-blue-100 text-blue-800" },
+    { key: "pending", label: t("serviceRequest.filters.pending"), color: "bg-yellow-100 text-yellow-800" },
+    { key: "expired", label: t("serviceRequest.status.expired"), color: "bg-red-100 text-red-800" },
+    { key: "cancel_with_repost", label: t("serviceRequest.status.cancelWithRepost"), color: "bg-orange-100 text-orange-800" },
+    { key: "cancel_without_repost", label: t("serviceRequest.status.cancelWithoutRepost"), color: "bg-gray-100 text-gray-800" },
   ];
 
   const jobPostings = jopPosting?.data || [];
@@ -207,7 +207,7 @@ const HelpRequestsMain = () => {
         <div className="mb-4">
           <p className="text-sm text-gray-600">
             {t('serviceRequest.showing')} <span className="font-semibold text-gray-900">{filtered.length}</span>{" "}
-            {selectedStatus !== "all" ? `${selectedStatus} ` : ""}
+            {selectedStatus !== "all" ? `${statusTabs.find(tab => tab.key === selectedStatus)?.label || ''} ` : ""}
             {t('serviceRequest.serviceRequests', { count: filtered.length })}
           </p>
         </div>
