@@ -5,9 +5,9 @@ const schema_social_Insurance = z.object({
     .string()
     .min(1, "Please enter your tax identification number"),
 
-  tax_bracket: z.enum(["1", "2", "3", "4", "5", "6"], {
-    message: "Please enter your tax bracket",
-  }),
+  // tax_bracket: z.enum(["1", "2", "3", "4", "5", "6"], {
+  //   message: "Please enter your tax bracket",
+  // }),
 
   social_insurance_number: z
     .string()
@@ -25,13 +25,13 @@ const schema_social_Insurance = z.object({
     message: "Please select your health insurance type",
   }),
 
-  number_of_children: z.coerce
-    .number()
-    .transform((val) => (val ? Number(val) : undefined))
-    .refine(
-      (val) => val === undefined || val >= 0,
-      "Must be a positive number"
-    ),
+  // number_of_children: z.coerce
+  //   .number()
+  //   .transform((val) => (val ? Number(val) : undefined))
+  //   .refine(
+  //     (val) => val === undefined || val >= 0,
+  //     "Must be a positive number"
+  //   ),
 
   marital_status: z.enum(["single", "married", "divorced", "widowed"], {
     message: "Please select your marital status",

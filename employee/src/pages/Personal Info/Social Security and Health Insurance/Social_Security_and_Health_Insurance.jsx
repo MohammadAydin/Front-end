@@ -7,7 +7,7 @@ import schema_social_Insurance from "./schema_social_Insurance";
 import InputField from "../../../components/FormElements/InputField";
 import SelectField from "../../../components/FormElements/SelectField";
 import SubmitButtons from "../../../components/FormElements/SubmitButtons";
-import BirthCertificateInput from "./BirthCertificateInput";
+// import BirthCertificateInput from "./BirthCertificateInput";
 import customFetch from "../../../utils/axios";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
@@ -96,18 +96,18 @@ const Social_Security_and_Health_Insurance = () => {
         },
       ],
     },
-    {
-      name: "tax_bracket",
-      label: t("socialSecurity.fields.taxBracket"),
-      optians: [
-        { value: "1", label: "1" },
-        { value: "2", label: "2" },
-        { value: "3", label: "3" },
-        { value: "4", label: "4" },
-        { value: "5", label: "5" },
-        { value: "6", label: "6" },
-      ],
-    },
+    // {
+    //   name: "tax_bracket",
+    //   label: t("socialSecurity.fields.taxBracket"),
+    //   optians: [
+    //     { value: "1", label: "1" },
+    //     { value: "2", label: "2" },
+    //     { value: "3", label: "3" },
+    //     { value: "4", label: "4" },
+    //     { value: "5", label: "5" },
+    //     { value: "6", label: "6" },
+    //   ],
+    // },
   ];
 
   const add_Social_Insurance_Mutation = useMutation({
@@ -127,7 +127,7 @@ const Social_Security_and_Health_Insurance = () => {
   });
 
   const maritalStatus = watch("marital_status");
-  const numberOfChildren = watch("number_of_children");
+  // const numberOfChildren = watch("number_of_children");
 
   const submit = (data) => {
     const formData = new FormData();
@@ -143,9 +143,9 @@ const Social_Security_and_Health_Insurance = () => {
       "tax_identification_number",
       data.tax_identification_number
     );
-    formData.append("tax_bracket", data.tax_bracket);
+    // formData.append("tax_bracket", data.tax_bracket);
     formData.append("marital_status", data.marital_status);
-    formData.append("number_of_children", data.number_of_children);
+    // formData.append("number_of_children", data.number_of_children);
 
     Object.values(data.children_documents || {}).forEach((fileList) => {
       if (fileList && fileList[0])
@@ -176,7 +176,7 @@ const Social_Security_and_Health_Insurance = () => {
             />
           ))}
 
-          <div>
+          {/* <div>
             <div className="InputField relative input-group ">
               <input
                 {...register("number_of_children")}
@@ -201,7 +201,7 @@ const Social_Security_and_Health_Insurance = () => {
                 {errors["number_of_children"].message}
               </p>
             )}
-          </div>
+          </div> */}
 
           {social_Insurance_select.map((select) => (
             <SelectField
@@ -217,7 +217,7 @@ const Social_Security_and_Health_Insurance = () => {
           ))}
         </div>
 
-        {watch("number_of_children") > 0 && (
+        {/* {watch("number_of_children") > 0 && (
           <>
             <h2 className="text-2xl font-bold mb-2">
               Children's Birth Certificate
@@ -238,7 +238,7 @@ const Social_Security_and_Health_Insurance = () => {
               )}
             </div>
           </>
-        )}
+        )} */}
 
         <SubmitButtons
           prevLabel={t("socialSecurity.back")}
