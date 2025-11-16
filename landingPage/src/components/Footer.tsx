@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logoHorizontal from '@/assets/logo-horizontal.png';
+import gvpIcon from '@/assets/GVP.png';
+import bundesagenturIcon from '@/assets/Bundesagentur für Arbeit.png';
 
 const Footer = () => {
     const { t } = useLanguage();
@@ -137,7 +139,7 @@ const Footer = () => {
                         </div>
 
                         {/* Social Links */}
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-4 mb-6">
                             {socialLinks.map((social, index) => (
                                 <motion.a
                                     key={index}
@@ -152,6 +154,40 @@ const Footer = () => {
                                     <social.icon className="w-5 h-5" />
                                 </motion.a>
                             ))}
+                        </div>
+
+                        {/* Certification Icons */}
+                        <div className="flex items-center space-x-4">
+                            <motion.a
+                                href="https://woundwann.s3.eu-central-1.amazonaws.com/company/2025-04-01_GVP-Mitgliedsurkunde.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="transition-transform duration-300"
+                                aria-label="GVP Mitgliedsurkunde"
+                            >
+                                <img
+                                    src={gvpIcon}
+                                    alt="GVP Mitgliedsurkunde"
+                                    className="h-12 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                                />
+                            </motion.a>
+                            <motion.a
+                                href="https://woundwann.s3.eu-central-1.amazonaws.com/company/Erlaubnis+2025.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="transition-transform duration-300"
+                                aria-label="Bundesagentur für Arbeit Erlaubnis"
+                            >
+                                <img
+                                    src={bundesagenturIcon}
+                                    alt="Bundesagentur für Arbeit Erlaubnis"
+                                    className="h-12 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                                />
+                            </motion.a>
                         </div>
                     </motion.div>
 

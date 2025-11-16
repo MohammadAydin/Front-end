@@ -18,7 +18,6 @@ import {
     Instagram
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { API_BASE_URL, getApiUrl } from '@/config/api';
 
 const Contact = () => {
     const ref = useRef(null);
@@ -57,7 +56,7 @@ const Contact = () => {
                 message: `${formData.subject ? `[${formData.subject}] ` : ''}${formData.company ? `(Company: ${formData.company}) ` : ''}${formData.message}`
             };
 
-            const endpoint = import.meta.env.DEV ? '/v1/contact' : getApiUrl('/contact');
+            const endpoint = import.meta.env.DEV ? '/v1/contact' : 'https://woundwann.de/v1/contact';
             const res = await fetch(endpoint, {
                 method: 'POST',
                 headers: {

@@ -34,6 +34,23 @@ const AboutUs = () => {
         }
     ];
 
+    const certifications = [
+        {
+            name: 'GVP',
+            title: 'GVP Mitglied',
+            description: 'Tarifgebundenes Mitglied',
+            color: 'primary',
+            href: 'https://woundwann.s3.eu-central-1.amazonaws.com/company/2025-04-01_GVP-Mitgliedsurkunde.pdf'
+        },
+        {
+            name: 'BfA',
+            title: 'Bundesagentur',
+            description: 'Erlaubnis zur Arbeitnehmerüberlassung',
+            color: 'accent',
+            href: 'https://woundwann.s3.eu-central-1.amazonaws.com/company/Erlaubnis+2025.pdf'
+        }
+    ];
+
     const getColorClasses = (color: string) => {
         switch (color) {
             case 'primary':
@@ -248,6 +265,50 @@ const AboutUs = () => {
                                         {feature.description}
                                     </p>
                                 </motion.div>
+                            );
+                        })}
+                    </motion.div>
+
+                    {/* Certifications Circles */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.2 }}
+                        viewport={{ once: true }}
+                        className="grid grid-cols-2 gap-8 lg:gap-12 mt-16 max-w-2xl mx-auto"
+                    >
+                        {certifications.map((cert, index) => {
+                            const colors = getColorClasses(cert.color);
+
+                            return (
+                                <motion.a
+                                    key={index}
+                                    href={cert.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="flex flex-col items-center text-center group cursor-pointer"
+                                >
+                                    <motion.div
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        transition={{ duration: 0.3 }}
+                                        className={`relative w-24 h-24 lg:w-28 lg:h-28 rounded-full ${colors.bg} ${colors.border} border-2 flex items-center justify-center mb-4 group-hover:shadow-lg transition-all duration-300`}
+                                    >
+                                        <span className="text-white font-bold text-xl lg:text-2xl">
+                                            {cert.name}
+                                        </span>
+                                        <div className={`absolute inset-0 rounded-full ${colors.light} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                                    </motion.div>
+                                    <h3 className={`text-lg font-semibold mb-2 ${colors.text}`}>
+                                        {cert.title}
+                                    </h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed max-w-40">
+                                        {cert.description}
+                                    </p>
+                                </motion.a>
                             );
                         })}
                     </motion.div>
