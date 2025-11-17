@@ -297,9 +297,9 @@ const translations = {
     'testimonials.caregiver1Text': 'Durch Woundwann kann ich meine Arbeitszeiten selbst bestimmen. Die Bezahlung ist fair und pünktlich. Ich arbeite nur in Einrichtungen, die zu mir passen.',
     'testimonials.caregiver1Rating': '5.0',
 
-    'testimonials.caregiver2Name': 'Michael Hoffmann',
-    'testimonials.caregiver2Role': 'Altenpfleger',
-    'testimonials.caregiver2Location': 'Berlin',
+    'testimonials.caregiver2Name': 'Waseem',
+    'testimonials.caregiver2Role': 'Pflegehelfer',
+    'testimonials.caregiver2Location': 'Bad Nauheim',
     'testimonials.caregiver2Text': 'Keine Bewerbungsgespräche, keine komplizierten Prozesse. Ich erstelle mein Profil und bekomme passende Angebote. Die Flexibilität ist perfekt für mich.',
     'testimonials.caregiver2Rating': '5.0',
 
@@ -783,9 +783,9 @@ const translations = {
     'testimonials.caregiver1Text': 'Through Woundwann I can determine my own working hours. The pay is fair and on time. I only work in facilities that suit me.',
     'testimonials.caregiver1Rating': '5.0',
 
-    'testimonials.caregiver2Name': 'Michael Hoffmann',
-    'testimonials.caregiver2Role': 'Elderly Care Professional',
-    'testimonials.caregiver2Location': 'Berlin',
+    'testimonials.caregiver2Name': 'Waseem',
+    'testimonials.caregiver2Role': 'nursing assistant',
+    'testimonials.caregiver2Location': 'Bad Nauheim',
     'testimonials.caregiver2Text': 'No job interviews, no complicated processes. I create my profile and get matching offers. The flexibility is perfect for me.',
     'testimonials.caregiver2Rating': '5.0',
 
