@@ -27,4 +27,5 @@ export { default as AddLoaction } from "./LocationInfo/AddLoaction.jsx";
 export { default as EditWorkaBilities } from "./LocationInfo/EditWorkaBilities.jsx";
 
 export { default as WorkingHours } from "./working hours/WorkingHours.jsx";
+export { default as WorkedHoursStatistics } from "./worked-hours-statistics/WorkedHoursStatistics.jsx";
 export { default as Notifications } from "./notifications/Notifications.jsx";

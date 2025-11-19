@@ -7,9 +7,26 @@ const Wrapper = styled.div`
     padding: 3px;
   }
   .SideBar {
-    background-color: #194894;
+    background: linear-gradient(180deg, #194894 0%, #1a4fa0 50%, #194894 100%);
     border: 20px white solid;
     border-radius: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .SideBar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
   }
   p {
     font-family: "LamaSans";
@@ -19,14 +36,29 @@ const Wrapper = styled.div`
   }
 
   .active {
-    background-color: white;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     color: #194894;
-    border-radius: 6px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.1);
     animation: fade 0.3s forwards;
+    position: relative;
     p {
       font-family: "LamaSans";
-      font-weight: 900;
+      font-weight: 700;
     }
+  }
+
+  .active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: linear-gradient(180deg, #F47621 0%, #3b82f6 100%);
+    border-radius: 0 4px 4px 0;
   }
   ul {
     width: 100%;

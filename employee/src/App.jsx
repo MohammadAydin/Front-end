@@ -22,6 +22,7 @@ import {
   EditLocation,
   EditWorkaBilities,
   WorkingHours,
+  WorkedHoursStatistics,
   Contract,
   Notifications,
 } from "./pages";
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "working hours",
         element: <WorkingHours />,
+      },
+      {
+        path: "worked-hours-statistics",
+        element: <WorkedHoursStatistics />,
       },
       {
         path: "notifications",
