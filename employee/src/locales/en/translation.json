@@ -320,9 +320,11 @@
   },
   "locationInfo": {
     "title": "Location Info",
+    "subtitle": "Manage your addresses and commuting preferences",
     "addresses": "Addresses",
     "addNewAddress": "Add new Address",
     "noAddressMessage": "There is no address currently, Please add an address.",
+    "noAddressTitle": "No Addresses Found",
     "addressNumber": "Address {{number}}",
     "active": "Active",
     "activate": "Activate",
@@ -334,7 +336,9 @@
     "locationActivateSuccess": "Location activated successfully",
     "locationActivateError": "Failed to activate location",
     "mapView": "Map view for {{address}}",
-    "locationMarker": "Location marker for {{address}}"
+    "locationMarker": "Location marker for {{address}}",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "addLocation": {
     "title": "Add new Location",

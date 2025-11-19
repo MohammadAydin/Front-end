@@ -320,9 +320,11 @@
   },
   "locationInfo": {
     "title": "Konum Bilgileri",
+    "subtitle": "Adreslerinizi ve yolculuk tercihlerinizi yönetin",
     "addresses": "Adresler",
     "addNewAddress": "Yeni Adres Ekle",
     "noAddressMessage": "Şu anda adres bulunmamaktadır, lütfen bir adres ekleyin.",
+    "noAddressTitle": "Adres Bulunamadı",
     "addressNumber": "Adres {{number}}",
     "active": "Aktif",
     "activate": "Aktifleştir",
@@ -334,7 +336,9 @@
     "locationActivateSuccess": "Konum başarıyla aktifleştirildi",
     "locationActivateError": "Konum aktifleştirilemedi",
     "mapView": "{{address}} için harita görünümü",
-    "locationMarker": "{{address}} için konum işaretçisi"
+    "locationMarker": "{{address}} için konum işaretçisi",
+    "edit": "Düzenle",
+    "delete": "Sil"
   },
   "addLocation": {
     "title": "Yeni Konum Ekle",

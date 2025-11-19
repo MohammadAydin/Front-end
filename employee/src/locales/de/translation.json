@@ -320,9 +320,11 @@
   },
   "locationInfo": {
     "title": "Standortinformationen",
+    "subtitle": "Verwalten Sie Ihre Adressen und Pendelpräferenzen",
     "addresses": "Adressen",
     "addNewAddress": "Neue Adresse hinzufügen",
     "noAddressMessage": "Es gibt derzeit keine Adresse. Bitte fügen Sie eine Adresse hinzu.",
+    "noAddressTitle": "Keine Adressen gefunden",
     "addressNumber": "Adresse {{number}}",
     "active": "Aktiv",
     "activate": "Aktivieren",
@@ -334,7 +336,9 @@
     "locationActivateSuccess": "Standort erfolgreich aktiviert",
     "locationActivateError": "Fehler beim Aktivieren des Standorts",
     "mapView": "Kartenansicht für {{address}}",
-    "locationMarker": "Standortmarkierung für {{address}}"
+    "locationMarker": "Standortmarkierung für {{address}}",
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
   },
   "addLocation": {
     "title": "Neuen Standort hinzufügen",
