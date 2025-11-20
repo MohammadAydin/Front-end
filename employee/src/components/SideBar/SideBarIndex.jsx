@@ -46,9 +46,9 @@ const pages = [
   },
   {
     id: 5,
-    name: "navigation.workingHours",
+    name: "navigation.workedHoursStatistics",
     icon: <LuClock size={24} />,
-    path: "/Working Hours",
+    path: "/worked-hours-statistics",
   },
 ];
 
@@ -79,14 +79,35 @@ const PagesList = ({ setIsOpen }) => {
     <ul className="sidebarList">
       {pages.map((page) => (
         <NavLink to={page.path} key={page.id}>
-          <li
-            onClick={() => setIsOpen(false)}
-            className="nav-item flex items-center gap-2 mx-[5px] relative group"
-          >
-            {page.icon}
-            <p className="pageName">{t(page.name)}</p>
-            <span className="SmallpageName hidden">{t(page.name)}</span>
-          </li>
+          {({ isActive }) => (
+            <li
+              onClick={() => setIsOpen(false)}
+              className={`nav-item flex items-center gap-3 mx-[5px] relative group px-3 py-2.5 rounded-lg transition-all duration-300 ${
+                isActive
+                  ? "bg-white text-[#194894] shadow-lg shadow-white/20"
+                  : "text-white hover:bg-white/10 hover:text-[#F47621]"
+              }`}
+            >
+              <span
+                className={`transition-transform duration-300 ${
+                  isActive ? "scale-110" : "group-hover:scale-110"
+                }`}
+              >
+                {page.icon}
+              </span>
+              <p
+                className={`pageName transition-all duration-300 ${
+                  isActive ? "font-semibold" : "font-light"
+                }`}
+              >
+                {t(page.name)}
+              </p>
+              <span className="SmallpageName hidden">{t(page.name)}</span>
+              {isActive && (
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-[#F47621] to-blue-400 rounded-r-full"></div>
+              )}
+            </li>
+          )}
         </NavLink>
       ))}
     </ul>
@@ -194,20 +215,28 @@ const SettingList = ({ setIsOpen }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <ul className="sidebarList">
         {Settings.map((item) => (
           <li
-            className={`flex items-center justify-between w-full cursor-pointer hover:font-bold mb-1`}
+            className={`flex items-center justify-between w-full cursor-pointer mb-2 px-3 py-2.5 rounded-lg transition-all duration-300 ${
+              item.type === "logout"
+                ? "hover:bg-red-500/20 hover:text-red-200"
+                : "hover:bg-white/10 hover:text-[#F47621]"
+            }`}
             key={item.id}
             onClick={() => handleItemClick(item)}
           >
-            <div className="flex items-center gap-2 ">
-              {item.icon}
-              <span className="pageName">{t(item.name)}</span>
+            <div className="flex items-center gap-3">
+              <span className="transition-transform duration-300 hover:scale-110">
+                {item.icon}
+              </span>
+              <span className="pageName font-light">{t(item.name)}</span>
             </div>
             {item.type === "language" && (
-              <span className="text-lg">{currentLanguage.flag}</span>
+              <span className="text-lg transition-transform duration-300 hover:scale-125">
+                {currentLanguage.flag}
+              </span>
             )}
           </li>
         ))}
@@ -217,22 +246,25 @@ const SettingList = ({ setIsOpen }) => {
       {isLanguageDropdownOpen && (
         <div
           ref={langRef}
-          className="absolute bottom-full left-0 mb-2 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+          className="language-dropdown absolute bottom-full left-0 mb-2 w-full bg-white rounded-xl shadow-2xl border border-gray-200/50 py-2 z-50 overflow-hidden backdrop-blur-sm"
         >
+          <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50/50"></div>
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => changeLanguage.mutate(language.code)}
               className={`${
                 i18n.language === language.code
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-100"
-              } group flex items-center px-4 py-2 text-sm w-full text-left transition-colors duration-200`}
+                  ? "bg-gradient-to-r from-[#F47621]/10 to-blue-500/10 text-[#194894] font-semibold"
+                  : "text-gray-700 hover:bg-gray-100/80"
+              } group relative flex items-center px-4 py-3 text-sm w-full text-left transition-all duration-300 hover:pl-5`}
             >
-              <span className="mr-4 text-lg">{language.flag}</span>
+              <span className="mr-4 text-xl transition-transform duration-300 group-hover:scale-125">
+                {language.flag}
+              </span>
               <span className="flex-1">{language.name}</span>
               {i18n.language === language.code && (
-                <span className="text-blue-500 ml-3">✓</span>
+                <span className="text-[#F47621] ml-3 text-lg font-bold">✓</span>
               )}
             </button>
           ))}
@@ -241,19 +273,22 @@ const SettingList = ({ setIsOpen }) => {
       {issettingsDropdownOpen && (
         <div
           ref={settingsRef}
-          className="absolute left-0 flex flex-col gap-4 top-[-100px] p-3 pr-3 mb-2 w-[180px] bg-white rounded-lg shadow-lg border border-gray-200 py-4 z-50"
+          className="settings-dropdown absolute left-0 flex flex-col gap-2 top-[-100px] p-2 mb-2 w-[200px] bg-white rounded-xl shadow-2xl border border-gray-200/50 py-3 z-50 overflow-hidden backdrop-blur-sm"
         >
+          <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50/50"></div>
           {SettingsPage.map((Page) => (
-            <Link key={Page.id} to={Page.toPage}>
+            <Link key={Page.id} to={Page.toPage} className="relative">
               <button
                 onClick={() => {
                   setIssettingsropdownOpen(false);
                   setIsOpen(false);
                 }}
-                className="text-gray-700 hover:bg-gray-100 group w-fit flex items-center   text-[0.8em] text-left transition-colors duration-200"
+                className="text-gray-700 hover:bg-gradient-to-r hover:from-[#F47621]/10 hover:to-blue-500/10 hover:text-[#194894] group w-full flex items-center gap-3 text-sm text-left transition-all duration-300 px-3 py-2.5 rounded-lg hover:pl-4"
               >
-                <span className="mr-4 text-lg">{Page.icon}</span>
-                <span className="flex-1">{Page.name}</span>
+                <span className="text-lg transition-transform duration-300 group-hover:scale-110 group-hover:text-[#F47621]">
+                  {Page.icon}
+                </span>
+                <span className="flex-1 font-medium">{Page.name}</span>
               </button>
             </Link>
           ))}

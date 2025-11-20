@@ -6,6 +6,13 @@ import { GiPathDistance } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";
 import { RiPencilLine } from "react-icons/ri";
 import { FaRegTrashCan } from "react-icons/fa6";
+import {
+  LuMapPin,
+  LuMapPinCheck,
+  LuBuilding2,
+  LuNavigation,
+} from "react-icons/lu";
+import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import customFetch from "../../utils/axios";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -95,126 +102,249 @@ const LocationInfo = () => {
   );
   return (
     <>
-      <div className="py-5 px-5">
-        <div className="text-2xl font-bold">{t("locationInfo.title")}</div>
-        <div className="mt-5 flex flex-col">
-          <div className="list-location">
-            {/* Container with the bottom section for adding addresses */}
-            <div className="mt-8 shadow-locationsList p-3.5 mb-5">
-              {/* A container that contains the container title and the add button{" "} */}
-              <div className="flex justify-between max-[600px]:flex-col max-[600px]:gap-2.5">
-                <p>{t("locationInfo.addresses")}</p>
-                {/* When the add button is pressed, a popup opens to add the address */}
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="mb-8">
+          <div className="relative bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-2xl shadow-xl p-8 overflow-hidden">
+            {/* Decorative Background Pattern */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+            ></div>
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3">
+                  <LuMapPin size={32} className="text-white" />
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-bold text-white">
+                  {t("locationInfo.title")}
+                </h1>
+              </div>
+              <p className="text-white/90 text-lg mt-2">
+                {t("locationInfo.subtitle")}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto space-y-6">
+          {/* Addresses Section */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+            {/* Section Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-gradient-to-br from-[#F47621] to-[#ff8c42] rounded-xl p-2.5">
+                  <LuBuilding2 size={24} className="text-white" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {t("locationInfo.addresses")}
+                </h2>
+                {locations?.length > 0 && (
+                  <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-semibold">
+                    {locations.length}
+                  </span>
+                )}
+              </div>
+              {/* Add New Address Button */}
+              {primarystatus == "approved" && (
                 <Link
                   to={`/addLoaction/${locations?.length}`}
-                  className={`flex items-center gap-1.5 ${
-                    primarystatus != "approved" && "hidden"
-                  }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F47621] to-[#ff8c42] text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
                 >
-                  <FaPlus />
-                  {t("locationInfo.addNewAddress")} 
+                  <FaPlus size={18} />
+                  {t("locationInfo.addNewAddress")}
                 </Link>
-              </div>
-              {locations?.length == 0 && (
-                <div className="flex justify-center items-center gap-1 mt-6">
-                  <RiErrorWarningLine className="text-2xl text-secondaryColor" />
-
-                  <p className=" ">{t("locationInfo.noAddressMessage")}</p>
-                </div>
               )}
-              {/* A container containing the added addresses  */}
-              <div className="mt-3.5 ">
-                {/* Displaying address array data */}
+            </div>
+
+            {/* Empty State */}
+            {locations?.length == 0 && (
+              <div className="flex flex-col justify-center items-center py-16 px-4">
+                <div className="relative max-w-md w-full">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-64 h-64 bg-gradient-to-br from-[#F47621]/10 to-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+                  </div>
+                  <div className="relative bg-white rounded-2xl shadow-xl p-12 border border-gray-100 text-center">
+                    <div className="flex justify-center mb-6">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#F47621]/20 to-blue-500/20 rounded-full blur-xl"></div>
+                        <div className="relative bg-gradient-to-br from-[#F47621] to-[#ff8c42] rounded-full p-6">
+                          <LuMapPin size={64} className="text-white" />
+                        </div>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                      {t("locationInfo.noAddressTitle")}
+                    </h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {t("locationInfo.noAddressMessage")}
+                    </p>
+                    {primarystatus == "approved" && (
+                      <Link
+                        to={`/addLoaction/${locations?.length}`}
+                        className="inline-block bg-gradient-to-r from-[#F47621] to-[#ff8c42] text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+                      >
+                        <FaPlus className="inline mr-2" />
+                        {t("locationInfo.addNewAddress")}
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Address Cards */}
+            {locations?.length > 0 && (
+              <div className="space-y-4">
                 {locations?.map((location, index) => (
                   <div
                     key={location.id}
-                    className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5 border-b border-[#919eab63] border-dashed pb-4"
+                    className={`group relative bg-gradient-to-br ${
+                      location.is_primary == 1
+                        ? "from-[#F47621]/10 to-[#ff8c42]/10 border-2 border-[#F47621]/30"
+                        : "from-white to-gray-50 border border-gray-200"
+                    } rounded-xl p-6 hover:shadow-lg transition-all duration-300`}
                   >
-                    <h2
-                      className={`text-[1.1rem] w-[10vw] ${
-                        location.is_primary == 1 && "text-secondaryColor"
-                      }`}
-                    >
-                      {location.is_primary == 1
-                        ? t("locationInfo.primaryLocation")
-                        : `${t("locationInfo.addressNumber", { number: index + 2 })}`}
-                    </h2>
-                    <div
-                      className="flex justify-between flex-1 gap-3.5 max-[820px]:w-full
-"
-                    >
-                      <div className="address-info gap-10 flex items-center max-[545px]:flex-col max-[545px]:items-start max-[545px]:gap-2.5 ">
-                        <p>{location.street1}</p>
-                        <p>{location.city}</p>
-                        <p>{location.postal_code}</p>
-                      </div>
-                      {/* Container with delete and edit buttons */}
-                      {primarystatus != "approved" ? (
-                        <div
-                          className="text-center  bg-yellow-500
-                             text-white py-1 w-[100px] rounded-[5px] non-click"
-                        >
-                          {primarystatus} ...
+                    {/* Primary Badge */}
+                    {location.is_primary == 1 && (
+                      <div className="absolute top-4 right-4">
+                        <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                          <LuMapPinCheck size={14} />
+                          {t("locationInfo.primary")}
                         </div>
-                      ) : (
-                        <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
+                      </div>
+                    )}
+
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                      {/* Address Info */}
+                      <div className="flex-1">
+                        <div className="flex items-start gap-4 mb-4">
+                          <div
+                            className={`rounded-xl p-3 ${
+                              location.is_primary == 1
+                                ? "bg-gradient-to-br from-[#F47621] to-[#ff8c42]"
+                                : "bg-gray-200"
+                            }`}
+                          >
+                            <LuMapPin
+                              size={24}
+                              className={
+                                location.is_primary == 1
+                                  ? "text-white"
+                                  : "text-gray-600"
+                              }
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-gray-800 mb-2">
+                              {location.is_primary == 1
+                                ? t("locationInfo.primaryLocation")
+                                : `${t("locationInfo.addressNumber", {
+                                    number: index + 2,
+                                  })}`}
+                            </h3>
+                            <div className="space-y-1 text-gray-600">
+                              <p className="font-medium">{location.street1}</p>
+                              <div className="flex flex-wrap gap-4 text-sm">
+                                <span className="flex items-center gap-1">
+                                  <LuBuilding2 size={16} />
+                                  {location.city}
+                                </span>
+                                <span>{location.postal_code}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      {primarystatus == "approved" && (
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                          {/* Activate/Active Button */}
                           <button
                             onClick={() => Activate.mutate(location.id)}
-                            className={` ${
-                              location.is_active == 1
-                                ? "bg-green-500 non-click"
-                                : " bg-gray-500"
-                            } text-white py-1 w-[100px] rounded-[5px]`}
                             disabled={location.is_active}
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 ${
+                              location.is_active == 1
+                                ? "bg-green-500 text-white cursor-not-allowed"
+                                : "bg-gray-500 hover:bg-gray-600 text-white"
+                            }`}
                           >
-                            {location.is_active ? t("locationInfo.active") : t("locationInfo.activate")}
+                            {location.is_active == 1 ? (
+                              <>
+                                <IoCheckmarkDoneCircle size={18} />
+                                {t("locationInfo.active")}
+                              </>
+                            ) : (
+                              t("locationInfo.activate")
+                            )}
                           </button>
-                          {location.is_primary == 1 ? (
-                            <div
-                              className="text-center  bg-secondaryColor
-                             text-white py-1 w-[100px] rounded-[5px] non-click"
-                            >
-                              {t("locationInfo.primary")}
-                            </div>
-                          ) : (
-                            <div className="flex gap-2 items-center justify-center w-[100px]">
+
+                          {/* Edit/Delete Buttons */}
+                          {location.is_primary != 1 && (
+                            <div className="flex items-center gap-2">
                               <Link
                                 to={`/editLocation?id=${location.id}&title=${location.title}&street1=${location.street1}&street2=${location.street2}&postal_code=${location.postal_code}&city=${location.city}&country=${location.country}`}
+                                className="bg-blue-500 hover:bg-blue-600 text-white p-2.5 rounded-xl transition-all duration-300 hover:scale-110"
+                                title={t("locationInfo.edit")}
                               >
-                                <RiPencilLine className="click text-[1.5rem] text-gray-400" />
+                                <RiPencilLine size={20} />
                               </Link>
-                              <FaRegTrashCan
-                                onClick={() =>
-                                  deleteLocation.mutate(location.id)
-                                }
-                                className="click text-[1.2rem] text-red-500"
-                              />
+                              <button
+                                onClick={() => deleteLocation.mutate(location.id)}
+                                className="bg-red-500 hover:bg-red-600 text-white p-2.5 rounded-xl transition-all duration-300 hover:scale-110"
+                                title={t("locationInfo.delete")}
+                              >
+                                <FaRegTrashCan size={18} />
+                              </button>
                             </div>
                           )}
+                        </div>
+                      )}
+
+                      {/* Pending Status */}
+                      {primarystatus != "approved" && (
+                        <div className="bg-yellow-500 text-white px-4 py-2 rounded-xl font-semibold flex items-center gap-2">
+                          <RiErrorWarningLine size={18} />
+                          {primarystatus}...
                         </div>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            )}
           </div>
 
-          <div className="flex items-center gap-3 p-4 bg-white shadow-md rounded-lg max-w-md">
-            <GiPathDistance className="text-4xl text-secondaryColor" />
-            <div className="w-full">
-              <div className="flex justify-between w-full">
-                <p className="text-gray-500 text-sm">
-                  {t("locationInfo.commutingRange")}
-                </p>
-                <Link to={`/EditWorkaBilities/${workable?.workable_distance}`}>
-                  <RiPencilLine className="click text-[1.5rem] text-gray-400" />
-                </Link>
-              </div>
-              <div className="flex gap-3 items-center ">
-                <p className="text-lg font-semibold text-gray-800">
-                  {workable?.workable_distance} km
-                </p>
+          {/* Commuting Range Card */}
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-6 sm:p-8 border border-blue-100">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+              <div className="flex items-center gap-4 flex-1">
+                <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-4">
+                  <GiPathDistance size={32} className="text-white" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-gray-600 text-sm font-medium">
+                      {t("locationInfo.commutingRange")}
+                    </p>
+                    <Link
+                      to={`/EditWorkaBilities/${workable?.workable_distance}`}
+                      className="bg-white hover:bg-gray-100 text-gray-700 p-2 rounded-lg transition-all duration-300 hover:scale-110"
+                      title={t("locationInfo.edit")}
+                    >
+                      <RiPencilLine size={20} />
+                    </Link>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <LuNavigation size={20} className="text-blue-600" />
+                    <p className="text-2xl font-bold text-gray-800">
+                      {workable?.workable_distance} km
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
