@@ -145,3 +145,4 @@ const YearView = ({ data, formatDecimalHours }) => {
 
 export default YearView;
 
+

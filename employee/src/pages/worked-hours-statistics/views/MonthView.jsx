@@ -134,3 +134,4 @@ const MonthView = ({ data, formatDecimalHours, selectedYear, selectedMonth }) =>
 
 export default MonthView;
 
+

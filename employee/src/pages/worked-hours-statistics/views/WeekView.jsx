@@ -144,3 +144,4 @@ const WeekView = ({ data, formatDecimalHours, selectedYear, selectedWeek }) => {
 
 export default WeekView;
 
+
