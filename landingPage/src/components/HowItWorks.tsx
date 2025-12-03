@@ -2,8 +2,6 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import {
   MapPin,
-  Search,
-  UserCheck,
   Clock,
   Calendar,
   CheckCircle,
@@ -24,18 +22,6 @@ const HowItWorks = () => {
       title: t('howItWorks.step1Title'),
       description: t('howItWorks.step1Desc'),
       color: "from-primary to-primary-light"
-    },
-    {
-      icon: Search,
-      title: t('howItWorks.step2Title'),
-      description: t('howItWorks.step2Desc'),
-      color: "from-accent to-accent-light"
-    },
-    {
-      icon: UserCheck,
-      title: t('howItWorks.step3Title'),
-      description: t('howItWorks.step3Desc'),
-      color: "from-success to-success-light"
     },
     {
       icon: Clock,
@@ -126,7 +112,7 @@ const HowItWorks = () => {
         </div>
 
         {/* Connection Line */}
-        {index < 3 && (
+        {index < 1 && (
           <motion.div
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
