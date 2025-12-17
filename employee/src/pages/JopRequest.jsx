@@ -289,7 +289,7 @@ const JopRequest = () => {
                     <div className="flex items-center gap-3 w-[250px] max-[720px]:w-full max-[720px]:flex-col max-[720px]:items-start">
                       <img
                         className="rounded-4xl w-16 h-16 object-cover"
-                        src={imgjob}
+                        src={job.job_posting.employer_image_url}
                         alt=""
                       />
                       {/* Display price with jobRequest title */}
@@ -363,9 +363,9 @@ const JopRequest = () => {
                   <div className="flex items-center gap-3 w-[250px] max-[720px]:w-full max-[720px]:flex-col max-[720px]:items-start">
                     <img
                       className="rounded-4xl w-16 h-16 object-cover"
-                      src={imgjob}
+                      src={"https://woundwann.s3.eu-central-1.amazonaws.com/users/employee/avatar/default/service_profile.jpg"}
                       alt=""
-                    />
+                                                                                />
                     {/* Display price with jobRequest title */}
                     <div className="info flex-grow min-w-[200px] max-w-[250px]">
                       <div className="relative group">

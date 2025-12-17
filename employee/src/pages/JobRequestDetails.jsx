@@ -33,8 +33,8 @@ const JobRequestDetails = () => {
     " " +
     jobs?.service_request?.job_posting?.shift?.start_time +
     ":00";
-  
 
+    
   const [hoursdiff, setHoursdiff] = useState(0);
   const [minutesDiff, setMinutesDiff] = useState(0);
   const [daysDiff, setDaysDiff] = useState(0);
@@ -54,7 +54,6 @@ const JobRequestDetails = () => {
 
   // -----------------------
   // Date and difference calculation process
-
 
   // -------------------------
 
@@ -107,7 +106,11 @@ const JobRequestDetails = () => {
       <div className="grid grid-cols-2  pl-3 max-[1109px]:grid-cols-1">
         <div className="grid-cols-1">
           {/* Image of the elderly house (temporary) */}
-          <img className="mt-8 w-[15vw] rounded-full" src={imgjob} alt="" />
+          <img
+            className="mt-8 w-48 h-48 object-cover rounded-full"
+            src={jobs.employerImageUrl}
+            alt="photo"
+          />
           <div className="mt-6">
             <div className="flex items-center w-[70%] justify-between">
               <h2 className="text-xl">
