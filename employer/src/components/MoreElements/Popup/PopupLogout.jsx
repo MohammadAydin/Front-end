@@ -1,44 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Popup.css";
-import { RiErrorWarningLine } from "react-icons/ri";
-import Button from "../Button";
+import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 // Pass confirmation props and change the state of the popup
 const PopupLogout = ({ togglePopup, onConfirm }) => {
   const { t } = useTranslation();
-  return (
-    <div className="modal  ">
-      <div onClick={togglePopup} className="overlay "></div>
-      <div className="modal-content flex flex-col items-center rounded-[10px]">
-        {/* Alert icon */}
-        <RiErrorWarningLine className="text-secondaryColor text-9xl " />
 
-        <p className="mt-8 text-black">
-          {t("SideBar.settings.logout.confirmation")}
-        </p>
-        {/* Close icon */}
-        <button className="close-modal" onClick={togglePopup}>
-          <IoMdClose />
+  // Handle ESC key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        togglePopup();
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [togglePopup]);
+
+  return (
+    <div className="modal">
+      <div onClick={togglePopup} className="overlay"></div>
+      <div className="modal-content-logout">
+        {/* Close Button */}
+        <button
+          className="close-modal-logout"
+          onClick={togglePopup}
+          aria-label="Close"
+        >
+          <IoMdClose size={24} />
         </button>
-        <div className="flex w-[25vw] gap-3.5 mt-14 mb-6 ">
-          {/* Cancel modification button */}
-          <Button
+
+        {/* Icon Container with Animation */}
+        <div className="logout-icon-container">
+          <div className="logout-icon-ring"></div>
+          <div className="logout-icon-ring-delayed"></div>
+          <div className="logout-icon-bg">
+            <IoLogOutOutline size={64} className="logout-icon" />
+          </div>
+        </div>
+
+        {/* Title */}
+        <h2 className="logout-title">
+          {t("SideBar.settings.logout.confirmation")}
+        </h2>
+
+        {/* Description */}
+        <p className="logout-description">
+          {t("SideBar.settings.logout.description")}
+        </p>
+
+        {/* Buttons */}
+        <div className="logout-buttons">
+          {/* Cancel Button */}
+          <button
             onClick={togglePopup}
-            className="bg-softwhite border border-black text-black   p-2 rounded-[10px] w-full"
-            text={t("SideBar.settings.logout.cancel")}
-          />
-          {/* Submit confirmation button */}
-          <Button
+            className="logout-button-cancel"
+          >
+            {t("SideBar.settings.logout.cancel")}
+          </button>
+
+          {/* Confirm Button */}
+          <button
             onClick={() => {
               onConfirm();
               togglePopup();
             }}
             type="button"
-            className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-            text={t("SideBar.settings.logout.confirm")}
-          />
+            className="logout-button-confirm"
+          >
+            <IoLogOutOutline size={20} />
+            {t("SideBar.settings.logout.confirm")}
+          </button>
         </div>
       </div>
     </div>

@@ -31,3 +31,4 @@ export { default as EditLocation } from "./LocationInfo/EditLocation.jsx";
 export { default as AddLoaction } from "./LocationInfo/AddLoaction.jsx";
 export { default as Notifications } from "./notifications/Notifications.jsx";
 export { default as ReportTask } from "./ReportTask.jsx";
+export { default as Settings } from "./Settings.jsx";

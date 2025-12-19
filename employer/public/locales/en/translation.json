@@ -119,8 +119,9 @@
       "Logout": "Logout",
       "logout": {
         "confirmation": "Are you sure you want to log out?",
-        "cancel": "No, cancel",
-        "confirm": "Yes, I'm sure"
+        "description": "You will need to log in again to access your account.",
+        "cancel": "Cancel",
+        "confirm": "Yes, Logout"
       }
     },
     "Settings": {
@@ -320,7 +321,11 @@
     "downloadSummary": "Download summary invoice",
     "downloadDetailed": "Download detailed invoice",
     "summary": "Summary",
-    "detailed": "Detailed"
+    "detailed": "Detailed",
+    "invoice": "invoice",
+    "invoices": "invoices",
+    "available": "available",
+    "noInvoicesAvailable": "No invoices available"
   },
   "accessibility": {
     "loadingContent": "Loading content, please wait"
@@ -354,14 +359,34 @@
   },
   "notifications": {
     "title": "Notifications",
+    "subtitle": "You have {{total}} notifications, {{unread}} unread",
     "noneNotifications": "No notifications yet!",
     "seeAll": "See All Notifications",
     "back": "back",
     "loading": "Loading...",
     "errorLoading": "Error loading notifications",
+    "errorTitle": "Error Loading Notifications",
     "noNotificationsFound": "No notifications found",
+    "noNotificationsTitle": "No Notifications",
+    "noUnreadNotifications": "You're all caught up! No unread notifications.",
+    "noReadNotifications": "No read notifications yet.",
     "notificationsCount": "{{count}} notifications",
-    "unreadIndicator": "Unread notification indicator"
+    "unreadIndicator": "Unread notification indicator",
+    "all": "All",
+    "unread": "Unread",
+    "read": "Read",
+    "markAllAsRead": "Mark All as Read",
+    "marking": "Marking...",
+    "markAsRead": "Mark as Read",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "markAsReadError": "Failed to mark notification as read",
+    "markAllAsReadError": "Failed to mark all notifications as read",
+    "allMarkedAsReadSuccess": "All notifications marked as read",
+    "allRead": "All notifications read",
+    "allCaughtUp": "All Caught Up!",
+    "reconnecting": "Reconnecting...",
+    "seeAllNotifications": "See All Notifications"
   },
 
   "RequestsForm": {
@@ -579,5 +604,14 @@
   "ViewJobs": {
     "title": "View jobs",
     "subtitle": "View all your posted jobs and service requests"
+  },
+  "settings": {
+    "subtitle": "Manage your account settings and preferences",
+    "selectLanguage": "Select Language",
+    "languageDescription": "Choose your preferred language for the application interface.",
+    "languageChanged": "Language changed successfully",
+    "languageChangeError": "Failed to change language",
+    "changePassword": "Change Password",
+    "passwordDescription": "Update your password to keep your account secure."
   }
 }

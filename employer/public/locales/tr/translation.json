@@ -119,8 +119,9 @@
       "Logout": "Çıkış Yap",
       "logout": {
         "confirmation": "Çıkış yapmak istediğinizden emin misiniz?",
-        "cancel": "Hayır, iptal",
-        "confirm": "Evet, eminim"
+        "description": "Hesabınıza tekrar erişmek için giriş yapmanız gerekecek.",
+        "cancel": "İptal",
+        "confirm": "Evet, Çıkış Yap"
       }
     },
     "Settings": {
@@ -320,7 +321,11 @@
     "downloadSummary": "Özet faturayı indir",
     "downloadDetailed": "Detaylı faturayı indir",
     "summary": "Özet",
-    "detailed": "Detaylı"
+    "detailed": "Detaylı",
+    "invoice": "fatura",
+    "invoices": "faturalar",
+    "available": "mevcut",
+    "noInvoicesAvailable": "Fatura mevcut değil"
   },
   "accessibility": {
     "loadingContent": "İçerik yükleniyor, lütfen bekleyin"
@@ -354,14 +359,34 @@
   },
   "notifications": {
     "title": "Bildirimler",
+    "subtitle": "{{total}} bildiriminiz var, {{unread}} okunmamış",
     "noneNotifications": "Henüz bildirim yok!",
     "seeAll": "Tüm Bildirimleri Gör",
     "back": "geri",
     "loading": "Yükleniyor...",
     "errorLoading": "Bildirimler yüklenirken hata oluştu",
+    "errorTitle": "Bildirimler Yüklenirken Hata",
     "noNotificationsFound": "Bildirim bulunamadı",
+    "noNotificationsTitle": "Bildirim Yok",
+    "noUnreadNotifications": "Her şey güncel! Okunmamış bildirim yok.",
+    "noReadNotifications": "Henüz okunmuş bildirim yok.",
     "notificationsCount": "{{count}} bildirim",
-    "unreadIndicator": "Okunmamış bildirim göstergesi"
+    "unreadIndicator": "Okunmamış bildirim göstergesi",
+    "all": "Tümü",
+    "unread": "Okunmamış",
+    "read": "Okunmuş",
+    "markAllAsRead": "Tümünü Okundu İşaretle",
+    "marking": "İşaretleniyor...",
+    "markAsRead": "Okundu İşaretle",
+    "expand": "Genişlet",
+    "collapse": "Daralt",
+    "markAsReadError": "Bildirim okundu olarak işaretlenemedi",
+    "markAllAsReadError": "Tüm bildirimler okundu olarak işaretlenemedi",
+    "allMarkedAsReadSuccess": "Tüm bildirimler okundu olarak işaretlendi",
+    "allRead": "Tüm bildirimler okundu",
+    "allCaughtUp": "Her Şey Güncel!",
+    "reconnecting": "Yeniden bağlanılıyor...",
+    "seeAllNotifications": "Tüm Bildirimleri Gör"
   },
 
   "RequestsForm": {
@@ -576,5 +601,14 @@
   "ViewJobs": {
     "title": "İşleri görüntüle",
     "subtitle": "Yayınlanan tüm işlerinizi ve hizmet taleplerinizi görüntüleyin"
+  },
+  "settings": {
+    "subtitle": "Hesap ayarlarınızı ve tercihlerinizi yönetin",
+    "selectLanguage": "Dil Seçin",
+    "languageDescription": "Uygulama arayüzü için tercih ettiğiniz dili seçin.",
+    "languageChanged": "Dil başarıyla değiştirildi",
+    "languageChangeError": "Dil değiştirilemedi",
+    "changePassword": "Şifre Değiştir",
+    "passwordDescription": "Hesabınızı güvende tutmak için şifrenizi güncelleyin."
   }
 }

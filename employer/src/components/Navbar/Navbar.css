@@ -1,0 +1,55 @@
+/* Navbar Styles */
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  nav {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Ensure dropdowns don't go off-screen on mobile */
+  nav .absolute {
+    max-width: calc(100vw - 1.5rem);
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  /* Better spacing for mobile */
+  nav button,
+  nav a {
+    min-height: 44px; /* iOS recommended touch target size */
+  }
+}
+
+/* Prevent text selection on mobile buttons */
+@media (max-width: 768px) {
+  nav button,
+  nav a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+

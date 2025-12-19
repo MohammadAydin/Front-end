@@ -1,33 +1,97 @@
+/* Slide-in animation for drawer */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.NotificationsContainer {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Custom scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Slide down animation for notification messages */
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.NotificationMessage {
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
   .NotificationsContainer {
-    width: 80%;
-    padding: 20px;
+    width: 90% !important;
+    max-width: 90% !important;
   }
-  .NotificationsContainer > div {
-    margin-bottom: 10px;
+
+  .NotificationsContainer .p-6 {
+    padding: 1rem;
   }
-  .NotificationsContainer > div > h3 {
-    font-size: 16px;
+
+  .NotificationsContainer h3 {
+    font-size: 18px;
   }
+
+  .NotificationsContainer p {
+    font-size: 14px;
+  }
+
   .Notification {
     flex-direction: column;
     align-items: start;
   }
+
   .NotificationsPhoto {
     width: 40px;
     height: 40px;
     padding: 9px;
   }
+
   .NotificationsPhoto > svg {
     width: 22px;
     height: 22px;
   }
+
   .NotificationTitle {
     font-size: 14px;
   }
+
   .NotificationInfo {
     font-size: 12px;
   }
+
   .NotificationMessage {
     font-size: 13px;
   }

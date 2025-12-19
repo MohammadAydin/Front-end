@@ -118,8 +118,9 @@
       "Logout": "Abmelden",
       "logout": {
         "confirmation": "Sind Sie sicher, dass Sie sich abmelden möchten?",
-        "cancel": "Nein, abbrechen",
-        "confirm": "Ja, ich bin sicher"
+        "description": "Sie müssen sich erneut anmelden, um auf Ihr Konto zuzugreifen.",
+        "cancel": "Abbrechen",
+        "confirm": "Ja, abmelden"
       }
     },
     "Settings": {
@@ -320,7 +321,11 @@
     "downloadSummary": "Zusammenfassungsrechnung herunterladen",
     "downloadDetailed": "Detaillierte Rechnung herunterladen",
     "summary": "Zusammenfassung",
-    "detailed": "Detailliert"
+    "detailed": "Detailliert",
+    "invoice": "Rechnung",
+    "invoices": "Rechnungen",
+    "available": "verfügbar",
+    "noInvoicesAvailable": "Keine Rechnungen verfügbar"
   },
   "accessibility": {
     "loadingContent": "Inhalt wird geladen, bitte warten"
@@ -354,14 +359,34 @@
   },
   "notifications": {
     "title": "Benachrichtigungen",
+    "subtitle": "Sie haben {{total}} Benachrichtigungen, {{unread}} ungelesen",
     "noneNotifications": "Noch keine Benachrichtigungen!",
     "seeAll": "Alle Benachrichtigungen anzeigen",
     "back": "zurück",
     "loading": "Laden...",
     "errorLoading": "Fehler beim Laden der Benachrichtigungen",
+    "errorTitle": "Fehler beim Laden der Benachrichtigungen",
     "noNotificationsFound": "Keine Benachrichtigungen gefunden",
+    "noNotificationsTitle": "Keine Benachrichtigungen",
+    "noUnreadNotifications": "Sie sind auf dem neuesten Stand! Keine ungelesenen Benachrichtigungen.",
+    "noReadNotifications": "Noch keine gelesenen Benachrichtigungen.",
     "notificationsCount": "{{count}} Benachrichtigungen",
-    "unreadIndicator": "Ungelesene Benachrichtigung"
+    "unreadIndicator": "Ungelesene Benachrichtigung",
+    "all": "Alle",
+    "unread": "Ungelesen",
+    "read": "Gelesen",
+    "markAllAsRead": "Alle als gelesen markieren",
+    "marking": "Markieren...",
+    "markAsRead": "Als gelesen markieren",
+    "expand": "Erweitern",
+    "collapse": "Einklappen",
+    "markAsReadError": "Benachrichtigung konnte nicht als gelesen markiert werden",
+    "markAllAsReadError": "Alle Benachrichtigungen konnten nicht als gelesen markiert werden",
+    "allMarkedAsReadSuccess": "Alle Benachrichtigungen als gelesen markiert",
+    "allRead": "Alle Benachrichtigungen gelesen",
+    "allCaughtUp": "Alles erledigt!",
+    "reconnecting": "Wiederverbinden...",
+    "seeAllNotifications": "Alle Benachrichtigungen anzeigen"
   },
 
   "RequestsForm": {
@@ -576,5 +601,14 @@
   "ViewJobs": {
     "title": "Aufträge anzeigen",
     "subtitle": "Alle Ihre veröffentlichten Aufträge und Serviceanfragen anzeigen"
+  },
+  "settings": {
+    "subtitle": "Verwalten Sie Ihre Kontoeinstellungen und Präferenzen",
+    "selectLanguage": "Sprache auswählen",
+    "languageDescription": "Wählen Sie Ihre bevorzugte Sprache für die Anwendungsoberfläche.",
+    "languageChanged": "Sprache erfolgreich geändert",
+    "languageChangeError": "Sprache konnte nicht geändert werden",
+    "changePassword": "Passwort ändern",
+    "passwordDescription": "Aktualisieren Sie Ihr Passwort, um Ihr Konto sicher zu halten."
   }
 }

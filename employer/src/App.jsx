@@ -27,6 +27,7 @@ import {
   CoustomHelpRequest,
   AddJob,
   ViewJobs,
+  Settings,
 } from "./pages";
 import ChangePassword from "./components/ChangePassword";
 
@@ -179,6 +180,10 @@ const router = createBrowserRouter([
       {
         path: "/change-password",
         element: <ChangePassword />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },
