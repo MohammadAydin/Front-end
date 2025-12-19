@@ -18,13 +18,13 @@ const ShiftsMangment = () => {
     return <StatusAccount status={localStorage.getItem("statusAccount")} />;
   }
   return (
-    <div className="ShiftsMangment p-[28px] py-[58px]">
+    <div className="ShiftsMangment p-[28px] py-[58px] max-w-7xl mx-auto">
       <CompletePersonalinfo />
 
       <div>
         <ShiftsHeader setIsFormOpen={setIsFormOpen} />
       </div>
-      <div className="my-5">
+      <div className="my-8">
         <ShiftsMain />
       </div>
       <AddShiftsForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
