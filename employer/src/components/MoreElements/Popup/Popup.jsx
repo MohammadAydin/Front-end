@@ -1,42 +1,57 @@
 import React from "react";
 import "./Popup.css";
 import { RiErrorWarningLine } from "react-icons/ri";
-import Button from "../Button";
 import { IoMdClose } from "react-icons/io";
+import { IoLocationSharp } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
 
 // Pass confirmation props and change the state of the popup
 const Popup = ({ togglePopup, onConfirm }) => {
   const { t } = useTranslation();
   return (
-    <div className="modal  ">
-      <div onClick={togglePopup} className="overlay "></div>
-      <div className="modal-content flex flex-col items-center rounded-[10px]">
-        {/* Alert icon */}
-        <RiErrorWarningLine className="text-secondaryColor text-9xl " />
-
-        <p className="mt-8">{t("addLocation.popup.title")}</p>
-        {/* Close icon */}
-        <button className="close-modal" onClick={togglePopup}>
-          <IoMdClose />
+    <div className="modal">
+      <div onClick={togglePopup} className="overlay"></div>
+      <div className="modal-content-location animate-slide-up">
+        {/* Close button */}
+        <button className="close-modal-location" onClick={togglePopup}>
+          <IoMdClose size={24} />
         </button>
-        <div className="flex w-[25vw] gap-3.5 mt-14 mb-6 ">
-          {/* Cancel modification button */}
-          <Button
+
+        {/* Icon Container */}
+        <div className="location-icon-container">
+          <div className="location-icon-ring"></div>
+          <div className="location-icon-ring-delayed"></div>
+          <div className="location-icon-bg">
+            <IoLocationSharp className="location-icon" size={48} />
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="location-title">{t("addLocation.popup.title")}</h3>
+
+        {/* Description */}
+        <p className="location-description">
+          {t("addLocation.popup.description") || "Are you sure you want to proceed with this action?"}
+        </p>
+
+        {/* Buttons */}
+        <div className="location-buttons">
+          <button
             onClick={togglePopup}
-            className="bg-softwhite border   p-2 rounded-[10px] w-full"
-            text={t("addLocation.popup.noEdit")}
-          />
-          {/* Submit confirmation button */}
-          <Button
+            className="location-button-cancel"
+          >
+            {t("addLocation.popup.noEdit")}
+          </button>
+          <button
             onClick={() => {
               onConfirm();
               togglePopup();
             }}
             type="button"
-            className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-            text={t("addLocation.popup.yesConfirm")}
-          />
+            className="location-button-confirm"
+          >
+            {t("addLocation.popup.yesConfirm")}
+          </button>
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ import useData from "../../hooks/useData.js";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
+import { IoLocationSharp } from "react-icons/io5";
 
 const AddLoaction = () => {
   const [searchParams] = useSearchParams();
@@ -147,54 +148,64 @@ const AddLoaction = () => {
   // }, [watch("address")]);
 
   return (
-    // container wrapper
-    <Wrapper className="w-full">
-      <div className="w-full">
-        {/* If Workabilities is false Displays text the location add */}
-
-        <h1>{t("addLocation.Pleaseenteryourlocation")}</h1>
-        <p className=" text-softColor mt-4">
-          {lengthLocations == 0
-            ? t("addLocation.primaryLocation")
-            : t("addLocation.alternateLocation")}
-        </p>
-
-        <div className="mt-3 w-full">
-          <div className="form-Loacations mt-5 w-full">
-            <form onSubmit={(e) => e.preventDefault()} className="w-full">
-              {" "}
-              {/* If Workabilities is false Displays field the location add */}
-              <div className="grid grid-cols-2  gap-6 w-full max-[536px]:grid-cols-1 mt-5 mb-5">
-                <InputField
-                  register={register}
-                  errors={errors}
-                  label={t("addLocation.fields.street")}
-                  name={"street1"}
-                  type={"text"}
-                />
-                <InputField
-                  register={register}
-                  errors={errors}
-                  label={t("addLocation.fields.house")}
-                  name={"street2"}
-                  type={"text"}
-                />
-                <InputField
-                  register={register}
-                  errors={errors}
-                  label={t("addLocation.fields.postalCode")}
-                  name={"postalcode"}
-                  type={"text"}
-                />
-
-                <InputField
-                  register={register}
-                  errors={errors}
-                  label={t("addLocation.fields.city")}
-                  name={"city"}
-                  type={"text"}
-                />
+    <Wrapper className="w-full px-4 md:px-6 py-6">
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Header Section */}
+        <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-2xl p-6 md:p-8 mb-8 shadow-lg overflow-hidden animate-slide-up">
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-2">
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 shadow-lg">
+                <IoLocationSharp size={32} className="text-white" />
               </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-white">
+                {t("addLocation.Pleaseenteryourlocation")}
+              </h1>
+            </div>
+            <p className="text-white/90 text-sm md:text-base mt-2 ml-[68px]">
+              {lengthLocations == 0
+                ? t("addLocation.primaryLocation")
+                : t("addLocation.alternateLocation")}
+            </p>
+          </div>
+        </div>
+
+        {/* Form Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 animate-slide-up">
+          <form onSubmit={(e) => e.preventDefault()} className="w-full">
+            {/* Form Fields Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <InputField
+                register={register}
+                errors={errors}
+                label={t("addLocation.fields.street")}
+                name={"street1"}
+                type={"text"}
+              />
+              <InputField
+                register={register}
+                errors={errors}
+                label={t("addLocation.fields.house")}
+                name={"street2"}
+                type={"text"}
+              />
+              <InputField
+                register={register}
+                errors={errors}
+                label={t("addLocation.fields.postalCode")}
+                name={"postalcode"}
+                type={"text"}
+              />
+              <InputField
+                register={register}
+                errors={errors}
+                label={t("addLocation.fields.city")}
+                name={"city"}
+                type={"text"}
+              />
+            </div>
+            
+            {/* Country Field */}
+            <div className="mb-6">
               <InputField
                 register={register}
                 errors={errors}
@@ -202,41 +213,45 @@ const AddLoaction = () => {
                 name={"country"}
                 type={"text"}
               />
-              <div className="w-full h-[300px] overflow-hidden rounded-md mt-6">
-                <MapComponent
-                  address={
-                    watch([
-                      "postalcode",
-                      "street1",
-                      "street2",
-                      "city",
-                      "country",
-                    ]) || "Königsallee, Düsseldorf, Germany"
-                  }
-                />
-              </div>
-            </form>
-            <div className="flex w-[25vw] gap-3.5 ml-auto mt-8">
-              {/* If Workabilities is false Displays button back the location add */}
+            </div>
 
-              <Link className="w-full" to={-1}>
-                <Button
-                  className="bg-white border border-secondaryColor  text-secondaryColor  p-2 rounded-[10px] w-full"
-                  text={t(`addLocation.back`)}
-                />
-              </Link>
-
-              {/* Confirm button to open a popup confirming sending the location */}
-              <Button
-                onClick={togglePopup}
-                type="button"
-                className="bg-secondaryColor  text-white p-2  rounded-[10px] w-full "
-                text={t(`addLocation.next`)}
+            {/* Map Component */}
+            <div className="w-full h-[350px] md:h-[400px] overflow-hidden rounded-xl mt-6 border-2 border-gray-200 shadow-md">
+              <MapComponent
+                address={
+                  watch([
+                    "postalcode",
+                    "street1",
+                    "street2",
+                    "city",
+                    "country",
+                  ]) || "Königsallee, Düsseldorf, Germany"
+                }
               />
             </div>
-          </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-end">
+              <Link className="w-full sm:w-auto" to={-1}>
+                <button
+                  type="button"
+                  className="w-full sm:w-auto px-8 py-3 bg-white border-2 border-[#F47621] text-[#F47621] rounded-xl font-bold text-base hover:bg-[#F47621]/5 transition-all duration-300 hover:scale-105 shadow-md"
+                >
+                  {t("addLocation.back")}
+                </button>
+              </Link>
+              <button
+                onClick={togglePopup}
+                type="button"
+                className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#EE6000] hover:to-[#F47621] text-white rounded-xl font-bold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                {t("addLocation.next")}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+
       {/* Displays the popup according to its status. */}
       {showPopup && (
         <Popup

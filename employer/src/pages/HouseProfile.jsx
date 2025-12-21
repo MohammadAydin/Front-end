@@ -1,18 +1,14 @@
 import { useState } from "react";
 import Wrapper from "../assets/wrapper/OlderHouse/OlderProfile";
-import previewImg from "../assets/image/Preview.svg";
-import { RiPencilLine } from "react-icons/ri";
-import { FaPlus, FaRegTrashCan } from "react-icons/fa6";
 import Popup from "../components/Popup";
 import PopupAbout from "../components/PopupAbout";
 import useData from "../hooks/useData";
 import ProfilePhoto from "../components/UserProfile/ProfilePhoto/ProfilePhoto";
 import LocationInfo from "./LocationInfo/LocationInfo";
-import useStatusAccount from "../store/storeStatusAccount";
-import statusAccount from "../utils/statusAccountReturn";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import StatusAccount from "../utils/statusAccountReturn";
+import { IoHomeOutline, IoMailOutline, IoLocationOutline, IoPersonOutline, IoCallOutline, IoBusinessOutline } from "react-icons/io5";
 
 const HouseProfile = () => {
   const { t } = useTranslation();
@@ -49,16 +45,6 @@ const HouseProfile = () => {
   const [isOpenAbout, setIsOpenAbout] = useState(false);
   // Storing the value of about
   const [about, setAbout] = useState("About Elderly house");
-  // Image storage
-  const [preview, setPreview] = useState(previewImg);
-  // Convert an uploaded image to a link
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setPreview(url);
-    }
-  };
   // Define a fictitious data matrix
   const [address, setAddress] = useState([
     {
@@ -70,119 +56,145 @@ const HouseProfile = () => {
       Country: "Germany",
     },
   ]);
-  const { data: profile, isLoading } = useData("/profile");
+  const { data: profile } = useData("/profile");
 
   if (localStorage.getItem("statusAccount") !== "approved") {
     return <StatusAccount status={localStorage.getItem("statusAccount")} />;
   }
+
+  // Profile information cards data
+  const profileCards = [
+    {
+      icon: IoHomeOutline,
+      label: t("HouseProfile.label.ElderlyhouseName"),
+      value: "Elderly house",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      icon: IoMailOutline,
+      label: t("HouseProfile.label.Email"),
+      value: profile?.data?.email || "N/A",
+      color: "from-blue-500 to-blue-600",
+    },
+    {
+      icon: IoLocationOutline,
+      label: t("HouseProfile.label.Address"),
+      value: primaryAddress?.street1 || "N/A",
+      color: "from-green-500 to-green-600",
+    },
+    {
+      icon: IoPersonOutline,
+      label: t("HouseProfile.label.Mangername"),
+      value: profile?.data?.name || "N/A",
+      color: "from-purple-500 to-purple-600",
+    },
+    {
+      icon: IoCallOutline,
+      label: t("HouseProfile.label.PhoneNumber"),
+      value: profile?.data?.phone || "N/A",
+      color: "from-pink-500 to-pink-600",
+    },
+    {
+      icon: IoBusinessOutline,
+      label: t("HouseProfile.label.City"),
+      value: primaryAddress?.city || "N/A",
+      color: "from-indigo-500 to-indigo-600",
+    },
+  ];
+
   return (
-    // house profile wrapper
-    <Wrapper className="mt-6 w-full pr-3.5 pl-2.5 ">
-      {/* Full-page container */}
-      <div className="relative">
-        {/* Upper title */}
-        <p className="">{t("HouseProfile.title")}</p>
-        {/* Container containing the data partition */}
-        <div className="imgAndInput flex gap-5 mt-3.5 max-[730px]:flex-col">
-          {/* Container containing the image section */}
+    <Wrapper className="w-full px-4 md:px-6 py-6">
+      {/* Gradient Header Section */}
+      <div className="relative bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-2xl p-6 md:p-8 mb-8 shadow-lg overflow-hidden animate-slide-up">
+        {/* Decorative Background Pattern */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
 
-          <ProfilePhoto />
-
-          {/* Information Container */}
-          <div className="info flex flex-grow items-center max-[730px]:justify-center  p-3.5">
-            {/* A container to specify the width of the fields  */}
-            <div className="w-[90%]">
-              {/* A container containing the left and right sides */}
-              <div className="flex w-full  gap-6 max-[535px]:flex-col max-[535px]:gap-2 ">
-                {/* A container with the left side of the information */}
-                <div className="left justify-center  w-full flex flex-col gap-3.5 ">
-                  {/* A box containing a description with data */}
-                  <div className="relative info-square">
-                    <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      {t("HouseProfile.label.ElderlyhouseName")}
-                    </p>
-                    Elderly house
-                  </div>
-                  <div className="relative info-square">
-                    <p className=" p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      {t("HouseProfile.label.Email")}
-                    </p>
-                    {profile?.data?.email}
-                  </div>
-                  <div className="relative info-square">
-                    <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      {t("HouseProfile.label.Address")}
-                    </p>
-                    {primaryAddress?.street1}{" "}
-                  </div>
-                </div>
-                {/* A container containing the right and right sides */}
-                <div className="right w-full justify-center  flex flex-col gap-3.5">
-                  <div className="relative info-square">
-                    <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      {t("HouseProfile.label.Mangername")}
-                    </p>
-                    {profile?.data?.name || "empty"}
-                  </div>
-                  <div className="relative info-square">
-                    <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      {t("HouseProfile.label.PhoneNumber")}
-                    </p>
-                    {profile?.data?.phone || "empty"}
-                  </div>
-                  <div className="relative info-square">
-                    <p className="p-[1px] text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                      {t("HouseProfile.label.City")}
-                    </p>
-                    {primaryAddress?.city}
-                  </div>
-                </div>
-              </div>
-              {/* A customized box for Zip/Code*/}
-              <div className="mt-4">
-                {/* <div className="relative info-square">
-                  <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white">
-                    {t("HouseProfile.label.ZipCode")}
-                  </p>
-                  506540
-                </div> */}
-              </div>
-              {/* Customized box for about */}
-              {/* <div className="mt-4"> */}
-              {/* <div className="relative info-square flex justify-between items-center"> */}
-              {/* <p className="p-[1px]  text-[12px] absolute top-[-10px] text-[#637381] bg-white"> */}
-              {/* {t("HouseProfile.label.About")} */}
-              {/* </p> */}
-              {/* If there is input information, display it or dummy text */}
-              {/* {about ? about : "About Elderly House"} */}
-              {/* The edit icon, when clicked, opens the edit popup */}
-              {/* <RiPencilLine */}
-              {/* // onClick={() => setIsOpenAbout(true)} */}
-              {/* className="click text-[1.3rem] text-gray-400" */}
-              {/* /> */}
-              {/* </div> */}
-              {/* </div> */}
+        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 md:p-4 shadow-lg">
+              <IoHomeOutline size={32} className="text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                {t("HouseProfile.title")}
+              </h2>
+              <p className="text-white/90 text-sm md:text-base mt-1">
+                {t("HouseProfile.subtitle") || "Manage your healthcare facility profile"}
+              </p>
             </div>
           </div>
         </div>
-        {/* Container with the bottom section for adding addresses */}
-        <LocationInfo />
-        {/* Pop Up Add Address */}
-        {isOpen && (
-          <Popup
-            setAddress={setAddress}
-            address={address}
-            onClose={() => setIsOpen(false)}
-          />
-        )}
-        {/* Pop Up About */}
-        {isOpenAbout && (
-          <PopupAbout
-            onClose={() => setIsOpenAbout(false)}
-            setAbout={setAbout}
-          />
-        )}{" "}
       </div>
+
+      {/* Main Content Container */}
+      <div className="space-y-8">
+        {/* Profile Photo Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 animate-slide-up">
+          <h3 className="text-xl font-bold text-gray-800 mb-6">
+            {t("HouseProfile.profilePhoto") || "Profile Photo"}
+          </h3>
+          <div className="flex justify-center">
+            <ProfilePhoto />
+          </div>
+        </div>
+
+        {/* Profile Information Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {profileCards.map((card, index) => {
+            const IconComponent = card.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:border-[#F47621]/30 group animate-slide-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex items-start gap-4">
+                  {/* Icon Container */}
+                  <div className={`bg-gradient-to-br ${card.color} rounded-xl p-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent size={24} className="text-white" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                      {card.label}
+                    </p>
+                    <p className="text-lg font-bold text-gray-800 truncate">
+                      {card.value}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Location Information Section */}
+        <div className="animate-slide-up">
+          <LocationInfo />
+        </div>
+      </div>
+
+      {/* Pop Up Add Address */}
+      {isOpen && (
+        <Popup
+          setAddress={setAddress}
+          address={address}
+          onClose={() => setIsOpen(false)}
+        />
+      )}
+      {/* Pop Up About */}
+      {isOpenAbout && (
+        <PopupAbout
+          onClose={() => setIsOpenAbout(false)}
+          setAbout={setAbout}
+        />
+      )}
     </Wrapper>
   );
 };

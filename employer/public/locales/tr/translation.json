@@ -231,6 +231,7 @@
     "edit": "düzenle",
     "popup": {
       "title": "Emin misin?",
+      "description": "Lütfen bu konum bilgilerini kaydetmek istediğinizi onaylayın.",
       "noEdit": "İptal",
       "yesConfirm": "Onayla"
     }
@@ -259,6 +260,8 @@
   },
   "HouseProfile": {
     "title": "Ev Profili",
+    "subtitle": "Sağlık tesisinizin profilini yönetin",
+    "profilePhoto": "Profil Fotoğrafı",
     "label": {
       "ElderlyhouseName": "Huzurevi Adı",
       "Mangername": "Yönetici Adı",
@@ -281,6 +284,8 @@
     "add": "Yeni Adres Ekle",
     "address": "Adres",
     "primary": "Birincil Konum",
+    "noAddressMessage": "Adres bulunamadı",
+    "emptyStateHint": "Başlamak için \"Yeni Adres Ekle\" butonuna tıklayın",
     "status": {
       "active": "Aktif",
       "activate": "Etkinleştir",

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useData from "../../hooks/useData";
 import { Link } from "react-router-dom";
-
-import { GiPathDistance } from "react-icons/gi";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa6";
 import { RiPencilLine } from "react-icons/ri";
 import { FaRegTrashCan } from "react-icons/fa6";
 import customFetch from "../../utils/axios";
@@ -13,6 +11,7 @@ import SuccsessPopup from "../../components/FormElements/SuccsessPopup";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Spinner from "../../components/MoreElements/Spinner";
+import { IoLocationOutline, IoLocationSharp, IoCheckmarkCircle, IoCloseCircle } from "react-icons/io5";
 
 const LocationInfo = () => {
   const queryClient = useQueryClient();
@@ -83,140 +82,192 @@ const LocationInfo = () => {
     },
   });
 
-  // if (isLoadinglocations || isLoading) return <Spinner />;
-  // const primaryLocation = locations?.find(
-  //   (location) => location.is_primary == 1
-  // );
   return (
     <>
-      <div className="py-5 px-5">
-        <div className="text-2xl font-bold mt-2">
-          {t("LocationInfo.title")}{" "}
-        </div>
-        <div className="flex flex-col">
-          <div className="list-location">
-            {/* Container with the bottom section for adding addresses */}
-            <div className="mt-3.5 shadow-locationsList p-3.5 mb-5">
-              {/* A container that contains the container title and the add button{" "} */}
-              <div className="flex justify-between max-[600px]:flex-col max-[600px]:gap-2.5">
-                <p>{t("LocationInfo.description")}</p>
-                {/* When the add button is pressed, a popup opens to add the address */}
-                <Link
-                  to={`/addLoaction/${locations?.length}`}
-                  className={`flex items-center gap-1.5 ${
-                    primarystatus != "approved" && "hidden"
-                  }  text-white bg-amber-600 p-1.5 rounded-xl max-[600px]:w-fit  max-[600px]:text-[14px] `}
-                >
-                  <FaPlus />
-
-                  {t("LocationInfo.add")}
-                </Link>
+      <div className="w-full">
+        {/* Header Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-6 animate-slide-up">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-4">
+              <div className="bg-gradient-to-br from-[#F47621] to-[#ff8c42] rounded-xl p-3 shadow-lg">
+                <IoLocationSharp size={28} className="text-white" />
               </div>
-              {locations?.length == 0 && (
-                <div className="flex justify-center items-center gap-1 mt-6">
-                  <RiErrorWarningLine className="text-2xl text-secondaryColor" />
-
-                  <p className=" ">{t("locationInfo.noAddressMessage")}</p>
-                </div>
-              )}
-              {/* A container containing the added addresses  */}
-              <div className="mt-3.5 ">
-                {/* Displaying address array data */}
-                {locations?.data?.map((location, index) => (
-                  <div
-                    key={location.id}
-                    className="row-info flex max-[670px]:flex-col max-[670px]:items-start gap-20 max-[670px]:gap-3  p-2.5 items-center mb-1.5 border-b border-[#919eab63] border-dashed pb-4"
-                  >
-                    <h2
-                      className={`text-[1.1rem] w-[10vw] ${
-                        location.is_primary == 1 && "text-secondaryColor"
-                      }`}
-                    >
-                      {location.is_primary == 1
-                        ? t("LocationInfo.primary")
-                        : ` ${t("LocationInfo.address")} ${index + 2}`}
-                    </h2>
-                    <div
-                      className="flex justify-between flex-1 gap-3.5 max-[820px]:w-full
-"
-                    >
-                      <div className="address-info gap-10 flex items-center max-[545px]:flex-col max-[545px]:items-start max-[545px]:gap-2.5 ">
-                        <p>{location.street1}</p>
-                        <p>{location.city}</p>
-                        <p>{location.postal_code}</p>
-                      </div>
-                      {/* Container with delete and edit buttons */}
-                      {primarystatus != "approved" ? (
-                        <div
-                          className="text-center  bg-yellow-500
-                             text-white py-1 w-[100px] rounded-[5px] non-click"
-                        >
-                          {primarystatus} ...
-                        </div>
-                      ) : (
-                        <div className="chose flex items-center gap-2.5 max-[860px]:flex-col w-[200px] justify-between">
-                          <button
-                            onClick={() => Activate.mutate(location.id)}
-                            className={` ${
-                              location.is_active == 1
-                                ? "bg-green-500 non-click"
-                                : " bg-gray-500"
-                            } text-white py-1 w-[100px] rounded-[5px]`}
-                            disabled={location.is_active}
-                          >
-                            {location.is_active
-                              ? t("LocationInfo.status.active")
-                              : t("LocationInfo.status.activate")}
-                          </button>
-                          {location.is_primary == 1 ? (
-                            <div
-                              className="text-center  bg-secondaryColor
-                             text-white py-1 w-[100px] rounded-[5px] non-click"
-                            >
-                              {t("LocationInfo.status.primary")}
-                            </div>
-                          ) : (
-                            <div className="flex gap-2 items-center justify-center w-[100px]">
-                              <Link
-                                to={`/editLocation?id=${location.id}&title=${location.title}&street1=${location.street1}&street2=${location.street2}&postal_code=${location.postal_code}&city=${location.city}&country=${location.country}`}
-                              >
-                                <RiPencilLine className="click text-[1.5rem] text-gray-400" />
-                              </Link>
-                              <FaRegTrashCan
-                                onClick={() =>
-                                  deleteLocation.mutate(location.id)
-                                }
-                                className="click text-[1.2rem] text-red-500"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-800">
+                  {t("LocationInfo.title")}
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base mt-1">
+                  {t("LocationInfo.description")}
+                </p>
               </div>
             </div>
+            {/* Add New Address Button */}
+            {primarystatus === "approved" && (
+              <Link
+                to={`/addLoaction/${locations?.data?.length || 0}`}
+                className="flex items-center gap-2 bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#EE6000] hover:to-[#F47621] text-white px-6 py-3 rounded-xl font-bold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <FaPlus size={20} />
+                {t("LocationInfo.add")}
+              </Link>
+            )}
           </div>
 
-          {/* <div className="flex items-center gap-3 p-4 bg-white shadow-md rounded-lg max-w-md">
-            <GiPathDistance className="text-4xl text-secondaryColor" />
-            <div className="w-full">
-              <div className="flex justify-between w-full">
-                <p className="text-gray-500 text-sm">
-                  Your Acceptable Commuting Range:
-                </p>
-                <Link to={`/EditWorkaBilities/${workable?.workable_distance}`}>
-                  <RiPencilLine className="click text-[1.5rem] text-gray-400" />
-                </Link>
+          {/* Empty State */}
+          {(!locations?.data || locations?.data?.length === 0) && (
+            <div className="flex flex-col items-center justify-center py-12 px-4 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300">
+              <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-full p-4 mb-4">
+                <RiErrorWarningLine className="text-4xl text-[#F47621]" />
               </div>
-              <div className="flex gap-3 items-center ">
-                <p className="text-lg font-semibold text-gray-800">
-                  {workable?.workable_distance} km
+              <p className="text-gray-600 text-lg font-semibold text-center">
+                {t("LocationInfo.noAddressMessage") || "No addresses found"}
+              </p>
+              {primarystatus === "approved" && (
+                <p className="text-gray-500 text-sm mt-2 text-center">
+                  {t("LocationInfo.emptyStateHint") || 'Click "Add new address" to get started'}
                 </p>
-              </div>
+              )}
             </div>
-          </div> */}
+          )}
+
+          {/* Location Cards */}
+          {locations?.data && locations.data.length > 0 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+              {locations.data.map((location, index) => (
+                <div
+                  key={location.id}
+                  className={`bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-2 ${
+                    location.is_primary === 1
+                      ? "border-[#F47621] bg-gradient-to-br from-orange-50/50 to-white"
+                      : "border-gray-100 hover:border-[#F47621]/30"
+                  } animate-slide-up`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {/* Card Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`rounded-xl p-3 ${
+                          location.is_primary === 1
+                            ? "bg-gradient-to-br from-[#F47621] to-[#ff8c42]"
+                            : "bg-gradient-to-br from-gray-400 to-gray-500"
+                        } shadow-lg`}
+                      >
+                        <IoLocationOutline size={24} className="text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-gray-800">
+                          {location.is_primary === 1
+                            ? t("LocationInfo.primary")
+                            : `${t("LocationInfo.address")} ${index + 1}`}
+                        </h4>
+                        {location.is_primary === 1 && (
+                          <span className="inline-flex items-center gap-1 mt-1 px-2 py-1 bg-[#F47621]/10 text-[#F47621] text-xs font-semibold rounded-full">
+                            <IoCheckmarkCircle size={14} />
+                            {t("LocationInfo.status.primary")}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Address Details */}
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-start gap-2">
+                      <span className="text-gray-500 text-sm font-medium min-w-[80px]">
+                        Street:
+                      </span>
+                      <span className="text-gray-800 font-semibold flex-1">
+                        {location.street1}
+                        {location.street2 && `, ${location.street2}`}
+                      </span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-gray-500 text-sm font-medium min-w-[80px]">
+                        City:
+                      </span>
+                      <span className="text-gray-800 font-semibold flex-1">
+                        {location.city}
+                      </span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-gray-500 text-sm font-medium min-w-[80px]">
+                        Postal Code:
+                      </span>
+                      <span className="text-gray-800 font-semibold flex-1">
+                        {location.postal_code}
+                      </span>
+                    </div>
+                    {location.country && (
+                      <div className="flex items-start gap-2">
+                        <span className="text-gray-500 text-sm font-medium min-w-[80px]">
+                          Country:
+                        </span>
+                        <span className="text-gray-800 font-semibold flex-1">
+                          {location.country}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Status and Actions */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-4 border-t border-gray-200">
+                    {/* Status Badge */}
+                    {primarystatus !== "approved" ? (
+                      <div className="flex items-center gap-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-semibold text-sm">
+                        <span>{primarystatus}</span>
+                      </div>
+                    ) : (
+                      <>
+                        {/* Active Status */}
+                        <button
+                          onClick={() => Activate.mutate(location.id)}
+                          disabled={location.is_active === 1}
+                          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                            location.is_active === 1
+                              ? "bg-green-100 text-green-700 cursor-not-allowed"
+                              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                          }`}
+                        >
+                          {location.is_active === 1 ? (
+                            <>
+                              <IoCheckmarkCircle size={18} />
+                              {t("LocationInfo.status.active")}
+                            </>
+                          ) : (
+                            <>
+                              <IoCloseCircle size={18} />
+                              {t("LocationInfo.status.activate")}
+                            </>
+                          )}
+                        </button>
+
+                        {/* Action Buttons */}
+                        {location.is_primary !== 1 && (
+                          <div className="flex items-center gap-2">
+                            <Link
+                              to={`/editLocation?id=${location.id}&title=${location.title}&street1=${location.street1}&street2=${location.street2}&postal_code=${location.postal_code}&city=${location.city}&country=${location.country}`}
+                              className="flex items-center justify-center w-10 h-10 bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-all duration-300 hover:scale-110"
+                              title="Edit"
+                            >
+                              <RiPencilLine size={20} />
+                            </Link>
+                            <button
+                              onClick={() => deleteLocation.mutate(location.id)}
+                              className="flex items-center justify-center w-10 h-10 bg-red-100 hover:bg-red-200 text-red-600 rounded-lg transition-all duration-300 hover:scale-110"
+                              title="Delete"
+                            >
+                              <FaRegTrashCan size={18} />
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <SuccsessPopup />

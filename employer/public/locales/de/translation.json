@@ -230,6 +230,7 @@
     "edit": "bearbeiten",
     "popup": {
       "title": "Bist du sicher?",
+      "description": "Bitte bestätigen Sie, dass Sie diese Standortinformationen speichern möchten.",
       "noEdit": "Abbrechen",
       "yesConfirm": "Bestätigen"
     }
@@ -259,6 +260,8 @@
 
   "HouseProfile": {
     "title": "Hausprofil",
+    "subtitle": "Verwalten Sie Ihr Gesundheitspflegeeinrichtungsprofil",
+    "profilePhoto": "Profilfoto",
     "label": {
       "ElderlyhouseName": "Seniorenhaus-Name",
       "Mangername": "Manager-Name",
@@ -281,6 +284,8 @@
     "add": "Neue Adresse hinzufügen",
     "address": "Adresse",
     "primary": "Hauptstandort",
+    "noAddressMessage": "Keine Adressen gefunden",
+    "emptyStateHint": "Klicken Sie auf \"Neue Adresse hinzufügen\", um zu beginnen",
     "status": {
       "active": "Aktiv",
       "activate": "Aktivieren",

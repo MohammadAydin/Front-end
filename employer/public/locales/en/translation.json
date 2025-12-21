@@ -231,6 +231,7 @@
     "edit": "edit",
     "popup": {
       "title": "Are you sure?",
+      "description": "Please confirm that you want to save this location information.",
       "noEdit": "Cancel",
       "yesConfirm": "Confirm"
     }
@@ -259,6 +260,8 @@
   },
   "HouseProfile": {
     "title": "House Profile",
+    "subtitle": "Manage your healthcare facility profile",
+    "profilePhoto": "Profile Photo",
     "label": {
       "ElderlyhouseName": "Elderly house Name",
       "Mangername": "Manger name",
@@ -281,6 +284,8 @@
     "add": "Add new address",
     "address": "Address",
     "primary": "Primary Location",
+    "noAddressMessage": "No addresses found",
+    "emptyStateHint": "Click \"Add new address\" to get started",
     "status": {
       "active": "Active",
       "activate": "Activate",
