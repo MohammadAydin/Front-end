@@ -101,7 +101,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   /* Personal info page */
 
   .Personal_info_page {
@@ -109,39 +109,64 @@
   }
 
   .Personal_info_page .bg-gradient-to-r {
-    padding: 1.5rem;
+    padding: 1.25rem 1rem;
     border-radius: 0 0 1.5rem 1.5rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r .flex.items-center {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r .bg-white\/20 {
+    padding: 0.625rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r .bg-white\/20 svg {
+    width: 24px;
+    height: 24px;
   }
 
   .Personal_info_page .bg-gradient-to-r h2 {
     font-size: 1.5rem;
+    line-height: 1.2;
   }
 
   .Personal_info_page .bg-gradient-to-r p {
     font-size: 0.875rem;
     margin-left: 0;
     margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .Personal_info_page .max-w-5xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .Personal_info_Item {
-    flex-direction: column;
-    gap: 1rem;
     padding: 1rem !important;
+    gap: 0.75rem;
   }
 
-  .Personal_info_Item>div:first-child {
-    width: 100%;
+  .Personal_info_Item .flex.flex-col {
+    gap: 0.75rem;
   }
 
-  .Personal_info_Item>div:last-child {
-    width: 100%;
-    justify-content: flex-start !important;
+  .Personal_info_Item .bg-gradient-to-br {
+    padding: 0.625rem;
   }
 
-  .Personal_info_Item>div:last-child>button {
-    font-size: 0.875rem;
-    padding: 0.625rem 1rem;
-    width: 100%;
+  .Personal_info_Item .bg-gradient-to-br svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .Personal_info_Item span {
+    font-size: 0.9375rem;
+    line-height: 1.4;
   }
 
   .declinedStatus {
@@ -154,12 +179,29 @@
   .declinedStatus>button {
     width: 100%;
     order: 1;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
   }
 
   .declinedStatus>div {
     order: 2;
     width: 100%;
     justify-content: center;
+  }
+
+  /* Status badges responsive */
+  .declinedStatus .flex.items-center {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .declinedStatus .flex.items-center svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .declinedStatus .flex.items-center span {
+    font-size: 0.8125rem;
   }
 
   .SuccsessPopup {
@@ -173,18 +215,41 @@
   }
 
   .Complate_personal_info .bg-gradient-to-r {
-    padding: 1.25rem;
-    border-radius: 0 0 1.25rem 1.25rem;
+    padding: 1.25rem 1rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r .flex.items-center {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r .bg-white\/20 {
+    padding: 0.625rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r .bg-white\/20 svg {
+    width: 24px;
+    height: 24px;
   }
 
   .Complate_personal_info .bg-gradient-to-r h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
   }
 
   .Complate_personal_info .bg-gradient-to-r p {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     margin-left: 0;
     margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .Complate_personal_info .max-w-4xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .Complate_personal_info .personal_info_grid {
@@ -195,13 +260,54 @@
     padding: 1rem !important;
   }
 
+  .Complate_personal_info .personal_info_grid .bg-white {
+    padding: 1rem !important;
+  }
+
+  .Complate_personal_info .personal_info_grid label {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .Complate_personal_info .personal_info_grid .bg-gradient-to-br {
+    padding: 0.5rem;
+  }
+
+  .Complate_personal_info .personal_info_grid .bg-gradient-to-br svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .Complate_personal_info .personal_info_grid textarea {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    min-height: 120px;
+  }
+
+  .Complate_personal_info .personal_info_grid input {
+    font-size: 0.875rem;
+  }
+
+  .Complate_personal_info .bg-red-50 {
+    padding: 0.875rem;
+  }
+
+  .Complate_personal_info .bg-red-50 svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .Complate_personal_info .bg-red-50 p {
+    font-size: 0.8125rem;
+  }
+
   .GenderSelector {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 
   /* Documents */
-
   .Documents {
     padding: 0px 20px 20px 20px;
     position: relative;
@@ -229,5 +335,99 @@
   .showSignature {
     width: 90%;
   }
+}
 
+@media (max-width: 375px) {
+  /* Extra small screens */
+  .Personal_info_page .bg-gradient-to-r {
+    padding: 1rem 0.75rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r h2 {
+    font-size: 1.25rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r .bg-white\/20 {
+    padding: 0.5rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r .bg-white\/20 svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .Personal_info_page .max-w-5xl {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .Personal_info_Item {
+    padding: 0.875rem !important;
+  }
+
+  .Personal_info_Item span {
+    font-size: 0.875rem;
+  }
+
+  .declinedStatus>button {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+  }
+
+  .declinedStatus .flex.items-center {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.75rem;
+  }
+
+  /* Complate personal info - extra small screens */
+  .Complate_personal_info .bg-gradient-to-r {
+    padding: 1rem 0.75rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r h2 {
+    font-size: 1.25rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r .bg-white\/20 {
+    padding: 0.5rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r .bg-white\/20 svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .Complate_personal_info .max-w-4xl {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .Complate_personal_info .personal_info_grid>div {
+    padding: 0.875rem !important;
+  }
+
+  .Complate_personal_info .personal_info_grid .bg-white {
+    padding: 0.875rem !important;
+  }
+
+  .Complate_personal_info .personal_info_grid label {
+    font-size: 0.8125rem;
+  }
+
+  .Complate_personal_info .personal_info_grid textarea {
+    font-size: 0.8125rem;
+    padding: 0.625rem;
+    min-height: 100px;
+  }
+
+  .Complate_personal_info .personal_info_grid input {
+    font-size: 0.8125rem;
+  }
+
+  .Complate_personal_info .flex.flex-col button {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+  }
 }

@@ -67,34 +67,38 @@ const Personal_info = () => {
       status === "rejected"
     ) {
       return (
-        <div className="declinedStatus flex flex-row-reverse items-center gap-4">
+        <div className="declinedStatus flex flex-col sm:flex-row sm:flex-row-reverse items-stretch sm:items-center gap-3 sm:gap-4 w-full">
           <button
             onClick={() => navigate(`${path}`)}
-            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-6 py-2.5 rounded-xl font-bold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center gap-2 whitespace-nowrap"
+            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-4 sm:px-6 py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
           >
             {t("PersonalSections.button.Complete")}
             <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={18} />
           </button>
-          <Status status={status} />
+          <div className="flex justify-center sm:justify-start">
+            <Status status={status} />
+          </div>
         </div>
       );
     }
 
     if (status === "uploaded") {
       return (
-        <div className="declinedStatus flex flex-row-reverse items-center gap-4">
+        <div className="declinedStatus flex flex-col sm:flex-row sm:flex-row-reverse items-stretch sm:items-center gap-3 sm:gap-4 w-full">
           <button
             onClick={() => {
               status_name == "location"
                 ? navigate("/editLocation?uploaded=true")
                 : navigate(`${path}?uploaded=true`);
             }}
-            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-6 py-2.5 rounded-xl font-bold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center gap-2 whitespace-nowrap"
+            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-4 sm:px-6 py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
           >
             {t("PersonalSections.button.Edit")}
             <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={18} />
           </button>
-          <Status status={status} />
+          <div className="flex justify-center sm:justify-start">
+            <Status status={status} />
+          </div>
         </div>
       );
     }
@@ -121,7 +125,7 @@ const Personal_info = () => {
               {t("PersonalSections.title")}
             </h2>
           </div>
-          <p className="text-white/90 text-sm md:text-base mt-2 ml-16">
+          <p className="text-white/90 text-sm md:text-base mt-2 ml-0 md:ml-16">
             Complete your profile information to get started
           </p>
         </div>
@@ -138,16 +142,16 @@ const Personal_info = () => {
                 className="Personal_info_Item bg-white rounded-2xl p-5 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#F47621]/30 group"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-xl p-3 group-hover:from-[#F47621]/20 group-hover:to-[#ff8c42]/20 transition-all duration-300">
-                      <Icon className="text-[#F47621] group-hover:scale-110 transition-transform duration-300" size={28} />
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-3 md:gap-4 flex-1">
+                    <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-xl p-2.5 md:p-3 group-hover:from-[#F47621]/20 group-hover:to-[#ff8c42]/20 transition-all duration-300 flex-shrink-0">
+                      <Icon className="text-[#F47621] group-hover:scale-110 transition-transform duration-300" size={24} />
                     </div>
-                    <span className="text-lg md:text-xl font-semibold text-gray-800 group-hover:text-[#F47621] transition-colors duration-300">
+                    <span className="text-base md:text-lg lg:text-xl font-semibold text-gray-800 group-hover:text-[#F47621] transition-colors duration-300 break-words flex-1">
                       {label}
                     </span>
                   </div>
-                  <div className="flex items-center justify-end">
+                  <div className="flex items-center justify-start sm:justify-end w-full">
                     {renderActionButton({ status_name, path })}
                   </div>
                 </div>
@@ -164,9 +168,9 @@ const Personal_info = () => {
                 !statusData?.data?.isUploadedAllProfile || sendAllInfo.isPending
               }
               onClick={handleSendAll}
-              className={`w-full text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 ${statusData?.data?.isUploadedAllProfile && !sendAllInfo.isPending
-                  ? "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white hover:shadow-xl"
-                  : "bg-gray-300 text-gray-600 cursor-not-allowed"
+              className={`w-full text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 sm:gap-3 ${statusData?.data?.isUploadedAllProfile && !sendAllInfo.isPending
+                ? "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white hover:shadow-xl"
+                : "bg-gray-300 text-gray-600 cursor-not-allowed"
                 }`}
             >
               {sendAllInfo.isPending ? (

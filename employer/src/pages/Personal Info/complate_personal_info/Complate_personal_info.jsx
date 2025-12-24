@@ -94,7 +94,7 @@ const Complate_personal_info = () => {
               {t("personaldetails.title")}
             </h2>
           </div>
-          <p className="text-white/90 text-sm md:text-base mt-2 ml-16">
+          <p className="text-white/90 text-sm md:text-base mt-2 ml-0 md:ml-16">
             {t("personaldetails.description")}
           </p>
         </div>
@@ -122,7 +122,7 @@ const Complate_personal_info = () => {
                     <textarea
                       {...register(input.name)}
                       rows={5}
-                      className="w-full p-4 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#F47621] focus:border-[#F47621] resize-none transition-all duration-300 placeholder:text-gray-400 text-gray-900"
+                      className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#F47621] focus:border-[#F47621] resize-none transition-all duration-300 placeholder:text-gray-400 text-gray-900 text-sm sm:text-base"
                       placeholder={input.label}
                     />
                     {errors[input.name] && (
@@ -165,11 +165,11 @@ const Complate_personal_info = () => {
           )}
 
           {/* Action Buttons */}
-          <div className="flex justify-center gap-4 pt-8 pb-4 animate-slide-up" style={{ animationDelay: `${inputs.length * 100}ms` }}>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-6 sm:pt-8 pb-4 animate-slide-up" style={{ animationDelay: `${inputs.length * 100}ms` }}>
             <button
               type="button"
               onClick={() => navigate("/Personal info")}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-lg font-bold px-8 py-4 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <IoArrowBack size={20} />
               Back
@@ -177,7 +177,7 @@ const Complate_personal_info = () => {
             <button
               type="submit"
               disabled={add_personal_info_Mutatuin.isPending}
-              className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-lg font-bold px-12 py-4 rounded-xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+              className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-base sm:text-lg font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               {add_personal_info_Mutatuin.isPending && (
                 <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
