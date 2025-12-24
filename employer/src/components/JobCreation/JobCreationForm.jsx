@@ -566,8 +566,8 @@ const JobCreationForm = ({ isFormOpen, setIsFormOpen }) => {
                   onClick={handleConfirm}
                   disabled={loadingPost}
                   className={`px-8 py-3 rounded-xl text-white font-bold shadow-lg transition-all duration-300 transform ${loadingPost
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] hover:shadow-xl hover:scale-105"
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] hover:shadow-xl hover:scale-105"
                     }`}
                 >
                   {loadingPost ? (

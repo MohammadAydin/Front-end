@@ -199,18 +199,18 @@ const Notifications = () => {
               <div className="flex items-center gap-3 md:gap-4">
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-2 md:p-3">
                   <IoNotificationsOutline size={24} className="md:w-8 md:h-8 text-white" />
-                </div>
+          </div>
                 <div>
                   <h1 className="text-xl md:text-2xl font-bold text-white">
                     {t("notifications.title")}
                   </h1>
                   <p className="text-white/90 text-xs md:text-sm mt-1">
-                    {data?.data
+            {data?.data
                       ? t("notifications.notificationsCount", {
                           count: data?.data.length,
                         })
-                      : t("notifications.noNotifications")}
-                  </p>
+              : t("notifications.noNotifications")}
+          </p>
                 </div>
               </div>
 
@@ -273,10 +273,10 @@ const Notifications = () => {
                 </button>
               </div>
             </div>
-          </div>
         </div>
+      </div>
 
-        {/* Notifications List */}
+      {/* Notifications List */}
         <div>
         {filteredNotifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
@@ -345,9 +345,9 @@ const Notifications = () => {
                     <div className="flex items-start gap-4">
                       {/* Icon */}
                       {IconComponent && (
-                        <div
+                  <div
                           className={`${colors.iconBg} ${colors.text} rounded-xl p-3 flex-shrink-0 shadow-md`}
-                        >
+                  >
                           {IconComponent}
                         </div>
                       )}
@@ -355,30 +355,30 @@ const Notifications = () => {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3 mb-2">
-                          <div className="flex-1">
+                        <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
                               <h3
                                 className={`font-bold text-lg ${
                                   isUnread ? "text-gray-900" : "text-gray-700"
                                 }`}
                               >
-                                {notification.title}
-                              </h3>
-                              {isUnread && (
+                              {notification.title}
+                            </h3>
+                            {isUnread && (
                                 <span className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse shadow-lg"></span>
-                              )}
-                            </div>
+                            )}
+                          </div>
 
                             <div className="flex items-center gap-3 flex-wrap text-sm text-gray-500 mb-3">
                               <span className="flex items-center gap-1">
                                 <LuBell size={14} />
                                 {notification.created_at}
                               </span>
-                              <span
+                            <span
                                 className={`${colors.badge} px-2.5 py-1 rounded-lg text-xs font-semibold`}
-                              >
-                                {notification.type}
-                              </span>
+                            >
+                              {notification.type}
+                            </span>
                             </div>
                           </div>
 

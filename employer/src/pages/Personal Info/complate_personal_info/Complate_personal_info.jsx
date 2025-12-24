@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import InputField from "../../../components/FormElements/InputField";
 import GenderSelector from "./GenderSelector";
-import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -11,6 +10,8 @@ import "../../Responsive css/Personal_info.css";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
 import { createCompletePersonalInfoSchema } from "../../../utils/validationSchema.js";
+import { IoPersonOutline, IoDocumentTextOutline, IoArrowBack } from "react-icons/io5";
+import { HiOutlineExclamationCircle } from "react-icons/hi2";
 
 const Complate_personal_info = () => {
   const { t } = useTranslation();
@@ -81,40 +82,111 @@ const Complate_personal_info = () => {
   };
 
   return (
-    <div className="Complate_personal_info p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t("personaldetails.title")} </h2>
-      <p className="text-[#555770] mb-10 text-lg ">
-        {t("personaldetails.description")}{" "}
-      </p>
-      <form onSubmit={handleSubmit(Submit)}>
-        <div className="personal_info_grid grid grid-cols-2 gap-5">
-          {/* <div>
-            <GenderSelector name="gender" control={control} />
-            {errors.gender && (
-              <p className="text-red-500 mt-2">{errors.gender.message}</p>
-            )}
-          </div> */}
-          {inputs.map((input) => (
-            <InputField
-              key={input.name}
-              register={register}
-              errors={errors}
-              label={input.label}
-              name={input.name}
-              type={input.type}
-            />
-          ))}
-        </div>
-        {serverError && (
-          <p className="text-red-600 font-medium text-start my-4">
-            {serverError}
+    <div className="Complate_personal_info min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      {/* Gradient Header */}
+      <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-b-3xl p-6 md:p-8 relative overflow-hidden shadow-lg animate-slide-down">
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-2">
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3 shadow-lg">
+              <IoPersonOutline className="text-white" size={32} />
+            </div>
+            <h2 className="font-bold text-3xl md:text-4xl text-white drop-shadow-lg">
+              {t("personaldetails.title")}
+            </h2>
+          </div>
+          <p className="text-white/90 text-sm md:text-base mt-2 ml-16">
+            {t("personaldetails.description")}
           </p>
-        )}
-        <SubmitButtons
-          prevLabel="back"
-          onCancel={() => navigate("/Personal info")}
-        />
-      </form>
+        </div>
+      </div>
+
+      {/* Form Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <form onSubmit={handleSubmit(Submit)} className="space-y-6 animate-slide-up">
+          {/* Form Fields Grid */}
+          <div className="personal_info_grid grid grid-cols-1 gap-6">
+            {inputs.map((input, index) => (
+              <div
+                key={input.name}
+                className="animate-slide-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {input.name === "Bio" ? (
+                  <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300">
+                    <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+                      <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                        <IoDocumentTextOutline className="text-[#F47621]" size={18} />
+                      </div>
+                      {input.label}
+                    </label>
+                    <textarea
+                      {...register(input.name)}
+                      rows={5}
+                      className="w-full p-4 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#F47621] focus:border-[#F47621] resize-none transition-all duration-300 placeholder:text-gray-400 text-gray-900"
+                      placeholder={input.label}
+                    />
+                    {errors[input.name] && (
+                      <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
+                        <HiOutlineExclamationCircle size={16} />
+                        {errors[input.name].message}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300">
+                    <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+                      <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                        <IoPersonOutline className="text-[#F47621]" size={18} />
+                      </div>
+                      {input.label}
+                    </label>
+                    <InputField
+                      register={register}
+                      errors={errors}
+                      label=""
+                      name={input.name}
+                      type={input.type}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Server Error Display */}
+          {serverError && (
+            <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 flex items-start gap-3 animate-slide-up shadow-md">
+              <HiOutlineExclamationCircle className="text-red-600 flex-shrink-0 mt-0.5" size={24} />
+              <div>
+                <p className="text-red-800 font-semibold text-base mb-1">Error</p>
+                <p className="text-red-700 text-sm">{serverError}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Action Buttons */}
+          <div className="flex justify-center gap-4 pt-8 pb-4 animate-slide-up" style={{ animationDelay: `${inputs.length * 100}ms` }}>
+            <button
+              type="button"
+              onClick={() => navigate("/Personal info")}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-lg font-bold px-8 py-4 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+            >
+              <IoArrowBack size={20} />
+              Back
+            </button>
+            <button
+              type="submit"
+              disabled={add_personal_info_Mutatuin.isPending}
+              className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-lg font-bold px-12 py-4 rounded-xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+            >
+              {add_personal_info_Mutatuin.isPending && (
+                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+              )}
+              {add_personal_info_Mutatuin.isPending ? "Saving..." : "Save"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

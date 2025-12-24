@@ -144,14 +144,14 @@ const NotificationsList = ({
                 <div className="flex items-center gap-2 mb-1">
                   <h4
                     className={`font-bold text-sm ${
-                      isUnread ? "text-gray-900" : "text-gray-700"
-                    }`}
-                  >
-                    {title}
+                isUnread ? "text-gray-900" : "text-gray-700"
+              }`}
+            >
+              {title}
                   </h4>
-                  {isUnread && (
+              {isUnread && (
                     <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 animate-pulse"></span>
-                  )}
+              )}
                 </div>
 
                 <div className="flex items-center gap-3 flex-wrap text-xs text-gray-500 mb-2">
@@ -159,13 +159,13 @@ const NotificationsList = ({
                     <LuBell size={12} />
                     {formatDate(created_at)}
                   </span>
-                  <span
+              <span
                     className={`${colors.badge} px-2 py-0.5 rounded text-xs font-semibold`}
-                  >
-                    {type}
-                  </span>
-                </div>
-              </div>
+              >
+                {type}
+              </span>
+          </div>
+        </div>
 
               {/* Actions */}
               <div className="flex items-center gap-1 flex-shrink-0">
@@ -192,24 +192,24 @@ const NotificationsList = ({
                     <LuChevronDown size={16} />
                   )}
                 </button>
-              </div>
-            </div>
+        </div>
+      </div>
 
             {/* Expanded Message */}
-            {isOpen && (
+      {isOpen && (
               <div className="mt-3 pt-3 border-t border-gray-200 animate-slide-down">
                 <p className="text-gray-700 text-sm leading-relaxed">
                   {message}
                 </p>
-                {type_details?.description && (
-                  <div className="mt-2 pt-2 border-t border-gray-200">
+          {type_details?.description && (
+            <div className="mt-2 pt-2 border-t border-gray-200">
                     <p className="text-xs text-gray-600">
-                      {type_details.description}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+                {type_details.description}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
           </div>
         </div>
       </div>

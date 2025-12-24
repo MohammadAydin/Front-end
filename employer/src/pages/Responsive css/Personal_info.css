@@ -2,7 +2,22 @@
 
   /* complate personal info */
   .Complate_personal_info {
-    padding: 20px;
+    padding: 0;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r {
+    padding: 1.5rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r h2 {
+    font-size: 1.5rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r p {
+    font-size: 0.875rem;
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
 
   .personal_info_grid {
@@ -90,26 +105,61 @@
   /* Personal info page */
 
   .Personal_info_page {
-    padding: 0px 20px 20px 20px;
+    padding: 0;
+  }
+
+  .Personal_info_page .bg-gradient-to-r {
+    padding: 1.5rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r h2 {
+    font-size: 1.5rem;
+  }
+
+  .Personal_info_page .bg-gradient-to-r p {
+    font-size: 0.875rem;
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
 
   .Personal_info_Item {
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
+    padding: 1rem !important;
   }
 
-  .Personal_info_Item>button {
-    font-size: 16px;
+  .Personal_info_Item>div:first-child {
+    width: 100%;
+  }
+
+  .Personal_info_Item>div:last-child {
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+
+  .Personal_info_Item>div:last-child>button {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+    width: 100%;
   }
 
   .declinedStatus {
-    flex-direction: column-reverse;
-    align-items: start;
-    gap: 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: 100%;
   }
 
   .declinedStatus>button {
     width: 100%;
+    order: 1;
+  }
+
+  .declinedStatus>div {
+    order: 2;
+    width: 100%;
+    justify-content: center;
   }
 
   .SuccsessPopup {
@@ -118,6 +168,33 @@
   }
 
   /* complate personal info */
+  .Complate_personal_info {
+    padding: 0;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r {
+    padding: 1.25rem;
+    border-radius: 0 0 1.25rem 1.25rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r h2 {
+    font-size: 1.25rem;
+  }
+
+  .Complate_personal_info .bg-gradient-to-r p {
+    font-size: 0.75rem;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .Complate_personal_info .personal_info_grid {
+    gap: 1rem;
+  }
+
+  .Complate_personal_info .personal_info_grid>div {
+    padding: 1rem !important;
+  }
+
   .GenderSelector {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
