@@ -5,7 +5,6 @@
     "german": "German",
     "turkish": "Turkish"
   },
-
   "login": {
     "title": "Log in to Wo & Wann",
     "email": {
@@ -47,7 +46,6 @@
     "no": "No",
     "notAvailable": "N/A"
   },
-
   "Signup": {
     "title": "Sign up to Wo & Wann",
     "fields": {
@@ -112,7 +110,6 @@
       "Notifications": "Notifications"
     },
     "healthcareFacility": "Healthcare Facility",
-
     "settings": {
       "Language": "Language",
       "Settings": "Settings",
@@ -188,6 +185,13 @@
     "success": "Phone number verified successfully",
     "error": "Phone number could not be verified"
   },
+  "formElements": {
+    "fileUploader": {
+      "dropFiles": "Drop files here or",
+      "browse": "browse",
+      "throughDevice": "through your device"
+    }
+  },
   "documents": {
     "title": "Required Documents",
     "description": "Please upload the required documents",
@@ -212,8 +216,16 @@
     },
     "back": "Back",
     "submit": "Add",
+    "reupload": "Reupload",
     "success": "Documents uploaded successfully",
     "error": "Failed to upload documents"
+  },
+  "locationInfo": {
+    "mapView": "Map view",
+    "locationMarker": "Location marker",
+    "selectedLocation": "Selected location",
+    "clickToSelect": "Click on the map to select location",
+    "locationSelected": "Location selected successfully"
   },
   "addLocation": {
     "Pleaseenteryourlocation": "Please enter your location",
@@ -229,6 +241,15 @@
     "next": "next",
     "back": "back",
     "edit": "edit",
+    "validation": {
+      "streetRequired": "Street address is required",
+      "street2Required": "House number is required",
+      "postalCodeRequired": "Postal code must be at least 4 characters",
+      "postalCodeNumber": "Postal code must contain only numbers",
+      "cityRequired": "City is required",
+      "countryRequired": "Country is required"
+    },
+    "sendLocationError": "Failed to save location",
     "popup": {
       "title": "Are you sure?",
       "description": "Please confirm that you want to save this location information.",
@@ -252,9 +273,11 @@
       "fileTooLarge": "Signature must be smaller than 2MB"
     },
     "back": "Back",
-    "submit": "Submit",
+    "Add": "Add",
+    "Submit": "Submit",
     "showSignature": "Show Signature",
     "close": "Close",
+    "alreadyUploaded": "You have already uploaded a signature",
     "success": "Signature saved successfully",
     "error": "Failed to save signature"
   },
@@ -393,7 +416,6 @@
     "reconnecting": "Reconnecting...",
     "seeAllNotifications": "See All Notifications"
   },
-
   "RequestsForm": {
     "title": "Create new help request",
     "confirmTitle": "Confirm Request Details",

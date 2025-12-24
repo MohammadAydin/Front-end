@@ -5,7 +5,6 @@
     "german": "Almanca",
     "turkish": "Türkçe"
   },
-
   "login": {
     "title": "Wo & Wann'e Giriş Yap",
     "email": {
@@ -35,7 +34,6 @@
       "login": "Giriş Yap"
     }
   },
-
   "common": {
     "loading": "Yükleniyor...",
     "error": "Bir hata oluştu",
@@ -47,7 +45,6 @@
     "yes": "Evet",
     "no": "Hayır"
   },
-
   "Signup": {
     "title": "Wo & Wann'e Kayıt Ol",
     "fields": {
@@ -112,7 +109,6 @@
       "Notifications": "Bildirimler"
     },
     "healthcareFacility": "Sağlık Kurumu",
-
     "settings": {
       "Language": "Dil",
       "Settings": "Ayarlar",
@@ -188,6 +184,13 @@
     "success": "Telefon numarası başarıyla doğrulandı",
     "error": "Telefon numarası doğrulanamadı"
   },
+  "formElements": {
+    "fileUploader": {
+      "dropFiles": "Dosyaları buraya bırakın veya",
+      "browse": "gözat",
+      "throughDevice": "cihazınızdan yükleyin"
+    }
+  },
   "documents": {
     "title": "Gerekli Belgeler",
     "description": "Lütfen gerekli belgeleri yükleyin",
@@ -212,8 +215,16 @@
     },
     "back": "Geri",
     "submit": "Ekle",
+    "reupload": "Yeniden Yükle",
     "success": "Belgeler başarıyla yüklendi",
     "error": "Belgeler yüklenemedi"
+  },
+  "locationInfo": {
+    "mapView": "Harita görünümü",
+    "locationMarker": "Konum işareti",
+    "selectedLocation": "Seçilen konum",
+    "clickToSelect": "Konum seçmek için haritaya tıklayın",
+    "locationSelected": "Konum başarıyla seçildi"
   },
   "addLocation": {
     "Pleaseenteryourlocation": "Lütfen konumunuzu girin",
@@ -229,6 +240,15 @@
     "next": "İleri",
     "back": "Geri",
     "edit": "düzenle",
+    "validation": {
+      "streetRequired": "Sokak adresi gereklidir",
+      "street2Required": "Ev numarası gereklidir",
+      "postalCodeRequired": "Posta kodu en az 4 karakter olmalıdır",
+      "postalCodeNumber": "Posta kodu yalnızca rakam içermelidir",
+      "cityRequired": "Şehir gereklidir",
+      "countryRequired": "Ülke gereklidir"
+    },
+    "sendLocationError": "Konum kaydedilemedi",
     "popup": {
       "title": "Emin misin?",
       "description": "Lütfen bu konum bilgilerini kaydetmek istediğinizi onaylayın.",
@@ -252,9 +272,11 @@
       "fileTooLarge": "İmza 2MB'den küçük olmalıdır"
     },
     "back": "Geri",
-    "submit": "Gönder",
+    "Add": "Ekle",
+    "Submit": "Gönder",
     "showSignature": "İmzayı Göster",
     "close": "Kapat",
+    "alreadyUploaded": "Zaten bir imza yüklediniz",
     "success": "İmza başarıyla kaydedildi",
     "error": "İmza kaydedilemedi"
   },
@@ -393,7 +415,6 @@
     "reconnecting": "Yeniden bağlanılıyor...",
     "seeAllNotifications": "Tüm Bildirimleri Gör"
   },
-
   "RequestsForm": {
     "title": "Yeni yardım talebi oluştur",
     "confirmTitle": "Talep detaylarını onayla",

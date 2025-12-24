@@ -39,7 +39,7 @@ const FileUploader = ({ name, label, register, setValue, error }) => {
             <span className="text-xl font-bold mb-2">{label}</span>
             <p>
               {t('formElements.fileUploader.dropFiles')}
-              <span className="text-[#EE6000]"> fileUploader </span>
+              <span className="text-[#EE6000]"> {t('formElements.fileUploader.browse')} </span>
               {t('formElements.fileUploader.throughDevice')}
             </p>
           </div>

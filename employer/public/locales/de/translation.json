@@ -5,7 +5,6 @@
     "german": "Deutsch",
     "turkish": "Türkçe"
   },
-
   "login": {
     "title": "Bei Wo & Wann anmelden",
     "email": {
@@ -46,7 +45,6 @@
     "yes": "Ja",
     "no": "Nein"
   },
-
   "Signup": {
     "title": "Bei Wo & Wann anmelden",
     "fields": {
@@ -111,7 +109,6 @@
       "Notifications": "Benachrichtigungen"
     },
     "healthcareFacility": "Gesundheitseinrichtung",
-
     "settings": {
       "Language": "Sprache",
       "Settings": "Einstellungen",
@@ -187,6 +184,13 @@
     "success": "Telefonnummer erfolgreich verifiziert",
     "error": "Telefonnummer konnte nicht verifiziert werden"
   },
+  "formElements": {
+    "fileUploader": {
+      "dropFiles": "Dateien hier ablegen oder",
+      "browse": "durchsuchen",
+      "throughDevice": "über Ihr Gerät"
+    }
+  },
   "documents": {
     "title": "Erforderliche Dokumente",
     "description": "Bitte laden Sie die erforderlichen Dokumente hoch",
@@ -211,8 +215,16 @@
     },
     "back": "Zurück",
     "submit": "Hinzufügen",
+    "reupload": "Erneut hochladen",
     "success": "Dokumente erfolgreich hochgeladen",
     "error": "Dokumente konnten nicht hochgeladen werden"
+  },
+  "locationInfo": {
+    "mapView": "Kartenansicht",
+    "locationMarker": "Standortmarkierung",
+    "selectedLocation": "Ausgewählter Standort",
+    "clickToSelect": "Klicken Sie auf die Karte, um einen Standort auszuwählen",
+    "locationSelected": "Standort erfolgreich ausgewählt"
   },
   "addLocation": {
     "Pleaseenteryourlocation": "Bitte geben Sie Ihren Standort ein",
@@ -228,6 +240,15 @@
     "next": "Weiter",
     "back": "Zurück",
     "edit": "bearbeiten",
+    "validation": {
+      "streetRequired": "Straßenadresse ist erforderlich",
+      "street2Required": "Hausnummer ist erforderlich",
+      "postalCodeRequired": "Postleitzahl muss mindestens 4 Zeichen lang sein",
+      "postalCodeNumber": "Postleitzahl darf nur Zahlen enthalten",
+      "cityRequired": "Stadt ist erforderlich",
+      "countryRequired": "Land ist erforderlich"
+    },
+    "sendLocationError": "Standort konnte nicht gespeichert werden",
     "popup": {
       "title": "Bist du sicher?",
       "description": "Bitte bestätigen Sie, dass Sie diese Standortinformationen speichern möchten.",
@@ -251,13 +272,14 @@
       "fileTooLarge": "Die Unterschrift muss kleiner als 2 MB sein"
     },
     "back": "Zurück",
-    "submit": "Absenden",
+    "Add": "Hinzufügen",
+    "Submit": "Absenden",
     "showSignature": "Unterschrift anzeigen",
     "close": "Schließen",
+    "alreadyUploaded": "Sie haben bereits eine Unterschrift hochgeladen",
     "success": "Unterschrift erfolgreich gespeichert",
     "error": "Unterschrift konnte nicht gespeichert werden"
   },
-
   "HouseProfile": {
     "title": "Hausprofil",
     "subtitle": "Verwalten Sie Ihr Gesundheitspflegeeinrichtungsprofil",
@@ -393,7 +415,6 @@
     "reconnecting": "Wiederverbinden...",
     "seeAllNotifications": "Alle Benachrichtigungen anzeigen"
   },
-
   "RequestsForm": {
     "title": "Neue Hilfeanfrage erstellen",
     "confirmTitle": "Anfragedetails bestätigen",

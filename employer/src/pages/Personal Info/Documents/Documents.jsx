@@ -12,6 +12,8 @@ import Spinner from "../../../components/MoreElements/Spinner";
 import { FaHourglassHalf } from "react-icons/fa6";
 import statusAccount from "../../../utils/statusAccountReturn";
 import useStatusAccount from "../../../store/storeStatusAccount";
+import { IoDocumentTextOutline, IoArrowBack } from "react-icons/io5";
+import { HiOutlineExclamationCircle } from "react-icons/hi2";
 
 const Documents = () => {
   const status = useStatusAccount((state) => state.status);
@@ -84,66 +86,116 @@ const Documents = () => {
   // }
 
   return (
-    <div className="Documents p-[28px] py-[58px]">
-      <h2 className="text-2xl font-bold mb-2">{t("documents.title")}</h2>
-      <p className="text-[#555770] mb-10 text-lg ">
-        {t("documents.description")}
-      </p>
-      {requiredDocs?.data?.length == 0 && (
-        <p>There are no files to upload at the moment </p>
-      )}
-      {requiredDocs && (
-        <div className="my-5">
-          {requiredDocs?.data?.map((docs) => (
-            <DocumentsList
-              key={docs.id}
-              docs={docs}
-              setDocuments={setDocuments}
-            />
-          ))}
+    <div className="Documents min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      {/* Gradient Header */}
+      <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-b-3xl p-6 md:p-8 relative overflow-hidden shadow-lg animate-slide-down">
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-2">
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3 shadow-lg">
+              <IoDocumentTextOutline className="text-white" size={32} />
+            </div>
+            <h2 className="font-bold text-3xl md:text-4xl text-white drop-shadow-lg">
+              {t("documents.title")}
+            </h2>
+          </div>
+          <p className="text-white/90 text-sm md:text-base mt-2 ml-16">
+            {t("documents.description")}
+          </p>
         </div>
-      )}
-      {!isReady && (
-        <p className="w-full bg-[#f4212127] py-5 text-center rounded-lg text-[#f42121] mt-2">
-          {t("documents.uploadAllRequired")}
-        </p>
-      )}
-      <div className="mt-10 flex flex-col items-end">
-        <div>
+      </div>
+
+      {/* Content Area */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        {/* Empty State */}
+        {requiredDocs?.data?.length == 0 && (
+          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-md border border-gray-100 text-center animate-slide-up">
+            <div className="bg-gradient-to-br from-gray-100 to-gray-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <IoDocumentTextOutline className="text-gray-400" size={40} />
+            </div>
+            <p className="text-gray-600 text-lg font-medium">
+              There are no files to upload at the moment
+            </p>
+          </div>
+        )}
+
+        {/* Documents List */}
+        {requiredDocs && requiredDocs?.data?.length > 0 && (
+          <div className="space-y-4 animate-slide-up">
+            {requiredDocs?.data?.map((docs, index) => (
+              <div
+                key={docs.id}
+                style={{ animationDelay: `${index * 50}ms` }}
+                className="animate-slide-up"
+              >
+                <DocumentsList
+                  docs={docs}
+                  setDocuments={setDocuments}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Warning Message */}
+        {!isReady && requiredDocs?.data?.length > 0 && (
+          <div className="mt-6 bg-red-50 border-2 border-red-200 rounded-xl p-4 flex items-start gap-3 animate-slide-up shadow-md">
+            <HiOutlineExclamationCircle className="text-red-600 flex-shrink-0 mt-0.5" size={24} />
+            <p className="text-red-700 text-sm font-medium">
+              {t("documents.uploadAllRequired")}
+            </p>
+          </div>
+        )}
+
+        {/* Server Error Display */}
+        {serverError && (
+          <div className="mt-6 bg-red-50 border-2 border-red-200 rounded-xl p-4 flex items-start gap-3 animate-slide-up shadow-md">
+            <HiOutlineExclamationCircle className="text-red-600 flex-shrink-0 mt-0.5" size={24} />
+            <div>
+              <p className="text-red-800 font-semibold text-base mb-1">Error</p>
+              <p className="text-red-700 text-sm">{serverError}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 pb-4 animate-slide-up" style={{ animationDelay: `${(requiredDocs?.data?.length || 0) * 50}ms` }}>
           <button
             onClick={() => navigate("/Personal info")}
-            className="bg-[#F1F1F5] text-[#28293D] text-lg font-extrabold px-4 py-2 rounded-lg mt-4 hover:bg-[#cfcfd3] mr-3"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-lg font-bold px-8 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
           >
+            <IoArrowBack size={20} />
             {t("documents.back")}
           </button>
           <button
             disabled={!isReady || isUploading}
             onClick={submit}
-            className={`px-6 py-3 rounded-xl font-bold 
-              ${
-                !isReady
-                  ? "bg-gray-300 text-gray-600"
-                  : "bg-[#F47621] text-white"
-              }`}
+            className={`px-12 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl ${
+              !isReady || isUploading
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white"
+            }`}
           >
-            {t("documents.submit")}
+            {isUploading && (
+              <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+            )}
+            {isUploading ? "Uploading..." : t("documents.submit")}
           </button>
         </div>
-        {serverError && (
-          <p className="w-full text-red-600 font-medium text-start mb-4">
-            {serverError}
-          </p>
-        )}
       </div>
-      {isUploading && (
-        <div className=" w-full h-[100vh] fixed z-20 top-0 left-0 flex justify-center items-center bg-[#28293d94] text-black">
-          <div className="DocumentsUploading bg-white w-[500px] h-[200px] rounded-2xl p-5 py-10 flex flex-col items-center gap-5">
-            <FaHourglassHalf color="#F47621" size={50} />
 
-            <div className="w-[300px] h-1 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-[#F47621] animate-pulse"></div>
+      {/* Uploading Modal */}
+      {isUploading && (
+        <div className="fixed inset-0 z-50 flex justify-center items-center bg-black/60 backdrop-blur-sm animate-slide-up">
+          <div className="DocumentsUploading bg-white w-full max-w-md rounded-2xl p-8 flex flex-col items-center gap-6 shadow-2xl animate-slide-up">
+            <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-full p-4">
+              <FaHourglassHalf className="text-[#F47621]" size={50} />
             </div>
-            <p>uploading</p>
+            <div className="w-full max-w-xs">
+              <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-[#F47621] to-[#ff8c42] animate-pulse rounded-full"></div>
+              </div>
+            </div>
+            <p className="text-gray-700 font-semibold text-lg">Uploading documents...</p>
           </div>
         </div>
       )}

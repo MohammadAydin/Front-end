@@ -1,28 +1,22 @@
 import { useForm } from "react-hook-form";
-import Wrapper from "../../assets/wrapper/LocationInfo/LocationInfo";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import InputField from "../../components/FormElements/InputField";
-import Button from "../../components/MoreElements/Button";
-// To test before passing the map use useeffect
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Popup from "../../components/MoreElements/Popup/Popup.jsx";
 import customFetch from "../../utils/axios.js";
 import { toast } from "react-toastify";
 import MapComponent from "../../components/MapComponent.jsx";
-// To test before passing the map use axios
-import axios from "axios";
 import {
   Link,
   useNavigate,
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import useData from "../../hooks/useData.js";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup.js";
 import { useTranslation } from "react-i18next";
 import { createLocationSchema } from "../../utils/validationSchema.js";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp, IoHomeOutline, IoMapOutline, IoMailOutline, IoArrowBack } from "react-icons/io5";
+import { HiOutlineExclamationCircle } from "react-icons/hi2";
+import InputField from "../../components/FormElements/InputField";
 
 const AddLoaction = () => {
   const [searchParams] = useSearchParams();
@@ -64,10 +58,24 @@ const AddLoaction = () => {
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(baseSchema),
   });
+
+  // Handle location selection from map
+  const handleLocationSelect = (locationData) => {
+    if (locationData) {
+      setValue("street1", locationData.street1 || "", { shouldValidate: true });
+      setValue("city", locationData.city || "", { shouldValidate: true });
+      setValue("country", locationData.country || "", { shouldValidate: true });
+      setValue("postalcode", locationData.postalCode || "", { shouldValidate: true });
+
+      // Show success message
+      toast.success(t("locationInfo.locationSelected") || "Location selected successfully");
+    }
+  };
 
   //Send data
   const submit = async (data) => {
@@ -93,8 +101,8 @@ const AddLoaction = () => {
       // Show error message in toast
       toast.error(
         t("addLocation.sendLocationError") +
-          ": " +
-          (error?.response?.data?.message || error.message || "Unknown error")
+        ": " +
+        (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };
@@ -148,108 +156,167 @@ const AddLoaction = () => {
   // }, [watch("address")]);
 
   return (
-    <Wrapper className="w-full px-4 md:px-6 py-6">
-      <div className="w-full max-w-4xl mx-auto">
-        {/* Header Section */}
-        <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-2xl p-6 md:p-8 mb-8 shadow-lg overflow-hidden animate-slide-up">
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-2">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 shadow-lg">
-                <IoLocationSharp size={32} className="text-white" />
-              </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-white">
-                {t("addLocation.Pleaseenteryourlocation")}
-              </h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      {/* Gradient Header */}
+      <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] rounded-b-3xl p-6 md:p-8 relative overflow-hidden shadow-lg animate-slide-down">
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-2">
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3 shadow-lg">
+              <IoLocationSharp className="text-white" size={32} />
             </div>
-            <p className="text-white/90 text-sm md:text-base mt-2 ml-[68px]">
-              {lengthLocations == 0
-                ? t("addLocation.primaryLocation")
-                : t("addLocation.alternateLocation")}
-            </p>
+            <h2 className="font-bold text-3xl md:text-4xl text-white drop-shadow-lg">
+              {t("addLocation.Pleaseenteryourlocation")}
+            </h2>
           </div>
+          <p className="text-white/90 text-sm md:text-base mt-2 ml-16">
+            {lengthLocations == 0
+              ? t("addLocation.primaryLocation")
+              : t("addLocation.alternateLocation")}
+          </p>
         </div>
+      </div>
 
-        {/* Form Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 animate-slide-up">
-          <form onSubmit={(e) => e.preventDefault()} className="w-full">
-            {/* Form Fields Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      {/* Form Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <form onSubmit={(e) => e.preventDefault()} className="space-y-6 animate-slide-up">
+          {/* Form Fields */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Street Field */}
+            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300 animate-slide-up" style={{ animationDelay: "50ms" }}>
+              <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+                <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                  <IoMapOutline className="text-[#F47621]" size={18} />
+                </div>
+                {t("addLocation.fields.street")}
+              </label>
               <InputField
                 register={register}
                 errors={errors}
-                label={t("addLocation.fields.street")}
+                label=""
                 name={"street1"}
                 type={"text"}
               />
+            </div>
+
+            {/* House Number Field */}
+            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300 animate-slide-up" style={{ animationDelay: "100ms" }}>
+              <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+                <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                  <IoHomeOutline className="text-[#F47621]" size={18} />
+                </div>
+                {t("addLocation.fields.house")}
+              </label>
               <InputField
                 register={register}
                 errors={errors}
-                label={t("addLocation.fields.house")}
+                label=""
                 name={"street2"}
                 type={"text"}
               />
+            </div>
+
+            {/* Postal Code Field */}
+            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300 animate-slide-up" style={{ animationDelay: "150ms" }}>
+              <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+                <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                  <IoMailOutline className="text-[#F47621]" size={18} />
+                </div>
+                {t("addLocation.fields.postalCode")}
+              </label>
               <InputField
                 register={register}
                 errors={errors}
-                label={t("addLocation.fields.postalCode")}
+                label=""
                 name={"postalcode"}
                 type={"text"}
               />
+            </div>
+
+            {/* City Field */}
+            <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300 animate-slide-up" style={{ animationDelay: "200ms" }}>
+              <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+                <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                  <IoLocationSharp className="text-[#F47621]" size={18} />
+                </div>
+                {t("addLocation.fields.city")}
+              </label>
               <InputField
                 register={register}
                 errors={errors}
-                label={t("addLocation.fields.city")}
+                label=""
                 name={"city"}
                 type={"text"}
               />
             </div>
-            
-            {/* Country Field */}
-            <div className="mb-6">
-              <InputField
-                register={register}
-                errors={errors}
-                label={t("addLocation.fields.country")}
-                name={"country"}
-                type={"text"}
-              />
-            </div>
+          </div>
 
-            {/* Map Component */}
-            <div className="w-full h-[350px] md:h-[400px] overflow-hidden rounded-xl mt-6 border-2 border-gray-200 shadow-md">
+          {/* Country Field */}
+          <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300 animate-slide-up" style={{ animationDelay: "250ms" }}>
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
+              <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                <IoLocationSharp className="text-[#F47621]" size={18} />
+              </div>
+              {t("addLocation.fields.country")}
+            </label>
+            <InputField
+              register={register}
+              errors={errors}
+              label=""
+              name={"country"}
+              type={"text"}
+            />
+          </div>
+
+          {/* Map Component */}
+          <div className="bg-white rounded-2xl p-5 md:p-6 shadow-md border border-gray-100 hover:border-[#F47621]/30 transition-all duration-300 animate-slide-up" style={{ animationDelay: "300ms" }}>
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-lg p-1.5">
+                <IoMapOutline className="text-[#F47621]" size={18} />
+              </div>
+              {t("locationInfo.mapView") || "Map"}
+            </label>
+            <div className="w-full h-[350px] md:h-[400px] overflow-hidden rounded-xl border-2 border-gray-200 shadow-md relative">
               <MapComponent
                 address={
-                  watch([
-                    "postalcode",
-                    "street1",
-                    "street2",
-                    "city",
-                    "country",
-                  ]) || "Königsallee, Düsseldorf, Germany"
+                  (() => {
+                    const street1 = watch("street1");
+                    const city = watch("city");
+                    const country = watch("country");
+                    const postalcode = watch("postalcode");
+
+                    if (street1 && city && country) {
+                      return `${street1}, ${city}, ${country}`;
+                    } else if (postalcode && city && country) {
+                      return `${postalcode}, ${city}, ${country}`;
+                    }
+                    return "Königsallee, Düsseldorf, Germany";
+                  })()
                 }
+                onLocationSelect={handleLocationSelect}
+                isSelectable={true}
               />
             </div>
+          </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-end">
-              <Link className="w-full sm:w-auto" to={-1}>
-                <button
-                  type="button"
-                  className="w-full sm:w-auto px-8 py-3 bg-white border-2 border-[#F47621] text-[#F47621] rounded-xl font-bold text-base hover:bg-[#F47621]/5 transition-all duration-300 hover:scale-105 shadow-md"
-                >
-                  {t("addLocation.back")}
-                </button>
-              </Link>
-              <button
-                onClick={togglePopup}
-                type="button"
-                className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#EE6000] hover:to-[#F47621] text-white rounded-xl font-bold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-              >
-                {t("addLocation.next")}
-              </button>
-            </div>
-          </form>
-        </div>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-slide-up" style={{ animationDelay: "350ms" }}>
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-lg font-bold px-8 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+            >
+              <IoArrowBack size={20} />
+              {t("addLocation.back")}
+            </button>
+            <button
+              onClick={togglePopup}
+              type="button"
+              className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-lg font-bold px-12 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+            >
+              {t("addLocation.next")}
+            </button>
+          </div>
+        </form>
       </div>
 
       {/* Displays the popup according to its status. */}
@@ -259,7 +326,7 @@ const AddLoaction = () => {
           onConfirm={() => handleSubmit(submit)()}
         />
       )}
-    </Wrapper>
+    </div>
   );
 };
 
