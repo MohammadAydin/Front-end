@@ -5,7 +5,6 @@ import "./SideBarResponsive.css";
 import useData from "../../hooks/useData";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const SideBar = () => {
@@ -36,9 +35,8 @@ const SideBar = () => {
 
           <div className="w-full relative z-10">
             {/* Profile Section */}
-            <Link
-              to="/profile"
-              className="profile-user pt-[50px] pb-[20px] flex flex-col items-center group cursor-pointer relative"
+            <div
+              className="profile-user pt-[50px] pb-[20px] flex flex-col items-center group relative"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -96,7 +94,7 @@ const SideBar = () => {
                   </p>
                 </div>
               </div>
-            </Link>
+            </div>
 
             {/* Navigation Items */}
             <div className="group-item m-[25px] mt-8 flex flex-col items-start">
