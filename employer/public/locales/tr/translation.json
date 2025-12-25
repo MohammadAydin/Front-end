@@ -190,6 +190,10 @@
       "dropFiles": "Dosyaları buraya bırakın veya",
       "browse": "gözat",
       "throughDevice": "cihazınızdan yükleyin"
+    },
+    "successPopup": {
+      "title": "Başarılı!",
+      "description": "Bilgileriniz başarıyla kaydedildi."
     }
   },
   "documents": {
@@ -254,7 +258,12 @@
       "title": "Emin misin?",
       "description": "Lütfen bu konum bilgilerini kaydetmek istediğinizi onaylayın.",
       "noEdit": "İptal",
-      "yesConfirm": "Onayla"
+      "yesConfirm": "Onayla",
+      "saving": {
+        "title": "Konum Kaydediliyor",
+        "description": "Lütfen konum bilgilerinizi kaydederken bekleyin. Bu birkaç saniye sürebilir.",
+        "button": "Kaydediliyor..."
+      }
     }
   },
   "signature": {

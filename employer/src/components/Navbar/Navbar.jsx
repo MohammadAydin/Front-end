@@ -19,7 +19,7 @@ const Navbar = ({ setNotificationIsOpen, isSidebarOpen, setIsSidebarOpen }) => {
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
     const [isPopupLogout, setPopupLogout] = useState(false);
 
-    const { data: photodata } = useData("/photo");
+    const { data: photodata, isLoading: isLoadingPhoto } = useData("/photo");
     const data = getUserFromLocalStorage("user");
     const userId = pusherConfig?.utils?.getUserIdFromToken();
     const { unreadCount } = useNotificationsPusher(userId);
@@ -55,7 +55,7 @@ const Navbar = ({ setNotificationIsOpen, isSidebarOpen, setIsSidebarOpen }) => {
                 <div className="flex items-center h-14 sm:h-16">
                     {/* Left side - Sidebar toggle button (mobile only) */}
                     <div className="flex-shrink-0 sm:hidden">
-                        <button 
+                        <button
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                             className="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-all duration-300 touch-manipulation"
                             aria-label="Toggle menu"
@@ -94,14 +94,22 @@ const Navbar = ({ setNotificationIsOpen, isSidebarOpen, setIsSidebarOpen }) => {
                                 className="flex items-center gap-2 sm:gap-3 p-1 rounded-full hover:bg-gray-100 active:bg-gray-200 transition-all duration-300 group touch-manipulation"
                             >
                                 <div className="relative">
-                                    <img
-                                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-200 group-hover:border-[#F47621] transition-all duration-300"
-                                        src={
-                                            photodata?.data?.photo ? photodata?.data?.photo : profileAvatar
-                                        }
-                                        alt="Profile"
-                                    />
-                                    <div className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                                    {isLoadingPhoto ? (
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gray-200 flex items-center justify-center bg-gray-50">
+                                            <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-[#F47621] border-t-transparent rounded-full animate-spin"></div>
+                                        </div>
+                                    ) : (
+                                        <img
+                                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-200 group-hover:border-[#F47621] transition-all duration-300"
+                                            src={
+                                                photodata?.data?.photo ? photodata?.data?.photo : profileAvatar
+                                            }
+                                            alt="Profile"
+                                        />
+                                    )}
+                                    {!isLoadingPhoto && (
+                                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                                    )}
                                 </div>
                                 <span className="hidden sm:block text-sm font-semibold text-gray-700 group-hover:text-[#F47621] transition-colors max-w-[100px] md:max-w-none truncate">
                                     {data?.name || "User"}
@@ -128,15 +136,21 @@ const Navbar = ({ setNotificationIsOpen, isSidebarOpen, setIsSidebarOpen }) => {
                                     {/* Profile Header */}
                                     <div className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] p-3 sm:p-4">
                                         <div className="flex items-center gap-2 sm:gap-3">
-                                            <img
-                                                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white flex-shrink-0"
-                                                src={
-                                                    photodata?.data?.photo
-                                                        ? photodata?.data?.photo
-                                                        : profileAvatar
-                                                }
-                                                alt="Profile"
-                                            />
+                                            {isLoadingPhoto ? (
+                                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white flex items-center justify-center bg-white/20 flex-shrink-0">
+                                                    <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                                </div>
+                                            ) : (
+                                                <img
+                                                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white flex-shrink-0"
+                                                    src={
+                                                        photodata?.data?.photo
+                                                            ? photodata?.data?.photo
+                                                            : profileAvatar
+                                                    }
+                                                    alt="Profile"
+                                                />
+                                            )}
                                             <div className="min-w-0 flex-1">
                                                 <p className="text-white font-bold text-xs sm:text-sm truncate">
                                                     {data?.name || "User"}

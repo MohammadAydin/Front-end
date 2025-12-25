@@ -73,7 +73,7 @@ const EditLocation = () => {
       setValue("city", locationData.city || "", { shouldValidate: true });
       setValue("country", locationData.country || "", { shouldValidate: true });
       setValue("postalcode", locationData.postalCode || "", { shouldValidate: true });
-      
+
       // Show success message
       toast.success(t("locationInfo.locationSelected") || "Location selected successfully");
     }
@@ -107,6 +107,8 @@ const EditLocation = () => {
 
   //Send data
   const submit = async (data) => {
+    // Set loading state
+    setIsSaving(true);
     // Send to api
     try {
       const response = await customFetch.put(`/locations/${formDefaults.id}`, {
@@ -120,21 +122,25 @@ const EditLocation = () => {
       // if success
 
       OpenSuccsess();
+      setIsSaving(false);
+      togglePopup(); // Close popup before navigating
       navigate(-1);
 
       // If it doesn't success
     } catch (error) {
       // Print error message in console
       // Show error message in toast
+      setIsSaving(false);
       toast.error(
         t("addLocation.sendLocationError") +
-          ": " +
-          (error?.response?.data?.message || error.message || "Unknown error")
+        ": " +
+        (error?.response?.data?.message || error.message || "Unknown error")
       );
     }
   };
 
   const [showPopup, setshowPopup] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const togglePopup = () => setshowPopup(!showPopup);
 
   useEffect(() => {
@@ -278,7 +284,7 @@ const EditLocation = () => {
                     const city = watch("city");
                     const country = watch("country");
                     const postalcode = watch("postalcode");
-                    
+
                     if (street1 && city && country) {
                       return `${street1}, ${city}, ${country}`;
                     } else if (postalcode && city && country) {
@@ -319,6 +325,7 @@ const EditLocation = () => {
         <Popup
           togglePopup={togglePopup}
           onConfirm={() => handleSubmit(submit)()}
+          isSaving={isSaving}
         />
       )}
     </div>

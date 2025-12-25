@@ -191,6 +191,10 @@
       "dropFiles": "Drop files here or",
       "browse": "browse",
       "throughDevice": "through your device"
+    },
+    "successPopup": {
+      "title": "Success!",
+      "description": "Your information has been saved successfully."
     }
   },
   "documents": {
@@ -255,7 +259,12 @@
       "title": "Are you sure?",
       "description": "Please confirm that you want to save this location information.",
       "noEdit": "Cancel",
-      "yesConfirm": "Confirm"
+      "yesConfirm": "Confirm",
+      "saving": {
+        "title": "Saving Location",
+        "description": "Please wait while we save your location information. This may take a few seconds.",
+        "button": "Saving..."
+      }
     }
   },
   "signature": {

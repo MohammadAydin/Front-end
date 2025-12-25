@@ -36,6 +36,8 @@ const AddLoaction = () => {
 
   // Store pop-up status
   const [showPopup, setshowPopup] = useState(false);
+  // Store loading state
+  const [isSaving, setIsSaving] = useState(false);
 
   // Reverse pop-up status
   const togglePopup = () => {
@@ -79,6 +81,8 @@ const AddLoaction = () => {
 
   //Send data
   const submit = async (data) => {
+    // Set loading state
+    setIsSaving(true);
     // Send to api
     try {
       const response = await customFetch.post("/locations", {
@@ -93,12 +97,15 @@ const AddLoaction = () => {
 
       // Response printing
       OpenSuccsess();
+      setIsSaving(false);
+      togglePopup(); // Close popup before navigating
       navigate(-1);
 
       // If it doesn't success
     } catch (error) {
       // Print error message in console
       // Show error message in toast
+      setIsSaving(false);
       toast.error(
         t("addLocation.sendLocationError") +
         ": " +
@@ -324,6 +331,7 @@ const AddLoaction = () => {
         <Popup
           togglePopup={togglePopup}
           onConfirm={() => handleSubmit(submit)()}
+          isSaving={isSaving}
         />
       )}
     </div>

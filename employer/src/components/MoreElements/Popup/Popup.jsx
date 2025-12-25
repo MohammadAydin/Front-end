@@ -6,32 +6,69 @@ import { IoLocationSharp } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
 
 // Pass confirmation props and change the state of the popup
-const Popup = ({ togglePopup, onConfirm }) => {
+const Popup = ({ togglePopup, onConfirm, isSaving = false }) => {
   const { t } = useTranslation();
+  
+  const handleConfirm = async () => {
+    await onConfirm();
+    // Don't close popup immediately - let the parent component handle it after success
+  };
+
+  const handleOverlayClick = () => {
+    if (!isSaving) {
+      togglePopup();
+    }
+  };
+
   return (
     <div className="modal">
-      <div onClick={togglePopup} className="overlay"></div>
-      <div className="modal-content-location animate-slide-up">
+      <div onClick={handleOverlayClick} className={`overlay ${isSaving ? "overlay-saving" : ""}`}></div>
+      <div className={`modal-content-location animate-slide-up ${isSaving ? "saving-state" : ""}`}>
         {/* Close button */}
-        <button className="close-modal-location" onClick={togglePopup}>
+        <button 
+          className="close-modal-location" 
+          onClick={togglePopup}
+          disabled={isSaving}
+          aria-label={t("common.close")}
+        >
           <IoMdClose size={24} />
         </button>
 
         {/* Icon Container */}
         <div className="location-icon-container">
-          <div className="location-icon-ring"></div>
-          <div className="location-icon-ring-delayed"></div>
-          <div className="location-icon-bg">
-            <IoLocationSharp className="location-icon" size={48} />
-          </div>
+          {isSaving ? (
+            <>
+              <div className="location-icon-ring-saving"></div>
+              <div className="location-icon-ring-saving-delayed"></div>
+              <div className="location-icon-bg-saving">
+                <div className="saving-spinner-large"></div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="location-icon-ring"></div>
+              <div className="location-icon-ring-delayed"></div>
+              <div className="location-icon-bg">
+                <IoLocationSharp className="location-icon" size={48} />
+              </div>
+            </>
+          )}
         </div>
 
         {/* Title */}
-        <h3 className="location-title">{t("addLocation.popup.title")}</h3>
+        <h3 className="location-title">
+          {isSaving 
+            ? t("addLocation.popup.saving.title") 
+            : t("addLocation.popup.title")
+          }
+        </h3>
 
         {/* Description */}
         <p className="location-description">
-          {t("addLocation.popup.description") || "Are you sure you want to proceed with this action?"}
+          {isSaving 
+            ? t("addLocation.popup.saving.description")
+            : t("addLocation.popup.description")
+          }
         </p>
 
         {/* Buttons */}
@@ -39,18 +76,24 @@ const Popup = ({ togglePopup, onConfirm }) => {
           <button
             onClick={togglePopup}
             className="location-button-cancel"
+            disabled={isSaving}
           >
             {t("addLocation.popup.noEdit")}
           </button>
           <button
-            onClick={() => {
-              onConfirm();
-              togglePopup();
-            }}
+            onClick={handleConfirm}
             type="button"
-            className="location-button-confirm"
+            className={`location-button-confirm ${isSaving ? "saving-button" : ""}`}
+            disabled={isSaving}
           >
-            {t("addLocation.popup.yesConfirm")}
+            {isSaving ? (
+              <>
+                <div className="saving-spinner-button"></div>
+                <span>{t("addLocation.popup.saving.button")}</span>
+              </>
+            ) : (
+              t("addLocation.popup.yesConfirm")
+            )}
           </button>
         </div>
       </div>

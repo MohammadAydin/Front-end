@@ -174,15 +174,13 @@ const Personal_info = () => {
               )}
             </div>
 
-            {/* Send All Button */}
-            {!allCompleted && (
+            {/* Send All Button - Only show when all required information is uploaded */}
+            {statusData?.data?.isUploadedAllProfile && (
               <div className="mt-8 animate-slide-up" style={{ animationDelay: `${personalSections.length * 50}ms` }}>
                 <button
-                  disabled={
-                    !statusData?.data?.isUploadedAllProfile || sendAllInfo.isPending
-                  }
+                  disabled={sendAllInfo.isPending}
                   onClick={handleSendAll}
-                  className={`w-full text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 sm:gap-3 ${statusData?.data?.isUploadedAllProfile && !sendAllInfo.isPending
+                  className={`w-full text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 sm:gap-3 ${!sendAllInfo.isPending
                     ? "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white hover:shadow-xl"
                     : "bg-gray-300 text-gray-600 cursor-not-allowed"
                     }`}

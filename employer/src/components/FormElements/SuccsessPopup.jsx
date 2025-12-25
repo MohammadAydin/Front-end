@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { OpenSuccsessPopup } from "../../store/OpenSuccsessPopup";
-import { HiOutlineCheckCircle } from "react-icons/hi";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoCheckmarkCircle } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
+import "./SuccessPopup.css";
 
 const SuccsessPopup = () => {
   const { t } = useTranslation();
@@ -12,31 +12,54 @@ const SuccsessPopup = () => {
     if (isOpen) {
       const timer = setTimeout(() => {
         CloseSuccsess();
-      }, 3000);
+      }, 4000);
       return () => clearTimeout(timer);
     }
   }, [isOpen, CloseSuccsess]);
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      CloseSuccsess();
+    }
+  };
+
+  if (!isOpen) return null;
+
   return (
-    <>
-      {isOpen && (
-        <div className="SuccsessPopup p-10 fixed top-[50%] left-[50%] translate-[-50%] z-50 shadow-2xl w-[580px] h-[500px] bg-white rounded-2xl text-[#4CE452] flex flex-col items-center justify-center gap-2">
-          <div className="w-full text-black flex justify-end">
-            <span onClick={CloseSuccsess} className="cursor-pointer">
-              <IoClose size={30} />
-            </span>
+    <div className="success-popup-overlay" onClick={handleOverlayClick}>
+      <div className="success-popup-container animate-success-popup">
+        {/* Close button */}
+        <button 
+          className="success-popup-close" 
+          onClick={CloseSuccsess}
+          aria-label={t("common.close")}
+        >
+          <IoClose size={24} />
+        </button>
+
+        {/* Icon Container with Animation */}
+        <div className="success-popup-icon-container">
+          <div className="success-popup-ring"></div>
+          <div className="success-popup-ring-delayed"></div>
+          <div className="success-popup-icon-bg">
+            <IoCheckmarkCircle className="success-popup-icon" size={80} />
           </div>
-          <HiOutlineCheckCircle size={200} />
-          <p className="text-black font-extrabold text-xl my-3">
-            {t('formElements.successPopup.title')}
-          </p>
-          <p className="text-lg text-gray-500 text-center">
-            {t('formElements.successPopup.description')}
-          </p>
-          <div className="DownloadLine"></div>
         </div>
-      )}
-    </>
+
+        {/* Title */}
+        <h3 className="success-popup-title">
+          {t('formElements.successPopup.title')}
+        </h3>
+
+        {/* Description */}
+        <p className="success-popup-description">
+          {t('formElements.successPopup.description')}
+        </p>
+
+        {/* Decorative Line */}
+        <div className="success-popup-line"></div>
+      </div>
+    </div>
   );
 };
 

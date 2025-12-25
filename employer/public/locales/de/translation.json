@@ -190,6 +190,10 @@
       "dropFiles": "Dateien hier ablegen oder",
       "browse": "durchsuchen",
       "throughDevice": "über Ihr Gerät"
+    },
+    "successPopup": {
+      "title": "Erfolg!",
+      "description": "Ihre Informationen wurden erfolgreich gespeichert."
     }
   },
   "documents": {
@@ -254,7 +258,12 @@
       "title": "Bist du sicher?",
       "description": "Bitte bestätigen Sie, dass Sie diese Standortinformationen speichern möchten.",
       "noEdit": "Abbrechen",
-      "yesConfirm": "Bestätigen"
+      "yesConfirm": "Bestätigen",
+      "saving": {
+        "title": "Standort wird gespeichert",
+        "description": "Bitte warten Sie, während wir Ihre Standortinformationen speichern. Dies kann einige Sekunden dauern.",
+        "button": "Wird gespeichert..."
+      }
     }
   },
   "signature": {

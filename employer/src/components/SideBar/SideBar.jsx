@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const SideBar = () => {
-  const { data: photodata } = useData("/photo");
+  const { data: photodata, isLoading: isLoadingPhoto } = useData("/photo");
   const { t } = useTranslation();
   const data = getUserFromLocalStorage("user");
   const [isHovered, setIsHovered] = useState(false);
@@ -64,17 +64,25 @@ const SideBar = () => {
 
                 {/* Avatar */}
                 <div className="relative z-10">
-                  <img
-                    className="avatar w-[80px] h-[80px] rounded-full object-cover border-4 border-white/30 group-hover:border-[#F47621] transition-all duration-500 shadow-2xl group-hover:shadow-[#F47621]/50 group-hover:scale-110"
-                    src={
-                      photodata?.data?.photo
-                        ? photodata?.data?.photo
-                        : profileAvatar
-                    }
-                    alt="Profile"
-                  />
-                  {/* Status Indicator */}
-                  <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-[#194894] shadow-lg animate-pulse"></div>
+                  {isLoadingPhoto ? (
+                    <div className="avatar w-[80px] h-[80px] rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-sm shadow-2xl">
+                      <div className="w-8 h-8 border-2 border-[#F47621] border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        className="avatar w-[80px] h-[80px] rounded-full object-cover border-4 border-white/30 group-hover:border-[#F47621] transition-all duration-500 shadow-2xl group-hover:shadow-[#F47621]/50 group-hover:scale-110"
+                        src={
+                          photodata?.data?.photo
+                            ? photodata?.data?.photo
+                            : profileAvatar
+                        }
+                        alt="Profile"
+                      />
+                      {/* Status Indicator */}
+                      <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-[#194894] shadow-lg animate-pulse"></div>
+                    </>
+                  )}
                 </div>
               </div>
 

@@ -250,6 +250,177 @@ body.active-modal {
     transform: translateY(0);
 }
 
+.location-button-cancel:disabled,
+.location-button-confirm:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.location-button-cancel:disabled:hover,
+.location-button-confirm:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.close-modal-location:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.close-modal-location:disabled:hover {
+    transform: none;
+    background: rgba(0, 0, 0, 0.05);
+    color: #6b7280;
+}
+
+/* Saving State Styles */
+.modal-content-location.saving-state {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 20px 60px rgba(244, 118, 33, 0.4);
+    }
+}
+
+.overlay-saving {
+    cursor: wait !important;
+}
+
+/* Saving Icon Styles */
+.location-icon-ring-saving {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 3px solid rgba(244, 118, 33, 0.3);
+    border-radius: 50%;
+    animation: pulse-ring-saving 1.5s ease-out infinite;
+}
+
+.location-icon-ring-saving-delayed {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 3px solid rgba(244, 118, 33, 0.2);
+    border-radius: 50%;
+    animation: pulse-ring-saving 1.5s ease-out infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes pulse-ring-saving {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+.location-icon-bg-saving {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #F47621 0%, #ff8c42 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(244, 118, 33, 0.5);
+    z-index: 1;
+    animation: icon-pulse-saving 1.5s ease-in-out infinite;
+}
+
+@keyframes icon-pulse-saving {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.saving-spinner-large {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin-saving 1s linear infinite;
+}
+
+@keyframes spin-saving {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.saving-spinner-button {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin-saving 0.8s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.location-button-confirm.saving-button {
+    background: linear-gradient(135deg, #F47621 0%, #ff8c42 100%);
+    opacity: 0.9;
+    cursor: wait;
+    position: relative;
+    overflow: hidden;
+}
+
+.location-button-confirm.saving-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer-saving 2s infinite;
+}
+
+@keyframes shimmer-saving {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Enhanced responsive styles for saving state */
+@media (max-width: 640px) {
+    .location-icon-bg-saving {
+        width: 80px;
+        height: 80px;
+    }
+
+    .saving-spinner-large {
+        width: 36px;
+        height: 36px;
+        border-width: 3px;
+    }
+
+    .location-icon-ring-saving,
+    .location-icon-ring-saving-delayed {
+        width: 100px;
+        height: 100px;
+    }
+}
+
 /* Responsive Design for Location Dialog */
 @media (max-width: 640px) {
     .modal-content-location {
