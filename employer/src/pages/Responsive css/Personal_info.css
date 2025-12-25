@@ -181,6 +181,7 @@
     order: 1;
     padding: 0.75rem 1rem;
     font-size: 0.875rem;
+    border-radius: 9999px !important;
   }
 
   .declinedStatus>div {
@@ -193,6 +194,11 @@
   .declinedStatus .flex.items-center {
     padding: 0.5rem 0.75rem;
     font-size: 0.8125rem;
+    border-radius: 9999px !important;
+  }
+  
+  .declinedStatus .flex.items-center > div {
+    border-radius: 9999px !important;
   }
 
   .declinedStatus .flex.items-center svg {
@@ -202,6 +208,17 @@
 
   .declinedStatus .flex.items-center span {
     font-size: 0.8125rem;
+  }
+  
+  /* Standalone status badges - ensure fully rounded */
+  .Personal_info_Item .flex.justify-center .flex.items-center,
+  .Personal_info_Item .flex.justify-start .flex.items-center {
+    border-radius: 9999px !important;
+  }
+  
+  .Personal_info_Item .flex.justify-center .flex.items-center > div,
+  .Personal_info_Item .flex.justify-start .flex.items-center > div {
+    border-radius: 9999px !important;
   }
 
   .SuccsessPopup {
@@ -286,6 +303,11 @@
 
   .Complate_personal_info .personal_info_grid input {
     font-size: 0.875rem;
+  }
+  
+  /* Ensure all buttons are fully rounded on small screens */
+  .Complate_personal_info button {
+    border-radius: 9999px !important;
   }
 
   .Complate_personal_info .bg-red-50 {
@@ -372,11 +394,28 @@
   .declinedStatus>button {
     padding: 0.625rem 0.875rem;
     font-size: 0.8125rem;
+    border-radius: 9999px !important;
   }
 
   .declinedStatus .flex.items-center {
     padding: 0.5rem 0.625rem;
     font-size: 0.75rem;
+    border-radius: 9999px !important;
+  }
+  
+  .declinedStatus .flex.items-center > div {
+    border-radius: 9999px !important;
+  }
+  
+  /* Standalone status badges on extra small screens */
+  .Personal_info_Item .flex.justify-center .flex.items-center,
+  .Personal_info_Item .flex.justify-start .flex.items-center {
+    border-radius: 9999px !important;
+  }
+  
+  .Personal_info_Item .flex.justify-center .flex.items-center > div,
+  .Personal_info_Item .flex.justify-start .flex.items-center > div {
+    border-radius: 9999px !important;
   }
 
   /* Complate personal info - extra small screens */
@@ -429,5 +468,15 @@
   .Complate_personal_info .flex.flex-col button {
     font-size: 0.875rem;
     padding: 0.625rem 1rem;
+    border-radius: 9999px !important;
+  }
+  
+  .Complate_personal_info .flex.flex-col.sm\:flex-row button {
+    border-radius: 9999px !important;
+  }
+  
+  /* Ensure all buttons are fully rounded on extra small screens */
+  .Complate_personal_info button {
+    border-radius: 9999px !important;
   }
 }

@@ -169,7 +169,7 @@ const Complate_personal_info = () => {
             <button
               type="button"
               onClick={() => navigate("/Personal info")}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 w-full sm:w-auto"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <IoArrowBack size={20} />
               Back
@@ -177,7 +177,7 @@ const Complate_personal_info = () => {
             <button
               type="submit"
               disabled={add_personal_info_Mutatuin.isPending}
-              className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-base sm:text-lg font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 w-full sm:w-auto"
+              className="bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-base sm:text-lg font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               {add_personal_info_Mutatuin.isPending && (
                 <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>

@@ -352,7 +352,45 @@
     "invoice": "Rechnung",
     "invoices": "Rechnungen",
     "available": "verfügbar",
-    "noInvoicesAvailable": "Keine Rechnungen verfügbar"
+    "noInvoicesAvailable": "Keine Rechnungen verfügbar",
+    "details": {
+      "title": "Rechnungsdetails",
+      "invoiceInfo": "Rechnungsinformationen",
+      "invoiceNumber": "Rechnungsnummer",
+      "from": "Von",
+      "to": "Bis",
+      "amount": "Betrag",
+      "promotedAmount": "Beworbener Betrag",
+      "totalAmount": "Gesamtbetrag",
+      "status": {
+        "label": "Status",
+        "paid": "Bezahlt",
+        "pending": "Ausstehend",
+        "declined": "Abgelehnt",
+        "unknown": "Unbekannt"
+      },
+      "tasks": {
+        "title": "Rechnungsaufgaben",
+        "workHours": "Arbeitsstunden",
+        "hours": "Std.",
+        "notes": "Notizen",
+        "noNotes": "Keine Notizen verfügbar",
+        "promotions": "Werbeaktionen",
+        "amount": "Betrag",
+        "promotedAmount": "Beworben",
+        "total": "Gesamt",
+        "viewPdf": "PDF anzeigen",
+        "showDetails": "Details anzeigen",
+        "hideDetails": "Details ausblenden",
+        "employee": {
+          "unknown": "Unbekannt",
+          "noOccupation": "Kein Beruf"
+        }
+      },
+      "noTasks": "Keine Aufgaben für diese Rechnung gefunden",
+      "errorLoading": "Fehler beim Laden der Rechnungsdetails",
+      "notFound": "Rechnung nicht gefunden"
+    }
   },
   "accessibility": {
     "loadingContent": "Inhalt wird geladen, bitte warten"

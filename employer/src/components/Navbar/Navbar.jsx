@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
+import { BsList } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import useData from "../../hooks/useData";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
@@ -12,7 +13,7 @@ import PopupLogout from "../MoreElements/Popup/PopupLogout";
 import profileAvatar from "../../assets/image/Img_Avatar.25.svg";
 import "./Navbar.css";
 
-const Navbar = ({ setNotificationIsOpen }) => {
+const Navbar = ({ setNotificationIsOpen, isSidebarOpen, setIsSidebarOpen }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -51,12 +52,20 @@ const Navbar = ({ setNotificationIsOpen }) => {
     return (
         <nav className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
             <div className="max-w-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-14 sm:h-16">
-                    {/* Left side - Logo/Brand (can be empty or add logo) */}
-                    <div className="flex-shrink-0"></div>
+                <div className="flex items-center h-14 sm:h-16">
+                    {/* Left side - Sidebar toggle button (mobile only) */}
+                    <div className="flex-shrink-0 sm:hidden">
+                        <button 
+                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            className="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-all duration-300 touch-manipulation"
+                            aria-label="Toggle menu"
+                        >
+                            <BsList size={32} className="text-gray-700" />
+                        </button>
+                    </div>
 
                     {/* Right side - Actions */}
-                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 ml-auto">
                         {/* Notifications Button */}
                         <button
                             onClick={() => setNotificationIsOpen(true)}

@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 
 const Personal_info = () => {
   const [allCompleted, setAlCompleted] = useState(false);
-  const { data: statusData } = useData("/profile/status");
+  const { data: statusData, isLoading: isLoadingStatus } = useData("/profile/status");
 
   const { t } = useTranslation();
 
@@ -70,10 +70,10 @@ const Personal_info = () => {
         <div className="declinedStatus flex flex-col sm:flex-row sm:flex-row-reverse items-stretch sm:items-center gap-3 sm:gap-4 w-full">
           <button
             onClick={() => navigate(`${path}`)}
-            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-4 sm:px-6 py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
+            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto min-h-[44px]"
           >
             {t("PersonalSections.button.Complete")}
-            <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={18} />
+            <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" size={18} />
           </button>
           <div className="flex justify-center sm:justify-start">
             <Status status={status} />
@@ -91,10 +91,10 @@ const Personal_info = () => {
                 ? navigate("/editLocation?uploaded=true")
                 : navigate(`${path}?uploaded=true`);
             }}
-            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-4 sm:px-6 py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
+            className="group bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto min-h-[44px]"
           >
             {t("PersonalSections.button.Edit")}
-            <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={18} />
+            <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" size={18} />
           </button>
           <div className="flex justify-center sm:justify-start">
             <Status status={status} />
@@ -103,7 +103,11 @@ const Personal_info = () => {
       );
     }
 
-    return <Status status={status} />;
+    return (
+      <div className="flex justify-center sm:justify-start">
+        <Status status={status} />
+      </div>
+    );
   };
 
   return (
@@ -133,59 +137,71 @@ const Personal_info = () => {
 
       {/* Content Area */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        {/* Sections List */}
-        <div className="space-y-4 animate-slide-up">
-          {personalSections.map(
-            ({ icon: Icon, label, path, status_name }, index) => (
-              <div
-                key={index}
-                className="Personal_info_Item bg-white rounded-2xl p-5 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#F47621]/30 group"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-3 md:gap-4 flex-1">
-                    <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-xl p-2.5 md:p-3 group-hover:from-[#F47621]/20 group-hover:to-[#ff8c42]/20 transition-all duration-300 flex-shrink-0">
-                      <Icon className="text-[#F47621] group-hover:scale-110 transition-transform duration-300" size={24} />
-                    </div>
-                    <span className="text-base md:text-lg lg:text-xl font-semibold text-gray-800 group-hover:text-[#F47621] transition-colors duration-300 break-words flex-1">
-                      {label}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-start sm:justify-end w-full">
-                    {renderActionButton({ status_name, path })}
-                  </div>
-                </div>
-              </div>
-            )
-          )}
-        </div>
-
-        {/* Send All Button */}
-        {!allCompleted && (
-          <div className="mt-8 animate-slide-up" style={{ animationDelay: `${personalSections.length * 50}ms` }}>
-            <button
-              disabled={
-                !statusData?.data?.isUploadedAllProfile || sendAllInfo.isPending
-              }
-              onClick={handleSendAll}
-              className={`w-full text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 sm:gap-3 ${statusData?.data?.isUploadedAllProfile && !sendAllInfo.isPending
-                ? "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white hover:shadow-xl"
-                : "bg-gray-300 text-gray-600 cursor-not-allowed"
-                }`}
-            >
-              {sendAllInfo.isPending ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  <span>{t("PersonalSections.button.send.Sending")}</span>
-                </>
-              ) : (
-                <>
-                  <TbFileCheck size={24} />
-                  <span>{t("PersonalSections.button.send.Sendall")}</span>
-                </>
-              )}
-            </button>
+        {/* Loading State */}
+        {isLoadingStatus && (
+          <div className="flex flex-col items-center justify-center py-20 animate-slide-up">
+            <div className="w-16 h-16 border-4 border-[#F47621] border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p className="text-gray-600 text-lg font-medium">{t("common.loading") || "Loading..."}</p>
           </div>
+        )}
+
+        {/* Sections List */}
+        {!isLoadingStatus && (
+          <>
+            <div className="space-y-4 animate-slide-up">
+              {personalSections.map(
+                ({ icon: Icon, label, path, status_name }, index) => (
+                  <div
+                    key={index}
+                    className="Personal_info_Item bg-white rounded-2xl p-5 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#F47621]/30 group"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 md:gap-4 flex-1">
+                        <div className="bg-gradient-to-br from-[#F47621]/10 to-[#ff8c42]/10 rounded-xl p-2.5 md:p-3 group-hover:from-[#F47621]/20 group-hover:to-[#ff8c42]/20 transition-all duration-300 flex-shrink-0">
+                          <Icon className="text-[#F47621] group-hover:scale-110 transition-transform duration-300" size={24} />
+                        </div>
+                        <span className="text-base md:text-lg lg:text-xl font-semibold text-gray-800 group-hover:text-[#F47621] transition-colors duration-300 break-words flex-1">
+                          {label}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-start sm:justify-end w-full">
+                        {renderActionButton({ status_name, path })}
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+
+            {/* Send All Button */}
+            {!allCompleted && (
+              <div className="mt-8 animate-slide-up" style={{ animationDelay: `${personalSections.length * 50}ms` }}>
+                <button
+                  disabled={
+                    !statusData?.data?.isUploadedAllProfile || sendAllInfo.isPending
+                  }
+                  onClick={handleSendAll}
+                  className={`w-full text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 sm:gap-3 ${statusData?.data?.isUploadedAllProfile && !sendAllInfo.isPending
+                    ? "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white hover:shadow-xl"
+                    : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                    }`}
+                >
+                  {sendAllInfo.isPending ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>{t("PersonalSections.button.send.Sending")}</span>
+                    </>
+                  ) : (
+                    <>
+                      <TbFileCheck size={24} />
+                      <span>{t("PersonalSections.button.send.Sendall")}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
 

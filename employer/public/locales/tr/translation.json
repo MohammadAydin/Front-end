@@ -352,7 +352,45 @@
     "invoice": "fatura",
     "invoices": "faturalar",
     "available": "mevcut",
-    "noInvoicesAvailable": "Fatura mevcut değil"
+    "noInvoicesAvailable": "Fatura mevcut değil",
+    "details": {
+      "title": "Fatura Detayları",
+      "invoiceInfo": "Fatura Bilgileri",
+      "invoiceNumber": "Fatura Numarası",
+      "from": "Başlangıç",
+      "to": "Bitiş",
+      "amount": "Tutar",
+      "promotedAmount": "Promosyonlu Tutar",
+      "totalAmount": "Toplam Tutar",
+      "status": {
+        "label": "Durum",
+        "paid": "Ödendi",
+        "pending": "Beklemede",
+        "declined": "Reddedildi",
+        "unknown": "Bilinmiyor"
+      },
+      "tasks": {
+        "title": "Fatura Görevleri",
+        "workHours": "Çalışma Saatleri",
+        "hours": "saat",
+        "notes": "Notlar",
+        "noNotes": "Not mevcut değil",
+        "promotions": "Promosyonlar",
+        "amount": "Tutar",
+        "promotedAmount": "Promosyonlu",
+        "total": "Toplam",
+        "viewPdf": "PDF Görüntüle",
+        "showDetails": "Detayları Göster",
+        "hideDetails": "Detayları Gizle",
+        "employee": {
+          "unknown": "Bilinmiyor",
+          "noOccupation": "Meslek yok"
+        }
+      },
+      "noTasks": "Bu fatura için görev bulunamadı",
+      "errorLoading": "Fatura detayları yüklenirken hata oluştu",
+      "notFound": "Fatura bulunamadı"
+    }
   },
   "accessibility": {
     "loadingContent": "İçerik yükleniyor, lütfen bekleyin"

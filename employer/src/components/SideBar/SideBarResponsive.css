@@ -152,10 +152,6 @@
     animation: fadeSlideIn 0.5s forwards;
   }
 
-  .smallSideBar {
-    display: block;
-  }
-
   .active {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     color: #194894;

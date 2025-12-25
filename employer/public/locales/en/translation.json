@@ -353,7 +353,45 @@
     "invoice": "invoice",
     "invoices": "invoices",
     "available": "available",
-    "noInvoicesAvailable": "No invoices available"
+    "noInvoicesAvailable": "No invoices available",
+    "details": {
+      "title": "Invoice Details",
+      "invoiceInfo": "Invoice Information",
+      "invoiceNumber": "Invoice Number",
+      "from": "From",
+      "to": "To",
+      "amount": "Amount",
+      "promotedAmount": "Promoted Amount",
+      "totalAmount": "Total Amount",
+      "status": {
+        "label": "Status",
+        "paid": "Paid",
+        "pending": "Pending",
+        "declined": "Declined",
+        "unknown": "Unknown"
+      },
+      "tasks": {
+        "title": "Invoice Tasks",
+        "workHours": "Work Hours",
+        "hours": "h",
+        "notes": "Notes",
+        "noNotes": "No notes available",
+        "promotions": "Promotions",
+        "amount": "Amount",
+        "promotedAmount": "Promoted",
+        "total": "Total",
+        "viewPdf": "View PDF",
+        "showDetails": "Show Details",
+        "hideDetails": "Hide Details",
+        "employee": {
+          "unknown": "Unknown",
+          "noOccupation": "No occupation"
+        }
+      },
+      "noTasks": "No tasks found for this invoice",
+      "errorLoading": "Error loading invoice details",
+      "notFound": "Invoice not found"
+    }
   },
   "accessibility": {
     "loadingContent": "Loading content, please wait"

@@ -8,6 +8,8 @@ import Navbar from "../components/Navbar/Navbar";
 
 const HomeLayout = () => {
   const [notificationIsOpen, setNotificationIsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   return (
     <Wrapper>
       <div className="flex h-screen overflow-hidden">
@@ -19,10 +21,14 @@ const HomeLayout = () => {
         {/* Content Area - Contains Navbar and Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           {/* Top Navbar - Only in content area */}
-          <Navbar setNotificationIsOpen={setNotificationIsOpen} />
+          <Navbar 
+            setNotificationIsOpen={setNotificationIsOpen}
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
           
-          {/* Small Sidebar for mobile */}
-          <SmallSideBar />
+          {/* Small Sidebar menu for mobile */}
+          <SmallSideBar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
           
           {/* Main Content */}
           <div className="flex-1 overflow-y-auto">

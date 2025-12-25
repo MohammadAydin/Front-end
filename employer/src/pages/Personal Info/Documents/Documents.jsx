@@ -161,7 +161,7 @@ const Documents = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 pb-4 animate-slide-up" style={{ animationDelay: `${(requiredDocs?.data?.length || 0) * 50}ms` }}>
           <button
             onClick={() => navigate("/Personal info")}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-lg font-bold px-8 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-lg font-bold px-8 py-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95"
           >
             <IoArrowBack size={20} />
             {t("documents.back")}
@@ -169,7 +169,7 @@ const Documents = () => {
           <button
             disabled={!isReady || isUploading}
             onClick={submit}
-            className={`px-12 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl ${
+            className={`px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl ${
               !isReady || isUploading
                 ? "bg-gray-300 text-gray-600 cursor-not-allowed"
                 : "bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white"
