@@ -80,37 +80,40 @@ const PagesList = ({ setIsOpen }) => {
           {({ isActive }) => (
             <li
               onClick={() => setIsOpen && setIsOpen(false)}
-              className={`nav-item flex items-center gap-3 mx-[8px] relative group px-3 py-2.5 rounded-lg transition-all duration-300 ${
+              className={`nav-item flex items-center gap-3 mx-[4px] relative group px-4 py-3 rounded-xl transition-all duration-300 ${
                 isActive
-                  ? "bg-white/95 text-[#194894] shadow-md"
-                  : "text-white hover:bg-white/10"
+                  ? "bg-white/95 text-[#194894] shadow-lg shadow-white/20"
+                  : "text-white hover:bg-white/10 hover:shadow-md"
               }`}
               style={{
                 animationDelay: `${index * 50}ms`,
               }}
             >
-              {/* Active State - Subtle Left Border */}
+              {/* Active State - Left Border with Glow */}
               {isActive && (
-                <div className="absolute left-0 top-1 bottom-1 w-1 bg-gradient-to-b from-[#F47621] to-[#ff8c42] rounded-r-full"></div>
+                <>
+                  <div className="absolute left-0 top-1 bottom-1 w-1 bg-gradient-to-b from-[#F47621] to-[#ff8c42] rounded-r-full shadow-lg shadow-[#F47621]/50"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/50 to-transparent rounded-xl"></div>
+                </>
               )}
 
               {/* Hover Gradient Effect */}
               {!isActive && (
-                <div className={`absolute inset-0 bg-gradient-to-r ${page.color} opacity-0 group-hover:opacity-15 rounded-lg transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${page.color} opacity-0 group-hover:opacity-20 rounded-xl transition-opacity duration-300 blur-sm`}></div>
               )}
 
-              {/* Icon Container - More Subtle */}
+              {/* Icon Container with Background */}
               <div
-                className={`relative z-10 transition-all duration-300 ${
+                className={`relative z-10 p-2 rounded-lg transition-all duration-300 ${
                   isActive
-                    ? `text-[#194894]`
-                    : "text-white group-hover:text-[#F47621]"
+                    ? `bg-gradient-to-br ${page.color} text-white shadow-md`
+                    : "bg-white/5 text-white group-hover:bg-white/10 group-hover:text-[#F47621]"
                 }`}
               >
                 <div
                   className={`transition-transform duration-300 ${
                     isActive
-                      ? "scale-105"
+                      ? "scale-110"
                       : "group-hover:scale-110 group-hover:rotate-12"
                   }`}
                 >
@@ -120,24 +123,28 @@ const PagesList = ({ setIsOpen }) => {
 
               {/* Text */}
               <p
-                className={`pageName relative z-10 transition-all duration-300 flex-1 ${
+                className={`pageName relative z-10 transition-all duration-300 flex-1 text-base ${
                   isActive
-                    ? "font-semibold text-[#194894]"
-                    : "group-hover:text-[#F47621] font-medium"
+                    ? "font-bold text-[#194894]"
+                    : "group-hover:text-[#F47621] font-semibold"
                 }`}
               >
                 {page.name}
               </p>
 
-              {/* Active Indicator - Subtle Dot */}
+              {/* Active Indicator - Animated Dot */}
               {isActive && (
-                <div className="ml-auto w-1.5 h-1.5 bg-gradient-to-br from-[#F47621] to-[#ff8c42] rounded-full"></div>
+                <div className="ml-auto flex items-center gap-1">
+                  <div className="w-2 h-2 bg-gradient-to-br from-[#F47621] to-[#ff8c42] rounded-full animate-pulse shadow-lg shadow-[#F47621]/50"></div>
+                </div>
               )}
 
-              {/* Hover Arrow */}
+              {/* Hover Arrow Indicator */}
               {!isActive && (
-                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
-                  <div className="w-1.5 h-1.5 bg-[#F47621] rounded-full"></div>
+                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-8px] group-hover:translate-x-0">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="text-[#F47621]">
+                    <path d="M6 4l4 4-4 4V4z" />
+                  </svg>
                 </div>
               )}
 

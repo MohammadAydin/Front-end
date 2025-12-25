@@ -119,7 +119,12 @@
         "confirmation": "Are you sure you want to log out?",
         "description": "You will need to log in again to access your account.",
         "cancel": "Cancel",
-        "confirm": "Yes, Logout"
+        "confirm": "Yes, Logout",
+        "loggingOut": {
+          "title": "Logging Out",
+          "description": "Please wait while we securely log you out of your account.",
+          "button": "Logging out..."
+        }
       }
     },
     "Settings": {

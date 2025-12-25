@@ -33,17 +33,17 @@ const SideBar = () => {
             }}
           ></div>
 
-          <div className="w-full relative z-10">
+          <div className="w-full relative z-10 flex flex-col h-full">
             {/* Profile Section */}
             <div
-              className="profile-user pt-[50px] pb-[20px] flex flex-col items-center group relative"
+              className="profile-user pt-[40px] pb-[24px] px-4 flex flex-col items-center group relative"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Glassmorphism Card Background */}
-              <div className="absolute inset-x-0 top-4 bottom-0 bg-white/5 backdrop-blur-sm rounded-2xl mx-4 opacity-0 group-hover:opacity-100 transition-all duration-500 border border-white/10"></div>
+              <div className="absolute inset-x-0 top-2 bottom-0 bg-white/5 backdrop-blur-md rounded-2xl mx-2 opacity-0 group-hover:opacity-100 transition-all duration-500 border border-white/10 shadow-xl"></div>
 
-              <div className="relative mb-4 z-10">
+              <div className="relative mb-5 z-10">
                 {/* Multiple Glow Layers */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#F47621]/40 to-blue-500/40 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#F47621]/20 to-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -63,13 +63,13 @@ const SideBar = () => {
                 {/* Avatar */}
                 <div className="relative z-10">
                   {isLoadingPhoto ? (
-                    <div className="avatar w-[80px] h-[80px] rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-sm shadow-2xl">
+                    <div className="avatar w-[88px] h-[88px] rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-sm shadow-2xl">
                       <div className="w-8 h-8 border-2 border-[#F47621] border-t-transparent rounded-full animate-spin"></div>
                     </div>
                   ) : (
                     <>
                       <img
-                        className="avatar w-[80px] h-[80px] rounded-full object-cover border-4 border-white/30 group-hover:border-[#F47621] transition-all duration-500 shadow-2xl group-hover:shadow-[#F47621]/50 group-hover:scale-110"
+                        className="avatar w-[88px] h-[88px] rounded-full object-cover border-4 border-white/30 group-hover:border-[#F47621] transition-all duration-500 shadow-2xl group-hover:shadow-[#F47621]/50 group-hover:scale-110"
                         src={
                           photodata?.data?.photo
                             ? photodata?.data?.photo
@@ -78,17 +78,19 @@ const SideBar = () => {
                         alt="Profile"
                       />
                       {/* Status Indicator */}
-                      <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-[#194894] shadow-lg animate-pulse"></div>
+                      <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-4 border-[#194894] shadow-lg animate-pulse flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
                     </>
                   )}
                 </div>
               </div>
 
-              <div className="information text-center z-10 relative">
-                <p className="mt-[8px] text-white font-bold text-xl group-hover:text-[#F47621] transition-all duration-300 group-hover:scale-105">
+              <div className="information text-center z-10 relative w-full px-2">
+                <p className="mt-[4px] text-white font-bold text-xl group-hover:text-[#F47621] transition-all duration-300 group-hover:scale-105 truncate">
                   {data?.name}
                 </p>
-                <div className="mt-1 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full inline-block border border-white/20">
+                <div className="mt-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full inline-block border border-white/20 group-hover:bg-white/15 group-hover:border-white/30 transition-all duration-300">
                   <p className="admin text-white/90 font-medium text-xs">
                     {t("SideBar.healthcareFacility")}
                   </p>
@@ -97,7 +99,7 @@ const SideBar = () => {
             </div>
 
             {/* Navigation Items */}
-            <div className="group-item m-[25px] mt-8 flex flex-col items-start">
+            <div className="group-item flex-1 flex flex-col items-start px-3 pb-4 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
               <PagesList />
             </div>
           </div>

@@ -118,7 +118,12 @@
         "confirmation": "Sind Sie sicher, dass Sie sich abmelden möchten?",
         "description": "Sie müssen sich erneut anmelden, um auf Ihr Konto zuzugreifen.",
         "cancel": "Abbrechen",
-        "confirm": "Ja, abmelden"
+        "confirm": "Ja, abmelden",
+        "loggingOut": {
+          "title": "Wird abgemeldet",
+          "description": "Bitte warten Sie, während wir Sie sicher von Ihrem Konto abmelden.",
+          "button": "Wird abgemeldet..."
+        }
       }
     },
     "Settings": {

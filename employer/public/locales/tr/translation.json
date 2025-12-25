@@ -118,7 +118,12 @@
         "confirmation": "Çıkış yapmak istediğinizden emin misiniz?",
         "description": "Hesabınıza tekrar erişmek için giriş yapmanız gerekecek.",
         "cancel": "İptal",
-        "confirm": "Evet, Çıkış Yap"
+        "confirm": "Evet, Çıkış Yap",
+        "loggingOut": {
+          "title": "Çıkış Yapılıyor",
+          "description": "Lütfen hesabınızdan güvenli bir şekilde çıkış yapılırken bekleyin.",
+          "button": "Çıkış yapılıyor..."
+        }
       }
     },
     "Settings": {
