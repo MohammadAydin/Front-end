@@ -66,7 +66,7 @@ const ProfilePhoto = () => {
   return (
     <form
       onSubmit={handleSubmit(submit)}
-      className="ProfilePhoto flex  justify-center flex-col"
+      className="ProfilePhoto flex justify-center flex-col"
     >
       <div className="flex flex-col justify-center items-center">
         <ImageChange
@@ -77,22 +77,38 @@ const ProfilePhoto = () => {
           watch={watch}
         />
         {serverSuccess && (
-          <p className=" text-green-600 font-medium mt-2">{serverSuccess}</p>
+          <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 mt-4 animate-slide-up">
+            <p className="text-green-600 font-semibold text-center">
+              {serverSuccess}
+            </p>
+          </div>
         )}
         {avatarFile && avatarFile instanceof File && (
           <button
             type="submit"
-            className="w-[200px] bg-[#F47621] text-white text-lg font-extrabold px-10 py-2 rounded-lg mt-4 hover:bg-[#EE6000]"
+            disabled={addAvatar.isPending}
+            className="w-full max-w-[250px] bg-gradient-to-r from-[#F47621] to-[#ff8c42] hover:from-[#E55A1A] hover:to-[#F47621] text-white text-base md:text-lg font-bold px-8 py-3 rounded-full mt-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {t("HouseProfile.avatar.save")}
+            {addAvatar.isPending ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>{t("common.saving") || "Saving..."}</span>
+              </>
+            ) : (
+              <>
+                <span>{t("HouseProfile.avatar.save")}</span>
+              </>
+            )}
           </button>
         )}
       </div>
 
       {serverError && (
-        <p className=" text-red-600 font-medium text-center mt-2">
-          {serverError}
-        </p>
+        <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 mt-4 animate-slide-up max-w-md">
+          <p className="text-red-600 font-semibold text-center">
+            {serverError}
+          </p>
+        </div>
       )}
     </form>
   );

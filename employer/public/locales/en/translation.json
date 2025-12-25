@@ -36,6 +36,7 @@
   },
   "common": {
     "loading": "Loading...",
+    "saving": "Saving...",
     "error": "An error occurred",
     "success": "Success",
     "cancel": "Cancel",
@@ -298,7 +299,10 @@
     "avatar": {
       "type": "Allowed *.jpeg, *.jpg, *.png, *.gif",
       "max": "Max size of 3.1 MB",
-      "save": "save"
+      "save": "save",
+      "clickToEdit": "Click to Edit",
+      "clickToUpload": "Click to Upload",
+      "editHint": "Click on the photo above to change your profile picture"
     }
   },
   "LocationInfo": {

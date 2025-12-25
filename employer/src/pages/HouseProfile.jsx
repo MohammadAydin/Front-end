@@ -22,7 +22,11 @@ const HouseProfile = () => {
     erroLocationr,
     isLoadingLocation,
   } = useData("/locations");
+  const { data: profile, isLoading: isLoadingProfile } = useData("/profile");
   const primaryAddress = Location?.data?.find((item) => item.is_primary === 1);
+
+  // Check if any data is still loading
+  const isLoading = isLoadingstatus || isLoadingLocation || isLoadingProfile;
 
   useEffect(() => {
     if (statusData?.data?.status) {
@@ -56,10 +60,20 @@ const HouseProfile = () => {
       Country: "Germany",
     },
   ]);
-  const { data: profile } = useData("/profile");
-
   if (localStorage.getItem("statusAccount") !== "approved") {
     return <StatusAccount status={localStorage.getItem("statusAccount")} />;
+  }
+
+  // Show loading spinner while data is being fetched
+  if (isLoading) {
+    return (
+      <Wrapper className="w-full px-4 md:px-6 py-6">
+        <div className="flex flex-col items-center justify-center min-h-[60vh] animate-slide-up">
+          <div className="w-16 h-16 border-4 border-[#F47621] border-t-transparent rounded-full animate-spin mb-4"></div>
+          <p className="text-gray-600 text-lg font-medium">{t("common.loading") || "Loading..."}</p>
+        </div>
+      </Wrapper>
+    );
   }
 
   // Profile information cards data

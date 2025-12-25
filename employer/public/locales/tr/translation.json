@@ -36,6 +36,7 @@
   },
   "common": {
     "loading": "Yükleniyor...",
+    "saving": "Kaydediliyor...",
     "error": "Bir hata oluştu",
     "success": "Başarılı",
     "cancel": "İptal",
@@ -297,7 +298,10 @@
     "avatar": {
       "type": "İzin verilen: *.jpeg, *.jpg, *.png, *.gif",
       "max": "Maksimum boyut 3,1 MB",
-      "save": "kaydet"
+      "save": "kaydet",
+      "clickToEdit": "Düzenlemek için tıklayın",
+      "clickToUpload": "Yüklemek için tıklayın",
+      "editHint": "Profil fotoğrafınızı değiştirmek için yukarıdaki fotoğrafa tıklayın"
     }
   },
   "LocationInfo": {
