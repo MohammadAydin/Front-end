@@ -15,6 +15,7 @@ export { default as UserProfile } from "./UserProfile.jsx";
 
 export { default as Invoices } from "./Invoices.jsx";
 export { default as InvoiceDetails } from "./Invoices/InvoiceDetails.jsx";
+export { default as Offers } from "./Offers.jsx";
 export { default as Leaders } from "./Leaders.jsx";
 export { default as ShiftsMangment } from "./ShiftsMangment.jsx";
 export { default as Login } from "./Login.jsx";

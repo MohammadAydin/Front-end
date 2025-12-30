@@ -1,4 +1,4 @@
-const DEFAULT_API_BASE_URL = "http://woundwann.de/v1";
+const DEFAULT_API_BASE_URL = "https://staging.woundwann.de/v1";
 
 export const API_BASE_URL =
     typeof import.meta !== "undefined" &&

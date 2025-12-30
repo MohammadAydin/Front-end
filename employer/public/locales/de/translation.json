@@ -106,6 +106,7 @@
       "ViewJobs": "Aufträge anzeigen",
       "HelpRequests": "Hilfsanfragen",
       "Invoices": "Rechnungen",
+      "Offers": "Angebote",
       "ShiftsManagement": "Schichtverwaltung",
       "Notifications": "Benachrichtigungen"
     },
@@ -408,6 +409,43 @@
       "noTasks": "Keine Aufgaben für diese Rechnung gefunden",
       "errorLoading": "Fehler beim Laden der Rechnungsdetails",
       "notFound": "Rechnung nicht gefunden"
+    }
+  },
+  "Offers": {
+    "title": "Angebote",
+    "offer": "Angebot",
+    "offers": "Angebote",
+    "available": "verfügbar",
+    "noOffersAvailable": "Keine Angebote verfügbar",
+    "tabs": {
+      "all": "Alle Angebote",
+      "active": "Aktive Angebote",
+      "available": "Verfügbare Angebote"
+    },
+    "empty": {
+      "all": "Sie haben noch keine Angebote.",
+      "active": "Sie haben keine aktiven Angebote.",
+      "available": "Derzeit sind keine Angebote verfügbar."
+    },
+    "type": "Typ",
+    "discountValue": "Rabattwert",
+    "totalHours": "Gesamtstunden",
+    "consumedHours": "Verbrauchte Stunden",
+    "remainingHours": "Verbleibende Stunden",
+    "usageCount": "Nutzungsanzahl",
+    "startsAt": "Beginnt am",
+    "endsAt": "Endet am",
+    "lastUsed": "Zuletzt verwendet",
+    "hours": "Stunden",
+    "status": {
+      "active": "Aktiv",
+      "expired": "Abgelaufen",
+      "pending": "Ausstehend"
+    },
+    "types": {
+      "fixedPrice": "Fester Preis",
+      "package": "Paket",
+      "customRule": "Benutzerdefinierte Regel"
     }
   },
   "accessibility": {

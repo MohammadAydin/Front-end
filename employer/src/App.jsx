@@ -7,6 +7,7 @@ import {
   HelpRequestDetails,
   ServiceRequestDetails,
   Invoices,
+  Offers,
   Leaders,
   Documents,
   ShiftsMangment,
@@ -154,6 +155,11 @@ const router = createBrowserRouter([
       {
         path: "/invoiceDetails/:id",
         element: <InvoiceDetails />,
+        // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/offers",
+        element: <Offers />,
         // errorElement: <SinglePageError />,
       },
 

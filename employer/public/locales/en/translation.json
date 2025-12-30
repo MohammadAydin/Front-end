@@ -107,6 +107,7 @@
       "ViewJobs": "View jobs",
       "HelpRequests": "Help Requests",
       "Invoices": "Invoices",
+      "Offers": "Offers",
       "ShiftsManagement": "Shifts Management",
       "Notifications": "Notifications"
     },
@@ -409,6 +410,43 @@
       "noTasks": "No tasks found for this invoice",
       "errorLoading": "Error loading invoice details",
       "notFound": "Invoice not found"
+    }
+  },
+  "Offers": {
+    "title": "Offers",
+    "offer": "offer",
+    "offers": "offers",
+    "available": "available",
+    "noOffersAvailable": "No offers available",
+    "tabs": {
+      "all": "All Offers",
+      "active": "Active Offers",
+      "available": "Available Offers"
+    },
+    "empty": {
+      "all": "You have no offers yet.",
+      "active": "You have no active offers.",
+      "available": "No available offers at the moment."
+    },
+    "type": "Type",
+    "discountValue": "Discount Value",
+    "totalHours": "Total Hours",
+    "consumedHours": "Consumed Hours",
+    "remainingHours": "Remaining Hours",
+    "usageCount": "Usage Count",
+    "startsAt": "Starts At",
+    "endsAt": "Ends At",
+    "lastUsed": "Last Used",
+    "hours": "hours",
+    "status": {
+      "active": "Active",
+      "expired": "Expired",
+      "pending": "Pending"
+    },
+    "types": {
+      "fixedPrice": "Fixed Price",
+      "package": "Package",
+      "customRule": "Custom Rule"
     }
   },
   "accessibility": {

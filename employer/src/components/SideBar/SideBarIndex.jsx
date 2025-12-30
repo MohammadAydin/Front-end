@@ -1,5 +1,5 @@
 import { CiGrid41 } from "react-icons/ci";
-import { RiHome6Line, RiUserSettingsLine } from "react-icons/ri";
+import { RiHome6Line, RiUserSettingsLine, RiGiftLine } from "react-icons/ri";
 import { PiBellSimpleRingingBold } from "react-icons/pi";
 import { LuBanknote, LuClock, LuUserRound } from "react-icons/lu";
 import {
@@ -67,6 +67,13 @@ const PagesList = ({ setIsOpen }) => {
     },
     {
       id: 7,
+      name: t("SideBar.pages.Offers"),
+      icon: <RiGiftLine size={24} />,
+      path: "/offers",
+      color: "from-purple-500 to-pink-500",
+    },
+    {
+      id: 8,
       name: t("SideBar.pages.ShiftsManagement"),
       icon: <LuClock size={24} />,
       path: "/shifts",

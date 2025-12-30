@@ -106,6 +106,7 @@
       "ViewJobs": "İşleri görüntüle",
       "HelpRequests": "Yardım Talepleri",
       "Invoices": "Faturalar",
+      "Offers": "Teklifler",
       "ShiftsManagement": "Vardiya Yönetimi",
       "Notifications": "Bildirimler"
     },
@@ -408,6 +409,43 @@
       "noTasks": "Bu fatura için görev bulunamadı",
       "errorLoading": "Fatura detayları yüklenirken hata oluştu",
       "notFound": "Fatura bulunamadı"
+    }
+  },
+  "Offers": {
+    "title": "Teklifler",
+    "offer": "teklif",
+    "offers": "teklifler",
+    "available": "mevcut",
+    "noOffersAvailable": "Mevcut teklif yok",
+    "tabs": {
+      "all": "Tüm Teklifler",
+      "active": "Aktif Teklifler",
+      "available": "Mevcut Teklifler"
+    },
+    "empty": {
+      "all": "Henüz teklifiniz yok.",
+      "active": "Aktif teklifiniz yok.",
+      "available": "Şu anda mevcut teklif yok."
+    },
+    "type": "Tür",
+    "discountValue": "İndirim Değeri",
+    "totalHours": "Toplam Saat",
+    "consumedHours": "Tüketilen Saat",
+    "remainingHours": "Kalan Saat",
+    "usageCount": "Kullanım Sayısı",
+    "startsAt": "Başlangıç",
+    "endsAt": "Bitiş",
+    "lastUsed": "Son Kullanım",
+    "hours": "saat",
+    "status": {
+      "active": "Aktif",
+      "expired": "Süresi Dolmuş",
+      "pending": "Beklemede"
+    },
+    "types": {
+      "fixedPrice": "Sabit Fiyat",
+      "package": "Paket",
+      "customRule": "Özel Kural"
     }
   },
   "accessibility": {
