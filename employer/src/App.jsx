@@ -8,6 +8,7 @@ import {
   ServiceRequestDetails,
   Invoices,
   Offers,
+  Wallet,
   Leaders,
   Documents,
   ShiftsMangment,
@@ -160,6 +161,11 @@ const router = createBrowserRouter([
       {
         path: "/offers",
         element: <Offers />,
+        // errorElement: <SinglePageError />,
+      },
+      {
+        path: "/wallet",
+        element: <Wallet />,
         // errorElement: <SinglePageError />,
       },
 

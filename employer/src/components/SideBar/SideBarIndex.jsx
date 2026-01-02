@@ -2,6 +2,7 @@ import { CiGrid41 } from "react-icons/ci";
 import { RiHome6Line, RiUserSettingsLine, RiGiftLine } from "react-icons/ri";
 import { PiBellSimpleRingingBold } from "react-icons/pi";
 import { LuBanknote, LuClock, LuUserRound } from "react-icons/lu";
+import { FaWallet } from "react-icons/fa";
 import {
   IoLanguage,
   IoLogOutOutline,
@@ -74,6 +75,13 @@ const PagesList = ({ setIsOpen }) => {
     },
     {
       id: 8,
+      name: t("SideBar.pages.Wallet"),
+      icon: <FaWallet size={24} />,
+      path: "/wallet",
+      color: "from-emerald-500 to-teal-500",
+    },
+    {
+      id: 9,
       name: t("SideBar.pages.ShiftsManagement"),
       icon: <LuClock size={24} />,
       path: "/shifts",
