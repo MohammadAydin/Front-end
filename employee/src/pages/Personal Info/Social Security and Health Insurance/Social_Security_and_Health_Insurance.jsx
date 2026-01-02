@@ -11,7 +11,7 @@ import SubmitButtons from "../../../components/FormElements/SubmitButtons";
 import customFetch from "../../../utils/axios";
 import { OpenSuccsessPopup } from "../../../store/OpenSuccsessPopup";
 import { useTranslation } from "react-i18next";
-import useData from "../../../../../employer/src/hooks/useData";
+import useData from "../../../hooks/useData";
 import { toast } from "react-toastify";
 import "./Social_Security_and_Health_Insurance.css";
 
